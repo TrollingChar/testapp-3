@@ -22,7 +22,7 @@ public class GameServer {
 
         try {
             server.start();
-            server.dump(System.err);
+            //server.dump(System.err);
             server.join();
         } catch (Throwable t) {
             t.printStackTrace(System.err);

@@ -14,19 +14,24 @@ public class GameClient {
             try {
                 client.start();
                 // The socket that receives events
-                GameSocket socket = new GameSocket();
+                ClientSocket socket = new ClientSocket();
                 // Attempt Connect
                 Future<Session> fut = client.connect(socket, uri);
                 // Wait for Connect
                 Session session = fut.get();
 
                 // Send a message
-                ByteBuffer bb = ByteBuffer.allocate(1);
+                ByteBuffer bb = ByteBuffer.allocate(5);
+                bb.put(ClientAPI.AUTH);
+                bb.putInt(72);
+                bb.flip();
                 session.getRemote().sendBytes(bb);
-                for (;;);
 
-                // Close session
-                //session.close();
+                //* Don't close (toggle /* and //* to change behavior)
+                for(;;) Thread.yield();
+                /*/// Close session
+                session.close();
+                //*/
             } finally {
                 client.stop();
             }
