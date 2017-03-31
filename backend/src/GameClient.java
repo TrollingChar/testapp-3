@@ -19,11 +19,12 @@ public class GameClient {
                 Future<Session> fut = client.connect(socket, uri);
                 // Wait for Connect
                 Session session = fut.get();
-                for (; ; ) {
-                    // Send a message
-                    ByteBuffer bb = ByteBuffer.allocate(1);
-                    session.getRemote().sendBytes(bb);
-                }
+
+                // Send a message
+                ByteBuffer bb = ByteBuffer.allocate(1);
+                session.getRemote().sendBytes(bb);
+                for (;;);
+
                 // Close session
                 //session.close();
             } finally {

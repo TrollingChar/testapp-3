@@ -1,23 +1,28 @@
+import org.eclipse.jetty.websocket.api.CloseStatus;
 import org.eclipse.jetty.websocket.api.Session;
 import org.eclipse.jetty.websocket.api.WebSocketAdapter;
+
+import java.io.IOException;
+import java.nio.ByteBuffer;
 
 public class GameSocket extends WebSocketAdapter {
     @Override
     public void onWebSocketConnect(Session sess) {
         super.onWebSocketConnect(sess);
-        System.out.println("Socket Connected: " + sess);
+        System.out.println("connection: " + sess);
     }
 
     @Override
     public void onWebSocketText(String message) {
         super.onWebSocketText(message);
-        System.out.println("Received TEXT message: " + message);
+        // text not allowed
+        getSession().close(400, "Bad Request");
     }
 
     @Override
     public void onWebSocketClose(int statusCode, String reason) {
         super.onWebSocketClose(statusCode, reason);
-        System.out.println("Socket Closed: [" + statusCode + "] " + reason);
+        System.out.println("disconnection: " + statusCode + " " + reason);
     }
 
     @Override
@@ -30,5 +35,12 @@ public class GameSocket extends WebSocketAdapter {
     public void onWebSocketBinary(byte[] payload, int offset, int len) {
         super.onWebSocketBinary(payload, offset, len);
         System.out.println("bytes! " + len);
+        ByteBuffer bb = ByteBuffer.wrap(payload, offset, len);
+        try {
+            getRemote().sendBytes(bb);
+        } catch (IOException e) {
+            e.printStackTrace();
+            getSession().close();
+        }
     }
 }
