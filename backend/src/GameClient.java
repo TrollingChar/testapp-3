@@ -19,7 +19,6 @@ public class GameClient {
                 Future<Session> fut = client.connect(socket, uri);
                 // Wait for Connect
                 Session session = fut.get();
-
                 // Send a message
                 ByteBuffer bb = ByteBuffer.allocate(5);
                 bb.put(ClientAPI.AUTH);

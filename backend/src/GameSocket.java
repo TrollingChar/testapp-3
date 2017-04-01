@@ -1,8 +1,6 @@
-import org.eclipse.jetty.websocket.api.CloseStatus;
 import org.eclipse.jetty.websocket.api.Session;
 import org.eclipse.jetty.websocket.api.WebSocketAdapter;
 
-import java.io.IOException;
 import java.nio.ByteBuffer;
 
 // server side
@@ -45,7 +43,7 @@ public class GameSocket extends WebSocketAdapter {
                     HQ.authorize(session, bb.getInt());
                     break;
                 case ClientAPI.START_GAME:
-                    HQ.onStartGame(session);
+                    HQ.movePlayerToHub(session, bb.get());
                     break;
                 case ClientAPI.CANCEL:
                     HQ.onCancel(session);

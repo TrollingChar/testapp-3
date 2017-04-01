@@ -1,7 +1,6 @@
 import org.eclipse.jetty.websocket.api.Session;
 import org.eclipse.jetty.websocket.api.WebSocketAdapter;
 
-import java.io.IOException;
 import java.nio.ByteBuffer;
 
 public class ClientSocket extends WebSocketAdapter {
@@ -16,8 +15,8 @@ public class ClientSocket extends WebSocketAdapter {
     @Override
     public void onWebSocketText(String message) {
         super.onWebSocketText(message);
-        // text not allowed
-        getSession().close(400, "Bad Request");
+        System.out.println("Server sent a string: " + message);
+        getSession().close();
     }
 
     @Override
@@ -41,10 +40,7 @@ public class ClientSocket extends WebSocketAdapter {
 
     private static void println(ByteBuffer bb) {
         String s = "bytes:";
-        while (bb.hasRemaining()) {
-            byte b = bb.get();
-            s += String.format(" %02x", b);
-        }
+        while (bb.hasRemaining()) s += String.format(" %02x", bb.get());
         System.out.println(s);
     }
 }
