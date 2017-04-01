@@ -27,10 +27,12 @@ public class GameClient {
                 bb.flip();
                 session.getRemote().sendBytes(bb);
 
-                //* Don't close (toggle /* and //* to change behavior)
-                for(;;) Thread.yield();
-                /*/// Close session
+                /* Wait then close (toggle /* and //* to change behavior)
+                while (ClientSocket.alive) Thread.yield();
                 session.close();
+                /*/// Close then wait
+                session.close();
+                while (ClientSocket.alive) Thread.yield();
                 //*/
             } finally {
                 client.stop();

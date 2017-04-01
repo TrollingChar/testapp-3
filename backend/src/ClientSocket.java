@@ -5,10 +5,12 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 
 public class ClientSocket extends WebSocketAdapter {
+    public static boolean alive = true;
+
     @Override
-    public void onWebSocketConnect(Session sess) {
-        super.onWebSocketConnect(sess);
-        System.out.println("connection: " + sess);
+    public void onWebSocketConnect(Session session) {
+        super.onWebSocketConnect(session);
+        System.out.println("connection: " + session);
     }
 
     @Override
@@ -22,6 +24,7 @@ public class ClientSocket extends WebSocketAdapter {
     public void onWebSocketClose(int statusCode, String reason) {
         super.onWebSocketClose(statusCode, reason);
         System.out.println("disconnection: " + statusCode + " " + reason);
+        alive = false;
     }
 
     @Override
@@ -33,6 +36,15 @@ public class ClientSocket extends WebSocketAdapter {
     @Override
     public void onWebSocketBinary(byte[] payload, int offset, int len) {
         super.onWebSocketBinary(payload, offset, len);
-        System.out.println(ByteBuffer.wrap(payload, offset, len));
+        println(ByteBuffer.wrap(payload, offset, len));
+    }
+
+    private static void println(ByteBuffer bb) {
+        String s = "";
+        while (bb.hasRemaining()) {
+            byte b = bb.get();
+            s += String.format("%02x", b);
+        }
+        System.out.println(s);
     }
 }
