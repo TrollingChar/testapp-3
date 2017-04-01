@@ -40,10 +40,10 @@ public class ClientSocket extends WebSocketAdapter {
     }
 
     private static void println(ByteBuffer bb) {
-        String s = "";
+        String s = "bytes:";
         while (bb.hasRemaining()) {
             byte b = bb.get();
-            s += String.format("%02x", b);
+            s += String.format(" %02x", b);
         }
         System.out.println(s);
     }
