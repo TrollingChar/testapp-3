@@ -1,4 +1,6 @@
+import java.io.IOException;
 import java.nio.ByteBuffer;
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Random;
@@ -16,8 +18,20 @@ public class Room {
 
     public void startGame() {
         syncPlayers();
+        for (Player player : players) player.room = this;
 
         // start game
+        if(players.size() < 2) close();
+    }
+
+    private void close() {
+        while (players.size() > 0) try {
+            Player winner = players.remove();
+            winner.room = null;
+            winner.sendWin();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void syncPlayers() {
@@ -41,14 +55,19 @@ public class Room {
             Queue<Player> left = offline;
             online = new LinkedList<>();
             offline = new LinkedList<>();
-            for (Player player : players) {
-                try {
-                    player.sendPlayersLeft(left);
-                    online.add(player);
-                } catch (Throwable e) {
-                    offline.add(player);
-                }
-            }
         }
     } // void syncPlayers()
+
+    public void remove(Player player) {
+        players.remove(player);
+        player.room = null;
+        for (Player other : players) {
+            try {
+                other.sendPlayerLeft(player);
+            } catch (Throwable e) {
+                System.out.println("i hate u, jetty");
+            }
+        }
+        if(players.size() < 2) close();
+    }
 }

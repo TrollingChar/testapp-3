@@ -9,6 +9,7 @@ public class Player {
     private final int id;
     private final Session session;
     public Hub hub;
+    public Room room;
 
     public Player(Session session, int id) {
         this.session = session;
@@ -17,6 +18,7 @@ public class Player {
 
     public void disconnect() {
         Lookup.removePlayer(session, id);
+        if(room != null) room.remove(this);
         session.close();
     }
 
@@ -59,6 +61,22 @@ public class Player {
         bb.put(ServerAPI.LEFT_GAME);
         bb.put((byte)players.size());
         for (Player player : players) bb.putInt(player.id);
+        bb.flip();
+        session.getRemote().sendBytes(bb);
+    }
+
+    public void sendPlayerLeft(Player player) throws IOException {
+        ByteBuffer bb = ByteBuffer.allocate(6);
+        bb.put(ServerAPI.LEFT_GAME);
+        bb.put((byte)1);
+        bb.putInt(player.id);
+        bb.flip();
+        session.getRemote().sendBytes(bb);
+    }
+
+    public void sendWin() throws IOException {
+        ByteBuffer bb = ByteBuffer.allocate(1);
+        bb.put(ServerAPI.YOU_WIN);
         bb.flip();
         session.getRemote().sendBytes(bb);
     }
