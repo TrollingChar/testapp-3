@@ -9,6 +9,7 @@ public class GameSocket extends WebSocketAdapter {
     @Override
     public void onWebSocketConnect(Session session) {
         super.onWebSocketConnect(session);
+        System.out.println("client tries to connect");
     }
 
     @Override
@@ -28,6 +29,7 @@ public class GameSocket extends WebSocketAdapter {
             HQ.disconnect(Lookup.getPlayer(getSession()));
         } catch (Throwable e) {}
         super.onWebSocketClose(statusCode, reason);
+        System.out.println("connection closed");
     }
 
     @Override
@@ -41,6 +43,8 @@ public class GameSocket extends WebSocketAdapter {
         super.onWebSocketBinary(payload, offset, len);
 
         ByteBuffer bb = ByteBuffer.wrap(payload, offset, len);
+        GameLogger.println(bb);
+
         Session session = getSession();
         Player player = Lookup.getPlayer(session);
         try {
@@ -58,6 +62,7 @@ public class GameSocket extends WebSocketAdapter {
                     break;
             }
         } catch (Throwable e) {
+            e.printStackTrace();
             if(player != null) HQ.disconnect(player);
             else session.close();
         }

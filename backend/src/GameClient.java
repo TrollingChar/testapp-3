@@ -27,11 +27,12 @@ public class GameClient {
                 bb.flip();
                 session.getRemote().sendBytes(bb);
                 // wait
-                Thread.sleep(500);
+                Thread.sleep(2500);
                 // send signal to start game
                 bb = ByteBuffer.allocate(2);
                 bb.put(ClientAPI.TO_HUB);
                 bb.put((byte)2);
+                bb.flip();
                 session.getRemote().sendBytes(bb);
 
                 //* Wait then close (toggle /* and //* to change behavior)

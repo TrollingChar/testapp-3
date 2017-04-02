@@ -37,7 +37,7 @@ public class Player {
     }
 
     private void sendHubChanged(int hubId) throws IOException {
-        ByteBuffer bb = ByteBuffer.allocate(1);
+        ByteBuffer bb = ByteBuffer.allocate(2);
         bb.put(ServerAPI.HUB_CHANGED);
         bb.put((byte)hubId);
         bb.flip();
@@ -50,6 +50,7 @@ public class Player {
         bb.put(bytes);
         bb.put((byte)players.size());
         for (Player player : players) bb.putInt(player.id);
+        bb.flip();
         session.getRemote().sendBytes(bb);
     }
 
@@ -58,6 +59,7 @@ public class Player {
         bb.put(ServerAPI.LEFT_GAME);
         bb.put((byte)players.size());
         for (Player player : players) bb.putInt(player.id);
+        bb.flip();
         session.getRemote().sendBytes(bb);
     }
 }

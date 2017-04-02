@@ -35,12 +35,6 @@ public class ClientSocket extends WebSocketAdapter {
     @Override
     public void onWebSocketBinary(byte[] payload, int offset, int len) {
         super.onWebSocketBinary(payload, offset, len);
-        println(ByteBuffer.wrap(payload, offset, len));
-    }
-
-    private static void println(ByteBuffer bb) {
-        String s = "bytes:";
-        while (bb.hasRemaining()) s += String.format(" %02x", bb.get());
-        System.out.println(s);
+        GameLogger.println(ByteBuffer.wrap(payload, offset, len));
     }
 }

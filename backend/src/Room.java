@@ -8,7 +8,7 @@ import java.util.Random;
  */
 public class Room {
     static Random rnd = new Random();
-    Queue<Player> players;
+    Queue<Player> players = new LinkedList<>();
 
     public void add(Player player) {
         players.add(player);
