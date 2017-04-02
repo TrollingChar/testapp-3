@@ -5,6 +5,8 @@ import org.eclipse.jetty.servlet.ServletHolder;
 
 public class GameServer {
     public static void main(String[] args) {
+        HQ.init();
+
         Server server = new Server();
         ServerConnector connector = new ServerConnector(server);
         connector.setPort(8080);

@@ -3,7 +3,7 @@
  */
 public class ClientAPI {
     public static final byte AUTH = 0;
-    public static final byte START_GAME = 1;
+    public static final byte TO_HUB = 1;
     public static final byte CANCEL = 2;
     public static final byte SYNC = 3;
     public static final byte TURN_DATA = 4;

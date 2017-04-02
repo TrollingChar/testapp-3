@@ -19,14 +19,22 @@ public class GameClient {
                 Future<Session> fut = client.connect(socket, uri);
                 // Wait for Connect
                 Session session = fut.get();
-                // Send a message
+
+                // authorize as random user
                 ByteBuffer bb = ByteBuffer.allocate(5);
                 bb.put(ClientAPI.AUTH);
-                bb.putInt(72);
+                bb.putFloat((float)Math.random()); // hack
                 bb.flip();
                 session.getRemote().sendBytes(bb);
+                // wait
+                Thread.sleep(500);
+                // send signal to start game
+                bb = ByteBuffer.allocate(2);
+                bb.put(ClientAPI.TO_HUB);
+                bb.put((byte)2);
+                session.getRemote().sendBytes(bb);
 
-                /* Wait then close (toggle /* and //* to change behavior)
+                //* Wait then close (toggle /* and //* to change behavior)
                 while (ClientSocket.alive) Thread.yield();
                 session.close();
                 /*/// Close then wait

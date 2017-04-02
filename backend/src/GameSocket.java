@@ -5,24 +5,29 @@ import java.nio.ByteBuffer;
 
 // server side
 public class GameSocket extends WebSocketAdapter {
+
     @Override
     public void onWebSocketConnect(Session session) {
         super.onWebSocketConnect(session);
-        System.out.println("connection: " + session);
     }
 
     @Override
     public void onWebSocketText(String message) {
         super.onWebSocketText(message);
         // text not allowed
-        getSession().close(400, "Bad Request");
+        try {
+            HQ.disconnect(Lookup.getPlayer(getSession()));
+        } catch (Throwable e) {
+            getSession().close();
+        }
     }
 
     @Override
     public void onWebSocketClose(int statusCode, String reason) {
-        HQ.disconnect(getSession());
+        try {
+            HQ.disconnect(Lookup.getPlayer(getSession()));
+        } catch (Throwable e) {}
         super.onWebSocketClose(statusCode, reason);
-        System.out.println("disconnection: " + statusCode + " " + reason);
     }
 
     @Override
@@ -37,42 +42,24 @@ public class GameSocket extends WebSocketAdapter {
 
         ByteBuffer bb = ByteBuffer.wrap(payload, offset, len);
         Session session = getSession();
+        Player player = Lookup.getPlayer(session);
         try {
             switch (bb.get()) {
                 case ClientAPI.AUTH:
-                    HQ.authorize(session, bb.getInt());
+                    player = Lookup.addPlayer(session, bb.getInt());
+                    player.sendAccountData();
                     break;
-                case ClientAPI.START_GAME:
-                    HQ.movePlayerToHub(session, bb.get());
-                    break;
-                case ClientAPI.CANCEL:
-                    HQ.onCancel(session);
-                    break;
-                case ClientAPI.CHEAT:
-                    HQ.onCheat(session);
-                    break;
-                case ClientAPI.QUIT_GAME:
-                    HQ.onQuitGame(session);
-                    break;
-                case ClientAPI.SYNC:
-                    HQ.onSync(session);
-                    break;
-                case ClientAPI.TURN_DATA:
-                    HQ.onTurnData(session);
+                case ClientAPI.TO_HUB:
+                    HQ.movePlayerToHub(player, bb.get());
                     break;
                 default:
-                    HQ.disconnect(session);
+                    // invalid command code
+                    HQ.disconnect(player);
                     break;
             }
-        } catch (Exception e) {
-            HQ.disconnect(session);
+        } catch (Throwable e) {
+            if(player != null) HQ.disconnect(player);
+            else session.close();
         }
-
-        /*try {
-            getRemote().sendBytes(bb);
-        } catch (IOException e) {
-            e.printStackTrace();
-            getSession().close();
-        }*/
     }
 }
