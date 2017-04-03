@@ -56,6 +56,15 @@ public class GameSocket extends WebSocketAdapter {
                 case ClientAPI.TO_HUB:
                     HQ.movePlayerToHub(player, bb.get());
                     break;
+                case ClientAPI.QUIT:
+                    player.quitRoom();
+                case ClientAPI.TURN_DATA:
+                    if(bb.remaining() != 9) throw new Exception();
+                    player.doTurn(bb.slice());
+                case ClientAPI.END_TURN:
+                    // needed to switch active player in room
+                    // read hash and number of sub-turns
+                    player.endTurn(bb.getInt(), bb.getInt());
                 default:
                     // invalid command code
                     HQ.disconnect(player);

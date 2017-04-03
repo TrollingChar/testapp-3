@@ -1,9 +1,6 @@
 import java.util.LinkedList;
 import java.util.Queue;
 
-/**
- * Created by Дима on 02.04.2017.
- */
 public class Hub {
     int roomCapacity;
     Queue<Player> players;
@@ -22,7 +19,9 @@ public class Hub {
         if(players.size() < roomCapacity) return;
         Room room = new Room();
         for (int i = 0; i < roomCapacity; ++i) {
-            room.add(players.remove());
+            Player player = players.remove();
+            player.hub = null;
+            room.add(player);
         }
         room.startGame();
     }
