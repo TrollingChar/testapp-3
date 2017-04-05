@@ -1,6 +1,5 @@
 
 public class ServerAPI {
-    ;
     public static final byte ACCOUNT_DATA = 0;
     public static final byte HUB_CHANGED = 1;
     public static final byte START_GAME = 2;

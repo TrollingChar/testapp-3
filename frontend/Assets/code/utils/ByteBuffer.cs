@@ -53,5 +53,9 @@ class ByteBuffer {
     public void Clear () {
         length = offset = 0;
     }
+
+    public static implicit operator byte[] (ByteBuffer bb) {
+        return bb.bytes.Skip(bb.offset).Take<byte>(bb.length).ToArray<byte>();
+    }
 }
 
