@@ -30,6 +30,7 @@ public class WSConnection : MonoBehaviour {
             bytes = socket.Recv())
         {
             Debug.Log(BitConverter.ToString(bytes));
+            Parse(bytes);
         }
     }
 
@@ -41,7 +42,7 @@ public class WSConnection : MonoBehaviour {
                 OnAccountData.Invoke();
                 break;
             case ServerAPI.HUB_CHANGED:
-                OnChangeHub.Invoke(reader.ReadInt32());
+                OnChangeHub.Invoke(reader.Read());
                 break;
             case ServerAPI.START_GAME:
                 OnStartGame.Invoke();
@@ -79,7 +80,7 @@ public class WSConnection : MonoBehaviour {
     public void SendHubId (int id) {
         bb.Clear();
         bb.WriteByte(ClientAPI.TO_HUB);
-        bb.WriteInt32(id);
+        bb.WriteByte((byte)id);
         socket.Send(bb);
     }
 

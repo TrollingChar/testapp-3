@@ -1,0 +1,22 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class StandardPanelController : PanelController {
+    public float
+        openAnchorY,
+        closedAnchorY,
+        openPositionY,
+        closedPositionY;
+
+    protected override void UpdatePosition () {
+        RectTransform rt = canvas.transform as RectTransform;
+        Vector2 min = rt.anchorMin, max = rt.anchorMax, pos = rt.anchorMax;
+        float relativeOpenness = (float)currOpenness / fullOpenness;
+        min.y = max.y = relativeOpenness * (openAnchorY - closedAnchorY) + closedAnchorY;
+        pos.y = relativeOpenness * (openPositionY - closedPositionY) + closedPositionY;
+        rt.anchorMin = min;
+        rt.anchorMax = max;
+        rt.anchoredPosition = pos;
+    }
+}

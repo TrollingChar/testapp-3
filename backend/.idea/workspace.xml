@@ -2,29 +2,121 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d4dea202-8fa6-4de8-978b-3f9f70311b98" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ServerAPI.java" afterPath="$PROJECT_DIR$/src/ServerAPI.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/code/net.meta" afterPath="$PROJECT_DIR$/../frontend/Assets/code/net.meta" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/code/net/API.cs" afterPath="$PROJECT_DIR$/../frontend/Assets/code/net/API.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/code/net/API.cs.meta" afterPath="$PROJECT_DIR$/../frontend/Assets/code/net/API.cs.meta" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/code/net/Connection.cs.meta" afterPath="$PROJECT_DIR$/../frontend/Assets/code/net/Connection.cs.meta" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/05A653683076E6F91F73B59837FE5EC3.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/05CD25F15BFD4E9C5FE943302B8DD18B.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/06125EC26FA20CE833340EFE426ED7BC.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/062AB92C3241186407B2205EF071B32D.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/074010FAD86D15C2FE267A98A1C22D86.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/0771C7911072516CB08745F7569930CB.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/0A74C7F88F68075A013EC365BDE72F34.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/0B24C900FE50D365E10E1BA66CA55BA5.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/102E30DE3418394268C59DC74C7C2E8F.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/115E9A23055708C27AA223469B01ABB6.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/19E712B5C48E67357D2B4ECF32B2C5EE.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/20D85362A8A5B1A2FD9C5E6B37728479.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/231770A0FCE1C63AA4B73E0700C3A995.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/26248C5C57CBE309236FD27FE90502E4.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/275238EE30045F3342BCC18CEFDC2ED0.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/2946EE7C4A4A94B70933B5F4B6896335.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/2C6404D8CB88D7F0A704DAEBE5572CCC.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/3197014B15967089A75100D7CA110D6B.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/33B2575B1407AE48B338731C5D3772AB.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/3C6970B9E90A9967517DF6829B7FD2F1.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/3E370F7CFF0775DEB2AF2B11BDD418AD.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/438F48FC67EA6333CD964B59FF1EBF35.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/43C573C1612C1A05C72FB291C55ACE5C.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/4653C8418AD333570696431B35FDF64C.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/4BFEABF98546AFC5F0B0385A17C7A3BA.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/4E3EEA42AE7709F182116687BAB3D517.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/53E16D8C10BA824F77EE85DED197D44C.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/582860E0372A75D8437AFA5E74D8D102.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/5B87DA8E4E4F8765D977BD81F081F1F7.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/5C0DF6EA08FDB48034FF4AA88C2774E8.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/5E2473324B4386987B0BCBFD56247038.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/635675FAFA771C185DF0673A54F23836.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/64B6D5D7B67825E598126F698AD90F78.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/68E3F108DDCBA1191FB788909980923E.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/6F9D5BD772C9EFAD956A98C6A796E543.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/716DAE7EB5B481495750A832A063D193.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/740BA6E7B28AB3BBA971000D40F56B8C.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/75901889B348B5B24AB98E5E07D0D659.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/777AC1F2F9BE779E3CF07316F9FD639E.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/78671A82A7C6FC3FD9BD5679E1962652.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/7AF81BF9E0EEC4F25EBC0E3D0566B9F8.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/7B34ED380539F05DB132E4F84550DA98.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/7EDD253B64EECF7C3809A4F30C89C6E6.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/80F0F306744B97E170DC41FEF348DA20.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/819F42D7A189D719FF67B167E3E89451.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/838A5BAB4F10530FBD5394846206755D.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/853C7B130F4C2BC720B332F554CAC1E2.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/90DA6BA9803171BF76D3A4CBCFCE84E7.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/96B58A31B29009F88CD5ACEEC90AF6AC.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/9CAE85708E64BD6FEC9B103A0E9437B3.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/A03CC0963484034EC9C049C053AC921C.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/A0F1F99328ED256F93C4D8AC3CE4562A.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/A20F7F06C8C871193D868343EA2AD95F.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/A5DD79EDC9D244FAC26089BF6F9572B0.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/AE09392FD5E76C841093215E9BE0140A.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/AE70C32871EC0D52AB8631FC7E35152A.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/AED7408E99ED58F1758993C6BB56D607.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/B02CE63E64941A38AD5235C2127C2219.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/B574062355FA2DB761161533B9E9DBD0.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/B5A3D1553CD2098F603C61ABA94379DA.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/B7744FD2A6ECD2501D03409C5BCE4BB9.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/BDB196CA2C5E387CD74D268E44712317.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/BF1CBC15E9D35810A3F6E22533C35F2D.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/C0511C4C2B31199370B9F6664193AADC.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/C2BBEA7C4F76E0C2263CDB64F3E2A3E6.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/C3017DA836A58A9C7752CA97ECCA6CA9.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/C356D8E35D65C92951DEFF30EFD0D1CA.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/CF94199A5084D7CB6A674D64C8AD553E.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/D0248821C239246361EE5585E4EC866F.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/D443C6FCD126DE43602AF522FA16BA66.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/D6838C7D0B9D0F885B0FD2D3830238DB.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/D6EDA14D6FEBCABB8D76C026B837E656.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/D88997684F21274B82B49A8882C63341.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/D9B3181B23781B7423548EAD7D5A057C.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/DBBC49FF95FBAE84C5FF648BDD7BE66B.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/DC254D71893E8E9B786A12B37B39EB02.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/E55A7DAE82F816D168B2EB8386519F1B.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/E8DBAEFC480259AD6E7EC21DA5AF1145.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/F1ECB5D0F9BBD6F68C6DA9C89AE9B88D.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/F4852B3F5BF0953EC46C1668FF66FFEF.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/F4966CAE4B595946EA66581C48BC32ED.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/F6A4DF0C2E947D0E3BC9103272F3ECE0.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/F9F2B43C98008B27F7004221EB6036BA.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/FC6A3667602AF6743B34DEE70DD3F6D3.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/FDF592FA46BBDAF1189E20B86135D14E.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/FF10B1C3E7470496A4C183AB5C203E97.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/FF6AD72E2C0275E22530C29F5E54405C.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/linkresult_3DFC37380A7CA8D100010993876DD12C/build.asm.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/linkresult_3DFC37380A7CA8D100010993876DD12C/build.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/linkresult_3DFC37380A7CA8D100010993876DD12C/build.js.mem" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/linkresult_3DFC37380A7CA8D100010993876DD12C/build.js.symbols" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/scene.unity" afterPath="$PROJECT_DIR$/../frontend/Assets/scene.unity" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/CurrentLayout.dwlt" afterPath="$PROJECT_DIR$/../frontend/Library/CurrentLayout.dwlt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/InspectorExpandedItems.asset" afterPath="$PROJECT_DIR$/../frontend/Library/InspectorExpandedItems.asset" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/LastBuild.buildreport" afterPath="$PROJECT_DIR$/../frontend/Library/LastBuild.buildreport" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/ScriptAssemblies/Assembly-CSharp.dll" afterPath="$PROJECT_DIR$/../frontend/Library/ScriptAssemblies/Assembly-CSharp.dll" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/ScriptAssemblies/Assembly-CSharp.dll.mdb" afterPath="$PROJECT_DIR$/../frontend/Library/ScriptAssemblies/Assembly-CSharp.dll.mdb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/assetDatabase3" afterPath="$PROJECT_DIR$/../frontend/Library/assetDatabase3" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/expandedItems" afterPath="$PROJECT_DIR$/../frontend/Library/expandedItems" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/00/00000000000000004000000000000000" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/00/00000000000000004000000000000000" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/44/445c6cb6a7cdc4d47abac21eeca281a7" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/44/445c6cb6a7cdc4d47abac21eeca281a7" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/b4/b411b377ed95a0b4c8e98f182e4de00b" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/b4/b411b377ed95a0b4c8e98f182e4de00b" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/f5/f50feaa425ecd8e4ea768cd3fe928554" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/f5/f50feaa425ecd8e4ea768cd3fe928554" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/WebBuild/Release/WebBuild.asm.jsgz" afterPath="$PROJECT_DIR$/../frontend/WebBuild/Release/WebBuild.asm.jsgz" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/WebBuild/Release/WebBuild.datagz" afterPath="$PROJECT_DIR$/../frontend/WebBuild/Release/WebBuild.datagz" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/WebBuild/Release/WebBuild.jsgz" afterPath="$PROJECT_DIR$/../frontend/WebBuild/Release/WebBuild.jsgz" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/WebBuild/Release/WebBuild.memgz" afterPath="$PROJECT_DIR$/../frontend/WebBuild/Release/WebBuild.memgz" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/obj/Debug/Assembly-CSharp.csprojResolveAssemblyReference.cache" afterPath="$PROJECT_DIR$/../frontend/obj/Debug/Assembly-CSharp.csprojResolveAssemblyReference.cache" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/obj/Debug/Assembly-CSharp.dll" afterPath="$PROJECT_DIR$/../frontend/obj/Debug/Assembly-CSharp.dll" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/code/net/WSConnection.cs" afterPath="$PROJECT_DIR$/../frontend/Assets/code/net/WSConnection.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/code/net/WSConnection.cs.meta" afterPath="$PROJECT_DIR$/../frontend/Assets/code/net/WSConnection.cs.meta" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/code/ui.meta" afterPath="$PROJECT_DIR$/../frontend/Assets/code/ui.meta" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/code/ui/ConnectionMenu.cs.meta" afterPath="$PROJECT_DIR$/../frontend/Assets/code/ui/ConnectionMenu.cs.meta" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/code/ui/PanelController.cs" afterPath="$PROJECT_DIR$/../frontend/Assets/code/ui/PanelController.cs" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/code/ui/PanelController.cs.meta" afterPath="$PROJECT_DIR$/../frontend/Assets/code/ui/PanelController.cs.meta" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/code/utils.meta" afterPath="$PROJECT_DIR$/../frontend/Assets/code/utils.meta" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/code/utils/ByteBuffer.cs.meta" afterPath="$PROJECT_DIR$/../frontend/Assets/code/utils/ByteBuffer.cs.meta" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/code/utils/Conversion.meta" afterPath="$PROJECT_DIR$/../frontend/Assets/code/utils/Conversion.meta" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/code/utils/Conversion/BigEndianBitConverter.cs.meta" afterPath="$PROJECT_DIR$/../frontend/Assets/code/utils/Conversion/BigEndianBitConverter.cs.meta" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/code/utils/Conversion/DoubleConverter.cs.meta" afterPath="$PROJECT_DIR$/../frontend/Assets/code/utils/Conversion/DoubleConverter.cs.meta" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/code/utils/Conversion/EndianBitConverter.cs.meta" afterPath="$PROJECT_DIR$/../frontend/Assets/code/utils/Conversion/EndianBitConverter.cs.meta" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/code/utils/Conversion/Endianness.cs.meta" afterPath="$PROJECT_DIR$/../frontend/Assets/code/utils/Conversion/Endianness.cs.meta" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/code/utils/Conversion/LittleEndianBitConverter.cs.meta" afterPath="$PROJECT_DIR$/../frontend/Assets/code/utils/Conversion/LittleEndianBitConverter.cs.meta" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/code/utils/IO.meta" afterPath="$PROJECT_DIR$/../frontend/Assets/code/utils/IO.meta" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/code/utils/IO/EndianBinaryReader.cs.meta" afterPath="$PROJECT_DIR$/../frontend/Assets/code/utils/IO/EndianBinaryReader.cs.meta" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/code/utils/IO/EndianBinaryWriter.cs.meta" afterPath="$PROJECT_DIR$/../frontend/Assets/code/utils/IO/EndianBinaryWriter.cs.meta" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/code/utils/IO/StringWriterWithEncoding.cs.meta" afterPath="$PROJECT_DIR$/../frontend/Assets/code/utils/IO/StringWriterWithEncoding.cs.meta" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/code/utils/Types.cs.meta" afterPath="$PROJECT_DIR$/../frontend/Assets/code/utils/Types.cs.meta" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/code/utils/ByteBuffer.cs" afterPath="$PROJECT_DIR$/../frontend/Assets/code/utils/ByteBuffer.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/WebBuild/Release/UnityLoader.js" afterPath="$PROJECT_DIR$/../frontend/WebBuild/Release/UnityLoader.js" />
     </list>
     <ignored path="backend.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -52,7 +144,7 @@
         <entry file="file://$PROJECT_DIR$/src/GameSocket.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="62" column="28" selection-start-line="62" selection-start-column="28" selection-end-line="62" selection-end-column="28" />
+              <caret line="47" column="39" selection-start-line="47" selection-start-column="39" selection-end-line="47" selection-end-column="39" />
               <folding>
                 <element signature="imports" expanded="false" />
               </folding>
@@ -114,6 +206,16 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="Lookup.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Lookup.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.85583526">
+              <caret line="29" column="23" selection-start-line="29" selection-start-column="23" selection-end-line="29" selection-end-column="23" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="ClientSocket.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ClientSocket.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -121,20 +223,6 @@
               <caret line="32" column="5" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Hub.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Hub.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="21" column="27" selection-start-line="21" selection-start-column="27" selection-end-line="21" selection-end-column="27" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#681#682#0" expanded="false" />
-                <element signature="e#717#718#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -154,10 +242,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ServerAPI.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ServerAPI.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ServerAPI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3501144">
+            <state vertical-scroll-proportion="0.0">
               <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
               <folding />
             </state>
@@ -279,6 +367,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -331,9 +420,8 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -859,7 +947,15 @@
       <workItem from="1491150037916" duration="6885000" />
       <workItem from="1491228465538" duration="7586000" />
       <workItem from="1491315905075" duration="8409000" />
-      <workItem from="1491402868851" duration="3822000" />
+      <workItem from="1491402868851" duration="5058000" />
+      <workItem from="1491421111556" duration="616000" />
+      <workItem from="1491487067061" duration="2934000" />
+      <workItem from="1491642185983" duration="3526000" />
+      <workItem from="1491745887784" duration="2379000" />
+      <workItem from="1491845159692" duration="917000" />
+      <workItem from="1491920943498" duration="753000" />
+      <workItem from="1492019265306" duration="748000" />
+      <workItem from="1492246230210" duration="1231000" />
     </task>
     <task id="LOCAL-00001" summary="added exception handlind, connecting/disconnecting players, client prints data in hex">
       <created>1491042278321</created>
@@ -901,7 +997,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="126681000" />
+    <option name="totallyTimeSpent" value="141021000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
@@ -914,10 +1010,10 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928476" sideWeight="0.505" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.37246963" sideWeight="0.4825" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37246963" sideWeight="0.4825" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1525" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1525" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1255,21 +1351,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.10261569">
           <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Lookup.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="29" column="23" selection-start-line="29" selection-start-column="23" selection-end-line="29" selection-end-column="23" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#349#350#0" expanded="false" />
-            <element signature="e#392#393#0" expanded="false" />
-            <element signature="e#438#439#0" expanded="false" />
-            <element signature="e#478#479#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1277,7 +1358,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="12" column="25" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1327,23 +1407,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="21" column="27" selection-start-line="21" selection-start-column="27" selection-end-line="21" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#681#682#0" expanded="false" />
-            <element signature="e#717#718#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/HQ.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="31" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#469#470#0" expanded="false" />
-            <element signature="e#504#505#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1370,40 +1433,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="390" column="25" selection-start-line="390" selection-start-column="25" selection-end-line="390" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Player.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="103" column="25" selection-start-line="103" selection-start-column="25" selection-end-line="103" selection-end-column="25" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1127#1128#0" expanded="false" />
-            <element signature="e#1166#1167#0" expanded="false" />
-            <element signature="e#1215#1216#0" expanded="false" />
-            <element signature="e#1263#1264#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GameSocket.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="62" column="28" selection-start-line="62" selection-start-column="28" selection-end-line="62" selection-end-column="28" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GameServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="20" column="21" selection-start-line="20" selection-start-column="21" selection-end-line="20" selection-end-column="21" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1437,8 +1466,62 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ServerAPI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3501144">
+        <state vertical-scroll-proportion="0.0">
           <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/HQ.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="9" column="31" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#469#470#0" expanded="false" />
+            <element signature="e#504#505#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GameServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="20" column="21" selection-start-line="20" selection-start-column="21" selection-end-line="20" selection-end-column="21" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GameSocket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="47" column="39" selection-start-line="47" selection-start-column="39" selection-end-line="47" selection-end-column="39" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="103" column="25" selection-start-line="103" selection-start-column="25" selection-end-line="103" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#1127#1128#0" expanded="false" />
+            <element signature="e#1166#1167#0" expanded="false" />
+            <element signature="e#1215#1216#0" expanded="false" />
+            <element signature="e#1263#1264#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Lookup.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.85583526">
+          <caret line="29" column="23" selection-start-line="29" selection-start-column="23" selection-end-line="29" selection-end-column="23" />
           <folding />
         </state>
       </provider>

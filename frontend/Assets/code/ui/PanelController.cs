@@ -2,25 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PanelController : MonoBehaviour {
-
+public abstract class PanelController : MonoBehaviour {
+    protected int currOpenness = 0;
+    protected int fullOpenness = 15;
     public Canvas canvas;
-    public Vector2
-        openAnchor,
-        closedAnchor,
-        openPosition,
-        closedPosition;
-    int currOpenness = 0;
-    public int fullOpenness;
     public bool open;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         UpdatePosition();
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    }
+
+    // Update is called once per frame
+    void Update () {
         if (open) {
             if (currOpenness < fullOpenness) {
                 ++currOpenness;
@@ -32,25 +26,29 @@ public class PanelController : MonoBehaviour {
                 UpdatePosition();
             }
         }
-	}
-
-    void UpdatePosition () {
-        Vector2 position = (float)currOpenness / fullOpenness * (openPosition - closedPosition) + closedPosition;
-        Vector2 anchor = (float)currOpenness / fullOpenness * (openAnchor - closedAnchor) + closedAnchor;
-        RectTransform rt = canvas.transform as RectTransform;
-        rt.anchorMin = rt.anchorMax = anchor;
-        rt.anchoredPosition = position;
     }
 
-    public void Show () {
+    protected abstract void UpdatePosition ();
+
+    public void Show (bool instant = false) {
         open = true;
+        if (instant) {
+            currOpenness = fullOpenness;
+            UpdatePosition();
+        }
     }
 
-    public void Hide () {
+    public void Hide (bool instant = false) {
         open = false;
+        if (instant) {
+            currOpenness = 0;
+            UpdatePosition();
+        }
     }
 
-    public void Toggle () {
-        open = !open;
+    public void Toggle (bool instant = false) {
+        if (open) Hide(instant);
+        else Show(instant);
     }
 }
+
