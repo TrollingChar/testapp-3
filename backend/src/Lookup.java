@@ -19,8 +19,8 @@ public class Lookup {
     }
 
     public static Player addPlayer(Session session, int id) throws Exception {
-        if(players.containsKey(session)) throw new Exception();
-        if(playersId.containsKey(id)) throw new Exception();
+        if(players.containsKey(session)) throw new Exception("session already registered");
+        if(playersId.containsKey(id)) throw new Exception("id already registered");
         Player player = new Player(session, id);
         players.put(session, player);
         playersId.put(id, player);

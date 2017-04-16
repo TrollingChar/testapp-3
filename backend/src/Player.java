@@ -20,6 +20,7 @@ public class Player {
     public void disconnect() {
         Lookup.removePlayer(session, id);
         if(room != null) room.remove(this);
+        if(hub != null) hub.remove(this);
         session.close();
     }
 

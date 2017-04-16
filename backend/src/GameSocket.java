@@ -71,6 +71,7 @@ public class GameSocket extends WebSocketAdapter {
                     break;
             }
         } catch (Throwable e) {
+            System.err.println("ERROR:" + e.getMessage());
             e.printStackTrace();
             if(player != null) HQ.disconnect(player);
             else session.close();
