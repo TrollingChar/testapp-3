@@ -11,7 +11,7 @@ public class WSConnection : MonoBehaviour {
     WebSocket socket;
 
     public UnityEvent OnAccountData;
-    public UnityEvent_int OnChangeHub;
+    public UnityEvent_int_int OnChangeHub;
     public UnityEvent OnStartGame;
     public UnityEvent_int OnPlayerQuit;
     public UnityEvent OnEndGame;
@@ -34,6 +34,13 @@ public class WSConnection : MonoBehaviour {
         }
     }
 
+    void OnDisable () {
+        if (socket != null) {
+            socket.Close();
+            socket = null;
+        }
+    }
+
     void Parse(byte[] bytes) {
         MemoryStream stream = new MemoryStream(bytes);
         EndianBinaryReader reader = new EndianBinaryReader(EndianBitConverter.Big, stream);
@@ -42,7 +49,7 @@ public class WSConnection : MonoBehaviour {
                 OnAccountData.Invoke();
                 break;
             case ServerAPI.HUB_CHANGED:
-                OnChangeHub.Invoke(reader.Read());
+                OnChangeHub.Invoke(reader.Read(), reader.Read());
                 break;
             case ServerAPI.START_GAME:
                 OnStartGame.Invoke();
@@ -68,13 +75,27 @@ public class WSConnection : MonoBehaviour {
     }
 
     IEnumerator AuthCoroutine(string ip, int id) {
+        if (socket != null) {
+            socket.Close();
+            Debug.Log("TRYING TO OPEN SECOND CONNECTION");
+        }
+
         socket = new WebSocket(new Uri("ws://localhost:8080/events/"));
         yield return StartCoroutine(socket.Connect());
+
+        StartCoroutine(SendPing());
         
         bb.Clear();
         bb.WriteByte(ClientAPI.AUTH);
         bb.WriteInt32(id);
         socket.Send(bb);
+    }
+
+    IEnumerator SendPing () {
+        while (socket != null) {
+            yield return new WaitForSecondsRealtime(60);
+            socket.Send(new byte[0]);
+        }
     }
 
     public void SendHubId (int id) {

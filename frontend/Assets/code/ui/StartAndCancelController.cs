@@ -18,13 +18,13 @@ public class StartAndCancelController : MonoBehaviour {
         opponentSearchStatus.text = "Отправка запроса в комнату " + hub.ToString();
     }
 
-    public void OnHubChanged (int hub) {
+    public void OnHubChanged (int hub, int players) {
         if (hub == 0) {
             gameModeMenu.Show();
             opponentSearchMenu.Hide();
             opponentSearchStatus.text = "Игра отменена";
             return;
         }
-        opponentSearchStatus.text = "Игроков в комнате\n0 / " + hub.ToString();
+        opponentSearchStatus.text = "Игроков в комнате\n" + players.ToString() + " / " + hub.ToString();
     }
 }
