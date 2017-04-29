@@ -16,7 +16,7 @@ public class BitmapData : MonoBehaviour {
         tex = new Texture2D(w, h, TextureFormat.RGBA32, false);
 
         // GENERATE!
-        Land land = new Land();
+        LandGen land = new LandGen();
         land.array = new byte[, ]{{0, 0, 0, 0, 0},
                                   {0, 1, 1, 1, 0},
                                   {0, 1, 0, 1, 0}};

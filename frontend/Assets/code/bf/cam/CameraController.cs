@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour {
-    public Camera camera;
+    new public Camera camera;
     Vector3 target = new Vector3();
 
 	// Use this for initialization

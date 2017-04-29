@@ -1,6 +1,7 @@
 package server;
 
 import org.eclipse.jetty.websocket.api.Session;
+import util.GameLogger;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -54,6 +55,7 @@ public class Player {
     public void send(ByteBuffer bb) throws IOException {
         System.out.println("Player.send");
         bb.flip();
+        System.out.println("#" + id + " <-" + GameLogger.str(bb));
         session.getRemote().sendBytes(bb);
     }
 }

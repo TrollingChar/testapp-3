@@ -14,4 +14,12 @@ public class GameLogger {
         System.out.println(s);
         bb.position(pos);
     }
+
+    public static String str(ByteBuffer bb) {
+        int pos = bb.position();
+        String s = "";
+        while (bb.hasRemaining()) s += String.format(" %02x", bb.get());
+        bb.position(pos);
+        return s;
+    }
 }

@@ -60,7 +60,7 @@ public class Room {
         for (Iterator<Player> it = observers.iterator(); it.hasNext(); ) {
             Player observer = it.next();
             try {
-                observer.send(bb);
+                observer.send(bb.duplicate());
             } catch (IOException e) {
                 observer.room = null;
                 observer.disconnect();

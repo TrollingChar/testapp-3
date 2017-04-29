@@ -3,14 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using Assets.code.bf;
 
-class BF : MonoBehaviour {
+class BF {
     float gravity;
+    LandGen land;
 
-    void Start () {
+    void Start (GameData data) {
+        RNG.Init(data.seed);
+        //GenMap();
     }
 
-    void Update () {
-        
+    void Update (TurnData data) {
     }
 }
