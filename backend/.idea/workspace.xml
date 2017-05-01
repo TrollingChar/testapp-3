@@ -2,110 +2,181 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d4dea202-8fa6-4de8-978b-3f9f70311b98" name="Default" comment="disconnecting players no longer stay in hubs">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/00A89BA0F43F90740795555AC2A4E583.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/0409E6FEFB68F213FE729FB6E5881D34.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/059B2619054DF20180CEB54805848E28.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/0672DE248995A77FA2C56E8580235FEB.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/08980C11634844AE1B5AA5D29B447E02.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/0D95D87A42F9FF9759489D9C95D54E81.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/0E151D4999651BB672E0E0B0A8EAAD94.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/1404EE41C6C1B00F1FA242061F522D5E.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/14DA9C6BA80E7CC8F0FA5987CFE39294.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/17B4FA916913D4EE619EC3DCA7481FCC.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/19972C70CEBCFE74D99327CDB114454A.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/1B6A3DE8291DFFC16D5BDEF1FCA12265.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/1C5C4D4917D9C5C9593E4462DB599CC5.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/1CCE7845D3F18D10D6FD5A59686FD76A.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/231EF5A02D6C062C2198B34589AB79BF.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/258683E8A56230BEB36AB42D3304506D.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/29E2763304F625822F5395529A8E57E1.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/2C12FAE540C5F66BC5E10511A224535C.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/2C9CD002DC15127898DEDE7A6D15735E.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/2CF5FD8A4E470592797A76B826BAD513.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/2D22FF69EA58B98292217FBD98BC700D.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/33540D4E7DF9A03D975316BDDE99D565.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/33A350466FB1C595F47F7301CDC4C667.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/33AE2AE07782CEF9F54C28E1E4EE3E4B.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/35FEA984330A97EE520C239EDD195541.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/3600E57F8E2E3704163F158E6924BC1F.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/39438007A81CEF8ABCEEC87A1CCA47EA.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/39ADA683628A6BA3977759B3EE2887F4.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/3B3EE6A4267677A9088CAF7B8849437A.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/3E397C6531FD073DA1C8CDE1367B181E.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/443D38EF92B351EFD262D5C2BF96A623.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/45C1717F826CF11AA1EFB33C89F5E14D.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/48C49B2B96ACA092D79F02D2B154F6B6.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/4A296C6D863E8DAA0C8D69CD0ED88730.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/4B7F8C0385E59C1E7B7DAF691DC828FE.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/4D56116C5453DF3ECBD981E1C27A637B.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/4DC558D9B58A6B02A7E67E34D0871106.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/4E0F8272978EB17BE64722B3EC8310A0.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/4EF454E449647660A88C68861B458FB6.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/505842EB9590CDD9359C44E4E44410D8.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/569479A6013BE8D91BB4C7D9595A28D2.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/58FA525B7EB5B2B8051430221848925A.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/651B2A9AF18A94352222A541B3F192F8.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/665324BC88119723DA3B2CA82BAD3710.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/6B3E117D5011D8840C513DF605C0AAC0.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/78C65C8B1E96E390F75A061F0BCEE52E.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/78FBAD4C6D517C1F2A1F4AAC67E2E88E.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/7BF6EA25CD5E38886AF93544DC775CAA.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/807A8708640CB3B3729A2073FCFEEF2E.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/8B15012C2C914F861236524B9001CC89.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/8F57FCD256F77086CE6E95936461AC97.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/9117F75BA7A78F510A616C38564EDF52.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/92D828B35068D6B79F254D8CB8C135BB.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/9556FE36CFF9F166F091E60162DA44B0.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/96FABCFE0059D82FA6B9C2B647CEFB2B.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/97C22C6400C83DCA1B59DF9D00601525.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/9A7EAA6C14F61AA833C1915C16253D13.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/9A855D53F7ECC1139EA8AC739B1F8E81.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/9ED8B665622708F59B86421E241E8F61.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/A240DBF4682931FB76F46544E6B57B53.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/A96FCC5C7D03B570275C999D506F3ED2.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/ACD75652E178F734D0D091C670549B6A.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/C5BC93942ACD7970E6880D2DC815D13F.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/C79BAD23EDB98895D9A2813433162DD6.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/CC5E3B9CB2F6C234BAF9FBC6FC4D6987.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/CC9F3AF525A9C0EF3ADFAF71F5B27A24.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/CF287F292FC0B05F7BB78A68F6BC484F.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/CF89EC75521D2EB7297F59578E1B302A.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/D061C98AEFA2B0DA632EBC9D0C697BC7.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/D11B5D60C6E44DEA396A6A95AC6331DF.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/D90DAB5B59DE3D0196D7D8A660F14A72.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/D918A6A75C6FD02A0A37ABEE5A115DEB.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/DA4F2959291D4BB271AB2F8801C2044B.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/E03C06A71D4E131B6F05C1FF8599DF4B.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/E1E11BD3DEB451538C7C459E069AB7B7.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/E4E0E0AF2E1BB3475C2E760A7A3A561C.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/E72313D695BF5D78E035405C79CAE0D0.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/EAACEC27D342E4D24EEA357F7F060DE8.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/EB63D306617E3E5604A66CADB528CD74.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/EF799C2EDBD941F1C1D20D99747536D2.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/F17E5ECA30EAB17A2A358DB980F8521D.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/F2E7ECBE8C60ACD238082484C062C1AC.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/F3EB534C83B21355D8128B90BD371606.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/F77323F200D8F4AEA770786CFBBD913A.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/F8B167FA9F55B931846A30F65D24853B.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/FB3BF4659753269923653406656A4FFD.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/FE4911EEED6DE80671AF5B1D64E4D0B9.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/FE6095906408BAD35FEBF4F3F6667E11.o" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/linkresult_A43C11E4588D517E887C2F0F5C679B6A/build.asm.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/linkresult_A43C11E4588D517E887C2F0F5C679B6A/build.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/linkresult_A43C11E4588D517E887C2F0F5C679B6A/build.js.mem" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/il2cpp_cache/linkresult_A43C11E4588D517E887C2F0F5C679B6A/build.js.symbols" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/code.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/code/bf.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/code/bf/BF.cs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/code/bf/BF.cs.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/code/bf/BitmapData.cs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/code/bf/BitmapData.cs.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/code/bf/GameData.cs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/code/bf/GameData.cs.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/code/bf/LandGen.cs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/code/bf/LandGen.cs.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/code/bf/TurnData.cs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/code/bf/TurnData.cs.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/code/bf/cam.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/code/bf/cam/AutoCamera.cs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/code/bf/cam/AutoCamera.cs.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/code/bf/cam/CameraController.cs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/code/bf/cam/CameraController.cs.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/code/bf/cam/ManualCamera.cs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/code/bf/cam/ManualCamera.cs.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/code/bf/cam/ObjectBoundCamera.cs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/code/bf/cam/ObjectBoundCamera.cs.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/code/net.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/code/net/API.cs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/code/net/API.cs.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/code/net/WSConnection.cs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/code/net/WSConnection.cs.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/code/ui.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/code/ui/ConnectionMenu.cs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/code/ui/ConnectionMenu.cs.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/code/ui/CustomPanelController.cs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/code/ui/CustomPanelController.cs.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/code/ui/PanelController.cs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/code/ui/PanelController.cs.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/code/ui/StandardPanelController.cs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/code/ui/StandardPanelController.cs.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/code/ui/StartAndCancelController.cs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/code/ui/StartAndCancelController.cs.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/code/utils.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/code/utils/ByteBuffer.cs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/code/utils/ByteBuffer.cs.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/code/utils/Conversion.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/code/utils/Conversion/BigEndianBitConverter.cs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/code/utils/Conversion/BigEndianBitConverter.cs.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/code/utils/Conversion/DoubleConverter.cs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/code/utils/Conversion/DoubleConverter.cs.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/code/utils/Conversion/EndianBitConverter.cs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/code/utils/Conversion/EndianBitConverter.cs.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/code/utils/Conversion/Endianness.cs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/code/utils/Conversion/Endianness.cs.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/code/utils/Conversion/LittleEndianBitConverter.cs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/code/utils/Conversion/LittleEndianBitConverter.cs.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/code/utils/IO.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/code/utils/IO/EndianBinaryReader.cs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/code/utils/IO/EndianBinaryReader.cs.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/code/utils/IO/EndianBinaryWriter.cs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/code/utils/IO/EndianBinaryWriter.cs.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/code/utils/IO/StringWriterWithEncoding.cs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/code/utils/IO/StringWriterWithEncoding.cs.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/code/utils/RNG.cs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/code/utils/RNG.cs.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/code/utils/Types.cs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/code/utils/Types.cs.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/font.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/font/Jura-DemiBold.ttf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/font/Jura-DemiBold.ttf.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/font/Jura-Medium.ttf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/font/Jura-Medium.ttf.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/img.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/img/button.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/img/button.png.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/img/main-background.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/img/main-background.png.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/prefab.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/prefab/Button 1x1.prefab" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/prefab/Button 1x1.prefab.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/prefab/Button 3x1.prefab" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/prefab/Button 3x1.prefab.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/prefab/Input 3x1.prefab" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/prefab/Input 3x1.prefab.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/prefab/Text.prefab" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/prefab/Text.prefab.meta" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/scene.unity" afterPath="$PROJECT_DIR$/../frontend/Assets/scene.unity" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/CurrentLayout.dwlt" afterPath="$PROJECT_DIR$/../frontend/Library/CurrentLayout.dwlt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/CurrentMaximizeLayout.dwlt" afterPath="$PROJECT_DIR$/../frontend/Library/CurrentMaximizeLayout.dwlt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/LastBuild.buildreport" afterPath="$PROJECT_DIR$/../frontend/Library/LastBuild.buildreport" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/WebBuild/Release/WebBuild.asm.jsgz" afterPath="$PROJECT_DIR$/../frontend/WebBuild/Release/WebBuild.asm.jsgz" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/WebBuild/Release/WebBuild.datagz" afterPath="$PROJECT_DIR$/../frontend/WebBuild/Release/WebBuild.datagz" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/WebBuild/Release/WebBuild.jsgz" afterPath="$PROJECT_DIR$/../frontend/WebBuild/Release/WebBuild.jsgz" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/WebBuild/Release/WebBuild.memgz" afterPath="$PROJECT_DIR$/../frontend/WebBuild/Release/WebBuild.memgz" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/InspectorExpandedItems.asset" afterPath="$PROJECT_DIR$/../frontend/Library/InspectorExpandedItems.asset" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/ScriptAssemblies/Assembly-CSharp.dll" afterPath="$PROJECT_DIR$/../frontend/Library/ScriptAssemblies/Assembly-CSharp.dll" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/ScriptAssemblies/Assembly-CSharp.dll.mdb" afterPath="$PROJECT_DIR$/../frontend/Library/ScriptAssemblies/Assembly-CSharp.dll.mdb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/assetDatabase3" afterPath="$PROJECT_DIR$/../frontend/Library/assetDatabase3" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/expandedItems" afterPath="$PROJECT_DIR$/../frontend/Library/expandedItems" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/06/06e315d2b30dd2e4aa1111c5a80a2c79" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/06/06e315d2b30dd2e4aa1111c5a80a2c79" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/06/06e315d2b30dd2e4aa1111c5a80a2c79.info" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/06/06e315d2b30dd2e4aa1111c5a80a2c79.info" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/11/115ea96076e556e42a1d5f945a423c2d" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/11/115ea96076e556e42a1d5f945a423c2d" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/11/115ea96076e556e42a1d5f945a423c2d.info" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/11/115ea96076e556e42a1d5f945a423c2d.info" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/16/16634e1852fe3ae47a8716ba1161a9de" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/16/16634e1852fe3ae47a8716ba1161a9de" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/16/16634e1852fe3ae47a8716ba1161a9de.info" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/16/16634e1852fe3ae47a8716ba1161a9de.info" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/17/1795b45ac62ac01408ad8645482a6d7b" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/17/1795b45ac62ac01408ad8645482a6d7b" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/17/1795b45ac62ac01408ad8645482a6d7b.info" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/17/1795b45ac62ac01408ad8645482a6d7b.info" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/17/17c5c8b34c5ca2342b1144e59ab7d226" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/17/17c5c8b34c5ca2342b1144e59ab7d226" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/17/17c5c8b34c5ca2342b1144e59ab7d226.info" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/17/17c5c8b34c5ca2342b1144e59ab7d226.info" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/19/19a2be31ecdb43643aa4962ebbb5ebd3" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/19/19a2be31ecdb43643aa4962ebbb5ebd3" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/23/2328882fd2e939f4aa91862ebf60d7dc" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/23/2328882fd2e939f4aa91862ebf60d7dc" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/23/23d639e5f4a1fdb46bf667c3970dd9f9" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/23/23d639e5f4a1fdb46bf667c3970dd9f9" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/23/23d639e5f4a1fdb46bf667c3970dd9f9.info" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/23/23d639e5f4a1fdb46bf667c3970dd9f9.info" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/27/27febbeb0dafdc24684b3af7c16a5263" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/27/27febbeb0dafdc24684b3af7c16a5263" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/27/27febbeb0dafdc24684b3af7c16a5263.info" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/27/27febbeb0dafdc24684b3af7c16a5263.info" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/28/2859db0c01c2dfa4cbc95411960ba845" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/28/2859db0c01c2dfa4cbc95411960ba845" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/28/2859db0c01c2dfa4cbc95411960ba845.info" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/28/2859db0c01c2dfa4cbc95411960ba845.info" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/2a/2a4ea2af76a5ece4ba9155da612731d3" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/2a/2a4ea2af76a5ece4ba9155da612731d3" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/2a/2a4ea2af76a5ece4ba9155da612731d3.info" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/2a/2a4ea2af76a5ece4ba9155da612731d3.info" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/2d/2d7a787df0ea457429061f9c5cb96315" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/2d/2d7a787df0ea457429061f9c5cb96315" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/2d/2d7a787df0ea457429061f9c5cb96315.info" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/2d/2d7a787df0ea457429061f9c5cb96315.info" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/40/4002f98abf6c19b4fad324e2d8a6e2e2" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/40/4002f98abf6c19b4fad324e2d8a6e2e2" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/40/4002f98abf6c19b4fad324e2d8a6e2e2.info" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/40/4002f98abf6c19b4fad324e2d8a6e2e2.info" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/44/445c6cb6a7cdc4d47abac21eeca281a7" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/44/445c6cb6a7cdc4d47abac21eeca281a7" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/44/445c6cb6a7cdc4d47abac21eeca281a7.info" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/44/445c6cb6a7cdc4d47abac21eeca281a7.info" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/49/49029a1327617b54ba2f3af128664bc2" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/49/49029a1327617b54ba2f3af128664bc2" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/49/49029a1327617b54ba2f3af128664bc2.info" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/49/49029a1327617b54ba2f3af128664bc2.info" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/59/5998fb72cdc1456498f409c82b1899ac" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/59/5998fb72cdc1456498f409c82b1899ac" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/59/5998fb72cdc1456498f409c82b1899ac.info" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/59/5998fb72cdc1456498f409c82b1899ac.info" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/59/59ee0cd0a47a87e4db08dc78d3a1d214" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/59/59ee0cd0a47a87e4db08dc78d3a1d214" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/59/59ee0cd0a47a87e4db08dc78d3a1d214.info" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/59/59ee0cd0a47a87e4db08dc78d3a1d214.info" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/5e/5e8d1743719fea24286453f84402c88a" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/5e/5e8d1743719fea24286453f84402c88a" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/5e/5e8d1743719fea24286453f84402c88a.info" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/5e/5e8d1743719fea24286453f84402c88a.info" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/6c/6c9aba2af4171304dbe6594f5733974a" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/6c/6c9aba2af4171304dbe6594f5733974a" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/6c/6c9aba2af4171304dbe6594f5733974a.info" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/6c/6c9aba2af4171304dbe6594f5733974a.info" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/76/7651bff0dee89ce41a67b4e3331e6067" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/76/7651bff0dee89ce41a67b4e3331e6067" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/7a/7ae23ccf6adac0444a32b3e6384f6964" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/7a/7ae23ccf6adac0444a32b3e6384f6964" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/7a/7ae23ccf6adac0444a32b3e6384f6964.info" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/7a/7ae23ccf6adac0444a32b3e6384f6964.info" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/7b/7b42e6f16ca463a42b9cab359d914145" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/7b/7b42e6f16ca463a42b9cab359d914145" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/7b/7b42e6f16ca463a42b9cab359d914145.info" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/7b/7b42e6f16ca463a42b9cab359d914145.info" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/7f/7f0c9355556f28f438e731f88233a65d" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/7f/7f0c9355556f28f438e731f88233a65d" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/7f/7f0c9355556f28f438e731f88233a65d.info" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/7f/7f0c9355556f28f438e731f88233a65d.info" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/80/807e5622bd0b1b04a95b35249dcbc182" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/80/807e5622bd0b1b04a95b35249dcbc182" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/80/80ffc8a7b14ef2c40a0649a417b0bdf0" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/80/80ffc8a7b14ef2c40a0649a417b0bdf0" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/80/80ffc8a7b14ef2c40a0649a417b0bdf0.info" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/80/80ffc8a7b14ef2c40a0649a417b0bdf0.info" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/91/915c7ade538fef94b9bb1e42f3dcafa6" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/91/915c7ade538fef94b9bb1e42f3dcafa6" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/91/915c7ade538fef94b9bb1e42f3dcafa6.info" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/91/915c7ade538fef94b9bb1e42f3dcafa6.info" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/99/9948b33d426b0c440bc17f8277310d83" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/99/9948b33d426b0c440bc17f8277310d83" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/99/9948b33d426b0c440bc17f8277310d83.info" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/99/9948b33d426b0c440bc17f8277310d83.info" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/9b/9b89d986ec956674dbd1d862767ace70" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/9b/9b89d986ec956674dbd1d862767ace70" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/a0/a06af012e9d985e4586cb802fe131feb" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/a0/a06af012e9d985e4586cb802fe131feb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/a0/a06af012e9d985e4586cb802fe131feb.info" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/a0/a06af012e9d985e4586cb802fe131feb.info" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/a4/a4234ec89befcec48b470884ae4adc6e" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/a4/a4234ec89befcec48b470884ae4adc6e" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/a4/a4234ec89befcec48b470884ae4adc6e.info" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/a4/a4234ec89befcec48b470884ae4adc6e.info" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/a4/a4a9e63967538b642a6d073326395718" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/a4/a4a9e63967538b642a6d073326395718" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/a4/a4a9e63967538b642a6d073326395718.info" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/a4/a4a9e63967538b642a6d073326395718.info" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/ae/ae9693c0ba7c60547a01d0884a2d8b5f" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/ae/ae9693c0ba7c60547a01d0884a2d8b5f" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/ae/ae9693c0ba7c60547a01d0884a2d8b5f.info" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/ae/ae9693c0ba7c60547a01d0884a2d8b5f.info" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/b4/b411b377ed95a0b4c8e98f182e4de00b" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/b4/b411b377ed95a0b4c8e98f182e4de00b" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/b4/b411b377ed95a0b4c8e98f182e4de00b.info" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/b4/b411b377ed95a0b4c8e98f182e4de00b.info" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/be/becf90290e517574aae6a4fa96e1dc5d" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/be/becf90290e517574aae6a4fa96e1dc5d" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/c0/c0281d09d5e38ec4fa52f0569613064e" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/c0/c0281d09d5e38ec4fa52f0569613064e" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/c0/c0281d09d5e38ec4fa52f0569613064e.info" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/c0/c0281d09d5e38ec4fa52f0569613064e.info" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/c3/c35b664dabbb47749a67a5424745f468" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/c3/c35b664dabbb47749a67a5424745f468" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/c3/c35b664dabbb47749a67a5424745f468.info" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/c3/c35b664dabbb47749a67a5424745f468.info" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/cd/cd0e1bd17a7ef5c44ba68ab1842b533c" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/cd/cd0e1bd17a7ef5c44ba68ab1842b533c" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/cd/cd0e1bd17a7ef5c44ba68ab1842b533c.info" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/cd/cd0e1bd17a7ef5c44ba68ab1842b533c.info" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/cd/cda7e80d655f6ed41984ec120ee14509" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/cd/cda7e80d655f6ed41984ec120ee14509" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/cd/cdc1b6c79e61efb4a9e6cf0dcd8fdec7" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/cd/cdc1b6c79e61efb4a9e6cf0dcd8fdec7" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/cd/cdc1b6c79e61efb4a9e6cf0dcd8fdec7.info" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/cd/cdc1b6c79e61efb4a9e6cf0dcd8fdec7.info" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/ce/ceb6c482d944af0499eb15dfd2917af4" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/ce/ceb6c482d944af0499eb15dfd2917af4" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/ce/ceb6c482d944af0499eb15dfd2917af4.info" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/ce/ceb6c482d944af0499eb15dfd2917af4.info" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/da/da0f33af92a1cb146b45281127203bad" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/da/da0f33af92a1cb146b45281127203bad" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/dd/dd78ebecc0d59ba4f9d0e6e574d80c41" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/dd/dd78ebecc0d59ba4f9d0e6e574d80c41" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/dd/dd78ebecc0d59ba4f9d0e6e574d80c41.info" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/dd/dd78ebecc0d59ba4f9d0e6e574d80c41.info" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/e5/e53ca3e854ab4034bae2208e4eec4a94" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/e5/e53ca3e854ab4034bae2208e4eec4a94" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/e7/e757e9f870f32d244be042d9e1b92dde" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/e7/e757e9f870f32d244be042d9e1b92dde" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/e7/e757e9f870f32d244be042d9e1b92dde.info" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/e7/e757e9f870f32d244be042d9e1b92dde.info" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/ee/ee5f732092073db4c8625ca0e7071e80" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/ee/ee5f732092073db4c8625ca0e7071e80" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/f5/f50feaa425ecd8e4ea768cd3fe928554" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/f5/f50feaa425ecd8e4ea768cd3fe928554" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/f5/f50feaa425ecd8e4ea768cd3fe928554.info" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/f5/f50feaa425ecd8e4ea768cd3fe928554.info" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/obj/Debug/Assembly-CSharp-firstpass.dll" afterPath="$PROJECT_DIR$/../frontend/obj/Debug/Assembly-CSharp-firstpass.dll" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/obj/Debug/Assembly-CSharp.csprojResolveAssemblyReference.cache" afterPath="$PROJECT_DIR$/../frontend/obj/Debug/Assembly-CSharp.csprojResolveAssemblyReference.cache" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/obj/Debug/Assembly-CSharp.dll" afterPath="$PROJECT_DIR$/../frontend/obj/Debug/Assembly-CSharp.dll" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/server/Player.java" afterPath="$PROJECT_DIR$/src/server/Player.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/server/Room.java" afterPath="$PROJECT_DIR$/src/server/Room.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/util/GameLogger.java" afterPath="$PROJECT_DIR$/src/util/GameLogger.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/WebBuild/Release/UnityLoader.js" afterPath="$PROJECT_DIR$/../frontend/WebBuild/Release/UnityLoader.js" />
     </list>
     <ignored path="backend.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -134,7 +205,9 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="19" column="42" selection-start-line="19" selection-start-column="42" selection-end-line="19" selection-end-column="42" />
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -154,7 +227,9 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="46" column="51" selection-start-line="46" selection-start-column="51" selection-end-line="46" selection-end-column="51" />
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -162,7 +237,7 @@
       <file leaf-file-name="Room.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/server/Room.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.69803923">
+            <state vertical-scroll-proportion="0.9764706">
               <caret line="84" column="37" selection-start-line="84" selection-start-column="37" selection-end-line="84" selection-end-column="37" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -176,7 +251,9 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="13" column="45" selection-start-line="13" selection-start-column="45" selection-end-line="13" selection-end-column="45" />
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -218,7 +295,9 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="21" column="36" selection-start-line="21" selection-start-column="36" selection-end-line="21" selection-end-column="36" />
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -311,7 +390,7 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1616" />
+    <option name="width" value="1612" />
     <option name="height" value="876" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -355,9 +434,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="Scratches" />
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -450,6 +528,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -993,6 +1072,8 @@
       <workItem from="1493302669148" duration="4044000" />
       <workItem from="1493391593318" duration="717000" />
       <workItem from="1493477962801" duration="3086000" />
+      <workItem from="1493542443857" duration="681000" />
+      <workItem from="1493662441780" duration="693000" />
     </task>
     <task id="LOCAL-00001" summary="added exception handlind, connecting/disconnecting players, client prints data in hex">
       <created>1491042278321</created>
@@ -1040,11 +1121,11 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="182686000" />
+    <option name="totallyTimeSpent" value="184060000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1616" height="876" extended-state="7" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1612" height="876" extended-state="0" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1056,7 +1137,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27395412" sideWeight="0.47875" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16979949" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1139,7 +1220,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="46" column="26" selection-start-line="46" selection-start-column="26" selection-end-line="46" selection-end-column="26" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1378,7 +1461,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.17102616">
           <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1386,7 +1468,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.17102616">
           <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1394,7 +1475,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1418,7 +1498,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="21" column="36" selection-start-line="21" selection-start-column="36" selection-end-line="21" selection-end-column="36" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1448,7 +1530,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="19" column="42" selection-start-line="19" selection-start-column="42" selection-end-line="19" selection-end-column="42" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1464,7 +1548,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="46" column="51" selection-start-line="46" selection-start-column="51" selection-end-line="46" selection-end-column="51" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1472,7 +1558,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="13" column="45" selection-start-line="13" selection-start-column="45" selection-end-line="13" selection-end-column="45" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1496,7 +1584,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/server/Room.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.69803923">
+        <state vertical-scroll-proportion="0.9764706">
           <caret line="84" column="37" selection-start-line="84" selection-start-column="37" selection-end-line="84" selection-end-column="37" />
           <folding>
             <element signature="imports" expanded="true" />
