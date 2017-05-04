@@ -13,7 +13,7 @@ public abstract class PanelController : MonoBehaviour {
         UpdatePosition();
     }
 
-    // Work is called once per frame
+    // Update is called once per frame
     void Update () {
         if (open) {
             if (currOpenness < fullOpenness) {

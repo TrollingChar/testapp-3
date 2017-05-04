@@ -5,7 +5,7 @@ using System.Text;
 using UnityEngine;
 using Assets.code.bf;
 
-static class BF {
+static class BF {/*
     static bool active = false;
     static World world = null;
     static GameStateController state = null;
@@ -21,8 +21,8 @@ static class BF {
 
     static void Update (TurnData data) {
         if (!active) return;
-        world.Work(data);
+        world.Update(data);
         state.Update();
-        //camera.Work();
+        //camera.Update();
     }
-}
+*/}

@@ -4,12 +4,19 @@ using UnityEngine;
 
 public class Core : MonoBehaviour {
     public WSConnection connection;
-    public World world;
+    World world;
+    public Texture2D landTexture;
+    public SpriteRenderer landRenderer;
 
     void Start () { }
+
+    public void GenerateWorld (int seed) {
+        RNG.Init(seed);
+        world = new World(this);
+    }
 	
 	void Update () {
         connection.Work();
-        if (world != null) world.Work(null);
+        if (world != null) world.Update(null);
 	}
 }

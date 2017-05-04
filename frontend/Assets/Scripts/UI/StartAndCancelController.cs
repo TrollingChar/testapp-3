@@ -11,7 +11,7 @@ public class StartAndCancelController : MonoBehaviour {
 	// Use this for initialization
     void Start () { }
 	
-	// Work is called once per frame
+	// Update is called once per frame
     void Update () { }
 
     public void OnButtonClicked (int hub) {

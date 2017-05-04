@@ -9,7 +9,7 @@ public class CameraController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {}
 	
-	// Work is called once per frame
+	// Update is called once per frame
 	void Update () {
         camera.transform.position = 0.7f * camera.transform.position + 0.3f * target;
 	}
@@ -19,6 +19,6 @@ public class CameraController : MonoBehaviour {
         target.y = xy.y;
     }
     /*
-    public void Work () {
+    public void Update () {
     }*/
 }

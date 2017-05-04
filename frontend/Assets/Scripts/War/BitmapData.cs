@@ -39,6 +39,6 @@ public class BitmapData : MonoBehaviour {
         gameObject.GetComponent<SpriteRenderer>().sprite = Sprite.Create(tex, new Rect(0, 0, w, h), new Vector2(0.5f, 0.5f));
     }
 
-    // Work is called once per frame
+    // Update is called once per frame
     void Update () { }
 }

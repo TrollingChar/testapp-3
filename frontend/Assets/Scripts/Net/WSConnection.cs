@@ -13,7 +13,7 @@ public class WSConnection : MonoBehaviour {
 
     public UnityEvent onAccountData;
     public UnityEvent_int_int onChangeHub;
-    public UnityEvent onStartGame;
+    public UnityEvent_int onStartGame;
     public UnityEvent_int onPlayerQuit;
     public UnityEvent onEndGame;
     public UnityEvent onTurnData;
@@ -47,7 +47,8 @@ public class WSConnection : MonoBehaviour {
                 onChangeHub.Invoke(reader.Read(), reader.Read());
                 break;
             case ServerAPI.StartGame:
-                onStartGame.Invoke();
+                onStartGame.Invoke(reader.Read());
+                for (byte i = 0, end = reader.ReadByte(); i < end; ++i) reader.Read();
                 break;
             case ServerAPI.LeftGame:
                 onPlayerQuit.Invoke(reader.ReadInt32());
