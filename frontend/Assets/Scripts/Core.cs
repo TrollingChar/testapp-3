@@ -7,6 +7,8 @@ public class Core : MonoBehaviour {
     World world;
     public Texture2D landTexture;
     public SpriteRenderer landRenderer;
+    TurnData td;
+    public CameraWrapper cameraWrapper;
 
     void Start () { }
 

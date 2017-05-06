@@ -37,18 +37,18 @@ public class WSConnection : MonoBehaviour {
     }
 
     void Parse(byte[] bytes) {
-        MemoryStream stream = new MemoryStream(bytes);
-        EndianBinaryReader reader = new EndianBinaryReader(EndianBitConverter.Big, stream);
+        var stream = new MemoryStream(bytes);
+        var reader = new EndianBinaryReader(EndianBitConverter.Big, stream);
         switch (reader.ReadByte()) {
             case ServerAPI.AccountData:
                 onAccountData.Invoke();
                 break;
             case ServerAPI.HubChanged:
-                onChangeHub.Invoke(reader.Read(), reader.Read());
+                onChangeHub.Invoke(reader.ReadByte(), reader.ReadByte());
                 break;
             case ServerAPI.StartGame:
-                onStartGame.Invoke(reader.Read());
-                for (byte i = 0, end = reader.ReadByte(); i < end; ++i) reader.Read();
+                onStartGame.Invoke(reader.ReadInt32());
+                for (byte i = 0, end = reader.ReadByte(); i < end; ++i) reader.ReadInt32();
                 break;
             case ServerAPI.LeftGame:
                 onPlayerQuit.Invoke(reader.ReadInt32());
@@ -101,6 +101,5 @@ public class WSConnection : MonoBehaviour {
         socket.Send(bb);
     }
 
-    public void SendTurnData () {
-    }
+    public void SendTurnData () { }
 }

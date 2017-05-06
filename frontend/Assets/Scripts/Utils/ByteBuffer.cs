@@ -55,7 +55,6 @@ class ByteBuffer {
     }
 
     public static implicit operator byte[] (ByteBuffer bb) {
-        // rewrite it LOL
         return bb.bytes
             .Skip(bb.offset)
             .Take<byte>(bb.length)

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Obsolete]
 public class BitmapData : MonoBehaviour {
 
     public Texture2D source;
@@ -16,7 +17,7 @@ public class BitmapData : MonoBehaviour {
         tex = new Texture2D(w, h, TextureFormat.RGBA32, false);
 
         // GENERATE!
-        LandGen land =
+        var land =
             new LandGen(new byte[,] {{0, 0, 0, 0, 0},
                                      {0, 1, 1, 1, 0},
                                      {0, 1, 0, 1, 0}})

@@ -24,6 +24,6 @@ class Land {
             }
         }
         tex.Apply();
-        core.landRenderer.sprite = Sprite.Create(tex, new Rect(0, 0, w, h), new Vector2(0.5f, 0.5f));
+        core.landRenderer.sprite = Sprite.Create(tex, new Rect(0, 0, w, h), new Vector2(0.5f, 0.5f), 1f);
     }
 }

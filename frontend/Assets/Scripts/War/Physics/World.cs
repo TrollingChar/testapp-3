@@ -12,9 +12,11 @@ public class World {
     Tiles tiles;
 
     Core core;
+    CameraWrapper camera;
 
     public World (Core core) {
         this.core = core;
+        camera = core.cameraWrapper;
 
         gravity = -0.5f;
         waterLevel = -500;
@@ -36,6 +38,8 @@ public class World {
 
             core
         );
+
+        camera.LookAt(Vector2.zero);
     }
 
     public void Update (TurnData data) {

@@ -269,9 +269,9 @@ namespace MiscUtil.IO
 		/// -1 is returned.
 		/// </summary>
 		/// <returns>The character read, or -1 for end of stream.</returns>
-		public int Read()
+		public int ReadChar()
 		{
-			int charsRead = Read(charBuffer, 0, 1);
+			int charsRead = ReadChar(charBuffer, 0, 1);
 			if (charsRead==0)
 			{
 				return -1;
@@ -292,7 +292,7 @@ namespace MiscUtil.IO
 		/// <returns>The number of characters actually read. This will only be less than
 		/// the requested number of characters if the end of the stream is reached.
 		/// </returns>
-		public int Read(char[] data, int index, int count)
+		public int ReadChar(char[] data, int index, int count)
 		{
 			CheckDisposed();
 			if (buffer==null)
@@ -366,7 +366,7 @@ namespace MiscUtil.IO
 		/// <returns>The number of bytes actually read. This will only be less than
 		/// the requested number of bytes if the end of the stream is reached.
 		/// </returns>
-		public int Read(byte[] buffer, int index, int count)
+		public int ReadChar(byte[] buffer, int index, int count)
 		{
 			CheckDisposed();
 			if (buffer==null)

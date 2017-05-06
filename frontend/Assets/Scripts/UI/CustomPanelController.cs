@@ -15,7 +15,7 @@ public class CustomPanelController : PanelController {
     bool initialized = false;
     protected override void UpdatePosition () {
         if (!initialized) { fullOpenness = timeToOpen; initialized = true; }
-        RectTransform rt = canvas.transform as RectTransform;
+        var rt = canvas.transform as RectTransform;
         float relativeOpenness = (float)currOpenness / fullOpenness;
         rt.anchorMin = relativeOpenness * (openAnchorMin - closedAnchorMin) + closedAnchorMin;
         rt.anchorMax = relativeOpenness * (openAnchorMax - closedAnchorMax) + closedAnchorMax;
