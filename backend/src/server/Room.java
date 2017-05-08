@@ -88,6 +88,13 @@ public class Room {
 
     public void onSync(Player player, SyncData data) {
         System.out.println("Room.onSync");
+
+        /* todo
+         *  make hashtable Player->SyncData
+         *  determine which player takes next turn
+         *  move players with 0 worms to observers
+         */
+
         Replay.log(player, data);
     }
 

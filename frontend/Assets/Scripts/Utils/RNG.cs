@@ -17,6 +17,7 @@ static public class RNG {
     //static public Vector2 Vector2() { return new Vector2(Float(), Float()); }
 
     static public void Init (int seed) { rng = new System.Random(seed); }
+    static public bool Bool () { return rng.Next(2) != 0; }
     static public bool Bool (double chance) { return rng.NextDouble() < chance; }
     static public bool Bool (int chance, int outOf) { return rng.Next(outOf) < chance; }
     static public int Int () { return rng.Next(); }

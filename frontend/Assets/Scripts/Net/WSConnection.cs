@@ -16,12 +16,16 @@ public class WSConnection : MonoBehaviour {
     public UnityEvent_int onStartGame;
     public UnityEvent_int onPlayerQuit;
     public UnityEvent onEndGame;
-    public UnityEvent onTurnData;
+    public UnityEvent_TurnData onTurnData;
+
+    int turnDataRead;
 
     public void Work () {
         if (socket == null) return;
+
+        turnDataRead = 0;
         for (byte[] bytes = socket.Recv();
-            bytes != null;
+            bytes != null && turnDataRead < 2;
             bytes = socket.Recv())
         {
             Debug.Log(BitConverter.ToString(bytes));
@@ -57,7 +61,9 @@ public class WSConnection : MonoBehaviour {
                 onEndGame.Invoke();
                 break;
             case ServerAPI.TurnData:
-                onTurnData.Invoke();
+                ++turnDataRead;
+                TurnData td = new TurnData(reader.ReadByte(), reader.ReadSingle(), reader.ReadSingle());
+                onTurnData.Invoke(td);
                 break;
             default:
                 break;
@@ -102,4 +108,11 @@ public class WSConnection : MonoBehaviour {
     }
 
     public void SendTurnData () { }
+
+    public void SendEndTurn (bool alive) {
+        bb.Clear();
+        bb.WriteByte(ClientAPI.EndTurn);
+        bb.WriteByte((byte)(alive ? 0 : 1));
+        socket.Send(bb);
+    }
 }

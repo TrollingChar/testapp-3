@@ -42,8 +42,10 @@ public class World {
         camera.LookAt(Vector2.zero);
     }
 
-    public void Update (TurnData data) {
-        // gather input
-        if (data == null) data = new TurnData();
+    public void Update (TurnData data) { // do game logic
+    }
+
+    public void Update () { // refresh graphics and do logic if my turn
+        TurnData td = new TurnData(); // gather input
     }
 }

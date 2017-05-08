@@ -10,3 +10,4 @@ using UnityEngine.UI;
 [Serializable] public class UnityEvent_string : UnityEvent<string> { }
 [Serializable] public class UnityEvent_string_int : UnityEvent<string, int> { }
 [Serializable] public class UnityEvent_byteArray : UnityEvent<byte[]> { }
+[Serializable] public class UnityEvent_TurnData : UnityEvent<TurnData> { }

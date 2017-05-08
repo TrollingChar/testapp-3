@@ -19,6 +19,22 @@ public class Core : MonoBehaviour {
 	
 	void Update () {
         connection.Work();
-        if (world != null) world.Update(null);
+        if (world != null) world.Update();
 	}
+
+    public void UpdateWorld (TurnData td) {
+        world.Update(td);
+    }
+
+    public void Synchronize () {
+        connection.SendEndTurn(true);
+    }
+
+    public Worm NextWorm () {
+        return null;
+    }
+
+    public void ResetActivePlayer () {
+        //
+    }
 }
