@@ -15,4 +15,8 @@ public class Replay {
     public static void logSurrender(Player player) {
 
     }
+
+    public void save() {
+
+    }
 }

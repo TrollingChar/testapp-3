@@ -69,6 +69,10 @@ public class ServerSocket extends WebSocketAdapter {
                     break;
                 case ClientAPI.END_TURN:
                     player.room.onSync(player, new SyncData(bb.get()));
+                    break;
+                case ClientAPI.TURN_DATA:
+                    player.room.onData(player, new TurnData(bb.get(), bb.getFloat(), bb.getFloat()));
+                    break;
                 default:
                     throw new Exception("invalid data received");
             }
