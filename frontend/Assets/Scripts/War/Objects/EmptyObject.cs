@@ -3,5 +3,5 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-public class W3Object {
+class EmptyObject : W3Object {
 }

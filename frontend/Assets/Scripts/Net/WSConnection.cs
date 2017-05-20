@@ -107,7 +107,8 @@ public class WSConnection : MonoBehaviour {
         socket.Send(bb);
     }
 
-    public void SendTurnData () { }
+    public void SendTurnData (TurnData td) {
+    }
 
     public void SendEndTurn (bool alive) {
         bb.Clear();

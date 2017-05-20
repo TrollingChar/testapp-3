@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Assets.code.bf;
 
-enum GameState {
+public enum GameState {
     BeforeTurn,
     Synchronizing,
     Turn,
@@ -13,7 +13,7 @@ enum GameState {
     Remove0hp
 }
 
-class GameStateController {
+public class GameStateController {
     Core core;
 
     const int turnTime = 30000;
@@ -22,6 +22,7 @@ class GameStateController {
     public bool synchronized;
     
     GameState current, next;
+    public GameState currentState { get { return current; } }
 
     bool wormFrozen;
     Worm worm;
