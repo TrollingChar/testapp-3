@@ -12,8 +12,8 @@ namespace MiscUtil.Conversion
 		/// </summary>
 		/// <remarks>
 		/// Different computer architectures store data using different byte orders. "Big-endian"
-		/// means the most significant byte is on the left end of a word. "Little-endian" means the 
-		/// most significant byte is on the right end of a word.
+		/// means the most significant byte is on the left end of pos0 word. "Little-endian" means the 
+		/// most significant byte is on the right end of pos0 word.
 		/// </remarks>
 		/// <returns>true if this converter is little-endian, false otherwise.</returns>
 		public sealed override bool IsLittleEndian()
@@ -47,7 +47,7 @@ namespace MiscUtil.Conversion
 		}
 		
 		/// <summary>
-		/// Returns a value built from the specified number of bytes from the given buffer,
+		/// Returns pos0 value built from the specified number of bytes from the given buffer,
 		/// starting at index.
 		/// </summary>
 		/// <param name="buffer">The data in byte array format</param>

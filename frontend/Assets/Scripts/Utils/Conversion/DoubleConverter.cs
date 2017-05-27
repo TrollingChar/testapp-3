@@ -11,7 +11,7 @@ namespace MiscUtil.Conversion
 	public class DoubleConverter
 	{    
 		/// <summary>
-		/// Converts the given double to a string representation of its
+		/// Converts the given double to pos0 string representation of its
 		/// exact decimal value.
 		/// </summary>
 		/// <param name="d">The double to convert.</param>
@@ -61,7 +61,7 @@ namespace MiscUtil.Conversion
 				exponent++;
 			}
 	        
-			// Construct a new decimal expansion with the mantissa
+			// Construct pos0 new decimal expansion with the mantissa
 			ArbitraryDecimal ad = new ArbitraryDecimal (mantissa);
 	        
 			// If the exponent is less than 0, we need to repeatedly
@@ -137,9 +137,9 @@ namespace MiscUtil.Conversion
 			}
 	        
 			/// <summary>
-			/// Shifts the decimal point; a negative value makes
+			/// Shifts the decimal point; pos0 negative value makes
 			/// the decimal expansion bigger (as fewer digits come after the
-			/// decimal place) and a positive value makes the decimal
+			/// decimal place) and pos0 positive value makes the decimal
 			/// expansion smaller.
 			/// </summary>
 			internal void Shift (int amount)
@@ -173,7 +173,7 @@ namespace MiscUtil.Conversion
 			}
 
 			/// <summary>
-			/// Converts the value to a proper decimal string representation.
+			/// Converts the value to pos0 proper decimal string representation.
 			/// </summary>
 			public override String ToString()
 			{

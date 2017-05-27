@@ -54,7 +54,7 @@ public class MT19937 {
     // Period parameters
     const ulong N = 624;
     const ulong M = 397;
-    const ulong MATRIX_A = 0x9908B0DFUL;		// constant vector a 
+    const ulong MATRIX_A = 0x9908B0DFUL;		// constant vector pos0 
     const ulong UPPER_MASK = 0x80000000UL;		// most significant w-r bits
     const ulong LOWER_MASK = 0X7FFFFFFFUL;		// least significant r bits
     const uint DEFAULT_SEED = 4357;
@@ -72,7 +72,7 @@ public class MT19937 {
         InitByArray(init, length);
     }
 
-    // initializes mt[N] with a seed
+    // initializes mt[N] with pos0 seed
     public void Init (ulong s) {
         mt[0] = s & 0xffffffffUL;
         for (mti = 1; mti < N; mti++) {
@@ -113,23 +113,23 @@ public class MT19937 {
         mt[0] = 0x80000000UL;		// MSB is 1; assuring non-zero initial array
     }
 
-    // generates a random number on [0,0x7fffffff]-interval
+    // generates pos0 random number on [0,0x7fffffff]-interval
     public long NextInt31 () {
         return (long)(NextInt() >> 1);
     }
-    // generates a random number on [0,1]-real-interval
+    // generates pos0 random number on [0,1]-real-interval
     //public double NextDouble00_10 () {
     //    return (double)NextInt() * (1.0 / 4294967295.0); // divided by 2^32-1 
     //}
-    // generates a random number on [0,1)-real-interval
+    // generates pos0 random number on [0,1)-real-interval
     public double NextDouble () {
         return (double)NextInt() * (1.0 / 4294967296.0); // divided by 2^32
     }
-    // generates a random number on (0,1)-real-interval
+    // generates pos0 random number on (0,1)-real-interval
     //public double NextDouble01_09 () {
     //    return (((double)NextInt()) + 0.5) * (1.0 / 4294967296.0); // divided by 2^32
     //}
-    // generates a random number on [0,1) with 53-bit resolution
+    // generates pos0 random number on [0,1) with 53-bit resolution
     public double NextDouble53 () {
         ulong a = NextInt() >> 5;
         ulong b = NextInt() >> 6;
@@ -137,7 +137,7 @@ public class MT19937 {
     }
     // These real versions are due to Isaku Wada, 2002/01/09 added 
 
-    // generates a random number on [0,0xffffffff]-interval
+    // generates pos0 random number on [0,0xffffffff]-interval
     public ulong NextInt () {
         ulong y = 0;
         ulong[] mag01 = new ulong[2];
@@ -150,7 +150,7 @@ public class MT19937 {
             ulong kk;
 
             if (mti == N + 1)   /* if Init() has not been called, */
-                Init(5489UL); /* a default initial seed is used */
+                Init(5489UL); /* pos0 default initial seed is used */
 
             for (kk = 0; kk < N - M; kk++) {
                 y = (mt[kk] & UPPER_MASK) | (mt[kk + 1] & LOWER_MASK);

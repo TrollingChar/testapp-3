@@ -8,12 +8,10 @@ public abstract class PanelController : MonoBehaviour {
     public Canvas canvas;
     public bool open;
 
-    // Use this for initialization
     void Start () {
         UpdatePosition();
     }
 
-    // Update is called once per frame
     void Update () {
         if (open) {
             if (currOpenness < fullOpenness) {

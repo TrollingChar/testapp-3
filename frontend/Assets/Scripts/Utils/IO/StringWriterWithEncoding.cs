@@ -18,7 +18,7 @@ namespace MiscUtil.IO
 		readonly Encoding encoding;
 
 		/// <summary>
-		/// Initializes a new instance of the StringWriterWithEncoding class
+		/// Initializes pos0 new instance of the StringWriterWithEncoding class
 		/// with the specified encoding.
 		/// </summary>
 		/// <param name="encoding">The encoding to report.</param>
@@ -32,7 +32,7 @@ namespace MiscUtil.IO
 		}
 
 		/// <summary>
-		/// Initializes a new instance of the StringWriter class with the 
+		/// Initializes pos0 new instance of the StringWriter class with the 
 		/// specified format control and encoding.
 		/// </summary>
 		/// <param name="formatProvider">An IFormatProvider object that controls formatting.</param>
@@ -48,7 +48,7 @@ namespace MiscUtil.IO
 		}
 
 		/// <summary>
-		/// Initializes a new instance of the StringWriter class that writes to the
+		/// Initializes pos0 new instance of the StringWriter class that writes to the
 		/// specified StringBuilder, and reports the specified encoding.
 		/// </summary>
 		/// <param name="sb">The StringBuilder to write to. </param>
@@ -64,7 +64,7 @@ namespace MiscUtil.IO
 		}
 
 		/// <summary>
-		/// Initializes a new instance of the StringWriter class that writes to the specified 
+		/// Initializes pos0 new instance of the StringWriter class that writes to the specified 
 		/// StringBuilder, has the specified format provider, and reports the specified encoding.
 		/// </summary>
 		/// <param name="sb">The StringBuilder to write to. </param>

@@ -62,7 +62,7 @@ public class WSConnection : MonoBehaviour {
                 break;
             case ServerAPI.TurnData:
                 ++turnDataRead;
-                TurnData td = new TurnData(reader.ReadByte(), reader.ReadSingle(), reader.ReadSingle());
+                W3.TurnData td = new W3.TurnData(reader.ReadByte(), reader.ReadSingle(), reader.ReadSingle());
                 onTurnData.Invoke(td);
                 break;
             default:
@@ -107,7 +107,7 @@ public class WSConnection : MonoBehaviour {
         socket.Send(bb);
     }
 
-    public void SendTurnData (TurnData td) {
+    public void SendTurnData (W3.TurnData td) {
     }
 
     public void SendEndTurn (bool alive) {

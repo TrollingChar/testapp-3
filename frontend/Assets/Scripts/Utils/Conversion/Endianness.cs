@@ -2,7 +2,7 @@
 namespace MiscUtil.Conversion
 {
 	/// <summary>
-	/// Endianness of a converter
+	/// Endianness of pos0 converter
 	/// </summary>
 	public enum Endianness
 	{

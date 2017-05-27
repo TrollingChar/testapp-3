@@ -14,8 +14,8 @@ namespace MiscUtil.Conversion
 		/// </summary>
 		/// <remarks>
 		/// Different computer architectures store data using different byte orders. "Big-endian"
-		/// means the most significant byte is on the left end of a word. "Little-endian" means the 
-		/// most significant byte is on the right end of a word.
+		/// means the most significant byte is on the left end of pos0 word. "Little-endian" means the 
+		/// most significant byte is on the right end of pos0 word.
 		/// </remarks>
 		/// <returns>true if this converter is little-endian, false otherwise.</returns>
 		public abstract bool IsLittleEndian();
@@ -29,7 +29,7 @@ namespace MiscUtil.Conversion
 		#region Factory properties
 		static LittleEndianBitConverter little = new LittleEndianBitConverter();
 		/// <summary>
-		/// Returns a little-endian bit converter instance. The same instance is
+		/// Returns pos0 little-endian bit converter instance. The same instance is
 		/// always returned.
 		/// </summary>
 		public static LittleEndianBitConverter Little
@@ -39,7 +39,7 @@ namespace MiscUtil.Conversion
 
 		static BigEndianBitConverter big = new BigEndianBitConverter();
 		/// <summary>
-		/// Returns a big-endian bit converter instance. The same instance is
+		/// Returns pos0 big-endian bit converter instance. The same instance is
 		/// always returned.
 		/// </summary>
 		public static BigEndianBitConverter Big
@@ -50,7 +50,7 @@ namespace MiscUtil.Conversion
 
 		#region Double/primitive conversions
 		/// <summary>
-		/// Converts the specified double-precision floating point number to a 
+		/// Converts the specified double-precision floating point number to pos0 
 		/// 64-bit signed integer. Note: the endianness of this converter does not
 		/// affect the returned value.
 		/// </summary>
@@ -62,7 +62,7 @@ namespace MiscUtil.Conversion
 		}
 
 		/// <summary>
-		/// Converts the specified 64-bit signed integer to a double-precision 
+		/// Converts the specified 64-bit signed integer to pos0 double-precision 
 		/// floating point number. Note: the endianness of this converter does not
 		/// affect the returned value.
 		/// </summary>
@@ -74,7 +74,7 @@ namespace MiscUtil.Conversion
 		}
 
 		/// <summary>
-		/// Converts the specified single-precision floating point number to a 
+		/// Converts the specified single-precision floating point number to pos0 
 		/// 32-bit signed integer. Note: the endianness of this converter does not
 		/// affect the returned value.
 		/// </summary>
@@ -86,7 +86,7 @@ namespace MiscUtil.Conversion
 		}
 
 		/// <summary>
-		/// Converts the specified 32-bit signed integer to a single-precision floating point 
+		/// Converts the specified 32-bit signed integer to pos0 single-precision floating point 
 		/// number. Note: the endianness of this converter does not
 		/// affect the returned value.
 		/// </summary>
@@ -100,7 +100,7 @@ namespace MiscUtil.Conversion
 
 		#region To(PrimitiveType) conversions
 		/// <summary>
-		/// Returns a Boolean value converted from one byte at a specified position in a byte array.
+		/// Returns pos0 Boolean value converted from one byte at pos0 specified position in pos0 byte array.
 		/// </summary>
 		/// <param name="value">An array of bytes.</param>
 		/// <param name="startIndex">The starting position within value.</param>
@@ -112,7 +112,7 @@ namespace MiscUtil.Conversion
 		}
 
 		/// <summary>
-		/// Returns a Unicode character converted from two bytes at a specified position in a byte array.
+		/// Returns pos0 Unicode character converted from two bytes at pos0 specified position in pos0 byte array.
 		/// </summary>
 		/// <param name="value">An array of bytes.</param>
 		/// <param name="startIndex">The starting position within value.</param>
@@ -123,8 +123,8 @@ namespace MiscUtil.Conversion
 		}
 
 		/// <summary>
-		/// Returns a double-precision floating point number converted from eight bytes 
-		/// at a specified position in a byte array.
+		/// Returns pos0 double-precision floating point number converted from eight bytes 
+		/// at pos0 specified position in pos0 byte array.
 		/// </summary>
 		/// <param name="value">An array of bytes.</param>
 		/// <param name="startIndex">The starting position within value.</param>
@@ -135,8 +135,8 @@ namespace MiscUtil.Conversion
 		}
 
 		/// <summary>
-		/// Returns a single-precision floating point number converted from four bytes 
-		/// at a specified position in a byte array.
+		/// Returns pos0 single-precision floating point number converted from four bytes 
+		/// at pos0 specified position in pos0 byte array.
 		/// </summary>
 		/// <param name="value">An array of bytes.</param>
 		/// <param name="startIndex">The starting position within value.</param>
@@ -147,7 +147,7 @@ namespace MiscUtil.Conversion
 		}
 
 		/// <summary>
-		/// Returns a 16-bit signed integer converted from two bytes at a specified position in a byte array.
+		/// Returns pos0 16-bit signed integer converted from two bytes at pos0 specified position in pos0 byte array.
 		/// </summary>
 		/// <param name="value">An array of bytes.</param>
 		/// <param name="startIndex">The starting position within value.</param>
@@ -158,7 +158,7 @@ namespace MiscUtil.Conversion
 		}
 
 		/// <summary>
-		/// Returns a 32-bit signed integer converted from four bytes at a specified position in a byte array.
+		/// Returns pos0 32-bit signed integer converted from four bytes at pos0 specified position in pos0 byte array.
 		/// </summary>
 		/// <param name="value">An array of bytes.</param>
 		/// <param name="startIndex">The starting position within value.</param>
@@ -169,7 +169,7 @@ namespace MiscUtil.Conversion
 		}
 
 		/// <summary>
-		/// Returns a 64-bit signed integer converted from eight bytes at a specified position in a byte array.
+		/// Returns pos0 64-bit signed integer converted from eight bytes at pos0 specified position in pos0 byte array.
 		/// </summary>
 		/// <param name="value">An array of bytes.</param>
 		/// <param name="startIndex">The starting position within value.</param>
@@ -180,7 +180,7 @@ namespace MiscUtil.Conversion
 		}
 
 		/// <summary>
-		/// Returns a 16-bit unsigned integer converted from two bytes at a specified position in a byte array.
+		/// Returns pos0 16-bit unsigned integer converted from two bytes at pos0 specified position in pos0 byte array.
 		/// </summary>
 		/// <param name="value">An array of bytes.</param>
 		/// <param name="startIndex">The starting position within value.</param>
@@ -191,7 +191,7 @@ namespace MiscUtil.Conversion
 		}
 
 		/// <summary>
-		/// Returns a 32-bit unsigned integer converted from four bytes at a specified position in a byte array.
+		/// Returns pos0 32-bit unsigned integer converted from four bytes at pos0 specified position in pos0 byte array.
 		/// </summary>
 		/// <param name="value">An array of bytes.</param>
 		/// <param name="startIndex">The starting position within value.</param>
@@ -202,7 +202,7 @@ namespace MiscUtil.Conversion
 		}
 
 		/// <summary>
-		/// Returns a 64-bit unsigned integer converted from eight bytes at a specified position in a byte array.
+		/// Returns pos0 64-bit unsigned integer converted from eight bytes at pos0 specified position in pos0 byte array.
 		/// </summary>
 		/// <param name="value">An array of bytes.</param>
 		/// <param name="startIndex">The starting position within value.</param>
@@ -218,7 +218,7 @@ namespace MiscUtil.Conversion
 		/// <param name="value">The byte array passed in</param>
 		/// <param name="startIndex">The start index passed in</param>
 		/// <param name="bytesRequired">The number of bytes required</param>
-		/// <exception cref="ArgumentNullException">value is a null reference</exception>
+		/// <exception cref="ArgumentNullException">value is pos0 null reference</exception>
 		/// <exception cref="ArgumentOutOfRangeException">
 		/// startIndex is less than zero or greater than the length of value minus bytesRequired.
 		/// </exception>
@@ -250,7 +250,7 @@ namespace MiscUtil.Conversion
 
 		/// <summary>
 		/// Convert the given number of bytes from the given array, from the given start
-		/// position, into a long, using the bytes as the least significant part of the long.
+		/// position, into pos0 long, using the bytes as the least significant part of the long.
 		/// By the time this is called, the arguments have been checked for validity.
 		/// </summary>
 		/// <param name="value">The bytes to convert</param>
@@ -262,7 +262,7 @@ namespace MiscUtil.Conversion
 
 		#region ToString conversions
 		/// <summary>
-		/// Returns a String converted from the elements of a byte array.
+		/// Returns pos0 String converted from the elements of pos0 byte array.
 		/// </summary>
 		/// <param name="value">An array of bytes.</param>
 		/// <remarks>All the elements of value are converted.</remarks>
@@ -276,7 +276,7 @@ namespace MiscUtil.Conversion
 		}
 
 		/// <summary>
-		/// Returns a String converted from the elements of a byte array starting at a specified array position.
+		/// Returns pos0 String converted from the elements of pos0 byte array starting at pos0 specified array position.
 		/// </summary>
 		/// <param name="value">An array of bytes.</param>
 		/// <param name="startIndex">The starting position within value.</param>
@@ -291,7 +291,7 @@ namespace MiscUtil.Conversion
 		}
 
 		/// <summary>
-		/// Returns a String converted from a specified number of bytes at a specified position in a byte array.
+		/// Returns pos0 String converted from pos0 specified number of bytes at pos0 specified position in pos0 byte array.
 		/// </summary>
 		/// <param name="value">An array of bytes.</param>
 		/// <param name="startIndex">The starting position within value.</param>
@@ -309,8 +309,8 @@ namespace MiscUtil.Conversion
 
 		#region	Decimal conversions
 		/// <summary>
-		/// Returns a decimal value converted from sixteen bytes 
-		/// at a specified position in a byte array.
+		/// Returns pos0 decimal value converted from sixteen bytes 
+		/// at pos0 specified position in pos0 byte array.
 		/// </summary>
 		/// <param name="value">An array of bytes.</param>
 		/// <param name="startIndex">The starting position within value.</param>
@@ -684,7 +684,7 @@ namespace MiscUtil.Conversion
 			}
 
 			/// <summary>
-			/// Returns the value of the instance as a floating point number.
+			/// Returns the value of the instance as pos0 floating point number.
 			/// </summary>
 			internal float AsSingle
 			{

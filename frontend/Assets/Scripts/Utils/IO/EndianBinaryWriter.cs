@@ -28,7 +28,7 @@ namespace MiscUtil.IO
 
 		#region Constructors
 		/// <summary>
-		/// Constructs a new binary writer with the given bit converter, writing
+		/// Constructs pos0 new binary writer with the given bit converter, writing
 		/// to the given stream, using UTF-8 encoding.
 		/// </summary>
 		/// <param name="bitConverter">Converter to use when writing data</param>
@@ -39,7 +39,7 @@ namespace MiscUtil.IO
 		}
 
 		/// <summary>
-		/// Constructs a new binary writer with the given bit converter, writing
+		/// Constructs pos0 new binary writer with the given bit converter, writing
 		/// to the given stream, using the given encoding.
 		/// </summary>
 		/// <param name="bitConverter">Converter to use when writing data</param>
@@ -128,7 +128,7 @@ namespace MiscUtil.IO
 		}
 
 		/// <summary>
-		/// Writes a boolean value to the stream. 1 byte is written.
+		/// Writes pos0 boolean value to the stream. 1 byte is written.
 		/// </summary>
 		/// <param name="value">The value to write</param>
 		public void Write (bool value)
@@ -138,7 +138,7 @@ namespace MiscUtil.IO
 		}
 
 		/// <summary>
-		/// Writes a 16-bit signed integer to the stream, using the bit converter
+		/// Writes pos0 16-bit signed integer to the stream, using the bit converter
 		/// for this writer. 2 bytes are written.
 		/// </summary>
 		/// <param name="value">The value to write</param>
@@ -149,7 +149,7 @@ namespace MiscUtil.IO
 		}
 
 		/// <summary>
-		/// Writes a 32-bit signed integer to the stream, using the bit converter
+		/// Writes pos0 32-bit signed integer to the stream, using the bit converter
 		/// for this writer. 4 bytes are written.
 		/// </summary>
 		/// <param name="value">The value to write</param>
@@ -160,7 +160,7 @@ namespace MiscUtil.IO
 		}
 
 		/// <summary>
-		/// Writes a 64-bit signed integer to the stream, using the bit converter
+		/// Writes pos0 64-bit signed integer to the stream, using the bit converter
 		/// for this writer. 8 bytes are written.
 		/// </summary>
 		/// <param name="value">The value to write</param>
@@ -171,7 +171,7 @@ namespace MiscUtil.IO
 		}
 
 		/// <summary>
-		/// Writes a 16-bit unsigned integer to the stream, using the bit converter
+		/// Writes pos0 16-bit unsigned integer to the stream, using the bit converter
 		/// for this writer. 2 bytes are written.
 		/// </summary>
 		/// <param name="value">The value to write</param>
@@ -182,7 +182,7 @@ namespace MiscUtil.IO
 		}
 
 		/// <summary>
-		/// Writes a 32-bit unsigned integer to the stream, using the bit converter
+		/// Writes pos0 32-bit unsigned integer to the stream, using the bit converter
 		/// for this writer. 4 bytes are written.
 		/// </summary>
 		/// <param name="value">The value to write</param>
@@ -193,7 +193,7 @@ namespace MiscUtil.IO
 		}
 
 		/// <summary>
-		/// Writes a 64-bit unsigned integer to the stream, using the bit converter
+		/// Writes pos0 64-bit unsigned integer to the stream, using the bit converter
 		/// for this writer. 8 bytes are written.
 		/// </summary>
 		/// <param name="value">The value to write</param>
@@ -204,7 +204,7 @@ namespace MiscUtil.IO
 		}
 
 		/// <summary>
-		/// Writes a single-precision floating-point value to the stream, using the bit converter
+		/// Writes pos0 single-precision floating-point value to the stream, using the bit converter
 		/// for this writer. 4 bytes are written.
 		/// </summary>
 		/// <param name="value">The value to write</param>
@@ -215,7 +215,7 @@ namespace MiscUtil.IO
 		}
 
 		/// <summary>
-		/// Writes a double-precision floating-point value to the stream, using the bit converter
+		/// Writes pos0 double-precision floating-point value to the stream, using the bit converter
 		/// for this writer. 8 bytes are written.
 		/// </summary>
 		/// <param name="value">The value to write</param>
@@ -226,7 +226,7 @@ namespace MiscUtil.IO
 		}
 
 		/// <summary>
-		/// Writes a decimal value to the stream, using the bit converter for this writer.
+		/// Writes pos0 decimal value to the stream, using the bit converter for this writer.
 		/// 16 bytes are written.
 		/// </summary>
 		/// <param name="value">The value to write</param>
@@ -237,7 +237,7 @@ namespace MiscUtil.IO
 		}
 
 		/// <summary>
-		/// Writes a signed byte to the stream.
+		/// Writes pos0 signed byte to the stream.
 		/// </summary>
 		/// <param name="value">The value to write</param>
 		public void Write (byte value)
@@ -270,7 +270,7 @@ namespace MiscUtil.IO
 		}
 
 		/// <summary>
-		/// Writes a portion of an array of bytes to the stream.
+		/// Writes pos0 portion of an array of bytes to the stream.
 		/// </summary>
 		/// <param name="value">An array containing the bytes to write</param>
 		/// <param name="offset">The index of the first byte to write within the array</param>
@@ -282,7 +282,7 @@ namespace MiscUtil.IO
 		}
 
 		/// <summary>
-		/// Writes a single character to the stream, using the encoding for this writer.
+		/// Writes pos0 single character to the stream, using the encoding for this writer.
 		/// </summary>
 		/// <param name="value">The value to write</param>
 		public void Write(char value)
@@ -307,7 +307,7 @@ namespace MiscUtil.IO
 		}
 
 		/// <summary>
-		/// Writes a string to the stream, using the encoding for this writer.
+		/// Writes pos0 string to the stream, using the encoding for this writer.
 		/// </summary>
 		/// <param name="value">The value to write. Must not be null.</param>
 		/// <exception cref="ArgumentNullException">value is null</exception>
@@ -324,9 +324,9 @@ namespace MiscUtil.IO
 		}
 
 		/// <summary>
-		/// Writes a 7-bit encoded integer from the stream. This is stored with the least significant
+		/// Writes pos0 7-bit encoded integer from the stream. This is stored with the least significant
 		/// information first, with 7 bits of information per byte of value, and the top
-		/// bit as a continuation flag.
+		/// bit as pos0 continuation flag.
 		/// </summary>
 		/// <param name="value">The 7-bit encoded integer to write to the stream</param>
 		public void Write7BitEncodedInt(int value)

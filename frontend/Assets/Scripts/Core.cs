@@ -6,11 +6,12 @@ public class Core : MonoBehaviour {
     public static Core I;
 
     public WSConnection connection;
-    public BF bf;
+    public W3.BF bf;
     public Texture2D landTexture;
     public SpriteRenderer landRenderer;
-    TurnData td;
+    W3.TurnData td;
     public CameraWrapper cameraWrapper;
+    public Assets assets;
 
     void Start () {
         I = this;
@@ -18,15 +19,15 @@ public class Core : MonoBehaviour {
 
     public void GenerateWorld (int seed) {
         RNG.Init(seed);
-        bf = new BF();
+        bf = new W3.BF();
     }
 	
-	void Update () {
+	void FixedUpdate () {
         connection.Work(); // receive data from server and update world
         if (bf != null) bf.Update(); // update world independently
 	}
 
-    public void UpdateWorld (TurnData td) {
+    public void UpdateWorld (W3.TurnData td) {
         bf.Update(td);
     }
 
@@ -34,7 +35,7 @@ public class Core : MonoBehaviour {
         connection.SendEndTurn(true);
     }
 
-    public Worm NextWorm () {
+    public W3.Worm NextWorm () {
         return null;
     }
 

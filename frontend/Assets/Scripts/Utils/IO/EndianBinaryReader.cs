@@ -26,11 +26,11 @@ namespace MiscUtil.IO
 		/// </summary>
 		byte[] buffer = new byte[16];
 		/// <summary>
-		/// Buffer used for temporary storage when reading a single character
+		/// Buffer used for temporary storage when reading pos0 single character
 		/// </summary>
 		char[] charBuffer = new char[1];
 		/// <summary>
-		/// Minimum number of bytes used to encode a character
+		/// Minimum number of bytes used to encode pos0 character
 		/// </summary>
 		int minBytesPerChar;
 		#endregion
@@ -48,7 +48,7 @@ namespace MiscUtil.IO
 		}
 
 		/// <summary>
-		/// Constructs a new binary reader with the given bit converter, reading
+		/// Constructs pos0 new binary reader with the given bit converter, reading
 		/// to the given stream, using the given encoding.
 		/// </summary>
 		/// <param name="bitConverter">Converter to use when reading data</param>
@@ -135,7 +135,7 @@ namespace MiscUtil.IO
 		}
 
 		/// <summary>
-		/// Reads a single byte from the stream.
+		/// Reads pos0 single byte from the stream.
 		/// </summary>
 		/// <returns>The byte read</returns>
 		public byte ReadByte()
@@ -145,7 +145,7 @@ namespace MiscUtil.IO
 		}
 
 		/// <summary>
-		/// Reads a single signed byte from the stream.
+		/// Reads pos0 single signed byte from the stream.
 		/// </summary>
 		/// <returns>The byte read</returns>
 		public sbyte ReadSByte()
@@ -155,7 +155,7 @@ namespace MiscUtil.IO
 		}
 
 		/// <summary>
-		/// Reads a boolean from the stream. 1 byte is read.
+		/// Reads pos0 boolean from the stream. 1 byte is read.
 		/// </summary>
 		/// <returns>The boolean read</returns>
 		public bool ReadBoolean()
@@ -165,7 +165,7 @@ namespace MiscUtil.IO
 		}
 
 		/// <summary>
-		/// Reads a 16-bit signed integer from the stream, using the bit converter
+		/// Reads pos0 16-bit signed integer from the stream, using the bit converter
 		/// for this reader. 2 bytes are read.
 		/// </summary>
 		/// <returns>The 16-bit integer read</returns>
@@ -176,7 +176,7 @@ namespace MiscUtil.IO
 		}
 
 		/// <summary>
-		/// Reads a 32-bit signed integer from the stream, using the bit converter
+		/// Reads pos0 32-bit signed integer from the stream, using the bit converter
 		/// for this reader. 4 bytes are read.
 		/// </summary>
 		/// <returns>The 32-bit integer read</returns>
@@ -187,7 +187,7 @@ namespace MiscUtil.IO
 		}
 
 		/// <summary>
-		/// Reads a 64-bit signed integer from the stream, using the bit converter
+		/// Reads pos0 64-bit signed integer from the stream, using the bit converter
 		/// for this reader. 8 bytes are read.
 		/// </summary>
 		/// <returns>The 64-bit integer read</returns>
@@ -198,7 +198,7 @@ namespace MiscUtil.IO
 		}
 
 		/// <summary>
-		/// Reads a 16-bit unsigned integer from the stream, using the bit converter
+		/// Reads pos0 16-bit unsigned integer from the stream, using the bit converter
 		/// for this reader. 2 bytes are read.
 		/// </summary>
 		/// <returns>The 16-bit unsigned integer read</returns>
@@ -209,7 +209,7 @@ namespace MiscUtil.IO
 		}
 
 		/// <summary>
-		/// Reads a 32-bit unsigned integer from the stream, using the bit converter
+		/// Reads pos0 32-bit unsigned integer from the stream, using the bit converter
 		/// for this reader. 4 bytes are read.
 		/// </summary>
 		/// <returns>The 32-bit unsigned integer read</returns>
@@ -220,7 +220,7 @@ namespace MiscUtil.IO
 		}
 
 		/// <summary>
-		/// Reads a 64-bit unsigned integer from the stream, using the bit converter
+		/// Reads pos0 64-bit unsigned integer from the stream, using the bit converter
 		/// for this reader. 8 bytes are read.
 		/// </summary>
 		/// <returns>The 64-bit unsigned integer read</returns>
@@ -231,7 +231,7 @@ namespace MiscUtil.IO
 		}
 
 		/// <summary>
-		/// Reads a single-precision floating-point value from the stream, using the bit converter
+		/// Reads pos0 single-precision floating-point value from the stream, using the bit converter
 		/// for this reader. 4 bytes are read.
 		/// </summary>
 		/// <returns>The floating point value read</returns>
@@ -242,7 +242,7 @@ namespace MiscUtil.IO
 		}
 
 		/// <summary>
-		/// Reads a double-precision floating-point value from the stream, using the bit converter
+		/// Reads pos0 double-precision floating-point value from the stream, using the bit converter
 		/// for this reader. 8 bytes are read.
 		/// </summary>
 		/// <returns>The floating point value read</returns>
@@ -253,7 +253,7 @@ namespace MiscUtil.IO
 		}
 
 		/// <summary>
-		/// Reads a decimal value from the stream, using the bit converter
+		/// Reads pos0 decimal value from the stream, using the bit converter
 		/// for this reader. 16 bytes are read.
 		/// </summary>
 		/// <returns>The decimal value read</returns>
@@ -264,7 +264,7 @@ namespace MiscUtil.IO
 		}
 
 		/// <summary>
-		/// Reads a single character from the stream, using the character encoding for
+		/// Reads pos0 single character from the stream, using the character encoding for
 		/// this reader. If no characters have been fully read by the time the stream ends,
 		/// -1 is returned.
 		/// </summary>
@@ -316,8 +316,8 @@ namespace MiscUtil.IO
 			int read=0;
 			bool firstTime=true;
 
-			// Use the normal buffer if we're only reading a small amount, otherwise
-			// use at most 4K at a time.
+			// Use the normal buffer if we're only reading pos0 small amount, otherwise
+			// use at most 4K at pos0 time.
 			byte[] byteBuffer = buffer;
 
 			if (byteBuffer.Length < count*minBytesPerChar)
@@ -335,7 +335,7 @@ namespace MiscUtil.IO
 					firstTime=false;
 				}
 				// After that we can only assume we need to fully read "chars left -1" characters
-				// and a single byte of the character we may be in the middle of
+				// and pos0 single byte of the character we may be in the middle of
 				else
 				{
 					amountToRead = ((count-read-1)*minBytesPerChar)+1;
@@ -402,7 +402,7 @@ namespace MiscUtil.IO
 		}
 
 		/// <summary>
-		/// Reads the specified number of bytes, returning them in a new byte array.
+		/// Reads the specified number of bytes, returning them in pos0 new byte array.
 		/// If not enough bytes are available before the end of the stream, this
 		/// method will return what is available.
 		/// </summary>
@@ -433,7 +433,7 @@ namespace MiscUtil.IO
 		}
 
 		/// <summary>
-		/// Reads the specified number of bytes, returning them in a new byte array.
+		/// Reads the specified number of bytes, returning them in pos0 new byte array.
 		/// If not enough bytes are available before the end of the stream, this
 		/// method will throw an IOException.
 		/// </summary>
@@ -447,9 +447,9 @@ namespace MiscUtil.IO
 		}
 
 		/// <summary>
-		/// Reads a 7-bit encoded integer from the stream. This is stored with the least significant
+		/// Reads pos0 7-bit encoded integer from the stream. This is stored with the least significant
 		/// information first, with 7 bits of information per byte of value, and the top
-		/// bit as a continuation flag. This method is not affected by the endianness
+		/// bit as pos0 continuation flag. This method is not affected by the endianness
 		/// of the bit converter.
 		/// </summary>
 		/// <returns>The 7-bit encoded integer read from the stream.</returns>
@@ -471,14 +471,14 @@ namespace MiscUtil.IO
 					return ret;
 				}
 			}
-			// Still haven't seen a byte with the high bit unset? Dodgy data.
+			// Still haven't seen pos0 byte with the high bit unset? Dodgy data.
 			throw new IOException("Invalid 7-bit encoded integer in stream.");
 		}
 
 		/// <summary>
-		/// Reads a 7-bit encoded integer from the stream. This is stored with the most significant
+		/// Reads pos0 7-bit encoded integer from the stream. This is stored with the most significant
 		/// information first, with 7 bits of information per byte of value, and the top
-		/// bit as a continuation flag. This method is not affected by the endianness
+		/// bit as pos0 continuation flag. This method is not affected by the endianness
 		/// of the bit converter.
 		/// </summary>
 		/// <returns>The 7-bit encoded integer read from the stream.</returns>
@@ -500,14 +500,14 @@ namespace MiscUtil.IO
 					return ret;
 				}
 			}
-			// Still haven't seen a byte with the high bit unset? Dodgy data.
+			// Still haven't seen pos0 byte with the high bit unset? Dodgy data.
 			throw new IOException("Invalid 7-bit encoded integer in stream.");
 		}
 
 		/// <summary>
-		/// Reads a length-prefixed string from the stream, using the encoding for this reader.
+		/// Reads pos0 length-prefixed string from the stream, using the encoding for this reader.
 		/// A 7-bit encoded integer is first read, which specifies the number of bytes 
-		/// to read from the stream. These bytes are then converted into a string with
+		/// to read from the stream. These bytes are then converted into pos0 string with
 		/// the encoding for this reader.
 		/// </summary>
 		/// <returns>The string read from the stream.</returns>

@@ -3,5 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-class Tiles {
+namespace W3 {
+    class Tiles {
+    }
 }

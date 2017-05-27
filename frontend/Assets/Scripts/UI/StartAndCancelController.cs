@@ -8,12 +8,6 @@ public class StartAndCancelController : MonoBehaviour {
     public PanelController gameModeMenu, opponentSearchMenu;
     public Text opponentSearchStatus;
 
-	// Use this for initialization
-    void Start () { }
-	
-	// Update is called once per frame
-    void Update () { }
-
     public void OnButtonClicked (int hub) {
         opponentSearchStatus.text = "Отправка запроса в комнату " + hub.ToString();
     }
