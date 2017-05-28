@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using UnityEngine;
 
 namespace W3 {
@@ -44,7 +43,7 @@ namespace W3 {
         }
 
         public void Update () {
-            controller.Update();
+            if(controller != null) controller.Update();
         }
 
         virtual public void OnAdd () {
@@ -74,7 +73,7 @@ namespace W3 {
             Collision min = null;
             foreach (var c in colliders) {
                 HashSet<Collider> obstacles = new HashSet<Collider>(
-                    c.FindObstacles(Core.I.bf.world, v)
+                    c.FindObstacles(Core.bf.world, v)
                     .Where(o => !o.obj.PassableFor(this))
                     .Where(o => !excluded.Contains(o.obj)));
                 foreach (var o in obstacles) {
@@ -93,18 +92,16 @@ namespace W3 {
         Collision CollideWithLand (XY v) {
             Collision min = null;
             foreach (var c in colliders) {
-                var temp = c.CollideWithLand(Core.I.bf.world.land, v);
+                var temp = c.CollideWithLand(Core.bf.world.land, v);
                 if (temp < min) min = temp;
             }
             return min;
         }
 
         public void ExcludeObjects () {
-            throw new NotImplementedException();
         }
 
         public void UpdateSpritePosition () {
-            throw new NotImplementedException();
         }
 
         virtual public void Detonate () {
@@ -134,7 +131,8 @@ namespace W3 {
         virtual protected void InitSprite () {
         }
 
-        virtual protected void RemoveSprite () {
+        void RemoveSprite () {
+            if (sprite != null) GameObject.Destroy(sprite);
         }
     }
 }

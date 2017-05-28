@@ -3,43 +3,39 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Core : MonoBehaviour {
-    public static Core I;
+    //public static Core I;
 
-    public WSConnection connection;
-    public W3.BF bf;
-    public Texture2D landTexture;
-    public SpriteRenderer landRenderer;
-    W3.TurnData td;
-    public CameraWrapper cameraWrapper;
-    public Assets assets;
+    public AssetsLoader assets;
+    public GameObject bfPrefab;
+
+    public static WSConnection connection;
+    public static W3.BF bf;
+    //public SpriteRenderer landRenderer;
+    //public static CameraWrapper cameraWrapper;
+
+    //W3.TurnData td;
 
     void Start () {
-        I = this;
+        //I = this;
+        Instantiate(assets);
+        connection = gameObject.GetComponent<WSConnection>();
     }
 
     public void GenerateWorld (int seed) {
         RNG.Init(seed);
-        bf = new W3.BF();
+        bf = Instantiate(bfPrefab).GetComponent<W3.BF>();
     }
 	
 	void FixedUpdate () {
         connection.Work(); // receive data from server and update world
-        if (bf != null) bf.Update(); // update world independently
+        if (bf != null) bf.Work(); // update world independently
 	}
 
     public void UpdateWorld (W3.TurnData td) {
-        bf.Update(td);
+        bf.Work(td);
     }
 
     public void Synchronize () {
         connection.SendEndTurn(true);
-    }
-
-    public W3.Worm NextWorm () {
-        return null;
-    }
-
-    public void ResetActivePlayer () {
-        //
     }
 }

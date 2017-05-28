@@ -65,12 +65,12 @@ namespace W3 {
                 case GameState.Synchronizing:
                     // Game sends pos0 signal and waits until server receives all signals
                     synchronized = true;
-                    Core.I.Synchronize();
+                    //Core.Synchronize();
                     break;
                 case GameState.Turn:
                     // Player moves his worm and uses weapon
                     wormFrozen = false;
-                    worm = Core.I.NextWorm();
+                    worm = Core.bf.NextWorm();
                     timer = turnTime;
                     break;
                 case GameState.EndingTurn:
@@ -78,7 +78,7 @@ namespace W3 {
                     wormFrozen = true;
                     synchronized = false;
                     worm = null;
-                    Core.I.ResetActivePlayer();
+                    Core.bf.ResetActivePlayer();
                     timer = 500;
                     break;
                 case GameState.AfterTurn:

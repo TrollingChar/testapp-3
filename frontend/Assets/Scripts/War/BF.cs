@@ -5,41 +5,49 @@ using System.Text;
 using UnityEngine;
 
 namespace W3 {
-    public class BF {
+    public class BF : MonoBehaviour {
+        new public SpriteRenderer renderer;
+
         // land and all w3colliders:
         public World world;
+        new public Camera camera;
+        [HideInInspector] new public CameraWrapper cameraWrapper;
 
         // all turn-based logic:
         public GameStateController state;
-
-        CameraWrapper camera;
-
         bool paused;
-
         bool myTurn = false;
 
-        public BF () {
-            world = new World();
+        void Awake () {
+            world = new World(Assets.motherboard, renderer);
             state = new GameStateController();
-            camera = Core.I.cameraWrapper;
-            camera.LookAt(Vector2.zero);
+            cameraWrapper = camera.GetComponent<CameraWrapper>();
+            cameraWrapper.LookAt(Vector2.zero);
         }
 
-        public void Update () { // refresh graphics and do logic if my turn
+        public void Work () { // refresh graphics and do logic if my turn
             if (myTurn && state.currentState == GameState.Turn) {
                 // gather input and update world
                 var td = new TurnData();
-                Core.I.connection.SendTurnData(td);
-                Update(td);
+                Core.connection.SendTurnData(td);
+                Work(td);
             } else if (state.currentState != GameState.Synchronizing) {
-                Update(null);
+                Work(null);
             }
         }
 
-        public void Update (TurnData td) { // do game logic
+        public void Work (TurnData td) { // do game logic
             world.Update(td);
             state.Update();
-            //camera.Update();
+            //cameraWrapper.Update();
+        }
+
+        public Worm NextWorm () {
+            throw new NotImplementedException();
+        }
+
+        public void ResetActivePlayer () {
+            throw new NotImplementedException();
         }
     }
 }

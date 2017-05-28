@@ -1,23 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class MouseBasedCameraController : CameraController {
-    Vector3 origin, click;
+namespace W3 {
+    public class MouseBasedCameraController : CameraController {
+        Vector3 origin, click;
 
-    public MouseBasedCameraController (CameraWrapper cameraWrapper) : base(cameraWrapper) {
-        click = Input.mousePosition;
-        origin = camera.target;
-    }
+        public MouseBasedCameraController (CameraWrapper camera) : base(camera) {
+            click = Input.mousePosition;
+            origin = camera.target;
+        }
 
-    public override void Update () {
-        camera.LookAt(origin
-                    + camera.camera.ScreenToWorldPoint(click)
-                    - camera.camera.ScreenToWorldPoint(Input.mousePosition));
-        if (Input.GetMouseButtonUp(MouseButtons.Right)
-        && !Input.GetMouseButtonDown(MouseButtons.Right))
-            camera.controller = new CameraController(camera);
+        public override void Update () {
+            camera.LookAt(origin + camera.camera.ScreenToWorldPoint(click)
+                                 - camera.camera.ScreenToWorldPoint(Input.mousePosition));
+            if (Input.GetMouseButtonUp(MouseButtons.Right)
+            && !Input.GetMouseButtonDown(MouseButtons.Right))
+                camera.controller = new CameraController(camera);
+        }
     }
 }

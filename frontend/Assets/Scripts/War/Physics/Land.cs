@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace W3 {
     public class Land {
@@ -13,7 +9,7 @@ namespace W3 {
 
         public float tangentialBounce, normalBounce;
 
-        public Land (LandGen gen) {
+        public Land (LandGen gen, Texture2D landTexture, SpriteRenderer renderer) {
             array = gen.array;
 
             int w = array.GetLength(0),
@@ -21,11 +17,11 @@ namespace W3 {
             Texture2D tex = new Texture2D(w, h);
             for (int x = 0; x < w; ++x) {
                 for (int y = 0; y < h; ++y) {
-                    tex.SetPixel(x, y, array[x, y] == 0 ? Color.clear : Core.I.landTexture.GetPixel(x & 0xff, y & 0xff));
+                    tex.SetPixel(x, y, array[x, y] == 0 ? Color.clear : landTexture.GetPixel(x & 0xff, y & 0xff));
                 }
             }
             tex.Apply();
-            Core.I.landRenderer.sprite = Sprite.Create(tex, new Rect(0, 0, w, h), new Vector2(0.5f, 0.5f), 1f);
+            renderer.sprite = Sprite.Create(tex, new Rect(0, 0, w, h), new Vector2(0.5f, 0.5f), 1f);
         }
     }
 }

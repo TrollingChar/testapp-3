@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿
 using UnityEngine;
-
 namespace W3 {
     public class Worm : Object {
         public Worm (XY position) {
@@ -21,9 +17,7 @@ namespace W3 {
         }
 
         protected override void InitSprite () {
-        }
-
-        protected override void RemoveSprite () {
+            sprite = GameObject.Instantiate(Assets.worm);
         }
 
         protected override bool PassableFor (Object o) {

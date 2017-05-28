@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using UnityEngine;
 
 namespace W3 {
@@ -12,10 +10,11 @@ namespace W3 {
         Tiles tiles;
         LinkedList<Object> objects;
 
-        public World () {
+        public World (Texture2D tex, SpriteRenderer renderer) {
             gravity = -0.5f;
             waterLevel = -500;
             tiles = new Tiles();
+
             land = new Land(
                 new LandGen(new byte[,] {{0, 0, 0, 0, 0},
                                      {0, 1, 1, 1, 0},
@@ -28,16 +27,16 @@ namespace W3 {
                 .Cellular(0x01e801d0, 20)
                 .Cellular(0x01f001e0)
                 .Rescale(2000, 1000)
-                .Cellular(0x01f001e0)
-            );
+                .Cellular(0x01f001e0), tex, renderer);
             objects = new LinkedList<Object>();
 
             AddObject(new Worm(XY.zero));
         }
 
         public void Update (TurnData td) {
+            Debug.Log(objects.Count);
 
-            if (Core.I.bf.state.timer % 100 == 0 && td != null && td.mb) {
+            if (Core.bf.state.timer % 100 == 0 && td != null && td.mb) {
                 // spawn objects
             }
 

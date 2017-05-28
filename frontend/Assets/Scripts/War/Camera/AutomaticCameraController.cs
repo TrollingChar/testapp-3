@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class AutomaticCameraController : CameraController {
+namespace W3 {
+    public class AutomaticCameraController : CameraController {
 
-    public AutomaticCameraController (CameraWrapper cameraWrapper) : base(cameraWrapper) { }
+        public AutomaticCameraController (CameraWrapper camera) : base(camera) { }
 
-    public override void Update () {
-        camera.LookAt(new Vector3(1000, 0, 0));
+        public override void Update () {
+            camera.LookAt(new Vector3(1000, 0, 0));
+        }
     }
 }
