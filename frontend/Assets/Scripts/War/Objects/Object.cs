@@ -8,6 +8,11 @@ namespace W3 {
         static Object empty = new NullObject();
         public LinkedListNode<Object> node;
 
+        public float movement;
+        public HashSet<Object> excluded;
+        public List<Collider> colliders;
+        public float mass;
+
         public XY _position, velocity;
         public XY position {
             get { return _position; }
@@ -21,7 +26,10 @@ namespace W3 {
         public Controller controller {
             get { return _controller; }
             set {
-                if (_controller != null) _controller.OnRemove();
+                if (_controller != null) {
+                    _controller.OnRemove();
+                    _controller.obj = null;
+                }
                 if (value != null) {
                     value.obj = this;
                     value.OnAdd();
@@ -31,11 +39,6 @@ namespace W3 {
         }
 
         protected GameObject sprite;
-
-        public float movement;
-        public HashSet<Object> excluded;
-        public List<Collider> colliders;
-        public float mass;
 
         public Object (float mass = 60) {
             this.mass = mass;
@@ -62,6 +65,7 @@ namespace W3 {
         }
 
         public Collision NextCollision () {
+            return null;
             XY v = velocity * movement;
             var cObj = CollideWithObjects(v);
             if (cObj != null) v = cObj.offset;
@@ -102,6 +106,10 @@ namespace W3 {
         }
 
         public void UpdateSpritePosition () {
+            if (sprite != null) 
+                sprite.transform.position = new Vector3(position.x,
+                                                        position.y,
+                                                        sprite.transform.position.z);
         }
 
         virtual public void Detonate () {

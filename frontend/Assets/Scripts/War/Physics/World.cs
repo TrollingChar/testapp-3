@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace W3 {
     public class World {
-        float gravity;
-        float waterLevel;
+        public float gravity;
+        public float waterLevel;
         public Land land;
-        Tiles tiles;
+        public Tiles tiles;
         LinkedList<Object> objects;
 
         public World (Texture2D tex, SpriteRenderer renderer) {
@@ -30,29 +30,27 @@ namespace W3 {
                 .Cellular(0x01f001e0), tex, renderer);
             objects = new LinkedList<Object>();
 
-            AddObject(new Worm(XY.zero));
+            AddObject(new Worm(), new XY(0, 500));
         }
 
         public void Update (TurnData td) {
-            Debug.Log(objects.Count);
-
             if (Core.bf.state.timer % 100 == 0 && td != null && td.mb) {
                 // spawn objects
             }
 
             foreach (var o in objects) o.Update();
-
+            
             foreach (var o in objects) {
                 o.movement = 1;
                 o.excluded = new HashSet<Object>();
                 o.ExcludeObjects();
             }
-
+            
             for (int i = 0, iter = 5; i < iter; i++) {
                 foreach (var o in objects) {
                     if (o.velocity.length * o.movement <= 0.01f) continue;
 
-                    var c = o.NextCollision();
+                    Collision c = o.NextCollision();
                     if (c == null) {
                         o.position += o.movement * 0.99f * o.velocity;
                         o.movement = 0;
@@ -94,21 +92,24 @@ namespace W3 {
                     if (o.position.y < waterLevel) o.Remove();
                 }
             }
+            
             // handle stuck objects:
             foreach (var o in objects) {
                 o.UpdateSpritePosition();
                 o.velocity *= 1 - o.movement;
             }
-
+            
             // clear all NullObjects
             var list = new LinkedList<Object>(objects.Where<Object>(o => !(o is NullObject)));
             objects.Clear();
             objects = list;
         }
 
-        public void AddObject (Object o) {
+        public void AddObject (Object o, XY position) {
             o.node = objects.AddLast(o);
+            o.position = position;
             o.OnAdd();
+            o.UpdateSpritePosition();
         }
     }
 }

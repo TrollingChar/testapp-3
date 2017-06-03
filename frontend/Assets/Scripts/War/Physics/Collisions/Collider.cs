@@ -1,29 +1,58 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace W3 {
-    public class Collider {
+    public abstract class Collider {
         public Object obj;
         public float tangentialBounce, normalBounce;
+        List<Tile> tiles;
+
+        public abstract AABBF aabb { get; }
+
+        public void FreeTiles () {
+            foreach (var tile in tiles) tile.RemoveCollider(this);
+            tiles.Clear();
+        }
+
+        public void OccupyTiles () {
+            var box = aabb;
+            for (int x = Mathf.FloorToInt(aabb.left);
+                 x < Mathf.FloorToInt(aabb.right);
+                 x++
+            ) {
+                for (int y = Mathf.FloorToInt(aabb.bottom);
+                         y < Mathf.FloorToInt(aabb.top);
+                         y++
+                ) {
+                    Tile tile = Core.bf.world.tiles[x, y];
+                    tile.AddCollider(this);
+                    tiles.Add(tile);
+                }
+            }
+        }
 
         public void UpdatePosition () {
-            throw new NotImplementedException();
+            FreeTiles();
+            OccupyTiles();
         }
 
         public HashSet<Collider> FindObstacles (World world, XY v) {
-            throw new NotImplementedException();
+            var box = aabb.Expanded(v).ToTiles(Tile.size);
+            var result = new HashSet<Collider>();
+            return result;
         }
 
-        public Collision CollideWith (Collider c, XY velocity) {
-            throw new NotImplementedException();
+        public HashSet<Collider> FindObstacles (World world) {
+            var box = aabb.ToTiles(Tile.size);
+            var result = new HashSet<Collider>();
+            return result;
         }
 
-        public Collision CollideWithLand (Land land, XY v) {
-            throw new NotImplementedException();
-        }
-
-        internal void FreeTiles () {
-            throw new NotImplementedException();
-        }
+        public abstract Collision CollideWith (Collider c, XY velocity);
+        public abstract Collision CollideWithCircle (CircleCollider c, XY velocity);
+        //public abstract Collision CollideWithBox (BoxCollider c, XY velocity);
+        //public abstract Collision CollideWithPolygon (PolygonCollider c, XY velocity);
+        public abstract Collision CollideWithLand (Land land, XY v);
     }
 }
