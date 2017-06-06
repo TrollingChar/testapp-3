@@ -9,18 +9,22 @@ namespace W3 {
 
         int x, y;
 
+        List<Collider> _colliders;
+        public List<Collider> colliders { get { return _colliders; } }
+
         public Tile (int x, int y) {
             // TODO: Complete member initialization
             this.x = x;
             this.y = y;
+            _colliders = new List<Collider>();
         }
 
         public void AddCollider (Collider collider) {
-            throw new NotImplementedException();
+            _colliders.Add(collider);
         }
 
         public void RemoveCollider (Collider collider) {
-            throw new NotImplementedException();
+            _colliders.Remove(collider);
         }
     }
 }

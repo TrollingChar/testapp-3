@@ -3,20 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Core : MonoBehaviour {
-    //public static Core I;
-
     public AssetsLoader assets;
     public GameObject bfPrefab;
 
     public static WSConnection connection;
     public static W3.BF bf;
-    //public SpriteRenderer landRenderer;
-    //public static CameraWrapper cameraWrapper;
-
-    //W3.TurnData td;
 
     void Start () {
-        //I = this;
         Instantiate(assets);
         connection = gameObject.GetComponent<WSConnection>();
     }
@@ -24,6 +17,7 @@ public class Core : MonoBehaviour {
     public void GenerateWorld (int seed) {
         RNG.Init(seed);
         bf = Instantiate(bfPrefab).GetComponent<W3.BF>();
+        bf.world.StartGame();
     }
 	
 	void FixedUpdate () {

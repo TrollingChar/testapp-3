@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace W3 {
     public abstract class Object {
-        static Object empty = new NullObject();
+        static NullObject empty = new NullObject();
         public LinkedListNode<Object> node;
 
         public float movement;
@@ -65,12 +65,12 @@ namespace W3 {
         }
 
         public Collision NextCollision () {
-            return null;
             XY v = velocity * movement;
-            var cObj = CollideWithObjects(v);
-            if (cObj != null) v = cObj.offset;
+            //var cObj = CollideWithObjects(v);
+            //if (cObj != null) v = cObj.offset;
             var cLand = CollideWithLand(v);
-            return cLand == null ? cObj : cLand;
+            if (cLand != null) Debug.Log("hit!");
+            return cLand;// ?? cObj;
         }
 
         Collision CollideWithObjects (XY v) {
@@ -106,10 +106,8 @@ namespace W3 {
         }
 
         public void UpdateSpritePosition () {
-            if (sprite != null) 
-                sprite.transform.position = new Vector3(position.x,
-                                                        position.y,
-                                                        sprite.transform.position.z);
+            if (sprite == null) return;
+            sprite.transform.position = new Vector3(position.x, position.y, sprite.transform.position.z);
         }
 
         virtual public void Detonate () {
@@ -121,13 +119,13 @@ namespace W3 {
             // AddCollider(...);
         }
 
-        void AddCollider (Collider c) {
+        protected void AddCollider (Collider c) {
             c.obj = this;
             colliders.Add(c);
             c.UpdatePosition();
         }
 
-        void RemoveCollider (Collider c) {
+        protected void RemoveCollider (Collider c) {
             c.FreeTiles();
             colliders.Remove(c);
         }

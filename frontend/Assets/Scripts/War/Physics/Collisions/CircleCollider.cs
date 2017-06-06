@@ -5,7 +5,8 @@ namespace W3 {
         float radius;
         public XY center { get { return offset + obj.position; } }
 
-        public CircleCollider (XY offset, float radius) {
+        public CircleCollider (XY offset, float radius)
+            : base() {
             this.offset = offset;
             this.radius = radius;
         }

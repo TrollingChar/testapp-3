@@ -29,11 +29,15 @@ namespace W3 {
                 .Rescale(2000, 1000)
                 .Cellular(0x01f001e0), tex, renderer);
             objects = new LinkedList<Object>();
+        }
 
+        public void StartGame () {
             AddObject(new Worm(), new XY(0, 500));
         }
 
         public void Update (TurnData td) {
+            //Debug.Log(objects.Count);
+
             if (Core.bf.state.timer % 100 == 0 && td != null && td.mb) {
                 // spawn objects
             }
@@ -99,10 +103,18 @@ namespace W3 {
                 o.velocity *= 1 - o.movement;
             }
             
-            // clear all NullObjects
-            var list = new LinkedList<Object>(objects.Where<Object>(o => !(o is NullObject)));
-            objects.Clear();
-            objects = list;
+            // clear all NullObjects WITHOUT INVALIDATING THEIR NODES!
+            for (LinkedListNode<Object> node = objects.First; node != null; ) {
+                if (node.Value is NullObject) {
+                    var next = node.Next;
+                    objects.Remove(node);
+                    node = next;
+                } else node = node.Next;
+            }
+
+            //var list = new LinkedList<Object>(objects.Where<Object>(o => !(o is NullObject)));
+            //objects.Clear();
+            //objects = list;
         }
 
         public void AddObject (Object o, XY position) {

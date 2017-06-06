@@ -2,6 +2,9 @@
 using UnityEngine;
 namespace W3 {
     public class Worm : Object {
+        public const float headRadius = 5;
+        public const float bodyHeight = 5;
+
         public Worm () { }
 
         public override void Detonate () {
@@ -9,7 +12,8 @@ namespace W3 {
         }
 
         protected override void InitColliders () {
-
+            AddCollider(new CircleCollider(new XY(0, bodyHeight * 0.5f), headRadius));
+            AddCollider(new CircleCollider(new XY(0, bodyHeight * -0.5f), headRadius));
         }
 
         protected override void InitController () {

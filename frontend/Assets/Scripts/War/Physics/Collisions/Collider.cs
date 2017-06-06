@@ -10,6 +10,10 @@ namespace W3 {
 
         public abstract AABBF aabb { get; }
 
+        public Collider () {
+            tiles = new List<Tile>();
+        }
+
         public void FreeTiles () {
             foreach (var tile in tiles) tile.RemoveCollider(this);
             tiles.Clear();
@@ -25,6 +29,8 @@ namespace W3 {
                          y < Mathf.FloorToInt(aabb.top);
                          y++
                 ) {
+                    Debug.Log(Core.bf.world);
+                    Debug.Log(Core.bf.world.tiles);
                     Tile tile = Core.bf.world.tiles[x, y];
                     tile.AddCollider(this);
                     tiles.Add(tile);
