@@ -61,12 +61,15 @@ namespace W3 {
             if ((object)b == null) return true;
             return a.offset.sqrLength < b.offset.sqrLength;
         }
+
         static public bool operator > (Collision a, Collision b) {
             return b < a;
         }
+
         static public bool operator <= (Collision a, Collision b) {
             return !(b < a);
         }
+
         static public bool operator >= (Collision a, Collision b) {
             return !(a < b);
         }

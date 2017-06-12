@@ -27,13 +27,13 @@ namespace W3 {
 
         public AABB ToTiles (float tileSize) {
             return new AABB(Mathf.FloorToInt(left / tileSize),
-                            Mathf.FloorToInt(top / tileSize),
                             Mathf.FloorToInt(right / tileSize) + 1,
-                            Mathf.FloorToInt(bottom / tileSize) + 1);
+                            Mathf.FloorToInt(bottom / tileSize),
+                            Mathf.FloorToInt(top / tileSize) + 1);
         }
     }
 
-    public class AABB {
+    public struct AABB {
         public int left, right, bottom, top;
 
         public AABB (int left,

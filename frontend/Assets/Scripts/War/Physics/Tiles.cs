@@ -15,7 +15,7 @@ namespace W3 {
                 Tile tile;
                 return tiles.TryGetValue(new TileXY(x, y), out tile)
                     ? tile
-                    : tiles[new TileXY(x, y)] = new Tile(x, y);
+                    : (tiles[new TileXY(x, y)] = new Tile(x, y));
             }
             set { tiles[new TileXY(x, y)] = value; }
         }

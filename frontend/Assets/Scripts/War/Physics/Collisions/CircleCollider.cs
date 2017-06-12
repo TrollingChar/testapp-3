@@ -31,7 +31,9 @@ namespace W3 {
         }
 
         public override Collision CollideWithLand (Land land, XY v) {
-            return null;
+            var c = land.CastRay(center, center + v, radius);
+            if(c != null) c.collider1 = this;
+            return c;
         }
     }
 }

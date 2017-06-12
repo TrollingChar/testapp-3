@@ -22,7 +22,7 @@ namespace W3 {
             world = new World(Assets.motherboard, renderer);
             state = new GameStateController();
             cameraWrapper = camera.GetComponent<CameraWrapper>();
-            cameraWrapper.LookAt(Vector2.zero);
+            cameraWrapper.LookAt(new Vector2(1000, 1000));
         }
 
         public void Work () { // refresh graphics and do logic if my turn
@@ -36,10 +36,13 @@ namespace W3 {
             }
         }
 
+        public void StartGame () {
+            world.AddObject(new Worm(), new XY(1000, 1100));
+        }
+
         public void Work (TurnData td) { // do game logic
             world.Update(td);
             state.Update();
-            //cameraWrapper.Update();
         }
 
         public Worm NextWorm () {

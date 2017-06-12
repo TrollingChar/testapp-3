@@ -12,6 +12,8 @@ namespace W3 {
 
         public Collider () {
             tiles = new List<Tile>();
+            tangentialBounce = 0.9f;
+            normalBounce = 0.5f;
         }
 
         public void FreeTiles () {
@@ -20,17 +22,12 @@ namespace W3 {
         }
 
         public void OccupyTiles () {
-            var box = aabb;
-            for (int x = Mathf.FloorToInt(aabb.left);
-                 x < Mathf.FloorToInt(aabb.right);
-                 x++
-            ) {
-                for (int y = Mathf.FloorToInt(aabb.bottom);
-                         y < Mathf.FloorToInt(aabb.top);
-                         y++
-                ) {
-                    Debug.Log(Core.bf.world);
-                    Debug.Log(Core.bf.world.tiles);
+            var box = aabb.ToTiles(Tile.size);
+            for (int x = box.left; x < box.right; x++) {
+                for (int y = box.bottom; y < box.top; y++) {
+                    //Debug.Log(Core.bf);
+                    //Debug.Log(Core.bf.world);
+                    //Debug.Log(Core.bf.world.tiles);
                     Tile tile = Core.bf.world.tiles[x, y];
                     tile.AddCollider(this);
                     tiles.Add(tile);

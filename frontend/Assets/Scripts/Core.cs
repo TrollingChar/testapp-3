@@ -17,7 +17,7 @@ public class Core : MonoBehaviour {
     public void GenerateWorld (int seed) {
         RNG.Init(seed);
         bf = Instantiate(bfPrefab).GetComponent<W3.BF>();
-        bf.world.StartGame();
+        bf.StartGame();
     }
 	
 	void FixedUpdate () {

@@ -12,13 +12,15 @@ namespace W3 {
 
         public World (Texture2D tex, SpriteRenderer renderer) {
             gravity = -0.5f;
-            waterLevel = -500;
+            waterLevel = 0;
             tiles = new Tiles();
 
             land = new Land(
-                new LandGen(new byte[,] {{0, 0, 0, 0, 0},
-                                     {0, 1, 1, 1, 0},
-                                     {0, 1, 0, 1, 0}})
+                new LandGen(new byte[,] {
+                    {0, 0, 0, 0, 0},
+                    {0, 1, 1, 1, 0},
+                    {0, 1, 0, 1, 0}
+                })
                 .SwitchDimensions()
                 .Expand(7)
                 .Cellular(0x01e801d0, 20)
@@ -27,12 +29,12 @@ namespace W3 {
                 .Cellular(0x01e801d0, 20)
                 .Cellular(0x01f001e0)
                 .Rescale(2000, 1000)
-                .Cellular(0x01f001e0), tex, renderer);
-            objects = new LinkedList<Object>();
-        }
+                .Cellular(0x01f001e0),
 
-        public void StartGame () {
-            AddObject(new Worm(), new XY(0, 500));
+                tex,
+                renderer
+            );
+            objects = new LinkedList<Object>();
         }
 
         public void Update (TurnData td) {
