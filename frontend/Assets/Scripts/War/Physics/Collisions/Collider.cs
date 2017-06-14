@@ -25,9 +25,6 @@ namespace W3 {
             var box = aabb.ToTiles(Tile.size);
             for (int x = box.left; x < box.right; x++) {
                 for (int y = box.bottom; y < box.top; y++) {
-                    //Debug.Log(Core.bf);
-                    //Debug.Log(Core.bf.world);
-                    //Debug.Log(Core.bf.world.tiles);
                     Tile tile = Core.bf.world.tiles[x, y];
                     tile.AddCollider(this);
                     tiles.Add(tile);

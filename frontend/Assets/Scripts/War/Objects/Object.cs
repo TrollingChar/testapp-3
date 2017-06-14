@@ -69,7 +69,7 @@ namespace W3 {
             //var cObj = CollideWithObjects(v);
             //if (cObj != null) v = cObj.offset;
             var cLand = CollideWithLand(v);
-            if (cLand != null) Debug.Log("hit!");
+            //if (cLand != null) Debug.Log("hit!");
             return cLand;// ?? cObj;
         }
 

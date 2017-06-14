@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace W3 {
     public class LandTile {
@@ -49,7 +50,10 @@ namespace W3 {
                              + land[ix - 1, iy - 1]
                              + land[ix, iy - 1]
                              + land[ix, iy];
-                    if (temp == 1) vertices.Add(new XY(ix, iy));
+                    if (temp == 1) {
+                        vertices.Add(new XY(ix, iy));
+                        //Debug.Log(ix + ", " + iy);
+                    }
                 }
             }
         }

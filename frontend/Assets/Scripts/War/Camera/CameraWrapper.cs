@@ -8,7 +8,7 @@ namespace W3 {
 
         int size = 0;
 
-        void Start () {
+        void Awake () {
             camera = gameObject.GetComponent<UnityEngine.Camera>();
             camera.orthographicSize = (size = Screen.height) * 0.5f;
             target = camera.transform.position;
@@ -26,9 +26,16 @@ namespace W3 {
             //cameraWrapper.transform.position += 0.2f * target;
         }
 
-        public void LookAt (Vector3 xyz) {
+        public void LookAt (Vector3 xyz, bool instantly = false) {
             target.x = xyz.x;
             target.y = xyz.y;
+            if (instantly) camera.transform.position = target;
+        }
+
+        public XY worldMousePosition {
+            get {
+                return (Vector2)(camera.ScreenToWorldPoint(Input.mousePosition));
+            }
         }
     }
 }

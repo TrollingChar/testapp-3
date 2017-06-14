@@ -1,9 +1,15 @@
-﻿
+﻿using UnityEngine;
+
 namespace W3 {
     public class CircleCollider : Collider {
         XY offset;
         float radius;
-        public XY center { get { return offset + obj.position; } }
+        public XY center {
+            get {
+                //Debug.Log(obj);
+                return offset + obj.position;
+            }
+        }
 
         public CircleCollider (XY offset, float radius)
             : base() {
@@ -14,10 +20,12 @@ namespace W3 {
         public override AABBF aabb {
             get {
                 XY center = this.center;
-                return new AABBF(center.x - radius,
-                                 center.x + radius,
-                                 center.y - radius,
-                                 center.y + radius);
+                return new AABBF(
+                    center.x - radius,
+                    center.x + radius,
+                    center.y - radius,
+                    center.y + radius
+                );
             }
         }
 

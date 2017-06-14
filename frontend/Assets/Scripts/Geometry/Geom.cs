@@ -36,10 +36,11 @@ namespace W3 {
 
             if(sqrHeight > sqrRadius) return 1;//float.NaN
 
-            return Mathf.Clamp01((
-                Mathf.Sqrt(originToCircle.sqrLength - sqrHeight)
-                - Mathf.Sqrt(sqrRadius - sqrHeight)
-            ) / direction.sqrLength);
+            return Mathf.Clamp01(
+                (
+                    Mathf.Sqrt(originToCircle.sqrLength - sqrHeight) - Mathf.Sqrt(sqrRadius - sqrHeight)
+                ) / direction.length
+            );
         }
     }
 }

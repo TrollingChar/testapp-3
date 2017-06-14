@@ -71,7 +71,7 @@ namespace W3 {
                 
             int w = array.GetLength(0),
                 h = array.GetLength(1);
-
+            
             // луч проходит вправо, пересекая вертикали
             if (beg.x < end.x) {
                 bp = beg + new XY(width, 0);
@@ -164,7 +164,7 @@ namespace W3 {
                     }
                 }
             }
-
+            
             {
                 // и теперь обойти вершины в тайлах.
                 bp = beg;

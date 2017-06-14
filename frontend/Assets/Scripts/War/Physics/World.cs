@@ -44,8 +44,16 @@ namespace W3 {
                 // spawn objects
             }
 
+            if (td != null) {
+                if (td.mb) {
+                    Core.bf.worm.position = td.xy;
+                    Core.bf.worm.velocity = 5 * new XY(RNG.Float() - RNG.Float(), RNG.Float() - RNG.Float());
+                }
+            }
+
             foreach (var o in objects) o.Update();
-            
+
+
             foreach (var o in objects) {
                 o.movement = 1;
                 o.excluded = new HashSet<Object>();

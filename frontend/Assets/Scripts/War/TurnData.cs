@@ -15,6 +15,7 @@ namespace W3 {
             s = Input.GetKey(KeyCode.S);
             d = Input.GetKey(KeyCode.D);
             mb = Input.GetMouseButton(0); // LMB
+            xy = Core.bf.cameraWrapper.worldMousePosition;
         }
 
         public TurnData (byte flags, float x, float y) {
