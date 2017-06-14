@@ -44,7 +44,7 @@ namespace W3 {
 
         void CalculateVertices (Land land) {
             for (int ix = x * size, xx = ix + size; ix <= xx; ix++) {
-                for (int iy = y * size, yy = ix + size; iy <= yy; iy++) {
+                for (int iy = y * size, yy = iy + size; iy <= yy; iy++) {
                     int temp = land[ix - 1, iy]
                              + land[ix - 1, iy - 1]
                              + land[ix, iy - 1]
