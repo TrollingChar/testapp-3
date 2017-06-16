@@ -2,35 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d4dea202-8fa6-4de8-978b-3f9f70311b98" name="Default" comment="disconnecting players no longer stay in hubs">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Images/mctree.ase" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Images/mctree.ase.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/Utils/Geom.cs" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/Utils/Geom.cs.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/ae/ae488d1e018c1624cb447dc15a66824e" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/ae/ae488d1e018c1624cb447dc15a66824e.info" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/Prefabs/Assets.prefab" afterPath="$PROJECT_DIR$/../frontend/Assets/Prefabs/Assets.prefab" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/CurrentLayout.dwlt" afterPath="$PROJECT_DIR$/../frontend/Library/CurrentLayout.dwlt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/ScriptAssemblies/Assembly-CSharp.dll" afterPath="$PROJECT_DIR$/../frontend/Library/ScriptAssemblies/Assembly-CSharp.dll" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/ScriptAssemblies/Assembly-CSharp.dll.mdb" afterPath="$PROJECT_DIR$/../frontend/Library/ScriptAssemblies/Assembly-CSharp.dll.mdb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/assetDatabase3" afterPath="$PROJECT_DIR$/../frontend/Library/assetDatabase3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/expandedItems" afterPath="$PROJECT_DIR$/../frontend/Library/expandedItems" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/16/16634e1852fe3ae47a8716ba1161a9de" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/16/16634e1852fe3ae47a8716ba1161a9de" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/41/412206b825badb640bf990fd3d31f57c" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/41/412206b825badb640bf990fd3d31f57c" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/69/697bf42099a2aac4bb980f59a0893840" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/69/697bf42099a2aac4bb980f59a0893840" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/87/8728f49f86f8a1e4497370b1e7568284" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/87/8728f49f86f8a1e4497370b1e7568284" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/a1/a14f01f19c430964fa61c7605290b207" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/a1/a14f01f19c430964fa61c7605290b207" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/c2/c240217dec13cd54386f2cd20c02f22a" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/c2/c240217dec13cd54386f2cd20c02f22a" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/dc/dcb52a5dd67e9344c95637c99b9c8b57" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/dc/dcb52a5dd67e9344c95637c99b9c8b57" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/fa/fa3dc69fedc40224bbd7679734b1a67f" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/fa/fa3dc69fedc40224bbd7679734b1a67f" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/fa/fa3dc69fedc40224bbd7679734b1a67f.info" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/fa/fa3dc69fedc40224bbd7679734b1a67f.info" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/War/BF.cs" afterPath="$PROJECT_DIR$/../frontend/Assets/Scripts/War/BF.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/War/Camera/CameraWrapper.cs" afterPath="$PROJECT_DIR$/../frontend/Assets/Scripts/War/Camera/CameraWrapper.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/War/Objects/Object.cs" afterPath="$PROJECT_DIR$/../frontend/Assets/Scripts/War/Objects/Object.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/War/Physics/Collisions/CircleCollider.cs" afterPath="$PROJECT_DIR$/../frontend/Assets/Scripts/War/Physics/Collisions/CircleCollider.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/War/Physics/Collisions/Collider.cs" afterPath="$PROJECT_DIR$/../frontend/Assets/Scripts/War/Physics/Collisions/Collider.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/War/Physics/World.cs" afterPath="$PROJECT_DIR$/../frontend/Assets/Scripts/War/Physics/World.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/War/TurnData.cs" afterPath="$PROJECT_DIR$/../frontend/Assets/Scripts/War/TurnData.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/1d/1d56d778d0e47724686a23009d255d5c" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/1d/1d56d778d0e47724686a23009d255d5c" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/War/Physics/Collisions/BoxCollider.cs" afterPath="$PROJECT_DIR$/../frontend/Assets/Scripts/War/Physics/Collisions/BoxCollider.cs" />
     </list>
     <ignored path="backend.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -957,7 +933,7 @@
       <workItem from="1497255609541" duration="1185000" />
       <workItem from="1497347899469" duration="288000" />
       <workItem from="1497453649561" duration="45000" />
-      <workItem from="1497453918308" duration="1007000" />
+      <workItem from="1497453918308" duration="1008000" />
     </task>
     <task id="LOCAL-00001" summary="added exception handlind, connecting/disconnecting players, client prints data in hex">
       <created>1491042278321</created>
@@ -1005,7 +981,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="240254000" />
+    <option name="totallyTimeSpent" value="240255000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="2" width="1600" height="858" extended-state="0" />
@@ -1018,7 +994,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21997301" sideWeight="0.54" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27385893" sideWeight="0.47875" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27385893" sideWeight="0.47875" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17108586" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
