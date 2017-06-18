@@ -51,7 +51,7 @@ namespace W3 {
 
         public abstract Collision CollideWith (Collider c, XY velocity);
         public abstract Collision CollideWithCircle (CircleCollider c, XY velocity);
-        //public abstract Collision CollideWithBox (BoxCollider c, XY velocity);
+        public abstract Collision CollideWithBox (BoxCollider c, XY velocity);
         //public abstract Collision CollideWithPolygon (PolygonCollider c, XY velocity);
         public abstract Collision CollideWithLand (Land land, XY v);
     }

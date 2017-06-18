@@ -64,7 +64,7 @@ namespace W3 {
         //}
 
         public Collision CastRay (XY beg, XY end, float width) {
-            XY bp, ep, offset, normal = XY.zero;
+            XY bp, ep, normal = XY.zero;
             Primitive pr = null;
 
             float dist = 1;
@@ -165,11 +165,12 @@ namespace W3 {
                 }
             }
             
-            {
+            if (width > 0) {
                 // и теперь обойти вершины в тайлах.
                 bp = beg;
                 ep = beg * (1 - dist) + end * dist;
             
+                // TODO: rewrite this using AABB
                 int bCol = Mathf.FloorToInt(Math.Max(0,             Mathf.Min((bp.x - width) / LandTile.size, (ep.x - width) / LandTile.size)));
                 int eCol = Mathf.CeilToInt (Math.Min(widthInTiles,  Mathf.Max((bp.x + width) / LandTile.size, (ep.x + width) / LandTile.size)));
                 int bRow = Mathf.FloorToInt(Math.Max(0,             Mathf.Min((bp.y - width) / LandTile.size, (ep.y - width) / LandTile.size)));
@@ -177,12 +178,12 @@ namespace W3 {
 
                 for (int x = bCol; x < eCol; x++) {
 			        for (int y = bRow; y < eRow; y++) {
-                        foreach (XY v in tiles[x, y].vertices) {
-                            float d = Geom.CastRayToCircle(beg, end - beg, v, width);
+                        foreach (XY pt in tiles[x, y].vertices) {
+                            float d = Geom.CastRayToCircle(beg, end - beg, pt, width);
                             if (d < dist) {
                                 dist = d;
-                                normal = beg*(1-d) + end*d - v;
-                                pr = CirclePrimitive.New(v);
+                                normal = beg*(1-d) + end*d - pt;
+                                pr = CirclePrimitive.New(pt);
                             }
                         }
                     }
@@ -192,6 +193,38 @@ namespace W3 {
             return dist < 1
                 ? new Collision((end-beg)*dist, normal, null, null, CirclePrimitive.New(beg, width), pr)
                 : null;
+        }
+
+        public Collision CastSegRay (XY beg1, XY beg2, XY v) {
+            XY end1 = beg1 + v, end2 = beg2 + v;
+
+            // задача сводится к тому, чтобы:
+            // 1: скастовать вершины к земле как точки
+            // 2: определить принадлежность точек земли параллелограмму
+            
+            // у нас есть параллелограмм beg1-beg2-end2-end1
+            //
+            //    o--->---o
+            //     \       \
+            //      o--->---o
+
+            // считаем AABB для тайлов земли
+            AABB aabb = new AABBF(
+                Mathf.Min(beg1.x, beg2.x) + Mathf.Min(0, v.x),
+                Mathf.Max(beg1.x, beg2.x) + Mathf.Max(0, v.x),
+                Mathf.Min(beg1.y, beg2.y) + Mathf.Min(0, v.y),
+                Mathf.Max(beg1.y, beg2.y) + Mathf.Max(0, v.y)
+            ).ToTiles(LandTile.size);
+
+            for (int x = aabb.left; x < aabb.right; x++) {
+                for (int y = aabb.bottom; y < aabb.top; y++) {
+                    foreach (XY pt in tiles[x, y].vertices) {
+                        
+                    }
+                }
+            }
+
+            return null;
         }
     }
 }

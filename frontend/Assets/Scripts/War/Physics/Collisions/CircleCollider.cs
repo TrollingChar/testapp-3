@@ -30,18 +30,33 @@ namespace W3 {
         }
 
         public override Collision CollideWith (Collider c, XY velocity) {
-            return velocity.x == 0 && velocity.y == 0 ? null :
-                -c.CollideWithCircle(this, -velocity);
+            return velocity == XY.zero ? null : -c.CollideWithCircle(this, -velocity);
         }
 
         public override Collision CollideWithCircle (CircleCollider c, XY velocity) {
             return null;
         }
 
+        public override Collision CollideWithBox (BoxCollider c, XY velocity) {
+            return null;
+        }
+
         public override Collision CollideWithLand (Land land, XY v) {
-            var c = land.CastRay(center, center + v, radius);
-            if(c != null) c.collider1 = this;
-            return c;
+            Collision result = null;
+            if (v.x < 0) {
+                result = land.CastSegRay();
+            } else if (v.x > 0) {
+                result = land.CastSegRay();
+            }
+            if (v.y < 0) {
+                var temp = land.CastSegRay();
+                if(temp < result) result = temp;
+            } else if (v.y > 0) {
+                var temp = land.CastSegRay();
+                if(temp < result) result = temp;
+            }
+            if (result != null) result.collider1 = this;
+            return result;
         }
     }
 }
