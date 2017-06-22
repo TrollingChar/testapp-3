@@ -13,7 +13,7 @@ namespace W3 {
             return tangent * tangentialBounce * convertedVelocity.x - normal * normalBounce * convertedVelocity.y;
         }
 
-        static XY ConvertToBasis (XY v, XY x, XY y) {
+        public static XY ConvertToBasis (XY v, XY x, XY y) {
             // коэффициенты системы уравнений
             float
                 a0 = x.x, b0 = y.x, c0 = v.x,
@@ -21,26 +21,34 @@ namespace W3 {
             // определитель матрицы при решении системы методом Крамера
             float d = a0 * b1 - a1 * b0;
             // null - прямые параллельны или совпадают
-            return d == 0 ? XY.zero : new XY(c0 * b1 - c1 * b0, a0 * c1 - a1 * c0) / d;
+            return d == 0 ? XY.NaN : new XY(c0 * b1 - c1 * b0, a0 * c1 - a1 * c0) / d;
         }
 
-        public static float CastRayToCircle (XY origin, XY direction, XY circleCenter, float circleRadius) {
-            XY originToCircle = circleCenter - origin;
+        public static float CastRayToCircle (XY o, XY dir, XY circleCenter, float r) {
+            XY originToCircle = circleCenter - o;
 
-            if (XY.Dot(direction, originToCircle) <= 0) return 1;//float.NaN;
+            if (XY.Dot(dir, originToCircle) <= 0) return 1;//float.NaN;
 
-            float sqrHeight = XY.Cross(direction, originToCircle);
-            sqrHeight *= sqrHeight / direction.sqrLength;
+            float h2 = XY.Cross(dir, originToCircle);
+            h2 *= h2 / dir.sqrLength;
 
-            float sqrRadius = circleRadius * circleRadius;
+            float r2 = r * r;
 
-            if(sqrHeight > sqrRadius) return 1;//float.NaN
+            if(h2 > r2) return 1;//float.NaN
 
-            return Mathf.Clamp01(
-                (
-                    Mathf.Sqrt(originToCircle.sqrLength - sqrHeight) - Mathf.Sqrt(sqrRadius - sqrHeight)
-                ) / direction.length
-            );
+            return Mathf.Clamp01((Mathf.Sqrt(originToCircle.sqrLength - h2) - Mathf.Sqrt(r2 - h2)) / dir.length);
+        }
+
+        public static float CastRayToVertical (XY o, XY dir, float x) {
+            if (dir.x == 0) return 1;
+            float d = (x - o.x) / dir.x;
+            return d < 0 || d > 1 ? 1 : d;
+        }
+
+        public static float CastRayToHorizontal (XY o, XY dir, float y) {
+            if (dir.y == 0) return 1;
+            float d = (y - o.y) / dir.y;
+            return d < 0 || d > 1 ? 1 : d;
         }
     }
 }

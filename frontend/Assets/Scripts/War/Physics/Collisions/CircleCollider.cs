@@ -42,19 +42,7 @@ namespace W3 {
         }
 
         public override Collision CollideWithLand (Land land, XY v) {
-            Collision result = null;
-            if (v.x < 0) {
-                result = land.CastSegRay();
-            } else if (v.x > 0) {
-                result = land.CastSegRay();
-            }
-            if (v.y < 0) {
-                var temp = land.CastSegRay();
-                if(temp < result) result = temp;
-            } else if (v.y > 0) {
-                var temp = land.CastSegRay();
-                if(temp < result) result = temp;
-            }
+            Collision result = land.CastRay(center, v, radius);
             if (result != null) result.collider1 = this;
             return result;
         }

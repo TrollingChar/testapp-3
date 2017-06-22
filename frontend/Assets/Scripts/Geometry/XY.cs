@@ -50,6 +50,8 @@ namespace W3 {
         public static XY left { get { return new XY(-1f, 0f); } }
         public static XY up { get { return new XY(0f, 1f); } }
         public static XY right { get { return new XY(1f, 0f); } }
+        public static XY NaN { get { return new XY(float.NaN, float.NaN); } }
+        public bool isNaN { get { return float.IsNaN(x); } } // dont check Y
         public float length {
             get { return Mathf.Sqrt(x * x + y * y); }
             set {
@@ -190,5 +192,6 @@ namespace W3 {
         public override int GetHashCode () {
             return x.GetHashCode() ^ y.GetHashCode() << 2;
         }
+
     }
 }

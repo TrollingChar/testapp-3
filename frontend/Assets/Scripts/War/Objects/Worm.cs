@@ -14,6 +14,7 @@ namespace W3 {
         protected override void InitColliders () {
             AddCollider(new CircleCollider(new XY(0, bodyHeight * 0.5f), headRadius));
             AddCollider(new CircleCollider(new XY(0, bodyHeight * -0.5f), headRadius));
+            AddCollider(new BoxCollider(-5, 5, -2.5f, 2.5f));
         }
 
         protected override void InitController () {

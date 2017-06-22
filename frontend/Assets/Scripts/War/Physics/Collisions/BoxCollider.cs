@@ -33,12 +33,17 @@ namespace W3 {
         }
 
         public override Collision CollideWithCircle (CircleCollider c, XY velocity) {
+            return null;
         }
 
         public override Collision CollideWithBox (BoxCollider c, XY velocity) {
+            return null;
         }
 
         public override Collision CollideWithLand (Land land, XY v) {
+            Collision result = land.CastRectRay(left, right, bottom, top, v);
+            if (result != null) result.collider1 = this;
+            return result;
         }
     }
 }

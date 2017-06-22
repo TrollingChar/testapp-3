@@ -47,7 +47,7 @@ namespace W3 {
             if (td != null) {
                 if (td.mb) {
                     Core.bf.worm.position = td.xy;
-                    Core.bf.worm.velocity = 5 * new XY(RNG.Float() - RNG.Float(), RNG.Float() - RNG.Float());
+                    Core.bf.worm.velocity = XY.left;// 5 * new XY(RNG.Float() - RNG.Float(), RNG.Float() - RNG.Float());
                 }
             }
 

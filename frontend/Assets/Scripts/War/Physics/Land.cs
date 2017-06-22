@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System;
+using System.Collections.Generic;
 
 namespace W3 {
     public class Land {
@@ -59,172 +60,227 @@ namespace W3 {
             // set { array[x, y] = value == 0 ? 0 : 1; }
         }
 
-        //public Collision CastRay (XY origin, XY direction) {
-        //    return null;
-        //}
+        public Collision CastRay (XY beg, XY v, float width = 0) {
+            float _; return CastRay(beg, v, out _, width);
+        }
 
-        public Collision CastRay (XY beg, XY end, float width) {
-            XY bp, ep, normal = XY.zero;
+        public Collision CastRay (XY beg, XY v, out float dist, float width = 0) {
+            XY bp, ep, normal = XY.zero, end = beg + v;
             Primitive pr = null;
 
-            float dist = 1;
+            dist = 1;
                 
             int w = array.GetLength(0),
                 h = array.GetLength(1);
             
-            // луч проходит вправо, пересекая вертикали
-            if (beg.x < end.x) {
-                bp = beg + new XY(width, 0);
-                ep = end + new XY(width, 0);
-                //ep = bp * (1 - dist) + (end + new Pt2(width, 0)) * dist;
-                for (
-                    int x = Math.Max(0, Mathf.CeilToInt(bp.x)), eCol = Math.Min(w, Mathf.CeilToInt(ep.x));
-                    x < eCol;
-                    ++x
-                ) {
-                    float d = (x - bp.x) / (ep.x - bp.x);
-                    int y = Mathf.FloorToInt(bp.y * (1 - d) + ep.y * d);
-                    if (this[x, y] != 0) {
-                        if(d < 1) {
-                            dist = d;
+            if (v.x != 0) {
+                bp = beg;
+                ep = bp + v;
+                int startX, endX;
+                if (v.x < 0) {
+                    bp.x -= width;
+                    ep.x -= width;
+                    // todo: clamp between 0 and array bound
+                    startX = Mathf.FloorToInt(bp.x);
+                    endX = Mathf.FloorToInt(ep.x);
+                } else {
+                    bp.x += width;
+                    ep.x += width;
+                    startX = Mathf.CeilToInt(bp.x);
+                    endX = Mathf.CeilToInt(ep.x);
+                }
+                for (int x = startX; x != endX; ) {
+                    float d = Geom.CastRayToVertical(bp, v, x);
+                    int y = Mathf.FloorToInt(bp.y + v.y * d);
+                    if (v.x < 0) --x;
+                    if (d < 1 && this[x, y] != 0) {
+                        dist = d;
+                        v *= d;
+                        if (v.x < 0) {
+                            normal = XY.right;
+                            pr = VerticalEdgePrimitive.Right(++x);
+                        } else {
                             normal = XY.left;
                             pr = VerticalEdgePrimitive.Left(x);
                         }
                         break;
                     }
+                    if (v.x > 0) ++x;
                 }
             }
-
-            // луч проходит влево, пересекая вертикали
-            if (beg.x > end.x) {
-                bp = beg - new XY(width, 0);
-                ep = end - new XY(width, 0);
-                //ep = bp * (1 - dist) + (end - new Pt2(width, 0)) * dist;
-                for (
-                    int x = Math.Min(w, Mathf.FloorToInt(bp.x)), eCol = Math.Max(0, Mathf.FloorToInt(ep.x));
-                    x > eCol;
-                    --x
-                ) {
-                    float d = (x - bp.x) / (ep.x - bp.x);
-                    int y = Mathf.FloorToInt(bp.y * (1 - d) + ep.y * d);
-                    if(this[x-1, y] != 0) {
-                        if (d < 1) {
-                            dist = d;
-                            normal = XY.right;
-                            pr = VerticalEdgePrimitive.Right(x);
-                        }
-                    }
+            if (v.y != 0) {
+                bp = beg;
+                ep = bp + v;
+                int startY, endY;
+                if (v.y < 0) {
+                    bp.y -= width;
+                    ep.y -= width;
+                    // todo: clamp between 0 and array bound
+                    startY = Mathf.FloorToInt(bp.y);
+                    endY = Mathf.FloorToInt(ep.y);
+                } else {
+                    bp.y += width;
+                    ep.y += width;
+                    startY = Mathf.CeilToInt(bp.y);
+                    endY = Mathf.CeilToInt(ep.y);
                 }
-            }
-
-            // луч падает вниз, пересекая горизонтали
-            // на самом деле вверх - это же юнити
-            if (beg.y < end.y) {
-                bp = beg + new XY(0, width);
-                ep = bp * (1 - dist) + (end + new XY(0, width)) * dist;
-                //ep = bp * (1 - dist) + (end + new Pt2(0, width)) * dist;
-
-                for (
-                    int y = Math.Max(0, Mathf.CeilToInt(bp.y)), eRow = Math.Min(h, Mathf.CeilToInt(ep.y));
-                    y < eRow;
-                    ++y
-                ) {
-                    float d = (y - bp.y) / (ep.y - bp.y);
-                    int x = Mathf.FloorToInt(bp.x * (1 - d) + ep.x * d);
-                    if(this[x, y] != 0) {
-                        if(d < 1) {
-                            dist *= d;
+                for (int y = startY; y != endY; ) {
+                    float d = Geom.CastRayToHorizontal(bp, v, y);
+                    int x = Mathf.FloorToInt(bp.x + v.x * d);
+                    if (v.y < 0) --y;
+                    if (d < 1 && this[x, y] != 0) {
+                        dist *= d;
+                        v *= d;
+                        if (v.y < 0) {
+                            normal = XY.up;
+                            pr = HorizontalEdgePrimitive.Up(++y);
+                        } else {
                             normal = XY.down;
                             pr = HorizontalEdgePrimitive.Down(y);
                         }
+                        break;
                     }
+                    if (v.y > 0) ++y;
                 }
             }
-
-            // луч проходит вверх, пересекая горизонтали
-            // (вниз)
-            if (beg.y > end.y) {
-                bp = beg - new XY(0, width);
-                ep = bp * (1 - dist) + (end - new XY(0, width)) * dist;
-                //ep = bp * (1 - dist) + (end - new Pt2(0, width)) * dist;
-
-                for (
-                    int y = Math.Min(h, Mathf.FloorToInt(bp.y)), eRow = Math.Max(0, Mathf.FloorToInt(ep.y));
-                    y > eRow;
-                    --y
-                ) {
-                    float d = (y - bp.y) / (ep.y - bp.y);
-                    int x = Mathf.FloorToInt(bp.x * (1 - d) + ep.x * d);
-                    if (this[x, y-1] != 0) {
-                        if (d < 1) {
-                            dist *= d;
-                            normal = XY.up;
-                            pr = HorizontalEdgePrimitive.Up(y);
-                        }
-                    }
-                }
-            }
-            
             if (width > 0) {
                 // и теперь обойти вершины в тайлах.
-                bp = beg;
-                ep = beg * (1 - dist) + end * dist;
-            
-                // TODO: rewrite this using AABB
-                int bCol = Mathf.FloorToInt(Math.Max(0,             Mathf.Min((bp.x - width) / LandTile.size, (ep.x - width) / LandTile.size)));
-                int eCol = Mathf.CeilToInt (Math.Min(widthInTiles,  Mathf.Max((bp.x + width) / LandTile.size, (ep.x + width) / LandTile.size)));
-                int bRow = Mathf.FloorToInt(Math.Max(0,             Mathf.Min((bp.y - width) / LandTile.size, (ep.y - width) / LandTile.size)));
-                int eRow = Mathf.CeilToInt (Math.Min(heightInTiles, Mathf.Max((bp.y + width) / LandTile.size, (ep.y + width) / LandTile.size)));
+                float d = 1;
 
-                for (int x = bCol; x < eCol; x++) {
-			        for (int y = bRow; y < eRow; y++) {
+                bp = beg;
+                ep = bp + v;
+
+                AABB aabb = new AABBF(
+                    Mathf.Min(bp.x, ep.x) - width,
+                    Mathf.Max(bp.x, ep.x) + width,
+                    Mathf.Min(bp.y, ep.y) - width,
+                    Mathf.Max(bp.y, ep.y) + width
+                ).ToTiles(LandTile.size);
+
+                for (int x = aabb.left; x < aabb.right; x++) {
+                    for (int y = aabb.bottom; y < aabb.top; y++) {
                         foreach (XY pt in tiles[x, y].vertices) {
-                            float d = Geom.CastRayToCircle(beg, end - beg, pt, width);
-                            if (d < dist) {
-                                dist = d;
-                                normal = beg*(1-d) + end*d - pt;
+                            float dd = Geom.CastRayToCircle(bp, v, pt, width);
+                            if (dd < d) {
+                                d = dd;
+                                normal = bp + v * d - pt;
                                 pr = CirclePrimitive.New(pt);
                             }
                         }
                     }
-			    }
+                }
+                v *= d;
+                dist *= d;
             }
 
             return dist < 1
-                ? new Collision((end-beg)*dist, normal, null, null, CirclePrimitive.New(beg, width), pr)
+                ? new Collision(v, normal, null, null, CirclePrimitive.New(beg, width), pr)
                 : null;
         }
 
-        public Collision CastSegRay (XY beg1, XY beg2, XY v) {
-            XY end1 = beg1 + v, end2 = beg2 + v;
-
-            // задача сводится к тому, чтобы:
-            // 1: скастовать вершины к земле как точки
-            // 2: определить принадлежность точек земли параллелограмму
+        public Collision CastRectRay (float left, float right, float bottom, float top, XY v) {
+            List<XY> points;
+            float dist = 1;
+            Collision min = null;
             
-            // у нас есть параллелограмм beg1-beg2-end2-end1
-            //
-            //    o--->---o
-            //     \       \
-            //      o--->---o
+            if (v.x < 0) {
+                points = new List<XY> { new XY(left, top), new XY(left, bottom) };
+                if (v.y < 0) points.Add(new XY(right, bottom));
+                else if (v.y > 0) points.Add(new XY(right, top));
+            } else if (v.x > 0) {
+                points = new List<XY> { new XY(right, top), new XY(right, bottom) };
+                if (v.y < 0) points.Add(new XY(left, bottom));
+                else if (v.y > 0) points.Add(new XY(left, top));
+            } else {
+                if (v.y < 0) points = new List<XY> { new XY(left, bottom), new XY(right, bottom) };
+                else if (v.y > 0) points = new List<XY> { new XY(left, top), new XY(right, top) };
+                else return null;
+            }
 
-            // считаем AABB для тайлов земли
-            AABB aabb = new AABBF(
-                Mathf.Min(beg1.x, beg2.x) + Mathf.Min(0, v.x),
-                Mathf.Max(beg1.x, beg2.x) + Mathf.Max(0, v.x),
-                Mathf.Min(beg1.y, beg2.y) + Mathf.Min(0, v.y),
-                Mathf.Max(beg1.y, beg2.y) + Mathf.Max(0, v.y)
-            ).ToTiles(LandTile.size);
+            foreach (XY pt in points) {
+                float d;
+                var temp = CastRay(pt, v * dist, out d);
+                if (d < 1) {
+                    dist *= d;
+                    v *= d;
+                    min = temp;
+                }
+            }
 
-            for (int x = aabb.left; x < aabb.right; x++) {
-                for (int y = aabb.bottom; y < aabb.top; y++) {
-                    foreach (XY pt in tiles[x, y].vertices) {
-                        
+            // проверили вершины прямоугольника, теперь осталось проверить стороны
+            float dd = 1;
+            XY normal = XY.zero;
+            Primitive pr1 = null, pr2 = null;
+
+            if (v.x != 0) {
+                float xx = v.x < 0 ? left : right;
+                XY a = new XY(xx, bottom);
+                XY b = new XY(xx, top);
+                XY n = v.x < 0 ? XY.right : XY.left;
+                Primitive current = v.x < 0
+                    ? VerticalEdgePrimitive.Left(xx)
+                    : VerticalEdgePrimitive.Right(xx);
+
+                AABB aabb = new AABBF(
+                    xx + Mathf.Min(0, v.x),
+                    xx + Mathf.Max(0, v.x),
+                    Mathf.Min(a.y, b.y) + Mathf.Min(0, v.y),
+                    Mathf.Max(a.y, b.y) + Mathf.Max(0, v.y)
+                ).ToTiles(LandTile.size);
+
+                for (int x = aabb.left; x < aabb.right; x++) {
+                    for (int y = aabb.bottom; y < aabb.top; y++) {
+                        foreach (XY pt in tiles[x, y].vertices) {
+
+                            float d = Geom.CastRayToVertical(pt, -v, xx);
+                            float yy = pt.y - v.y * d;
+                            if (yy > bottom && yy < top && d < dd) {
+                                dd = d;
+                                normal = n;
+                                pr1 = current;
+                                pr2 = CirclePrimitive.New(pt);
+                            }
+                        }
                     }
                 }
             }
 
-            return null;
+            if (v.y != 0) {
+                float yy = v.y < 0 ? bottom : top;
+                XY a = new XY(left, yy);
+                XY b = new XY(right, yy);
+                XY n = v.y < 0 ? XY.up : XY.down;
+                Primitive current = v.y < 0
+                    ? HorizontalEdgePrimitive.Down(yy)
+                    : HorizontalEdgePrimitive.Up(yy);
+
+                AABB aabb = new AABBF(
+                    Mathf.Min(a.x, b.x) + Mathf.Min(0, v.x),
+                    Mathf.Max(a.x, b.x) + Mathf.Max(0, v.x),
+                    yy + Mathf.Min(0, v.y),
+                    yy + Mathf.Max(0, v.y)
+                ).ToTiles(LandTile.size);
+
+                for (int x = aabb.left; x < aabb.right; x++) {
+                    for (int y = aabb.bottom; y < aabb.top; y++) {
+                        foreach (XY pt in tiles[x, y].vertices) {
+
+                            float d = Geom.CastRayToHorizontal(pt, -v, yy);
+                            float xx = pt.x - v.x * d;
+                            if (xx > left && xx < right && d < dd) {
+                                dd = d;
+                                normal = n;
+                                pr1 = current;
+                                pr2 = CirclePrimitive.New(pt);
+                            }
+                        }
+                    }
+                }
+            }
+            dist *= dd;
+            v *= dd;
+
+            return dd < 1 ? new Collision(v, normal, null, null, pr1, pr2) : min;
         }
     }
 }
