@@ -11,12 +11,14 @@ public class WSConnection : MonoBehaviour {
     WebSocket socket;
     ByteBuffer bb = new ByteBuffer();
 
-    public UnityEvent onAccountData;
+    public UnityEvent_int onAccountData;
     public UnityEvent_int_int onChangeHub;
-    public UnityEvent_int onStartGame;
+    public UnityEvent_GameData onStartGame;
     public UnityEvent_int onPlayerQuit;
-    public UnityEvent onEndGame;
+    public UnityEvent_int onPlayerWin;
     public UnityEvent_TurnData onTurnData;
+    public UnityEvent onNoWinner;
+    public UnityEvent_int onNewTurn;
 
     int turnDataRead;
 
@@ -45,25 +47,33 @@ public class WSConnection : MonoBehaviour {
         var reader = new EndianBinaryReader(EndianBitConverter.Big, stream);
         switch (reader.ReadByte()) {
             case ServerAPI.AccountData:
-                onAccountData.Invoke();
+                onAccountData.Invoke(reader.ReadInt32());
                 break;
             case ServerAPI.HubChanged:
                 onChangeHub.Invoke(reader.ReadByte(), reader.ReadByte());
                 break;
             case ServerAPI.StartGame:
-                onStartGame.Invoke(reader.ReadInt32());
-                for (byte i = 0, end = reader.ReadByte(); i < end; ++i) reader.ReadInt32();
+                int seed = reader.ReadInt32();
+                List<int> players = new List<int>();
+                for (byte i = 0, end = reader.ReadByte(); i < end; ++i) players.Add(reader.ReadInt32());
+                onStartGame.Invoke(new W3.GameData(seed, players));
                 break;
             case ServerAPI.LeftGame:
                 onPlayerQuit.Invoke(reader.ReadInt32());
                 break;
-            case ServerAPI.EndGame:
-                onEndGame.Invoke();
+            case ServerAPI.ShowWinner:
+                onPlayerWin.Invoke(reader.ReadInt32());
                 break;
             case ServerAPI.TurnData:
                 ++turnDataRead;
                 W3.TurnData td = new W3.TurnData(reader.ReadByte(), reader.ReadSingle(), reader.ReadSingle());
                 onTurnData.Invoke(td);
+                break;
+            case ServerAPI.NoWinner:
+                onNoWinner.Invoke();
+                break;
+            case ServerAPI.NewTurn:
+                onNewTurn.Invoke(reader.ReadInt32());
                 break;
             default:
                 break;
@@ -113,7 +123,7 @@ public class WSConnection : MonoBehaviour {
     public void SendEndTurn (bool alive) {
         bb.Clear();
         bb.WriteByte(ClientAPI.EndTurn);
-        bb.WriteByte((byte)(alive ? 0 : 1));
+        bb.WriteByte((byte)(alive ? 1 : 0));
         socket.Send(bb);
     }
 }

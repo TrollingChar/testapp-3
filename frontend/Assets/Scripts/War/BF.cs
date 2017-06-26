@@ -16,9 +16,6 @@ namespace W3 {
         // all turn-based logic:
         public GameStateController state;
         bool paused;
-        bool myTurn = false;
-
-        public Worm worm;
 
         void Awake () {
             world = new World(Assets.motherboard, renderer);
@@ -27,7 +24,7 @@ namespace W3 {
         }
 
         public void Work () { // refresh graphics and do logic if my turn
-            if (true || myTurn && state.currentState == GameState.Turn) {
+            if (state.activePlayer == Core.id && state.currentState == GameState.Turn) {
                 // gather input and update world
                 var td = new TurnData();
                 Core.connection.SendTurnData(td);
@@ -37,8 +34,8 @@ namespace W3 {
             }
         }
 
-        public void StartGame () {
-            world.AddObject(worm = new Worm(), new XY(1000, 1100));
+        public void StartGame (List<int> players) {
+            //world.AddObject(worm = new Worm(), new XY(1000, 1100));
             cameraWrapper.LookAt(new Vector2(1000, 1000), true);
         }
 
@@ -48,11 +45,7 @@ namespace W3 {
         }
 
         public Worm NextWorm () {
-            throw new NotImplementedException();
-        }
-
-        public void ResetActivePlayer () {
-            throw new NotImplementedException();
+            return null;
         }
     }
 }

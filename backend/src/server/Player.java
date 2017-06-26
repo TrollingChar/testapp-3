@@ -28,8 +28,9 @@ public class Player {
 
     public void sendAccountData() throws IOException {
         System.out.println("Player.sendAccountData");
-        send(ByteBuffer.allocate(1)
-        .put(ServerAPI.ACCOUNT_DATA));
+        send(ByteBuffer.allocate(5)
+        .put(ServerAPI.ACCOUNT_DATA)
+        .putInt(id));
     }
 
     public void switchHub(byte hubId) throws IOException {

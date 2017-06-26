@@ -35,6 +35,7 @@ public class ServerSocket extends WebSocketAdapter {
             Players.get(getSession()).disconnect();
         } catch (Throwable e) {
             System.err.println(e.getMessage());
+            e.printStackTrace();
         }
         super.onWebSocketClose(statusCode, reason);
         System.out.println("connection closed");
@@ -67,18 +68,21 @@ public class ServerSocket extends WebSocketAdapter {
                 case ClientAPI.TO_HUB:
                     player.switchHub(bb.get());
                     break;
-                case ClientAPI.END_TURN:
-                    player.room.onSync(player, new SyncData(bb.get()));
+                case ClientAPI.QUIT:
+                    // remove player from room
                     break;
                 case ClientAPI.TURN_DATA:
                     player.room.onData(player, new TurnData(bb.get(), bb.getFloat(), bb.getFloat()));
+                    break;
+                case ClientAPI.END_TURN:
+                    player.room.onSync(player, new SyncData(bb.get()));
                     break;
                 default:
                     throw new Exception("invalid data received");
             }
         } catch (Throwable e) {
             System.err.println(e.getMessage());
-            //e.printStackTrace();
+            e.printStackTrace();
             if (player != null) player.disconnect();
             else session.close();
         }

@@ -5,10 +5,13 @@ using Unity;
 using UnityEngine.UI;
 
 public class ConnectionMenu : MonoBehaviour {
-    public UnityEvent_string_int onSend;
-    public InputField ip, id;
+    [SerializeField]
+    UnityEvent_string_int onSend;
+
+    [SerializeField]
+    InputField ipText, idText;
 
     public void Send () {
-        onSend.Invoke(ip.text, int.Parse(id.text));
+        onSend.Invoke(ipText.text, int.Parse(idText.text));
     }
 }

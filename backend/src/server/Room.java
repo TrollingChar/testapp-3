@@ -30,6 +30,7 @@ public class Room {
 
     public Room(Set<Player> players) {
         System.out.println("Room.Room");
+        for(Player player : players) player.room = this;
         observers = new HashSet<>(players);
         this.players = new LinkedList<>(players);
         replay = new Replay();
@@ -41,7 +42,7 @@ public class Room {
         Collections.shuffle((List<?>) players);
         Collection<Player> discon = sendStartGame();
         while (discon.size() > 0) discon = sendQuitGame(discon);
-        newTurn();
+        //newTurn();
     }
 
     private Collection<Player> sendToAll(ByteBuffer bb, Player player) {
