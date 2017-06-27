@@ -4,6 +4,7 @@ namespace W3 {
     public class Worm : Object {
         public const float headRadius = 5;
         public const float bodyHeight = 5;
+        public WormGO spriteExtension;
 
         public Worm () { }
 
@@ -23,6 +24,8 @@ namespace W3 {
 
         protected override void InitSprite () {
             sprite = GameObject.Instantiate(Assets.worm);
+            spriteExtension = sprite.GetComponent<WormGO>();
+            spriteExtension.text = RNG.Bool() ? "Трарт" : "Ллалл";
         }
 
         protected override bool PassableFor (Object o) {

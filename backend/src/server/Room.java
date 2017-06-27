@@ -28,8 +28,12 @@ public class Room {
     Map<Player, SyncData> syncData; // данные синхронизации игры
     Player activePlayer;
 
+    // когда всего 1 игрок
+    boolean noWinFlag;
+
     public Room(Set<Player> players) {
         System.out.println("Room.Room");
+        noWinFlag = players.size() == 1;
         for(Player player : players) player.room = this;
         observers = new HashSet<>(players);
         this.players = new LinkedList<>(players);
@@ -142,10 +146,17 @@ public class Room {
         do {
             // is there a winner?
             if (players.size() < 2) {
-                if (players.size() == 1) sendWin(players.remove());
-                else sendDraw();
-                endGame();
-                return;
+                if (players.size() == 1) {
+                    if(!noWinFlag) {
+                        sendWin(players.remove());
+                        endGame();
+                        return;
+                    }
+                } else {
+                    sendDraw();
+                    endGame();
+                    return;
+                }
             }
             players.add(activePlayer = players.remove());
             Collection<Player> discon = sendNewTurn();
