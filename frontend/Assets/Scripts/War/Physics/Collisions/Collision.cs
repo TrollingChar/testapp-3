@@ -27,13 +27,14 @@ namespace W3 {
         }
 
         static public Collision operator - (Collision c) {
-            return new Collision(
+            return c == null ? null : new Collision(
                 -c.offset,
                 -c.normal,
                 c.collider2,
                 c.collider1,
                 c.primitive2,
-                c.primitive1);
+                c.primitive1
+            );
         }
 
         public bool Equals (Collision other) {

@@ -43,6 +43,7 @@ namespace W3 {
         public Object (float mass = 60) {
             this.mass = mass;
             colliders = new List<Collider>();
+            excluded = new HashSet<Object>();
         }
 
         public void Update () {
@@ -50,9 +51,9 @@ namespace W3 {
         }
 
         virtual public void OnAdd () {
+            InitSprite();
             InitColliders();
             InitController();
-            InitSprite();
         }
 
         public void Remove () {
@@ -66,11 +67,11 @@ namespace W3 {
 
         public Collision NextCollision () {
             XY v = velocity * movement;
-            //var cObj = CollideWithObjects(v);
-            //if (cObj != null) v = cObj.offset;
+            var cObj = CollideWithObjects(v);
+            if (cObj != null) v = cObj.offset;
             var cLand = CollideWithLand(v);
             //if (cLand != null) Debug.Log("hit!");
-            return cLand;// ?? cObj;
+            return cLand ?? cObj;
         }
 
         Collision CollideWithObjects (XY v) {
@@ -103,6 +104,13 @@ namespace W3 {
         }
 
         public void ExcludeObjects () {
+            foreach (var collider in colliders) {
+                foreach (var obstacle in collider.FindOverlapping(Core.bf.world)) {
+                    if (excluded.Contains(obstacle.obj)) continue;
+                    excluded.Add(obstacle.obj);
+                    //obstacle.object.excluded.set(this, this);
+                }
+            }
         }
 
         public void UpdateSpritePosition () {
@@ -135,10 +143,15 @@ namespace W3 {
         }
 
         virtual protected void InitSprite () {
+            // sprite = GameObject.Instantiate(...);
         }
 
         void RemoveSprite () {
             if (sprite != null) GameObject.Destroy(sprite);
+        }
+
+        public virtual void OnCollision (Collision c) {
+            // empty by default
         }
     }
 }

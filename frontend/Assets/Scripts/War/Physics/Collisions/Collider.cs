@@ -40,13 +40,30 @@ namespace W3 {
         public HashSet<Collider> FindObstacles (World world, XY v) {
             var box = aabb.Expanded(v).ToTiles(Tile.size);
             var result = new HashSet<Collider>();
+
+            for (int x = box.left; x < box.right; x++) {
+                for (int y = box.bottom; y < box.top; y++) {
+                    foreach (var c in Core.bf.world.tiles[x, y].colliders) {
+                        result.Add(c);
+                    }
+                }
+            }
+
             return result;
         }
 
-        public HashSet<Collider> FindObstacles (World world) {
+        public HashSet<Collider> FindOverlapping (World world) {
             var box = aabb.ToTiles(Tile.size);
             var result = new HashSet<Collider>();
             return result;
+
+            for (int x = box.left; x < box.right; x++) {
+                for (int y = box.bottom; y < box.top; y++) {
+                    foreach (var c in Core.bf.world.tiles[x, y].colliders) {
+                        if (OverlapsWith(c)) result.Add(c);
+                    }
+                }
+            }
         }
 
         public abstract Collision CollideWith (Collider c, XY velocity);
@@ -54,5 +71,10 @@ namespace W3 {
         public abstract Collision CollideWithBox (BoxCollider c, XY velocity);
         //public abstract Collision CollideWithPolygon (PolygonCollider c, XY velocity);
         public abstract Collision CollideWithLand (Land land, XY v);
+
+        public abstract bool OverlapsWith (Collider c);
+        public abstract bool OverlapsWithCircle (CircleCollider c);
+        public abstract bool OverlapsWithBox (BoxCollider c);
+        public abstract bool OverlapsWithLand (Land land);
     }
 }

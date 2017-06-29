@@ -5,8 +5,12 @@ namespace W3 {
         public Object obj;
         public virtual void Update () { }
 
-        public void OnRemove () { }
+        public virtual void OnRemove () { }
 
-        public void OnAdd () { }
+        public virtual void OnAdd () { }
+
+        protected void Wait (int milliseconds = 500) {
+            Core.bf.state.Wait(milliseconds);
+        }
     }
 }

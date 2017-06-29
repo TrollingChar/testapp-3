@@ -6,20 +6,22 @@ namespace W3 {
         public const float bodyHeight = 5;
         public WormGO spriteExtension;
 
-        public Worm () { }
+        Collider head, tail;
+
+        public Worm () : base() { }
 
         public override void Detonate () {
             base.Detonate();
         }
 
         protected override void InitColliders () {
-            AddCollider(new CircleCollider(new XY(0, bodyHeight * 0.5f), headRadius));
-            AddCollider(new CircleCollider(new XY(0, bodyHeight * -0.5f), headRadius));
-            AddCollider(new BoxCollider(-5, 5, -2.5f, 2.5f));
+            AddCollider(head = new CircleCollider(new XY(0, bodyHeight * 0.5f), headRadius));
+            AddCollider(tail = new CircleCollider(new XY(0, bodyHeight * -0.5f), headRadius));
+            //AddCollider(new BoxCollider(-5, 5, -2.5f, 2.5f));
         }
 
         protected override void InitController () {
-            controller = new StandardController();
+            controller = new WormControllerJump();
         }
 
         protected override void InitSprite () {
@@ -30,6 +32,18 @@ namespace W3 {
 
         protected override bool PassableFor (Object o) {
             return this == o;
+        }
+
+        public override void OnCollision (Collision c) {
+            /*if (velocity.sqrLength > 100) {
+                // fall damage
+                controller = new WormControllerFall();
+                spriteExtension.text = "Falling";
+            } else */
+            return;
+            if (controller is WormControllerJump && c.collider1 == tail) {
+                controller = new WormControllerWalk();
+            }
         }
     }
 }

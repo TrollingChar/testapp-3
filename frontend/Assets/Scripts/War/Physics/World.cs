@@ -10,6 +10,8 @@ namespace W3 {
         public Tiles tiles;
         LinkedList<Object> objects;
 
+        const float precision = 0.0001f;
+
         public World (Texture2D tex, SpriteRenderer renderer) {
             gravity = -0.5f;
             waterLevel = 0;
@@ -40,7 +42,7 @@ namespace W3 {
         public void Update (TurnData td) {
             //Debug.Log(objects.Count);
 
-            if (Core.bf.state.timer % 100 == 0 && td != null && td.mb) {
+            if (Core.bf.state.timer % 1000 == 0 && td != null && td.mb) {
                 // spawn objects
             }
 
@@ -53,45 +55,56 @@ namespace W3 {
 
             foreach (var o in objects) o.Update();
 
-
             foreach (var o in objects) {
                 o.movement = 1;
-                o.excluded = new HashSet<Object>();
+                o.excluded.Clear();
                 o.ExcludeObjects();
             }
             
             for (int i = 0, iter = 5; i < iter; i++) {
                 foreach (var o in objects) {
-                    if (o.velocity.length * o.movement <= 0.01f) continue;
+                    if (o.velocity.length * o.movement <= precision) continue;
 
                     Collision c = o.NextCollision();
                     if (c == null) {
-                        o.position += o.movement * 0.99f * o.velocity;
+                        // no collision
+                        o.position += o.movement * (1 - precision) * o.velocity;
                         o.movement = 0;
+
                     } else if (c.collider2 == null) {
-                        o.position += c.offset.WithLengthReduced(0.01f);
+                        // collided with land
+                        o.position += c.offset.WithLengthReduced(precision);
                         o.movement -= Mathf.Sqrt(c.offset.sqrLength / o.velocity.sqrLength);
-                        o.velocity = Geom.Bounce(o.velocity,
-                                                 c.normal,
-                                                 Mathf.Sqrt(c.collider1.tangentialBounce * land.tangentialBounce),
-                                                 Mathf.Sqrt(c.collider1.normalBounce * land.normalBounce));
+                        o.velocity = Geom.Bounce(
+                            o.velocity,
+                            c.normal,
+                            Mathf.Sqrt(c.collider1.tangentialBounce * land.tangentialBounce),
+                            Mathf.Sqrt(c.collider1.normalBounce * land.normalBounce)
+                        );
+                        o.OnCollision(c);
+
                     } else if (i > iter - 3) {
+                        // force hard collision as if second object was land
                         // as long as magic number equals to 3, the eternal balance in the world will remain
-                        o.position += c.offset.WithLengthReduced(0.01f);
+                        o.position += c.offset.WithLengthReduced(precision);
+                        c.collider2.obj.OnCollision(-c);
                         o.movement -= Mathf.Sqrt(c.offset.sqrLength / o.velocity.sqrLength);
-                        o.velocity = Geom.Bounce(o.velocity,
-                                                 c.normal,
-                                                 Mathf.Sqrt(c.collider1.tangentialBounce * c.collider2.tangentialBounce),
-                                                 Mathf.Sqrt(c.collider1.normalBounce * c.collider2.normalBounce));
+                        o.velocity = Geom.Bounce(
+                            o.velocity,
+                            c.normal,
+                            Mathf.Sqrt(c.collider1.tangentialBounce * c.collider2.tangentialBounce),
+                            Mathf.Sqrt(c.collider1.normalBounce * c.collider2.normalBounce)
+                        );
+
                     } else {
-                        o.position += c.offset.WithLengthReduced(0.01f);
+                        o.position += c.offset.WithLengthReduced(precision);
                         o.movement -= Mathf.Sqrt(c.offset.sqrLength / o.velocity.sqrLength);
 
                         // найти скалярное произведение нормали столкновения и скорости второго объекта
                         // так мы узнаем мешает ли он движению первого
                         float temp = XY.Dot(c.normal, c.collider2.obj.velocity);
-                        if (temp >= 0 || c.collider2.obj.movement * c.collider2.obj.velocity.length <= 0.01) {
-
+                        if (temp >= 0 || c.collider2.obj.movement * c.collider2.obj.velocity.length <= precision) {
+                            // collision
                             XY velocity = (c.collider1.obj.mass * c.collider1.obj.velocity +
                                            c.collider2.obj.mass * c.collider2.obj.velocity) /
                                           (c.collider1.obj.mass + c.collider2.obj.mass);

@@ -26,7 +26,7 @@ namespace W3 {
         public int activePlayer;
 
         bool wormFrozen;
-        Worm worm;
+        public Worm worm;
 
         int time;
         public int timer {

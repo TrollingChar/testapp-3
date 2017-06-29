@@ -45,5 +45,21 @@ namespace W3 {
             if (result != null) result.collider1 = this;
             return result;
         }
+
+        public override bool OverlapsWith (Collider c) {
+            throw new System.NotImplementedException();
+        }
+
+        public override bool OverlapsWithCircle (CircleCollider c) {
+            throw new System.NotImplementedException();
+        }
+
+        public override bool OverlapsWithBox (BoxCollider c) {
+            throw new System.NotImplementedException();
+        }
+
+        public override bool OverlapsWithLand (Land land) {
+            throw new System.NotImplementedException();
+        }
     }
 }

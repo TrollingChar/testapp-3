@@ -41,6 +41,21 @@ namespace W3 {
                 world.AddObject(new Worm(), new XY(RNG.Int(500, 1500), 1000));
                 world.AddObject(new Worm(), new XY(RNG.Int(500, 1500), 1000));
                 world.AddObject(new Worm(), new XY(RNG.Int(500, 1500), 1000));
+                world.AddObject(new Worm(), new XY(RNG.Int(500, 1500), 1000));
+                world.AddObject(new Worm(), new XY(RNG.Int(500, 1500), 1000));
+                world.AddObject(new Worm(), new XY(RNG.Int(500, 1500), 1000));
+                world.AddObject(new Worm(), new XY(RNG.Int(500, 1500), 1000));
+                world.AddObject(new Worm(), new XY(RNG.Int(500, 1500), 1000));
+                world.AddObject(new Worm(), new XY(RNG.Int(500, 1500), 1000));
+                world.AddObject(new Worm(), new XY(RNG.Int(500, 1500), 1000));
+                world.AddObject(new Worm(), new XY(RNG.Int(500, 1500), 1000));
+                world.AddObject(new Worm(), new XY(RNG.Int(500, 1500), 1000));
+                world.AddObject(new Worm(), new XY(RNG.Int(500, 1500), 1000));
+                world.AddObject(new Worm(), new XY(RNG.Int(500, 1500), 1000));
+                world.AddObject(new Worm(), new XY(RNG.Int(500, 1500), 1000));
+                world.AddObject(new Worm(), new XY(RNG.Int(500, 1500), 1000));
+                world.AddObject(new Worm(), new XY(RNG.Int(500, 1500), 1000));
+                world.AddObject(new Worm(), new XY(RNG.Int(500, 1500), 1000));
             }
         }
 
