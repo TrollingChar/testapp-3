@@ -10,7 +10,7 @@ namespace W3 {
         public Tiles tiles;
         LinkedList<Object> objects;
 
-        const float precision = 0.0001f;
+        const float precision = 0.1f;
 
         public World (Texture2D tex, SpriteRenderer renderer) {
             gravity = -0.5f;
@@ -42,8 +42,8 @@ namespace W3 {
         public void Update (TurnData td) {
             //Debug.Log(objects.Count);
 
-            if (Core.bf.state.timer % 1000 == 0 && td != null && td.mb) {
-                // spawn objects
+            if (Core.bf.state.timer % 500 == 0 && td != null && td.mb) {
+                AddObject(new Worm(), td.xy);
             }
 
             /*if (td != null) {
@@ -66,6 +66,8 @@ namespace W3 {
                     if (o.velocity.length * o.movement <= precision) continue;
 
                     Collision c = o.NextCollision();
+                    Object o2 = c == null || c.collider2 == null ? null : c.collider2.obj;
+
                     if (c == null) {
                         // no collision
                         o.position += o.movement * (1 - precision) * o.velocity;
@@ -83,11 +85,10 @@ namespace W3 {
                         );
                         o.OnCollision(c);
 
-                    } else if (i > iter - 3) {
+                    } else if (i > iter - 3 || o.superMass < o2.superMass) {
                         // force hard collision as if second object was land
                         // as long as magic number equals to 3, the eternal balance in the world will remain
                         o.position += c.offset.WithLengthReduced(precision);
-                        c.collider2.obj.OnCollision(-c);
                         o.movement -= Mathf.Sqrt(c.offset.sqrLength / o.velocity.sqrLength);
                         o.velocity = Geom.Bounce(
                             o.velocity,
@@ -95,6 +96,21 @@ namespace W3 {
                             Mathf.Sqrt(c.collider1.tangentialBounce * c.collider2.tangentialBounce),
                             Mathf.Sqrt(c.collider1.normalBounce * c.collider2.normalBounce)
                         );
+                        o.OnCollision(c);
+                        o2.OnCollision(-c);
+
+                    } else if (o2.superMass < o.superMass) {
+                        // treat first object as it has infinite mass
+                        o.position += c.offset.WithLengthReduced(precision);
+                        o.movement -= Mathf.Sqrt(c.offset.sqrLength / o.velocity.sqrLength);
+                        o.velocity = Geom.Bounce(
+                            o.velocity,
+                            c.normal,
+                            Mathf.Sqrt(c.collider1.tangentialBounce * c.collider2.tangentialBounce),
+                            Mathf.Sqrt(c.collider1.normalBounce * c.collider2.normalBounce)
+                        );
+                        o.OnCollision(c);
+                        o2.OnCollision(-c);
 
                     } else {
                         o.position += c.offset.WithLengthReduced(precision);
@@ -105,16 +121,17 @@ namespace W3 {
                         float temp = XY.Dot(c.normal, c.collider2.obj.velocity);
                         if (temp >= 0 || c.collider2.obj.movement * c.collider2.obj.velocity.length <= precision) {
                             // collision
-                            XY velocity = (c.collider1.obj.mass * c.collider1.obj.velocity +
-                                           c.collider2.obj.mass * c.collider2.obj.velocity) /
-                                          (c.collider1.obj.mass + c.collider2.obj.mass);
+                            XY velocity = (o.mass * o.velocity + o2.mass * o2.velocity) / (o.mass + o2.mass);
                             XY v1 = o.velocity - velocity;
-                            XY v2 = c.collider2.obj.velocity - velocity;
+                            XY v2 = o2.velocity - velocity;
                             float tangBounce = Mathf.Sqrt(c.collider1.tangentialBounce * c.collider2.tangentialBounce);
                             float normBounce = Mathf.Sqrt(c.collider1.normalBounce * c.collider2.normalBounce);
                             o.velocity = velocity + Geom.Bounce(v1, c.normal, tangBounce, normBounce);
-                            c.collider2.obj.velocity = velocity + Geom.Bounce(v2, c.normal, tangBounce, normBounce);
+                            o2.velocity = velocity + Geom.Bounce(v2, c.normal, tangBounce, normBounce);
                         }
+
+                        o.OnCollision(c);
+                        o2.OnCollision(-c);
                     }
                     if (o.position.y < waterLevel) o.Remove();
                 }
@@ -140,9 +157,10 @@ namespace W3 {
             //objects = list;
         }
 
-        public void AddObject (Object o, XY position) {
+        public void AddObject (Object o, XY position, XY velocity = default(XY)) {
             o.node = objects.AddLast(o);
             o.position = position;
+            o.velocity = velocity;
             o.OnAdd();
             o.UpdateSpritePosition();
         }

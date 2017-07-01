@@ -15,7 +15,7 @@ namespace W3 {
     }
 
     public class GameStateController {
-        const int turnTime = 30000;
+        const int turnTime = 999000;
         const int retreatTime = 3000;
 
         public bool synchronized;

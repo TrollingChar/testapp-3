@@ -6,17 +6,16 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/ScriptAssemblies/Assembly-CSharp.dll" afterPath="$PROJECT_DIR$/../frontend/Library/ScriptAssemblies/Assembly-CSharp.dll" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/ScriptAssemblies/Assembly-CSharp.dll.mdb" afterPath="$PROJECT_DIR$/../frontend/Library/ScriptAssemblies/Assembly-CSharp.dll.mdb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/assetDatabase3" afterPath="$PROJECT_DIR$/../frontend/Library/assetDatabase3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/00/00000000000000007000000000000000" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/00/00000000000000007000000000000000" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/expandedItems" afterPath="$PROJECT_DIR$/../frontend/Library/expandedItems" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/41/412206b825badb640bf990fd3d31f57c" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/41/412206b825badb640bf990fd3d31f57c" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/74/744d43e99f6442e4db48fc6f4bc8af9a" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/74/744d43e99f6442e4db48fc6f4bc8af9a" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/87/8728f49f86f8a1e4497370b1e7568284" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/87/8728f49f86f8a1e4497370b1e7568284" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/96/96257a5709616c4489d4077f6874e564" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/96/96257a5709616c4489d4077f6874e564" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Library/metadata/dc/dcb52a5dd67e9344c95637c99b9c8b57" afterPath="$PROJECT_DIR$/../frontend/Library/metadata/dc/dcb52a5dd67e9344c95637c99b9c8b57" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/obj/Debug/Assembly-CSharp-firstpass.dll" afterPath="$PROJECT_DIR$/../frontend/obj/Debug/Assembly-CSharp-firstpass.dll" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/obj/Debug/Assembly-CSharp.csprojResolveAssemblyReference.cache" afterPath="$PROJECT_DIR$/../frontend/obj/Debug/Assembly-CSharp.csprojResolveAssemblyReference.cache" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/obj/Debug/Assembly-CSharp.dll" afterPath="$PROJECT_DIR$/../frontend/obj/Debug/Assembly-CSharp.dll" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/War/BF.cs" afterPath="$PROJECT_DIR$/../frontend/Assets/Scripts/War/BF.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/War/Controllers/Controller.cs" afterPath="$PROJECT_DIR$/../frontend/Assets/Scripts/War/Controllers/Controller.cs" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/War/Objects/Object.cs" afterPath="$PROJECT_DIR$/../frontend/Assets/Scripts/War/Objects/Object.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/War/Objects/Worm.cs" afterPath="$PROJECT_DIR$/../frontend/Assets/Scripts/War/Objects/Worm.cs" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/War/Physics/World.cs" afterPath="$PROJECT_DIR$/../frontend/Assets/Scripts/War/Physics/World.cs" />
     </list>
     <ignored path="backend.iws" />
@@ -56,8 +55,8 @@
       <file leaf-file-name="Room.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/server/Room.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.3299799">
-              <caret line="157" column="27" selection-start-line="157" selection-start-column="27" selection-end-line="157" selection-end-column="27" />
+            <state vertical-scroll-proportion="0.6458753">
+              <caret line="137" column="31" selection-start-line="137" selection-start-column="31" selection-end-line="137" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -70,10 +69,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="9" column="21" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
-              <folding>
-                <element signature="e#142#143#0" expanded="true" />
-                <element signature="e#181#182#0" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -280,7 +276,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -373,8 +368,9 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -966,6 +962,8 @@
       <workItem from="1498577632995" duration="2360000" />
       <workItem from="1498668212472" duration="1267000" />
       <workItem from="1498750500476" duration="1308000" />
+      <workItem from="1498837468702" duration="2101000" />
+      <workItem from="1498896366337" duration="1170000" />
     </task>
     <task id="LOCAL-00001" summary="added exception handlind, connecting/disconnecting players, client prints data in hex">
       <created>1491042278321</created>
@@ -1013,11 +1011,11 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="259646000" />
+    <option name="totallyTimeSpent" value="262917000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="2" width="1600" height="858" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1387,7 +1385,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="22" column="17" selection-start-line="22" selection-start-column="17" selection-end-line="22" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1460,10 +1457,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="9" column="21" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
-          <folding>
-            <element signature="e#142#143#0" expanded="true" />
-            <element signature="e#181#182#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1479,8 +1473,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/server/Room.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.3299799">
-          <caret line="157" column="27" selection-start-line="157" selection-start-column="27" selection-end-line="157" selection-end-column="27" />
+        <state vertical-scroll-proportion="0.6458753">
+          <caret line="137" column="31" selection-start-line="137" selection-start-column="31" selection-end-line="137" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

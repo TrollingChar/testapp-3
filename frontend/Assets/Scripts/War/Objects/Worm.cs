@@ -8,7 +8,7 @@ namespace W3 {
 
         Collider head, tail;
 
-        public Worm () : base() { }
+        public Worm () : base(60, 1) { }
 
         public override void Detonate () {
             base.Detonate();
@@ -35,15 +35,11 @@ namespace W3 {
         }
 
         public override void OnCollision (Collision c) {
-            /*if (velocity.sqrLength > 100) {
-                // fall damage
-                controller = new WormControllerFall();
-                spriteExtension.text = "Falling";
-            } else */
-            return;
+            /*
             if (controller is WormControllerJump && c.collider1 == tail) {
                 controller = new WormControllerWalk();
             }
+             * */
         }
     }
 }

@@ -11,6 +11,7 @@ namespace W3 {
         public float movement;
         public HashSet<Object> excluded;
         public List<Collider> colliders;
+        public int superMass;
         public float mass;
 
         public XY _position, velocity;
@@ -40,8 +41,10 @@ namespace W3 {
 
         protected GameObject sprite;
 
-        public Object (float mass = 60) {
+        public Object (float mass = 60f, int superMass = 0) {
             this.mass = mass;
+            this.superMass = superMass;
+
             colliders = new List<Collider>();
             excluded = new HashSet<Object>();
         }
@@ -106,9 +109,7 @@ namespace W3 {
         public void ExcludeObjects () {
             foreach (var collider in colliders) {
                 foreach (var obstacle in collider.FindOverlapping(Core.bf.world)) {
-                    if (excluded.Contains(obstacle.obj)) continue;
                     excluded.Add(obstacle.obj);
-                    //obstacle.object.excluded.set(this, this);
                 }
             }
         }

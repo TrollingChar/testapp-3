@@ -55,7 +55,6 @@ namespace W3 {
         public HashSet<Collider> FindOverlapping (World world) {
             var box = aabb.ToTiles(Tile.size);
             var result = new HashSet<Collider>();
-            return result;
 
             for (int x = box.left; x < box.right; x++) {
                 for (int y = box.bottom; y < box.top; y++) {
@@ -64,6 +63,7 @@ namespace W3 {
                     }
                 }
             }
+            return result;
         }
 
         public abstract Collision CollideWith (Collider c, XY velocity);
