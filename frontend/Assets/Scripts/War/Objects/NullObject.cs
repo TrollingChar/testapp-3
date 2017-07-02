@@ -1,5 +1,5 @@
-﻿
-namespace W3 {
-    class NullObject : Object {
-    }
+﻿namespace W3 {
+
+    internal class NullObject : Object {}
+
 }

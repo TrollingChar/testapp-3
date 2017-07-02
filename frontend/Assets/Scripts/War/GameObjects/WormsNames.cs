@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿namespace W3 {
 
-namespace W3 {
-    class WormsNames {
-        static string[] names = new string[] {
+    internal class WormsNames {
+
+        private static string[] names = {
             "Тарг",
             "Имба",
             "Айс",
@@ -40,7 +37,13 @@ namespace W3 {
             "Вупсень",
             "Царь Носок",
             "Юриваныч",
-            "Единая Россия",
+            "Единая Россия"
         };
+
+
+        public static string random () {
+            return names[RNG.Int(names.Length)];
+        }
     }
+
 }

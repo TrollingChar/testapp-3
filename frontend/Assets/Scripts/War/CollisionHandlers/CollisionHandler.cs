@@ -1,18 +1,17 @@
-﻿
-namespace W3 {
-    class CollisionHandler {
-        Object obj;
+﻿namespace W3 {
 
-        public void OnAdd () {
-        }
+    internal class CollisionHandler {
 
-        public void OnRemove () {
-        }
+        private Object obj;
 
-        public virtual void PreCollision () {
-        }
+        public void OnAdd () {}
 
-        public virtual void PostCollision () {
-        }
+        public void OnRemove () {}
+
+        public virtual void PreCollision () {}
+
+        public virtual void PostCollision () {}
+
     }
+
 }

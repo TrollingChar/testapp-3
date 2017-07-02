@@ -1,18 +1,23 @@
-﻿
-using UnityEngine;
+﻿using UnityEngine;
+
+
 namespace W3 {
+
     public class Worm : Object {
+
         public const float headRadius = 5;
         public const float bodyHeight = 5;
         public WormGO spriteExtension;
 
-        Collider head, tail;
+        private Collider head, tail;
 
-        public Worm () : base(60, 1) { }
+        public Worm () : base(60, 1) {}
+
 
         public override void Detonate () {
             base.Detonate();
         }
+
 
         protected override void InitColliders () {
             AddCollider(head = new CircleCollider(new XY(0, bodyHeight * 0.5f), headRadius));
@@ -20,19 +25,23 @@ namespace W3 {
             //AddCollider(new BoxCollider(-5, 5, -2.5f, 2.5f));
         }
 
+
         protected override void InitController () {
             controller = new WormControllerJump();
         }
 
+
         protected override void InitSprite () {
             sprite = GameObject.Instantiate(Assets.worm);
             spriteExtension = sprite.GetComponent<WormGO>();
-            spriteExtension.text = RNG.Bool() ? "Трарт" : "Ллалл";
+            spriteExtension.text = WormsNames.random();
         }
+
 
         protected override bool PassableFor (Object o) {
             return this == o;
         }
+
 
         public override void OnCollision (Collision c) {
             /*
@@ -41,5 +50,7 @@ namespace W3 {
             }
              * */
         }
+
     }
+
 }

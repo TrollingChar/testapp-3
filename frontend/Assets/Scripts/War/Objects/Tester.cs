@@ -1,5 +1,5 @@
-﻿
-namespace W3 {
-    class Tester : Object {
-    }
+﻿namespace W3 {
+
+    internal class Tester : Object {}
+
 }

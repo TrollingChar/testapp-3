@@ -15,7 +15,7 @@ namespace MiscUtil.IO
 		/// <summary>
 		/// The encoding to return in the Encoding property.
 		/// </summary>
-		readonly Encoding encoding;
+		private readonly Encoding encoding;
 
 		/// <summary>
 		/// Initializes pos0 new instance of the StringWriterWithEncoding class

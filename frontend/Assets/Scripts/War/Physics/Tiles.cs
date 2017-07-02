@@ -4,7 +4,8 @@ using UnityEngine;
 
 namespace W3 {
     public class Tiles {
-        Dictionary<TileXY, Tile> tiles;
+
+        private Dictionary<TileXY, Tile> tiles;
 
         public Tiles () {
             tiles = new Dictionary<TileXY, Tile>();

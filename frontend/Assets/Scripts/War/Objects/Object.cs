@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+
 namespace W3 {
+
     public abstract class Object {
-        static NullObject empty = new NullObject();
+
+        private static NullObject empty = new NullObject();
         public LinkedListNode<Object> node;
 
         public float movement;
@@ -15,6 +18,7 @@ namespace W3 {
         public float mass;
 
         public XY _position, velocity;
+
         public XY position {
             get { return _position; }
             set {
@@ -24,6 +28,7 @@ namespace W3 {
         }
 
         public Controller _controller;
+
         public Controller controller {
             get { return _controller; }
             set {
@@ -41,7 +46,8 @@ namespace W3 {
 
         protected GameObject sprite;
 
-        public Object (float mass = 60f, int superMass = 0) {
+
+        protected Object (float mass = 60f, int superMass = 0) {
             this.mass = mass;
             this.superMass = superMass;
 
@@ -49,15 +55,18 @@ namespace W3 {
             excluded = new HashSet<Object>();
         }
 
+
         public void Update () {
-            if(controller != null) controller.Update();
+            if (controller != null) controller.Update();
         }
 
-        virtual public void OnAdd () {
+
+        public virtual void OnAdd () {
             InitSprite();
             InitColliders();
             InitController();
         }
+
 
         public void Remove () {
             node.Value = empty;
@@ -68,6 +77,7 @@ namespace W3 {
             RemoveSprite();
         }
 
+
         public Collision NextCollision () {
             XY v = velocity * movement;
             var cObj = CollideWithObjects(v);
@@ -77,13 +87,15 @@ namespace W3 {
             return cLand ?? cObj;
         }
 
-        Collision CollideWithObjects (XY v) {
+
+        private Collision CollideWithObjects (XY v) {
             Collision min = null;
             foreach (var c in colliders) {
-                HashSet<Collider> obstacles = new HashSet<Collider>(
+                var obstacles = new HashSet<Collider>(
                     c.FindObstacles(Core.bf.world, v)
-                    .Where(o => !o.obj.PassableFor(this))
-                    .Where(o => !excluded.Contains(o.obj)));
+                        .Where(o => !o.obj.PassableFor(this))
+                        .Where(o => !excluded.Contains(o.obj))
+                );
                 foreach (var o in obstacles) {
                     var temp = c.CollideWith(o, v);
                     if (temp < min) min = temp;
@@ -93,11 +105,13 @@ namespace W3 {
             return min;
         }
 
-        virtual protected bool PassableFor (Object o) {
+
+        protected virtual bool PassableFor (Object o) {
             return true;
         }
 
-        Collision CollideWithLand (XY v) {
+
+        private Collision CollideWithLand (XY v) {
             Collision min = null;
             foreach (var c in colliders) {
                 var temp = c.CollideWithLand(Core.bf.world.land, v);
@@ -106,27 +120,31 @@ namespace W3 {
             return min;
         }
 
+
         public void ExcludeObjects () {
-            foreach (var collider in colliders) {
-                foreach (var obstacle in collider.FindOverlapping(Core.bf.world)) {
-                    excluded.Add(obstacle.obj);
-                }
+            foreach (var collider in colliders)
+            foreach (var obstacle in collider.FindOverlapping(Core.bf.world)) {
+                excluded.Add(obstacle.obj);
             }
         }
+
 
         public void UpdateSpritePosition () {
             if (sprite == null) return;
             sprite.transform.position = new Vector3(position.x, position.y, sprite.transform.position.z);
         }
 
-        virtual public void Detonate () {
+
+        public virtual void Detonate () {
             Remove();
         }
 
-        virtual protected void InitColliders () {
+
+        protected virtual void InitColliders () {
             // AddCollider(...);
             // AddCollider(...);
         }
+
 
         protected void AddCollider (Collider c) {
             c.obj = this;
@@ -134,25 +152,32 @@ namespace W3 {
             c.UpdatePosition();
         }
 
+
         protected void RemoveCollider (Collider c) {
             c.FreeTiles();
             colliders.Remove(c);
         }
 
-        virtual protected void InitController () {
+
+        protected virtual void InitController () {
             // controller = ...
         }
 
-        virtual protected void InitSprite () {
+
+        protected virtual void InitSprite () {
             // sprite = GameObject.Instantiate(...);
         }
 
-        void RemoveSprite () {
+
+        private void RemoveSprite () {
             if (sprite != null) GameObject.Destroy(sprite);
         }
+
 
         public virtual void OnCollision (Collision c) {
             // empty by default
         }
+
     }
+
 }

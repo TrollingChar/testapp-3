@@ -1,46 +1,55 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using W3;
+
 
 public class Core : MonoBehaviour {
+
     public AssetsLoader assets;
     public GameObject bfPrefab;
 
     public static WSConnection connection;
-    public static W3.BF bf;
+    public static BF bf;
     public static CoreEvents coreEvents;
     public static int id;
 
-    void Start () {
+
+    private void Start () {
         Instantiate(assets);
         connection = gameObject.GetComponent<WSConnection>();
         coreEvents = gameObject.GetComponent<CoreEvents>();
     }
 
+
     public void AuthAccepted (int id) {
         Core.id = id;
     }
 
-    public void GenerateWorld (W3.GameData data) {
+
+    public void GenerateWorld (GameData data) {
         RNG.Init(data.seed);
-        bf = Instantiate(bfPrefab).GetComponent<W3.BF>();
+        bf = Instantiate(bfPrefab).GetComponent<BF>();
         bf.StartGame(data.players);
     }
-	
-	void FixedUpdate () {
+
+
+    private void FixedUpdate () {
         connection.Work(); // receive data from server and update world
         if (bf != null) bf.Work(); // update world independently
-	}
+    }
 
-    public void UpdateWorld (W3.TurnData td) {
+
+    public void UpdateWorld (TurnData td) {
         bf.Work(td);
     }
+
 
     public void NewTurn (int player) {
         bf.state.StartTurn(player);
     }
 
+
     public static void Synchronize () {
         connection.SendEndTurn(true);
     }
+
 }

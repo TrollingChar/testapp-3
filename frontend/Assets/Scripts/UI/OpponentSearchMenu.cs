@@ -1,18 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
-class OpponentSearchMenu : MonoBehaviour {
-    [SerializeField] Text text;
-    [SerializeField] UnityEvent onCancel;
+
+internal class OpponentSearchMenu : MonoBehaviour {
+
+    [SerializeField]
+    private Text text;
+
+    [SerializeField]
+    private UnityEvent onCancel;
+
 
     public void JoinHub (int hub) {
         text.text = "Отправка запроса в комнату " + hub;
     }
+
 
     public void UpdateHubStatus (int hub, int players) {
         if (hub == 0) {
@@ -22,4 +25,5 @@ class OpponentSearchMenu : MonoBehaviour {
         }
         text.text = "Игроков в комнате\n" + players + " / " + hub;
     }
+
 }

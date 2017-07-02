@@ -2,8 +2,9 @@
 
 namespace W3 {
     public static class Pool<T> where T : new() {
-        static List<T> list = new List<T>();
-        static int size = 0;
+
+        private static List<T> list = new List<T>();
+        private static int size = 0;
 
         public static T GetObject () {
             if (size >= list.Count) list.Add(new T());

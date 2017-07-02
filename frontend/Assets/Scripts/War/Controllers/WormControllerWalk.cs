@@ -1,10 +1,11 @@
-﻿using UnityEngine;
+﻿namespace W3 {
 
-namespace W3 {
-    class WormControllerWalk : Controller {
+    internal class WormControllerWalk : Controller {
+
         public override void OnAdd () {
             obj.velocity = XY.zero;
         }
+
 
         public override void Update () {
             /*
@@ -17,5 +18,7 @@ namespace W3 {
 
             // move*/
         }
+
     }
+
 }

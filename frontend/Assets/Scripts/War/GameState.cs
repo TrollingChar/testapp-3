@@ -1,34 +1,37 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using UnityEngine;
+﻿namespace W3 {
 
-namespace W3 {
     public enum GameState {
+
         BeforeTurn,
         Synchronizing,
         Turn,
         EndingTurn,
         AfterTurn,
         Remove0hp
+
     }
 
+
     public class GameStateController {
-        const int turnTime = 999000;
-        const int retreatTime = 3000;
+
+        private const int turnTime = 999000;
+        private const int retreatTime = 3000;
 
         public bool synchronized;
 
-        GameState current, next;
-        public GameState currentState { get { return current; } }
+        private GameState current, next;
+
+        public GameState currentState {
+            get { return current; }
+        }
 
         public int activePlayer;
 
-        bool wormFrozen;
+        private bool wormFrozen;
         public Worm worm;
 
-        int time;
+        private int time;
+
         public int timer {
             get { return time; }
             set {
@@ -36,7 +39,11 @@ namespace W3 {
                 Core.coreEvents.SetTurnTime.Invoke(timerString);
             }
         }
-        public string timerString { get { return ((time + 999) / 1000).ToString(); } }
+
+        public string timerString {
+            get { return ((time + 999) / 1000).ToString(); }
+        }
+
 
         public GameStateController () {
             current = GameState.AfterTurn;
@@ -47,25 +54,30 @@ namespace W3 {
             worm = null;
         }
 
+
         public void Update () {
             if ((timer -= 20) <= 0) ChangeState();
         }
+
 
         public void Wait (int milliseconds) {
             if (current == GameState.Turn) return;
             if (timer < milliseconds) timer = milliseconds;
         }
 
+
         public void StartTurn (int id) {
             activePlayer = id;
             ChangeState();
         }
 
-        void Hint (string text) {
+
+        private void Hint (string text) {
             Core.coreEvents.SetGameTime.Invoke(text);
         }
 
-        void ChangeState () {
+
+        private void ChangeState () {
             switch (current = next++) {
                 case GameState.BeforeTurn:
                     Hint("BEF");
@@ -113,12 +125,15 @@ namespace W3 {
                         // blow them up
                         next = GameState.Remove0hp;
                         timer = 500;
-                    } ChangeState();
+                    }
+                    ChangeState();
                     break;
                 default:
                     Hint("ERR");
                     break;
             }
         }
+
     }
+
 }

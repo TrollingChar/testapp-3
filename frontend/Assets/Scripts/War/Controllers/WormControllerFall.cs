@@ -1,11 +1,11 @@
-﻿
-namespace W3 {
-    class WormControllerFall : StandardController {
+﻿namespace W3 {
 
-        int stillTime = 0;
+    internal class WormControllerFall : StandardController {
 
-        public override void Update () {
+        private int stillTime = 0;
 
-        }
+        public override void Update () {}
+
     }
+
 }

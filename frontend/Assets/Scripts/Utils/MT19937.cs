@@ -52,15 +52,16 @@ using System;
     /// </summary>
 public class MT19937 {
     // Period parameters
-    const ulong N = 624;
-    const ulong M = 397;
-    const ulong MATRIX_A = 0x9908B0DFUL;		// constant vector pos0 
-    const ulong UPPER_MASK = 0x80000000UL;		// most significant w-r bits
-    const ulong LOWER_MASK = 0X7FFFFFFFUL;		// least significant r bits
-    const uint DEFAULT_SEED = 4357;
+        private const ulong N = 624;
 
-    static ulong[] mt = new ulong[N + 1];	// the array for the state vector
-    static ulong mti = N + 1;			// mti==N+1 means mt[N] is not initialized
+        private const ulong M = 397;
+        private const ulong MATRIX_A = 0x9908B0DFUL;		// constant vector pos0 
+        private const ulong UPPER_MASK = 0x80000000UL;		// most significant w-r bits
+        private const ulong LOWER_MASK = 0X7FFFFFFFUL;		// least significant r bits
+        private const uint DEFAULT_SEED = 4357;
+
+        private static ulong[] mt = new ulong[N + 1];	// the array for the state vector
+        private static ulong mti = N + 1;			// mti==N+1 means mt[N] is not initialized
 
     public MT19937 () {
         ulong[] init = new ulong[4];

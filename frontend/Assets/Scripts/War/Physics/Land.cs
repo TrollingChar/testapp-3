@@ -1,17 +1,20 @@
-﻿using UnityEngine;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
+
 
 namespace W3 {
-    public class Land {
-        int progress, fullProgress;
 
-        byte[,] array;
-        LandTiles tiles;
-        int width, height; // do not make them odd
-        int widthInTiles, heightInTiles;
+    public class Land {
+
+        private int progress, fullProgress;
+
+        private byte[,] array;
+        private LandTiles tiles;
+        private int width, height; // do not make them odd
+        private int widthInTiles, heightInTiles;
 
         public float tangentialBounce, normalBounce;
+
 
         public Land (LandGen gen, Texture2D landTexture, SpriteRenderer renderer) {
             InitArray(gen);
@@ -21,58 +24,67 @@ namespace W3 {
             normalBounce = 0.5f;
         }
 
-        void InitArray(LandGen gen) {
+
+        private void InitArray (LandGen gen) {
             array = gen.array;
 
             width = array.GetLength(0);
             height = array.GetLength(1);
         }
 
-        void InitTexture(Texture2D landTexture, SpriteRenderer renderer) {
-            Texture2D tex = new Texture2D(width, height);
-            for (int x = 0; x < width; ++x) {
-                for (int y = 0; y < height; ++y) {
-                    tex.SetPixel(x, y, array[x, y] == 0 ? Color.clear : landTexture.GetPixel(x & 0xff, y & 0xff));
-                }
+
+        private void InitTexture (Texture2D landTexture, SpriteRenderer renderer) {
+            var tex = new Texture2D(width, height);
+            for (int x = 0; x < width; ++x)
+            for (int y = 0; y < height; ++y) {
+                tex.SetPixel(x, y, array[x, y] == 0 ? Color.clear : landTexture.GetPixel(x & 0xff, y & 0xff));
             }
             tex.Apply();
             renderer.sprite = Sprite.Create(tex, new Rect(0, 0, width, height), new Vector2(0, 0), 1f);
         }
 
-        void InitTiles() {
+
+        private void InitTiles () {
             widthInTiles = width / LandTile.size;
             if (width % LandTile.size != 0) ++widthInTiles;
             heightInTiles = height / LandTile.size;
             if (height % LandTile.size != 0) ++heightInTiles;
 
             tiles = new LandTiles();
-            for (int x = 0; x < widthInTiles; x++) {
-                for (int y = 0; y < heightInTiles; y++) {
-                    var tile = new LandTile(x, y);
-                    tile.Recalculate(this);
-                    tiles[x, y] = tile;
-                }
+            for (int x = 0; x < widthInTiles; x++)
+            for (int y = 0; y < heightInTiles; y++) {
+                var tile = new LandTile(x, y);
+                tile.Recalculate(this);
+                tiles[x, y] = tile;
             }
         }
 
-        public byte this[int x, int y] {
-            get { return (x < 0 || y < 0 || x >= width || y >= height) ? (byte)0 : array[x, y]; }
+
+        public byte this [int x, int y] {
+            get {
+                return x < 0 || y < 0 || x >= width || y >= height
+                    ? (byte) 0
+                    : array[x, y];
+            }
             // set { array[x, y] = value == 0 ? 0 : 1; }
         }
 
+
         public Collision CastRay (XY beg, XY v, float width = 0) {
-            float _; return CastRay(beg, v, out _, width);
+            float _;
+            return CastRay(beg, v, out _, width);
         }
+
 
         public Collision CastRay (XY beg, XY v, out float dist, float width = 0) {
             XY bp, ep, normal = XY.zero, end = beg + v;
             Primitive pr = null;
 
             dist = 1;
-                
-            int w = array.GetLength(0),
-                h = array.GetLength(1);
-            
+
+            int w = array.GetLength(0);
+            int h = array.GetLength(1);
+
             if (v.x != 0) {
                 bp = beg;
                 ep = bp + v;
@@ -89,7 +101,7 @@ namespace W3 {
                     startX = Mathf.CeilToInt(bp.x);
                     endX = Mathf.CeilToInt(ep.x);
                 }
-                for (int x = startX; x != endX; ) {
+                for (int x = startX; x != endX;) {
                     float d = Geom.CastRayToVertical(bp, v, x);
                     int y = Mathf.FloorToInt(bp.y + v.y * d);
                     if (v.x < 0) --x;
@@ -124,7 +136,7 @@ namespace W3 {
                     startY = Mathf.CeilToInt(bp.y);
                     endY = Mathf.CeilToInt(ep.y);
                 }
-                for (int y = startY; y != endY; ) {
+                for (int y = startY; y != endY;) {
                     float d = Geom.CastRayToHorizontal(bp, v, y);
                     int x = Mathf.FloorToInt(bp.x + v.x * d);
                     if (v.y < 0) --y;
@@ -157,16 +169,14 @@ namespace W3 {
                     Mathf.Max(bp.y, ep.y) + width
                 ).ToTiles(LandTile.size);
 
-                for (int x = aabb.left; x < aabb.right; x++) {
-                    for (int y = aabb.bottom; y < aabb.top; y++) {
-                        foreach (XY pt in tiles[x, y].vertices) {
-                            float dd = Geom.CastRayToCircle(bp, v, pt, width);
-                            if (dd < d) {
-                                d = dd;
-                                normal = bp + v * d - pt;
-                                pr = CirclePrimitive.New(pt);
-                            }
-                        }
+                for (int x = aabb.left; x < aabb.right; x++)
+                for (int y = aabb.bottom; y < aabb.top; y++) {
+                    foreach (XY pt in tiles[x, y].vertices) {
+                        float dd = Geom.CastRayToCircle(bp, v, pt, width);
+                        if (dd >= d) continue;
+                        d = dd;
+                        normal = bp + v * d - pt;
+                        pr = CirclePrimitive.New(pt);
                     }
                 }
                 v *= d;
@@ -178,33 +188,33 @@ namespace W3 {
                 : null;
         }
 
+
         public Collision CastRectRay (float left, float right, float bottom, float top, XY v) {
             List<XY> points;
             float dist = 1;
             Collision min = null;
-            
+
             if (v.x < 0) {
-                points = new List<XY> { new XY(left, top), new XY(left, bottom) };
+                points = new List<XY> {new XY(left, top), new XY(left, bottom)};
                 if (v.y < 0) points.Add(new XY(right, bottom));
                 else if (v.y > 0) points.Add(new XY(right, top));
             } else if (v.x > 0) {
-                points = new List<XY> { new XY(right, top), new XY(right, bottom) };
+                points = new List<XY> {new XY(right, top), new XY(right, bottom)};
                 if (v.y < 0) points.Add(new XY(left, bottom));
                 else if (v.y > 0) points.Add(new XY(left, top));
             } else {
-                if (v.y < 0) points = new List<XY> { new XY(left, bottom), new XY(right, bottom) };
-                else if (v.y > 0) points = new List<XY> { new XY(left, top), new XY(right, top) };
+                if (v.y < 0) points = new List<XY> {new XY(left, bottom), new XY(right, bottom)};
+                else if (v.y > 0) points = new List<XY> {new XY(left, top), new XY(right, top)};
                 else return null;
             }
 
             foreach (XY pt in points) {
                 float d;
                 var temp = CastRay(pt, v * dist, out d);
-                if (d < 1) {
-                    dist *= d;
-                    v *= d;
-                    min = temp;
-                }
+                if (d >= 1f) continue;
+                dist *= d;
+                v *= d;
+                min = temp;
             }
 
             // проверили вершины прямоугольника, теперь осталось проверить стороны
@@ -228,19 +238,16 @@ namespace W3 {
                     Mathf.Max(a.y, b.y) + Mathf.Max(0, v.y)
                 ).ToTiles(LandTile.size);
 
-                for (int x = aabb.left; x < aabb.right; x++) {
-                    for (int y = aabb.bottom; y < aabb.top; y++) {
-                        foreach (XY pt in tiles[x, y].vertices) {
-
-                            float d = Geom.CastRayToVertical(pt, -v, xx);
-                            float yy = pt.y - v.y * d;
-                            if (yy > bottom && yy < top && d < dd) {
-                                dd = d;
-                                normal = n;
-                                pr1 = current;
-                                pr2 = CirclePrimitive.New(pt);
-                            }
-                        }
+                for (int x = aabb.left; x < aabb.right; x++)
+                for (int y = aabb.bottom; y < aabb.top; y++) {
+                    foreach (XY pt in tiles[x, y].vertices) {
+                        float d = Geom.CastRayToVertical(pt, -v, xx);
+                        float yy = pt.y - v.y * d;
+                        if (yy <= bottom || yy >= top || d >= dd) continue;
+                        dd = d;
+                        normal = n;
+                        pr1 = current;
+                        pr2 = CirclePrimitive.New(pt);
                     }
                 }
             }
@@ -261,19 +268,16 @@ namespace W3 {
                     yy + Mathf.Max(0, v.y)
                 ).ToTiles(LandTile.size);
 
-                for (int x = aabb.left; x < aabb.right; x++) {
-                    for (int y = aabb.bottom; y < aabb.top; y++) {
-                        foreach (XY pt in tiles[x, y].vertices) {
-
-                            float d = Geom.CastRayToHorizontal(pt, -v, yy);
-                            float xx = pt.x - v.x * d;
-                            if (xx > left && xx < right && d < dd) {
-                                dd = d;
-                                normal = n;
-                                pr1 = current;
-                                pr2 = CirclePrimitive.New(pt);
-                            }
-                        }
+                for (int x = aabb.left; x < aabb.right; x++)
+                for (int y = aabb.bottom; y < aabb.top; y++) {
+                    foreach (XY pt in tiles[x, y].vertices) {
+                        float d = Geom.CastRayToHorizontal(pt, -v, yy);
+                        float xx = pt.x - v.x * d;
+                        if (xx <= left || xx >= right || d >= dd) continue;
+                        dd = d;
+                        normal = n;
+                        pr1 = current;
+                        pr2 = CirclePrimitive.New(pt);
                     }
                 }
             }
@@ -282,5 +286,7 @@ namespace W3 {
 
             return dd < 1 ? new Collision(v, normal, null, null, pr1, pr2) : min;
         }
+
     }
+
 }

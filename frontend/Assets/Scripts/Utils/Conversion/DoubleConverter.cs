@@ -90,14 +90,14 @@ namespace MiscUtil.Conversion
 		/// <summary>
 		/// Private class used for manipulating sequences of decimal digits.
 		/// </summary>
-		class ArbitraryDecimal
+		private class ArbitraryDecimal
 		{
 			/// <summary>Digits in the decimal expansion, one byte per digit</summary>
-			byte[] digits;
+			private byte[] digits;
 			/// <summary> 
 			/// How many digits are *after* the decimal point
 			/// </summary>
-			int decimalPoint=0;
+			private int decimalPoint=0;
 
 			/// <summary> 
 			/// Constructs an arbitrary decimal expansion from the given long.

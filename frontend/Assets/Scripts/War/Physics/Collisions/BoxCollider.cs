@@ -1,7 +1,8 @@
 ﻿
 namespace W3 {
     public class BoxCollider : Collider {
-        float
+
+        private float
             leftOffset,
             rightOffset,
             bottomOffset,

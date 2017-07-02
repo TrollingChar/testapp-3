@@ -15,15 +15,15 @@ namespace MiscUtil.IO
 		/// <summary>
 		/// Whether or not this writer has been disposed yet.
 		/// </summary>
-		bool disposed=false;
+		private bool disposed=false;
 		/// <summary>
 		/// Buffer used for temporary storage during conversion from primitives
 		/// </summary>
-		byte[] buffer = new byte[16];
+		private byte[] buffer = new byte[16];
 		/// <summary>
 		/// Buffer used for Write(char)
 		/// </summary>
-		char[] charBuffer = new char[1];
+		private char[] charBuffer = new char[1];
 		#endregion
 
 		#region Constructors
@@ -70,7 +70,7 @@ namespace MiscUtil.IO
 		#endregion
 
 		#region Properties
-		EndianBitConverter bitConverter;
+		private EndianBitConverter bitConverter;
 		/// <summary>
 		/// The bit converter used to write values to the stream
 		/// </summary>
@@ -79,7 +79,7 @@ namespace MiscUtil.IO
 			get { return bitConverter; }
 		}
 
-		Encoding encoding;
+		private Encoding encoding;
 		/// <summary>
 		/// The encoding used to write strings
 		/// </summary>
@@ -88,7 +88,7 @@ namespace MiscUtil.IO
 			get { return encoding; }
 		}
 
-		Stream stream;
+		private Stream stream;
 		/// <summary>
 		/// Gets the underlying stream of the EndianBinaryWriter.
 		/// </summary>
@@ -353,7 +353,7 @@ namespace MiscUtil.IO
 		/// <summary>
 		/// Checks whether or not the writer has been disposed, throwing an exception if so.
 		/// </summary>
-		void CheckDisposed()
+		private void CheckDisposed()
 		{
 			if (disposed)
 			{
@@ -367,7 +367,7 @@ namespace MiscUtil.IO
 		/// </summary>
 		/// <param name="bytes">The array of bytes to write from</param>
 		/// <param name="length">The number of bytes to write</param>
-		void WriteInternal (byte[] bytes, int length)
+		private void WriteInternal (byte[] bytes, int length)
 		{
 			CheckDisposed();
 			stream.Write(bytes, 0, length);

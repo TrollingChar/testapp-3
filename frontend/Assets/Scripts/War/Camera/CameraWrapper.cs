@@ -1,30 +1,42 @@
 ﻿using UnityEngine;
 
+
 namespace W3 {
+
     public class CameraWrapper : MonoBehaviour {
-        [HideInInspector] new public UnityEngine.Camera camera;
-        [HideInInspector] public Vector3 target;
-        [HideInInspector] public CameraController controller;
 
-        int size = 0;
+        [HideInInspector]
+        public new Camera camera;
 
-        void Awake () {
-            camera = gameObject.GetComponent<UnityEngine.Camera>();
+        [HideInInspector]
+        public Vector3 target;
+
+        [HideInInspector]
+        public CameraController controller;
+
+        private int size = 0;
+
+
+        private void Awake () {
+            camera = gameObject.GetComponent<Camera>();
             camera.orthographicSize = (size = Screen.height) * 0.5f;
             target = camera.transform.position;
             controller = new CameraController(this);
         }
 
-        void Update () {
-            if(Screen.height != size) camera.orthographicSize = (size = Screen.height) * 0.5f;
+
+        private void Update () {
+            if (Screen.height != size) camera.orthographicSize = (size = Screen.height) * 0.5f;
             controller.Update();
             camera.transform.position = Vector3.LerpUnclamped(camera.transform.position, target, 0.2f);
         }
 
-        void FixedUpdate () {
+
+        private void FixedUpdate () {
             //cameraWrapper.transform.position *= 0.8f;
             //cameraWrapper.transform.position += 0.2f * target;
         }
+
 
         public void LookAt (Vector3 xyz, bool instantly = false) {
             target.x = xyz.x;
@@ -32,10 +44,11 @@ namespace W3 {
             if (instantly) camera.transform.position = target;
         }
 
+
         public XY worldMousePosition {
-            get {
-                return (Vector2)(camera.ScreenToWorldPoint(Input.mousePosition));
-            }
+            get { return (Vector2) (camera.ScreenToWorldPoint(Input.mousePosition)); }
         }
+
     }
+
 }

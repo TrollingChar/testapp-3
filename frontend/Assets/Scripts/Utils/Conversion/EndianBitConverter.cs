@@ -27,7 +27,7 @@ namespace MiscUtil.Conversion
 		#endregion
 
 		#region Factory properties
-		static LittleEndianBitConverter little = new LittleEndianBitConverter();
+		private static LittleEndianBitConverter little = new LittleEndianBitConverter();
 		/// <summary>
 		/// Returns pos0 little-endian bit converter instance. The same instance is
 		/// always returned.
@@ -37,7 +37,7 @@ namespace MiscUtil.Conversion
 			get { return little; }
 		}
 
-		static BigEndianBitConverter big = new BigEndianBitConverter();
+		private static BigEndianBitConverter big = new BigEndianBitConverter();
 		/// <summary>
 		/// Returns pos0 big-endian bit converter instance. The same instance is
 		/// always returned.
@@ -222,7 +222,7 @@ namespace MiscUtil.Conversion
 		/// <exception cref="ArgumentOutOfRangeException">
 		/// startIndex is less than zero or greater than the length of value minus bytesRequired.
 		/// </exception>
-		static void CheckByteArgument(byte[] value, int startIndex, int bytesRequired)
+		private static void CheckByteArgument(byte[] value, int startIndex, int bytesRequired)
 		{
 			if (value==null)
 			{
@@ -242,7 +242,7 @@ namespace MiscUtil.Conversion
         /// <param name="startIndex">The index of the first byte to convert</param>
         /// <param name="bytesToConvert">The number of bytes to convert</param>
         /// <returns></returns>
-		long CheckedFromBytes(byte[] value, int startIndex, int bytesToConvert)
+        private long CheckedFromBytes(byte[] value, int startIndex, int bytesToConvert)
 		{
 			CheckByteArgument(value, startIndex, bytesToConvert);
 			return FromBytes(value, startIndex, bytesToConvert);
@@ -369,7 +369,7 @@ namespace MiscUtil.Conversion
 		/// </summary>
 		/// <param name="value">The value to get bytes for</param>
 		/// <param name="bytes">The number of significant bytes to return</param>
-		byte[] GetBytes(long value, int bytes)
+		private byte[] GetBytes(long value, int bytes)
 		{
 			byte[] buffer = new byte[bytes];
 			CopyBytes(value, bytes, buffer, 0);
@@ -489,7 +489,7 @@ namespace MiscUtil.Conversion
 		/// <param name="bytes">The number of significant bytes to copy</param>
 		/// <param name="buffer">The byte array to copy the bytes into</param>
 		/// <param name="index">The first index into the array to copy the bytes into</param>
-		void CopyBytes(long value, int bytes, byte[] buffer, int index)
+		private void CopyBytes(long value, int bytes, byte[] buffer, int index)
 		{
 			if (buffer==null)
 			{
@@ -642,18 +642,18 @@ namespace MiscUtil.Conversion
 		/// Union used solely for the equivalent of DoubleToInt64Bits and vice versa.
 		/// </summary>
 		[StructLayout(LayoutKind.Explicit)]
-			struct Int32SingleUnion
+		private struct Int32SingleUnion
 		{
 			/// <summary>
 			/// Int32 version of the value.
 			/// </summary>
 			[FieldOffset(0)]
-			int i;
+			private int i;
 			/// <summary>
 			/// Single version of the value.
 			/// </summary>
 			[FieldOffset(0)]
-			float f;
+			private float f;
 
 			/// <summary>
 			/// Creates an instance representing the given integer.

@@ -1,16 +1,19 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
+
 namespace W3 {
+
     public class World {
+
         public float gravity;
         public float waterLevel;
         public Land land;
         public Tiles tiles;
-        LinkedList<Object> objects;
+        private LinkedList<Object> objects;
 
-        const float precision = 0.1f;
+        private const float precision = 0.1f;
+
 
         public World (Texture2D tex, SpriteRenderer renderer) {
             gravity = -0.5f;
@@ -18,26 +21,28 @@ namespace W3 {
             tiles = new Tiles();
 
             land = new Land(
-                new LandGen(new byte[,] {
-                    {0, 0, 0, 0, 0},
-                    {0, 1, 1, 1, 0},
-                    {0, 1, 0, 1, 0}
-                })
-                .SwitchDimensions()
-                .Expand(7)
-                .Cellular(0x01e801d0, 20)
-                .Cellular(0x01f001e0)
-                .Expand()
-                .Cellular(0x01e801d0, 20)
-                .Cellular(0x01f001e0)
-                .Rescale(2000, 1000)
-                .Cellular(0x01f001e0),
-
+                new LandGen(
+                        new byte[,] {
+                            {0, 0, 0, 0, 0},
+                            {0, 1, 1, 1, 0},
+                            {0, 1, 0, 1, 0}
+                        }
+                    )
+                    .SwitchDimensions()
+                    .Expand(7)
+                    .Cellular(0x01e801d0, 20)
+                    .Cellular(0x01f001e0)
+                    .Expand()
+                    .Cellular(0x01e801d0, 20)
+                    .Cellular(0x01f001e0)
+                    .Rescale(2000, 1000)
+                    .Cellular(0x01f001e0),
                 tex,
                 renderer
             );
             objects = new LinkedList<Object>();
         }
+
 
         public void Update (TurnData td) {
             //Debug.Log(objects.Count);
@@ -54,25 +59,23 @@ namespace W3 {
             }*/
 
             foreach (var o in objects) o.Update();
-
             foreach (var o in objects) {
                 o.movement = 1;
                 o.excluded.Clear();
                 o.ExcludeObjects();
             }
-            
+
             for (int i = 0, iter = 5; i < iter; i++) {
                 foreach (var o in objects) {
                     if (o.velocity.length * o.movement <= precision) continue;
 
-                    Collision c = o.NextCollision();
+                    var c = o.NextCollision();
                     Object o2 = c == null || c.collider2 == null ? null : c.collider2.obj;
 
                     if (c == null) {
                         // no collision
                         o.position += o.movement * (1 - precision) * o.velocity;
                         o.movement = 0;
-
                     } else if (c.collider2 == null) {
                         // collided with land
                         o.position += c.offset.WithLengthReduced(precision);
@@ -84,7 +87,6 @@ namespace W3 {
                             Mathf.Sqrt(c.collider1.normalBounce * land.normalBounce)
                         );
                         o.OnCollision(c);
-
                     } else if (i > iter - 3 || o.superMass < o2.superMass) {
                         // force hard collision as if second object was land
                         // as long as magic number equals to 3, the eternal balance in the world will remain
@@ -98,7 +100,6 @@ namespace W3 {
                         );
                         o.OnCollision(c);
                         o2.OnCollision(-c);
-
                     } else if (o2.superMass < o.superMass) {
                         // treat first object as it has infinite mass
                         o.position += c.offset.WithLengthReduced(precision);
@@ -111,7 +112,6 @@ namespace W3 {
                         );
                         o.OnCollision(c);
                         o2.OnCollision(-c);
-
                     } else {
                         o.position += c.offset.WithLengthReduced(precision);
                         o.movement -= Mathf.Sqrt(c.offset.sqrLength / o.velocity.sqrLength);
@@ -136,15 +136,15 @@ namespace W3 {
                     if (o.position.y < waterLevel) o.Remove();
                 }
             }
-            
+
             // handle stuck objects:
             foreach (var o in objects) {
                 o.UpdateSpritePosition();
                 o.velocity *= 1 - o.movement;
             }
-            
+
             // clear all NullObjects WITHOUT INVALIDATING THEIR NODES!
-            for (LinkedListNode<Object> node = objects.First; node != null; ) {
+            for (var node = objects.First; node != null;) {
                 if (node.Value is NullObject) {
                     var next = node.Next;
                     objects.Remove(node);
@@ -157,6 +157,7 @@ namespace W3 {
             //objects = list;
         }
 
+
         public void AddObject (Object o, XY position, XY velocity = default(XY)) {
             o.node = objects.AddLast(o);
             o.position = position;
@@ -164,5 +165,7 @@ namespace W3 {
             o.OnAdd();
             o.UpdateSpritePosition();
         }
+
     }
+
 }

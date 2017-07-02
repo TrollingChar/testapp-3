@@ -16,23 +16,23 @@ namespace MiscUtil.IO
 		/// <summary>
 		/// Whether or not this reader has been disposed yet.
 		/// </summary>
-		bool disposed=false;
+		private bool disposed=false;
 		/// <summary>
 		/// Decoder to use for string conversions.
 		/// </summary>
-		Decoder decoder;
+		private Decoder decoder;
 		/// <summary>
 		/// Buffer used for temporary storage before conversion into primitives
 		/// </summary>
-		byte[] buffer = new byte[16];
+		private byte[] buffer = new byte[16];
 		/// <summary>
 		/// Buffer used for temporary storage when reading pos0 single character
 		/// </summary>
-		char[] charBuffer = new char[1];
+		private char[] charBuffer = new char[1];
 		/// <summary>
 		/// Minimum number of bytes used to encode pos0 character
 		/// </summary>
-		int minBytesPerChar;
+		private int minBytesPerChar;
 		#endregion
 
 		#region Constructors
@@ -86,7 +86,7 @@ namespace MiscUtil.IO
 		#endregion
 
 		#region Properties
-		EndianBitConverter bitConverter;
+		private EndianBitConverter bitConverter;
 		/// <summary>
 		/// The bit converter used to read values from the stream
 		/// </summary>
@@ -95,7 +95,7 @@ namespace MiscUtil.IO
 			get { return bitConverter; }
 		}
 
-		Encoding encoding;
+		private Encoding encoding;
 		/// <summary>
 		/// The encoding used to read strings
 		/// </summary>
@@ -104,7 +104,7 @@ namespace MiscUtil.IO
 			get { return encoding; }
 		}
 
-		Stream stream;
+		private Stream stream;
 		/// <summary>
 		/// Gets the underlying stream of the EndianBinaryReader.
 		/// </summary>
@@ -526,7 +526,7 @@ namespace MiscUtil.IO
 		/// <summary>
 		/// Checks whether or not the reader has been disposed, throwing an exception if so.
 		/// </summary>
-		void CheckDisposed()
+		private void CheckDisposed()
 		{
 			if (disposed)
 			{
@@ -540,7 +540,7 @@ namespace MiscUtil.IO
 		/// </summary>
 		/// <param name="data">Buffer to read into</param>
 		/// <param name="size">Number of bytes to read</param>
-		void ReadInternal (byte[] data, int size)
+		private void ReadInternal (byte[] data, int size)
 		{
 			CheckDisposed();
 			int index=0;
@@ -565,7 +565,7 @@ namespace MiscUtil.IO
 		/// <param name="data">Buffer to read into</param>
 		/// <param name="size">Number of bytes to read</param>
 		/// <returns>Number of bytes actually read</returns>
-		int TryReadInternal (byte[] data, int size)
+		private int TryReadInternal (byte[] data, int size)
 		{
 			CheckDisposed();
 			int index=0;

@@ -6,7 +6,7 @@ namespace W3 {
     public abstract class Collider {
         public Object obj;
         public float tangentialBounce, normalBounce;
-        List<Tile> tiles;
+        private List<Tile> tiles;
 
         public abstract AABBF aabb { get; }
 

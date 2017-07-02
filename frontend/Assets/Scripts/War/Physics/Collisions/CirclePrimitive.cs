@@ -8,7 +8,8 @@ namespace W3 {
         public XY center;
         public float radius;
 
-        CirclePrimitive (XY o, float r) {
+
+        private CirclePrimitive (XY o, float r) {
             center = o;
             radius = r;
         }

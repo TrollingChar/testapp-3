@@ -1,9 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+
 
 public class CustomPanelController : PanelController {
+
     public int timeToOpen;
+
     public Vector2
         openPosition,
         closedPosition,
@@ -12,13 +13,19 @@ public class CustomPanelController : PanelController {
         openAnchorMax,
         closedAnchorMax;
 
-    bool initialized = false;
+    private bool initialized;
+
+
     protected override void UpdatePosition () {
-        if (!initialized) { fullOpenness = timeToOpen; initialized = true; }
+        if (!initialized) {
+            fullOpenness = timeToOpen;
+            initialized = true;
+        }
         var rt = canvas.transform as RectTransform;
-        float relativeOpenness = (float)currOpenness / fullOpenness;
+        float relativeOpenness = (float) currOpenness / fullOpenness;
         rt.anchorMin = relativeOpenness * (openAnchorMin - closedAnchorMin) + closedAnchorMin;
         rt.anchorMax = relativeOpenness * (openAnchorMax - closedAnchorMax) + closedAnchorMax;
         rt.anchoredPosition = relativeOpenness * (openPosition - closedPosition) + closedPosition;
     }
+
 }

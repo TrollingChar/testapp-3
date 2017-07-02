@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using UnityEngine;
+﻿using UnityEngine;
+
 
 namespace W3 {
+
     public struct AABBF {
+
         public float left, right, bottom, top;
+
 
         public AABBF (float left, float right, float bottom, float top) {
             this.left = left;
@@ -14,6 +14,7 @@ namespace W3 {
             this.bottom = bottom;
             this.top = top;
         }
+
 
         public AABBF Expanded (XY v) {
             return new AABBF(
@@ -24,6 +25,7 @@ namespace W3 {
             );
         }
 
+
         public AABB ToTiles (float tileSize) {
             return new AABB(
                 Mathf.FloorToInt(left / tileSize),
@@ -32,10 +34,14 @@ namespace W3 {
                 Mathf.FloorToInt(top / tileSize) + 1
             );
         }
+
     }
 
+
     public struct AABB {
+
         public int left, right, bottom, top;
+
 
         public AABB (int left, int right, int bottom, int top) {
             this.left = left;
@@ -43,5 +49,7 @@ namespace W3 {
             this.bottom = bottom;
             this.top = top;
         }
+
     }
+
 }
