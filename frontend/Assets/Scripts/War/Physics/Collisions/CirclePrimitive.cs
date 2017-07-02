@@ -5,13 +5,13 @@ namespace War.Physics.Collisions {
 
     public class CirclePrimitive : Primitive {
 
-        public XY center;
-        public float radius;
+        public XY Center;
+        public float Radius;
 
 
         private CirclePrimitive (XY o, float r) {
-            center = o;
-            radius = r;
+            Center = o;
+            Radius = r;
         }
 
 
@@ -26,7 +26,7 @@ namespace War.Physics.Collisions {
 
 
         public override float LocateCircle (CirclePrimitive other, XY offset) {
-            return (center - other.center).sqrLength - (radius + other.radius) * (radius + other.radius);
+            return (Center - other.Center).SqrLength - (Radius + other.Radius) * (Radius + other.Radius);
         }
 
     }

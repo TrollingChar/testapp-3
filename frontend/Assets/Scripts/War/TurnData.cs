@@ -6,27 +6,27 @@ namespace War {
 
     public class TurnData {
 
-        public bool w, a, s, d, mb;
-        public XY xy;
+        public bool W, A, S, D, MB;
+        public XY XY;
 
 
         public TurnData () {
-            w = Input.GetKey(KeyCode.W);
-            a = Input.GetKey(KeyCode.A);
-            s = Input.GetKey(KeyCode.S);
-            d = Input.GetKey(KeyCode.D);
-            mb = Input.GetMouseButton(0); // LMB
-            xy = Core.bf.cameraWrapper.worldMousePosition;
+            W = Input.GetKey(KeyCode.W);
+            A = Input.GetKey(KeyCode.A);
+            S = Input.GetKey(KeyCode.S);
+            D = Input.GetKey(KeyCode.D);
+            MB = Input.GetMouseButton(0); // LMB
+            XY = Core.BF.CameraWrapper.WorldMousePosition;
         }
 
 
         public TurnData (byte flags, float x, float y) {
-            w = (flags & 0x01) != 0;
-            a = (flags & 0x02) != 0;
-            s = (flags & 0x04) != 0;
-            d = (flags & 0x08) != 0;
-            mb = (flags & 0x10) != 0;
-            xy = new XY(x, y);
+            W = (flags & 0x01) != 0;
+            A = (flags & 0x02) != 0;
+            S = (flags & 0x04) != 0;
+            D = (flags & 0x08) != 0;
+            MB = (flags & 0x10) != 0;
+            XY = new XY(x, y);
         }
 
     }

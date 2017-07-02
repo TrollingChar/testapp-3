@@ -7,85 +7,85 @@ namespace Utils {
 
     internal class ByteBuffer {
 
-        private static EndianBitConverter bitConverter = new BigEndianBitConverter();
-        public byte[] bytes;
-        public int length;
-        private int capacity;
-        private int offset;
+        private static EndianBitConverter _bitConverter = new BigEndianBitConverter();
+        public byte[] Bytes;
+        public int Length;
+        private int _capacity;
+        private int _offset;
 
 
         public ByteBuffer (int capacity = 64) {
-            this.capacity = capacity;
-            bytes = new byte[capacity];
-            length = offset = 0;
+            this._capacity = capacity;
+            Bytes = new byte[capacity];
+            Length = _offset = 0;
         }
 
 
         public ByteBuffer (byte[] data) {
-            capacity = length = bytes.Length;
-            bytes = data;
-            offset = 0;
+            _capacity = Length = Bytes.Length;
+            Bytes = data;
+            _offset = 0;
         }
 
 
         private void Expand (int capacity) {
-            if (this.capacity >= capacity) return;
+            if (this._capacity >= capacity) return;
             var temp = new byte[capacity];
-            this.capacity = capacity;
-            bytes.CopyTo(temp, 0);
-            bytes = temp;
+            this._capacity = capacity;
+            Bytes.CopyTo(temp, 0);
+            Bytes = temp;
         }
 
 
         public void WriteByte (byte data) {
-            if (length == capacity) Expand(capacity * 2);
-            bytes[length++] = data;
+            if (Length == _capacity) Expand(_capacity * 2);
+            Bytes[Length++] = data;
         }
 
 
         public void WriteBytes (byte[] data) {
-            int capacity = this.capacity;
-            while (length + data.Length > capacity) capacity *= 2;
+            int capacity = this._capacity;
+            while (Length + data.Length > capacity) capacity *= 2;
             Expand(capacity);
-            data.CopyTo(bytes, length);
-            length += data.Length;
+            data.CopyTo(Bytes, Length);
+            Length += data.Length;
         }
 
 
         public void WriteInt16 (Int16 data) {
-            WriteBytes(bitConverter.GetBytes(data));
+            WriteBytes(_bitConverter.GetBytes(data));
         }
 
 
         public void WriteInt32 (Int32 data) {
-            WriteBytes(bitConverter.GetBytes(data));
+            WriteBytes(_bitConverter.GetBytes(data));
         }
 
 
         public void WriteInt64 (Int64 data) {
-            WriteBytes(bitConverter.GetBytes(data));
+            WriteBytes(_bitConverter.GetBytes(data));
         }
 
 
         public void WriteFloat (float data) {
-            WriteBytes(bitConverter.GetBytes(data));
+            WriteBytes(_bitConverter.GetBytes(data));
         }
 
 
         public void WriteDouble (double data) {
-            WriteBytes(bitConverter.GetBytes(data));
+            WriteBytes(_bitConverter.GetBytes(data));
         }
 
 
         public void Clear () {
-            length = offset = 0;
+            Length = _offset = 0;
         }
 
 
         public static implicit operator byte[] (ByteBuffer bb) {
-            return bb.bytes
-                .Skip(bb.offset)
-                .Take(bb.length)
+            return bb.Bytes
+                .Skip(bb._offset)
+                .Take(bb.Length)
                 .ToArray();
         }
 

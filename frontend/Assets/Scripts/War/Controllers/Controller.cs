@@ -5,7 +5,7 @@ namespace War.Controllers {
 
     public class Controller {
 
-        public Object obj;
+        public Object Obj;
 
         public virtual void Update () {}
         public virtual void OnRemove () {}
@@ -13,7 +13,7 @@ namespace War.Controllers {
 
 
         protected void Wait (int milliseconds = 500) {
-            Core.bf.state.Wait(milliseconds);
+            Core.BF.State.Wait(milliseconds);
         }
 
     }

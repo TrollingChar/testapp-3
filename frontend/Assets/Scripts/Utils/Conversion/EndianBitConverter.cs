@@ -29,24 +29,24 @@ namespace Utils.Conversion {
         #endregion
 
         #region Factory properties
-        private static LittleEndianBitConverter little = new LittleEndianBitConverter();
+        private static LittleEndianBitConverter _little = new LittleEndianBitConverter();
 
         /// <summary>
         /// Returns pos0 little-endian bit converter instance. The same instance is
         /// always returned.
         /// </summary>
         public static LittleEndianBitConverter Little {
-            get { return little; }
+            get { return _little; }
         }
 
-        private static BigEndianBitConverter big = new BigEndianBitConverter();
+        private static BigEndianBitConverter _big = new BigEndianBitConverter();
 
         /// <summary>
         /// Returns pos0 big-endian bit converter instance. The same instance is
         /// always returned.
         /// </summary>
         public static BigEndianBitConverter Big {
-            get { return big; }
+            get { return _big; }
         }
         #endregion
 

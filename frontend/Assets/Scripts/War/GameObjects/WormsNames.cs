@@ -5,7 +5,7 @@ namespace War.GameObjects {
 
     internal class WormsNames {
 
-        private static string[] names = {
+        private static string[] _names = {
             "Тарг",
             "Имба",
             "Айс",
@@ -44,8 +44,8 @@ namespace War.GameObjects {
         };
 
 
-        public static string random () {
-            return names[RNG.Int(names.Length)];
+        public static string Random () {
+            return _names[RNG.Int(_names.Length)];
         }
 
     }

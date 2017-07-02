@@ -6,10 +6,10 @@ namespace War.Physics.Collisions {
     public class BoxCollider : Collider {
 
         private float
-            leftOffset,
-            rightOffset,
-            bottomOffset,
-            topOffset;
+            _leftOffset,
+            _rightOffset,
+            _bottomOffset,
+            _topOffset;
 
 
         public BoxCollider (
@@ -18,36 +18,36 @@ namespace War.Physics.Collisions {
             float bottom,
             float top
         ) {
-            leftOffset = left;
-            rightOffset = right;
-            bottomOffset = bottom;
-            topOffset = top;
+            _leftOffset = left;
+            _rightOffset = right;
+            _bottomOffset = bottom;
+            _topOffset = top;
         }
 
 
-        public float left {
-            get { return leftOffset + obj.position.x; }
+        public float Left {
+            get { return _leftOffset + Obj.Position.X; }
         }
 
-        public float right {
-            get { return rightOffset + obj.position.x; }
+        public float Right {
+            get { return _rightOffset + Obj.Position.X; }
         }
 
-        public float bottom {
-            get { return bottomOffset + obj.position.y; }
+        public float Bottom {
+            get { return _bottomOffset + Obj.Position.Y; }
         }
 
-        public float top {
-            get { return topOffset + obj.position.y; }
+        public float Top {
+            get { return _topOffset + Obj.Position.Y; }
         }
 
-        public override AABBF aabb {
-            get { return new AABBF(left, right, bottom, top); }
+        public override AABBF AABB {
+            get { return new AABBF(Left, Right, Bottom, Top); }
         }
 
 
         public override Collision CollideWith (Collider c, XY velocity) {
-            return velocity == XY.zero ? null : -c.CollideWithBox(this, -velocity);
+            return velocity == XY.Zero ? null : -c.CollideWithBox(this, -velocity);
         }
 
 
@@ -62,8 +62,8 @@ namespace War.Physics.Collisions {
 
 
         public override Collision CollideWithLand (Land land, XY v) {
-            Collision result = land.CastRectRay(left, right, bottom, top, v);
-            if (result != null) result.collider1 = this;
+            Collision result = land.CastRectRay(Left, Right, Bottom, Top, v);
+            if (result != null) result.Collider1 = this;
             return result;
         }
 

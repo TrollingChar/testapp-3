@@ -2,7 +2,7 @@
 
     internal class WormControllerFall : StandardController {
 
-        private int stillTime = 0;
+        private int _stillTime = 0;
 
         public override void Update () {}
 

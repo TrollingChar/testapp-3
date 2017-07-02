@@ -6,27 +6,27 @@ namespace War.Physics {
 
     public class Tile {
 
-        public const float size = 20;
+        public const float Size = 20;
 
-        private int x, y;
+        private int _x, _y;
 
-        public List<Collider> colliders { get; private set; }
+        public List<Collider> Colliders { get; private set; }
 
 
         public Tile (int x, int y) {
-            this.x = x;
-            this.y = y;
-            colliders = new List<Collider>();
+            this._x = x;
+            this._y = y;
+            Colliders = new List<Collider>();
         }
 
 
         public void AddCollider (Collider collider) {
-            colliders.Add(collider);
+            Colliders.Add(collider);
         }
 
 
         public void RemoveCollider (Collider collider) {
-            colliders.Remove(collider);
+            Colliders.Remove(collider);
         }
 
     }

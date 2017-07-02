@@ -2,22 +2,22 @@
 
     public class TileXY {
 
-        public int x, y;
+        public int X, Y;
 
 
         public TileXY (int x, int y) {
-            this.x = x;
-            this.y = y;
+            this.X = x;
+            this.Y = y;
         }
 
 
         public static bool operator == (TileXY a, TileXY b) {
-            return a.x == b.x && a.y == b.y;
+            return a.X == b.X && a.Y == b.Y;
         }
 
 
         public static bool operator != (TileXY a, TileXY b) {
-            return a.x != b.x || a.y != b.y;
+            return a.X != b.X || a.Y != b.Y;
         }
 
 
@@ -27,7 +27,7 @@
 
 
         public override int GetHashCode () {
-            return x.GetHashCode() ^ y.GetHashCode() << 2;
+            return X.GetHashCode() ^ Y.GetHashCode() << 2;
         }
 
     }

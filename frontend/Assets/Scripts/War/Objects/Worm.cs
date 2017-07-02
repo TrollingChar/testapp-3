@@ -11,11 +11,11 @@ namespace War.Objects {
 
     public class Worm : Object {
 
-        public const float headRadius = 5;
-        public const float bodyHeight = 5;
-        public WormGO spriteExtension;
+        public const float HeadRadius = 5;
+        public const float BodyHeight = 5;
+        public WormGO SpriteExtension;
 
-        private Collider head, tail;
+        private Collider _head, _tail;
 
         public Worm () : base(60, 1) {}
 
@@ -26,21 +26,21 @@ namespace War.Objects {
 
 
         protected override void InitColliders () {
-            AddCollider(head = new CircleCollider(new XY(0, bodyHeight * 0.5f), headRadius));
-            AddCollider(tail = new CircleCollider(new XY(0, bodyHeight * -0.5f), headRadius));
+            AddCollider(_head = new CircleCollider(new XY(0, BodyHeight * 0.5f), HeadRadius));
+            AddCollider(_tail = new CircleCollider(new XY(0, BodyHeight * -0.5f), HeadRadius));
             //AddCollider(new BoxCollider(-5, 5, -2.5f, 2.5f));
         }
 
 
         protected override void InitController () {
-            controller = new WormControllerJump();
+            Controller = new WormControllerJump();
         }
 
 
         protected override void InitSprite () {
-            sprite = GameObject.Instantiate(Assets.Assets.worm);
-            spriteExtension = sprite.GetComponent<WormGO>();
-            spriteExtension.text = WormsNames.random();
+            Sprite = GameObject.Instantiate(Assets.Assets.Worm);
+            SpriteExtension = Sprite.GetComponent<WormGO>();
+            SpriteExtension.Text = WormsNames.Random();
         }
 
 

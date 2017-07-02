@@ -11,56 +11,56 @@ namespace War.Objects {
 
     public abstract class Object {
 
-        private static NullObject empty = new NullObject();
-        public LinkedListNode<Object> node;
+        private static NullObject _empty = new NullObject();
+        public LinkedListNode<Object> Node;
 
-        public float movement;
-        public HashSet<Object> excluded;
-        public List<Collider> colliders;
-        public int superMass;
-        public float mass;
+        public float Movement;
+        public HashSet<Object> Excluded;
+        public List<Collider> Colliders;
+        public int SuperMass;
+        public float Mass;
 
-        public XY _position, velocity;
-
-        public XY position {
+        private XY _position;
+        public XY Position {
             get { return _position; }
             set {
                 _position = value;
-                foreach (var c in colliders) c.UpdatePosition();
+                foreach (var c in Colliders) c.UpdatePosition();
             }
         }
 
-        public Controller _controller;
+        public XY Velocity;
 
-        public Controller controller {
+        private Controller _controller;
+        public Controller Controller {
             get { return _controller; }
             set {
                 if (_controller != null) {
                     _controller.OnRemove();
-                    _controller.obj = null;
+                    _controller.Obj = null;
                 }
                 if (value != null) {
-                    value.obj = this;
+                    value.Obj = this;
                     value.OnAdd();
                 }
                 _controller = value;
             }
         }
 
-        protected GameObject sprite;
+        protected GameObject Sprite;
 
 
         protected Object (float mass = 60f, int superMass = 0) {
-            this.mass = mass;
-            this.superMass = superMass;
+            this.Mass = mass;
+            this.SuperMass = superMass;
 
-            colliders = new List<Collider>();
-            excluded = new HashSet<Object>();
+            Colliders = new List<Collider>();
+            Excluded = new HashSet<Object>();
         }
 
 
         public void Update () {
-            if (controller != null) controller.Update();
+            if (Controller != null) Controller.Update();
         }
 
 
@@ -72,32 +72,31 @@ namespace War.Objects {
 
 
         public void Remove () {
-            node.Value = empty;
-            foreach (var c in colliders) {
+            Node.Value = _empty;
+            foreach (var c in Colliders) {
                 c.FreeTiles();
-                c.obj = null;
+                c.Obj = null;
             }
             RemoveSprite();
         }
 
 
         public Collision NextCollision () {
-            XY v = velocity * movement;
+            XY v = Velocity * Movement;
             var cObj = CollideWithObjects(v);
-            if (cObj != null) v = cObj.offset;
+            if (cObj != null) v = cObj.Offset;
             var cLand = CollideWithLand(v);
-            //if (cLand != null) Debug.Log("hit!");
             return cLand ?? cObj;
         }
 
 
         private Collision CollideWithObjects (XY v) {
             Collision min = null;
-            foreach (var c in colliders) {
+            foreach (var c in Colliders) {
                 var obstacles = new HashSet<Collider>(
-                    c.FindObstacles(Core.bf.world, v)
-                        .Where(o => !o.obj.PassableFor(this))
-                        .Where(o => !excluded.Contains(o.obj))
+                    c.FindObstacles(Core.BF.World, v)
+                        .Where(o => !o.Obj.PassableFor(this))
+                        .Where(o => !Excluded.Contains(o.Obj))
                 );
                 foreach (var o in obstacles) {
                     var temp = c.CollideWith(o, v);
@@ -116,8 +115,8 @@ namespace War.Objects {
 
         private Collision CollideWithLand (XY v) {
             Collision min = null;
-            foreach (var c in colliders) {
-                var temp = c.CollideWithLand(Core.bf.world.land, v);
+            foreach (var c in Colliders) {
+                var temp = c.CollideWithLand(Core.BF.World.Land, v);
                 if (temp < min) min = temp;
             }
             return min;
@@ -125,16 +124,16 @@ namespace War.Objects {
 
 
         public void ExcludeObjects () {
-            foreach (var collider in colliders)
-            foreach (var obstacle in collider.FindOverlapping(Core.bf.world)) {
-                excluded.Add(obstacle.obj);
+            foreach (var collider in Colliders)
+            foreach (var obstacle in collider.FindOverlapping(Core.BF.World)) {
+                Excluded.Add(obstacle.Obj);
             }
         }
 
 
         public void UpdateSpritePosition () {
-            if (sprite == null) return;
-            sprite.transform.position = new Vector3(position.x, position.y, sprite.transform.position.z);
+            if (Sprite == null) return;
+            Sprite.transform.position = new Vector3(Position.X, Position.Y, Sprite.transform.position.z);
         }
 
 
@@ -150,30 +149,30 @@ namespace War.Objects {
 
 
         protected void AddCollider (Collider c) {
-            c.obj = this;
-            colliders.Add(c);
+            c.Obj = this;
+            Colliders.Add(c);
             c.UpdatePosition();
         }
 
 
         protected void RemoveCollider (Collider c) {
             c.FreeTiles();
-            colliders.Remove(c);
+            Colliders.Remove(c);
         }
 
 
         protected virtual void InitController () {
-            // controller = ...
+            // Controller = ...
         }
 
 
         protected virtual void InitSprite () {
-            // sprite = GameObject.Instantiate(...);
+            // Sprite = GameObject.Instantiate(...);
         }
 
 
         private void RemoveSprite () {
-            if (sprite != null) GameObject.Destroy(sprite);
+            if (Sprite != null) UnityEngine.Object.Destroy(Sprite);
         }
 
 

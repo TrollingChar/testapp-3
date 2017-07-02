@@ -6,24 +6,24 @@ namespace War.Camera {
 
     public class MouseBasedCameraController : CameraController {
 
-        private Vector3 origin, click;
+        private Vector3 _origin, _click;
 
 
         public MouseBasedCameraController (CameraWrapper camera) : base(camera) {
-            click = Input.mousePosition;
-            origin = camera.target;
+            _click = Input.mousePosition;
+            _origin = camera.Target;
         }
 
 
         public override void Update () {
-            camera.LookAt(
-                origin + camera.camera.ScreenToWorldPoint(click)
-                - camera.camera.ScreenToWorldPoint(Input.mousePosition)
+            Camera.LookAt(
+                _origin + Camera.Camera.ScreenToWorldPoint(_click)
+                - Camera.Camera.ScreenToWorldPoint(Input.mousePosition)
             );
             if (Input.GetMouseButtonUp(MouseButtons.Right)
                 && !Input.GetMouseButtonDown(MouseButtons.Right)
             ) {
-                camera.controller = new CameraController(camera);
+                Camera.Controller = new CameraController(Camera);
             }
         }
 

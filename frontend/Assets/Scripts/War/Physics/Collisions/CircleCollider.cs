@@ -6,51 +6,51 @@ namespace War.Physics.Collisions {
 
     public class CircleCollider : Collider {
 
-        private XY offset;
-        private float radius;
+        private XY _offset;
+        private float _radius;
 
-        public XY center {
+        public XY Center {
             get {
                 //Debug.Log(obj);
-                return offset + obj.position;
+                return _offset + Obj.Position;
             }
         }
 
 
         public CircleCollider (XY offset, float radius) {
-            this.offset = offset;
-            this.radius = radius;
+            this._offset = offset;
+            this._radius = radius;
         }
 
 
-        public override AABBF aabb {
+        public override AABBF AABB {
             get {
-                XY center = this.center;
+                XY center = this.Center;
                 return new AABBF(
-                    center.x - radius,
-                    center.x + radius,
-                    center.y - radius,
-                    center.y + radius
+                    center.X - _radius,
+                    center.X + _radius,
+                    center.Y - _radius,
+                    center.Y + _radius
                 );
             }
         }
 
 
         public override Collision CollideWith (Collider c, XY velocity) {
-            return velocity == XY.zero ? null : -c.CollideWithCircle(this, -velocity);
+            return velocity == XY.Zero ? null : -c.CollideWithCircle(this, -velocity);
         }
 
 
         public override Collision CollideWithCircle (CircleCollider c, XY velocity) {
-            float mv = Geom.CastRayToCircle(center, velocity, c.center, radius + c.radius);
+            float mv = Geom.CastRayToCircle(Center, velocity, c.Center, _radius + c._radius);
             return mv < 1
                 ? new Collision(
                     velocity * mv,
-                    center + velocity * mv - c.center,
+                    Center + velocity * mv - c.Center,
                     this,
                     c,
-                    CirclePrimitive.New(center, radius),
-                    CirclePrimitive.New(c.center, c.radius)
+                    CirclePrimitive.New(Center, _radius),
+                    CirclePrimitive.New(c.Center, c._radius)
                 ) : null;
         }
 
@@ -61,8 +61,8 @@ namespace War.Physics.Collisions {
 
 
         public override Collision CollideWithLand (Land land, XY v) {
-            Collision result = land.CastRay(center, v, radius);
-            if (result != null) result.collider1 = this;
+            Collision result = land.CastRay(Center, v, _radius);
+            if (result != null) result.Collider1 = this;
             return result;
         }
 
@@ -73,8 +73,8 @@ namespace War.Physics.Collisions {
 
 
         public override bool OverlapsWithCircle (CircleCollider c) {
-            float radii = radius + c.radius;
-            return (center - c.center).sqrLength < radii * radii;
+            float radii = _radius + c._radius;
+            return (Center - c.Center).SqrLength < radii * radii;
         }
 
 

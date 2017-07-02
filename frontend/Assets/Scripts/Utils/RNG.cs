@@ -6,51 +6,51 @@ namespace Utils {
 
     public static class RNG {
 
-        private static Random rng = new Random();
+        private static Random _rng = new Random();
 
 
         public static void Init (int seed) {
-            rng = new Random(seed);
+            _rng = new Random(seed);
         }
 
 
         public static bool Bool () {
-            return rng.Next(2) != 0;
+            return _rng.Next(2) != 0;
         }
 
 
         public static bool Bool (double chance) {
-            return rng.NextDouble() < chance;
+            return _rng.NextDouble() < chance;
         }
 
 
         public static bool Bool (int chance, int outOf) {
-            return rng.Next(outOf) < chance;
+            return _rng.Next(outOf) < chance;
         }
 
 
         public static int Int () {
-            return rng.Next();
+            return _rng.Next();
         }
 
 
         public static int Int (int max) {
-            return rng.Next(max);
+            return _rng.Next(max);
         }
 
 
         public static int Int (int min, int max) {
-            return rng.Next(min, max);
+            return _rng.Next(min, max);
         }
 
 
         public static float Float () {
-            return (float) rng.NextDouble();
+            return (float) _rng.NextDouble();
         }
 
 
         public static double Double () {
-            return rng.NextDouble();
+            return _rng.NextDouble();
         }
 
 

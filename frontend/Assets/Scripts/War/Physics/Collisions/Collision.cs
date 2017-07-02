@@ -6,9 +6,9 @@ namespace War.Physics.Collisions {
 
     public class Collision : IEquatable<Collision>, IComparable<Collision> {
 
-        public XY offset, normal;
-        public Collider collider1, collider2;
-        public Primitive primitive1, primitive2;
+        public XY Offset, Normal;
+        public Collider Collider1, Collider2;
+        public Primitive Primitive1, Primitive2;
 
 
         public Collision (
@@ -19,12 +19,12 @@ namespace War.Physics.Collisions {
             Primitive p1,
             Primitive p2
         ) {
-            this.offset = offset;
-            this.normal = normal;
-            collider1 = c1;
-            collider2 = c2;
-            primitive1 = p1;
-            primitive2 = p2;
+            this.Offset = offset;
+            this.Normal = normal;
+            Collider1 = c1;
+            Collider2 = c2;
+            Primitive1 = p1;
+            Primitive2 = p2;
         }
 
 
@@ -32,23 +32,23 @@ namespace War.Physics.Collisions {
             return c == null
                 ? null
                 : new Collision(
-                    -c.offset,
-                    -c.normal,
-                    c.collider2,
-                    c.collider1,
-                    c.primitive2,
-                    c.primitive1
+                    -c.Offset,
+                    -c.Normal,
+                    c.Collider2,
+                    c.Collider1,
+                    c.Primitive2,
+                    c.Primitive1
                 );
         }
 
 
         public bool Equals (Collision other) {
-            return (object) other != null && offset.sqrLength.Equals(other.offset.sqrLength);
+            return (object) other != null && Offset.SqrLength.Equals(other.Offset.SqrLength);
         }
 
 
         public int CompareTo (Collision other) {
-            return (object) other == null ? 1 : offset.sqrLength.CompareTo(other.offset.sqrLength);
+            return (object) other == null ? 1 : Offset.SqrLength.CompareTo(other.Offset.SqrLength);
         }
 
 
@@ -69,7 +69,7 @@ namespace War.Physics.Collisions {
         public static bool operator < (Collision a, Collision b) {
             if ((object) a == null) return false;
             if ((object) b == null) return true;
-            return a.offset.sqrLength < b.offset.sqrLength;
+            return a.Offset.SqrLength < b.Offset.SqrLength;
         }
 
 

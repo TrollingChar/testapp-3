@@ -5,13 +5,13 @@ namespace War {
 
     public class GameData {
 
-        public int seed;
-        public List<int> players;
+        public int Seed;
+        public List<int> Players;
 
 
         public GameData (int seed, List<int> players) {
-            this.seed = seed;
-            this.players = players;
+            this.Seed = seed;
+            this.Players = players;
         }
 
     }

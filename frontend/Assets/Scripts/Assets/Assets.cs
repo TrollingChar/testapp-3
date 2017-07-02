@@ -8,10 +8,10 @@ namespace Assets {
         public static GameObject
             // asset1,
             // asset2,
-            worm;
+            Worm;
 
         public static Texture2D
-            motherboard;
+            Motherboard;
 
     }
 

@@ -8,15 +8,15 @@ namespace Assets {
         [SerializeField] private GameObject
             // asset1,
             // asset2,
-            worm;
+            _worm;
 
         [SerializeField] private Texture2D
-            motherboard;
+            _motherboard;
 
 
         private void Awake () {
-            Assets.worm = worm;
-            Assets.motherboard = motherboard;
+            Assets.Worm = _worm;
+            Assets.Motherboard = _motherboard;
             Destroy(this);
         }
 

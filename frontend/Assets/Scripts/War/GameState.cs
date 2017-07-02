@@ -11,124 +11,124 @@ namespace War {
         Turn,
         EndingTurn,
         AfterTurn,
-        Remove0hp
+        Remove0Hp
 
     }
 
 
     public class GameStateController {
 
-        private const int turnTime = 999000;
-        private const int retreatTime = 3000;
+        private const int TurnTime = 999000;
+        private const int RetreatTime = 3000;
 
-        public bool synchronized;
+        public bool Synchronized;
 
-        private GameState current, next;
+        private GameState _current, _next;
 
-        public GameState currentState {
-            get { return current; }
+        public GameState CurrentState {
+            get { return _current; }
         }
 
-        public int activePlayer;
+        public int ActivePlayer;
 
-        private bool wormFrozen;
-        public Worm worm;
+        private bool _wormFrozen;
+        public Worm Worm;
 
-        private int time;
+        private int _time;
 
-        public int timer {
-            get { return time; }
+        public int Timer {
+            get { return _time; }
             set {
-                time = value;
-                Core.coreEvents.SetTurnTime.Invoke(timerString);
+                _time = value;
+                Core.CoreEvents.SetTurnTime.Invoke(TimerString);
             }
         }
 
-        public string timerString {
-            get { return ((time + 999) / 1000).ToString(); }
+        public string TimerString {
+            get { return ((_time + 999) / 1000).ToString(); }
         }
 
 
         public GameStateController () {
-            current = GameState.AfterTurn;
+            _current = GameState.AfterTurn;
             Hint("AFT");
-            next = GameState.Remove0hp;
-            timer = 500;
-            wormFrozen = false;
-            worm = null;
+            _next = GameState.Remove0Hp;
+            Timer = 500;
+            _wormFrozen = false;
+            Worm = null;
         }
 
 
         public void Update () {
-            if ((timer -= 20) <= 0) ChangeState();
+            if ((Timer -= 20) <= 0) ChangeState();
         }
 
 
         public void Wait (int milliseconds) {
-            if (current == GameState.Turn) return;
-            if (timer < milliseconds) timer = milliseconds;
+            if (_current == GameState.Turn) return;
+            if (Timer < milliseconds) Timer = milliseconds;
         }
 
 
         public void StartTurn (int id) {
-            activePlayer = id;
+            ActivePlayer = id;
             ChangeState();
         }
 
 
         private void Hint (string text) {
-            Core.coreEvents.SetGameTime.Invoke(text);
+            Core.CoreEvents.SetGameTime.Invoke(text);
         }
 
 
         private void ChangeState () {
-            switch (current = next++) {
+            switch (_current = _next++) {
                 case GameState.BeforeTurn:
                     Hint("BEF");
                     // Crates fall from the sky, regeneration works, shields replenish
                     if (RNG.Bool(0)) {
                         // drop crates
-                        timer = 500;
+                        Timer = 500;
                     } else ChangeState();
                     break;
                 case GameState.Synchronizing:
                     Hint("SYN");
                     // Game sends pos0 signal and waits until server receives all signals
-                    synchronized = true;
+                    Synchronized = true;
                     Core.Synchronize();
                     break;
                 case GameState.Turn:
-                    Hint(activePlayer == Core.id ? "MY" : "TURN");
+                    Hint(ActivePlayer == Core.Id ? "MY" : "TURN");
                     // Player moves his worm and uses weapon
-                    wormFrozen = false;
-                    worm = Core.bf.NextWorm();
-                    timer = turnTime;
+                    _wormFrozen = false;
+                    Worm = Core.BF.NextWorm();
+                    Timer = TurnTime;
                     break;
                 case GameState.EndingTurn:
                     Hint("END");
                     // Player ended his turn, but projectiles still flying
-                    wormFrozen = true;
-                    synchronized = false;
-                    worm = null;
+                    _wormFrozen = true;
+                    Synchronized = false;
+                    Worm = null;
                     //Core.bf.ResetActivePlayer();
-                    timer = 500;
+                    Timer = 500;
                     break;
                 case GameState.AfterTurn:
                     Hint("AFT");
                     // Poisoned worms take damage
                     if (RNG.Bool(0)) {
                         // poison damage
-                        timer = 500;
+                        Timer = 500;
                     } else ChangeState();
                     break;
-                case GameState.Remove0hp:
+                case GameState.Remove0Hp:
                     Hint("REM");
-                    next = GameState.BeforeTurn; // no overflow
+                    _next = GameState.BeforeTurn; // no overflow
                     // Worms with 0 HP explode
                     if (RNG.Bool(0)) {
                         // blow them up
-                        next = GameState.Remove0hp;
-                        timer = 500;
+                        _next = GameState.Remove0Hp;
+                        Timer = 500;
                     }
                     ChangeState();
                     break;

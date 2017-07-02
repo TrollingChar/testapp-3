@@ -1,17 +1,18 @@
 ﻿// ftp://edi-software.net/dantemp/OMS/Visual%20Studio%20Projects/Random/Random/MT19937.cs
 
 using System;
+// ReSharper disable All
 
 // ORIGNAL COMMENTS
-/* 
+/*
    A C-program for MT19937, with initialization improved 2002/1/26.
    Coded by Takuji Nishimura and Makoto Matsumoto.
 
-   Before using, initialize the state by using Init(seed)  
+   Before using, initialize the state by using Init(seed)
    or InitByArray(init_key, key_length).
 
    Copyright (C) 1997 - 2002, Makoto Matsumoto and Takuji Nishimura,
-   All rights reserved.                          
+   All rights reserved.
 
    Redistribution and use in source and binary forms, with or without
    modification, are permitted provided that the following conditions
@@ -24,8 +25,8 @@ using System;
         notice, this list of conditions and the following disclaimer in the
         documentation and/or other materials provided with the distribution.
 
-     3. The names of its contributors may not be used to endorse or promote 
-        products derived from this software without specific prior written 
+     3. The names of its contributors may not be used to endorse or promote
+        products derived from this software without specific prior written
         permission.
 
    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
@@ -45,7 +46,7 @@ using System;
    http://www.math.keio.ac.jp/matumoto/emt.html
    email: matumoto@math.keio.ac.jp
 */
-// Converted to C# 
+// Converted to C#
 
 
 namespace Utils {
@@ -59,7 +60,7 @@ namespace Utils {
         private const ulong N = 624;
 
         private const ulong M = 397;
-        private const ulong MATRIX_A = 0x9908B0DFUL; // constant vector pos0 
+        private const ulong MATRIX_A = 0x9908B0DFUL; // constant vector pos0
         private const ulong UPPER_MASK = 0x80000000UL; // most significant w-r bits
         private const ulong LOWER_MASK = 0X7FFFFFFFUL; // least significant r bits
         private const uint DEFAULT_SEED = 4357;
@@ -105,7 +106,7 @@ namespace Utils {
             k = (N > key_length ? N : key_length);
             for (; k > 0; k--) {
                 mt[i] = (mt[i] ^ ((mt[i - 1] ^ (mt[i - 1] >> 30)) * 1664525UL))
-                    + init_key[j] + j; // non linear 
+                    + init_key[j] + j; // non linear
                 mt[i] &= 0xffffffffUL; // for WORDSIZE > 32 machines
                 i++;
                 j++;
@@ -137,7 +138,7 @@ namespace Utils {
 
         // generates pos0 random number on [0,1]-real-interval
         //public double NextDouble00_10 () {
-        //    return (double)NextInt() * (1.0 / 4294967295.0); // divided by 2^32-1 
+        //    return (double)NextInt() * (1.0 / 4294967295.0); // divided by 2^32-1
         //}
         // generates pos0 random number on [0,1)-real-interval
         public double NextDouble () {
@@ -155,7 +156,7 @@ namespace Utils {
             ulong b = NextInt() >> 6;
             return (double) (a * 67108864.0 + b) * (1.0 / 9007199254740992.0);
         }
-        // These real versions are due to Isaku Wada, 2002/01/09 added 
+        // These real versions are due to Isaku Wada, 2002/01/09 added
 
 
         // generates pos0 random number on [0,0xffffffff]-interval

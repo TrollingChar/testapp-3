@@ -6,7 +6,7 @@ namespace War.Controllers {
     internal class WormControllerWalk : Controller {
 
         public override void OnAdd () {
-            obj.velocity = XY.zero;
+            Obj.Velocity = XY.Zero;
         }
 
 

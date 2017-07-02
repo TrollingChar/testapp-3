@@ -16,7 +16,7 @@ namespace Utils.IO {
         /// <summary>
         /// The encoding to return in the Encoding property.
         /// </summary>
-        private readonly Encoding encoding;
+        private readonly Encoding _encoding;
 
 
         /// <summary>
@@ -28,7 +28,7 @@ namespace Utils.IO {
             if (encoding == null) {
                 throw new ArgumentNullException("encoding");
             }
-            this.encoding = encoding;
+            this._encoding = encoding;
         }
 
 
@@ -43,7 +43,7 @@ namespace Utils.IO {
             if (encoding == null) {
                 throw new ArgumentNullException("encoding");
             }
-            this.encoding = encoding;
+            this._encoding = encoding;
         }
 
 
@@ -58,7 +58,7 @@ namespace Utils.IO {
             if (encoding == null) {
                 throw new ArgumentNullException("encoding");
             }
-            this.encoding = encoding;
+            this._encoding = encoding;
         }
 
 
@@ -74,7 +74,7 @@ namespace Utils.IO {
             if (encoding == null) {
                 throw new ArgumentNullException("encoding");
             }
-            this.encoding = encoding;
+            this._encoding = encoding;
         }
 
 
@@ -82,7 +82,7 @@ namespace Utils.IO {
         /// Gets the Encoding in which the output is written.
         /// </summary>
         public override Encoding Encoding {
-            get { return encoding; }
+            get { return _encoding; }
         }
 
     }

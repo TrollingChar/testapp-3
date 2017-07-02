@@ -5,63 +5,63 @@ namespace Geometry {
 
     public struct XY {
 
-        public float x, y;
+        public float X, Y;
 
 
         public XY (float x, float y) {
-            this.x = x;
-            this.y = y;
+            this.X = x;
+            this.Y = y;
         }
 
 
         static XY () {
-            zero = new XY(0f, 0f);
-            one = new XY(1f, 1f);
+            Zero = new XY(0f, 0f);
+            One = new XY(1f, 1f);
             NaN = new XY(float.NaN, float.NaN);
-            left = new XY(-1f, 0f);
-            right = new XY(1f, 0f);
-            down = new XY(0f, -1f);
-            up = new XY(0f, 1f);
+            Left = new XY(-1f, 0f);
+            Right = new XY(1f, 0f);
+            Down = new XY(0f, -1f);
+            Up = new XY(0f, 1f);
         }
 
 
         public static XY operator - (XY a) {
-            return new XY(-a.x, -a.y);
+            return new XY(-a.X, -a.Y);
         }
 
 
         public static XY operator - (XY a, XY b) {
-            return new XY(a.x - b.x, a.y - b.y);
+            return new XY(a.X - b.X, a.Y - b.Y);
         }
 
 
         public static bool operator != (XY a, XY b) {
-            return a.x != b.x || a.y != b.y;
+            return a.X != b.X || a.Y != b.Y;
         }
 
 
         public static XY operator * (float d, XY a) {
-            return new XY(a.x * d, a.y * d);
+            return new XY(a.X * d, a.Y * d);
         }
 
 
         public static XY operator * (XY a, float d) {
-            return new XY(a.x * d, a.y * d);
+            return new XY(a.X * d, a.Y * d);
         }
 
 
         public static XY operator / (XY a, float d) {
-            return new XY(a.x / d, a.y / d);
+            return new XY(a.X / d, a.Y / d);
         }
 
 
         public static XY operator + (XY a, XY b) {
-            return new XY(a.x + b.x, a.y + b.y);
+            return new XY(a.X + b.X, a.Y + b.Y);
         }
 
 
         public static bool operator == (XY a, XY b) {
-            return a.x == b.x && a.y == b.y;
+            return a.X == b.X && a.Y == b.Y;
         }
 
 
@@ -71,71 +71,71 @@ namespace Geometry {
 
 
         public static implicit operator Vector2 (XY v) {
-            return new Vector2(v.x, v.y);
+            return new Vector2(v.X, v.Y);
         }
 
 
-        public static XY zero { get; private set; }
-        public static XY one { get; private set; }
-        public static XY down { get; private set; }
-        public static XY left { get; private set; }
-        public static XY up { get; private set; }
-        public static XY right { get; private set; }
+        public static XY Zero { get; private set; }
+        public static XY One { get; private set; }
+        public static XY Down { get; private set; }
+        public static XY Left { get; private set; }
+        public static XY Up { get; private set; }
+        public static XY Right { get; private set; }
         public static XY NaN { get; private set; }
 
-        public bool isNaN {
-            get { return float.IsNaN(x); }
+        public bool IsNaN {
+            get { return float.IsNaN(X); }
         } // dont check Y
 
-        public float length {
-            get { return Mathf.Sqrt(x * x + y * y); }
+        public float Length {
+            get { return Mathf.Sqrt(X * X + Y * Y); }
             set {
-                float l = length;
+                float l = Length;
                 if (l > 0) {
                     l = value / l;
-                    x *= l;
-                    y *= l;
-                } else y = l;
+                    X *= l;
+                    Y *= l;
+                } else Y = l;
             }
         }
 
-        public float sqrLength {
-            get { return x * x + y * y; }
+        public float SqrLength {
+            get { return X * X + Y * Y; }
         }
 
-        public float angle {
-            get { return Mathf.Atan2(y, x); }
+        public float Angle {
+            get { return Mathf.Atan2(Y, X); }
             set {
-                float l = length;
-                x = l * Mathf.Cos(value);
-                y = l * Mathf.Sin(value);
+                float l = Length;
+                X = l * Mathf.Cos(value);
+                Y = l * Mathf.Sin(value);
             }
         }
 
 
         public XY WithX (float x) {
-            return new XY(x, y);
+            return new XY(x, Y);
         }
 
 
         public XY WithY (float y) {
-            return new XY(x, y);
+            return new XY(X, y);
         }
 
 
         public XY WithLength (float l) {
             XY v = this;
-            v.length = l;
+            v.Length = l;
             return v;
         }
 
 
         public void ClampLength (float l) {
-            float len = length;
+            float len = Length;
             if (l >= len) return;
             l /= len;
-            x *= l;
-            y *= l;
+            X *= l;
+            Y *= l;
         }
 
 
@@ -147,9 +147,9 @@ namespace Geometry {
 
 
         public void ReduceLength (float delta) {
-            float l = sqrLength;
-            if (l > delta * delta) length -= delta;
-            else x = y = 0;
+            float l = SqrLength;
+            if (l > delta * delta) Length -= delta;
+            else X = Y = 0;
         }
 
 
@@ -162,18 +162,18 @@ namespace Geometry {
 
         public XY WithAngle (float a) {
             XY v = this;
-            v.angle = a;
+            v.Angle = a;
             return v;
         }
 
 
         public static float Dot (XY a, XY b) {
-            return a.x * b.x + a.y * b.y;
+            return a.X * b.X + a.Y * b.Y;
         }
 
 
         public static float Cross (XY a, XY b) {
-            return a.x * b.y - a.y * b.x;
+            return a.X * b.Y - a.Y * b.X;
         }
 
 
@@ -183,25 +183,25 @@ namespace Geometry {
 
 
         public static float Distance (XY a, XY b) {
-            return (b - a).length;
+            return (b - a).Length;
         }
 
 
         public static float SqrDistance (XY a, XY b) {
-            return (b - a).sqrLength;
+            return (b - a).SqrLength;
         }
 
 
-        public static float Angle (XY from, XY to) {
-            return (to - from).angle;
-        }
+//        public static float Angle (XY from, XY to) {
+//            return (to - from).angle;
+//        }
 
 
         public void Normalize () {
-            float l = length;
+            float l = Length;
             if (l > 0f) {
-                x /= l;
-                y /= l;
+                X /= l;
+                Y /= l;
             }
         }
 
@@ -219,49 +219,49 @@ namespace Geometry {
 
 
         public void Rotate90CW () {
-            float f = x;
-            x = y;
-            y = -f;
+            float f = X;
+            X = Y;
+            Y = -f;
         }
 
 
         public void Rotate90CCW () {
-            float f = x;
-            x = -y;
-            y = f;
+            float f = X;
+            X = -Y;
+            Y = f;
         }
 
 
         public XY Rotated (float angle) {
             float sin = Mathf.Sin(angle), cos = Mathf.Cos(angle);
-            return new XY(x * cos - y * sin, x * sin + y * cos);
+            return new XY(X * cos - Y * sin, X * sin + Y * cos);
         }
 
 
         public XY Rotated90CW () {
-            return new XY(y, -x);
+            return new XY(Y, -X);
         }
 
 
         public XY Rotated90CCW () {
-            return new XY(-y, x);
+            return new XY(-Y, X);
         }
 
 
         public static XY Lerp (XY pos0, XY pos1, float t) {
             return new XY(
-                pos0.x + (pos1.x - pos0.x) * t,
-                pos0.y + (pos1.y - pos0.y) * t);
+                pos0.X + (pos1.X - pos0.X) * t,
+                pos0.Y + (pos1.Y - pos0.Y) * t);
         }
 
 
         public override string ToString () {
-            return string.Format("({0:F1}, {1:F1})", x, y);
+            return string.Format("({0:F1}, {1:F1})", X, Y);
         }
 
 
         public string ToString (string format) {
-            return string.Format("({0}, {1})", x.ToString(format), y.ToString(format));
+            return string.Format("({0}, {1})", X.ToString(format), Y.ToString(format));
         }
 
 
@@ -271,7 +271,7 @@ namespace Geometry {
 
 
         public override int GetHashCode () {
-            return x.GetHashCode() ^ y.GetHashCode() << 2;
+            return X.GetHashCode() ^ Y.GetHashCode() << 2;
         }
 
     }

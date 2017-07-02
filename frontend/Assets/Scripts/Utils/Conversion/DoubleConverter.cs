@@ -82,12 +82,12 @@ namespace Utils.Conversion {
         private class ArbitraryDecimal {
 
             /// <summary>Digits in the decimal expansion, one byte per digit</summary>
-            private byte[] digits;
+            private byte[] _digits;
 
             /// <summary> 
             /// How many digits are *after* the decimal point
             /// </summary>
-            private int decimalPoint = 0;
+            private int _decimalPoint = 0;
 
 
             /// <summary> 
@@ -96,8 +96,8 @@ namespace Utils.Conversion {
             /// </summary>
             internal ArbitraryDecimal (long x) {
                 string tmp = x.ToString(CultureInfo.InvariantCulture);
-                digits = new byte[tmp.Length];
-                for (int i = 0; i < tmp.Length; i++) digits[i] = (byte) (tmp[i] - '0');
+                _digits = new byte[tmp.Length];
+                for (int i = 0; i < tmp.Length; i++) _digits[i] = (byte) (tmp[i] - '0');
                 Normalize();
             }
 
@@ -107,16 +107,16 @@ namespace Utils.Conversion {
             /// only be 2 or 5.
             /// </summary>
             internal void MultiplyBy (int amount) {
-                byte[] result = new byte[digits.Length + 1];
-                for (int i = digits.Length - 1; i >= 0; i--) {
-                    int resultDigit = digits[i] * amount + result[i + 1];
+                byte[] result = new byte[_digits.Length + 1];
+                for (int i = _digits.Length - 1; i >= 0; i--) {
+                    int resultDigit = _digits[i] * amount + result[i + 1];
                     result[i] = (byte) (resultDigit / 10);
                     result[i + 1] = (byte) (resultDigit % 10);
                 }
                 if (result[0] != 0) {
-                    digits = result;
+                    _digits = result;
                 } else {
-                    Array.Copy(result, 1, digits, 0, digits.Length);
+                    Array.Copy(result, 1, _digits, 0, _digits.Length);
                 }
                 Normalize();
             }
@@ -129,7 +129,7 @@ namespace Utils.Conversion {
             /// expansion smaller.
             /// </summary>
             internal void Shift (int amount) {
-                decimalPoint += amount;
+                _decimalPoint += amount;
             }
 
 
@@ -138,17 +138,17 @@ namespace Utils.Conversion {
             /// </summary>
             internal void Normalize () {
                 int first;
-                for (first = 0; first < digits.Length; first++) if (digits[first] != 0) break;
+                for (first = 0; first < _digits.Length; first++) if (_digits[first] != 0) break;
                 int last;
-                for (last = digits.Length - 1; last >= 0; last--) if (digits[last] != 0) break;
+                for (last = _digits.Length - 1; last >= 0; last--) if (_digits[last] != 0) break;
 
-                if (first == 0 && last == digits.Length - 1) return;
+                if (first == 0 && last == _digits.Length - 1) return;
 
                 byte[] tmp = new byte[last - first + 1];
-                for (int i = 0; i < tmp.Length; i++) tmp[i] = digits[i + first];
+                for (int i = 0; i < tmp.Length; i++) tmp[i] = _digits[i + first];
 
-                decimalPoint -= digits.Length - (last + 1);
-                digits = tmp;
+                _decimalPoint -= _digits.Length - (last + 1);
+                _digits = tmp;
             }
 
 
@@ -156,26 +156,26 @@ namespace Utils.Conversion {
             /// Converts the value to pos0 proper decimal string representation.
             /// </summary>
             public override String ToString () {
-                char[] digitString = new char[digits.Length];
-                for (int i = 0; i < digits.Length; i++) digitString[i] = (char) (digits[i] + '0');
+                char[] digitString = new char[_digits.Length];
+                for (int i = 0; i < _digits.Length; i++) digitString[i] = (char) (_digits[i] + '0');
 
                 // Simplest case - nothing after the decimal point,
                 // and last real digit is non-zero, eg value=35
-                if (decimalPoint == 0) {
+                if (_decimalPoint == 0) {
                     return new string(digitString);
                 }
 
                 // Fairly simple case - nothing after the decimal
                 // point, but some 0s to add, eg value=350
-                if (decimalPoint < 0) {
+                if (_decimalPoint < 0) {
                     return new string(digitString) +
-                        new string('0', -decimalPoint);
+                        new string('0', -_decimalPoint);
                 }
 
                 // Nothing before the decimal point, eg 0.035
-                if (decimalPoint >= digitString.Length) {
+                if (_decimalPoint >= digitString.Length) {
                     return "0." +
-                        new string('0', (decimalPoint - digitString.Length)) +
+                        new string('0', (_decimalPoint - digitString.Length)) +
                         new string(digitString);
                 }
 
@@ -185,12 +185,12 @@ namespace Utils.Conversion {
                 return new string(
                         digitString,
                         0,
-                        digitString.Length - decimalPoint) +
+                        digitString.Length - _decimalPoint) +
                     "." +
                     new string(
                         digitString,
-                        digitString.Length - decimalPoint,
-                        decimalPoint);
+                        digitString.Length - _decimalPoint,
+                        _decimalPoint);
             }
 
         }

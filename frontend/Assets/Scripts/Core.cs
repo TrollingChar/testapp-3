@@ -8,52 +8,52 @@ using War;
 
 public class Core : MonoBehaviour {
 
-    [SerializeField] private AssetsLoader assets;
-    [SerializeField] private GameObject bfPrefab;
+    [SerializeField] private AssetsLoader _assets;
+    [SerializeField] private GameObject _bfPrefab;
 
-    public static WSConnection connection;
-    public static BF bf;
-    public static CoreEvents coreEvents;
-    public static int id;
+    public static WSConnection Connection;
+    public static BF BF;
+    public static CoreEvents CoreEvents;
+    public static int Id;
 
 
     private void Start () {
-        Instantiate(assets);
-        connection = gameObject.GetComponent<WSConnection>();
-        coreEvents = gameObject.GetComponent<CoreEvents>();
+        Instantiate(_assets);
+        Connection = gameObject.GetComponent<WSConnection>();
+        CoreEvents = gameObject.GetComponent<CoreEvents>();
     }
 
 
     public void AuthAccepted (int id) {
-        Core.id = id;
+        Core.Id = id;
     }
 
 
     public void GenerateWorld (GameData data) {
-        RNG.Init(data.seed);
-        bf = Instantiate(bfPrefab).GetComponent<BF>();
-        bf.StartGame(data.players);
+        RNG.Init(data.Seed);
+        BF = Instantiate(_bfPrefab).GetComponent<BF>();
+        BF.StartGame(data.Players);
     }
 
 
     private void FixedUpdate () {
-        connection.Work(); // receive data from server and update world
-        if (bf != null) bf.Work(); // update world independently
+        Connection.Work(); // receive data from server and update world
+        if (BF != null) BF.Work(); // update world independently
     }
 
 
     public void UpdateWorld (TurnData td) {
-        bf.Work(td);
+        BF.Work(td);
     }
 
 
     public void NewTurn (int player) {
-        bf.state.StartTurn(player);
+        BF.State.StartTurn(player);
     }
 
 
     public static void Synchronize () {
-        connection.SendEndTurn(true);
+        Connection.SendEndTurn(true);
     }
 
 }

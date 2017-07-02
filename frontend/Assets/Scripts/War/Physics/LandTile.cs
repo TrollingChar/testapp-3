@@ -6,33 +6,33 @@ namespace War.Physics {
 
     public class LandTile {
 
-        public const int size = 20;
+        public const int Size = 20;
 
-        private int x, y;
-        public int land;
-        public List<XY> vertices;
+        private int _x, _y;
+        public int Land;
+        public List<XY> Vertices;
 
 
         public LandTile (int x, int y) {
-            this.x = x;
-            this.y = y;
-            vertices = new List<XY>();
+            this._x = x;
+            this._y = y;
+            Vertices = new List<XY>();
         }
 
 
         public void Erase () {
-            land = 0;
-            vertices.Clear();
+            Land = 0;
+            Vertices.Clear();
         }
 
 
         public void Fill () {
-            land = size * size;
-            vertices.Clear();
-            vertices.Add(new XY(x * size, y * size));
-            vertices.Add(new XY(x * size + size, y * size));
-            vertices.Add(new XY(x * size + size, y * size + size));
-            vertices.Add(new XY(x * size, y * size + size));
+            Land = Size * Size;
+            Vertices.Clear();
+            Vertices.Add(new XY(_x * Size, _y * Size));
+            Vertices.Add(new XY(_x * Size + Size, _y * Size));
+            Vertices.Add(new XY(_x * Size + Size, _y * Size + Size));
+            Vertices.Add(new XY(_x * Size, _y * Size + Size));
         }
 
 
@@ -43,23 +43,23 @@ namespace War.Physics {
 
 
         private void CalculateLand (Land land) {
-            this.land = 0;
-            for (int ix = x * size, xx = ix + size; ix < xx; ix++)
-            for (int iy = y * size, yy = iy + size; iy < yy; iy++) {
-                this.land += land[x, y];
+            this.Land = 0;
+            for (int ix = _x * Size, xx = ix + Size; ix < xx; ix++)
+            for (int iy = _y * Size, yy = iy + Size; iy < yy; iy++) {
+                this.Land += land[_x, _y];
             }
         }
 
 
         private void CalculateVertices (Land land) {
-            for (int ix = x * size, xx = ix + size; ix <= xx; ix++)
-            for (int iy = y * size, yy = iy + size; iy <= yy; iy++) {
+            for (int ix = _x * Size, xx = ix + Size; ix <= xx; ix++)
+            for (int iy = _y * Size, yy = iy + Size; iy <= yy; iy++) {
                 int temp
                     = land[ix - 1, iy]
                     + land[ix - 1, iy - 1]
                     + land[ix, iy - 1]
                     + land[ix, iy];
-                if (temp == 1) vertices.Add(new XY(ix, iy));
+                if (temp == 1) Vertices.Add(new XY(ix, iy));
             }
         }
 

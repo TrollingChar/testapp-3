@@ -7,14 +7,14 @@ namespace UI {
 
     public class ConnectionMenu : MonoBehaviour {
 
-        [SerializeField] private UnityEvent_string_int onSend;
+        [SerializeField] private UnityEvent_string_int _onSend;
         [SerializeField] private InputField
-            ipText,
-            idText;
+            _ipText,
+            _idText;
 
 
         public void Send () {
-            onSend.Invoke(ipText.text, int.Parse(idText.text));
+            _onSend.Invoke(_ipText.text, int.Parse(_idText.text));
         }
 
     }

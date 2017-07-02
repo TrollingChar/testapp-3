@@ -5,28 +5,28 @@ namespace UI {
 
     public class CustomPanelController : PanelController {
 
-        [SerializeField] private int timeToOpen;
+        [SerializeField] private int _timeToOpen;
         [SerializeField] private Vector2
-            openPosition,
-            closedPosition,
-            openAnchorMin,
-            closedAnchorMin,
-            openAnchorMax,
-            closedAnchorMax;
+            _openPosition,
+            _closedPosition,
+            _openAnchorMin,
+            _closedAnchorMin,
+            _openAnchorMax,
+            _closedAnchorMax;
 
-        private bool initialized;
+        private bool _initialized;
 
 
         protected override void UpdatePosition () {
-            if (!initialized) {
-                fullOpenness = timeToOpen;
-                initialized = true;
+            if (!_initialized) {
+                FullOpenness = _timeToOpen;
+                _initialized = true;
             }
-            var rt = canvas.transform as RectTransform;
-            float relativeOpenness = (float) currOpenness / fullOpenness;
-            rt.anchorMin = relativeOpenness * (openAnchorMin - closedAnchorMin) + closedAnchorMin;
-            rt.anchorMax = relativeOpenness * (openAnchorMax - closedAnchorMax) + closedAnchorMax;
-            rt.anchoredPosition = relativeOpenness * (openPosition - closedPosition) + closedPosition;
+            var rt = Canvas.transform as RectTransform;
+            float relativeOpenness = (float) CurrOpenness / FullOpenness;
+            rt.anchorMin = relativeOpenness * (_openAnchorMin - _closedAnchorMin) + _closedAnchorMin;
+            rt.anchorMax = relativeOpenness * (_openAnchorMax - _closedAnchorMax) + _closedAnchorMax;
+            rt.anchoredPosition = relativeOpenness * (_openPosition - _closedPosition) + _closedPosition;
         }
 
     }

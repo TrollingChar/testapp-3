@@ -6,21 +6,21 @@ namespace UI {
     public class StandardPanelController : PanelController {
 
         [SerializeField] private float
-            openAnchorY,
-            closedAnchorY,
-            openPositionY,
-            closedPositionY;
+            _openAnchorY,
+            _closedAnchorY,
+            _openPositionY,
+            _closedPositionY;
 
 
         protected override void UpdatePosition () {
-            var rt = canvas.transform as RectTransform;
+            var rt = Canvas.transform as RectTransform;
             Vector2
                 min = rt.anchorMin,
                 max = rt.anchorMax,
                 pos = rt.anchorMax;
-            float relativeOpenness = (float) currOpenness / fullOpenness;
-            min.y = max.y = relativeOpenness * (openAnchorY - closedAnchorY) + closedAnchorY;
-            pos.y = relativeOpenness * (openPositionY - closedPositionY) + closedPositionY;
+            float relativeOpenness = (float) CurrOpenness / FullOpenness;
+            min.y = max.y = relativeOpenness * (_openAnchorY - _closedAnchorY) + _closedAnchorY;
+            pos.y = relativeOpenness * (_openPositionY - _closedPositionY) + _closedPositionY;
             rt.anchorMin = min;
             rt.anchorMax = max;
             rt.anchoredPosition = pos;

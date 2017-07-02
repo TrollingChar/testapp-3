@@ -5,18 +5,18 @@ namespace Utils {
 
     public static class Pool <T> where T : new() {
 
-        private static List<T> list = new List<T>();
-        private static int size = 0;
+        private static List<T> _list = new List<T>();
+        private static int _size = 0;
 
 
         public static T GetObject () {
-            if (size >= list.Count) list.Add(new T());
-            return list[size++];
+            if (_size >= _list.Count) _list.Add(new T());
+            return _list[_size++];
         }
 
 
         public static void ReclaimAll () {
-            size = 0;
+            _size = 0;
         }
 
     }

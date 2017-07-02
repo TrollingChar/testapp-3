@@ -16,17 +16,17 @@ namespace Utils.IO {
         /// <summary>
         /// Whether or not this writer has been disposed yet.
         /// </summary>
-        private bool disposed = false;
+        private bool _disposed = false;
 
         /// <summary>
         /// Buffer used for temporary storage during conversion from primitives
         /// </summary>
-        private byte[] buffer = new byte[16];
+        private byte[] _buffer = new byte[16];
 
         /// <summary>
         /// Buffer used for Write(char)
         /// </summary>
-        private char[] charBuffer = new char[1];
+        private char[] _charBuffer = new char[1];
         #endregion
 
         #region Constructors
@@ -61,38 +61,38 @@ namespace Utils.IO {
             if (!stream.CanWrite) {
                 throw new ArgumentException("Stream isn't writable", "stream");
             }
-            this.stream = stream;
-            this.bitConverter = bitConverter;
-            this.encoding = encoding;
+            this._stream = stream;
+            this._bitConverter = bitConverter;
+            this._encoding = encoding;
         }
         #endregion
 
         #region Properties
-        private EndianBitConverter bitConverter;
+        private EndianBitConverter _bitConverter;
 
         /// <summary>
         /// The bit converter used to write values to the stream
         /// </summary>
         public EndianBitConverter BitConverter {
-            get { return bitConverter; }
+            get { return _bitConverter; }
         }
 
-        private Encoding encoding;
+        private Encoding _encoding;
 
         /// <summary>
         /// The encoding used to write strings
         /// </summary>
         public Encoding Encoding {
-            get { return encoding; }
+            get { return _encoding; }
         }
 
-        private Stream stream;
+        private Stream _stream;
 
         /// <summary>
         /// Gets the underlying stream of the EndianBinaryWriter.
         /// </summary>
         public Stream BaseStream {
-            get { return stream; }
+            get { return _stream; }
         }
         #endregion
 
@@ -110,7 +110,7 @@ namespace Utils.IO {
         /// </summary>
         public void Flush () {
             CheckDisposed();
-            stream.Flush();
+            _stream.Flush();
         }
 
 
@@ -121,7 +121,7 @@ namespace Utils.IO {
         /// <param name="origin">Origin of seek operation.</param>
         public void Seek (int offset, SeekOrigin origin) {
             CheckDisposed();
-            stream.Seek(offset, origin);
+            _stream.Seek(offset, origin);
         }
 
 
@@ -130,8 +130,8 @@ namespace Utils.IO {
         /// </summary>
         /// <param name="value">The value to write</param>
         public void Write (bool value) {
-            bitConverter.CopyBytes(value, buffer, 0);
-            WriteInternal(buffer, 1);
+            _bitConverter.CopyBytes(value, _buffer, 0);
+            WriteInternal(_buffer, 1);
         }
 
 
@@ -141,8 +141,8 @@ namespace Utils.IO {
         /// </summary>
         /// <param name="value">The value to write</param>
         public void Write (short value) {
-            bitConverter.CopyBytes(value, buffer, 0);
-            WriteInternal(buffer, 2);
+            _bitConverter.CopyBytes(value, _buffer, 0);
+            WriteInternal(_buffer, 2);
         }
 
 
@@ -152,8 +152,8 @@ namespace Utils.IO {
         /// </summary>
         /// <param name="value">The value to write</param>
         public void Write (int value) {
-            bitConverter.CopyBytes(value, buffer, 0);
-            WriteInternal(buffer, 4);
+            _bitConverter.CopyBytes(value, _buffer, 0);
+            WriteInternal(_buffer, 4);
         }
 
 
@@ -163,8 +163,8 @@ namespace Utils.IO {
         /// </summary>
         /// <param name="value">The value to write</param>
         public void Write (long value) {
-            bitConverter.CopyBytes(value, buffer, 0);
-            WriteInternal(buffer, 8);
+            _bitConverter.CopyBytes(value, _buffer, 0);
+            WriteInternal(_buffer, 8);
         }
 
 
@@ -174,8 +174,8 @@ namespace Utils.IO {
         /// </summary>
         /// <param name="value">The value to write</param>
         public void Write (ushort value) {
-            bitConverter.CopyBytes(value, buffer, 0);
-            WriteInternal(buffer, 2);
+            _bitConverter.CopyBytes(value, _buffer, 0);
+            WriteInternal(_buffer, 2);
         }
 
 
@@ -185,8 +185,8 @@ namespace Utils.IO {
         /// </summary>
         /// <param name="value">The value to write</param>
         public void Write (uint value) {
-            bitConverter.CopyBytes(value, buffer, 0);
-            WriteInternal(buffer, 4);
+            _bitConverter.CopyBytes(value, _buffer, 0);
+            WriteInternal(_buffer, 4);
         }
 
 
@@ -196,8 +196,8 @@ namespace Utils.IO {
         /// </summary>
         /// <param name="value">The value to write</param>
         public void Write (ulong value) {
-            bitConverter.CopyBytes(value, buffer, 0);
-            WriteInternal(buffer, 8);
+            _bitConverter.CopyBytes(value, _buffer, 0);
+            WriteInternal(_buffer, 8);
         }
 
 
@@ -207,8 +207,8 @@ namespace Utils.IO {
         /// </summary>
         /// <param name="value">The value to write</param>
         public void Write (float value) {
-            bitConverter.CopyBytes(value, buffer, 0);
-            WriteInternal(buffer, 4);
+            _bitConverter.CopyBytes(value, _buffer, 0);
+            WriteInternal(_buffer, 4);
         }
 
 
@@ -218,8 +218,8 @@ namespace Utils.IO {
         /// </summary>
         /// <param name="value">The value to write</param>
         public void Write (double value) {
-            bitConverter.CopyBytes(value, buffer, 0);
-            WriteInternal(buffer, 8);
+            _bitConverter.CopyBytes(value, _buffer, 0);
+            WriteInternal(_buffer, 8);
         }
 
 
@@ -229,8 +229,8 @@ namespace Utils.IO {
         /// </summary>
         /// <param name="value">The value to write</param>
         public void Write (decimal value) {
-            bitConverter.CopyBytes(value, buffer, 0);
-            WriteInternal(buffer, 16);
+            _bitConverter.CopyBytes(value, _buffer, 0);
+            WriteInternal(_buffer, 16);
         }
 
 
@@ -239,8 +239,8 @@ namespace Utils.IO {
         /// </summary>
         /// <param name="value">The value to write</param>
         public void Write (byte value) {
-            buffer[0] = value;
-            WriteInternal(buffer, 1);
+            _buffer[0] = value;
+            WriteInternal(_buffer, 1);
         }
 
 
@@ -249,8 +249,8 @@ namespace Utils.IO {
         /// </summary>
         /// <param name="value">The value to write</param>
         public void Write (sbyte value) {
-            buffer[0] = unchecked((byte) value);
-            WriteInternal(buffer, 1);
+            _buffer[0] = unchecked((byte) value);
+            WriteInternal(_buffer, 1);
         }
 
 
@@ -274,7 +274,7 @@ namespace Utils.IO {
         /// <param name="count">The number of bytes to write</param>
         public void Write (byte[] value, int offset, int count) {
             CheckDisposed();
-            stream.Write(value, offset, count);
+            _stream.Write(value, offset, count);
         }
 
 
@@ -283,8 +283,8 @@ namespace Utils.IO {
         /// </summary>
         /// <param name="value">The value to write</param>
         public void Write (char value) {
-            charBuffer[0] = value;
-            Write(charBuffer);
+            _charBuffer[0] = value;
+            Write(_charBuffer);
         }
 
 
@@ -331,12 +331,12 @@ namespace Utils.IO {
             }
             int index = 0;
             while (value >= 128) {
-                buffer[index++] = (byte) ((value & 0x7f) | 0x80);
+                _buffer[index++] = (byte) ((value & 0x7f) | 0x80);
                 value = value >> 7;
                 index++;
             }
-            buffer[index++] = (byte) value;
-            stream.Write(buffer, 0, index);
+            _buffer[index++] = (byte) value;
+            _stream.Write(_buffer, 0, index);
         }
         #endregion
 
@@ -345,7 +345,7 @@ namespace Utils.IO {
         /// Checks whether or not the writer has been disposed, throwing an exception if so.
         /// </summary>
         private void CheckDisposed () {
-            if (disposed) {
+            if (_disposed) {
                 throw new ObjectDisposedException("EndianBinaryWriter");
             }
         }
@@ -359,7 +359,7 @@ namespace Utils.IO {
         /// <param name="length">The number of bytes to write</param>
         private void WriteInternal (byte[] bytes, int length) {
             CheckDisposed();
-            stream.Write(bytes, 0, length);
+            _stream.Write(bytes, 0, length);
         }
         #endregion
 
@@ -368,10 +368,10 @@ namespace Utils.IO {
         /// Disposes of the underlying stream.
         /// </summary>
         public void Dispose () {
-            if (!disposed) {
+            if (!_disposed) {
                 Flush();
-                disposed = true;
-                ((IDisposable) stream).Dispose();
+                _disposed = true;
+                ((IDisposable) _stream).Dispose();
             }
         }
         #endregion

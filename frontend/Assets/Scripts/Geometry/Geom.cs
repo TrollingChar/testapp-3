@@ -9,15 +9,15 @@ namespace Geometry {
             XY tangent = normal.Rotated90CW();
             XY convertedVelocity = ConvertToBasis(velocity, tangent, normal);
 
-            return tangent * tangentialBounce * convertedVelocity.x - normal * normalBounce * convertedVelocity.y;
+            return tangent * tangentialBounce * convertedVelocity.X - normal * normalBounce * convertedVelocity.Y;
         }
 
 
         public static XY ConvertToBasis (XY v, XY x, XY y) {
             // коэффициенты системы уравнений
             float
-                a0 = x.x, b0 = y.x, c0 = v.x,
-                a1 = x.y, b1 = y.y, c1 = v.y;
+                a0 = x.X, b0 = y.X, c0 = v.X,
+                a1 = x.Y, b1 = y.Y, c1 = v.Y;
             // определитель матрицы при решении системы методом Крамера
             float d = a0 * b1 - a1 * b0;
             // null - прямые параллельны или совпадают
@@ -31,26 +31,26 @@ namespace Geometry {
             if (XY.Dot(dir, originToCircle) <= 0) return 1; //float.NaN;
 
             float h2 = XY.Cross(dir, originToCircle);
-            h2 *= h2 / dir.sqrLength;
+            h2 *= h2 / dir.SqrLength;
 
             float r2 = r * r;
 
             if (h2 > r2) return 1; //float.NaN
 
-            return Mathf.Clamp01((Mathf.Sqrt(originToCircle.sqrLength - h2) - Mathf.Sqrt(r2 - h2)) / dir.length);
+            return Mathf.Clamp01((Mathf.Sqrt(originToCircle.SqrLength - h2) - Mathf.Sqrt(r2 - h2)) / dir.Length);
         }
 
 
         public static float CastRayToVertical (XY o, XY dir, float x) {
-            if (dir.x == 0) return 1;
-            float d = (x - o.x) / dir.x;
+            if (dir.X == 0) return 1;
+            float d = (x - o.X) / dir.X;
             return d < 0 || d > 1 ? 1 : d;
         }
 
 
         public static float CastRayToHorizontal (XY o, XY dir, float y) {
-            if (dir.y == 0) return 1;
-            float d = (y - o.y) / dir.y;
+            if (dir.Y == 0) return 1;
+            float d = (y - o.Y) / dir.Y;
             return d < 0 || d > 1 ? 1 : d;
         }
 

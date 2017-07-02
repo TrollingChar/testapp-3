@@ -2,6 +2,8 @@
 using UnityEngine.Events;
 using War;
 
+// ReSharper disable All
+
 
 namespace Utils {
 

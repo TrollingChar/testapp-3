@@ -9,65 +9,65 @@ namespace War.Physics {
 
     public class Land {
 
-        private int progress, fullProgress;
+        private int _progress, _fullProgress;
 
-        private byte[,] array;
-        private LandTiles tiles;
-        private int width, height; // do not make them odd
-        private int widthInTiles, heightInTiles;
+        private byte[,] _array;
+        private LandTiles _tiles;
+        private int _width, _height; // do not make them odd
+        private int _widthInTiles, _heightInTiles;
 
-        public float tangentialBounce, normalBounce;
+        public float TangentialBounce, NormalBounce;
 
 
         public Land (LandGen gen, Texture2D landTexture, SpriteRenderer renderer) {
             InitArray(gen);
             InitTiles();
             InitTexture(landTexture, renderer);
-            tangentialBounce = 0.9f;
-            normalBounce = 0.5f;
+            TangentialBounce = 0.9f;
+            NormalBounce = 0.5f;
         }
 
 
         private void InitArray (LandGen gen) {
-            array = gen.array;
+            _array = gen.Array;
 
-            width = array.GetLength(0);
-            height = array.GetLength(1);
+            _width = _array.GetLength(0);
+            _height = _array.GetLength(1);
         }
 
 
         private void InitTexture (Texture2D landTexture, SpriteRenderer renderer) {
-            var tex = new Texture2D(width, height);
-            for (int x = 0; x < width; ++x)
-            for (int y = 0; y < height; ++y) {
-                tex.SetPixel(x, y, array[x, y] == 0 ? Color.clear : landTexture.GetPixel(x & 0xff, y & 0xff));
+            var tex = new Texture2D(_width, _height);
+            for (int x = 0; x < _width; ++x)
+            for (int y = 0; y < _height; ++y) {
+                tex.SetPixel(x, y, _array[x, y] == 0 ? Color.clear : landTexture.GetPixel(x & 0xff, y & 0xff));
             }
             tex.Apply();
-            renderer.sprite = Sprite.Create(tex, new Rect(0, 0, width, height), new Vector2(0, 0), 1f);
+            renderer.sprite = Sprite.Create(tex, new Rect(0, 0, _width, _height), new Vector2(0, 0), 1f);
         }
 
 
         private void InitTiles () {
-            widthInTiles = width / LandTile.size;
-            if (width % LandTile.size != 0) ++widthInTiles;
-            heightInTiles = height / LandTile.size;
-            if (height % LandTile.size != 0) ++heightInTiles;
+            _widthInTiles = _width / LandTile.Size;
+            if (_width % LandTile.Size != 0) ++_widthInTiles;
+            _heightInTiles = _height / LandTile.Size;
+            if (_height % LandTile.Size != 0) ++_heightInTiles;
 
-            tiles = new LandTiles();
-            for (int x = 0; x < widthInTiles; x++)
-            for (int y = 0; y < heightInTiles; y++) {
+            _tiles = new LandTiles();
+            for (int x = 0; x < _widthInTiles; x++)
+            for (int y = 0; y < _heightInTiles; y++) {
                 var tile = new LandTile(x, y);
                 tile.Recalculate(this);
-                tiles[x, y] = tile;
+                _tiles[x, y] = tile;
             }
         }
 
 
         public byte this [int x, int y] {
             get {
-                return x < 0 || y < 0 || x >= width || y >= height
+                return x < 0 || y < 0 || x >= _width || y >= _height
                     ? (byte) 0
-                    : array[x, y];
+                    : _array[x, y];
             }
             // set { array[x, y] = value == 0 ? 0 : 1; }
         }
@@ -80,82 +80,82 @@ namespace War.Physics {
 
 
         public Collision CastRay (XY beg, XY v, out float dist, float width = 0) {
-            XY bp, ep, normal = XY.zero, end = beg + v;
+            XY bp, ep, normal = XY.Zero, end = beg + v;
             Primitive pr = null;
 
             dist = 1;
 
-            int w = array.GetLength(0);
-            int h = array.GetLength(1);
+            int w = _array.GetLength(0);
+            int h = _array.GetLength(1);
 
-            if (v.x != 0) {
+            if (v.X != 0) {
                 bp = beg;
                 ep = bp + v;
                 int startX, endX;
-                if (v.x < 0) {
-                    bp.x -= width;
-                    ep.x -= width;
+                if (v.X < 0) {
+                    bp.X -= width;
+                    ep.X -= width;
                     // todo: clamp between 0 and array bound
-                    startX = Mathf.FloorToInt(bp.x);
-                    endX = Mathf.FloorToInt(ep.x);
+                    startX = Mathf.FloorToInt(bp.X);
+                    endX = Mathf.FloorToInt(ep.X);
                 } else {
-                    bp.x += width;
-                    ep.x += width;
-                    startX = Mathf.CeilToInt(bp.x);
-                    endX = Mathf.CeilToInt(ep.x);
+                    bp.X += width;
+                    ep.X += width;
+                    startX = Mathf.CeilToInt(bp.X);
+                    endX = Mathf.CeilToInt(ep.X);
                 }
                 for (int x = startX; x != endX;) {
                     float d = Geom.CastRayToVertical(bp, v, x);
-                    int y = Mathf.FloorToInt(bp.y + v.y * d);
-                    if (v.x < 0) --x;
+                    int y = Mathf.FloorToInt(bp.Y + v.Y * d);
+                    if (v.X < 0) --x;
                     if (d < 1 && this[x, y] != 0) {
                         dist = d;
                         v *= d;
-                        if (v.x < 0) {
-                            normal = XY.right;
+                        if (v.X < 0) {
+                            normal = XY.Right;
                             pr = VerticalEdgePrimitive.Right(++x);
                         } else {
-                            normal = XY.left;
+                            normal = XY.Left;
                             pr = VerticalEdgePrimitive.Left(x);
                         }
                         break;
                     }
-                    if (v.x > 0) ++x;
+                    if (v.X > 0) ++x;
                 }
             }
-            if (v.y != 0) {
+            if (v.Y != 0) {
                 bp = beg;
                 ep = bp + v;
                 int startY, endY;
-                if (v.y < 0) {
-                    bp.y -= width;
-                    ep.y -= width;
+                if (v.Y < 0) {
+                    bp.Y -= width;
+                    ep.Y -= width;
                     // todo: clamp between 0 and array bound
-                    startY = Mathf.FloorToInt(bp.y);
-                    endY = Mathf.FloorToInt(ep.y);
+                    startY = Mathf.FloorToInt(bp.Y);
+                    endY = Mathf.FloorToInt(ep.Y);
                 } else {
-                    bp.y += width;
-                    ep.y += width;
-                    startY = Mathf.CeilToInt(bp.y);
-                    endY = Mathf.CeilToInt(ep.y);
+                    bp.Y += width;
+                    ep.Y += width;
+                    startY = Mathf.CeilToInt(bp.Y);
+                    endY = Mathf.CeilToInt(ep.Y);
                 }
                 for (int y = startY; y != endY;) {
                     float d = Geom.CastRayToHorizontal(bp, v, y);
-                    int x = Mathf.FloorToInt(bp.x + v.x * d);
-                    if (v.y < 0) --y;
+                    int x = Mathf.FloorToInt(bp.X + v.X * d);
+                    if (v.Y < 0) --y;
                     if (d < 1 && this[x, y] != 0) {
                         dist *= d;
                         v *= d;
-                        if (v.y < 0) {
-                            normal = XY.up;
+                        if (v.Y < 0) {
+                            normal = XY.Up;
                             pr = HorizontalEdgePrimitive.Up(++y);
                         } else {
-                            normal = XY.down;
+                            normal = XY.Down;
                             pr = HorizontalEdgePrimitive.Down(y);
                         }
                         break;
                     }
-                    if (v.y > 0) ++y;
+                    if (v.Y > 0) ++y;
                 }
             }
             if (width > 0) {
@@ -166,15 +166,15 @@ namespace War.Physics {
                 ep = bp + v;
 
                 AABB aabb = new AABBF(
-                    Mathf.Min(bp.x, ep.x) - width,
-                    Mathf.Max(bp.x, ep.x) + width,
-                    Mathf.Min(bp.y, ep.y) - width,
-                    Mathf.Max(bp.y, ep.y) + width
-                ).ToTiles(LandTile.size);
+                    Mathf.Min(bp.X, ep.X) - width,
+                    Mathf.Max(bp.X, ep.X) + width,
+                    Mathf.Min(bp.Y, ep.Y) - width,
+                    Mathf.Max(bp.Y, ep.Y) + width
+                ).ToTiles(LandTile.Size);
 
-                for (int x = aabb.left; x < aabb.right; x++)
-                for (int y = aabb.bottom; y < aabb.top; y++) {
-                    foreach (XY pt in tiles[x, y].vertices) {
+                for (int x = aabb.Left; x < aabb.Right; x++)
+                for (int y = aabb.Bottom; y < aabb.Top; y++) {
+                    foreach (XY pt in _tiles[x, y].Vertices) {
                         float dd = Geom.CastRayToCircle(bp, v, pt, width);
                         if (dd >= d) continue;
                         d = dd;
@@ -197,17 +197,17 @@ namespace War.Physics {
             float dist = 1;
             Collision min = null;
 
-            if (v.x < 0) {
+            if (v.X < 0) {
                 points = new List<XY> {new XY(left, top), new XY(left, bottom)};
-                if (v.y < 0) points.Add(new XY(right, bottom));
-                else if (v.y > 0) points.Add(new XY(right, top));
-            } else if (v.x > 0) {
+                if (v.Y < 0) points.Add(new XY(right, bottom));
+                else if (v.Y > 0) points.Add(new XY(right, top));
+            } else if (v.X > 0) {
                 points = new List<XY> {new XY(right, top), new XY(right, bottom)};
-                if (v.y < 0) points.Add(new XY(left, bottom));
-                else if (v.y > 0) points.Add(new XY(left, top));
+                if (v.Y < 0) points.Add(new XY(left, bottom));
+                else if (v.Y > 0) points.Add(new XY(left, top));
             } else {
-                if (v.y < 0) points = new List<XY> {new XY(left, bottom), new XY(right, bottom)};
-                else if (v.y > 0) points = new List<XY> {new XY(left, top), new XY(right, top)};
+                if (v.Y < 0) points = new List<XY> {new XY(left, bottom), new XY(right, bottom)};
+                else if (v.Y > 0) points = new List<XY> {new XY(left, top), new XY(right, top)};
                 else return null;
             }
 
@@ -222,30 +222,30 @@ namespace War.Physics {
 
             // проверили вершины прямоугольника, теперь осталось проверить стороны
             float dd = 1;
-            XY normal = XY.zero;
+            XY normal = XY.Zero;
             Primitive pr1 = null, pr2 = null;
 
-            if (v.x != 0) {
-                float xx = v.x < 0 ? left : right;
+            if (v.X != 0) {
+                float xx = v.X < 0 ? left : right;
                 XY a = new XY(xx, bottom);
                 XY b = new XY(xx, top);
-                XY n = v.x < 0 ? XY.right : XY.left;
-                Primitive current = v.x < 0
+                XY n = v.X < 0 ? XY.Right : XY.Left;
+                Primitive current = v.X < 0
                     ? VerticalEdgePrimitive.Left(xx)
                     : VerticalEdgePrimitive.Right(xx);
 
                 AABB aabb = new AABBF(
-                    xx + Mathf.Min(0, v.x),
-                    xx + Mathf.Max(0, v.x),
-                    Mathf.Min(a.y, b.y) + Mathf.Min(0, v.y),
-                    Mathf.Max(a.y, b.y) + Mathf.Max(0, v.y)
-                ).ToTiles(LandTile.size);
+                    xx + Mathf.Min(0, v.X),
+                    xx + Mathf.Max(0, v.X),
+                    Mathf.Min(a.Y, b.Y) + Mathf.Min(0, v.Y),
+                    Mathf.Max(a.Y, b.Y) + Mathf.Max(0, v.Y)
+                ).ToTiles(LandTile.Size);
 
-                for (int x = aabb.left; x < aabb.right; x++)
-                for (int y = aabb.bottom; y < aabb.top; y++) {
-                    foreach (XY pt in tiles[x, y].vertices) {
+                for (int x = aabb.Left; x < aabb.Right; x++)
+                for (int y = aabb.Bottom; y < aabb.Top; y++) {
+                    foreach (XY pt in _tiles[x, y].Vertices) {
                         float d = Geom.CastRayToVertical(pt, -v, xx);
-                        float yy = pt.y - v.y * d;
+                        float yy = pt.Y - v.Y * d;
                         if (yy <= bottom || yy >= top || d >= dd) continue;
                         dd = d;
                         normal = n;
@@ -255,27 +255,27 @@ namespace War.Physics {
                 }
             }
 
-            if (v.y != 0) {
-                float yy = v.y < 0 ? bottom : top;
+            if (v.Y != 0) {
+                float yy = v.Y < 0 ? bottom : top;
                 XY a = new XY(left, yy);
                 XY b = new XY(right, yy);
-                XY n = v.y < 0 ? XY.up : XY.down;
-                Primitive current = v.y < 0
+                XY n = v.Y < 0 ? XY.Up : XY.Down;
+                Primitive current = v.Y < 0
                     ? HorizontalEdgePrimitive.Down(yy)
                     : HorizontalEdgePrimitive.Up(yy);
 
                 AABB aabb = new AABBF(
-                    Mathf.Min(a.x, b.x) + Mathf.Min(0, v.x),
-                    Mathf.Max(a.x, b.x) + Mathf.Max(0, v.x),
-                    yy + Mathf.Min(0, v.y),
-                    yy + Mathf.Max(0, v.y)
-                ).ToTiles(LandTile.size);
+                    Mathf.Min(a.X, b.X) + Mathf.Min(0, v.X),
+                    Mathf.Max(a.X, b.X) + Mathf.Max(0, v.X),
+                    yy + Mathf.Min(0, v.Y),
+                    yy + Mathf.Max(0, v.Y)
+                ).ToTiles(LandTile.Size);
 
-                for (int x = aabb.left; x < aabb.right; x++)
-                for (int y = aabb.bottom; y < aabb.top; y++) {
-                    foreach (XY pt in tiles[x, y].vertices) {
+                for (int x = aabb.Left; x < aabb.Right; x++)
+                for (int y = aabb.Bottom; y < aabb.Top; y++) {
+                    foreach (XY pt in _tiles[x, y].Vertices) {
                         float d = Geom.CastRayToHorizontal(pt, -v, yy);
-                        float xx = pt.x - v.x * d;
+                        float xx = pt.X - v.X * d;
                         if (xx <= left || xx >= right || d >= dd) continue;
                         dd = d;
                         normal = n;

@@ -5,12 +5,12 @@ namespace UI {
 
     public abstract class PanelController : MonoBehaviour {
 
-        [SerializeField] protected Canvas canvas;
+        [SerializeField] protected Canvas Canvas;
 
-        protected int currOpenness = 0;
-        protected int fullOpenness = 15;
+        protected int CurrOpenness = 0;
+        protected int FullOpenness = 15;
 
-        public bool open;
+        public bool Open;
 
 
         private void Start () {
@@ -19,13 +19,13 @@ namespace UI {
 
 
         private void Update () {
-            if (open) {
-                if (currOpenness >= fullOpenness) return;
-                ++currOpenness;
+            if (Open) {
+                if (CurrOpenness >= FullOpenness) return;
+                ++CurrOpenness;
                 UpdatePosition();
             } else {
-                if (currOpenness <= 0) return;
-                --currOpenness;
+                if (CurrOpenness <= 0) return;
+                --CurrOpenness;
                 UpdatePosition();
             }
         }
@@ -35,23 +35,23 @@ namespace UI {
 
 
         public void Show (bool instant = false) {
-            open = true;
+            Open = true;
             if (!instant) return;
-            currOpenness = fullOpenness;
+            CurrOpenness = FullOpenness;
             UpdatePosition();
         }
 
 
         public void Hide (bool instant = false) {
-            open = false;
+            Open = false;
             if (!instant) return;
-            currOpenness = 0;
+            CurrOpenness = 0;
             UpdatePosition();
         }
 
 
         public void Toggle (bool instant = false) {
-            if (open) {
+            if (Open) {
                 Hide(instant);
             } else {
                 Show(instant);

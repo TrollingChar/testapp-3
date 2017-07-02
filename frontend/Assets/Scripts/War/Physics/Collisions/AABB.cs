@@ -6,33 +6,33 @@ namespace War.Physics.Collisions {
 
     public struct AABBF {
 
-        public float left, right, bottom, top;
+        public float Left, Right, Bottom, Top;
 
 
         public AABBF (float left, float right, float bottom, float top) {
-            this.left = left;
-            this.right = right;
-            this.bottom = bottom;
-            this.top = top;
+            Left = left;
+            Right = right;
+            Bottom = bottom;
+            Top = top;
         }
 
 
         public AABBF Expanded (XY v) {
             return new AABBF(
-                left + Mathf.Min(0, v.x),
-                right + Mathf.Max(0, v.x),
-                bottom + Mathf.Min(0, v.y),
-                top + Mathf.Max(0, v.y)
+                Left + Mathf.Min(0, v.X),
+                Right + Mathf.Max(0, v.X),
+                Bottom + Mathf.Min(0, v.Y),
+                Top + Mathf.Max(0, v.Y)
             );
         }
 
 
         public AABB ToTiles (float tileSize) {
             return new AABB(
-                Mathf.FloorToInt(left / tileSize),
-                Mathf.FloorToInt(right / tileSize) + 1,
-                Mathf.FloorToInt(bottom / tileSize),
-                Mathf.FloorToInt(top / tileSize) + 1
+                Mathf.FloorToInt(Left / tileSize),
+                Mathf.FloorToInt(Right / tileSize) + 1,
+                Mathf.FloorToInt(Bottom / tileSize),
+                Mathf.FloorToInt(Top / tileSize) + 1
             );
         }
 
@@ -41,14 +41,14 @@ namespace War.Physics.Collisions {
 
     public struct AABB {
 
-        public int left, right, bottom, top;
+        public int Left, Right, Bottom, Top;
 
 
         public AABB (int left, int right, int bottom, int top) {
-            this.left = left;
-            this.right = right;
-            this.bottom = bottom;
-            this.top = top;
+            Left = left;
+            Right = right;
+            Bottom = bottom;
+            Top = top;
         }
 
     }

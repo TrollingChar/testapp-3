@@ -5,7 +5,7 @@ namespace War {
 
     public class LandGen {
 
-        public byte[,] array;
+        public byte[,] Array;
 
         // water at Y=0
         // sky at max Y
@@ -14,13 +14,13 @@ namespace War {
 
 
         public LandGen (byte[,] array) {
-            this.array = array;
+            this.Array = array;
         }
 
 
         public LandGen Expand (int iterations = 1) {
             byte[,]
-                array = this.array,
+                array = this.Array,
                 result = array;
 
             for (int i = 0; i < iterations; ++i) {
@@ -97,7 +97,7 @@ namespace War {
         public LandGen Cellular (uint rules, int iterations = 5) {
             uint[] init = {1, 1 << 16};
             byte[,]
-                array = this.array,
+                array = this.Array,
                 result = array;
 
             int w = array.GetLength(0);
@@ -188,25 +188,25 @@ namespace War {
 
         public LandGen Rescale (int w, int h) {
             var result = new byte[w, h];
-            int thisw = array.GetLength(0);
-            int thish = array.GetLength(1);
+            int thisw = Array.GetLength(0);
+            int thish = Array.GetLength(1);
 
             for (int x = 0; x < w; x++)
             for (int y = 0; y < h; y++) {
-                result[x, y] = array[x * thisw / w, y * thish / h];
+                result[x, y] = Array[x * thisw / w, y * thish / h];
             }
             return new LandGen(result);
         }
 
 
         public LandGen SwitchDimensions () {
-            int w = array.GetLength(0),
-                h = array.GetLength(1);
+            int w = Array.GetLength(0),
+                h = Array.GetLength(1);
             var result = new byte[h, w];
 
             for (int x = 0; x < w; ++x) {
                 int ix = w - x - 1;
-                for (int y = 0; y < h; ++y) result[y, x] = array[ix, y];
+                for (int y = 0; y < h; ++y) result[y, x] = Array[ix, y];
             }
             return new LandGen(result);
         }

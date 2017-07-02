@@ -6,25 +6,25 @@ namespace War.Camera {
 
     public class CameraWrapper : MonoBehaviour {
 
-        [HideInInspector] public new UnityEngine.Camera camera;
-        [HideInInspector] public Vector3 target;
-        [HideInInspector] public CameraController controller;
+        [HideInInspector] public new UnityEngine.Camera Camera;
+        [HideInInspector] public Vector3 Target;
+        [HideInInspector] public CameraController Controller;
 
-        private int size = 0;
+        private int _size = 0;
 
 
         private void Awake () {
-            camera = gameObject.GetComponent<UnityEngine.Camera>();
-            camera.orthographicSize = (size = Screen.height) * 0.5f;
-            target = camera.transform.position;
-            controller = new CameraController(this);
+            Camera = gameObject.GetComponent<UnityEngine.Camera>();
+            Camera.orthographicSize = (_size = Screen.height) * 0.5f;
+            Target = Camera.transform.position;
+            Controller = new CameraController(this);
         }
 
 
         private void Update () {
-            if (Screen.height != size) camera.orthographicSize = (size = Screen.height) * 0.5f;
-            controller.Update();
-            camera.transform.position = Vector3.LerpUnclamped(camera.transform.position, target, 0.2f);
+            if (Screen.height != _size) Camera.orthographicSize = (_size = Screen.height) * 0.5f;
+            Controller.Update();
+            Camera.transform.position = Vector3.LerpUnclamped(Camera.transform.position, Target, 0.2f);
         }
 
 
@@ -35,14 +35,14 @@ namespace War.Camera {
 
 
         public void LookAt (Vector3 xyz, bool instantly = false) {
-            target.x = xyz.x;
-            target.y = xyz.y;
-            if (instantly) camera.transform.position = target;
+            Target.x = xyz.x;
+            Target.y = xyz.y;
+            if (instantly) Camera.transform.position = Target;
         }
 
 
-        public XY worldMousePosition {
-            get { return (Vector2) (camera.ScreenToWorldPoint(Input.mousePosition)); }
+        public XY WorldMousePosition {
+            get { return (Vector2) (Camera.ScreenToWorldPoint(Input.mousePosition)); }
         }
 
     }

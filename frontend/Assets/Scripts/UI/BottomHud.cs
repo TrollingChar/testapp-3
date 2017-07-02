@@ -6,36 +6,36 @@ namespace UI {
 
     public class BottomHud : MonoBehaviour {
 
-        [SerializeField] private Text middleText;
-        [SerializeField] private Text time;
+        [SerializeField] private Text _middleText;
+        [SerializeField] private Text _time;
 
-        private string turnTime = "";
-        private string gameTime = "";
+        private string _turnTime = "";
+        private string _gameTime = "";
 
 
         public void SetTurnTime (string turnTime) {
-            if (this.turnTime == turnTime) return;
-            this.turnTime = turnTime;
+            if (this._turnTime == turnTime) return;
+            this._turnTime = turnTime;
             UpdateTimer();
         }
 
 
         public void SetGameTime (string gameTime) {
-            if (this.gameTime == gameTime) return;
-            this.gameTime = gameTime;
+            if (this._gameTime == gameTime) return;
+            this._gameTime = gameTime;
             UpdateTimer();
         }
 
 
         private void UpdateTimer () {
-            time.text =
-                turnTime == ""
-                    ? gameTime == ""
+            _time.text =
+                _turnTime == ""
+                    ? _gameTime == ""
                         ? ""
-                        : "<size=90>" + gameTime + "</size>"
-                    : gameTime == ""
-                        ? "<size=120>" + turnTime + "</size>"
-                        : "<size=120>" + turnTime + "</size>\n<size=60>" + gameTime + "</size>";
+                        : "<size=90>" + _gameTime + "</size>"
+                    : _gameTime == ""
+                        ? "<size=120>" + _turnTime + "</size>"
+                        : "<size=120>" + _turnTime + "</size>\n<size=60>" + _gameTime + "</size>";
         }
 
     }

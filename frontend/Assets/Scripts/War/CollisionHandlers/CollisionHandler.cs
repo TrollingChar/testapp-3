@@ -5,7 +5,7 @@ namespace War.CollisionHandlers {
 
     internal class CollisionHandler {
 
-        private Object obj;
+        private Object _obj;
 
         public void OnAdd () {}
 

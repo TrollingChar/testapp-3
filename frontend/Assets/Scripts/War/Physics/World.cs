@@ -9,21 +9,21 @@ namespace War.Physics {
 
     public class World {
 
-        public float gravity;
-        public float waterLevel;
-        public Land land;
-        public Tiles tiles;
-        private LinkedList<Object> objects;
+        public float Gravity;
+        public float WaterLevel;
+        public Land Land;
+        public Tiles Tiles;
+        private LinkedList<Object> _objects;
 
-        private const float precision = 0.1f;
+        private const float Precision = 0.1f;
 
 
         public World (Texture2D tex, SpriteRenderer renderer) {
-            gravity = -0.5f;
-            waterLevel = 0;
-            tiles = new Tiles();
+            Gravity = -0.5f;
+            WaterLevel = 0;
+            Tiles = new Tiles();
 
-            land = new Land(
+            Land = new Land(
                 new LandGen(
                         new byte[,] {
                             {0, 0, 0, 0, 0},
@@ -43,15 +43,15 @@ namespace War.Physics {
                 tex,
                 renderer
             );
-            objects = new LinkedList<Object>();
+            _objects = new LinkedList<Object>();
         }
 
 
         public void Update (TurnData td) {
             //Debug.Log(objects.Count);
 
-            if (Core.bf.state.timer % 500 == 0 && td != null && td.mb) {
-                AddObject(new Worm(), td.xy);
+            if (Core.BF.State.Timer % 500 == 0 && td != null && td.MB) {
+                AddObject(new Worm(), td.XY);
             }
 
             /*if (td != null) {
@@ -61,96 +61,96 @@ namespace War.Physics {
                 }
             }*/
 
-            foreach (var o in objects) o.Update();
-            foreach (var o in objects) {
-                o.movement = 1;
-                o.excluded.Clear();
+            foreach (var o in _objects) o.Update();
+            foreach (var o in _objects) {
+                o.Movement = 1;
+                o.Excluded.Clear();
                 o.ExcludeObjects();
             }
 
             for (int i = 0, iter = 5; i < iter; i++) {
-                foreach (var o in objects) {
-                    if (o.velocity.length * o.movement <= precision) continue;
+                foreach (var o in _objects) {
+                    if (o.Velocity.Length * o.Movement <= Precision) continue;
 
                     var c = o.NextCollision();
-                    Object o2 = c == null || c.collider2 == null ? null : c.collider2.obj;
+                    Object o2 = c == null || c.Collider2 == null ? null : c.Collider2.Obj;
 
                     if (c == null) {
                         // no collision
-                        o.position += o.movement * (1 - precision) * o.velocity;
-                        o.movement = 0;
-                    } else if (c.collider2 == null) {
+                        o.Position += o.Movement * (1 - Precision) * o.Velocity;
+                        o.Movement = 0;
+                    } else if (c.Collider2 == null) {
                         // collided with land
-                        o.position += c.offset.WithLengthReduced(precision);
-                        o.movement -= Mathf.Sqrt(c.offset.sqrLength / o.velocity.sqrLength);
-                        o.velocity = Geom.Bounce(
-                            o.velocity,
-                            c.normal,
-                            Mathf.Sqrt(c.collider1.tangentialBounce * land.tangentialBounce),
-                            Mathf.Sqrt(c.collider1.normalBounce * land.normalBounce)
+                        o.Position += c.Offset.WithLengthReduced(Precision);
+                        o.Movement -= Mathf.Sqrt(c.Offset.SqrLength / o.Velocity.SqrLength);
+                        o.Velocity = Geom.Bounce(
+                            o.Velocity,
+                            c.Normal,
+                            Mathf.Sqrt(c.Collider1.TangentialBounce * Land.TangentialBounce),
+                            Mathf.Sqrt(c.Collider1.NormalBounce * Land.NormalBounce)
                         );
                         o.OnCollision(c);
-                    } else if (i > iter - 3 || o.superMass < o2.superMass) {
+                    } else if (i > iter - 3 || o.SuperMass < o2.SuperMass) {
                         // force hard collision as if second object was land
                         // as long as magic number equals to 3, the eternal balance in the world will remain
-                        o.position += c.offset.WithLengthReduced(precision);
-                        o.movement -= Mathf.Sqrt(c.offset.sqrLength / o.velocity.sqrLength);
-                        o.velocity = Geom.Bounce(
-                            o.velocity,
-                            c.normal,
-                            Mathf.Sqrt(c.collider1.tangentialBounce * c.collider2.tangentialBounce),
-                            Mathf.Sqrt(c.collider1.normalBounce * c.collider2.normalBounce)
+                        o.Position += c.Offset.WithLengthReduced(Precision);
+                        o.Movement -= Mathf.Sqrt(c.Offset.SqrLength / o.Velocity.SqrLength);
+                        o.Velocity = Geom.Bounce(
+                            o.Velocity,
+                            c.Normal,
+                            Mathf.Sqrt(c.Collider1.TangentialBounce * c.Collider2.TangentialBounce),
+                            Mathf.Sqrt(c.Collider1.NormalBounce * c.Collider2.NormalBounce)
                         );
                         o.OnCollision(c);
                         o2.OnCollision(-c);
-                    } else if (o2.superMass < o.superMass) {
+                    } else if (o2.SuperMass < o.SuperMass) {
                         // treat first object as it has infinite mass
-                        o.position += c.offset.WithLengthReduced(precision);
-                        o.movement -= Mathf.Sqrt(c.offset.sqrLength / o.velocity.sqrLength);
-                        o.velocity = Geom.Bounce(
-                            o.velocity,
-                            c.normal,
-                            Mathf.Sqrt(c.collider1.tangentialBounce * c.collider2.tangentialBounce),
-                            Mathf.Sqrt(c.collider1.normalBounce * c.collider2.normalBounce)
+                        o.Position += c.Offset.WithLengthReduced(Precision);
+                        o.Movement -= Mathf.Sqrt(c.Offset.SqrLength / o.Velocity.SqrLength);
+                        o.Velocity = Geom.Bounce(
+                            o.Velocity,
+                            c.Normal,
+                            Mathf.Sqrt(c.Collider1.TangentialBounce * c.Collider2.TangentialBounce),
+                            Mathf.Sqrt(c.Collider1.NormalBounce * c.Collider2.NormalBounce)
                         );
                         o.OnCollision(c);
                         o2.OnCollision(-c);
                     } else {
-                        o.position += c.offset.WithLengthReduced(precision);
-                        o.movement -= Mathf.Sqrt(c.offset.sqrLength / o.velocity.sqrLength);
+                        o.Position += c.Offset.WithLengthReduced(Precision);
+                        o.Movement -= Mathf.Sqrt(c.Offset.SqrLength / o.Velocity.SqrLength);
 
                         // найти скалярное произведение нормали столкновения и скорости второго объекта
                         // так мы узнаем мешает ли он движению первого
-                        float temp = XY.Dot(c.normal, c.collider2.obj.velocity);
-                        if (temp >= 0 || c.collider2.obj.movement * c.collider2.obj.velocity.length <= precision) {
+                        float temp = XY.Dot(c.Normal, c.Collider2.Obj.Velocity);
+                        if (temp >= 0 || c.Collider2.Obj.Movement * c.Collider2.Obj.Velocity.Length <= Precision) {
                             // collision
-                            XY velocity = (o.mass * o.velocity + o2.mass * o2.velocity) / (o.mass + o2.mass);
-                            XY v1 = o.velocity - velocity;
-                            XY v2 = o2.velocity - velocity;
-                            float tangBounce = Mathf.Sqrt(c.collider1.tangentialBounce * c.collider2.tangentialBounce);
-                            float normBounce = Mathf.Sqrt(c.collider1.normalBounce * c.collider2.normalBounce);
-                            o.velocity = velocity + Geom.Bounce(v1, c.normal, tangBounce, normBounce);
-                            o2.velocity = velocity + Geom.Bounce(v2, c.normal, tangBounce, normBounce);
+                            XY velocity = (o.Mass * o.Velocity + o2.Mass * o2.Velocity) / (o.Mass + o2.Mass);
+                            XY v1 = o.Velocity - velocity;
+                            XY v2 = o2.Velocity - velocity;
+                            float tangBounce = Mathf.Sqrt(c.Collider1.TangentialBounce * c.Collider2.TangentialBounce);
+                            float normBounce = Mathf.Sqrt(c.Collider1.NormalBounce * c.Collider2.NormalBounce);
+                            o.Velocity = velocity + Geom.Bounce(v1, c.Normal, tangBounce, normBounce);
+                            o2.Velocity = velocity + Geom.Bounce(v2, c.Normal, tangBounce, normBounce);
                         }
 
                         o.OnCollision(c);
                         o2.OnCollision(-c);
                     }
-                    if (o.position.y < waterLevel) o.Remove();
+                    if (o.Position.Y < WaterLevel) o.Remove();
                 }
             }
 
             // handle stuck objects:
-            foreach (var o in objects) {
+            foreach (var o in _objects) {
                 o.UpdateSpritePosition();
-                o.velocity *= 1 - o.movement;
+                o.Velocity *= 1 - o.Movement;
             }
 
             // clear all NullObjects WITHOUT INVALIDATING THEIR NODES!
-            for (var node = objects.First; node != null;) {
+            for (var node = _objects.First; node != null;) {
                 if (node.Value is NullObject) {
                     var next = node.Next;
-                    objects.Remove(node);
+                    _objects.Remove(node);
                     node = next;
                 } else node = node.Next;
             }
@@ -162,9 +162,9 @@ namespace War.Physics {
 
 
         public void AddObject (Object o, XY position, XY velocity = default(XY)) {
-            o.node = objects.AddLast(o);
-            o.position = position;
-            o.velocity = velocity;
+            o.Node = _objects.AddLast(o);
+            o.Position = position;
+            o.Velocity = velocity;
             o.OnAdd();
             o.UpdateSpritePosition();
         }

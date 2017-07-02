@@ -7,13 +7,13 @@ namespace War.Physics.Collisions {
 
         // todo: use object pool for primitives
 
-        private bool facingDown;
-        private float y;
+        private bool _facingDown;
+        private float _y;
 
 
         private HorizontalEdgePrimitive (float y, bool down) {
-            this.y = y;
-            facingDown = down;
+            this._y = y;
+            _facingDown = down;
         }
 
 
@@ -28,7 +28,7 @@ namespace War.Physics.Collisions {
 
 
         public override float LocateCircle (CirclePrimitive other, XY offset) {
-            return (facingDown ? y - other.center.y : other.center.y - y) - other.radius;
+            return (_facingDown ? _y - other.Center.Y : other.Center.Y - _y) - other.Radius;
         }
 
     }
