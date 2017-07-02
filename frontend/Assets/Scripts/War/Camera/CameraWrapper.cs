@@ -6,14 +6,9 @@ namespace War.Camera {
 
     public class CameraWrapper : MonoBehaviour {
 
-        [HideInInspector]
-        public new UnityEngine.Camera camera;
-
-        [HideInInspector]
-        public Vector3 target;
-
-        [HideInInspector]
-        public CameraController controller;
+        [HideInInspector] public new UnityEngine.Camera camera;
+        [HideInInspector] public Vector3 target;
+        [HideInInspector] public CameraController controller;
 
         private int size = 0;
 

@@ -5,7 +5,7 @@ namespace UI {
 
     public class StandardPanelController : PanelController {
 
-        public float
+        [SerializeField] private float
             openAnchorY,
             closedAnchorY,
             openPositionY,

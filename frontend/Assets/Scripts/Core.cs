@@ -8,8 +8,8 @@ using War;
 
 public class Core : MonoBehaviour {
 
-    public AssetsLoader assets;
-    public GameObject bfPrefab;
+    [SerializeField] private AssetsLoader assets;
+    [SerializeField] private GameObject bfPrefab;
 
     public static WSConnection connection;
     public static BF bf;

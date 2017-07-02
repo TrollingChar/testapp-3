@@ -5,9 +5,11 @@ namespace UI {
 
     public abstract class PanelController : MonoBehaviour {
 
+        [SerializeField] protected Canvas canvas;
+
         protected int currOpenness = 0;
         protected int fullOpenness = 15;
-        public Canvas canvas;
+
         public bool open;
 
 

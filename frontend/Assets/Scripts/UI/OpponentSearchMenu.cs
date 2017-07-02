@@ -7,11 +7,8 @@ namespace UI {
 
     internal class OpponentSearchMenu : MonoBehaviour {
 
-        [SerializeField]
-        private Text text;
-
-        [SerializeField]
-        private UnityEvent onCancel;
+        [SerializeField] private Text text;
+        [SerializeField] private UnityEvent onCancel;
 
 
         public void JoinHub (int hub) {

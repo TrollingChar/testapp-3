@@ -5,9 +5,8 @@ namespace UI {
 
     public class CustomPanelController : PanelController {
 
-        public int timeToOpen;
-
-        public Vector2
+        [SerializeField] private int timeToOpen;
+        [SerializeField] private Vector2
             openPosition,
             closedPosition,
             openAnchorMin,

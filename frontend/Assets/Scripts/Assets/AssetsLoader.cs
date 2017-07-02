@@ -5,12 +5,12 @@ namespace Assets {
 
     public class AssetsLoader : MonoBehaviour {
 
-        public GameObject
+        [SerializeField] private GameObject
             // asset1,
             // asset2,
             worm;
 
-        public Texture2D
+        [SerializeField] private Texture2D
             motherboard;
 
 

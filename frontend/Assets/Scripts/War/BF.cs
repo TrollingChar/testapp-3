@@ -9,15 +9,13 @@ namespace War {
 
     public class BF : MonoBehaviour {
 
-        public new SpriteRenderer renderer;
-
         // land and all w3colliders:
         public World world;
 
-        public new UnityEngine.Camera camera;
+        [SerializeField] private new SpriteRenderer renderer;
+        [SerializeField] private new UnityEngine.Camera camera;
 
-        [HideInInspector]
-        public new CameraWrapper cameraWrapper;
+        [HideInInspector] public CameraWrapper cameraWrapper;
 
         // all turn-based logic:
         public GameStateController state;

@@ -3,15 +3,18 @@ using Geometry;
 
 
 namespace War.Physics {
+
     public class Tiles {
 
         private Dictionary<TileXY, Tile> tiles;
+
 
         public Tiles () {
             tiles = new Dictionary<TileXY, Tile>();
         }
 
-        public Tile this[int x, int y] {
+
+        public Tile this [int x, int y] {
             get {
                 Tile tile;
                 return tiles.TryGetValue(new TileXY(x, y), out tile)
@@ -20,5 +23,7 @@ namespace War.Physics {
             }
             set { tiles[new TileXY(x, y)] = value; }
         }
+
     }
+
 }

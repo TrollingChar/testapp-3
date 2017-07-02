@@ -7,11 +7,10 @@ namespace UI {
 
     public class ConnectionMenu : MonoBehaviour {
 
-        [SerializeField]
-        private UnityEvent_string_int onSend;
-
-        [SerializeField]
-        private InputField ipText, idText;
+        [SerializeField] private UnityEvent_string_int onSend;
+        [SerializeField] private InputField
+            ipText,
+            idText;
 
 
         public void Send () {

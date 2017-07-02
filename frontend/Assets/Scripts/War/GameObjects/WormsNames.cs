@@ -47,6 +47,7 @@ namespace War.GameObjects {
         public static string random () {
             return names[RNG.Int(names.Length)];
         }
+
     }
 
 }

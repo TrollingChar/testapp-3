@@ -6,9 +6,11 @@ namespace UI {
 
     public class BottomHud : MonoBehaviour {
 
-        public Text middleText;
-        public Text time;
-        private string turnTime = "", gameTime = "";
+        [SerializeField] private Text middleText;
+        [SerializeField] private Text time;
+
+        private string turnTime = "";
+        private string gameTime = "";
 
 
         public void SetTurnTime (string turnTime) {

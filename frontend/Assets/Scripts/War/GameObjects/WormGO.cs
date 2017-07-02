@@ -6,8 +6,7 @@ namespace War.GameObjects {
 
     public class WormGO : MonoBehaviour {
 
-        [SerializeField]
-        private Text _text;
+        [SerializeField] private Text _text;
 
         public string text {
             get { return _text.text; }
