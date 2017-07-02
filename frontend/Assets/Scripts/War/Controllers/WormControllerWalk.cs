@@ -1,4 +1,7 @@
-﻿namespace W3 {
+﻿using Geometry;
+
+
+namespace War.Controllers {
 
     internal class WormControllerWalk : Controller {
 

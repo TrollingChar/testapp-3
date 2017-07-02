@@ -1,14 +1,18 @@
 ﻿using UnityEngine;
 
 
-public static class Assets {
+namespace Assets {
 
-    public static GameObject
-        // asset1,
-        // asset2,
-        worm;
+    public static class Assets {
 
-    public static Texture2D
-        motherboard;
+        public static GameObject
+            // asset1,
+            // asset2,
+            worm;
+
+        public static Texture2D
+            motherboard;
+
+    }
 
 }

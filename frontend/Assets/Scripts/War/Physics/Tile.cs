@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using UnityEngine;
+﻿using System.Collections.Generic;
+using Collider = War.Physics.Collisions.Collider;
 
-namespace W3 {
+
+namespace War.Physics {
     public class Tile {
         public const float size = 20;
 

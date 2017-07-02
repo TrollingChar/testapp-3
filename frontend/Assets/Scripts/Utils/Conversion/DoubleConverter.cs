@@ -1,7 +1,8 @@
 using System;
 using System.Globalization;
 
-namespace MiscUtil.Conversion
+
+namespace Utils.Conversion
 {
 	/// <summary>
 	/// A class to allow the conversion of doubles to string representations of

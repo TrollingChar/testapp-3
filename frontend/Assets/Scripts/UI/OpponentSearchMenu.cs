@@ -3,27 +3,31 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 
 
-internal class OpponentSearchMenu : MonoBehaviour {
+namespace UI {
 
-    [SerializeField]
-    private Text text;
+    internal class OpponentSearchMenu : MonoBehaviour {
 
-    [SerializeField]
-    private UnityEvent onCancel;
+        [SerializeField]
+        private Text text;
 
-
-    public void JoinHub (int hub) {
-        text.text = "Отправка запроса в комнату " + hub;
-    }
+        [SerializeField]
+        private UnityEvent onCancel;
 
 
-    public void UpdateHubStatus (int hub, int players) {
-        if (hub == 0) {
-            onCancel.Invoke();
-            text.text = "Игра отменена";
-            return;
+        public void JoinHub (int hub) {
+            text.text = "Отправка запроса в комнату " + hub;
         }
-        text.text = "Игроков в комнате\n" + players + " / " + hub;
+
+
+        public void UpdateHubStatus (int hub, int players) {
+            if (hub == 0) {
+                onCancel.Invoke();
+                text.text = "Игра отменена";
+                return;
+            }
+            text.text = "Игроков в комнате\n" + players + " / " + hub;
+        }
+
     }
 
 }

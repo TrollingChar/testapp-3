@@ -1,12 +1,13 @@
-﻿using UnityEngine;
+﻿using Geometry;
+using UnityEngine;
 
 
-namespace W3 {
+namespace War.Camera {
 
     public class CameraWrapper : MonoBehaviour {
 
         [HideInInspector]
-        public new Camera camera;
+        public new UnityEngine.Camera camera;
 
         [HideInInspector]
         public Vector3 target;
@@ -18,7 +19,7 @@ namespace W3 {
 
 
         private void Awake () {
-            camera = gameObject.GetComponent<Camera>();
+            camera = gameObject.GetComponent<UnityEngine.Camera>();
             camera.orthographicSize = (size = Screen.height) * 0.5f;
             target = camera.transform.position;
             controller = new CameraController(this);

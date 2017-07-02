@@ -1,4 +1,4 @@
-﻿namespace W3 {
+﻿namespace War.Objects {
 
     internal class Tester : Object {}
 

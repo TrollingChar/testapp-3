@@ -1,8 +1,11 @@
 ﻿using System.Collections.Generic;
+using Geometry;
 using UnityEngine;
+using War.Objects;
+using Object = War.Objects.Object;
 
 
-namespace W3 {
+namespace War.Physics {
 
     public class World {
 

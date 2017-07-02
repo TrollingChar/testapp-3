@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 
 
-namespace W3 {
+namespace War {
 
     public class GameData {
 

@@ -1,5 +1,8 @@
 ﻿
-namespace W3 {
+using Geometry;
+
+
+namespace War.Physics.Collisions {
     public class BoxCollider : Collider {
 
         private float

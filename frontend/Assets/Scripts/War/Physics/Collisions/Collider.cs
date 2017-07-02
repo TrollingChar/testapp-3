@@ -1,8 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections.Generic;
+using Geometry;
+using Object = War.Objects.Object;
 
-namespace W3 {
+
+namespace War.Physics.Collisions {
     public abstract class Collider {
         public Object obj;
         public float tangentialBounce, normalBounce;
@@ -23,12 +24,11 @@ namespace W3 {
 
         public void OccupyTiles () {
             var box = aabb.ToTiles(Tile.size);
-            for (int x = box.left; x < box.right; x++) {
-                for (int y = box.bottom; y < box.top; y++) {
-                    Tile tile = Core.bf.world.tiles[x, y];
-                    tile.AddCollider(this);
-                    tiles.Add(tile);
-                }
+            for (int x = box.left; x < box.right; x++)
+            for (int y = box.bottom; y < box.top; y++) {
+                Tile tile = Core.bf.world.tiles[x, y];
+                tile.AddCollider(this);
+                tiles.Add(tile);
             }
         }
 
@@ -41,11 +41,10 @@ namespace W3 {
             var box = aabb.Expanded(v).ToTiles(Tile.size);
             var result = new HashSet<Collider>();
 
-            for (int x = box.left; x < box.right; x++) {
-                for (int y = box.bottom; y < box.top; y++) {
-                    foreach (var c in Core.bf.world.tiles[x, y].colliders) {
-                        result.Add(c);
-                    }
+            for (int x = box.left; x < box.right; x++)
+            for (int y = box.bottom; y < box.top; y++) {
+                foreach (var c in Core.bf.world.tiles[x, y].colliders) {
+                    result.Add(c);
                 }
             }
 
@@ -56,11 +55,10 @@ namespace W3 {
             var box = aabb.ToTiles(Tile.size);
             var result = new HashSet<Collider>();
 
-            for (int x = box.left; x < box.right; x++) {
-                for (int y = box.bottom; y < box.top; y++) {
-                    foreach (var c in Core.bf.world.tiles[x, y].colliders) {
-                        if (OverlapsWith(c)) result.Add(c);
-                    }
+            for (int x = box.left; x < box.right; x++)
+            for (int y = box.bottom; y < box.top; y++) {
+                foreach (var c in Core.bf.world.tiles[x, y].colliders) {
+                    if (OverlapsWith(c)) result.Add(c);
                 }
             }
             return result;

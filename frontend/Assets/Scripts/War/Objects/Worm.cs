@@ -1,7 +1,13 @@
-﻿using UnityEngine;
+﻿using Geometry;
+using UnityEngine;
+using War.Controllers;
+using War.GameObjects;
+using War.Physics.Collisions;
+using Collider = War.Physics.Collisions.Collider;
+using Collision = War.Physics.Collisions.Collision;
 
 
-namespace W3 {
+namespace War.Objects {
 
     public class Worm : Object {
 
@@ -32,7 +38,7 @@ namespace W3 {
 
 
         protected override void InitSprite () {
-            sprite = GameObject.Instantiate(Assets.worm);
+            sprite = GameObject.Instantiate(Assets.Assets.worm);
             spriteExtension = sprite.GetComponent<WormGO>();
             spriteExtension.text = WormsNames.random();
         }

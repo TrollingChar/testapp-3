@@ -1,18 +1,23 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using Utils;
 
 
-public class ConnectionMenu : MonoBehaviour {
+namespace UI {
 
-    [SerializeField]
-    private UnityEvent_string_int onSend;
+    public class ConnectionMenu : MonoBehaviour {
 
-    [SerializeField]
-    private InputField ipText, idText;
+        [SerializeField]
+        private UnityEvent_string_int onSend;
+
+        [SerializeField]
+        private InputField ipText, idText;
 
 
-    public void Send () {
-        onSend.Invoke(ipText.text, int.Parse(idText.text));
+        public void Send () {
+            onSend.Invoke(ipText.text, int.Parse(idText.text));
+        }
+
     }
 
 }

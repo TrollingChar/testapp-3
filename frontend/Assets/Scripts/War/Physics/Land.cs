@@ -1,8 +1,11 @@
 ﻿using System.Collections.Generic;
+using Geometry;
 using UnityEngine;
+using War.Physics.Collisions;
+using Collision = War.Physics.Collisions.Collision;
 
 
-namespace W3 {
+namespace War.Physics {
 
     public class Land {
 

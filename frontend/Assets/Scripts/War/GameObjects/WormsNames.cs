@@ -1,4 +1,7 @@
-﻿namespace W3 {
+﻿using Utils;
+
+
+namespace War.GameObjects {
 
     internal class WormsNames {
 

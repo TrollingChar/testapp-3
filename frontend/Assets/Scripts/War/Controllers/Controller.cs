@@ -1,4 +1,7 @@
-﻿namespace W3 {
+﻿using War.Objects;
+
+
+namespace War.Controllers {
 
     public class Controller {
 

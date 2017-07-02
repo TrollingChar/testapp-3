@@ -1,10 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using Geometry;
 using UnityEngine;
+using War.Controllers;
+using Collider = War.Physics.Collisions.Collider;
+using Collision = War.Physics.Collisions.Collision;
 
 
-namespace W3 {
+namespace War.Objects {
 
     public abstract class Object {
 

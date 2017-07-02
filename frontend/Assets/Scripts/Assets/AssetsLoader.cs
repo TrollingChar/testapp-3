@@ -1,21 +1,25 @@
 ﻿using UnityEngine;
 
 
-public class AssetsLoader : MonoBehaviour {
+namespace Assets {
 
-    public GameObject
-        // asset1,
-        // asset2,
-        worm;
+    public class AssetsLoader : MonoBehaviour {
 
-    public Texture2D
-        motherboard;
+        public GameObject
+            // asset1,
+            // asset2,
+            worm;
+
+        public Texture2D
+            motherboard;
 
 
-    private void Awake () {
-        Assets.worm = worm;
-        Assets.motherboard = motherboard;
-        Destroy(this);
+        private void Awake () {
+            Assets.worm = worm;
+            Assets.motherboard = motherboard;
+            Destroy(this);
+        }
+
     }
 
 }

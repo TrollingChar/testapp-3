@@ -1,4 +1,4 @@
-﻿namespace W3 {
+﻿namespace Geometry {
 
     public class TileXY {
 

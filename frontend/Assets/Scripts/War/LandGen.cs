@@ -1,4 +1,7 @@
-namespace W3 {
+using Utils;
+
+
+namespace War {
 
     public class LandGen {
 

@@ -1,8 +1,11 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using War.Camera;
+using War.Objects;
+using War.Physics;
 
 
-namespace W3 {
+namespace War {
 
     public class BF : MonoBehaviour {
 
@@ -11,7 +14,7 @@ namespace W3 {
         // land and all w3colliders:
         public World world;
 
-        public new Camera camera;
+        public new UnityEngine.Camera camera;
 
         [HideInInspector]
         public new CameraWrapper cameraWrapper;
@@ -23,7 +26,7 @@ namespace W3 {
 
 
         private void Awake () {
-            world = new World(Assets.motherboard, renderer);
+            world = new World(Assets.Assets.motherboard, renderer);
             state = new GameStateController();
             cameraWrapper = camera.GetComponent<CameraWrapper>();
         }

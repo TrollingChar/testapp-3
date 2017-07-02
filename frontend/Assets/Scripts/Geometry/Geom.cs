@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 
-namespace W3 {
+namespace Geometry {
 
     public static class Geom {
 

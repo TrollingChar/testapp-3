@@ -1,7 +1,8 @@
 ﻿using System;
+using Geometry;
 
 
-namespace W3 {
+namespace War.Physics.Collisions {
 
     public class Collision : IEquatable<Collision>, IComparable<Collision> {
 

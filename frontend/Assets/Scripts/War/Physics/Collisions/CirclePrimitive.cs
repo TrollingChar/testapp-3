@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Geometry;
 
-namespace W3 {
+
+namespace War.Physics.Collisions {
     public class CirclePrimitive : Primitive {
         public XY center;
         public float radius;

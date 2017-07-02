@@ -1,7 +1,8 @@
-﻿using UnityEngine;
+﻿using Geometry;
+using UnityEngine;
 
 
-namespace W3 {
+namespace War {
 
     public class TurnData {
 

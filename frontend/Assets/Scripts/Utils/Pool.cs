@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 
-namespace W3 {
+
+namespace Utils {
     public static class Pool<T> where T : new() {
 
         private static List<T> list = new List<T>();

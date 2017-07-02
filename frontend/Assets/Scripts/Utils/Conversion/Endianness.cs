@@ -1,5 +1,5 @@
 
-namespace MiscUtil.Conversion
+namespace Utils.Conversion
 {
 	/// <summary>
 	/// Endianness of pos0 converter

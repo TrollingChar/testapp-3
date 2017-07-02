@@ -1,4 +1,4 @@
-﻿namespace W3 {
+﻿namespace War.Controllers {
 
     internal class WormControllerJump : StandardController {
 

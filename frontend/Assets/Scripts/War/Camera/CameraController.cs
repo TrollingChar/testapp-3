@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
+using Utils;
 
 
-namespace W3 {
+namespace War.Camera {
 
     public class CameraController {
 

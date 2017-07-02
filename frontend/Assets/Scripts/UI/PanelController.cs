@@ -1,57 +1,61 @@
 ﻿using UnityEngine;
 
 
-public abstract class PanelController : MonoBehaviour {
+namespace UI {
 
-    protected int currOpenness = 0;
-    protected int fullOpenness = 15;
-    public Canvas canvas;
-    public bool open;
+    public abstract class PanelController : MonoBehaviour {
 
-
-    private void Start () {
-        UpdatePosition();
-    }
+        protected int currOpenness = 0;
+        protected int fullOpenness = 15;
+        public Canvas canvas;
+        public bool open;
 
 
-    private void Update () {
-        if (open) {
-            if (currOpenness >= fullOpenness) return;
-            ++currOpenness;
-            UpdatePosition();
-        } else {
-            if (currOpenness <= 0) return;
-            --currOpenness;
+        private void Start () {
             UpdatePosition();
         }
-    }
 
 
-    protected abstract void UpdatePosition ();
-
-
-    public void Show (bool instant = false) {
-        open = true;
-        if (!instant) return;
-        currOpenness = fullOpenness;
-        UpdatePosition();
-    }
-
-
-    public void Hide (bool instant = false) {
-        open = false;
-        if (!instant) return;
-        currOpenness = 0;
-        UpdatePosition();
-    }
-
-
-    public void Toggle (bool instant = false) {
-        if (open) {
-            Hide(instant);
-        } else {
-            Show(instant);
+        private void Update () {
+            if (open) {
+                if (currOpenness >= fullOpenness) return;
+                ++currOpenness;
+                UpdatePosition();
+            } else {
+                if (currOpenness <= 0) return;
+                --currOpenness;
+                UpdatePosition();
+            }
         }
+
+
+        protected abstract void UpdatePosition ();
+
+
+        public void Show (bool instant = false) {
+            open = true;
+            if (!instant) return;
+            currOpenness = fullOpenness;
+            UpdatePosition();
+        }
+
+
+        public void Hide (bool instant = false) {
+            open = false;
+            if (!instant) return;
+            currOpenness = 0;
+            UpdatePosition();
+        }
+
+
+        public void Toggle (bool instant = false) {
+            if (open) {
+                Hide(instant);
+            } else {
+                Show(instant);
+            }
+        }
+
     }
 
 }

@@ -1,4 +1,7 @@
-﻿namespace W3 {
+﻿using Geometry;
+
+
+namespace War.Physics.Collisions {
 
     public class VerticalEdgePrimitive : Primitive {
 

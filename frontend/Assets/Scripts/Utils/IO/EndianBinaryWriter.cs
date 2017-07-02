@@ -1,9 +1,10 @@
 using System;
 using System.IO;
 using System.Text;
-using MiscUtil.Conversion;
+using Utils.Conversion;
 
-namespace MiscUtil.IO
+
+namespace Utils.IO
 {
 	/// <summary>
 	/// Equivalent of System.IO.BinaryWriter, but with either endianness, depending on

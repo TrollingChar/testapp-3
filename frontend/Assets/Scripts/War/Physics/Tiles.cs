@@ -1,8 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections.Generic;
+using Geometry;
 
-namespace W3 {
+
+namespace War.Physics {
     public class Tiles {
 
         private Dictionary<TileXY, Tile> tiles;

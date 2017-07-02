@@ -1,4 +1,8 @@
-﻿namespace W3 {
+﻿using Utils;
+using War.Objects;
+
+
+namespace War {
 
     public enum GameState {
 
