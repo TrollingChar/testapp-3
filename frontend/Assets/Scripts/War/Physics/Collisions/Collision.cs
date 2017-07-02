@@ -19,8 +19,8 @@ namespace War.Physics.Collisions {
             Primitive p1,
             Primitive p2
         ) {
-            this.Offset = offset;
-            this.Normal = normal;
+            Offset = offset;
+            Normal = normal;
             Collider1 = c1;
             Collider2 = c2;
             Primitive1 = p1;
@@ -29,16 +29,15 @@ namespace War.Physics.Collisions {
 
 
         public static Collision operator - (Collision c) {
-            return c == null
-                ? null
-                : new Collision(
+            return c != null
+                ? new Collision(
                     -c.Offset,
                     -c.Normal,
                     c.Collider2,
                     c.Collider1,
                     c.Primitive2,
                     c.Primitive1
-                );
+                ) : null;
         }
 
 

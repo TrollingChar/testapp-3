@@ -7,12 +7,9 @@ namespace War.CollisionHandlers {
 
         private Object _obj;
 
-        public void OnAdd () {}
-
-        public void OnRemove () {}
-
+        public virtual void OnAdd () {}
+        public virtual void OnRemove () {}
         public virtual void PreCollision () {}
-
         public virtual void PostCollision () {}
 
     }

@@ -15,7 +15,7 @@ namespace Utils {
 
 
         public ByteBuffer (int capacity = 64) {
-            this._capacity = capacity;
+            _capacity = capacity;
             Bytes = new byte[capacity];
             Length = _offset = 0;
         }
@@ -29,9 +29,9 @@ namespace Utils {
 
 
         private void Expand (int capacity) {
-            if (this._capacity >= capacity) return;
+            if (_capacity >= capacity) return;
             var temp = new byte[capacity];
-            this._capacity = capacity;
+            _capacity = capacity;
             Bytes.CopyTo(temp, 0);
             Bytes = temp;
         }
@@ -44,7 +44,7 @@ namespace Utils {
 
 
         public void WriteBytes (byte[] data) {
-            int capacity = this._capacity;
+            int capacity = _capacity;
             while (Length + data.Length > capacity) capacity *= 2;
             Expand(capacity);
             data.CopyTo(Bytes, Length);

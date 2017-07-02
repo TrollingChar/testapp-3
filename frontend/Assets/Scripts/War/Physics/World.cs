@@ -54,13 +54,6 @@ namespace War.Physics {
                 AddObject(new Worm(), td.XY);
             }
 
-            /*if (td != null) {
-                if (td.mb) {
-                    Core.bf.worm.position = td.xy;
-                    Core.bf.worm.velocity = XY.left;// 5 * new XY(RNG.Float() - RNG.Float(), RNG.Float() - RNG.Float());
-                }
-            }*/
-
             foreach (var o in _objects) o.Update();
             foreach (var o in _objects) {
                 o.Movement = 1;

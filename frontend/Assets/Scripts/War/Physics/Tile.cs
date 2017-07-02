@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Collider = War.Physics.Collisions.Collider;
+using War.Physics.Collisions;
 
 
 namespace War.Physics {
@@ -14,8 +14,8 @@ namespace War.Physics {
 
 
         public Tile (int x, int y) {
-            this._x = x;
-            this._y = y;
+            _x = x;
+            _y = y;
             Colliders = new List<Collider>();
         }
 

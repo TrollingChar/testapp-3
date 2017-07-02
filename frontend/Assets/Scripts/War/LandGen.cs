@@ -14,13 +14,13 @@ namespace War {
 
 
         public LandGen (byte[,] array) {
-            this.Array = array;
+            Array = array;
         }
 
 
         public LandGen Expand (int iterations = 1) {
             byte[,]
-                array = this.Array,
+                array = Array,
                 result = array;
 
             for (int i = 0; i < iterations; ++i) {
@@ -97,7 +97,7 @@ namespace War {
         public LandGen Cellular (uint rules, int iterations = 5) {
             uint[] init = {1, 1 << 16};
             byte[,]
-                array = this.Array,
+                array = Array,
                 result = array;
 
             int w = array.GetLength(0);

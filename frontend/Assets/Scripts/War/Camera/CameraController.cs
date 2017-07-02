@@ -10,13 +10,12 @@ namespace War.Camera {
 
 
         public CameraController (CameraWrapper camera) {
-            this.Camera = camera;
+            Camera = camera;
         }
 
 
         public virtual void Update () {
-            if (Input.GetMouseButtonDown(MouseButtons.Right)
-                && !Input.GetMouseButtonUp(MouseButtons.Right)) {
+            if (Input.GetMouseButtonDown(MouseButtons.Right) && !Input.GetMouseButtonUp(MouseButtons.Right)) {
                 Camera.Controller = new MouseBasedCameraController(Camera);
             }
         }

@@ -28,7 +28,7 @@ namespace Utils.IO {
             if (encoding == null) {
                 throw new ArgumentNullException("encoding");
             }
-            this._encoding = encoding;
+            _encoding = encoding;
         }
 
 
@@ -43,7 +43,7 @@ namespace Utils.IO {
             if (encoding == null) {
                 throw new ArgumentNullException("encoding");
             }
-            this._encoding = encoding;
+            _encoding = encoding;
         }
 
 
@@ -58,7 +58,7 @@ namespace Utils.IO {
             if (encoding == null) {
                 throw new ArgumentNullException("encoding");
             }
-            this._encoding = encoding;
+            _encoding = encoding;
         }
 
 
@@ -74,7 +74,7 @@ namespace Utils.IO {
             if (encoding == null) {
                 throw new ArgumentNullException("encoding");
             }
-            this._encoding = encoding;
+            _encoding = encoding;
         }
 
 

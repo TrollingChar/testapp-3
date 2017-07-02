@@ -7,7 +7,7 @@ namespace UI {
 
         [SerializeField] protected Canvas Canvas;
 
-        protected int CurrOpenness = 0;
+        protected int CurrOpenness;
         protected int FullOpenness = 15;
 
         public bool Open;

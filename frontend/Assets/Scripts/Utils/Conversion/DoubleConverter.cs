@@ -71,8 +71,8 @@ namespace Utils.Conversion {
             }
 
             // Finally, return the string with an appropriate sign
-            if (negative) return "-" + ad.ToString();
-            else return ad.ToString();
+            if (negative) return "-" + ad;
+            return ad.ToString();
         }
 
 
@@ -87,7 +87,7 @@ namespace Utils.Conversion {
             /// <summary> 
             /// How many digits are *after* the decimal point
             /// </summary>
-            private int _decimalPoint = 0;
+            private int _decimalPoint;
 
 
             /// <summary> 

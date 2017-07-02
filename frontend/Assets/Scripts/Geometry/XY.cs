@@ -8,12 +8,6 @@ namespace Geometry {
         public float X, Y;
 
 
-        public XY (float x, float y) {
-            this.X = x;
-            this.Y = y;
-        }
-
-
         static XY () {
             Zero = new XY(0f, 0f);
             One = new XY(1f, 1f);
@@ -22,6 +16,12 @@ namespace Geometry {
             Right = new XY(1f, 0f);
             Down = new XY(0f, -1f);
             Up = new XY(0f, 1f);
+        }
+
+
+        public XY (float x, float y) {
+            X = x;
+            Y = y;
         }
 
 
@@ -192,9 +192,9 @@ namespace Geometry {
         }
 
 
-//        public static float Angle (XY from, XY to) {
-//            return (to - from).angle;
-//        }
+        public static float DirectionAngle (XY from, XY to) {
+            return (to - from).Angle;
+        }
 
 
         public void Normalize () {
@@ -233,7 +233,8 @@ namespace Geometry {
 
 
         public XY Rotated (float angle) {
-            float sin = Mathf.Sin(angle), cos = Mathf.Cos(angle);
+            float sin = Mathf.Sin(angle);
+            float cos = Mathf.Cos(angle);
             return new XY(X * cos - Y * sin, X * sin + Y * cos);
         }
 
@@ -251,7 +252,8 @@ namespace Geometry {
         public static XY Lerp (XY pos0, XY pos1, float t) {
             return new XY(
                 pos0.X + (pos1.X - pos0.X) * t,
-                pos0.Y + (pos1.Y - pos0.Y) * t);
+                pos0.Y + (pos1.Y - pos0.Y) * t
+            );
         }
 
 

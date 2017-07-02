@@ -14,8 +14,8 @@ namespace War.Physics {
 
 
         public LandTile (int x, int y) {
-            this._x = x;
-            this._y = y;
+            _x = x;
+            _y = y;
             Vertices = new List<XY>();
         }
 
@@ -43,10 +43,10 @@ namespace War.Physics {
 
 
         private void CalculateLand (Land land) {
-            this.Land = 0;
+            Land = 0;
             for (int ix = _x * Size, xx = ix + Size; ix < xx; ix++)
             for (int iy = _y * Size, yy = iy + Size; iy < yy; iy++) {
-                this.Land += land[_x, _y];
+                Land += land[_x, _y];
             }
         }
 

@@ -25,7 +25,7 @@ public class Core : MonoBehaviour {
 
 
     public void AuthAccepted (int id) {
-        Core.Id = id;
+        Id = id;
     }
 
 

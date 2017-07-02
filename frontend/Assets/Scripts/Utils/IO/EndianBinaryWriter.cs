@@ -16,7 +16,7 @@ namespace Utils.IO {
         /// <summary>
         /// Whether or not this writer has been disposed yet.
         /// </summary>
-        private bool _disposed = false;
+        private bool _disposed;
 
         /// <summary>
         /// Buffer used for temporary storage during conversion from primitives
@@ -61,9 +61,9 @@ namespace Utils.IO {
             if (!stream.CanWrite) {
                 throw new ArgumentException("Stream isn't writable", "stream");
             }
-            this._stream = stream;
-            this._bitConverter = bitConverter;
-            this._encoding = encoding;
+            _stream = stream;
+            _bitConverter = bitConverter;
+            _encoding = encoding;
         }
         #endregion
 
@@ -260,7 +260,7 @@ namespace Utils.IO {
         /// <param name="value">The values to write</param>
         public void Write (byte[] value) {
             if (value == null) {
-                throw (new System.ArgumentNullException("value"));
+                throw (new ArgumentNullException("value"));
             }
             WriteInternal(value, value.Length);
         }

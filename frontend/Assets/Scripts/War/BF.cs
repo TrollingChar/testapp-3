@@ -12,8 +12,8 @@ namespace War {
         // land and all w3colliders:
         public World World;
 
-        [SerializeField] private new SpriteRenderer _renderer;
-        [SerializeField] private new UnityEngine.Camera _camera;
+        [SerializeField] private SpriteRenderer _renderer;
+        [SerializeField] private UnityEngine.Camera _camera;
 
         [HideInInspector] public CameraWrapper CameraWrapper;
 

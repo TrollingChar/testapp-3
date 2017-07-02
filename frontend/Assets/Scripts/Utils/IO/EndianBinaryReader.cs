@@ -17,7 +17,7 @@ namespace Utils.IO {
         /// <summary>
         /// Whether or not this reader has been disposed yet.
         /// </summary>
-        private bool _disposed = false;
+        private bool _disposed;
 
         /// <summary>
         /// Decoder to use for string conversions.
@@ -72,11 +72,11 @@ namespace Utils.IO {
             if (!stream.CanRead) {
                 throw new ArgumentException("Stream isn't writable", "stream");
             }
-            this._stream = stream;
-            this._bitConverter = bitConverter;
-            this._encoding = encoding;
-            this._decoder = encoding.GetDecoder();
-            this._minBytesPerChar = 1;
+            _stream = stream;
+            _bitConverter = bitConverter;
+            _encoding = encoding;
+            _decoder = encoding.GetDecoder();
+            _minBytesPerChar = 1;
 
             if (encoding is UnicodeEncoding) {
                 _minBytesPerChar = 2;
@@ -272,9 +272,8 @@ namespace Utils.IO {
             int charsRead = ReadChar(_charBuffer, 0, 1);
             if (charsRead == 0) {
                 return -1;
-            } else {
-                return _charBuffer[0];
             }
+            return _charBuffer[0];
         }
 
 

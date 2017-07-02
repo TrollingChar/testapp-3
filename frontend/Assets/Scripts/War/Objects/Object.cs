@@ -5,6 +5,7 @@ using UnityEngine;
 using War.Controllers;
 using Collider = War.Physics.Collisions.Collider;
 using Collision = War.Physics.Collisions.Collision;
+using UnObject = UnityEngine.Object;
 
 
 namespace War.Objects {
@@ -51,8 +52,8 @@ namespace War.Objects {
 
 
         protected Object (float mass = 60f, int superMass = 0) {
-            this.Mass = mass;
-            this.SuperMass = superMass;
+            Mass = mass;
+            SuperMass = superMass;
 
             Colliders = new List<Collider>();
             Excluded = new HashSet<Object>();
@@ -172,7 +173,7 @@ namespace War.Objects {
 
 
         private void RemoveSprite () {
-            if (Sprite != null) UnityEngine.Object.Destroy(Sprite);
+            if (Sprite != null) UnObject.Destroy(Sprite);
         }
 
 

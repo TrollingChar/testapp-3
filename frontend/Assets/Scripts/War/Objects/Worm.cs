@@ -5,6 +5,7 @@ using War.GameObjects;
 using War.Physics.Collisions;
 using Collider = War.Physics.Collisions.Collider;
 using Collision = War.Physics.Collisions.Collision;
+using UnObject = UnityEngine.Object;
 
 
 namespace War.Objects {
@@ -26,8 +27,8 @@ namespace War.Objects {
 
 
         protected override void InitColliders () {
-            AddCollider(_head = new CircleCollider(new XY(0, BodyHeight * 0.5f), HeadRadius));
-            AddCollider(_tail = new CircleCollider(new XY(0, BodyHeight * -0.5f), HeadRadius));
+            AddCollider(_head = new CircleCollider(new XY(0f, BodyHeight * 0.5f), HeadRadius));
+            AddCollider(_tail = new CircleCollider(new XY(0f, BodyHeight * -0.5f), HeadRadius));
             //AddCollider(new BoxCollider(-5, 5, -2.5f, 2.5f));
         }
 
@@ -38,7 +39,7 @@ namespace War.Objects {
 
 
         protected override void InitSprite () {
-            Sprite = GameObject.Instantiate(Assets.Assets.Worm);
+            Sprite = UnObject.Instantiate(Assets.Assets.Worm);
             SpriteExtension = Sprite.GetComponent<WormGO>();
             SpriteExtension.Text = WormsNames.Random();
         }

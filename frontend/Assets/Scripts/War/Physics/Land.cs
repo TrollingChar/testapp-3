@@ -50,6 +50,7 @@ namespace War.Physics {
         private void InitTiles () {
             _widthInTiles = _width / LandTile.Size;
             if (_width % LandTile.Size != 0) ++_widthInTiles;
+
             _heightInTiles = _height / LandTile.Size;
             if (_height % LandTile.Size != 0) ++_heightInTiles;
 
@@ -95,7 +96,7 @@ namespace War.Physics {
                 if (v.X < 0) {
                     bp.X -= width;
                     ep.X -= width;
-                    // todo: clamp between 0 and array bound
+                    // TODO: clamp between 0 and array bound
                     startX = Mathf.FloorToInt(bp.X);
                     endX = Mathf.FloorToInt(ep.X);
                 } else {
@@ -130,7 +131,7 @@ namespace War.Physics {
                 if (v.Y < 0) {
                     bp.Y -= width;
                     ep.Y -= width;
-                    // todo: clamp between 0 and array bound
+                    // TODO: clamp between 0 and array bound
                     startY = Mathf.FloorToInt(bp.Y);
                     endY = Mathf.FloorToInt(ep.Y);
                 } else {
@@ -165,7 +166,7 @@ namespace War.Physics {
                 bp = beg;
                 ep = bp + v;
 
-                AABB aabb = new AABBF(
+                var aabb = new AABBF(
                     Mathf.Min(bp.X, ep.X) - width,
                     Mathf.Max(bp.X, ep.X) + width,
                     Mathf.Min(bp.Y, ep.Y) - width,
@@ -234,7 +235,7 @@ namespace War.Physics {
                     ? VerticalEdgePrimitive.Left(xx)
                     : VerticalEdgePrimitive.Right(xx);
 
-                AABB aabb = new AABBF(
+                var aabb = new AABBF(
                     xx + Mathf.Min(0, v.X),
                     xx + Mathf.Max(0, v.X),
                     Mathf.Min(a.Y, b.Y) + Mathf.Min(0, v.Y),
@@ -264,7 +265,7 @@ namespace War.Physics {
                     ? HorizontalEdgePrimitive.Down(yy)
                     : HorizontalEdgePrimitive.Up(yy);
 
-                AABB aabb = new AABBF(
+                var aabb = new AABBF(
                     Mathf.Min(a.X, b.X) + Mathf.Min(0, v.X),
                     Mathf.Max(a.X, b.X) + Mathf.Max(0, v.X),
                     yy + Mathf.Min(0, v.Y),

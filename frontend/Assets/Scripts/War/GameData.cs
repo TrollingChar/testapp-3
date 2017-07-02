@@ -10,8 +10,8 @@ namespace War {
 
 
         public GameData (int seed, List<int> players) {
-            this.Seed = seed;
-            this.Players = players;
+            Seed = seed;
+            Players = players;
         }
 
     }

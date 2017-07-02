@@ -12,7 +12,7 @@ namespace War.Physics.Collisions {
 
 
         private HorizontalEdgePrimitive (float y, bool down) {
-            this._y = y;
+            _y = y;
             _facingDown = down;
         }
 

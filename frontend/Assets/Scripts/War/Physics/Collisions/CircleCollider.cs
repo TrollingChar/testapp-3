@@ -18,14 +18,14 @@ namespace War.Physics.Collisions {
 
 
         public CircleCollider (XY offset, float radius) {
-            this._offset = offset;
-            this._radius = radius;
+            _offset = offset;
+            _radius = radius;
         }
 
 
         public override AABBF AABB {
             get {
-                XY center = this.Center;
+                XY center = Center;
                 return new AABBF(
                     center.X - _radius,
                     center.X + _radius,

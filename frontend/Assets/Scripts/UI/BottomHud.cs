@@ -14,15 +14,15 @@ namespace UI {
 
 
         public void SetTurnTime (string turnTime) {
-            if (this._turnTime == turnTime) return;
-            this._turnTime = turnTime;
+            if (_turnTime == turnTime) return;
+            _turnTime = turnTime;
             UpdateTimer();
         }
 
 
         public void SetGameTime (string gameTime) {
-            if (this._gameTime == gameTime) return;
-            this._gameTime = gameTime;
+            if (_gameTime == gameTime) return;
+            _gameTime = gameTime;
             UpdateTimer();
         }
 

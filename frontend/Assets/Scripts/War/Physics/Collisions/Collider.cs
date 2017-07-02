@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Geometry;
-using Object = War.Objects.Object;
+using War.Objects;
 
 
 namespace War.Physics.Collisions {

@@ -6,11 +6,11 @@ namespace War.Camera {
 
     public class CameraWrapper : MonoBehaviour {
 
-        [HideInInspector] public new UnityEngine.Camera Camera;
+        [HideInInspector] public UnityEngine.Camera Camera;
         [HideInInspector] public Vector3 Target;
         [HideInInspector] public CameraController Controller;
 
-        private int _size = 0;
+        private int _size;
 
 
         private void Awake () {

@@ -33,7 +33,8 @@ namespace Net {
             if (_socket == null) return;
 
             _turnDataRead = 0;
-            for (byte[] bytes = _socket.Recv();
+            for (
+                byte[] bytes = _socket.Recv();
                 bytes != null && _turnDataRead < 2;
                 bytes = _socket.Recv()
             ) {
@@ -58,29 +59,36 @@ namespace Net {
                 case ServerAPI.AccountData:
                     _onAccountData.Invoke(reader.ReadInt32());
                     break;
+
                 case ServerAPI.HubChanged:
                     _onChangeHub.Invoke(reader.ReadByte(), reader.ReadByte());
                     break;
+
                 case ServerAPI.StartGame:
                     int seed = reader.ReadInt32();
                     var players = new List<int>();
                     for (byte i = 0, end = reader.ReadByte(); i < end; ++i) players.Add(reader.ReadInt32());
                     _onStartGame.Invoke(new GameData(seed, players));
                     break;
+
                 case ServerAPI.LeftGame:
                     _onPlayerQuit.Invoke(reader.ReadInt32());
                     break;
+
                 case ServerAPI.ShowWinner:
                     _onPlayerWin.Invoke(reader.ReadInt32());
                     break;
+
                 case ServerAPI.TurnData:
                     ++_turnDataRead;
                     var td = new TurnData(reader.ReadByte(), reader.ReadSingle(), reader.ReadSingle());
                     _onTurnData.Invoke(td);
                     break;
+
                 case ServerAPI.NoWinner:
                     _onNoWinner.Invoke();
                     break;
+
                 case ServerAPI.NewTurn:
                     _onNewTurn.Invoke(reader.ReadInt32());
                     break;

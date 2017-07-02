@@ -1,6 +1,7 @@
 ﻿// ftp://edi-software.net/dantemp/OMS/Visual%20Studio%20Projects/Random/Random/MT19937.cs
 
 using System;
+
 // ReSharper disable All
 
 // ORIGNAL COMMENTS

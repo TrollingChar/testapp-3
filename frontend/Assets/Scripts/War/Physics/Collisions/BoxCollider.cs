@@ -1,4 +1,5 @@
-﻿using Geometry;
+﻿using System;
+using Geometry;
 
 
 namespace War.Physics.Collisions {
@@ -69,22 +70,22 @@ namespace War.Physics.Collisions {
 
 
         public override bool OverlapsWith (Collider c) {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
 
         public override bool OverlapsWithCircle (CircleCollider c) {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
 
         public override bool OverlapsWithBox (BoxCollider c) {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
 
         public override bool OverlapsWithLand (Land land) {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
     }
