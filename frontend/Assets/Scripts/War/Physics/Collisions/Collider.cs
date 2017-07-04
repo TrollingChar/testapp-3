@@ -5,9 +5,8 @@ using War.Objects;
 
 namespace War.Physics.Collisions {
 
-    public abstract class Collider {
+    public abstract class Collider : Component {
 
-        public Object Obj;
         public float TangentialBounce, NormalBounce;
         private List<Tile> _tiles;
 

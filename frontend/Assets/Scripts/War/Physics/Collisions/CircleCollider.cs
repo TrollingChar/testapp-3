@@ -12,7 +12,7 @@ namespace War.Physics.Collisions {
         public XY Center {
             get {
                 //Debug.Log(obj);
-                return _offset + Obj.Position;
+                return _offset + Object.Position;
             }
         }
 

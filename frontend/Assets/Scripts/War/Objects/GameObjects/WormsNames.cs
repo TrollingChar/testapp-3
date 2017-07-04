@@ -1,7 +1,7 @@
 ﻿using Utils;
 
 
-namespace War.GameObjects {
+namespace War.Objects.GameObjects {
 
     internal class WormsNames {
 

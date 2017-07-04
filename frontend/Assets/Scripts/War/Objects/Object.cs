@@ -2,7 +2,9 @@
 using System.Linq;
 using Geometry;
 using UnityEngine;
-using War.Controllers;
+using War.Objects.CollisionHandlers;
+using War.Objects.Controllers;
+using War.Objects.Explosives;
 using Collider = War.Physics.Collisions.Collider;
 using Collision = War.Physics.Collisions.Collision;
 using UnObject = UnityEngine.Object;
@@ -22,6 +24,7 @@ namespace War.Objects {
         public float Mass;
 
         private XY _position;
+
         public XY Position {
             get { return _position; }
             set {
@@ -32,23 +35,25 @@ namespace War.Objects {
 
         public XY Velocity;
 
+        protected GameObject Sprite;
         private Controller _controller;
+        private Explosive _explosive;
+        private CollisionHandler _collisionHandler;
+
         public Controller Controller {
             get { return _controller; }
-            set {
-                if (_controller != null) {
-                    _controller.OnRemove();
-                    _controller.Obj = null;
-                }
-                if (value != null) {
-                    value.Obj = this;
-                    value.OnAdd();
-                }
-                _controller = value;
-            }
+            set { SwapComponent(ref _controller, value); }
         }
 
-        protected GameObject Sprite;
+        public Explosive Explosive {
+            get { return _explosive; }
+            set { SwapComponent(ref _explosive, value); }
+        }
+
+        public CollisionHandler CollisionHandler {
+            get { return _collisionHandler; }
+            set { SwapComponent(ref _collisionHandler, value); }
+        }
 
 
         protected Object (float mass = 60f, int superMass = 0) {
@@ -60,24 +65,23 @@ namespace War.Objects {
         }
 
 
-        public void Update () {
-            if (Controller != null) Controller.Update();
+        public void Update (TurnData td) {
+            if (Controller != null) Controller.Update(td);
         }
 
 
-        public virtual void OnAdd () {
-            InitSprite();
-            InitColliders();
-            InitController();
-        }
+        public virtual void OnAdd () {}
 
 
         public void Remove () {
             Node.Value = _empty;
             foreach (var c in Colliders) {
                 c.FreeTiles();
-                c.Obj = null;
+                c.Object = null;
             }
+            CollisionHandler = null;
+            Explosive = null;
+            Controller = null;
             RemoveSprite();
         }
 
@@ -96,8 +100,8 @@ namespace War.Objects {
             foreach (var c in Colliders) {
                 var obstacles = new HashSet<Collider>(
                     c.FindObstacles(Core.BF.World, v)
-                        .Where(o => !o.Obj.PassableFor(this))
-                        .Where(o => !Excluded.Contains(o.Obj))
+                        .Where(o => !o.Object.PassableFor(this))
+                        .Where(o => !Excluded.Contains(o.Object))
                 );
                 foreach (var o in obstacles) {
                     var temp = c.CollideWith(o, v);
@@ -127,7 +131,7 @@ namespace War.Objects {
         public void ExcludeObjects () {
             foreach (var collider in Colliders)
             foreach (var obstacle in collider.FindOverlapping(Core.BF.World)) {
-                Excluded.Add(obstacle.Obj);
+                Excluded.Add(obstacle.Object);
             }
         }
 
@@ -138,19 +142,14 @@ namespace War.Objects {
         }
 
 
-        public virtual void Detonate () {
-            Remove();
-        }
-
-
-        protected virtual void InitColliders () {
-            // AddCollider(...);
-            // AddCollider(...);
+        public void Detonate () {
+            if (Explosive == null) Remove();
+            else Explosive.Detonate();
         }
 
 
         protected void AddCollider (Collider c) {
-            c.Obj = this;
+            c.Object = this;
             Colliders.Add(c);
             c.UpdatePosition();
         }
@@ -162,23 +161,31 @@ namespace War.Objects {
         }
 
 
-        protected virtual void InitController () {
-            // Controller = ...
-        }
-
-
-        protected virtual void InitSprite () {
-            // Sprite = GameObject.Instantiate(...);
-        }
-
-
         private void RemoveSprite () {
             if (Sprite != null) UnObject.Destroy(Sprite);
         }
 
 
-        public virtual void OnCollision (Collision c) {
-            // empty by default
+        public bool WillAcceptCollision (Collision c) {
+            return CollisionHandler == null || CollisionHandler.WillAcceptCollision(c);
+        }
+
+
+        public void OnCollision (Collision c) {
+            if (CollisionHandler != null) CollisionHandler.OnCollision(c);
+        }
+
+
+        private void SwapComponent <T> (ref T component, T newComponent) where T : Component {
+            if (component != null) {
+                component.OnRemove();
+                component.Object = null;
+            }
+            if (newComponent != null) {
+                newComponent.Object = this;
+                newComponent.OnAdd();
+            }
+            component = newComponent;
         }
 
     }

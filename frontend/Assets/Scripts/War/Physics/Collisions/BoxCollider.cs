@@ -27,19 +27,19 @@ namespace War.Physics.Collisions {
 
 
         public float Left {
-            get { return _leftOffset + Obj.Position.X; }
+            get { return _leftOffset + Object.Position.X; }
         }
 
         public float Right {
-            get { return _rightOffset + Obj.Position.X; }
+            get { return _rightOffset + Object.Position.X; }
         }
 
         public float Bottom {
-            get { return _bottomOffset + Obj.Position.Y; }
+            get { return _bottomOffset + Object.Position.Y; }
         }
 
         public float Top {
-            get { return _topOffset + Obj.Position.Y; }
+            get { return _topOffset + Object.Position.Y; }
         }
 
         public override AABBF AABB {

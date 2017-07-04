@@ -23,7 +23,6 @@ public class Core : MonoBehaviour {
         CoreEvents = gameObject.GetComponent<CoreEvents>();
     }
 
-
     public void AuthAccepted (int id) {
         Id = id;
     }

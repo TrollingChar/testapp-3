@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 
 
-namespace War.GameObjects {
+namespace War.Objects.GameObjects {
 
     public class WormGO : MonoBehaviour {
 

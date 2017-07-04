@@ -51,10 +51,11 @@ namespace War.Physics {
             //Debug.Log(objects.Count);
 
             if (Core.BF.State.Timer % 500 == 0 && td != null && td.MB) {
+                // ???
                 AddObject(new Worm(), td.XY);
             }
 
-            foreach (var o in _objects) o.Update();
+            foreach (var o in _objects) o.Update(td);
             foreach (var o in _objects) {
                 o.Movement = 1;
                 o.Excluded.Clear();
@@ -66,7 +67,7 @@ namespace War.Physics {
                     if (o.Velocity.Length * o.Movement <= Precision) continue;
 
                     var c = o.NextCollision();
-                    Object o2 = c == null || c.Collider2 == null ? null : c.Collider2.Obj;
+                    Object o2 = c == null || c.Collider2 == null ? null : c.Collider2.Object;
 
                     if (c == null) {
                         // no collision
@@ -88,46 +89,57 @@ namespace War.Physics {
                         // as long as magic number equals to 3, the eternal balance in the world will remain
                         o.Position += c.Offset.WithLengthReduced(Precision);
                         o.Movement -= Mathf.Sqrt(c.Offset.SqrLength / o.Velocity.SqrLength);
-                        o.Velocity = Geom.Bounce(
-                            o.Velocity,
-                            c.Normal,
-                            Mathf.Sqrt(c.Collider1.TangentialBounce * c.Collider2.TangentialBounce),
-                            Mathf.Sqrt(c.Collider1.NormalBounce * c.Collider2.NormalBounce)
-                        );
-                        o.OnCollision(c);
-                        o2.OnCollision(-c);
+                        bool willAcceptCollision = o.WillAcceptCollision(c) & o2.WillAcceptCollision(-c);
+                        if (willAcceptCollision) {
+                            o.Velocity = Geom.Bounce(
+                                o.Velocity,
+                                c.Normal,
+                                Mathf.Sqrt(c.Collider1.TangentialBounce * c.Collider2.TangentialBounce),
+                                Mathf.Sqrt(c.Collider1.NormalBounce * c.Collider2.NormalBounce)
+                            );
+                            o.OnCollision(c);
+                            o2.OnCollision(-c);
+                        }
                     } else if (o2.SuperMass < o.SuperMass) {
                         // treat first object as it has infinite mass
                         o.Position += c.Offset.WithLengthReduced(Precision);
                         o.Movement -= Mathf.Sqrt(c.Offset.SqrLength / o.Velocity.SqrLength);
-                        o.Velocity = Geom.Bounce(
-                            o.Velocity,
-                            c.Normal,
-                            Mathf.Sqrt(c.Collider1.TangentialBounce * c.Collider2.TangentialBounce),
-                            Mathf.Sqrt(c.Collider1.NormalBounce * c.Collider2.NormalBounce)
-                        );
-                        o.OnCollision(c);
-                        o2.OnCollision(-c);
+                        bool willAcceptCollision = o.WillAcceptCollision(c) & o2.WillAcceptCollision(-c);
+                        if (willAcceptCollision) {
+                            o.Velocity = Geom.Bounce(
+                                o.Velocity,
+                                c.Normal,
+                                Mathf.Sqrt(c.Collider1.TangentialBounce * c.Collider2.TangentialBounce),
+                                Mathf.Sqrt(c.Collider1.NormalBounce * c.Collider2.NormalBounce)
+                            );
+                            o.OnCollision(c);
+                            o2.OnCollision(-c);
+                        }
                     } else {
                         o.Position += c.Offset.WithLengthReduced(Precision);
                         o.Movement -= Mathf.Sqrt(c.Offset.SqrLength / o.Velocity.SqrLength);
 
                         // найти скалярное произведение нормали столкновения и скорости второго объекта
                         // так мы узнаем мешает ли он движению первого
-                        float temp = XY.Dot(c.Normal, c.Collider2.Obj.Velocity);
-                        if (temp >= 0 || c.Collider2.Obj.Movement * c.Collider2.Obj.Velocity.Length <= Precision) {
+                        float temp = XY.Dot(c.Normal, c.Collider2.Object.Velocity);
+                        if (temp >= 0 || c.Collider2.Object.Movement * c.Collider2.Object.Velocity.Length <=
+                            Precision) {
                             // collision
-                            XY velocity = (o.Mass * o.Velocity + o2.Mass * o2.Velocity) / (o.Mass + o2.Mass);
-                            XY v1 = o.Velocity - velocity;
-                            XY v2 = o2.Velocity - velocity;
-                            float tangBounce = Mathf.Sqrt(c.Collider1.TangentialBounce * c.Collider2.TangentialBounce);
-                            float normBounce = Mathf.Sqrt(c.Collider1.NormalBounce * c.Collider2.NormalBounce);
-                            o.Velocity = velocity + Geom.Bounce(v1, c.Normal, tangBounce, normBounce);
-                            o2.Velocity = velocity + Geom.Bounce(v2, c.Normal, tangBounce, normBounce);
-                        }
+                            bool willAcceptCollision = o.WillAcceptCollision(c) & o2.WillAcceptCollision(-c);
+                            if (willAcceptCollision) {
+                                XY velocity = (o.Mass * o.Velocity + o2.Mass * o2.Velocity) / (o.Mass + o2.Mass);
+                                XY v1 = o.Velocity - velocity;
+                                XY v2 = o2.Velocity - velocity;
+                                float tangBounce =
+                                    Mathf.Sqrt(c.Collider1.TangentialBounce * c.Collider2.TangentialBounce);
+                                float normBounce = Mathf.Sqrt(c.Collider1.NormalBounce * c.Collider2.NormalBounce);
+                                o.Velocity = velocity + Geom.Bounce(v1, c.Normal, tangBounce, normBounce);
+                                o2.Velocity = velocity + Geom.Bounce(v2, c.Normal, tangBounce, normBounce);
 
-                        o.OnCollision(c);
-                        o2.OnCollision(-c);
+                                o.OnCollision(c);
+                                o2.OnCollision(-c);
+                            }
+                        }
                     }
                     if (o.Position.Y < WaterLevel) o.Remove();
                 }
