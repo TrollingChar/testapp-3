@@ -166,8 +166,8 @@ namespace War.Objects {
         }
 
 
-        public bool WillAcceptCollision (Collision c) {
-            return CollisionHandler == null || CollisionHandler.WillAcceptCollision(c);
+        public bool WillCauseCollision (Collision c) {
+            return CollisionHandler == null || CollisionHandler.WillCauseCollision(c);
         }
 
 
