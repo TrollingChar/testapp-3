@@ -48,6 +48,8 @@ namespace War {
             get { return ((_time + 999) / 1000).ToString(); }
         }
 
+        public bool WormFrozen { get; private set; }
+
 
         public GameStateController () {
             _current = GameState.AfterTurn;

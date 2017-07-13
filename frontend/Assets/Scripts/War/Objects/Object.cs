@@ -14,7 +14,7 @@ namespace War.Objects {
 
     public abstract class Object {
 
-        private static NullObject _empty = new NullObject();
+        private static readonly NullObject _empty = new NullObject();
         public LinkedListNode<Object> Node;
 
         public float Movement;
@@ -70,7 +70,13 @@ namespace War.Objects {
         }
 
 
-        public virtual void OnAdd () {}
+        public virtual void OnAdd () {
+            // Sprite = UnObject.Instantiate(...
+            // AddCollider(...
+            // Explosive = ...
+            // Controller = ...
+            // CollisionHandler = ...
+        }
 
 
         public void Remove () {
@@ -86,8 +92,8 @@ namespace War.Objects {
         }
 
 
-        public Collision NextCollision () {
-            XY v = Velocity * Movement;
+        public Collision NextCollision (float movementLeft) {
+            XY v = Velocity * movementLeft;
             var cObj = CollideWithObjects(v);
             if (cObj != null) v = cObj.Offset;
             var cLand = CollideWithLand(v);

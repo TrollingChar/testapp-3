@@ -10,10 +10,7 @@ namespace War.Physics.Collisions {
         private float _radius;
 
         public XY Center {
-            get {
-                //Debug.Log(obj);
-                return _offset + Object.Position;
-            }
+            get { return _offset + Object.Position; }
         }
 
 

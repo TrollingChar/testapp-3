@@ -13,12 +13,32 @@ namespace War.Objects {
 
     public class Worm : Object {
 
-        public const float HeadRadius = 5;
-        public const float BodyHeight = 5;
+        public const float HeadRadius = 5f;
+        public const float BodyHeight = 5f;
+
+        public const float WalkSpeed = 1f;
+        public const float JumpSpeed = 5f;
+        public const float HighJumpSpeed = 7f;
+
+        public const float MaxClimb = 5f;
+        public const float MaxDescend = 5f;
+
         public WormGO SpriteExtension;
 
-        public Collider Head { get; private set; }
-        public Collider Tail { get; private set; }
+        public CircleCollider Head { get; private set; }
+        public CircleCollider Tail { get; private set; }
+
+        private bool _facesRight;
+
+        public bool FacesRight {
+            get { return _facesRight; }
+            set { _facesRight = value; }
+        }
+
+        public bool FacesLeft {
+            get { return !_facesRight; }
+            set { _facesRight = !value; }
+        }
 
         public Worm () : base(60, 1) {}
 

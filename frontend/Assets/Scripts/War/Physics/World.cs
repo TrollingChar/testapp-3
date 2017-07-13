@@ -16,7 +16,7 @@ namespace War.Physics {
         public Tiles Tiles;
         private LinkedList<Object> _objects;
 
-        private const float Precision = 0.1f;
+        public const float Precision = 0.1f;
 
 
         public World (Texture2D tex, SpriteRenderer renderer) {
@@ -54,7 +54,7 @@ namespace War.Physics {
 
             if (Core.BF.State.Timer % 500 == 0 && td != null && td.MB) {
                 // ???
-                AddObject(new Worm(), td.XY);
+                AddObject(Core.BF.State.Worm = new Worm(), td.XY);
             }
 
             foreach (var o in _objects) o.Update(td);
@@ -68,11 +68,10 @@ namespace War.Physics {
                 foreach (var o in _objects) {
                     if (o.Velocity.Length * o.Movement <= Precision) continue;
 
-                    var c = o.NextCollision();
-                    var o2 =
-                        c == null || c.Collider2 == null
-                            ? null
-                            : c.Collider2.Object;
+                    var c = o.NextCollision(o.Movement);
+                    var o2 = c == null || c.Collider2 == null
+                        ? null
+                        : c.Collider2.Object;
 
                     if (c == null) {
                         // no collision
