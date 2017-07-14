@@ -33,6 +33,9 @@ namespace War.Objects {
         public Collision Cast (XY direction) {
             Velocity = direction;
             return NextCollision(1f);
+            
+            // colliders are never removed
+            // TODO: fix it!
         }
 
     }
