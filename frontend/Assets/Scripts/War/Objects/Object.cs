@@ -81,14 +81,19 @@ namespace War.Objects {
 
         public void Remove () {
             Node.Value = _empty;
-            foreach (var c in Colliders) {
-                c.FreeTiles();
-                c.Object = null;
-            }
+            RemoveColliders();
             CollisionHandler = null;
             Explosive = null;
             Controller = null;
             RemoveSprite();
+        }
+
+
+        protected void RemoveColliders () {
+            foreach (var c in Colliders) {
+                c.FreeTiles();
+                //c.Object = null;
+            }
         }
 
 
@@ -185,7 +190,7 @@ namespace War.Objects {
         private void SwapComponent <T> (ref T component, T newComponent) where T : Component {
             if (component != null) {
                 component.OnRemove();
-                component.Object = null;
+                //component.Object = null;
             }
             if (newComponent != null) {
                 newComponent.Object = this;

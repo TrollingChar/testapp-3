@@ -30,12 +30,11 @@ namespace War.Objects {
         }
 
 
-        public Collision Cast (XY direction) {
+        public Collision Cast (XY direction, bool removeColliders = true) {
             Velocity = direction;
-            return NextCollision(1f);
-            
-            // colliders are never removed
-            // TODO: fix it!
+            var collision = NextCollision(1f);
+            if (removeColliders) RemoveColliders();
+            return collision;
         }
 
     }
