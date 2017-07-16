@@ -23,7 +23,7 @@ namespace War.Objects.Controllers {
 
             var collision =
                 new Ray(worm.Tail.Center, new CircleCollider(XY.Zero, Worm.HeadRadius))
-                .Cast(new XY(0f, -Worm.MaxDescend));
+                    .Cast(new XY(0f, -Worm.MaxDescend));
 
             // will fall?
             if (collision == null) {
@@ -33,6 +33,11 @@ namespace War.Objects.Controllers {
 
             // can move?
             if (td == null || worm != Core.BF.State.Worm || Core.BF.State.WormFrozen) {
+                if (-collision.Offset.Y < World.Precision) {
+                    collision.Offset.Y = 0;
+                } else {
+                    collision.Offset.Y += World.Precision;
+                }
                 Object.Position += collision.Offset;
                 return;
             }
@@ -56,7 +61,10 @@ namespace War.Objects.Controllers {
                 // try to walk
                 xOffset = td.D ? Worm.WalkSpeed : -Worm.WalkSpeed;
                 XY rayOrigin = worm.Tail.Center + new XY(0f, Worm.MaxClimb);
-                XY rayDirection = new XY(xOffset, 0f);
+                XY rayDirection = new XY(
+                    xOffset + xOffset > 0 ? World.Precision : -World.Precision,
+                    0f
+                );
                 if (new Ray(rayOrigin, new CircleCollider(XY.Zero, Worm.HeadRadius)).Cast(rayDirection) != null) {
                     xOffset = 0f;
                 }
@@ -77,14 +85,19 @@ namespace War.Objects.Controllers {
                         Object.Position += new XY(xOffset, 0f);
                         Object.Controller = new WormControllerJump();
                     } else if (World.Precision < -yOffset) {
-                        Object.Position += new XY(xOffset, Worm.MaxClimb + yOffset);
-                    }
+                        Object.Position += new XY(xOffset, Worm.MaxClimb + yOffset + World.Precision);
+                    } // else: cliff too high, cannot climb
                     return;
                 }
                 // head hit ceiling, dont move
             }
 
             // stand still
+            if (-collision.Offset.Y < World.Precision) {
+                collision.Offset.Y = 0;
+            } else {
+                collision.Offset.Y += World.Precision;
+            }
             Object.Position += collision.Offset;
         }
 
