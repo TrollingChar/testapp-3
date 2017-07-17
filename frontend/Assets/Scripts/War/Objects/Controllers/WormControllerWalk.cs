@@ -62,7 +62,7 @@ namespace War.Objects.Controllers {
                 xOffset = td.D ? Worm.WalkSpeed : -Worm.WalkSpeed;
                 XY rayOrigin = worm.Tail.Center + new XY(0f, Worm.MaxClimb);
                 XY rayDirection = new XY(
-                    xOffset + xOffset > 0 ? World.Precision : -World.Precision,
+                    xOffset + (td.D ? World.Precision : -World.Precision),
                     0f
                 );
                 if (new Ray(rayOrigin, new CircleCollider(XY.Zero, Worm.HeadRadius)).Cast(rayDirection) != null) {
