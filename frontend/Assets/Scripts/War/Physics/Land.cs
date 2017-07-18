@@ -13,8 +13,10 @@ namespace War.Physics {
 
         private byte[,] _array;
         private LandTiles _tiles;
-        private int _width, _height; // do not make them odd
-        private int _widthInTiles, _heightInTiles;
+        public int Width { get; private set; }
+        public int Height { get; private set; }
+        public int WidthInTiles { get; private set; }
+        public int HeightInTiles { get; private set; }
 
         public float TangentialBounce, NormalBounce;
 
@@ -31,32 +33,32 @@ namespace War.Physics {
         private void InitArray (LandGen gen) {
             _array = gen.Array;
 
-            _width = _array.GetLength(0);
-            _height = _array.GetLength(1);
+            Width = _array.GetLength(0);
+            Height = _array.GetLength(1);
         }
 
 
         private void InitTexture (Texture2D landTexture, SpriteRenderer renderer) {
-            var tex = new Texture2D(_width, _height);
-            for (int x = 0; x < _width; ++x)
-            for (int y = 0; y < _height; ++y) {
+            var tex = new Texture2D(Width, Height);
+            for (int x = 0; x < Width; ++x)
+            for (int y = 0; y < Height; ++y) {
                 tex.SetPixel(x, y, _array[x, y] == 0 ? Color.clear : landTexture.GetPixel(x & 0xff, y & 0xff));
             }
             tex.Apply();
-            renderer.sprite = Sprite.Create(tex, new Rect(0, 0, _width, _height), new Vector2(0, 0), 1f);
+            renderer.sprite = Sprite.Create(tex, new Rect(0, 0, Width, Height), new Vector2(0, 0), 1f);
         }
 
 
         private void InitTiles () {
-            _widthInTiles = _width / LandTile.Size;
-            if (_width % LandTile.Size != 0) ++_widthInTiles;
+            WidthInTiles = Width / LandTile.Size;
+            if (Width % LandTile.Size != 0) ++WidthInTiles;
 
-            _heightInTiles = _height / LandTile.Size;
-            if (_height % LandTile.Size != 0) ++_heightInTiles;
+            HeightInTiles = Height / LandTile.Size;
+            if (Height % LandTile.Size != 0) ++HeightInTiles;
 
             _tiles = new LandTiles();
-            for (int x = 0; x < _widthInTiles; x++)
-            for (int y = 0; y < _heightInTiles; y++) {
+            for (int x = 0; x < WidthInTiles; x++)
+            for (int y = 0; y < HeightInTiles; y++) {
                 var tile = new LandTile(x, y);
                 tile.Recalculate(this);
                 _tiles[x, y] = tile;
@@ -66,7 +68,7 @@ namespace War.Physics {
 
         public byte this [int x, int y] {
             get {
-                return x < 0 || y < 0 || x >= _width || y >= _height
+                return x < 0 || y < 0 || x >= Width || y >= Height
                     ? (byte) 0
                     : _array[x, y];
             }

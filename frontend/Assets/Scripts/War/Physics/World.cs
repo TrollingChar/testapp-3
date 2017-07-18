@@ -187,6 +187,18 @@ namespace War.Physics {
             o.UpdateSpritePosition();
         }
 
+
+        public void SpawnTeams (List<int> players, int wormsInTeam) {
+            // determine where are valid spawns
+            for (int x = 0; x < Land.; x++) {
+                
+            }
+            
+            // get distinct names
+            
+            // spawn worms
+        }
+
     }
 
 }
