@@ -1,9 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Security.Cryptography.X509Certificates;
 using Geometry;
 using UnityEngine;
+using Utils;
 using War.Objects;
+using War.Physics.Collisions;
+using War.Teams;
 using Object = War.Objects.Object;
+using Ray = War.Objects.Ray;
 
 
 namespace War.Physics {
@@ -188,11 +193,44 @@ namespace War.Physics {
         }
 
 
+        public List<XY> GetSpawnPoints () {
+            var result = new List<XY>();
+            XY rayDirection = new XY(0, Worm.HeadRadius - LandTile.Size * 1.5f);
+            for (int x = 0; x < Land.Width / LandTile.Size; x++)
+            for (int y = 0; y < Land.Height / LandTile.Size; y++) {
+                // valid:
+                // . . .
+                // . . .
+                // # # #
+                //   ^--- (x, y)
+                
+                if (
+                    Land.Tiles[x, y].Land > 0
+                    && (Land.Tiles[x - 1, y].Land > 0 || Land.Tiles[x + 1, y].Land > 0)
+                    && Land.Tiles[x, y + 1].Land <= 0
+                    && (Land.Tiles[x - 1, y + 1].Land <= 0 || Land.Tiles[x + 1, y + 1].Land <= 0)
+//                    && Land.Tiles[x, y + 2].Land <= 0
+//                    && Land.Tiles[x - 1, y + 2].Land <= 0
+//                    && Land.Tiles[x + 1, y + 2].Land <= 0
+                ) {
+                    XY rayOrigin = new XY(x + 0.5f, y + 1f) * LandTile.Size;
+                    var collision = new Ray(rayOrigin, new CircleCollider(XY.Zero, Worm.HeadRadius)).Cast(rayDirection);
+                    if (collision != null) result.Add(rayOrigin + new XY(0, Worm.BodyHeight));
+                }
+            }
+            return result;
+        }
+
+
         public void SpawnTeams (List<int> players, int wormsInTeam) {
             // determine where are valid spawns
-            for (int x = 0; x < Land.; x++) {
-                
+            var spawnPoints = GetSpawnPoints();
+            foreach (var xy in spawnPoints) {
+                var worm = new Worm();
+                AddObject(new Worm(), xy);
             }
+            
+            // determine teams colors
             
             // get distinct names
             

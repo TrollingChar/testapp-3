@@ -12,7 +12,7 @@ namespace War.Physics {
         private int _progress, _fullProgress;
 
         private byte[,] _array;
-        private LandTiles _tiles;
+        public LandTiles Tiles { get; private set; }
         public int Width { get; private set; }
         public int Height { get; private set; }
         public int WidthInTiles { get; private set; }
@@ -56,12 +56,12 @@ namespace War.Physics {
             HeightInTiles = Height / LandTile.Size;
             if (Height % LandTile.Size != 0) ++HeightInTiles;
 
-            _tiles = new LandTiles();
+            Tiles = new LandTiles();
             for (int x = 0; x < WidthInTiles; x++)
             for (int y = 0; y < HeightInTiles; y++) {
                 var tile = new LandTile(x, y);
                 tile.Recalculate(this);
-                _tiles[x, y] = tile;
+                Tiles[x, y] = tile;
             }
         }
 
@@ -177,7 +177,7 @@ namespace War.Physics {
 
                 for (int x = aabb.Left; x < aabb.Right; x++)
                 for (int y = aabb.Bottom; y < aabb.Top; y++) {
-                    foreach (XY pt in _tiles[x, y].Vertices) {
+                    foreach (XY pt in Tiles[x, y].Vertices) {
                         float dd = Geom.CastRayToCircle(bp, v, pt, width);
                         if (dd >= d) continue;
                         d = dd;
@@ -246,7 +246,7 @@ namespace War.Physics {
 
                 for (int x = aabb.Left; x < aabb.Right; x++)
                 for (int y = aabb.Bottom; y < aabb.Top; y++) {
-                    foreach (XY pt in _tiles[x, y].Vertices) {
+                    foreach (XY pt in Tiles[x, y].Vertices) {
                         float d = Geom.CastRayToVertical(pt, -v, xx);
                         float yy = pt.Y - v.Y * d;
                         if (yy <= bottom || yy >= top || d >= dd) continue;
@@ -276,7 +276,7 @@ namespace War.Physics {
 
                 for (int x = aabb.Left; x < aabb.Right; x++)
                 for (int y = aabb.Bottom; y < aabb.Top; y++) {
-                    foreach (XY pt in _tiles[x, y].Vertices) {
+                    foreach (XY pt in Tiles[x, y].Vertices) {
                         float d = Geom.CastRayToHorizontal(pt, -v, yy);
                         float xx = pt.X - v.X * d;
                         if (xx <= left || xx >= right || d >= dd) continue;

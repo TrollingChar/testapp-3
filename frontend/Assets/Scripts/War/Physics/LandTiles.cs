@@ -4,7 +4,7 @@ using Geometry;
 
 namespace War.Physics {
 
-    internal class LandTiles {
+    public class LandTiles {
 
         private Dictionary<TileXY, LandTile> _tiles;
 

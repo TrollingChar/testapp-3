@@ -13,6 +13,11 @@ namespace War.Objects.GameObjects {
             set { _text.text = value; }
         }
 
+        public Color Color {
+            get { return _text.color; }
+            set { _text.color = value; }
+        }
+
     }
 
 }

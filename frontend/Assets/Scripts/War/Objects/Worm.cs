@@ -1,9 +1,11 @@
 ﻿using Geometry;
 using UnityEngine;
+using Utils;
 using War.Objects.CollisionHandlers;
 using War.Objects.Controllers;
 using War.Objects.GameObjects;
 using War.Physics.Collisions;
+using War.Teams;
 using Collider = War.Physics.Collisions.Collider;
 using Collision = War.Physics.Collisions.Collision;
 using UnObject = UnityEngine.Object;
@@ -46,7 +48,9 @@ namespace War.Objects {
         public override void OnAdd () {
             Sprite = UnObject.Instantiate(Assets.Assets.Worm);
             SpriteExtension = Sprite.GetComponent<WormGO>();
-            SpriteExtension.Text = WormsNames.Random();
+            SpriteExtension.Text = "?";//WormsNames.Random();
+            SpriteExtension.Text = "Кек";
+            SpriteExtension.Color = RNG.Pick(TeamColors.Colors);
 
             AddCollider(Head = new CircleCollider(new XY(0f, BodyHeight * 0.5f), HeadRadius));
             AddCollider(Tail = new CircleCollider(new XY(0f, BodyHeight * -0.5f), HeadRadius));

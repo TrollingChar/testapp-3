@@ -1,4 +1,8 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using UnityEngine;
 using Random = System.Random;
 
 
@@ -54,8 +58,30 @@ namespace Utils {
         }
 
 
+/*
         public static Vector2 Vector2 () {
             return new Vector2(Float(), Float());
+        }
+*/
+
+
+        public static T Pick<T> (List<T> list) {
+            return list[Int(list.Count)];
+        }
+
+
+        public static List<T> PickSome<T> (List<T> list, int count) {
+            var array = list.ToArray();
+            var result = new List<T>();
+            int j = array.Length;
+            for (int i = 0; i < count; i++) {
+                if (j == 1) result.Add(array[--j]);
+                if (j == 0) break;
+                int temp = Int(j);
+                result.Add(array[temp]);
+                array[temp] = array[--j];
+            }
+            return result;
         }
 
     }

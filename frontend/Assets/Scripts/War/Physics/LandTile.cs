@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Geometry;
+using UnityEngine;
 
 
 namespace War.Physics {
@@ -46,7 +47,7 @@ namespace War.Physics {
             Land = 0;
             for (int ix = _x * Size, xx = ix + Size; ix < xx; ix++)
             for (int iy = _y * Size, yy = iy + Size; iy < yy; iy++) {
-                Land += land[_x, _y];
+                Land += land[ix, iy];
             }
         }
 
