@@ -1,4 +1,5 @@
-﻿using Geometry;
+﻿using System;
+using Geometry;
 using UnityEngine;
 using Utils;
 using War.Objects.CollisionHandlers;
@@ -25,7 +26,11 @@ namespace War.Objects {
         public const float MaxClimb = 5f;
         public const float MaxDescend = 5f;
 
+        [Obsolete] // TODO: replace this with properties Text and Color - get rid of null exceptions
         public WormGO SpriteExtension;
+        
+        public Team Team { get; set; }
+        public int HP { get; set; } // TODO: convert to full property
 
         public CircleCollider Head { get; private set; }
         public CircleCollider Tail { get; private set; }
@@ -42,6 +47,7 @@ namespace War.Objects {
             set { _facesRight = !value; }
         }
 
+
         public Worm () : base(60, 1) {}
 
 
@@ -57,6 +63,11 @@ namespace War.Objects {
             //AddCollider(new BoxCollider(-5, 5, -2.5f, 2.5f));
 
             Controller = new WormControllerJump();
+        }
+
+
+        public virtual void OnAddToTeam (Team team) {
+            SpriteExtension.Color = team.Color;
         }
 
 

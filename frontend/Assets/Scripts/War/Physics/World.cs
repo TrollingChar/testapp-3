@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using Geometry;
 using UnityEngine;
 using Utils;
 using War.Objects;
+using War.Objects.GameObjects;
 using War.Physics.Collisions;
 using War.Teams;
 using Object = War.Objects.Object;
@@ -224,17 +226,21 @@ namespace War.Physics {
 
         public void SpawnTeams (List<int> players, int wormsInTeam) {
             // determine where are valid spawns
-            var spawnPoints = GetSpawnPoints();
-            foreach (var xy in spawnPoints) {
-                var worm = new Worm();
-                AddObject(new Worm(), xy);
-            }
+            var spawnPoints = RNG.PickSome(GetSpawnPoints(), players.Count * wormsInTeam);
             
             // determine teams colors
-            
-            // get distinct names
-            
+            var teamColors = TeamColors.Colors.Take(players.Count).ToList();
+
             // spawn worms
+            int currentSpawn = 0;
+            for (int pl = 0; pl < players.Count; pl++) {
+                var team = new Team(players[pl], teamColors[pl]);
+                for (int w = 0; w < wormsInTeam; w++) {
+                    var worm = new Worm();
+                    AddObject(worm, spawnPoints[currentSpawn++]);
+                    team.AddWorm(worm);
+                }
+            }
         }
 
     }
