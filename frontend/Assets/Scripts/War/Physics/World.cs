@@ -224,15 +224,16 @@ namespace War.Physics {
         }
 
 
-        public void SpawnTeams (List<int> players, int wormsInTeam) {
+        public Dictionary<int, Team> SpawnTeams (List<int> players, int wormsInTeam) {
             // determine where are valid spawns
             var spawnPoints = RNG.PickSome(GetSpawnPoints(), players.Count * wormsInTeam);
             
             // determine teams colors
             var teamColors = TeamColors.Colors.Take(players.Count).ToList();
-
+            
             // spawn worms
             int currentSpawn = 0;
+            var teams = new Dictionary<int, Team>();
             for (int pl = 0; pl < players.Count; pl++) {
                 var team = new Team(players[pl], teamColors[pl]);
                 for (int w = 0; w < wormsInTeam; w++) {
@@ -240,7 +241,9 @@ namespace War.Physics {
                     AddObject(worm, spawnPoints[currentSpawn++]);
                     team.AddWorm(worm);
                 }
+                teams[players[pl]] = team;
             }
+            return teams;
         }
 
     }

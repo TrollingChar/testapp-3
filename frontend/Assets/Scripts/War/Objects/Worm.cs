@@ -16,12 +16,12 @@ namespace War.Objects {
 
     public class Worm : Object {
 
-        public const float HeadRadius = 5f;
-        public const float BodyHeight = 5f;
+        public const float HeadRadius = 8f;
+        public const float BodyHeight = 8f;
 
         public const float WalkSpeed = 1f;
-        public const float JumpSpeed = 5f;
-        public const float HighJumpSpeed = 7f;
+        public const float JumpSpeed = 6f;
+        public const float HighJumpSpeed = 9f;
 
         public const float MaxClimb = 5f;
         public const float MaxDescend = 5f;
@@ -30,7 +30,6 @@ namespace War.Objects {
         public WormGO SpriteExtension;
         
         public Team Team { get; set; }
-        public int HP { get; set; } // TODO: convert to full property
 
         public CircleCollider Head { get; private set; }
         public CircleCollider Tail { get; private set; }
@@ -46,6 +45,12 @@ namespace War.Objects {
             get { return !_facesRight; }
             set { _facesRight = !value; }
         }
+        private int _hp;
+
+        public int HP {
+            get { return 60; }
+            set { _hp = value; }
+        } // TODO: convert to full property
 
 
         public Worm () : base(60, 1) {}

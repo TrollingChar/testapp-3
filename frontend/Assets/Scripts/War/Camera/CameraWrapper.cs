@@ -34,10 +34,15 @@ namespace War.Camera {
         }
 
 
-        public void LookAt (Vector3 xyz, bool instantly = false) {
-            Target.x = xyz.x;
-            Target.y = xyz.y;
+        public void LookAt (Vector2 xy, bool instantly = false) {
+            Target.x = xy.x;
+            Target.y = xy.y;
             if (instantly) Camera.transform.position = Target;
+        }
+
+
+        public void LookAt (Vector3 xyz, bool instantly = false) {
+            LookAt((Vector2) xyz, instantly);
         }
 
 

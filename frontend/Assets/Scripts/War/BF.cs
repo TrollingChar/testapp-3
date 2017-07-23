@@ -3,6 +3,7 @@ using UnityEngine;
 using War.Camera;
 using War.Objects;
 using War.Physics;
+using War.Teams;
 
 
 namespace War {
@@ -19,6 +20,8 @@ namespace War {
 
         // all turn-based logic:
         public GameStateController State;
+
+        public Dictionary<int, Team> Teams;
 
         private bool _paused;
 
@@ -46,7 +49,7 @@ namespace War {
         public void StartGame (List<int> players) {
             //world.AddObject(worm = new Worm(), new XY(1000, 1100));
             CameraWrapper.LookAt(new Vector2(1000, 1000), true);
-            World.SpawnTeams(players, 5);
+            Teams = World.SpawnTeams(players, 5);
         }
 
 
@@ -54,11 +57,6 @@ namespace War {
             // do game logic
             World.Update(td);
             State.Update();
-        }
-
-
-        public Worm NextWorm () {
-            return null;
         }
 
     }

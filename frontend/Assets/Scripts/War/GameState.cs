@@ -18,7 +18,7 @@ namespace War {
 
     public class GameStateController {
 
-        private const int TurnTime = 999000;
+        private const int TurnTime = 10000;
         private const int RetreatTime = 3000;
 
         public bool Synchronized;
@@ -74,6 +74,8 @@ namespace War {
 
         public void StartTurn (int id) {
             ActivePlayer = id;
+            Worm = Core.BF.Teams[id].NextWorm();
+            Core.BF.CameraWrapper.LookAt(Worm.Position);
             ChangeState();
         }
 
@@ -103,7 +105,7 @@ namespace War {
                     Hint(ActivePlayer == Core.Id ? "MY" : "TURN");
                     // Player moves his worm and uses weapon
                     _wormFrozen = false;
-                    Worm = Core.BF.NextWorm();
+                    //Worm = Core.BF.NextWorm();
                     Timer = TurnTime;
                     break;
                 case GameState.EndingTurn:
