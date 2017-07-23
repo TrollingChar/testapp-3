@@ -31,10 +31,18 @@ namespace War {
 
         public int ActivePlayer;
 
-        private bool _wormFrozen;
-        public Worm Worm;
-
         private int _time;
+        private Worm _worm;
+        private bool _wormFrozen;
+
+        public Worm Worm {
+            get { return _worm; }
+            private set {
+                if (_worm != null) _worm.ArrowVisible = false;
+                if ((_worm = value) == null) return;
+                _worm.ArrowVisible = true;
+            }
+        }
 
         public int Timer {
             get { return _time; }
@@ -97,7 +105,7 @@ namespace War {
                     break;
                 case GameState.Synchronizing:
                     Hint("SYN");
-                    // Game sends pos0 signal and waits until server receives all signals
+                    // Game sends a signal and waits until server receives all signals
                     Synchronized = true;
                     Core.Synchronize();
                     break;

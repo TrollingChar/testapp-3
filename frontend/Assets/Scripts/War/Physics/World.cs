@@ -57,11 +57,8 @@ namespace War.Physics {
 
         [SuppressMessage("ReSharper", "InconsistentNaming")]
         public void Update (TurnData td) {
-            //Debug.Log(objects.Count);
-
             if (Core.BF.State.Timer % 500 == 0 && td != null && td.MB) {
                 // ???
-                AddObject(Core.BF.State.Worm = new Worm(), td.XY);
             }
 
             foreach (var o in _objects) o.Update(td);
@@ -179,10 +176,6 @@ namespace War.Physics {
                     node = next;
                 } else node = node.Next;
             }
-
-            //var list = new LinkedList<Object>(objects.Where<Object>(o => !(o is NullObject)));
-            //objects.Clear();
-            //objects = list;
         }
 
 
@@ -205,7 +198,7 @@ namespace War.Physics {
                 // . . .
                 // # # #
                 //   ^--- (x, y)
-                
+
                 if (
                     Land.Tiles[x, y].Land > 0
                     && (Land.Tiles[x - 1, y].Land > 0 || Land.Tiles[x + 1, y].Land > 0)
@@ -227,10 +220,10 @@ namespace War.Physics {
         public Dictionary<int, Team> SpawnTeams (List<int> players, int wormsInTeam) {
             // determine where are valid spawns
             var spawnPoints = RNG.PickSome(GetSpawnPoints(), players.Count * wormsInTeam);
-            
+
             // determine teams colors
             var teamColors = TeamColors.Colors.Take(players.Count).ToList();
-            
+
             // spawn worms
             int currentSpawn = 0;
             var teams = new Dictionary<int, Team>();

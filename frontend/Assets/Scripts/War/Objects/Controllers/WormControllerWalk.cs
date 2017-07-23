@@ -20,6 +20,8 @@ namespace War.Objects.Controllers {
 
         public override void Update (TurnData td) {
             var worm = (Worm) Object;
+            
+            if (td != null) worm.LookAt(td.XY);
 
             var collision =
                 new Ray(worm.Tail.Center, new CircleCollider(XY.Zero, Worm.HeadRadius))

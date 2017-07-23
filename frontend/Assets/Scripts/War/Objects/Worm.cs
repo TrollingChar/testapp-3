@@ -1,6 +1,7 @@
 ﻿using System;
 using Geometry;
 using UnityEngine;
+using UnityEngine.AI;
 using Utils;
 using War.Objects.CollisionHandlers;
 using War.Objects.Controllers;
@@ -26,42 +27,82 @@ namespace War.Objects {
         public const float MaxClimb = 5f;
         public const float MaxDescend = 5f;
 
-        [Obsolete] // TODO: replace this with properties Text and Color - get rid of null exceptions
-        public WormGO SpriteExtension;
-        
+        private WormGO _spriteExtension;
+
         public Team Team { get; set; }
 
         public CircleCollider Head { get; private set; }
         public CircleCollider Tail { get; private set; }
 
         private bool _facesRight;
+        private int _hp;
+        private string _name;
+        private Color _color;
+        private bool _arrowVisible;
 
         public bool FacesRight {
             get { return _facesRight; }
-            set { _facesRight = value; }
+            set {
+                _facesRight = value;
+                if (_spriteExtension != null) _spriteExtension.FacesRight = _facesRight;
+            }
         }
 
         public bool FacesLeft {
             get { return !_facesRight; }
-            set { _facesRight = !value; }
+            set {
+                _facesRight = !value;
+                if (_spriteExtension != null) _spriteExtension.FacesRight = _facesRight;
+            }
         }
-        private int _hp;
 
         public int HP {
-            get { return 60; }
-            set { _hp = value; }
-        } // TODO: convert to full property
+            get { return _hp; }
+            set {
+                _hp = value;
+                if (_spriteExtension != null) _spriteExtension.HP = value;
+            }
+        }
+
+        public string Name {
+            get { return _name; }
+            set {
+                _name = value;
+                if (_spriteExtension != null) _spriteExtension.Name = value;
+            }
+        }
+
+        public Color Color {
+            get { return _color; }
+            set {
+                _color = value;
+                if (_spriteExtension != null) _spriteExtension.Color = value;
+            }
+        }
 
 
-        public Worm () : base(60, 1) {}
+        public bool ArrowVisible {
+            get { return _arrowVisible; }
+            set {
+                _arrowVisible = value;
+                if (_spriteExtension != null) _spriteExtension.ArrowVisible = value;
+            }
+        }
+
+
+        public Worm (string name = "?", int hp = 60) : base(60, 1) {
+            Name = name;
+            HP = hp;
+            FacesRight = RNG.Bool();
+        }
 
 
         public override void OnAdd () {
             Sprite = UnObject.Instantiate(Assets.Assets.Worm);
-            SpriteExtension = Sprite.GetComponent<WormGO>();
-            SpriteExtension.Text = "?";//WormsNames.Random();
-            SpriteExtension.Text = "Кек";
-            SpriteExtension.Color = RNG.Pick(TeamColors.Colors);
+            _spriteExtension = Sprite.GetComponent<WormGO>();
+            _spriteExtension.OnAdd(this);
+
+            Name = "Кек";
 
             AddCollider(Head = new CircleCollider(new XY(0f, BodyHeight * 0.5f), HeadRadius));
             AddCollider(Tail = new CircleCollider(new XY(0f, BodyHeight * -0.5f), HeadRadius));
@@ -72,12 +113,23 @@ namespace War.Objects {
 
 
         public virtual void OnAddToTeam (Team team) {
-            SpriteExtension.Color = team.Color;
+            Color = team.Color;
         }
 
 
         protected override bool PassableFor (Object o) {
             return this == o;
+        }
+
+
+        public void LookAt (XY target) {
+            if (_spriteExtension == null) return; // temporary solution
+            float angle = Mathf.Rad2Deg * XY.DirectionAngle(Head.Center, target);
+            if (Mathf.Abs(angle) < 90) {
+                _spriteExtension.HeadAngle = angle * 0.5f;
+            } else {
+                _spriteExtension.HeadAngle = (angle + (angle > 0 ? 180 : -180)) * 0.5f;
+            }
         }
 
     }
