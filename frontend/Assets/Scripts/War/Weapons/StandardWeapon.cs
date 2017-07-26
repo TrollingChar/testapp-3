@@ -16,6 +16,15 @@
         private int _shotsLeft;
         private int _shotsCooldown;
 
+
+        void OnEquip () {}
+        void OnFirstAttack () {}
+	    void OnBeginAttack () {}
+	    void OnShoot () {}
+	    void OnEndAttack () {}
+	    void OnUnequip () {}
+	    void OnNumberPress (int n) {}
+
 /*
         public var
 			map:Map,
@@ -232,7 +241,7 @@
 			if(!map) return;
 			disable(false);
 		}*/
-	    
+
     }
 
 }
