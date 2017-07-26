@@ -123,13 +123,8 @@ namespace War.Objects {
 
 
         public void LookAt (XY target) {
-            if (_spriteExtension == null) return; // temporary solution
-            float angle = Mathf.Rad2Deg * XY.DirectionAngle(Head.Center, target);
-            if (Mathf.Abs(angle) < 90) {
-                _spriteExtension.HeadAngle = angle * 0.5f;
-            } else {
-                _spriteExtension.HeadAngle = (angle + (angle > 0 ? 180 : -180)) * 0.5f;
-            }
+            if (_spriteExtension == null) return;
+            _spriteExtension.Look(Mathf.Rad2Deg * XY.DirectionAngle(Head.Center, target));
         }
 
     }

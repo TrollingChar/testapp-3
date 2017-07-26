@@ -1,9 +1,6 @@
-﻿using System.Security.Cryptography.X509Certificates;
-using Geometry;
-using UnityEngine;
+﻿using Geometry;
 using War.Physics;
 using War.Physics.Collisions;
-using Collision = War.Physics.Collisions.Collision;
 
 
 namespace War.Objects.Controllers {

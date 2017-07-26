@@ -18,7 +18,7 @@ namespace War {
 
     public class GameStateController {
 
-        private const int TurnTime = 10000;
+        private const int TurnTime = 30000;
         private const int RetreatTime = 3000;
 
         public bool Synchronized;

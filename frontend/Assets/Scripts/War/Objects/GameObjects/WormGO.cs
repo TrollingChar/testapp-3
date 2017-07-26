@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using Geometry;
+using UnityEngine;
 using UnityEngine.UI;
 
 
@@ -6,9 +8,12 @@ namespace War.Objects.GameObjects {
 
     public class WormGO : MonoBehaviour {
 
+        private Worm _worm;
+
         [SerializeField] private Text _name, _hp;
         [SerializeField] private SpriteRenderer _arrow, _headRenderer, _tailRenderer;
         [SerializeField] private Transform _sprite, _head, _tail;
+        private float _headAngle;
 
         public string Name {
             set { _name.text = value; }
@@ -32,11 +37,13 @@ namespace War.Objects.GameObjects {
 
 
         public void OnAdd (Worm worm) {
+            _worm = worm;
             Name = worm.Name;
             HP = worm.HP;
             Color = worm.Color;
             ArrowVisible = worm.ArrowVisible;
             FacesRight = worm.FacesRight;
+            Look(_headAngle = worm.FacesRight ? 0 : 180);
         }
 
 
@@ -46,27 +53,29 @@ namespace War.Objects.GameObjects {
                 var v3 = _sprite.localScale;
                 v3.x = -v3.x;
                 _sprite.localScale = v3;
+                
+                Look(_headAngle);
             }
         }
 
-        public float HeadAngle {
-            set {
-                if (_sprite.localScale.x > 0) {
-                    if (Mathf.Abs(value) < 90) {
-                        _headRenderer.flipX = false;
-                        _head.localEulerAngles = new Vector3(0, 0, value);
-                    } else {
-                        _headRenderer.flipX = true;
-                        _head.localEulerAngles = new Vector3(0, 0, value + 180);
-                    }
+
+        public void Look (float angle) {
+            _headAngle = angle;
+            if (_sprite.localScale.x > 0) {
+                if (Mathf.Abs(angle) < 100) {
+                    _headRenderer.flipX = false;
+                    _head.localEulerAngles = new Vector3(0, 0, angle * 0.5f);
                 } else {
-                    if (Mathf.Abs(value) < 90) {
-                        _headRenderer.flipX = true;
-                        _head.localEulerAngles = new Vector3(0, 0, value + 180);
-                    } else {
-                        _headRenderer.flipX = false;
-                        _head.localEulerAngles = new Vector3(0, 0, value);
-                    }
+                    _headRenderer.flipX = true;
+                    _head.localEulerAngles = new Vector3(0, 0, angle * 0.5f + (angle < 0 ? 90 : -90));
+                }
+            } else {
+                if (Mathf.Abs(angle) > 80) {
+                    _headRenderer.flipX = false;
+                    _head.localEulerAngles = new Vector3(0, 0, angle * -0.5f - (angle < 0 ? 90 : -90));
+                } else {
+                    _headRenderer.flipX = true;
+                    _head.localEulerAngles = new Vector3(0, 0, angle * -0.5f);
                 }
             }
         }
