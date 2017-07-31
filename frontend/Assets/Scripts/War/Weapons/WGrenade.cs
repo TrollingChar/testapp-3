@@ -1,6 +1,10 @@
 ﻿namespace War.Weapons {
 
-    public class WGrenade : StandardWeapon {
+    public sealed class WGrenade : StandardWeapon {
+
+        static WGrenade () {
+            
+        }
 
     }
 
