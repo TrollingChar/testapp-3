@@ -1,5 +1,6 @@
 ﻿using Geometry;
 using UnityEngine;
+using Utils.Singleton;
 
 
 namespace War {
@@ -16,7 +17,7 @@ namespace War {
             S = Input.GetKey(KeyCode.S);
             D = Input.GetKey(KeyCode.D);
             MB = Input.GetMouseButton(0); // LMB
-            XY = Core.BF.CameraWrapper.WorldMousePosition;
+            XY = Singleton<BF>.Get().CameraWrapper.WorldMousePosition;
         }
 
 

@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using Net;
 using UnityEngine;
+using Utils.Singleton;
 using War.Camera;
 using War.Objects;
 using War.Physics;
@@ -25,8 +27,13 @@ namespace War {
 
         private bool _paused;
 
+        private readonly Core _core = Singleton<Core>.Get();
+        private readonly WSConnection _connection = Singleton<WSConnection>.Get();
 
+
+        // todo: bf should not inherit from monobehavior, but incapsulate it
         private void Awake () {
+            Singleton<BF>.Set(this);
             World = new World(Assets.Assets.Motherboard, _renderer);
             State = new GameStateController();
             CameraWrapper = _camera.GetComponent<CameraWrapper>();
@@ -35,10 +42,10 @@ namespace War {
 
         public void Work () {
             // refresh graphics and do logic if my turn
-            if (State.ActivePlayer == Core.Id && State.CurrentState == GameState.Turn) {
+            if (State.ActivePlayer == _core.Id && State.CurrentState == GameState.Turn) {
                 // gather input and update world
                 var td = new TurnData();
-                Core.Connection.SendTurnData(td);
+                _connection.SendTurnData(td);
                 Work(td);
             } else if (State.CurrentState != GameState.Synchronizing) {
                 Work(null);

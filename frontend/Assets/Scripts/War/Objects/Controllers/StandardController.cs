@@ -3,7 +3,7 @@
     internal class StandardController : Controller {
 
         public override void Update (TurnData td) {
-            Object.Velocity.Y += Core.BF.World.Gravity;
+            Object.Velocity.Y += BF.World.Gravity;
         }
 
     }

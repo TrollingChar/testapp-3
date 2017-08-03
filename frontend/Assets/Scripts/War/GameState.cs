@@ -1,4 +1,7 @@
-﻿using Utils;
+﻿using UI;
+using UnityEngine;
+using Utils;
+using Utils.Singleton;
 using War.Objects;
 
 
@@ -35,6 +38,10 @@ namespace War {
         private Worm _worm;
         private bool _wormFrozen;
 
+        private readonly Core _core = Singleton<Core>.Get();
+        private readonly BF _bf = Singleton<BF>.Get();
+        private readonly CoreEvents _coreEvents = Singleton<CoreEvents>.Get();
+
         public Worm Worm {
             get { return _worm; }
             private set {
@@ -48,7 +55,7 @@ namespace War {
             get { return _time; }
             set {
                 _time = value;
-                Core.CoreEvents.SetTurnTime.Invoke(TimerString);
+                _coreEvents.SetTurnTime.Invoke(TimerString);
             }
         }
 
@@ -82,14 +89,15 @@ namespace War {
 
         public void StartTurn (int id) {
             ActivePlayer = id;
-            Worm = Core.BF.Teams[id].NextWorm();
-            Core.BF.CameraWrapper.LookAt(Worm.Position);
+            Worm = _bf.Teams[id].NextWorm();
+            _bf.CameraWrapper.LookAt(Worm.Position);
             ChangeState();
         }
 
 
         private void Hint (string text) {
-            Core.CoreEvents.SetGameTime.Invoke(text);
+            Debug.Log(text);
+            _coreEvents.SetGameTime.Invoke(text);
         }
 
 
@@ -107,10 +115,10 @@ namespace War {
                     Hint("SYN");
                     // Game sends a signal and waits until server receives all signals
                     Synchronized = true;
-                    Core.Synchronize();
+                    _core.Synchronize();
                     break;
                 case GameState.Turn:
-                    Hint(ActivePlayer == Core.Id ? "MY" : "TURN");
+                    Hint(ActivePlayer == _core.Id ? "MY" : "TURN");
                     // Player moves his worm and uses weapon
                     _wormFrozen = false;
                     //Worm = Core.BF.NextWorm();

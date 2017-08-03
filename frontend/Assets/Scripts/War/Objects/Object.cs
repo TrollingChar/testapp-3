@@ -2,6 +2,7 @@
 using System.Linq;
 using Geometry;
 using UnityEngine;
+using Utils.Singleton;
 using War.Objects.CollisionHandlers;
 using War.Objects.Controllers;
 using War.Objects.Explosives;
@@ -39,6 +40,8 @@ namespace War.Objects {
         private Controller _controller;
         private Explosive _explosive;
         private CollisionHandler _collisionHandler;
+        
+        private readonly BF _bf = Singleton<BF>.Get();
 
         public Controller Controller {
             get { return _controller; }
@@ -110,7 +113,7 @@ namespace War.Objects {
             Collision min = null;
             foreach (var c in Colliders) {
                 var obstacles = new HashSet<Collider>(
-                    c.FindObstacles(Core.BF.World, v)
+                    c.FindObstacles(_bf.World, v)
                         .Where(o => !o.Object.PassableFor(this))
                         .Where(o => !Excluded.Contains(o.Object))
                 );
@@ -132,7 +135,7 @@ namespace War.Objects {
         private Collision CollideWithLand (XY v) {
             Collision min = null;
             foreach (var c in Colliders) {
-                var temp = c.CollideWithLand(Core.BF.World.Land, v);
+                var temp = c.CollideWithLand(_bf.World.Land, v);
                 if (temp < min) min = temp;
             }
             return min;
@@ -141,7 +144,7 @@ namespace War.Objects {
 
         public void ExcludeObjects () {
             foreach (var collider in Colliders)
-            foreach (var obstacle in collider.FindOverlapping(Core.BF.World)) {
+            foreach (var obstacle in collider.FindOverlapping(_bf.World)) {
                 Excluded.Add(obstacle.Object);
             }
         }

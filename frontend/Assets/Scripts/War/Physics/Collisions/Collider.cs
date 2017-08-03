@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Geometry;
+using Utils.Singleton;
 using War.Objects;
 
 
@@ -9,6 +10,8 @@ namespace War.Physics.Collisions {
 
         public float TangentialBounce, NormalBounce;
         private List<Tile> _tiles;
+
+        private readonly BF _bf = Singleton<BF>.Get();
 
         public abstract AABBF AABB { get; }
 
@@ -30,7 +33,7 @@ namespace War.Physics.Collisions {
             var box = AABB.ToTiles(Tile.Size);
             for (int x = box.Left; x < box.Right; x++)
             for (int y = box.Bottom; y < box.Top; y++) {
-                var tile = Core.BF.World.Tiles[x, y];
+                var tile = _bf.World.Tiles[x, y];
                 tile.AddCollider(this);
                 _tiles.Add(tile);
             }
@@ -49,7 +52,7 @@ namespace War.Physics.Collisions {
 
             for (int x = box.Left; x < box.Right; x++)
             for (int y = box.Bottom; y < box.Top; y++) {
-                foreach (var c in Core.BF.World.Tiles[x, y].Colliders) {
+                foreach (var c in _bf.World.Tiles[x, y].Colliders) {
                     result.Add(c);
                 }
             }
@@ -64,7 +67,7 @@ namespace War.Physics.Collisions {
 
             for (int x = box.Left; x < box.Right; x++)
             for (int y = box.Bottom; y < box.Top; y++) {
-                foreach (var c in Core.BF.World.Tiles[x, y].Colliders) {
+                foreach (var c in _bf.World.Tiles[x, y].Colliders) {
                     if (OverlapsWith(c)) result.Add(c);
                 }
             }

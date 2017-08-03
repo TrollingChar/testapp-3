@@ -1,19 +1,19 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using Geometry;
 using UnityEngine;
 using Utils;
+using Utils.Singleton;
 using War.Objects;
-using War.Objects.GameObjects;
+using War.Physics;
 using War.Physics.Collisions;
 using War.Teams;
 using Object = War.Objects.Object;
 using Ray = War.Objects.Ray;
 
 
-namespace War.Physics {
+namespace War {
 
     public class World {
 
@@ -22,6 +22,8 @@ namespace War.Physics {
         public Land Land;
         public Tiles Tiles;
         private LinkedList<Object> _objects;
+        
+        private BF _bf = Singleton<BF>.Get();
 
         public const float Precision = 0.1f;
 
@@ -57,7 +59,7 @@ namespace War.Physics {
 
         [SuppressMessage("ReSharper", "InconsistentNaming")]
         public void Update (TurnData td) {
-            if (Core.BF.State.Timer % 500 == 0 && td != null && td.MB) {
+            if (_bf.State.Timer % 500 == 0 && td != null && td.MB) {
                 // ???
             }
 

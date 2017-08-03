@@ -17,7 +17,7 @@ namespace War.Objects.Controllers {
 
         public override void Update (TurnData td) {
             var worm = (Worm) Object;
-            
+
             if (td != null) worm.LookAt(td.XY);
 
             var collision =
@@ -31,7 +31,7 @@ namespace War.Objects.Controllers {
             }
 
             // can move?
-            if (td == null || worm != Core.BF.State.Worm || Core.BF.State.WormFrozen) {
+            if (td == null || worm != BF.State.Worm || BF.State.WormFrozen) {
                 if (-collision.Offset.Y < World.Precision) {
                     collision.Offset.Y = 0;
                 } else {
