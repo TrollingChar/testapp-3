@@ -5,7 +5,7 @@ namespace War.Objects.Controllers {
 
     public class Controller : Component {
 
-        protected readonly BF BF = Singleton<BF>.Get();
+        protected readonly BF BF = The<BF>.Get();
         
         public virtual void Update (TurnData td) {}
 

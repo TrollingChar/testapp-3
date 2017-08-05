@@ -11,7 +11,7 @@ namespace War.Physics.Collisions {
         public float TangentialBounce, NormalBounce;
         private List<Tile> _tiles;
 
-        private readonly BF _bf = Singleton<BF>.Get();
+        private readonly BF _bf = The<BF>.Get();
 
         public abstract AABBF AABB { get; }
 

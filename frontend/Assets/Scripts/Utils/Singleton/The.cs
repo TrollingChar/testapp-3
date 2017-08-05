@@ -1,6 +1,6 @@
 ﻿namespace Utils.Singleton {
 
-    public class Singleton<T> {
+    public class The<T> {
 
         private static T _instance;
 

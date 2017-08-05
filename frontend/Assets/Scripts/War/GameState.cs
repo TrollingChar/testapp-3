@@ -38,9 +38,9 @@ namespace War {
         private Worm _worm;
         private bool _wormFrozen;
 
-        private readonly Core _core = Singleton<Core>.Get();
-        private readonly BF _bf = Singleton<BF>.Get();
-        private readonly CoreEvents _coreEvents = Singleton<CoreEvents>.Get();
+        private readonly Core _core = The<Core>.Get();
+        private readonly BF _bf = The<BF>.Get();
+        private readonly CoreEvents _coreEvents = The<CoreEvents>.Get();
 
         public Worm Worm {
             get { return _worm; }

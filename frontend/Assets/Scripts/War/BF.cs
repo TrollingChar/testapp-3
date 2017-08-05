@@ -27,13 +27,13 @@ namespace War {
 
         private bool _paused;
 
-        private readonly Core _core = Singleton<Core>.Get();
-        private readonly WSConnection _connection = Singleton<WSConnection>.Get();
+        private readonly Core _core = The<Core>.Get();
+        private readonly WSConnection _connection = The<WSConnection>.Get();
 
 
         // todo: bf should not inherit from monobehavior, but incapsulate it
         private void Awake () {
-            Singleton<BF>.Set(this);
+            The<BF>.Set(this);
             World = new World(Assets.Assets.Motherboard, _renderer);
             State = new GameStateController();
             CameraWrapper = _camera.GetComponent<CameraWrapper>();

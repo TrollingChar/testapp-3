@@ -23,9 +23,9 @@ public class Core : MonoBehaviour {
 
     private void Start () {
         MessengersConfig.Configure();
-        Singleton<Core>.Set(this);
-        Singleton<WSConnection>.Set(_connection = gameObject.GetComponent<WSConnection>());
-        Singleton<CoreEvents>.Set(_coreEvents = gameObject.GetComponent<CoreEvents>());
+        The<Core>.Set(this);
+        The<WSConnection>.Set(_connection = gameObject.GetComponent<WSConnection>());
+        The<CoreEvents>.Set(_coreEvents = gameObject.GetComponent<CoreEvents>());
         Instantiate(_assets);
     }
 
@@ -37,13 +37,13 @@ public class Core : MonoBehaviour {
     public void GenerateWorld (GameData data) {
         RNG.Init(data.Seed);
         _bf = Instantiate(_bfPrefab).GetComponent<BF>();
-        Singleton<BF>.Set(_bf);
+        The<BF>.Set(_bf);
         _bf.StartGame(data.Players);
     }
 
 
     private void FixedUpdate () {
-        Singleton<WSConnection>.Get().Work(); // receive data from server and update world
+        The<WSConnection>.Get().Work(); // receive data from server and update world
         if (_bf != null) _bf.Work(); // update world independently
     }
 

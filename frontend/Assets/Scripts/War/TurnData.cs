@@ -17,7 +17,7 @@ namespace War {
             S = Input.GetKey(KeyCode.S);
             D = Input.GetKey(KeyCode.D);
             MB = Input.GetMouseButton(0); // LMB
-            XY = Singleton<BF>.Get().CameraWrapper.WorldMousePosition;
+            XY = The<BF>.Get().CameraWrapper.WorldMousePosition;
         }
 
 

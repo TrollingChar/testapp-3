@@ -41,7 +41,7 @@ namespace War.Objects {
         private Explosive _explosive;
         private CollisionHandler _collisionHandler;
         
-        private readonly BF _bf = Singleton<BF>.Get();
+        private readonly BF _bf = The<BF>.Get();
 
         public Controller Controller {
             get { return _controller; }

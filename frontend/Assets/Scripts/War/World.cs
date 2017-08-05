@@ -23,7 +23,7 @@ namespace War {
         public Tiles Tiles;
         private LinkedList<Object> _objects;
         
-        private BF _bf = Singleton<BF>.Get();
+        private BF _bf = The<BF>.Get();
 
         public const float Precision = 0.1f;
 
