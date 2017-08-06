@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using Messengers;
 using UnityEngine;
 using UnityEngine.Events;
 using Utils;
@@ -15,16 +14,21 @@ using Zenject;
 
 namespace Net {
 
-    public class WSConnection : MonoBehaviour {
+    public class WSConnection_ : MonoBehaviour {
+
+        [SerializeField] private UnityEvent_int _onAccountData;
+        [SerializeField] private UnityEvent_int_int _onChangeHub;
+        [SerializeField] private UnityEvent_GameData _onStartGame;
+        [SerializeField] private UnityEvent_int _onPlayerQuit;
+        [SerializeField] private UnityEvent_int _onPlayerWin;
+        [SerializeField] private UnityEvent_TurnData _onTurnData;
+        [SerializeField] private UnityEvent _onNoWinner;
+        [SerializeField] private UnityEvent_int _onNewTurn;
 
         private WebSocket _socket;
         private ByteBuffer _bb = new ByteBuffer();
 
         private int _turnDataRead;
-
-        [Inject] private PlayerInfoReceivedMessenger _onPlayerInfoReceived;
-        [Inject] private HubChangedMessenger _onHubChanged;
-        [Inject] private StartGameMessenger _onStartGame;
 
 
         public void Work () {
@@ -55,18 +59,20 @@ namespace Net {
 
             switch (reader.ReadByte()) {
                 case ServerAPI.AccountData:
-                    _onPlayerInfoReceived.Send(new PlayerInfo(reader.ReadInt32()));
+                    _onAccountData.Invoke(reader.ReadInt32());
                     break;
+
                 case ServerAPI.HubChanged:
-                    _onHubChanged.Send(reader.ReadByte(), reader.ReadByte());
+                    _onChangeHub.Invoke(reader.ReadByte(), reader.ReadByte());
                     break;
+
                 case ServerAPI.StartGame:
                     int seed = reader.ReadInt32();
                     var players = new List<int>();
                     for (byte i = 0, end = reader.ReadByte(); i < end; ++i) players.Add(reader.ReadInt32());
-                    _onStartGame.Send(new GameInitData(seed, players));
+                    _onStartGame.Invoke(new GameInitData(seed, players));
                     break;
-/*
+
                 case ServerAPI.LeftGame:
                     _onPlayerQuit.Invoke(reader.ReadInt32());
                     break;
@@ -87,8 +93,7 @@ namespace Net {
 
                 case ServerAPI.NewTurn:
                     _onNewTurn.Invoke(reader.ReadInt32());
-                    break;*/
-                default: throw new NotImplementedException();
+                    break;
             }
             reader.Close();
             stream.Close();

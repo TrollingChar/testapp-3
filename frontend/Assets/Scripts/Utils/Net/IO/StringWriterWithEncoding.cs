@@ -3,7 +3,7 @@ using System.IO;
 using System.Text;
 
 
-namespace Utils.IO {
+namespace Utils.Net.IO {
 
     /// <summary>
     /// A simple class derived from StringWriter, but which allows

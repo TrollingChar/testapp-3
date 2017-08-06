@@ -1,4 +1,4 @@
-namespace Utils.Conversion {
+namespace Utils.Net.Conversion {
 
     /// <summary>
     /// Endianness of pos0 converter

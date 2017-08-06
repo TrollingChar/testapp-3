@@ -2,7 +2,7 @@ using System;
 using System.Globalization;
 
 
-namespace Utils.Conversion {
+namespace Utils.Net.Conversion {
 
     /// <summary>
     /// A class to allow the conversion of doubles to string representations of

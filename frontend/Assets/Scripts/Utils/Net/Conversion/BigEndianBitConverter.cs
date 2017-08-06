@@ -1,4 +1,4 @@
-namespace Utils.Conversion {
+namespace Utils.Net.Conversion {
 
     /// <summary>
     /// Implementation of EndianBitConverter which converts to/from big-endian

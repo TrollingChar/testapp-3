@@ -3,13 +3,13 @@
 
 namespace War {
 
-    public class GameData {
+    public class GameInitData {
 
         public int Seed;
         public List<int> Players;
 
 
-        public GameData (int seed, List<int> players) {
+        public GameInitData (int seed, List<int> players) {
             Seed = seed;
             Players = players;
         }

@@ -16,10 +16,10 @@ public class Core : MonoBehaviour {
     private WSConnection _connection;
     private BF _bf;
     private CoreEvents _coreEvents;
-    
+
     [HideInInspector] public int Id; // todo: replace with playerinfo
-    
-    
+
+
     /*
     bindings:
     
@@ -31,19 +31,20 @@ public class Core : MonoBehaviour {
 
 
     private void Start () {
-        MessengersConfig.Configure();
+//        MessengersConfig.Configure();
         The<Core>.Set(this);
         The<WSConnection>.Set(_connection = gameObject.GetComponent<WSConnection>());
         The<CoreEvents>.Set(_coreEvents = gameObject.GetComponent<CoreEvents>());
         Instantiate(_assets);
     }
 
+
     public void AuthAccepted (int id) {
         Id = id;
     }
 
 
-    public void GenerateWorld (GameData data) {
+    public void GenerateWorld (GameInitData data) {
         RNG.Init(data.Seed);
         _bf = Instantiate(_bfPrefab).GetComponent<BF>();
         The<BF>.Set(_bf);

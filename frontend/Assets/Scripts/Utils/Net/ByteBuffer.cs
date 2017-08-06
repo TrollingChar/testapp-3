@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
-using Utils.Conversion;
+using Utils.Net.Conversion;
 
 
-namespace Utils {
+namespace Utils.Net {
 
     internal class ByteBuffer {
 

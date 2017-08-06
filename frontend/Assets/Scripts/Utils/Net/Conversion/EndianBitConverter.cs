@@ -2,7 +2,7 @@ using System;
 using System.Runtime.InteropServices;
 
 
-namespace Utils.Conversion {
+namespace Utils.Net.Conversion {
 
     /// <summary>
     /// Equivalent of System.BitConverter, but with either endianness.
