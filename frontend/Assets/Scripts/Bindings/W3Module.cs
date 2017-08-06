@@ -18,11 +18,15 @@ namespace Bindings {
 
 
         public override void Load () {
+            
             Bind<Core>().ToConstant(_core);
+            
             Bind<WSConnection>()
                 .ToMethod(ctx => ctx.Kernel.Get<Core>().GetComponent<WSConnection>())
                 .InSingletonScope();
+            
             Bind<CoreEvents>().ToMethod(ctx => ctx.Kernel.Get<Core>().GetComponent<CoreEvents>()).InSingletonScope();
+            
             Bind<int>().ToMethod(ctx => ctx.Kernel.Get<Core>().Id).Named("Id");
         }
 
