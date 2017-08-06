@@ -1,7 +1,8 @@
-﻿using System;
-using Assets;
+﻿using Assets;
+using Bindings;
 using Messengers;
 using Net;
+using Ninject;
 using UI;
 using UnityEngine;
 using Utils;
@@ -19,9 +20,25 @@ public class Core : MonoBehaviour {
     private CoreEvents _coreEvents;
     
     [HideInInspector] public int Id; // todo: replace with playerinfo
+    
+    
+    /*
+    bindings:
+    
+    Core -> this
+    WSConnection -> self
+    CoreEvents -> self
+    
+    */
 
 
     private void Start () {
+        
+        
+        IKernelConfiguration kernel = new KernelConfiguration(
+            new W3Module(this)
+        );
+        
         MessengersConfig.Configure();
         The<Core>.Set(this);
         The<WSConnection>.Set(_connection = gameObject.GetComponent<WSConnection>());
