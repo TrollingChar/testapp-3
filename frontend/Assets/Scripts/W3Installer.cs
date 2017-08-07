@@ -17,9 +17,10 @@ public class W3Installer : MonoInstaller {
         c.Bind<HubChangedMessenger>()        .AsSingle();
         c.Bind<StartGameMessenger>()         .AsSingle();
 
-        c.Bind<ConnectionMenu>().FromComponentInHierarchy();
-        c.Bind<MainMenu>()      .FromComponentInHierarchy();
-        c.Bind<GameModeMenu>()  .FromComponentInHierarchy();
+        c.Bind<ConnectionMenu>()    .FromComponentInHierarchy().AsSingle();
+        c.Bind<MainMenu>()          .FromComponentInHierarchy().AsSingle();
+        c.Bind<GameModeMenu>()      .FromComponentInHierarchy().AsSingle();
+        c.Bind<OpponentSearchMenu>().FromComponentInHierarchy().AsSingle();
 
         c.BindInstance(_root);
         c.Bind<Loop>()          .FromNewComponentOn(_root).AsSingle().NonLazy();
