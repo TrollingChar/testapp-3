@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 
 
-namespace UI {
+namespace UI.Panels {
 
     public class BottomHud : MonoBehaviour {
 

@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
-using Utils;
 
 
-namespace UI {
+namespace UI.Panels {
 
     public class ArsenalPanel : MonoBehaviour {
 

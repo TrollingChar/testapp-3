@@ -1,15 +1,13 @@
-﻿using System;
-using Messengers;
+﻿using Messengers;
 using Net;
 using UnityEngine;
 using UnityEngine.UI;
-using Utils;
 using Zenject;
 
 
-namespace UI {
+namespace UI.Panels {
 
-    public class ConnectionMenu : MonoBehaviour {
+    public class ConnectionMenu : Panel {
 
         [Inject] private WSConnection _connection;
         [Inject] private PlayerInfoReceivedMessenger _onPlayerInfoReceived;
@@ -17,17 +15,14 @@ namespace UI {
         [SerializeField] private InputField _ipText, _idText;
         [SerializeField] private Button _connectButton;
 
-        private PanelController _panelController;
 
-
-        private void Awake () {
-            _panelController = GetComponent<PanelController>();
+        protected override void Activate () {
             _onPlayerInfoReceived.Subscribe(OnPlayerInfo);
             _connectButton.onClick.AddListener(Send);
         }
 
 
-        private void OnDestroy () {
+        protected override void Deactivate () {
             _onPlayerInfoReceived.Unsubscribe(OnPlayerInfo);
             _connectButton.onClick.RemoveListener(Send);
         }
@@ -39,7 +34,7 @@ namespace UI {
 
 
         private void OnPlayerInfo (PlayerInfo playerInfo) {
-            _panelController.Hide();
+            Hide();
         }
 
     }

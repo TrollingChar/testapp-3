@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 
-namespace UI {
+namespace UI.Panels {
 
     public class StandardPanelController : PanelController {
 
@@ -13,7 +13,7 @@ namespace UI {
 
 
         protected override void UpdatePosition () {
-            var rt = Canvas.transform as RectTransform;
+            var rt = (RectTransform) Canvas.transform;
             Vector2
                 min = rt.anchorMin,
                 max = rt.anchorMax,

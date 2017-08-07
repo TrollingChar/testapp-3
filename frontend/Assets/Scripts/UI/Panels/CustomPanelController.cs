@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 
-namespace UI {
+namespace UI.Panels {
 
     public class CustomPanelController : PanelController {
 
@@ -22,7 +22,7 @@ namespace UI {
                 FullOpenness = _timeToOpen;
                 _initialized = true;
             }
-            var rt = Canvas.transform as RectTransform;
+            var rt = (RectTransform) Canvas.transform;
             float relativeOpenness = (float) CurrOpenness / FullOpenness;
             rt.anchorMin = relativeOpenness * (_openAnchorMin - _closedAnchorMin) + _closedAnchorMin;
             rt.anchorMax = relativeOpenness * (_openAnchorMax - _closedAnchorMax) + _closedAnchorMax;

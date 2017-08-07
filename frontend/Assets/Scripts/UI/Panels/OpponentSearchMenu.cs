@@ -3,7 +3,7 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 
 
-namespace UI {
+namespace UI.Panels {
 
     internal class OpponentSearchMenu : MonoBehaviour {
 
