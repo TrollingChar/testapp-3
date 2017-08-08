@@ -10,7 +10,7 @@ using War;
 
 public class Core : MonoBehaviour {
 
-    [SerializeField] private AssetsLoader _assets;
+    [SerializeField] private AssetContainer _assets;
     [SerializeField] private GameObject _bfPrefab;
 
     private WSConnection _connection;

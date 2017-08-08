@@ -1,4 +1,5 @@
 ﻿using System;
+using Assets;
 using Geometry;
 using UnityEngine;
 using UnityEngine.AI;
@@ -8,6 +9,7 @@ using War.Objects.Controllers;
 using War.Objects.GameObjects;
 using War.Physics.Collisions;
 using War.Teams;
+using Zenject;
 using Collider = War.Physics.Collisions.Collider;
 using Collision = War.Physics.Collisions.Collision;
 using UnObject = UnityEngine.Object;
@@ -17,6 +19,8 @@ namespace War.Objects {
 
     public class Worm : Object {
 
+        [Inject] private AssetContainer _assets;
+        
         public const float HeadRadius = 8f;
         public const float BodyHeight = 8f;
 
@@ -98,7 +102,7 @@ namespace War.Objects {
 
 
         public override void OnAdd () {
-            Sprite = UnObject.Instantiate(Assets.Assets.Worm);
+            Sprite = UnObject.Instantiate(_assets.Worm);
             _spriteExtension = Sprite.GetComponent<WormGO>();
             _spriteExtension.OnAdd(this);
 

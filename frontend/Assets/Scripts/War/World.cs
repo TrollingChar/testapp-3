@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Assets;
 using Geometry;
 using UnityEngine;
 using Utils;
@@ -9,6 +10,7 @@ using War.Objects;
 using War.Physics;
 using War.Physics.Collisions;
 using War.Teams;
+using Zenject;
 using Object = War.Objects.Object;
 using Ray = War.Objects.Ray;
 
@@ -17,18 +19,22 @@ namespace War {
 
     public class World {
 
+        [Inject] private AssetContainer _assets;
+
         public float Gravity;
         public float WaterLevel;
         public Land Land;
         public Tiles Tiles;
         private LinkedList<Object> _objects;
-        
+
         private BF _bf = The<BF>.Get();
 
         public const float Precision = 0.1f;
 
 
-        public World (Texture2D tex, SpriteRenderer renderer) {
+        public World (SpriteRenderer renderer) {
+            var tex = _assets.Land;
+            
             Gravity = -0.5f;
             WaterLevel = 0;
             Tiles = new Tiles();

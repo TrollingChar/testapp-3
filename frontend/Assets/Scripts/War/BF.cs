@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Net;
 using UnityEngine;
+using Utils;
 using Utils.Singleton;
 using War.Camera;
 using War.Objects;
@@ -32,9 +34,9 @@ namespace War {
 
 
         // todo: bf should not inherit from monobehavior, but incapsulate it
-        private void Awake () {
+        private void Start () {
             The<BF>.Set(this);
-            World = new World(Assets.Assets.Motherboard, _renderer);
+            World = new World(_renderer);
             State = new GameStateController();
             CameraWrapper = _camera.GetComponent<CameraWrapper>();
         }
@@ -53,6 +55,7 @@ namespace War {
         }
 
 
+        [Obsolete]
         public void StartGame (List<int> players) {
             //world.AddObject(worm = new Worm(), new XY(1000, 1100));
             CameraWrapper.LookAt(new Vector2(1000, 1000), true);
@@ -64,6 +67,13 @@ namespace War {
             // do game logic
             World.Update(td);
             State.Update();
+        }
+
+
+        public void StartGame (GameInitData data) {
+            RNG.Init(data.Seed);
+            CameraWrapper.LookAt(new Vector2(1000, 1000), true);
+            Teams = World.SpawnTeams(data.Players, 5);
         }
 
     }
