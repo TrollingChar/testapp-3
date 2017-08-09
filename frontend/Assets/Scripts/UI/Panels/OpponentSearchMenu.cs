@@ -8,7 +8,7 @@ using Zenject;
 
 namespace UI.Panels {
 
-    internal class OpponentSearchMenu : Panel {
+    public class OpponentSearchMenu : Panel {
 
         [Inject] private WSConnection _connection;
         [Inject] private HubChangedMessenger _hubChangedMessenger;

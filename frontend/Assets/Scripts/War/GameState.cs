@@ -1,8 +1,10 @@
-﻿using UI;
+﻿using Net;
+using UI;
 using UnityEngine;
 using Utils;
 using Utils.Singleton;
 using War.Objects;
+using Zenject;
 
 
 namespace War {
@@ -21,6 +23,9 @@ namespace War {
 
     public class GameStateController {
 
+        [Inject] private WSConnection _connection;
+        [Inject] private int _id;
+
         private const int TurnTime = 30000;
         private const int RetreatTime = 3000;
 
@@ -38,8 +43,9 @@ namespace War {
         private Worm _worm;
         private bool _wormFrozen;
 
-        private readonly Core _core = The<Core>.Get();
+//        private readonly Core _core = The<Core>.Get();
         private readonly BF _bf = The<BF>.Get();
+
         private readonly CoreEvents _coreEvents = The<CoreEvents>.Get();
 
         public Worm Worm {
@@ -64,6 +70,11 @@ namespace War {
         }
 
         public bool WormFrozen { get; private set; }
+
+
+        public bool IsMyTurn {
+            get { return ActivePlayer == _id && CurrentState == GameState.Turn; }
+        }
 
 
         public GameStateController () {
@@ -115,10 +126,10 @@ namespace War {
                     Hint("SYN");
                     // Game sends a signal and waits until server receives all signals
                     Synchronized = true;
-                    _core.Synchronize();
+                    _connection.SendEndTurn(true);
                     break;
                 case GameState.Turn:
-                    Hint(ActivePlayer == _core.Id ? "MY" : "TURN");
+                    Hint(ActivePlayer == _id ? "MY" : "TURN");
                     // Player moves his worm and uses weapon
                     _wormFrozen = false;
                     //Worm = Core.BF.NextWorm();

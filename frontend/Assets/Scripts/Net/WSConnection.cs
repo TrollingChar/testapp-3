@@ -17,14 +17,14 @@ namespace Net {
 
     public class WSConnection : MonoBehaviour {
 
+        [Inject] private PlayerInfoReceivedMessenger _onPlayerInfoReceived;
+        [Inject] private HubChangedMessenger _onHubChanged;
+        [Inject] private StartGameMessenger _onStartGame;
+
         private WebSocket _socket;
         private ByteBuffer _bb = new ByteBuffer();
 
         private int _turnDataRead;
-
-        [Inject] private PlayerInfoReceivedMessenger _onPlayerInfoReceived;
-        [Inject] private HubChangedMessenger _onHubChanged;
-        [Inject] private StartGameMessenger _onStartGame;
 
 
         public void Work () {

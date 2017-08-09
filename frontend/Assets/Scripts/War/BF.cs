@@ -5,75 +5,67 @@ using UnityEngine;
 using Utils;
 using Utils.Singleton;
 using War.Camera;
-using War.Objects;
-using War.Physics;
 using War.Teams;
+using Zenject;
+using UnObject = UnityEngine.Object;
 
 
 namespace War {
 
-    public class BF : MonoBehaviour {
+    public class BF {
 
-        // land and all w3colliders:
-        public World World;
+//} : MonoBehaviour {
 
-        [SerializeField] private SpriteRenderer _renderer;
-        [SerializeField] private UnityEngine.Camera _camera;
+        [Inject] private WSConnection _connection;
+        [Inject(Id = "")] private int _id;
+        [Inject] private GameObject _bfPrefab;
+        [Inject] private CameraWrapper _cameraWrapper;
 
-        [HideInInspector] public CameraWrapper CameraWrapper;
+        private GameObject _bfGameObject;
 
-        // all turn-based logic:
-        public GameStateController State;
-
+        public World World; // land and all w3colliders:
+//        public CameraWrapper CameraWrapper;
+        public GameStateController State; // all turn-based logic
         public Dictionary<int, Team> Teams;
-
-        private bool _paused;
-
-        private readonly Core _core = The<Core>.Get();
-        private readonly WSConnection _connection = The<WSConnection>.Get();
+//        private bool _paused;
 
 
-        // todo: bf should not inherit from monobehavior, but incapsulate it
-        private void Start () {
-            The<BF>.Set(this);
-            World = new World(_renderer);
+        public void StartGame (GameInitData data) {
+           
+//            The<BF>.Set(this);
+            RNG.Init(data.Seed);
+
+            _bfGameObject = UnObject.Instantiate(_bfPrefab);
+//            CameraWrapper = _bfGameObject.GetComponentInChildren<CameraWrapper>();
+            
+            // gen world
+            World = new World(_bfGameObject.GetComponentInChildren<SpriteRenderer>());
             State = new GameStateController();
-            CameraWrapper = _camera.GetComponent<CameraWrapper>();
+
+            _cameraWrapper.LookAt(new Vector2(1000, 1000), true);
+            Teams = World.SpawnTeams(data.Players, 5);
         }
 
 
-        public void Work () {
+        public void Update () {
+            return;
             // refresh graphics and do logic if my turn
-            if (State.ActivePlayer == _core.Id && State.CurrentState == GameState.Turn) {
+            if (State.IsMyTurn) {
                 // gather input and update world
                 var td = new TurnData();
                 _connection.SendTurnData(td);
-                Work(td);
+                Update(td);
             } else if (State.CurrentState != GameState.Synchronizing) {
-                Work(null);
+                Update(null);
             }
         }
 
 
-        [Obsolete]
-        public void StartGame (List<int> players) {
-            //world.AddObject(worm = new Worm(), new XY(1000, 1100));
-            CameraWrapper.LookAt(new Vector2(1000, 1000), true);
-            Teams = World.SpawnTeams(players, 5);
-        }
-
-
-        public void Work (TurnData td) {
+        public void Update (TurnData td) {
             // do game logic
+            return;
             World.Update(td);
             State.Update();
-        }
-
-
-        public void StartGame (GameInitData data) {
-            RNG.Init(data.Seed);
-            CameraWrapper.LookAt(new Vector2(1000, 1000), true);
-            Teams = World.SpawnTeams(data.Players, 5);
         }
 
     }

@@ -1,4 +1,5 @@
-﻿namespace Net {
+﻿// ReSharper disable InconsistentNaming
+namespace Net {
 
     public class ClientAPI {
 
