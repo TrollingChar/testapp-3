@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Installers;
 using Net;
 using UnityEngine;
 using Utils;
@@ -17,7 +18,7 @@ namespace War {
 //} : MonoBehaviour {
 
         [Inject] private WSConnection _connection;
-        [Inject(Id = "")] private int _id;
+        [Inject(Id = Injectables.Id)] private int _id;
         [Inject] private GameObject _bfPrefab;
         [Inject] private CameraWrapper _cameraWrapper;
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using War.Generation;
 
 // ReSharper disable DelegateSubtraction
 

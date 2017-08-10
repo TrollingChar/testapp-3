@@ -3,6 +3,7 @@ using UI;
 using UnityEngine;
 using Utils;
 using Utils.Singleton;
+using War.Camera;
 using War.Objects;
 using Zenject;
 
@@ -25,6 +26,7 @@ namespace War {
 
         [Inject] private WSConnection _connection;
         [Inject] private int _id;
+        [Inject] private CameraWrapper _camera;
 
         private const int TurnTime = 30000;
         private const int RetreatTime = 3000;
@@ -43,9 +45,7 @@ namespace War {
         private Worm _worm;
         private bool _wormFrozen;
 
-//        private readonly Core _core = The<Core>.Get();
         private readonly BF _bf = The<BF>.Get();
-
         private readonly CoreEvents _coreEvents = The<CoreEvents>.Get();
 
         public Worm Worm {
@@ -101,7 +101,7 @@ namespace War {
         public void StartTurn (int id) {
             ActivePlayer = id;
             Worm = _bf.Teams[id].NextWorm();
-            _bf.CameraWrapper.LookAt(Worm.Position);
+            _camera.LookAt(Worm.Position);
             ChangeState();
         }
 

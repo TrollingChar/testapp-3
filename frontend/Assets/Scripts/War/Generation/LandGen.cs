@@ -1,7 +1,8 @@
+using Messengers;
 using Utils;
 
 
-namespace War {
+namespace War.Generation {
 
     public class LandGen {
 
@@ -18,7 +19,7 @@ namespace War {
         }
 
 
-        public LandGen Expand (int iterations = 1) {
+        public virtual LandGen Expand (int iterations = 1) {
             byte[,]
                 array = Array,
                 result = array;
@@ -28,6 +29,7 @@ namespace War {
                 int h = array.GetLength(1);
                 int resultw = w * 2 - 1;
                 int resulth = h * 2 - 1;
+                
                 result = new byte[w * 2 - 1, h * 2 - 1];
 
                 // X-X
@@ -94,7 +96,7 @@ namespace War {
         }
 
 
-        public LandGen Cellular (uint rules, int iterations = 5) {
+        public virtual LandGen Cellular (uint rules, int iterations = 5) {
             uint[] init = {1, 1 << 16};
             byte[,]
                 array = Array,
@@ -186,7 +188,7 @@ namespace War {
         }
 
 
-        public LandGen Rescale (int w, int h) {
+        public virtual LandGen Rescale (int w, int h) {
             var result = new byte[w, h];
             int thisw = Array.GetLength(0);
             int thish = Array.GetLength(1);
@@ -199,7 +201,7 @@ namespace War {
         }
 
 
-        public LandGen SwitchDimensions () {
+        public virtual LandGen SwitchDimensions () {
             int w = Array.GetLength(0),
                 h = Array.GetLength(1);
             var result = new byte[h, w];

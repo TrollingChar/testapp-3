@@ -6,6 +6,7 @@ using Geometry;
 using UnityEngine;
 using Utils;
 using Utils.Singleton;
+using War.Generation;
 using War.Objects;
 using War.Physics;
 using War.Physics.Collisions;
