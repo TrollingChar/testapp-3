@@ -20,7 +20,9 @@ namespace War {
 
     public class World {
 
-        [Inject] private AssetContainer _assets;
+//        [Inject] private AssetContainer _assets;
+
+        [Inject] private CoroutineKeeper _coroutineKeeper;
 
         public float Gravity;
         public float WaterLevel;
@@ -33,12 +35,34 @@ namespace War {
         public const float Precision = 0.1f;
 
 
-        public World (SpriteRenderer renderer) {
+        public World () {
+
+            new EstimatedLandGen(
+                new LandGen(
+                    new byte[,] {
+                        {0, 0, 0, 0, 0},
+                        {0, 1, 1, 1, 0},
+                        {0, 1, 0, 1, 0}
+                    }
+                )
+            ).SwitchDimensions()
+            .Expand(7)
+            .Cellular(0x01e801d0, 20)
+            .Cellular(0x01f001e0)
+            .Expand()
+            .Cellular(0x01e801d0, 20)
+            .Cellular(0x01f001e0)
+            .Rescale(2000, 1000)
+            .Cellular(0x01f001e0)
+            .Generate();
+            /*
             var tex = _assets.Land;
             
             Gravity = -0.5f;
             WaterLevel = 0;
             Tiles = new Tiles();
+            
+            
 
             Land = new Land(
                 new LandGen(
@@ -60,7 +84,7 @@ namespace War {
                 tex,
                 renderer
             );
-            _objects = new LinkedList<Object>();
+            _objects = new LinkedList<Object>();*/
         }
 
 

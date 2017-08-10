@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Installers;
 using Net;
 using UnityEngine;
 using Utils;
-using Utils.Singleton;
 using War.Camera;
 using War.Teams;
 using Zenject;
@@ -19,32 +17,40 @@ namespace War {
 
         [Inject] private WSConnection _connection;
         [Inject(Id = Injectables.Id)] private int _id;
-        [Inject] private GameObject _bfPrefab;
+//        [Inject] private GameObject _bfPrefab;
         [Inject] private CameraWrapper _cameraWrapper;
 
-        private GameObject _bfGameObject;
+        [Inject] private GameObject _bfGameObject;
+        private MonoBehaviour _coroutineContainer;
 
         public World World; // land and all w3colliders:
+
 //        public CameraWrapper CameraWrapper;
         public GameStateController State; // all turn-based logic
+
         public Dictionary<int, Team> Teams;
 //        private bool _paused;
 
 
         public void StartGame (GameInitData data) {
-           
+
 //            The<BF>.Set(this);
             RNG.Init(data.Seed);
 
-            _bfGameObject = UnObject.Instantiate(_bfPrefab);
+//            _bfGameObject = UnObject.Instantiate(_bfPrefab);
 //            CameraWrapper = _bfGameObject.GetComponentInChildren<CameraWrapper>();
-            
+
             // gen world
-            World = new World(_bfGameObject.GetComponentInChildren<SpriteRenderer>());
+            GenerateWorld();
             State = new GameStateController();
 
             _cameraWrapper.LookAt(new Vector2(1000, 1000), true);
             Teams = World.SpawnTeams(data.Players, 5);
+        }
+
+
+        private void GenerateWorld () {
+            World = new World(); //_bfGameObject.GetComponentInChildren<SpriteRenderer>());
         }
 
 

@@ -2,12 +2,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using Messengers;
+using UI.Panels;
 using UnityEngine;
+using Utils;
+using Zenject;
 
 
 namespace War.Generation {
 
     public class EstimatedLandGen {
+
+        [InjectOptional] private HintArea _hintArea;
+        [Inject] private CoroutineKeeper _coroutineKeeper;
 
         private const int ExpandEstimation = 5;
         private const int CellularEstimation = 10;
@@ -84,14 +90,6 @@ namespace War.Generation {
         }
 
 
-        private IEnumerable CheckProgress () {
-            int progress = 100 * _done / _estimation;
-            if (progress < _lastProgress) yield break;
-            _progressMessenger.Send(_lastProgress = progress);
-            yield return null;
-        }
-
-
         private IEnumerator DoCellular (uint rules, int iterations) {
             yield return null;
             for (int i = 0; i < iterations; i++) {
@@ -121,11 +119,27 @@ namespace War.Generation {
         }
 
 
-        public IEnumerator Generate (MonoBehaviour monoBehaviour) {
+        private IEnumerable CheckProgress () {
+            int progress = 100 * _done / _estimation;
+            if (progress < _lastProgress) yield break;
+            _hintArea.Text = "Прогресс генерации: " + progress + "%";
+            _progressMessenger.Send(_lastProgress = progress);
+            yield return null;
+        }
+
+
+        public IEnumerator GenerationCoroutine () {
             foreach (var instruction in _instructions) {
-                yield return monoBehaviour.StartCoroutine(instruction);
+                yield return _coroutineKeeper.StartCoroutine(instruction);
             }
+            _hintArea.Text = "Готово!";
             _completeMessenger.Send(_landGen);
+        }
+
+
+        public void Generate () {
+            Debug.Log(_estimation);
+            _coroutineKeeper.StartCoroutine(GenerationCoroutine());
         }
 
     }

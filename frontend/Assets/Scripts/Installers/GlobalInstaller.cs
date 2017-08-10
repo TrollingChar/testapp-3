@@ -1,5 +1,7 @@
 ﻿using Messengers;
 using Net;
+using Scenes;
+using Utils;
 using Zenject;
 
 
@@ -19,6 +21,7 @@ namespace Installers {
             c.Bind<Root>().AsSingle().NonLazy();
             c.Bind<PlayerInfo>().FromMethod(ctx => ctx.Container.Resolve<Root>().PlayerInfo);
             c.Bind<int>().WithId(Injectables.Id).FromMethod(ctx => ctx.Container.Resolve<PlayerInfo>().Id);
+            c.Bind<CoroutineKeeper>().FromNewComponentOn(gameObject).AsSingle().NonLazy();
         }
 
     }

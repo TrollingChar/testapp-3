@@ -1,5 +1,6 @@
 ﻿using Messengers;
 using Net;
+using Scenes;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngineInternal;
@@ -24,7 +25,7 @@ public class Loop : MonoBehaviour {
 
     private void InitBF (GameInitData data) {
         _onStartGame.Unsubscribe(InitBF);
-        _sceneSwitcher.Load(Scenes.Battle, data);
+        _sceneSwitcher.Load(Scenes.Scenes.Battle, data);
     }
 
 
