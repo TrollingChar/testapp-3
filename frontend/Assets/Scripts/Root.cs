@@ -8,7 +8,7 @@ public class Root {
     
     public Root (PlayerInfoReceivedMessenger messenger) {
         _messenger = messenger;
-        messenger.Subscribe(SetPlayerInfo);
+        messenger.sSubscribe(SetPlayerInfo);
     }
 
 

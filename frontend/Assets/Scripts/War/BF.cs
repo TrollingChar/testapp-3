@@ -11,41 +11,27 @@ using UnObject = UnityEngine.Object;
 
 namespace War {
 
-    public class BF {
-
-//} : MonoBehaviour {
-
+    public class BF : MonoBehaviour {
+        [Inject] private GameInitData _gameInitData;
         [Inject] private WSConnection _connection;
         [Inject(Id = Injectables.Id)] private int _id;
-//        [Inject] private GameObject _bfPrefab;
         [Inject] private CameraWrapper _cameraWrapper;
 
-        [Inject] private GameObject _bfGameObject;
-        private MonoBehaviour _coroutineContainer;
-
-        public World World; // land and all w3colliders:
-
-//        public CameraWrapper CameraWrapper;
-        public GameStateController State; // all turn-based logic
+        public World World; 
+        public GameStateController State;
 
         public Dictionary<int, Team> Teams;
 //        private bool _paused;
 
 
-        public void StartGame (GameInitData data) {
+        public void Start () {
+            RNG.Init(_gameInitData.Seed);
 
-//            The<BF>.Set(this);
-            RNG.Init(data.Seed);
-
-//            _bfGameObject = UnObject.Instantiate(_bfPrefab);
-//            CameraWrapper = _bfGameObject.GetComponentInChildren<CameraWrapper>();
-
-            // gen world
             GenerateWorld();
             State = new GameStateController();
 
             _cameraWrapper.LookAt(new Vector2(1000, 1000), true);
-            Teams = World.SpawnTeams(data.Players, 5);
+            Teams = World.SpawnTeams(_gameInitData.Players, 5);
         }
 
 

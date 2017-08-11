@@ -12,8 +12,8 @@ namespace War.Generation {
 
     public class EstimatedLandGen {
 
-        [InjectOptional] private HintArea _hintArea;
-        [Inject] private CoroutineKeeper _coroutineKeeper;
+        [Inject] private HintArea _hintArea;
+        [Inject] private BF _bf;
 
         private const int ExpandEstimation = 5;
         private const int CellularEstimation = 10;
@@ -130,7 +130,7 @@ namespace War.Generation {
 
         public IEnumerator GenerationCoroutine () {
             foreach (var instruction in _instructions) {
-                yield return _coroutineKeeper.StartCoroutine(instruction);
+                yield return _bf.StartCoroutine(instruction);
             }
             _hintArea.Text = "Готово!";
             _completeMessenger.Send(_landGen);
@@ -139,7 +139,7 @@ namespace War.Generation {
 
         public void Generate () {
             Debug.Log(_estimation);
-            _coroutineKeeper.StartCoroutine(GenerationCoroutine());
+            _bf.StartCoroutine(GenerationCoroutine());
         }
 
     }

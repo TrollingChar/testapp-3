@@ -13,9 +13,7 @@ namespace Installers {
         public override void InstallBindings () {
             var c = Container;
 
-            c.Bind<BF>().AsSingle().NonLazy();
-            var root = GameObject.Find("Root");
-            c.BindInstance(root).WhenInjectedInto<BF>();
+            c.Bind<BF>().FromComponentInHierarchy().AsSingle();
 
             c.Bind<BattleSceneInitializer>().FromNewComponentOn(gameObject).AsSingle().NonLazy();
             c.Bind<GameInitData>().FromMethod(
