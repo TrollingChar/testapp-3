@@ -1,31 +1,39 @@
 ﻿using Messengers;
 using Net;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
-using Zenject;
+using Utils.Singleton;
 
 
 namespace UI.Panels {
 
     public class OpponentSearchMenu : Panel {
 
-        [Inject] private WSConnection _connection;
-        [Inject] private HubChangedMessenger _hubChangedMessenger;
-        [Inject] private MainMenu _mainMenu;
+        private WSConnection _connection;
+        private HubChangedMessenger _onHubChanged;
+        private MainMenu _mainMenu;
 
         [SerializeField] private Text _text;
         [SerializeField] private Button _cancelButton;
 
 
+        protected override void OnAwake () {
+            The<OpponentSearchMenu>.Set(this);
+        }
+
+
         protected override void Activate () {
-            _hubChangedMessenger.Subscribe(UpdateHubStatus);
+            _connection = The<WSConnection>.Get();
+            _onHubChanged = _connection.OnHubChanged;
+            _mainMenu = The<MainMenu>.Get();
+            
+            _onHubChanged.Subscribe(UpdateHubStatus);
             _cancelButton.onClick.AddListener(OnClickedCancel);
         }
 
 
         protected override void Deactivate () {
-            _hubChangedMessenger.Unsubscribe(UpdateHubStatus);
+            _onHubChanged.Unsubscribe(UpdateHubStatus);
             _cancelButton.onClick.RemoveListener(OnClickedCancel);
         }
 

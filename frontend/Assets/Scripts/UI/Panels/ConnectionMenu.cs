@@ -2,21 +2,29 @@
 using Net;
 using UnityEngine;
 using UnityEngine.UI;
-using Zenject;
+using Utils.Singleton;
 
 
 namespace UI.Panels {
 
     public class ConnectionMenu : Panel {
 
-        [Inject] private WSConnection _connection;
-        [Inject] private PlayerInfoReceivedMessenger _onPlayerInfoReceived;
+        private WSConnection _connection;
+        private PlayerInfoReceivedMessenger _onPlayerInfoReceived;
         
         [SerializeField] private InputField _ipText, _idText;
         [SerializeField] private Button _connectButton;
 
 
+        protected override void OnAwake () {
+            The<ConnectionMenu>.Set(this);
+        }
+
+
         protected override void Activate () {
+            _connection = The<WSConnection>.Get();
+            _onPlayerInfoReceived = _connection.OnPlayerInfoReceived;
+            
             _onPlayerInfoReceived.Subscribe(OnPlayerInfo);
             _connectButton.onClick.AddListener(Send);
         }
@@ -27,7 +35,7 @@ namespace UI.Panels {
             _connectButton.onClick.RemoveListener(Send);
         }
 
-        
+
         private void Send () {
             _connection.Authorize(_ipText.text, int.Parse(_idText.text));
         }

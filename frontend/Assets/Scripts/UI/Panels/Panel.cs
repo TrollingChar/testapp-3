@@ -7,8 +7,14 @@ namespace UI.Panels {
 
         private PanelController _panelController;
 
+
         private void Awake () {
             _panelController = GetComponent<PanelController>();
+            OnAwake();
+        }
+
+
+        private void Start () {
             Activate();
         }
 
@@ -18,6 +24,7 @@ namespace UI.Panels {
         }
 
 
+        protected virtual void OnAwake () {}
         protected virtual void Activate () {}
         protected virtual void Deactivate () {}
 

@@ -1,14 +1,17 @@
 ﻿using Messengers;
-using Zenject;
 
 
 public class Root {
 
     private readonly PlayerInfoReceivedMessenger _messenger;
-    
+
+
+    public PlayerInfo PlayerInfo { get; private set; }
+
+
     public Root (PlayerInfoReceivedMessenger messenger) {
         _messenger = messenger;
-        messenger.sSubscribe(SetPlayerInfo);
+        messenger.Subscribe(SetPlayerInfo);
     }
 
 
@@ -17,8 +20,6 @@ public class Root {
         PlayerInfo = info;
     }
 
-
-    public PlayerInfo PlayerInfo { get; private set; }
 
 //    private void FixedUpdate () {
 //        The<WSConnection>.Get().Work(); // receive data from server and update world

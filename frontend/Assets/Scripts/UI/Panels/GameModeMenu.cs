@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using Utils.Singleton;
 using Zenject;
 
 
@@ -7,13 +8,21 @@ namespace UI.Panels {
 
     public class GameModeMenu : Panel {
 
-        [Inject] private MainMenu _mainMenu;
-        [Inject] private OpponentSearchMenu _opponentSearchMenu;
+        private MainMenu _mainMenu;
+        private OpponentSearchMenu _opponentSearchMenu;
 
         [SerializeField] private Button _1Player, _2Players, _3Players, _backButton;
 
-        
+
+        protected override void OnAwake () {
+            The<GameModeMenu>.Set(this);
+        }
+
+
         protected override void Activate () {
+            _mainMenu = The<MainMenu>.Get();
+            _opponentSearchMenu = The<OpponentSearchMenu>.Get();
+            
             _1Player.onClick.AddListener(OnClicked1Player);
             _2Players.onClick.AddListener(OnClicked2Players);
             _3Players.onClick.AddListener(OnClicked3Players);

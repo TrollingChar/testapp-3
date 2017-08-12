@@ -9,17 +9,17 @@ using Utils;
 using Utils.Net;
 using Utils.Net.Conversion;
 using Utils.Net.IO;
+using Utils.Singleton;
 using War;
-using Zenject;
 
 
 namespace Net {
 
     public class WSConnection : MonoBehaviour {
 
-        [Inject] private PlayerInfoReceivedMessenger _onPlayerInfoReceived;
-        [Inject] private HubChangedMessenger _onHubChanged;
-        [Inject] private StartGameMessenger _onStartGame;
+        public PlayerInfoReceivedMessenger OnPlayerInfoReceived { get; private set; }
+        public HubChangedMessenger OnHubChanged { get; private set; }
+        public StartGameMessenger OnStartGame { get; private set; }
 
         private WebSocket _socket;
         private ByteBuffer _bb = new ByteBuffer();
@@ -27,7 +27,19 @@ namespace Net {
         private int _turnDataRead;
 
 
-        public void Work () {
+        private void Awake () {
+            The<WSConnection>.Set(this);
+            
+            OnPlayerInfoReceived = new PlayerInfoReceivedMessenger();
+            OnHubChanged = new HubChangedMessenger();
+            OnStartGame = new StartGameMessenger();
+        }
+
+
+        public void Work () {}
+
+
+        public void Update () {
             if (_socket == null) return;
 
             _turnDataRead = 0;
@@ -55,16 +67,16 @@ namespace Net {
 
             switch (reader.ReadByte()) {
                 case ServerAPI.AccountData:
-                    _onPlayerInfoReceived.Send(new PlayerInfo(reader.ReadInt32()));
+                    OnPlayerInfoReceived.Send(new PlayerInfo(reader.ReadInt32()));
                     break;
                 case ServerAPI.HubChanged:
-                    _onHubChanged.Send(reader.ReadByte(), reader.ReadByte());
+                    OnHubChanged.Send(reader.ReadByte(), reader.ReadByte());
                     break;
                 case ServerAPI.StartGame:
                     int seed = reader.ReadInt32();
                     var players = new List<int>();
                     for (byte i = 0, end = reader.ReadByte(); i < end; ++i) players.Add(reader.ReadInt32());
-                    _onStartGame.Send(new GameInitData(seed, players));
+                    OnStartGame.Send(new GameInitData(seed, players));
                     break;
 /*
                 case ServerAPI.LeftGame:

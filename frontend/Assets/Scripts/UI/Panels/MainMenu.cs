@@ -1,6 +1,8 @@
 ﻿using Messengers;
+using Net;
 using UnityEngine;
 using UnityEngine.UI;
+using Utils.Singleton;
 using Zenject;
 
 
@@ -8,13 +10,21 @@ namespace UI.Panels {
 
     public class MainMenu : Panel {
 
-        [Inject] private PlayerInfoReceivedMessenger _onPlayerInfoReceived;
-        [Inject] private GameModeMenu _gameModeMenu;
+        private PlayerInfoReceivedMessenger _onPlayerInfoReceived;
+        private GameModeMenu _gameModeMenu;
 
         [SerializeField] private Button _playButton, _donateButton;
 
 
+        protected override void OnAwake () {
+            The<MainMenu>.Set(this);
+        }
+
+
         protected override void Activate () {
+            _onPlayerInfoReceived = The<WSConnection>.Get().OnPlayerInfoReceived;
+            _gameModeMenu = The<GameModeMenu>.Get();
+            
             _onPlayerInfoReceived.Subscribe(OnPlayerInfo);
             _playButton.onClick.AddListener(OnClickedPlay);
             _donateButton.onClick.AddListener(OnClickedDonate);

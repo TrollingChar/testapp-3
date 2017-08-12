@@ -12,7 +12,7 @@ namespace Scenes {
 
 
         private void Start () {
-            _bf.StartGame(_data);
+//            _bf.StartGame(_data);
         }
 
     }
