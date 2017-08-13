@@ -1,4 +1,5 @@
 ﻿using UnityEngine.SceneManagement;
+using Utils.Singleton;
 
 
 namespace Scenes {
@@ -7,6 +8,11 @@ namespace Scenes {
 
         public object[] Data { get; private set; }
 
+
+        public SceneSwitcher () {
+            The<SceneSwitcher>.Set(this);
+        }
+        
 
         public void Load (string scene, params object[] data) {
             Data = data;

@@ -12,32 +12,47 @@ namespace War.Generation {
 
     public class EstimatedLandGen {
 
-        [Inject] private HintArea _hintArea;
-        [Inject] private BF _bf;
+//        [Inject] private HintArea _hintArea;
+//        [Inject] private BF _bf;
 
         private const int ExpandEstimation = 5;
         private const int CellularEstimation = 10;
         private const int RescaleEstimation = 5;
         private const int RotateEstimation = 5;
 
-        private int _done;
-        private int _lastProgress;
-        private int _estimation;
+        private long _done;
+        public long Done {
+            get { return _done; }
+            private set {
+                _done = value;
+                OnProgress.Send(100f * value / Estimation);
+            }
+        }
+
+        public int LastProgress { get; private set; }
+
+        private long _estimation;
+        public long Estimation {
+            get { return _estimation; }
+            private set { _estimation = value; }
+        }
 
         private LandGen _landGen;
         private int _width, _height;
         private Queue<IEnumerator> _instructions;
 
-        private readonly LandGenProgressMessenger _progressMessenger;
-        private readonly LandGenCompleteMessenger _completeMessenger;
+        public readonly LandGenProgressMessenger OnProgress;
+        public readonly LandGenCompleteMessenger OnComplete;
+        private MonoBehaviour _coroutineKeeper;
+
 
         public EstimatedLandGen (LandGen landGen) {
             _landGen = landGen;
             _width = landGen.Array.GetLength(0);
             _height = landGen.Array.GetLength(1);
             
-            _progressMessenger = new LandGenProgressMessenger();
-            _completeMessenger = new LandGenCompleteMessenger();
+            OnProgress = new LandGenProgressMessenger();
+            OnComplete = new LandGenCompleteMessenger();
             _instructions = new Queue<IEnumerator>();
         }
 
@@ -46,7 +61,9 @@ namespace War.Generation {
             for (int i = 0; i < iterations; i++) {
                 _width *= 2;
                 _height *= 2;
-                _estimation += _width * _height * ExpandEstimation;
+                _width--;
+                _height--;
+                Estimation += _width * _height * ExpandEstimation;
             }
             _instructions.Enqueue(DoExpand(iterations));
             return this;
@@ -54,14 +71,14 @@ namespace War.Generation {
 
 
         public EstimatedLandGen Cellular (uint rules, int iterations = 5) {
-            _estimation += _width * _height * CellularEstimation * iterations;
+            Estimation += _width * _height * CellularEstimation * iterations;
             _instructions.Enqueue(DoCellular(rules, iterations));
             return this;
         }
 
 
         public EstimatedLandGen Rescale (int w, int h) {
-            _estimation += w * h * RescaleEstimation;
+            Estimation += w * h * RescaleEstimation;
             _width = w;
             _height = h;
             _instructions.Enqueue(DoRescale(w, h));
@@ -70,7 +87,7 @@ namespace War.Generation {
 
 
         public EstimatedLandGen SwitchDimensions () {
-            _estimation += _width * _height * RotateEstimation;
+            Estimation += _width * _height * RotateEstimation;
             int t = _width;
             _width = _height;
             _height = t;
@@ -83,9 +100,9 @@ namespace War.Generation {
             yield return null;
             for (int i = 0; i < iterations; i++) {
                 _landGen = _landGen.Expand();
-                _done += _landGen.Array.GetLength(0) * _landGen.Array.GetLength(1) * ExpandEstimation;
+                Done += _landGen.Array.GetLength(0) * _landGen.Array.GetLength(1) * ExpandEstimation;
 
-                foreach (var p in CheckProgress()) yield return p;
+                yield return null;
             }
         }
 
@@ -93,10 +110,10 @@ namespace War.Generation {
         private IEnumerator DoCellular (uint rules, int iterations) {
             yield return null;
             for (int i = 0; i < iterations; i++) {
-                _landGen = _landGen.Cellular(rules, iterations);
-                _done += _landGen.Array.GetLength(0) * _landGen.Array.GetLength(1) * CellularEstimation;
+                _landGen = _landGen.Cellular(rules, 1);
+                Done += _landGen.Array.GetLength(0) * _landGen.Array.GetLength(1) * CellularEstimation;
 
-                foreach (var p in CheckProgress()) yield return p;
+                yield return null;
             }
         }
 
@@ -104,42 +121,32 @@ namespace War.Generation {
         private IEnumerator DoRescale (int w, int h) {
             yield return null;
             _landGen = _landGen.Rescale(w, h);
-            _done += _landGen.Array.GetLength(0) * _landGen.Array.GetLength(1) * CellularEstimation;
+            Done += _landGen.Array.GetLength(0) * _landGen.Array.GetLength(1) * RescaleEstimation;
 
-            foreach (var p in CheckProgress()) yield return p;
+            yield return null;
         }
 
 
         private IEnumerator DoSwitchDimensions () {
             yield return null;
             _landGen = _landGen.SwitchDimensions();
-            _done += _landGen.Array.GetLength(0) * _landGen.Array.GetLength(1) * RotateEstimation;
+            Done += _landGen.Array.GetLength(0) * _landGen.Array.GetLength(1) * RotateEstimation;
 
-            foreach (var p in CheckProgress()) yield return p;
-        }
-
-
-        private IEnumerable CheckProgress () {
-            int progress = 100 * _done / _estimation;
-            if (progress < _lastProgress) yield break;
-            _hintArea.Text = "Прогресс генерации: " + progress + "%";
-            _progressMessenger.Send(_lastProgress = progress);
             yield return null;
         }
 
 
         public IEnumerator GenerationCoroutine () {
             foreach (var instruction in _instructions) {
-                yield return _bf.StartCoroutine(instruction);
+                yield return _coroutineKeeper.StartCoroutine(instruction);
             }
-            _hintArea.Text = "Готово!";
-            _completeMessenger.Send(_landGen);
+            OnComplete.Send(_landGen);
         }
 
 
-        public void Generate () {
-            Debug.Log(_estimation);
-            _bf.StartCoroutine(GenerationCoroutine());
+        public void Generate (MonoBehaviour coroutineKeeper) {
+            _coroutineKeeper = coroutineKeeper;
+            coroutineKeeper.StartCoroutine(GenerationCoroutine());
         }
 
     }

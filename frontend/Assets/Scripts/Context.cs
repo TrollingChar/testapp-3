@@ -11,19 +11,20 @@ public class Context : MonoBehaviour {
     private SceneSwitcher _sceneSwitcher;
 
 
-    // todo: move to new scene, it should not call awake twice
     private void Awake () {
         DontDestroyOnLoad(this);
+        
         _connection = gameObject.AddComponent<WSConnection>();
         _sceneSwitcher = new SceneSwitcher();
         
         _connection.OnPlayerInfoReceived.Subscribe(OnPlayerInfo);
         _connection.OnStartGame.Subscribe(OnStartGame);
+        _sceneSwitcher.Load(Scenes.Scenes.Menu);
     }
 
 
     private void OnStartGame (GameInitData data) {
-        _sceneSwitcher.Load(Scenes.Scenes.Menu, data);
+        _sceneSwitcher.Load(Scenes.Scenes.Battle, data);
     }
 
 

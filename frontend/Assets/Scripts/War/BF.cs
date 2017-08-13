@@ -41,7 +41,6 @@ namespace War {
 
 
         public void Update () {
-            return;
             // refresh graphics and do logic if my turn
             if (State.IsMyTurn) {
                 // gather input and update world
@@ -56,7 +55,6 @@ namespace War {
 
         public void Update (TurnData td) {
             // do game logic
-            return;
             World.Update(td);
             State.Update();
         }

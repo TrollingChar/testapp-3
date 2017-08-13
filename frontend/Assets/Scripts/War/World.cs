@@ -20,10 +20,6 @@ namespace War {
 
     public class World {
 
-//        [Inject] private AssetContainer _assets;
-
-        [Inject] private CoroutineKeeper _coroutineKeeper;
-
         public float Gravity;
         public float WaterLevel;
         public Land Land;
@@ -36,7 +32,7 @@ namespace War {
 
 
         public World () {
-
+/*
             new EstimatedLandGen(
                 new LandGen(
                     new byte[,] {
@@ -54,7 +50,7 @@ namespace War {
             .Cellular(0x01f001e0)
             .Rescale(2000, 1000)
             .Cellular(0x01f001e0)
-            .Generate();
+            .Generate(coroutineKeeper);
             /*
             var tex = _assets.Land;
             
