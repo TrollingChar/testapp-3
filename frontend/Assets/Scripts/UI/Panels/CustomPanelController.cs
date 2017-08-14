@@ -5,7 +5,8 @@ namespace UI.Panels {
 
     public class CustomPanelController : PanelController {
 
-        [SerializeField] private int _timeToOpen;
+        private bool _initialized;
+
         [SerializeField] private Vector2
             _openPosition,
             _closedPosition,
@@ -14,7 +15,7 @@ namespace UI.Panels {
             _openAnchorMax,
             _closedAnchorMax;
 
-        private bool _initialized;
+        [SerializeField] private int _timeToOpen;
 
 
         protected override void UpdatePosition () {

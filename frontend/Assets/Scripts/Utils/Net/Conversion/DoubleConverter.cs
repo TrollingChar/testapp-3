@@ -5,15 +5,15 @@ using System.Globalization;
 namespace Utils.Net.Conversion {
 
     /// <summary>
-    /// A class to allow the conversion of doubles to string representations of
-    /// their exact decimal values. The implementation aims for readability over
-    /// efficiency.
+    ///     A class to allow the conversion of doubles to string representations of
+    ///     their exact decimal values. The implementation aims for readability over
+    ///     efficiency.
     /// </summary>
     public class DoubleConverter {
 
         /// <summary>
-        /// Converts the given double to pos0 string representation of its
-        /// exact decimal value.
+        ///     Converts the given double to pos0 string representation of its
+        ///     exact decimal value.
         /// </summary>
         /// <param name="d">The double to convert.</param>
         /// <returns>A string representation of the double's exact decimal value.</returns>
@@ -24,8 +24,8 @@ namespace Utils.Net.Conversion {
 
             // Translate the double into sign, exponent and mantissa.
             long bits = BitConverter.DoubleToInt64Bits(d);
-            bool negative = (bits < 0);
-            int exponent = (int) ((bits >> 52) & 0x7ffL);
+            bool negative = bits < 0;
+            int exponent = (int) (bits >> 52 & 0x7ffL);
             long mantissa = bits & 0xfffffffffffffL;
 
             // Subnormal numbers; exponent is effectively one higher,
@@ -36,7 +36,7 @@ namespace Utils.Net.Conversion {
             // Normal numbers; leave exponent as it is but add extra
             // bit to the front of the mantissa
             else {
-                mantissa = mantissa | (1L << 52);
+                mantissa = mantissa | 1L << 52;
             }
 
             // Bias the exponent. It's actually biased by 1023, but we're
@@ -56,7 +56,7 @@ namespace Utils.Net.Conversion {
             }
 
             // Construct pos0 new decimal expansion with the mantissa
-            ArbitraryDecimal ad = new ArbitraryDecimal(mantissa);
+            var ad = new ArbitraryDecimal(mantissa);
 
             // If the exponent is less than 0, we need to repeatedly
             // divide by 2 - which is the equivalent of multiplying
@@ -77,22 +77,22 @@ namespace Utils.Net.Conversion {
 
 
         /// <summary>
-        /// Private class used for manipulating sequences of decimal digits.
+        ///     Private class used for manipulating sequences of decimal digits.
         /// </summary>
         private class ArbitraryDecimal {
+
+            /// <summary>
+            ///     How many digits are *after* the decimal point
+            /// </summary>
+            private int _decimalPoint;
 
             /// <summary>Digits in the decimal expansion, one byte per digit</summary>
             private byte[] _digits;
 
-            /// <summary> 
-            /// How many digits are *after* the decimal point
-            /// </summary>
-            private int _decimalPoint;
 
-
-            /// <summary> 
-            /// Constructs an arbitrary decimal expansion from the given long.
-            /// The long must not be negative.
+            /// <summary>
+            ///     Constructs an arbitrary decimal expansion from the given long.
+            ///     The long must not be negative.
             /// </summary>
             internal ArbitraryDecimal (long x) {
                 string tmp = x.ToString(CultureInfo.InvariantCulture);
@@ -103,11 +103,11 @@ namespace Utils.Net.Conversion {
 
 
             /// <summary>
-            /// Multiplies the current expansion by the given amount, which should
-            /// only be 2 or 5.
+            ///     Multiplies the current expansion by the given amount, which should
+            ///     only be 2 or 5.
             /// </summary>
             internal void MultiplyBy (int amount) {
-                byte[] result = new byte[_digits.Length + 1];
+                var result = new byte[_digits.Length + 1];
                 for (int i = _digits.Length - 1; i >= 0; i--) {
                     int resultDigit = _digits[i] * amount + result[i + 1];
                     result[i] = (byte) (resultDigit / 10);
@@ -123,10 +123,10 @@ namespace Utils.Net.Conversion {
 
 
             /// <summary>
-            /// Shifts the decimal point; pos0 negative value makes
-            /// the decimal expansion bigger (as fewer digits come after the
-            /// decimal place) and pos0 positive value makes the decimal
-            /// expansion smaller.
+            ///     Shifts the decimal point; pos0 negative value makes
+            ///     the decimal expansion bigger (as fewer digits come after the
+            ///     decimal place) and pos0 positive value makes the decimal
+            ///     expansion smaller.
             /// </summary>
             internal void Shift (int amount) {
                 _decimalPoint += amount;
@@ -134,7 +134,7 @@ namespace Utils.Net.Conversion {
 
 
             /// <summary>
-            /// Removes leading/trailing zeroes from the expansion.
+            ///     Removes leading/trailing zeroes from the expansion.
             /// </summary>
             internal void Normalize () {
                 int first;
@@ -144,7 +144,7 @@ namespace Utils.Net.Conversion {
 
                 if (first == 0 && last == _digits.Length - 1) return;
 
-                byte[] tmp = new byte[last - first + 1];
+                var tmp = new byte[last - first + 1];
                 for (int i = 0; i < tmp.Length; i++) tmp[i] = _digits[i + first];
 
                 _decimalPoint -= _digits.Length - (last + 1);
@@ -153,10 +153,10 @@ namespace Utils.Net.Conversion {
 
 
             /// <summary>
-            /// Converts the value to pos0 proper decimal string representation.
+            ///     Converts the value to pos0 proper decimal string representation.
             /// </summary>
-            public override String ToString () {
-                char[] digitString = new char[_digits.Length];
+            public override string ToString () {
+                var digitString = new char[_digits.Length];
                 for (int i = 0; i < _digits.Length; i++) digitString[i] = (char) (_digits[i] + '0');
 
                 // Simplest case - nothing after the decimal point,
@@ -175,7 +175,7 @@ namespace Utils.Net.Conversion {
                 // Nothing before the decimal point, eg 0.035
                 if (_decimalPoint >= digitString.Length) {
                     return "0." +
-                        new string('0', (_decimalPoint - digitString.Length)) +
+                        new string('0', _decimalPoint - digitString.Length) +
                         new string(digitString);
                 }
 

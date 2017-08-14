@@ -3,15 +3,15 @@ using Net;
 using UnityEngine;
 using UnityEngine.UI;
 using Utils.Singleton;
-using Zenject;
 
 
 namespace UI.Panels {
 
     public class MainMenu : Panel {
 
-        private PlayerInfoReceivedMessenger _onPlayerInfoReceived;
         private GameModeMenu _gameModeMenu;
+
+        private PlayerInfoReceivedMessenger _onPlayerInfoReceived;
 
         [SerializeField] private Button _playButton, _donateButton;
 
@@ -24,7 +24,7 @@ namespace UI.Panels {
         protected override void Activate () {
             _onPlayerInfoReceived = The<WSConnection>.Get().OnPlayerInfo;
             _gameModeMenu = The<GameModeMenu>.Get();
-            
+
             _onPlayerInfoReceived.Subscribe(OnPlayerInfo);
             _playButton.onClick.AddListener(OnClickedPlay);
             _donateButton.onClick.AddListener(OnClickedDonate);

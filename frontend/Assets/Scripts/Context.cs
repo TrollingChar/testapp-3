@@ -13,10 +13,10 @@ public class Context : MonoBehaviour {
 
     private void Awake () {
         DontDestroyOnLoad(this);
-        
+
         _connection = gameObject.AddComponent<WSConnection>();
         _sceneSwitcher = new SceneSwitcher();
-        
+
         _connection.OnPlayerInfo.Subscribe(OnPlayerInfo);
         _connection.OnStartGame.Subscribe(OnStartGame);
         _sceneSwitcher.Load(Scenes.Scenes.Menu);

@@ -6,10 +6,16 @@ namespace War.Physics.Collisions {
 
     public class BoxCollider : Collider {
 
-        private float
-            _leftOffset,
-            _rightOffset,
-            _bottomOffset,
+        private readonly float
+            _leftOffset;
+
+        private readonly float
+            _rightOffset;
+
+        private readonly float
+            _bottomOffset;
+
+        private readonly float
             _topOffset;
 
 
@@ -63,7 +69,7 @@ namespace War.Physics.Collisions {
 
 
         public override Collision CollideWithLand (Land land, XY v) {
-            Collision result = land.CastRectRay(Left, Right, Bottom, Top, v);
+            var result = land.CastRectRay(Left, Right, Bottom, Top, v);
             if (result != null) result.Collider1 = this;
             return result;
         }

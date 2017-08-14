@@ -6,8 +6,9 @@ namespace War.Physics.Collisions {
 
     public class Collision : IEquatable<Collision>, IComparable<Collision> {
 
-        public XY Offset, Normal;
         public Collider Collider1, Collider2;
+
+        public XY Offset, Normal;
         public Primitive Primitive1, Primitive2;
 
 
@@ -28,6 +29,16 @@ namespace War.Physics.Collisions {
         }
 
 
+        public int CompareTo (Collision other) {
+            return (object) other == null ? 1 : Offset.SqrLength.CompareTo(other.Offset.SqrLength);
+        }
+
+
+        public bool Equals (Collision other) {
+            return (object) other != null && Offset.SqrLength.Equals(other.Offset.SqrLength);
+        }
+
+
         public static Collision operator - (Collision c) {
             return c != null
                 ? new Collision(
@@ -38,16 +49,6 @@ namespace War.Physics.Collisions {
                     c.Primitive2,
                     c.Primitive1
                 ) : null;
-        }
-
-
-        public bool Equals (Collision other) {
-            return (object) other != null && Offset.SqrLength.Equals(other.Offset.SqrLength);
-        }
-
-
-        public int CompareTo (Collision other) {
-            return (object) other == null ? 1 : Offset.SqrLength.CompareTo(other.Offset.SqrLength);
         }
 
 

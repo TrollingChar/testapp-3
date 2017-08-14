@@ -1,5 +1,4 @@
 ﻿using Geometry;
-using War.Physics;
 using War.Physics.Collisions;
 
 
@@ -59,8 +58,8 @@ namespace War.Objects.Controllers {
             if (td.A ^ td.D) {
                 // try to walk
                 xOffset = td.D ? Worm.WalkSpeed : -Worm.WalkSpeed;
-                XY rayOrigin = worm.Tail.Center + new XY(0f, Worm.MaxClimb);
-                XY rayDirection = new XY(
+                var rayOrigin = worm.Tail.Center + new XY(0f, Worm.MaxClimb);
+                var rayDirection = new XY(
                     xOffset + (td.D ? World.Precision : -World.Precision),
                     0f
                 );
@@ -71,8 +70,8 @@ namespace War.Objects.Controllers {
 
             // walk
             if (xOffset != 0f) {
-                XY rayOrigin = worm.Tail.Center + new XY(xOffset, Worm.MaxClimb);
-                XY rayDirection = new XY(0f, -Worm.MaxClimb - Worm.MaxDescend);
+                var rayOrigin = worm.Tail.Center + new XY(xOffset, Worm.MaxClimb);
+                var rayDirection = new XY(0f, -Worm.MaxClimb - Worm.MaxDescend);
                 var ray = new Ray(rayOrigin, new CircleCollider(XY.Zero, Worm.HeadRadius));
                 var coll = ray.Cast(rayDirection);
                 bool fall = coll == null;

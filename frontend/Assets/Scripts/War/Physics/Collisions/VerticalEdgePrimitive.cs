@@ -7,8 +7,8 @@ namespace War.Physics.Collisions {
 
         // todo: use object pool for primitives
 
-        private bool _facingLeft;
-        private float _x;
+        private readonly bool _facingLeft;
+        private readonly float _x;
 
 
         private VerticalEdgePrimitive (float x, bool left) {

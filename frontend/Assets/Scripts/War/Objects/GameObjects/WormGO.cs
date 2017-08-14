@@ -1,6 +1,4 @@
-﻿using System;
-using Geometry;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 
@@ -8,12 +6,13 @@ namespace War.Objects.GameObjects {
 
     public class WormGO : MonoBehaviour {
 
-        private Worm _worm;
+        [SerializeField] private SpriteRenderer _arrow, _headRenderer, _tailRenderer;
+        private float _headAngle;
 
         [SerializeField] private Text _name, _hp;
-        [SerializeField] private SpriteRenderer _arrow, _headRenderer, _tailRenderer;
         [SerializeField] private Transform _sprite, _head, _tail;
-        private float _headAngle;
+
+        private Worm _worm;
 
         public string Name {
             set { _name.text = value; }
@@ -22,8 +21,8 @@ namespace War.Objects.GameObjects {
         public Color Color {
             set {
                 _name.color =
-                _hp.color =
-                _arrow.color = value;
+                    _hp.color =
+                        _arrow.color = value;
             }
         }
 
@@ -36,6 +35,18 @@ namespace War.Objects.GameObjects {
         }
 
 
+        public bool FacesRight {
+            set {
+                if (_sprite.localScale.x < 0 ^ value) return;
+                var v3 = _sprite.localScale;
+                v3.x = -v3.x;
+                _sprite.localScale = v3;
+
+                Look(_headAngle);
+            }
+        }
+
+
         public void OnAdd (Worm worm) {
             _worm = worm;
             Name = worm.Name;
@@ -44,18 +55,6 @@ namespace War.Objects.GameObjects {
             ArrowVisible = worm.ArrowVisible;
             FacesRight = worm.FacesRight;
             Look(_headAngle = worm.FacesRight ? 0 : 180);
-        }
-
-
-        public bool FacesRight {
-            set {
-                if (_sprite.localScale.x < 0 ^ value) return;
-                var v3 = _sprite.localScale;
-                v3.x = -v3.x;
-                _sprite.localScale = v3;
-                
-                Look(_headAngle);
-            }
         }
 
 

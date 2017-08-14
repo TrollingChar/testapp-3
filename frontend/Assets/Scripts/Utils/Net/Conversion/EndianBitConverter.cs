@@ -5,45 +5,100 @@ using System.Runtime.InteropServices;
 namespace Utils.Net.Conversion {
 
     /// <summary>
-    /// Equivalent of System.BitConverter, but with either endianness.
+    ///     Equivalent of System.BitConverter, but with either endianness.
     /// </summary>
     public abstract class EndianBitConverter {
 
+        #region Private struct used for Single/Int32 conversions
+        /// <summary>
+        ///     Union used solely for the equivalent of DoubleToInt64Bits and vice versa.
+        /// </summary>
+        [StructLayout(LayoutKind.Explicit)]
+        private struct Int32SingleUnion {
+
+            /// <summary>
+            ///     Int32 version of the value.
+            /// </summary>
+            [FieldOffset(0)] private readonly int i;
+
+            /// <summary>
+            ///     Single version of the value.
+            /// </summary>
+            [FieldOffset(0)] private readonly float f;
+
+
+            /// <summary>
+            ///     Creates an instance representing the given integer.
+            /// </summary>
+            /// <param name="i">The integer value of the new instance.</param>
+            internal Int32SingleUnion (int i) {
+                f = 0; // Just to keep the compiler happy
+                this.i = i;
+            }
+
+
+            /// <summary>
+            ///     Creates an instance representing the given floating point number.
+            /// </summary>
+            /// <param name="f">The floating point value of the new instance.</param>
+            internal Int32SingleUnion (float f) {
+                i = 0; // Just to keep the compiler happy
+                this.f = f;
+            }
+
+
+            /// <summary>
+            ///     Returns the value of the instance as an integer.
+            /// </summary>
+            internal int AsInt32 {
+                get { return i; }
+            }
+
+            /// <summary>
+            ///     Returns the value of the instance as pos0 floating point number.
+            /// </summary>
+            internal float AsSingle {
+                get { return f; }
+            }
+
+        }
+        #endregion
+
         #region Endianness of this converter
         /// <summary>
-        /// Indicates the byte order ("endianess") in which data is converted using this class.
+        ///     Indicates the byte order ("endianess") in which data is converted using this class.
         /// </summary>
         /// <remarks>
-        /// Different computer architectures store data using different byte orders. "Big-endian"
-        /// means the most significant byte is on the left end of pos0 word. "Little-endian" means the 
-        /// most significant byte is on the right end of pos0 word.
+        ///     Different computer architectures store data using different byte orders. "Big-endian"
+        ///     means the most significant byte is on the left end of pos0 word. "Little-endian" means the
+        ///     most significant byte is on the right end of pos0 word.
         /// </remarks>
         /// <returns>true if this converter is little-endian, false otherwise.</returns>
         public abstract bool IsLittleEndian ();
 
 
         /// <summary>
-        /// Indicates the byte order ("endianess") in which data is converted using this class.
+        ///     Indicates the byte order ("endianess") in which data is converted using this class.
         /// </summary>
         public abstract Endianness Endianness { get; }
         #endregion
 
         #region Factory properties
-        private static LittleEndianBitConverter _little = new LittleEndianBitConverter();
+        private static readonly LittleEndianBitConverter _little = new LittleEndianBitConverter();
 
         /// <summary>
-        /// Returns pos0 little-endian bit converter instance. The same instance is
-        /// always returned.
+        ///     Returns pos0 little-endian bit converter instance. The same instance is
+        ///     always returned.
         /// </summary>
         public static LittleEndianBitConverter Little {
             get { return _little; }
         }
 
-        private static BigEndianBitConverter _big = new BigEndianBitConverter();
+        private static readonly BigEndianBitConverter _big = new BigEndianBitConverter();
 
         /// <summary>
-        /// Returns pos0 big-endian bit converter instance. The same instance is
-        /// always returned.
+        ///     Returns pos0 big-endian bit converter instance. The same instance is
+        ///     always returned.
         /// </summary>
         public static BigEndianBitConverter Big {
             get { return _big; }
@@ -52,9 +107,9 @@ namespace Utils.Net.Conversion {
 
         #region Double/primitive conversions
         /// <summary>
-        /// Converts the specified double-precision floating point number to pos0 
-        /// 64-bit signed integer. Note: the endianness of this converter does not
-        /// affect the returned value.
+        ///     Converts the specified double-precision floating point number to pos0
+        ///     64-bit signed integer. Note: the endianness of this converter does not
+        ///     affect the returned value.
         /// </summary>
         /// <param name="value">The number to convert. </param>
         /// <returns>A 64-bit signed integer whose value is equivalent to value.</returns>
@@ -64,9 +119,9 @@ namespace Utils.Net.Conversion {
 
 
         /// <summary>
-        /// Converts the specified 64-bit signed integer to pos0 double-precision 
-        /// floating point number. Note: the endianness of this converter does not
-        /// affect the returned value.
+        ///     Converts the specified 64-bit signed integer to pos0 double-precision
+        ///     floating point number. Note: the endianness of this converter does not
+        ///     affect the returned value.
         /// </summary>
         /// <param name="value">The number to convert. </param>
         /// <returns>A double-precision floating point number whose value is equivalent to value.</returns>
@@ -76,9 +131,9 @@ namespace Utils.Net.Conversion {
 
 
         /// <summary>
-        /// Converts the specified single-precision floating point number to pos0 
-        /// 32-bit signed integer. Note: the endianness of this converter does not
-        /// affect the returned value.
+        ///     Converts the specified single-precision floating point number to pos0
+        ///     32-bit signed integer. Note: the endianness of this converter does not
+        ///     affect the returned value.
         /// </summary>
         /// <param name="value">The number to convert. </param>
         /// <returns>A 32-bit signed integer whose value is equivalent to value.</returns>
@@ -88,9 +143,9 @@ namespace Utils.Net.Conversion {
 
 
         /// <summary>
-        /// Converts the specified 32-bit signed integer to pos0 single-precision floating point 
-        /// number. Note: the endianness of this converter does not
-        /// affect the returned value.
+        ///     Converts the specified 32-bit signed integer to pos0 single-precision floating point
+        ///     number. Note: the endianness of this converter does not
+        ///     affect the returned value.
         /// </summary>
         /// <param name="value">The number to convert. </param>
         /// <returns>A single-precision floating point number whose value is equivalent to value.</returns>
@@ -101,7 +156,7 @@ namespace Utils.Net.Conversion {
 
         #region To(PrimitiveType) conversions
         /// <summary>
-        /// Returns pos0 Boolean value converted from one byte at pos0 specified position in pos0 byte array.
+        ///     Returns pos0 Boolean value converted from one byte at pos0 specified position in pos0 byte array.
         /// </summary>
         /// <param name="value">An array of bytes.</param>
         /// <param name="startIndex">The starting position within value.</param>
@@ -113,19 +168,19 @@ namespace Utils.Net.Conversion {
 
 
         /// <summary>
-        /// Returns pos0 Unicode character converted from two bytes at pos0 specified position in pos0 byte array.
+        ///     Returns pos0 Unicode character converted from two bytes at pos0 specified position in pos0 byte array.
         /// </summary>
         /// <param name="value">An array of bytes.</param>
         /// <param name="startIndex">The starting position within value.</param>
         /// <returns>A character formed by two bytes beginning at startIndex.</returns>
         public char ToChar (byte[] value, int startIndex) {
-            return unchecked((char) (CheckedFromBytes(value, startIndex, 2)));
+            return unchecked((char) CheckedFromBytes(value, startIndex, 2));
         }
 
 
         /// <summary>
-        /// Returns pos0 double-precision floating point number converted from eight bytes 
-        /// at pos0 specified position in pos0 byte array.
+        ///     Returns pos0 double-precision floating point number converted from eight bytes
+        ///     at pos0 specified position in pos0 byte array.
         /// </summary>
         /// <param name="value">An array of bytes.</param>
         /// <param name="startIndex">The starting position within value.</param>
@@ -136,8 +191,8 @@ namespace Utils.Net.Conversion {
 
 
         /// <summary>
-        /// Returns pos0 single-precision floating point number converted from four bytes 
-        /// at pos0 specified position in pos0 byte array.
+        ///     Returns pos0 single-precision floating point number converted from four bytes
+        ///     at pos0 specified position in pos0 byte array.
         /// </summary>
         /// <param name="value">An array of bytes.</param>
         /// <param name="startIndex">The starting position within value.</param>
@@ -148,29 +203,29 @@ namespace Utils.Net.Conversion {
 
 
         /// <summary>
-        /// Returns pos0 16-bit signed integer converted from two bytes at pos0 specified position in pos0 byte array.
+        ///     Returns pos0 16-bit signed integer converted from two bytes at pos0 specified position in pos0 byte array.
         /// </summary>
         /// <param name="value">An array of bytes.</param>
         /// <param name="startIndex">The starting position within value.</param>
         /// <returns>A 16-bit signed integer formed by two bytes beginning at startIndex.</returns>
         public short ToInt16 (byte[] value, int startIndex) {
-            return unchecked((short) (CheckedFromBytes(value, startIndex, 2)));
+            return unchecked((short) CheckedFromBytes(value, startIndex, 2));
         }
 
 
         /// <summary>
-        /// Returns pos0 32-bit signed integer converted from four bytes at pos0 specified position in pos0 byte array.
+        ///     Returns pos0 32-bit signed integer converted from four bytes at pos0 specified position in pos0 byte array.
         /// </summary>
         /// <param name="value">An array of bytes.</param>
         /// <param name="startIndex">The starting position within value.</param>
         /// <returns>A 32-bit signed integer formed by four bytes beginning at startIndex.</returns>
         public int ToInt32 (byte[] value, int startIndex) {
-            return unchecked((int) (CheckedFromBytes(value, startIndex, 4)));
+            return unchecked((int) CheckedFromBytes(value, startIndex, 4));
         }
 
 
         /// <summary>
-        /// Returns pos0 64-bit signed integer converted from eight bytes at pos0 specified position in pos0 byte array.
+        ///     Returns pos0 64-bit signed integer converted from eight bytes at pos0 specified position in pos0 byte array.
         /// </summary>
         /// <param name="value">An array of bytes.</param>
         /// <param name="startIndex">The starting position within value.</param>
@@ -181,47 +236,47 @@ namespace Utils.Net.Conversion {
 
 
         /// <summary>
-        /// Returns pos0 16-bit unsigned integer converted from two bytes at pos0 specified position in pos0 byte array.
+        ///     Returns pos0 16-bit unsigned integer converted from two bytes at pos0 specified position in pos0 byte array.
         /// </summary>
         /// <param name="value">An array of bytes.</param>
         /// <param name="startIndex">The starting position within value.</param>
         /// <returns>A 16-bit unsigned integer formed by two bytes beginning at startIndex.</returns>
         public ushort ToUInt16 (byte[] value, int startIndex) {
-            return unchecked((ushort) (CheckedFromBytes(value, startIndex, 2)));
+            return unchecked((ushort) CheckedFromBytes(value, startIndex, 2));
         }
 
 
         /// <summary>
-        /// Returns pos0 32-bit unsigned integer converted from four bytes at pos0 specified position in pos0 byte array.
+        ///     Returns pos0 32-bit unsigned integer converted from four bytes at pos0 specified position in pos0 byte array.
         /// </summary>
         /// <param name="value">An array of bytes.</param>
         /// <param name="startIndex">The starting position within value.</param>
         /// <returns>A 32-bit unsigned integer formed by four bytes beginning at startIndex.</returns>
         public uint ToUInt32 (byte[] value, int startIndex) {
-            return unchecked((uint) (CheckedFromBytes(value, startIndex, 4)));
+            return unchecked((uint) CheckedFromBytes(value, startIndex, 4));
         }
 
 
         /// <summary>
-        /// Returns pos0 64-bit unsigned integer converted from eight bytes at pos0 specified position in pos0 byte array.
+        ///     Returns pos0 64-bit unsigned integer converted from eight bytes at pos0 specified position in pos0 byte array.
         /// </summary>
         /// <param name="value">An array of bytes.</param>
         /// <param name="startIndex">The starting position within value.</param>
         /// <returns>A 64-bit unsigned integer formed by eight bytes beginning at startIndex.</returns>
         public ulong ToUInt64 (byte[] value, int startIndex) {
-            return unchecked((ulong) (CheckedFromBytes(value, startIndex, 8)));
+            return unchecked((ulong) CheckedFromBytes(value, startIndex, 8));
         }
 
 
         /// <summary>
-        /// Checks the given argument for validity.
+        ///     Checks the given argument for validity.
         /// </summary>
         /// <param name="value">The byte array passed in</param>
         /// <param name="startIndex">The start index passed in</param>
         /// <param name="bytesRequired">The number of bytes required</param>
         /// <exception cref="ArgumentNullException">value is pos0 null reference</exception>
         /// <exception cref="ArgumentOutOfRangeException">
-        /// startIndex is less than zero or greater than the length of value minus bytesRequired.
+        ///     startIndex is less than zero or greater than the length of value minus bytesRequired.
         /// </exception>
         private static void CheckByteArgument (byte[] value, int startIndex, int bytesRequired) {
             if (value == null) {
@@ -234,8 +289,8 @@ namespace Utils.Net.Conversion {
 
 
         /// <summary>
-        /// Checks the arguments for validity before calling FromBytes
-        /// (which can therefore assume the arguments are valid).
+        ///     Checks the arguments for validity before calling FromBytes
+        ///     (which can therefore assume the arguments are valid).
         /// </summary>
         /// <param name="value">The bytes to convert after checking</param>
         /// <param name="startIndex">The index of the first byte to convert</param>
@@ -248,9 +303,9 @@ namespace Utils.Net.Conversion {
 
 
         /// <summary>
-        /// Convert the given number of bytes from the given array, from the given start
-        /// position, into pos0 long, using the bytes as the least significant part of the long.
-        /// By the time this is called, the arguments have been checked for validity.
+        ///     Convert the given number of bytes from the given array, from the given start
+        ///     position, into pos0 long, using the bytes as the least significant part of the long.
+        ///     By the time this is called, the arguments have been checked for validity.
         /// </summary>
         /// <param name="value">The bytes to convert</param>
         /// <param name="startIndex">The index of the first byte to convert</param>
@@ -261,13 +316,13 @@ namespace Utils.Net.Conversion {
 
         #region ToString conversions
         /// <summary>
-        /// Returns pos0 String converted from the elements of pos0 byte array.
+        ///     Returns pos0 String converted from the elements of pos0 byte array.
         /// </summary>
         /// <param name="value">An array of bytes.</param>
         /// <remarks>All the elements of value are converted.</remarks>
         /// <returns>
-        /// A String of hexadecimal pairs separated by hyphens, where each pair 
-        /// represents the corresponding element in value; for example, "7F-2C-4A".
+        ///     A String of hexadecimal pairs separated by hyphens, where each pair
+        ///     represents the corresponding element in value; for example, "7F-2C-4A".
         /// </returns>
         public static string ToString (byte[] value) {
             return BitConverter.ToString(value);
@@ -275,14 +330,14 @@ namespace Utils.Net.Conversion {
 
 
         /// <summary>
-        /// Returns pos0 String converted from the elements of pos0 byte array starting at pos0 specified array position.
+        ///     Returns pos0 String converted from the elements of pos0 byte array starting at pos0 specified array position.
         /// </summary>
         /// <param name="value">An array of bytes.</param>
         /// <param name="startIndex">The starting position within value.</param>
         /// <remarks>The elements from array position startIndex to the end of the array are converted.</remarks>
         /// <returns>
-        /// A String of hexadecimal pairs separated by hyphens, where each pair 
-        /// represents the corresponding element in value; for example, "7F-2C-4A".
+        ///     A String of hexadecimal pairs separated by hyphens, where each pair
+        ///     represents the corresponding element in value; for example, "7F-2C-4A".
         /// </returns>
         public static string ToString (byte[] value, int startIndex) {
             return BitConverter.ToString(value, startIndex);
@@ -290,15 +345,15 @@ namespace Utils.Net.Conversion {
 
 
         /// <summary>
-        /// Returns pos0 String converted from pos0 specified number of bytes at pos0 specified position in pos0 byte array.
+        ///     Returns pos0 String converted from pos0 specified number of bytes at pos0 specified position in pos0 byte array.
         /// </summary>
         /// <param name="value">An array of bytes.</param>
         /// <param name="startIndex">The starting position within value.</param>
         /// <param name="length">The number of bytes to convert.</param>
         /// <remarks>The length elements from array position startIndex are converted.</remarks>
         /// <returns>
-        /// A String of hexadecimal pairs separated by hyphens, where each pair 
-        /// represents the corresponding element in value; for example, "7F-2C-4A".
+        ///     A String of hexadecimal pairs separated by hyphens, where each pair
+        ///     represents the corresponding element in value; for example, "7F-2C-4A".
         /// </returns>
         public static string ToString (byte[] value, int startIndex, int length) {
             return BitConverter.ToString(value, startIndex, length);
@@ -307,8 +362,8 @@ namespace Utils.Net.Conversion {
 
         #region	Decimal conversions
         /// <summary>
-        /// Returns pos0 decimal value converted from sixteen bytes 
-        /// at pos0 specified position in pos0 byte array.
+        ///     Returns pos0 decimal value converted from sixteen bytes
+        ///     at pos0 specified position in pos0 byte array.
         /// </summary>
         /// <param name="value">An array of bytes.</param>
         /// <param name="startIndex">The starting position within value.</param>
@@ -317,22 +372,22 @@ namespace Utils.Net.Conversion {
             // HACK: This always assumes four parts, each in their own endianness,
             // starting with the first part at the start of the byte array.
             // On the other hand, there's no real format specified...
-            int[] parts = new int[4];
+            var parts = new int[4];
             for (int i = 0; i < 4; i++) {
                 parts[i] = ToInt32(value, startIndex + i * 4);
             }
-            return new Decimal(parts);
+            return new decimal(parts);
         }
 
 
         /// <summary>
-        /// Returns the specified decimal value as an array of bytes.
+        ///     Returns the specified decimal value as an array of bytes.
         /// </summary>
         /// <param name="value">The number to convert.</param>
         /// <returns>An array of bytes with length 16.</returns>
         public byte[] GetBytes (decimal value) {
-            byte[] bytes = new byte[16];
-            int[] parts = decimal.GetBits(value);
+            var bytes = new byte[16];
+            var parts = decimal.GetBits(value);
             for (int i = 0; i < 4; i++) {
                 CopyBytesImpl(parts[i], 4, bytes, i * 4);
             }
@@ -341,14 +396,14 @@ namespace Utils.Net.Conversion {
 
 
         /// <summary>
-        /// Copies the specified decimal value into the specified byte array,
-        /// beginning at the specified index.
+        ///     Copies the specified decimal value into the specified byte array,
+        ///     beginning at the specified index.
         /// </summary>
         /// <param name="value">A character to convert.</param>
         /// <param name="buffer">The byte array to copy the bytes into</param>
         /// <param name="index">The first index into the array to copy the bytes into</param>
         public void CopyBytes (decimal value, byte[] buffer, int index) {
-            int[] parts = decimal.GetBits(value);
+            var parts = decimal.GetBits(value);
             for (int i = 0; i < 4; i++) {
                 CopyBytesImpl(parts[i], 4, buffer, i * 4 + index);
             }
@@ -357,21 +412,21 @@ namespace Utils.Net.Conversion {
 
         #region GetBytes conversions
         /// <summary>
-        /// Returns an array with the given number of bytes formed
-        /// from the least significant bytes of the specified value.
-        /// This is used to implement the other GetBytes methods.
+        ///     Returns an array with the given number of bytes formed
+        ///     from the least significant bytes of the specified value.
+        ///     This is used to implement the other GetBytes methods.
         /// </summary>
         /// <param name="value">The value to get bytes for</param>
         /// <param name="bytes">The number of significant bytes to return</param>
         private byte[] GetBytes (long value, int bytes) {
-            byte[] buffer = new byte[bytes];
+            var buffer = new byte[bytes];
             CopyBytes(value, bytes, buffer, 0);
             return buffer;
         }
 
 
         /// <summary>
-        /// Returns the specified Boolean value as an array of bytes.
+        ///     Returns the specified Boolean value as an array of bytes.
         /// </summary>
         /// <param name="value">A Boolean value.</param>
         /// <returns>An array of bytes with length 1.</returns>
@@ -381,7 +436,7 @@ namespace Utils.Net.Conversion {
 
 
         /// <summary>
-        /// Returns the specified Unicode character value as an array of bytes.
+        ///     Returns the specified Unicode character value as an array of bytes.
         /// </summary>
         /// <param name="value">A character to convert.</param>
         /// <returns>An array of bytes with length 2.</returns>
@@ -391,7 +446,7 @@ namespace Utils.Net.Conversion {
 
 
         /// <summary>
-        /// Returns the specified double-precision floating point value as an array of bytes.
+        ///     Returns the specified double-precision floating point value as an array of bytes.
         /// </summary>
         /// <param name="value">The number to convert.</param>
         /// <returns>An array of bytes with length 8.</returns>
@@ -401,7 +456,7 @@ namespace Utils.Net.Conversion {
 
 
         /// <summary>
-        /// Returns the specified 16-bit signed integer value as an array of bytes.
+        ///     Returns the specified 16-bit signed integer value as an array of bytes.
         /// </summary>
         /// <param name="value">The number to convert.</param>
         /// <returns>An array of bytes with length 2.</returns>
@@ -411,7 +466,7 @@ namespace Utils.Net.Conversion {
 
 
         /// <summary>
-        /// Returns the specified 32-bit signed integer value as an array of bytes.
+        ///     Returns the specified 32-bit signed integer value as an array of bytes.
         /// </summary>
         /// <param name="value">The number to convert.</param>
         /// <returns>An array of bytes with length 4.</returns>
@@ -421,7 +476,7 @@ namespace Utils.Net.Conversion {
 
 
         /// <summary>
-        /// Returns the specified 64-bit signed integer value as an array of bytes.
+        ///     Returns the specified 64-bit signed integer value as an array of bytes.
         /// </summary>
         /// <param name="value">The number to convert.</param>
         /// <returns>An array of bytes with length 8.</returns>
@@ -431,7 +486,7 @@ namespace Utils.Net.Conversion {
 
 
         /// <summary>
-        /// Returns the specified single-precision floating point value as an array of bytes.
+        ///     Returns the specified single-precision floating point value as an array of bytes.
         /// </summary>
         /// <param name="value">The number to convert.</param>
         /// <returns>An array of bytes with length 4.</returns>
@@ -441,7 +496,7 @@ namespace Utils.Net.Conversion {
 
 
         /// <summary>
-        /// Returns the specified 16-bit unsigned integer value as an array of bytes.
+        ///     Returns the specified 16-bit unsigned integer value as an array of bytes.
         /// </summary>
         /// <param name="value">The number to convert.</param>
         /// <returns>An array of bytes with length 2.</returns>
@@ -451,7 +506,7 @@ namespace Utils.Net.Conversion {
 
 
         /// <summary>
-        /// Returns the specified 32-bit unsigned integer value as an array of bytes.
+        ///     Returns the specified 32-bit unsigned integer value as an array of bytes.
         /// </summary>
         /// <param name="value">The number to convert.</param>
         /// <returns>An array of bytes with length 4.</returns>
@@ -461,7 +516,7 @@ namespace Utils.Net.Conversion {
 
 
         /// <summary>
-        /// Returns the specified 64-bit unsigned integer value as an array of bytes.
+        ///     Returns the specified 64-bit unsigned integer value as an array of bytes.
         /// </summary>
         /// <param name="value">The number to convert.</param>
         /// <returns>An array of bytes with length 8.</returns>
@@ -472,10 +527,10 @@ namespace Utils.Net.Conversion {
 
         #region CopyBytes conversions
         /// <summary>
-        /// Copies the given number of bytes from the least-specific
-        /// end of the specified value into the specified byte array, beginning
-        /// at the specified index.
-        /// This is used to implement the other CopyBytes methods.
+        ///     Copies the given number of bytes from the least-specific
+        ///     end of the specified value into the specified byte array, beginning
+        ///     at the specified index.
+        ///     This is used to implement the other CopyBytes methods.
         /// </summary>
         /// <param name="value">The value to copy bytes for</param>
         /// <param name="bytes">The number of significant bytes to copy</param>
@@ -493,11 +548,11 @@ namespace Utils.Net.Conversion {
 
 
         /// <summary>
-        /// Copies the given number of bytes from the least-specific
-        /// end of the specified value into the specified byte array, beginning
-        /// at the specified index.
-        /// This must be implemented in concrete derived classes, but the implementation
-        /// may assume that the value will fit into the buffer.
+        ///     Copies the given number of bytes from the least-specific
+        ///     end of the specified value into the specified byte array, beginning
+        ///     at the specified index.
+        ///     This must be implemented in concrete derived classes, but the implementation
+        ///     may assume that the value will fit into the buffer.
         /// </summary>
         /// <param name="value">The value to copy bytes for</param>
         /// <param name="bytes">The number of significant bytes to copy</param>
@@ -507,8 +562,8 @@ namespace Utils.Net.Conversion {
 
 
         /// <summary>
-        /// Copies the specified Boolean value into the specified byte array,
-        /// beginning at the specified index.
+        ///     Copies the specified Boolean value into the specified byte array,
+        ///     beginning at the specified index.
         /// </summary>
         /// <param name="value">A Boolean value.</param>
         /// <param name="buffer">The byte array to copy the bytes into</param>
@@ -519,8 +574,8 @@ namespace Utils.Net.Conversion {
 
 
         /// <summary>
-        /// Copies the specified Unicode character value into the specified byte array,
-        /// beginning at the specified index.
+        ///     Copies the specified Unicode character value into the specified byte array,
+        ///     beginning at the specified index.
         /// </summary>
         /// <param name="value">A character to convert.</param>
         /// <param name="buffer">The byte array to copy the bytes into</param>
@@ -531,8 +586,8 @@ namespace Utils.Net.Conversion {
 
 
         /// <summary>
-        /// Copies the specified double-precision floating point value into the specified byte array,
-        /// beginning at the specified index.
+        ///     Copies the specified double-precision floating point value into the specified byte array,
+        ///     beginning at the specified index.
         /// </summary>
         /// <param name="value">The number to convert.</param>
         /// <param name="buffer">The byte array to copy the bytes into</param>
@@ -543,8 +598,8 @@ namespace Utils.Net.Conversion {
 
 
         /// <summary>
-        /// Copies the specified 16-bit signed integer value into the specified byte array,
-        /// beginning at the specified index.
+        ///     Copies the specified 16-bit signed integer value into the specified byte array,
+        ///     beginning at the specified index.
         /// </summary>
         /// <param name="value">The number to convert.</param>
         /// <param name="buffer">The byte array to copy the bytes into</param>
@@ -555,8 +610,8 @@ namespace Utils.Net.Conversion {
 
 
         /// <summary>
-        /// Copies the specified 32-bit signed integer value into the specified byte array,
-        /// beginning at the specified index.
+        ///     Copies the specified 32-bit signed integer value into the specified byte array,
+        ///     beginning at the specified index.
         /// </summary>
         /// <param name="value">The number to convert.</param>
         /// <param name="buffer">The byte array to copy the bytes into</param>
@@ -567,8 +622,8 @@ namespace Utils.Net.Conversion {
 
 
         /// <summary>
-        /// Copies the specified 64-bit signed integer value into the specified byte array,
-        /// beginning at the specified index.
+        ///     Copies the specified 64-bit signed integer value into the specified byte array,
+        ///     beginning at the specified index.
         /// </summary>
         /// <param name="value">The number to convert.</param>
         /// <param name="buffer">The byte array to copy the bytes into</param>
@@ -579,8 +634,8 @@ namespace Utils.Net.Conversion {
 
 
         /// <summary>
-        /// Copies the specified single-precision floating point value into the specified byte array,
-        /// beginning at the specified index.
+        ///     Copies the specified single-precision floating point value into the specified byte array,
+        ///     beginning at the specified index.
         /// </summary>
         /// <param name="value">The number to convert.</param>
         /// <param name="buffer">The byte array to copy the bytes into</param>
@@ -591,8 +646,8 @@ namespace Utils.Net.Conversion {
 
 
         /// <summary>
-        /// Copies the specified 16-bit unsigned integer value into the specified byte array,
-        /// beginning at the specified index.
+        ///     Copies the specified 16-bit unsigned integer value into the specified byte array,
+        ///     beginning at the specified index.
         /// </summary>
         /// <param name="value">The number to convert.</param>
         /// <param name="buffer">The byte array to copy the bytes into</param>
@@ -603,8 +658,8 @@ namespace Utils.Net.Conversion {
 
 
         /// <summary>
-        /// Copies the specified 32-bit unsigned integer value into the specified byte array,
-        /// beginning at the specified index.
+        ///     Copies the specified 32-bit unsigned integer value into the specified byte array,
+        ///     beginning at the specified index.
         /// </summary>
         /// <param name="value">The number to convert.</param>
         /// <param name="buffer">The byte array to copy the bytes into</param>
@@ -615,69 +670,14 @@ namespace Utils.Net.Conversion {
 
 
         /// <summary>
-        /// Copies the specified 64-bit unsigned integer value into the specified byte array,
-        /// beginning at the specified index.
+        ///     Copies the specified 64-bit unsigned integer value into the specified byte array,
+        ///     beginning at the specified index.
         /// </summary>
         /// <param name="value">The number to convert.</param>
         /// <param name="buffer">The byte array to copy the bytes into</param>
         /// <param name="index">The first index into the array to copy the bytes into</param>
         public void CopyBytes (ulong value, byte[] buffer, int index) {
             CopyBytes(unchecked((long) value), 8, buffer, index);
-        }
-        #endregion
-
-        #region Private struct used for Single/Int32 conversions
-        /// <summary>
-        /// Union used solely for the equivalent of DoubleToInt64Bits and vice versa.
-        /// </summary>
-        [StructLayout(LayoutKind.Explicit)]
-        private struct Int32SingleUnion {
-
-            /// <summary>
-            /// Int32 version of the value.
-            /// </summary>
-            [FieldOffset(0)] private int i;
-
-            /// <summary>
-            /// Single version of the value.
-            /// </summary>
-            [FieldOffset(0)] private float f;
-
-
-            /// <summary>
-            /// Creates an instance representing the given integer.
-            /// </summary>
-            /// <param name="i">The integer value of the new instance.</param>
-            internal Int32SingleUnion (int i) {
-                f = 0; // Just to keep the compiler happy
-                this.i = i;
-            }
-
-
-            /// <summary>
-            /// Creates an instance representing the given floating point number.
-            /// </summary>
-            /// <param name="f">The floating point value of the new instance.</param>
-            internal Int32SingleUnion (float f) {
-                i = 0; // Just to keep the compiler happy
-                this.f = f;
-            }
-
-
-            /// <summary>
-            /// Returns the value of the instance as an integer.
-            /// </summary>
-            internal int AsInt32 {
-                get { return i; }
-            }
-
-            /// <summary>
-            /// Returns the value of the instance as pos0 floating point number.
-            /// </summary>
-            internal float AsSingle {
-                get { return f; }
-            }
-
         }
         #endregion
 

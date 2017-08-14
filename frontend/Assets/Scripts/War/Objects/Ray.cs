@@ -8,11 +8,6 @@ namespace War.Objects {
 
     public class Ray : Object {
 
-        public sealed override void OnAdd () {
-            throw new InvalidOperationException("Attempt to add a ray to the world!");
-        }
-
-
         public Ray (XY position) : this(position, new CircleCollider(XY.Zero, 0)) {}
 
 
@@ -27,6 +22,11 @@ namespace War.Objects {
             Position = position;
             foreach (var c in colliders) AddCollider(c);
             ExcludeObjects();
+        }
+
+
+        public sealed override void OnAdd () {
+            throw new InvalidOperationException("Attempt to add a ray to the world!");
         }
 
 

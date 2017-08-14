@@ -22,8 +22,8 @@ namespace War.Teams {
 
 
         public void AddAmmo (int id, int amount) {}
-        
-        
+
+
         public void SetAmmo (int id, int amount) {}
 
     }

@@ -16,15 +16,36 @@ namespace War.Objects {
     public abstract class Object {
 
         private static readonly NullObject _empty = new NullObject();
-        public LinkedListNode<Object> Node;
 
-        public float Movement;
-        public HashSet<Object> Excluded;
-        public List<Collider> Colliders;
-        public int SuperMass;
-        public float Mass;
+//        private readonly BF _bf = The<BF>.Get();
+        private readonly World _world = The<World>.Get();
+
+        private CollisionHandler _collisionHandler;
+        private Controller _controller;
+        private Explosive _explosive;
 
         private XY _position;
+        public List<Collider> Colliders;
+        public HashSet<Object> Excluded;
+        public float Mass;
+
+        public float Movement;
+        public LinkedListNode<Object> Node;
+
+        protected GameObject Sprite;
+        public int SuperMass;
+
+        public XY Velocity;
+
+
+        protected Object (float mass = 60f, int superMass = 0) {
+            Mass = mass;
+            SuperMass = superMass;
+
+            Colliders = new List<Collider>();
+            Excluded = new HashSet<Object>();
+        }
+
 
         public XY Position {
             get { return _position; }
@@ -33,16 +54,6 @@ namespace War.Objects {
                 foreach (var c in Colliders) c.UpdatePosition();
             }
         }
-
-        public XY Velocity;
-
-        protected GameObject Sprite;
-        private Controller _controller;
-        private Explosive _explosive;
-        private CollisionHandler _collisionHandler;
-        
-//        private readonly BF _bf = The<BF>.Get();
-        private readonly World _world = The<World>.Get();
 
         public Controller Controller {
             get { return _controller; }
@@ -57,15 +68,6 @@ namespace War.Objects {
         public CollisionHandler CollisionHandler {
             get { return _collisionHandler; }
             set { SwapComponent(ref _collisionHandler, value); }
-        }
-
-
-        protected Object (float mass = 60f, int superMass = 0) {
-            Mass = mass;
-            SuperMass = superMass;
-
-            Colliders = new List<Collider>();
-            Excluded = new HashSet<Object>();
         }
 
 
@@ -102,7 +104,7 @@ namespace War.Objects {
 
 
         public Collision NextCollision (float movementLeft) {
-            XY v = Velocity * movementLeft;
+            var v = Velocity * movementLeft;
             var cObj = CollideWithObjects(v);
             if (cObj != null) v = cObj.Offset;
             var cLand = CollideWithLand(v);
@@ -158,8 +160,11 @@ namespace War.Objects {
 
 
         public void Detonate () {
-            if (Explosive == null) Remove();
-            else Explosive.Detonate();
+            if (Explosive == null) {
+                Remove();
+            } else {
+                Explosive.Detonate();
+            }
         }
 
 
@@ -191,7 +196,7 @@ namespace War.Objects {
         }
 
 
-        private void SwapComponent <T> (ref T component, T newComponent) where T : Component {
+        private void SwapComponent<T> (ref T component, T newComponent) where T : Component {
             if (component != null) {
                 component.OnRemove();
                 //component.Object = null;

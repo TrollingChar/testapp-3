@@ -1,24 +1,31 @@
-﻿namespace War.Weapons {
+﻿using System;
+
+
+namespace War.Weapons {
 
     public abstract class StandardWeapon : Weapon {
 
-        protected int Attacks; // blaster has 2
-        protected int AttackCooldown;
-        protected int Shots; // machine gun has many
-        protected int ShotCooldown;
-        protected int Power;
-        protected bool ConstPower;
-        protected bool Removable; // if false, locks arsenal when used
-        protected bool RequiresClick; // if true, will fire 2nd shot when button is clicked, if false - when held
+        private int _attackCooldown;
 
         private int _attacksLeft;
-        private int _attackCooldown;
-        private int _power;
-        private bool _fires;
-        private int _shotsLeft;
-        private int _shotCooldown;
-        private bool _ready; // used when weapon requires click
         private bool _equipped;
+        private bool _fires;
+        private int _power;
+        private bool _ready; // used when weapon requires click
+        private int _shotCooldown;
+        private int _shotsLeft;
+        protected int AttackCooldown;
+
+        protected int Attacks; // blaster has 2
+        protected bool ConstPower;
+        protected int Power;
+        protected bool Removable; // if false, locks arsenal when used
+        protected bool RequiresClick; // if true, will fire 2nd shot when button is clicked, if false - when held
+        protected int ShotCooldown;
+        protected int Shots; // machine gun has many
+
+
+        public bool TimerFrozen { get; set; }
 
 
         protected virtual void OnEquip () {}
@@ -65,7 +72,7 @@
 
 
         private void LockArsenal () {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
 
@@ -108,9 +115,6 @@
             _equipped = false;
             OnUnequip();
         }
-
-
-        public bool TimerFrozen { get; set; }
 
     }
 

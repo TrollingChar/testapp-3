@@ -1,18 +1,12 @@
-﻿using System;
-using Assets;
+﻿using Assets;
 using Geometry;
 using UnityEngine;
-using UnityEngine.AI;
 using Utils;
 using Utils.Singleton;
-using War.Objects.CollisionHandlers;
 using War.Objects.Controllers;
 using War.Objects.GameObjects;
 using War.Physics.Collisions;
 using War.Teams;
-using Zenject;
-using Collider = War.Physics.Collisions.Collider;
-using Collision = War.Physics.Collisions.Collision;
 using UnObject = UnityEngine.Object;
 
 
@@ -21,7 +15,7 @@ namespace War.Objects {
     public class Worm : Object {
 
 //        [Inject] private AssetContainer _assets;
-        
+
         public const float HeadRadius = 8f;
         public const float BodyHeight = 8f;
 
@@ -31,19 +25,27 @@ namespace War.Objects {
 
         public const float MaxClimb = 5f;
         public const float MaxDescend = 5f;
+        private bool _arrowVisible;
+        private Color _color;
+
+        private bool _facesRight;
+        private int _hp;
+        private string _name;
 
         private WormGO _spriteExtension;
+
+
+        public Worm (string name = "?", int hp = 60) : base(60, 1) {
+            Name = name;
+            HP = hp;
+            FacesRight = RNG.Bool();
+        }
+
 
         public Team Team { get; set; }
 
         public CircleCollider Head { get; private set; }
         public CircleCollider Tail { get; private set; }
-
-        private bool _facesRight;
-        private int _hp;
-        private string _name;
-        private Color _color;
-        private bool _arrowVisible;
 
         public bool FacesRight {
             get { return _facesRight; }
@@ -92,13 +94,6 @@ namespace War.Objects {
                 _arrowVisible = value;
                 if (_spriteExtension != null) _spriteExtension.ArrowVisible = value;
             }
-        }
-
-
-        public Worm (string name = "?", int hp = 60) : base(60, 1) {
-            Name = name;
-            HP = hp;
-            FacesRight = RNG.Bool();
         }
 
 

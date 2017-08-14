@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using Utils.Net.Conversion;
 
 
@@ -7,11 +6,11 @@ namespace Utils.Net {
 
     internal class ByteBuffer {
 
-        private static EndianBitConverter _bitConverter = new BigEndianBitConverter();
-        public byte[] Bytes;
-        public int Length;
+        private static readonly EndianBitConverter _bitConverter = new BigEndianBitConverter();
         private int _capacity;
         private int _offset;
+        public byte[] Bytes;
+        public int Length;
 
 
         public ByteBuffer (int capacity = 64) {
@@ -52,17 +51,17 @@ namespace Utils.Net {
         }
 
 
-        public void WriteInt16 (Int16 data) {
+        public void WriteInt16 (short data) {
             WriteBytes(_bitConverter.GetBytes(data));
         }
 
 
-        public void WriteInt32 (Int32 data) {
+        public void WriteInt32 (int data) {
             WriteBytes(_bitConverter.GetBytes(data));
         }
 
 
-        public void WriteInt64 (Int64 data) {
+        public void WriteInt64 (long data) {
             WriteBytes(_bitConverter.GetBytes(data));
         }
 

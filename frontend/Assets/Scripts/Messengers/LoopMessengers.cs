@@ -1,5 +1,1 @@
-﻿namespace Messengers {
-
-    
-
-}
+﻿namespace Messengers {}

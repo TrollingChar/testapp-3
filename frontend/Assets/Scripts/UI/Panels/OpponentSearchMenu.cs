@@ -9,12 +9,13 @@ namespace UI.Panels {
 
     public class OpponentSearchMenu : Panel {
 
+        [SerializeField] private Button _cancelButton;
+
         private WSConnection _connection;
-        private HubChangedMessenger _onHubChanged;
         private MainMenu _mainMenu;
+        private HubChangedMessenger _onHubChanged;
 
         [SerializeField] private Text _text;
-        [SerializeField] private Button _cancelButton;
 
 
         protected override void OnAwake () {
@@ -26,7 +27,7 @@ namespace UI.Panels {
             _connection = The<WSConnection>.Get();
             _onHubChanged = _connection.OnHubChanged;
             _mainMenu = The<MainMenu>.Get();
-            
+
             _onHubChanged.Subscribe(UpdateHubStatus);
             _cancelButton.onClick.AddListener(OnClickedCancel);
         }
@@ -56,7 +57,7 @@ namespace UI.Panels {
                 _text.text = "Игроков в комнате\n" + players + " / " + hub;
                 return;
             }
-            
+
             Hide();
             _mainMenu.Show();
             _text.text = "Игра отменена";

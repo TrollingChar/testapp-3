@@ -7,11 +7,11 @@ namespace War.Teams {
 
     public class Team {
 
-        private int _player;
         private Worm _activeWorm;
-        private LinkedList<Worm> _worms;
+
+        private int _player;
+        private readonly LinkedList<Worm> _worms;
         private int _wormsAlive;
-        public Color Color { get; private set; }
 
 
         public Team (int player, Color color) {
@@ -19,6 +19,9 @@ namespace War.Teams {
             Color = color;
             _worms = new LinkedList<Worm>();
         }
+
+
+        public Color Color { get; private set; }
 
 
         public void AddWorm (Worm worm) {

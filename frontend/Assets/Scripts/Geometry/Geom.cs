@@ -6,8 +6,8 @@ namespace Geometry {
     public static class Geom {
 
         public static XY Bounce (XY velocity, XY normal, float tangentialBounce, float normalBounce) {
-            XY tangent = normal.Rotated90CW();
-            XY convertedVelocity = ConvertToBasis(velocity, tangent, normal);
+            var tangent = normal.Rotated90CW();
+            var convertedVelocity = ConvertToBasis(velocity, tangent, normal);
 
             return tangent * tangentialBounce * convertedVelocity.X - normal * normalBounce * convertedVelocity.Y;
         }
@@ -26,7 +26,7 @@ namespace Geometry {
 
 
         public static float CastRayToCircle (XY o, XY dir, XY circleCenter, float r) {
-            XY originToCircle = circleCenter - o;
+            var originToCircle = circleCenter - o;
 
             if (XY.Dot(dir, originToCircle) <= 0) return 1; //float.NaN;
 

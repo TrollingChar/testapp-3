@@ -10,14 +10,15 @@ namespace War.Physics {
 
         private int _x, _y;
 
-        public List<Collider> Colliders { get; private set; }
-
 
         public Tile (int x, int y) {
             _x = x;
             _y = y;
             Colliders = new List<Collider>();
         }
+
+
+        public List<Collider> Colliders { get; private set; }
 
 
         public void AddCollider (Collider collider) {

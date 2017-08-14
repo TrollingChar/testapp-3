@@ -5,7 +5,7 @@ namespace War.Objects.GameObjects {
 
     internal class WormsNames {
 
-        private static string[] _names = {
+        private static readonly string[] _names = {
             "Тарг",
             "Имба",
             "Айс",

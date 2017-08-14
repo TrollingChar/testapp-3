@@ -11,7 +11,6 @@ using War.Objects;
 using War.Physics;
 using War.Physics.Collisions;
 using War.Teams;
-using Zenject;
 using Object = War.Objects.Object;
 using Ray = War.Objects.Ray;
 
@@ -20,14 +19,15 @@ namespace War {
 
     public class World {
 
+        public const float Precision = 0.1f;
+        private readonly LinkedList<Object> _objects;
+
+        private readonly GameStateController _state;
+
         public float Gravity;
-        public float WaterLevel;
         public Land Land;
         public Tiles Tiles;
-        private LinkedList<Object> _objects;
-
-        private GameStateController _state;
-        public const float Precision = 0.1f;
+        public float WaterLevel;
 
 
         // todo: wrap it in worldgen params
@@ -132,9 +132,9 @@ namespace War {
                             bool owcc = o.WillCauseCollision(c);
                             bool o2wcc = o2.WillCauseCollision(-c);
                             if (owcc || o2wcc) {
-                                XY velocity = (o.Mass * o.Velocity + o2.Mass * o2.Velocity) / (o.Mass + o2.Mass);
-                                XY v1 = o.Velocity - velocity;
-                                XY v2 = o2.Velocity - velocity;
+                                var velocity = (o.Mass * o.Velocity + o2.Mass * o2.Velocity) / (o.Mass + o2.Mass);
+                                var v1 = o.Velocity - velocity;
+                                var v2 = o2.Velocity - velocity;
                                 float tangBounce = Mathf.Sqrt(
                                     c.Collider1.TangentialBounce * c.Collider2.TangentialBounce
                                 );
@@ -164,7 +164,9 @@ namespace War {
                     var next = node.Next;
                     _objects.Remove(node);
                     node = next;
-                } else node = node.Next;
+                } else {
+                    node = node.Next;
+                }
             }
         }
 
@@ -180,7 +182,7 @@ namespace War {
 
         public List<XY> GetSpawnPoints () {
             var result = new List<XY>();
-            XY rayDirection = new XY(0, Worm.HeadRadius - LandTile.Size * 1.5f);
+            var rayDirection = new XY(0, Worm.HeadRadius - LandTile.Size * 1.5f);
             for (int x = 0; x < Land.Width / LandTile.Size; x++)
             for (int y = 0; y < Land.Height / LandTile.Size; y++) {
                 // valid:
@@ -198,7 +200,7 @@ namespace War {
 //                    && Land.Tiles[x - 1, y + 2].Land <= 0
 //                    && Land.Tiles[x + 1, y + 2].Land <= 0
                 ) {
-                    XY rayOrigin = new XY(x + 0.5f, y + 1f) * LandTile.Size;
+                    var rayOrigin = new XY(x + 0.5f, y + 1f) * LandTile.Size;
                     var collision = new Ray(rayOrigin, new CircleCollider(XY.Zero, Worm.HeadRadius)).Cast(rayDirection);
                     if (collision != null) result.Add(rayOrigin + new XY(0, Worm.BodyHeight));
                 }

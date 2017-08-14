@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Geometry;
-using UnityEngine;
 
 
 namespace War.Physics {
@@ -9,7 +8,8 @@ namespace War.Physics {
 
         public const int Size = 20;
 
-        private int _x, _y;
+        private readonly int _x;
+        private readonly int _y;
         public int Land;
         public List<XY> Vertices;
 

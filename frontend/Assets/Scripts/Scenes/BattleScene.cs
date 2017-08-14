@@ -1,5 +1,4 @@
-﻿using Assets;
-using Net;
+﻿using Net;
 using UnityEngine;
 using UnityEngine.UI;
 using Utils;
@@ -14,24 +13,25 @@ namespace Scenes {
 
     public class BattleScene : MonoBehaviour {
 
-        [SerializeField] private Text _hint;
-        [SerializeField] private SpriteRenderer _landRenderer;
-        
-//        [SerializeField] private Ground _ground;
-
-        public int I { get; private set; }
+        private CameraWrapper _camera;
 
         private WSConnection _connection;
-        private World _world;
-        private GameStateController _state;
+
+        [SerializeField] private Text _hint;
         private GameInitData _initData;
-        private EstimatedLandGen _landGen;
-        private CameraWrapper _camera;
-        private TeamManager _teams;
-        
+
 //        private BattleAssets _battleAssets;
 
         private bool _initialized;
+        private EstimatedLandGen _landGen;
+        [SerializeField] private SpriteRenderer _landRenderer;
+        private GameStateController _state;
+        private TeamManager _teams;
+        private World _world;
+
+//        [SerializeField] private Ground _ground;
+
+        public int I { get; private set; }
 
 
         private void Awake () {
@@ -70,10 +70,10 @@ namespace Scenes {
 
         private void OnComplete (LandGen gen) {
             _initialized = true;
-            
+
             _landGen.OnProgress.Unsubscribe(OnProgress);
             _landGen.OnComplete.Unsubscribe(OnComplete);
-            
+
             // show ground, spawn worms
             _state = new GameStateController();
             _world = new World(gen, _landRenderer);
@@ -84,7 +84,7 @@ namespace Scenes {
 
         private void FixedUpdate () {
             if (!_initialized) return;
-                
+
             if (_state.IsMyTurn) {
                 // gather input and update world
                 var td = new TurnData();

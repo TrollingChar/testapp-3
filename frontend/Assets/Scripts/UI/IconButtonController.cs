@@ -6,8 +6,9 @@ namespace UI {
 
     public class IconButtonController : MonoBehaviour {
 
-        [SerializeField] private Text _text;
         [SerializeField] private Image _icon;
+
+        [SerializeField] private Text _text;
 
     }
 

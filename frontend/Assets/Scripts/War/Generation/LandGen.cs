@@ -1,4 +1,3 @@
-using Messengers;
 using Utils;
 
 
@@ -29,7 +28,7 @@ namespace War.Generation {
                 int h = array.GetLength(1);
                 int resultw = w * 2 - 1;
                 int resulth = h * 2 - 1;
-                
+
                 result = new byte[w * 2 - 1, h * 2 - 1];
 
                 // X-X

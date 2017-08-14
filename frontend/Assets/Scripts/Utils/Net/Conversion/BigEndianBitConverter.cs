@@ -1,18 +1,26 @@
 namespace Utils.Net.Conversion {
 
     /// <summary>
-    /// Implementation of EndianBitConverter which converts to/from big-endian
-    /// byte arrays.
+    ///     Implementation of EndianBitConverter which converts to/from big-endian
+    ///     byte arrays.
     /// </summary>
     public sealed class BigEndianBitConverter : EndianBitConverter {
 
         /// <summary>
-        /// Indicates the byte order ("endianess") in which data is converted using this class.
+        ///     Indicates the byte order ("endianess") in which data is converted using this class.
+        /// </summary>
+        public override Endianness Endianness {
+            get { return Endianness.BigEndian; }
+        }
+
+
+        /// <summary>
+        ///     Indicates the byte order ("endianess") in which data is converted using this class.
         /// </summary>
         /// <remarks>
-        /// Different computer architectures store data using different byte orders. "Big-endian"
-        /// means the most significant byte is on the left end of pos0 word. "Little-endian" means the 
-        /// most significant byte is on the right end of pos0 word.
+        ///     Different computer architectures store data using different byte orders. "Big-endian"
+        ///     means the most significant byte is on the left end of pos0 word. "Little-endian" means the
+        ///     most significant byte is on the right end of pos0 word.
         /// </remarks>
         /// <returns>true if this converter is little-endian, false otherwise.</returns>
         public override bool IsLittleEndian () {
@@ -21,15 +29,7 @@ namespace Utils.Net.Conversion {
 
 
         /// <summary>
-        /// Indicates the byte order ("endianess") in which data is converted using this class.
-        /// </summary>
-        public override Endianness Endianness {
-            get { return Endianness.BigEndian; }
-        }
-
-
-        /// <summary>
-        /// Copies the specified number of bytes from value to buffer, starting at index.
+        ///     Copies the specified number of bytes from value to buffer, starting at index.
         /// </summary>
         /// <param name="value">The value to copy</param>
         /// <param name="bytes">The number of bytes to copy</param>
@@ -45,8 +45,8 @@ namespace Utils.Net.Conversion {
 
 
         /// <summary>
-        /// Returns pos0 value built from the specified number of bytes from the given buffer,
-        /// starting at index.
+        ///     Returns pos0 value built from the specified number of bytes from the given buffer,
+        ///     starting at index.
         /// </summary>
         /// <param name="buffer">The data in byte array format</param>
         /// <param name="startIndex">The first index to use</param>
@@ -55,7 +55,7 @@ namespace Utils.Net.Conversion {
         protected override long FromBytes (byte[] buffer, int startIndex, int bytesToConvert) {
             long ret = 0;
             for (int i = 0; i < bytesToConvert; i++) {
-                ret = unchecked((ret << 8) | buffer[startIndex + i]);
+                ret = unchecked(ret << 8 | buffer[startIndex + i]);
             }
             return ret;
         }

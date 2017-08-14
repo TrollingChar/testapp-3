@@ -11,15 +11,20 @@ using UnObject = UnityEngine.Object;
 namespace War {
 
     public class BF : MonoBehaviour {
-        [Inject] private GameInitData _gameInitData;
-        [Inject] private WSConnection _connection;
-        /*[Inject(Id = Injectables.Id)]*/ private int _id;
-        [Inject] private CameraWrapper _cameraWrapper;
 
-        public World World; 
+        [Inject] private CameraWrapper _cameraWrapper;
+        [Inject] private WSConnection _connection;
+
+        [Inject] private GameInitData _gameInitData;
+
+        /*[Inject(Id = Injectables.Id)]*/
+        private int _id;
+
         public GameStateController State;
 
         public Dictionary<int, Team> Teams;
+
+        public World World;
 //        private bool _paused;
 
 

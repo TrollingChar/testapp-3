@@ -1,41 +1,57 @@
 ﻿using Messengers;
 using Net;
-using UI;
 using UnityEngine;
 using Utils;
 using Utils.Singleton;
-using War.Camera;
 using War.Objects;
 using War.Teams;
-using Zenject;
 
 
 namespace War {
 
     public class GameStateController {
 
-        private WSConnection _connection;
-        private int _id;
-        private TeamManager _teamManager;
-
-        public TimerUpdatedMessenger OnTimerUpdated { get; private set; }
-
         private const int TurnTime = 30000;
         private const int RetreatTime = 3000;
 
-        public bool Synchronized;
+        private readonly WSConnection _connection;
 
-        private GameStates _current, _next;
-
-        public GameStates CurrentStates {
-            get { return _current; }
-        }
-
-        public int ActivePlayer;
+        private GameStates _next;
+        private readonly int _id;
+        private readonly TeamManager _teamManager;
 
         private int _time;
         private Worm _worm;
         private bool _wormFrozen;
+
+        public int ActivePlayer;
+
+        public bool Synchronized;
+
+
+        public GameStateController () {
+            The<GameStateController>.Set(this);
+
+            _connection = The<WSConnection>.Get();
+            _id = The<PlayerInfo>.Get().Id;
+            _teamManager = The<TeamManager>.Get();
+
+            OnTimerUpdated = new TimerUpdatedMessenger();
+
+            CurrentStates = GameStates.AfterTurn;
+            Hint("AFT");
+            _next = GameStates.Remove0Hp;
+            Timer = 500;
+            _wormFrozen = false;
+            Worm = null;
+
+            _connection.OnNewTurn.Subscribe(OnNewTurn); // todo unsubscribe when battle ends
+        }
+
+
+        public TimerUpdatedMessenger OnTimerUpdated { get; private set; }
+
+        public GameStates CurrentStates { get; private set; }
 
 //        private readonly BF _bf = The<BF>.Get();
 //        private readonly CoreEvents _coreEvents = The<CoreEvents>.Get();
@@ -69,33 +85,13 @@ namespace War {
         }
 
 
-        public GameStateController () {
-            The<GameStateController>.Set(this);
-
-            _connection = The<WSConnection>.Get();
-            _id = The<PlayerInfo>.Get().Id;
-            _teamManager = The<TeamManager>.Get();
-
-            OnTimerUpdated = new TimerUpdatedMessenger();
-
-            _current = GameStates.AfterTurn;
-            Hint("AFT");
-            _next = GameStates.Remove0Hp;
-            Timer = 500;
-            _wormFrozen = false;
-            Worm = null;
-
-            _connection.OnNewTurn.Subscribe(OnNewTurn); // todo unsubscribe when battle ends
-        }
-
-
         public void Update () {
             if ((Timer -= 20) <= 0) ChangeState();
         }
 
 
         public void Wait (int milliseconds) {
-            if (_current == GameStates.Turn) return;
+            if (CurrentStates == GameStates.Turn) return;
             if (Timer < milliseconds) Timer = milliseconds;
         }
 
@@ -114,7 +110,7 @@ namespace War {
 
 
         private void ChangeState () {
-            switch (_current = _next++) {
+            switch (CurrentStates = _next++) {
 
                 case GameStates.BeforeTurn:
                     Hint("BEF");
@@ -122,7 +118,9 @@ namespace War {
                     if (RNG.Bool(0)) {
                         // drop crates
                         Timer = 500;
-                    } else ChangeState();
+                    } else {
+                        ChangeState();
+                    }
                     break;
 
                 case GameStates.Synchronizing:
@@ -156,7 +154,9 @@ namespace War {
                     if (RNG.Bool(0)) {
                         // poison damage
                         Timer = 500;
-                    } else ChangeState();
+                    } else {
+                        ChangeState();
+                    }
                     break;
 
                 case GameStates.Remove0Hp:

@@ -1,5 +1,4 @@
-﻿using System;
-using Net;
+﻿using Net;
 using UnityEngine;
 using Utils.Singleton;
 using War;
@@ -8,7 +7,6 @@ using War;
 namespace Scenes {
 
     public class MenuScene : MonoBehaviour {
-
 
         private void Awake () {
             The<WSConnection>.Get().OnStartGame.Subscribe(StartGame);

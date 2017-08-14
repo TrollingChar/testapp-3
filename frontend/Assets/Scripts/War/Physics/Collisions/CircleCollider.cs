@@ -6,12 +6,8 @@ namespace War.Physics.Collisions {
 
     public class CircleCollider : Collider {
 
-        private XY _offset;
-        private float _radius;
-
-        public XY Center {
-            get { return _offset + Object.Position; }
-        }
+        private readonly XY _offset;
+        private readonly float _radius;
 
 
         public CircleCollider (XY offset, float radius) {
@@ -20,9 +16,14 @@ namespace War.Physics.Collisions {
         }
 
 
+        public XY Center {
+            get { return _offset + Object.Position; }
+        }
+
+
         public override AABBF AABB {
             get {
-                XY center = Center;
+                var center = Center;
                 return new AABBF(
                     center.X - _radius,
                     center.X + _radius,
@@ -58,7 +59,7 @@ namespace War.Physics.Collisions {
 
 
         public override Collision CollideWithLand (Land land, XY v) {
-            Collision result = land.CastRay(Center, v, _radius);
+            var result = land.CastRay(Center, v, _radius);
             if (result != null) result.Collider1 = this;
             return result;
         }

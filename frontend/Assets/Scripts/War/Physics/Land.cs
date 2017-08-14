@@ -10,14 +10,9 @@ namespace War.Physics {
 
     public class Land {
 
-        private int _progress, _fullProgress;
-
         private byte[,] _array;
-        public LandTiles Tiles { get; private set; }
-        public int Width { get; private set; }
-        public int Height { get; private set; }
-        public int WidthInTiles { get; private set; }
-        public int HeightInTiles { get; private set; }
+
+        private int _progress, _fullProgress;
 
         public float TangentialBounce, NormalBounce;
 
@@ -28,6 +23,23 @@ namespace War.Physics {
             InitTexture(landTexture, renderer);
             TangentialBounce = 0.9f;
             NormalBounce = 0.5f;
+        }
+
+
+        public LandTiles Tiles { get; private set; }
+        public int Width { get; private set; }
+        public int Height { get; private set; }
+        public int WidthInTiles { get; private set; }
+        public int HeightInTiles { get; private set; }
+
+
+        public byte this [int x, int y] {
+            get {
+                return x < 0 || y < 0 || x >= Width || y >= Height
+                    ? (byte) 0
+                    : _array[x, y];
+            }
+            // set { array[x, y] = value == 0 ? 0 : 1; }
         }
 
 
@@ -64,16 +76,6 @@ namespace War.Physics {
                 tile.Recalculate(this);
                 Tiles[x, y] = tile;
             }
-        }
-
-
-        public byte this [int x, int y] {
-            get {
-                return x < 0 || y < 0 || x >= Width || y >= Height
-                    ? (byte) 0
-                    : _array[x, y];
-            }
-            // set { array[x, y] = value == 0 ? 0 : 1; }
         }
 
 
@@ -178,7 +180,7 @@ namespace War.Physics {
 
                 for (int x = aabb.Left; x < aabb.Right; x++)
                 for (int y = aabb.Bottom; y < aabb.Top; y++) {
-                    foreach (XY pt in Tiles[x, y].Vertices) {
+                    foreach (var pt in Tiles[x, y].Vertices) {
                         float dd = Geom.CastRayToCircle(bp, v, pt, width);
                         if (dd >= d) continue;
                         d = dd;
@@ -203,19 +205,25 @@ namespace War.Physics {
 
             if (v.X < 0) {
                 points = new List<XY> {new XY(left, top), new XY(left, bottom)};
-                if (v.Y < 0) points.Add(new XY(right, bottom));
-                else if (v.Y > 0) points.Add(new XY(right, top));
+                if (v.Y < 0) {
+                    points.Add(new XY(right, bottom));
+                } else if (v.Y > 0) points.Add(new XY(right, top));
             } else if (v.X > 0) {
                 points = new List<XY> {new XY(right, top), new XY(right, bottom)};
-                if (v.Y < 0) points.Add(new XY(left, bottom));
-                else if (v.Y > 0) points.Add(new XY(left, top));
+                if (v.Y < 0) {
+                    points.Add(new XY(left, bottom));
+                } else if (v.Y > 0) points.Add(new XY(left, top));
             } else {
-                if (v.Y < 0) points = new List<XY> {new XY(left, bottom), new XY(right, bottom)};
-                else if (v.Y > 0) points = new List<XY> {new XY(left, top), new XY(right, top)};
-                else return null;
+                if (v.Y < 0) {
+                    points = new List<XY> {new XY(left, bottom), new XY(right, bottom)};
+                } else if (v.Y > 0) {
+                    points = new List<XY> {new XY(left, top), new XY(right, top)};
+                } else {
+                    return null;
+                }
             }
 
-            foreach (XY pt in points) {
+            foreach (var pt in points) {
                 float d;
                 var temp = CastRay(pt, v * dist, out d);
                 if (d >= 1f) continue;
@@ -226,14 +234,14 @@ namespace War.Physics {
 
             // проверили вершины прямоугольника, теперь осталось проверить стороны
             float dd = 1;
-            XY normal = XY.Zero;
+            var normal = XY.Zero;
             Primitive pr1 = null, pr2 = null;
 
             if (v.X != 0) {
                 float xx = v.X < 0 ? left : right;
-                XY a = new XY(xx, bottom);
-                XY b = new XY(xx, top);
-                XY n = v.X < 0 ? XY.Right : XY.Left;
+                var a = new XY(xx, bottom);
+                var b = new XY(xx, top);
+                var n = v.X < 0 ? XY.Right : XY.Left;
                 Primitive current = v.X < 0
                     ? VerticalEdgePrimitive.Left(xx)
                     : VerticalEdgePrimitive.Right(xx);
@@ -247,7 +255,7 @@ namespace War.Physics {
 
                 for (int x = aabb.Left; x < aabb.Right; x++)
                 for (int y = aabb.Bottom; y < aabb.Top; y++) {
-                    foreach (XY pt in Tiles[x, y].Vertices) {
+                    foreach (var pt in Tiles[x, y].Vertices) {
                         float d = Geom.CastRayToVertical(pt, -v, xx);
                         float yy = pt.Y - v.Y * d;
                         if (yy <= bottom || yy >= top || d >= dd) continue;
@@ -261,9 +269,9 @@ namespace War.Physics {
 
             if (v.Y != 0) {
                 float yy = v.Y < 0 ? bottom : top;
-                XY a = new XY(left, yy);
-                XY b = new XY(right, yy);
-                XY n = v.Y < 0 ? XY.Up : XY.Down;
+                var a = new XY(left, yy);
+                var b = new XY(right, yy);
+                var n = v.Y < 0 ? XY.Up : XY.Down;
                 Primitive current = v.Y < 0
                     ? HorizontalEdgePrimitive.Down(yy)
                     : HorizontalEdgePrimitive.Up(yy);
@@ -277,7 +285,7 @@ namespace War.Physics {
 
                 for (int x = aabb.Left; x < aabb.Right; x++)
                 for (int y = aabb.Bottom; y < aabb.Top; y++) {
-                    foreach (XY pt in Tiles[x, y].Vertices) {
+                    foreach (var pt in Tiles[x, y].Vertices) {
                         float d = Geom.CastRayToHorizontal(pt, -v, yy);
                         float xx = pt.X - v.X * d;
                         if (xx <= left || xx >= right || d >= dd) continue;

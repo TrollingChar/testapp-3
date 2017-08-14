@@ -4,8 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using Messengers;
 using UnityEngine;
-using UnityEngine.Events;
-using Utils;
 using Utils.Net;
 using Utils.Net.Conversion;
 using Utils.Net.IO;
@@ -17,6 +15,12 @@ namespace Net {
 
     public class WSConnection : MonoBehaviour {
 
+        private readonly ByteBuffer _bb = new ByteBuffer();
+
+        private WebSocket _socket;
+
+        private int _turnDataRead;
+
         public PlayerInfoReceivedMessenger OnPlayerInfo { get; private set; }
         public HubChangedMessenger OnHubChanged { get; private set; }
         public StartGameMessenger OnStartGame { get; private set; }
@@ -25,11 +29,6 @@ namespace Net {
         public TurnDataReceivedMessenger OnTurnData { get; private set; }
         public NoWinnerMessenger OnNoWinner { get; private set; }
         public NewTurnMessenger OnNewTurn { get; private set; }
-
-        private WebSocket _socket;
-        private ByteBuffer _bb = new ByteBuffer();
-
-        private int _turnDataRead;
 
 
         private void Awake () {
@@ -54,7 +53,7 @@ namespace Net {
 
             _turnDataRead = 0;
             for (
-                byte[] bytes = _socket.Recv();
+                var bytes = _socket.Recv();
                 bytes != null && _turnDataRead < 2;
                 bytes = _socket.Recv()
             ) {

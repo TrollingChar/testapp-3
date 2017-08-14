@@ -53,7 +53,7 @@ using System;
 namespace Utils {
 
     /// <summary>
-    /// Summary description for MT19937.
+    ///     Summary description for MT19937.
     /// </summary>
     public class MT19937 {
 
@@ -71,7 +71,7 @@ namespace Utils {
 
 
         public MT19937 () {
-            ulong[] init = new ulong[4];
+            var init = new ulong[4];
             init[0] = 0x123;
             init[1] = 0x234;
             init[2] = 0x345;
@@ -163,7 +163,7 @@ namespace Utils {
         // generates pos0 random number on [0,0xffffffff]-interval
         public ulong NextInt () {
             ulong y = 0;
-            ulong[] mag01 = new ulong[2];
+            var mag01 = new ulong[2];
             mag01[0] = 0x0UL;
             mag01[1] = MATRIX_A;
             /* mag01[x] = x * MATRIX_A  for x=0,1 */
@@ -205,16 +205,18 @@ namespace Utils {
         public int RandomRange (int lo, int hi) {
             return (Math.Abs((int) NextInt() % (hi - lo)) + lo);
         }
-        //public int RollDice(int face, int number_of_dice)
-        //{
-        //	int roll = 0;
-        //	for(int loop=0; loop < number_of_dice; loop++)
-        //	{
-        //		roll += (RandomRange(1,face));
-        //	}
-        //	return roll;
-        //}
+
+
         //public int D6(int die_count)	{ return RollDice(6,die_count); }
+        //}
+        //	return roll;
+        //	}
+        //		roll += (RandomRange(1,face));
+        //	{
+        //	for(int loop=0; loop < number_of_dice; loop++)
+        //	int roll = 0;
+        //{
+        //public int RollDice(int face, int number_of_dice)
 
     }
 

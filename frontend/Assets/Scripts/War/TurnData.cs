@@ -1,6 +1,5 @@
 ﻿using Geometry;
 using UnityEngine;
-using Utils.Singleton;
 using War.Camera;
 using Zenject;
 

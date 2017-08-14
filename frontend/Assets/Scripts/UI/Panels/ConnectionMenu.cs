@@ -9,11 +9,12 @@ namespace UI.Panels {
 
     public class ConnectionMenu : Panel {
 
-        private WSConnection _connection;
-        private PlayerInfoReceivedMessenger _onPlayerInfoReceived;
-        
-        [SerializeField] private InputField _ipText, _idText;
         [SerializeField] private Button _connectButton;
+
+        private WSConnection _connection;
+
+        [SerializeField] private InputField _ipText, _idText;
+        private PlayerInfoReceivedMessenger _onPlayerInfoReceived;
 
 
         protected override void OnAwake () {
@@ -24,7 +25,7 @@ namespace UI.Panels {
         protected override void Activate () {
             _connection = The<WSConnection>.Get();
             _onPlayerInfoReceived = _connection.OnPlayerInfo;
-            
+
             _onPlayerInfoReceived.Subscribe(OnPlayerInfo);
             _connectButton.onClick.AddListener(Send);
         }

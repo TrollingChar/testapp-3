@@ -6,11 +6,16 @@ namespace War.Camera {
 
     public class CameraWrapper : MonoBehaviour {
 
-        [HideInInspector] public UnityEngine.Camera Camera;
-        [HideInInspector] public Vector3 Target;
-        [HideInInspector] public CameraController Controller;
-
         private int _size;
+
+        [HideInInspector] public UnityEngine.Camera Camera;
+        [HideInInspector] public CameraController Controller;
+        [HideInInspector] public Vector3 Target;
+
+
+        public XY WorldMousePosition {
+            get { return (Vector2) Camera.ScreenToWorldPoint(Input.mousePosition); }
+        }
 
 
         private void Awake () {
@@ -43,11 +48,6 @@ namespace War.Camera {
 
         public void LookAt (Vector3 xyz, bool instantly = false) {
             LookAt((Vector2) xyz, instantly);
-        }
-
-
-        public XY WorldMousePosition {
-            get { return (Vector2) (Camera.ScreenToWorldPoint(Input.mousePosition)); }
         }
 
     }

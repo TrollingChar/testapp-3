@@ -8,6 +8,7 @@ namespace War {
 
         private readonly Func<Weapon>[] _weapons;
 
+
         // todo: accept weapon descriptors
         // - name
         // - description

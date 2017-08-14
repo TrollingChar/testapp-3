@@ -95,7 +95,9 @@ namespace Geometry {
                     l = value / l;
                     X *= l;
                     Y *= l;
-                } else Y = l;
+                } else {
+                    Y = l;
+                }
             }
         }
 
@@ -124,7 +126,7 @@ namespace Geometry {
 
 
         public XY WithLength (float l) {
-            XY v = this;
+            var v = this;
             v.Length = l;
             return v;
         }
@@ -140,7 +142,7 @@ namespace Geometry {
 
 
         public XY WithLengthClamped (float l) {
-            XY v = this;
+            var v = this;
             v.ClampLength(l);
             return v;
         }
@@ -148,20 +150,23 @@ namespace Geometry {
 
         public void ReduceLength (float delta) {
             float l = SqrLength;
-            if (l > delta * delta) Length -= delta;
-            else X = Y = 0;
+            if (l > delta * delta) {
+                Length -= delta;
+            } else {
+                X = Y = 0;
+            }
         }
 
 
         public XY WithLengthReduced (float delta) {
-            XY v = this;
+            var v = this;
             v.ReduceLength(delta);
             return v;
         }
 
 
         public XY WithAngle (float a) {
-            XY v = this;
+            var v = this;
             v.Angle = a;
             return v;
         }
@@ -207,7 +212,7 @@ namespace Geometry {
 
 
         public XY Normalized () {
-            XY v = this;
+            var v = this;
             v.Normalize();
             return v;
         }

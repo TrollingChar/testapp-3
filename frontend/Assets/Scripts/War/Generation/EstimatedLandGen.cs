@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using Messengers;
-using UI.Panels;
 using UnityEngine;
-using Utils;
-using Zenject;
 
 
 namespace War.Generation {
@@ -19,8 +15,30 @@ namespace War.Generation {
         private const int CellularEstimation = 10;
         private const int RescaleEstimation = 5;
         private const int RotateEstimation = 5;
+        public readonly LandGenCompleteMessenger OnComplete;
+
+        public readonly LandGenProgressMessenger OnProgress;
+        private MonoBehaviour _coroutineKeeper;
 
         private long _done;
+
+        private readonly Queue<IEnumerator> _instructions;
+
+        private LandGen _landGen;
+        private int _width, _height;
+
+
+        public EstimatedLandGen (LandGen landGen) {
+            _landGen = landGen;
+            _width = landGen.Array.GetLength(0);
+            _height = landGen.Array.GetLength(1);
+
+            OnProgress = new LandGenProgressMessenger();
+            OnComplete = new LandGenCompleteMessenger();
+            _instructions = new Queue<IEnumerator>();
+        }
+
+
         public long Done {
             get { return _done; }
             private set {
@@ -31,30 +49,7 @@ namespace War.Generation {
 
         public int LastProgress { get; private set; }
 
-        private long _estimation;
-        public long Estimation {
-            get { return _estimation; }
-            private set { _estimation = value; }
-        }
-
-        private LandGen _landGen;
-        private int _width, _height;
-        private Queue<IEnumerator> _instructions;
-
-        public readonly LandGenProgressMessenger OnProgress;
-        public readonly LandGenCompleteMessenger OnComplete;
-        private MonoBehaviour _coroutineKeeper;
-
-
-        public EstimatedLandGen (LandGen landGen) {
-            _landGen = landGen;
-            _width = landGen.Array.GetLength(0);
-            _height = landGen.Array.GetLength(1);
-            
-            OnProgress = new LandGenProgressMessenger();
-            OnComplete = new LandGenCompleteMessenger();
-            _instructions = new Queue<IEnumerator>();
-        }
+        public long Estimation { get; private set; }
 
 
         public EstimatedLandGen Expand (int iterations = 1) {

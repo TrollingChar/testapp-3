@@ -8,11 +8,10 @@ namespace War.Physics.Collisions {
 
     public abstract class Collider : Component {
 
-        public float TangentialBounce, NormalBounce;
         private readonly List<Tile> _tiles;
         private readonly World _world = The<World>.Get();
-        
-        public abstract AABBF AABB { get; }
+
+        public float TangentialBounce, NormalBounce;
 
 
         protected Collider () {
@@ -20,6 +19,9 @@ namespace War.Physics.Collisions {
             TangentialBounce = 0.9f;
             NormalBounce = 0.5f;
         }
+
+
+        public abstract AABBF AABB { get; }
 
 
         public void FreeTiles () {

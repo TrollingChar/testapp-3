@@ -6,7 +6,7 @@ namespace War.Physics {
 
     public class Tiles {
 
-        private Dictionary<TileXY, Tile> _tiles;
+        private readonly Dictionary<TileXY, Tile> _tiles;
 
 
         public Tiles () {

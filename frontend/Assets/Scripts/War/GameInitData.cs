@@ -5,8 +5,9 @@ namespace War {
 
     public class GameInitData {
 
-        public int Seed;
         public List<int> Players;
+
+        public int Seed;
 
 
         public GameInitData (int seed, List<int> players) {

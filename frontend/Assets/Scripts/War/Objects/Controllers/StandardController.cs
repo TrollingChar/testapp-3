@@ -5,7 +5,7 @@ namespace War.Objects.Controllers {
 
     internal class StandardController : Controller {
 
-        private float _gravity = The<World>.Get().Gravity;
+        private readonly float _gravity = The<World>.Get().Gravity;
 
 
         public override void Update (TurnData td) {

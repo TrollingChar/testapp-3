@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using Utils.Singleton;
 using War;
@@ -9,17 +8,18 @@ namespace UI.Panels {
 
     public class BottomHud : Panel {
 
+        private string _gameTime = "";
+
         [SerializeField] private Text _middleText;
-        [SerializeField] private Text _time;
 
         private GameStateController _state;
+        [SerializeField] private Text _time;
         private string _turnTime = "";
-        private string _gameTime = "";
 
 
         private void Start () {
             _state = The<GameStateController>.Get();
-            
+
             _state.OnTimerUpdated.Subscribe(UpdateTime);
         }
 
