@@ -1,4 +1,5 @@
 ﻿using Geometry;
+using Utils.Singleton;
 using War.Physics.Collisions;
 
 
@@ -6,6 +7,8 @@ namespace War.Objects.Controllers {
 
     public class WormControllerWalk : Controller {
 
+        private readonly GameStateController _state = The<GameStateController>.Get();
+        
         // TODO: replace magic numbers with constants
 
 
@@ -30,7 +33,7 @@ namespace War.Objects.Controllers {
             }
 
             // can move?
-            if (td == null || worm != BF.State.Worm || BF.State.WormFrozen) {
+            if (td == null || worm != _state.Worm || _state.WormFrozen) {
                 if (-collision.Offset.Y < World.Precision) {
                     collision.Offset.Y = 0;
                 } else {

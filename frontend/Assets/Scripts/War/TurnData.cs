@@ -1,14 +1,12 @@
 ﻿using Geometry;
 using UnityEngine;
+using Utils.Singleton;
 using War.Camera;
-using Zenject;
 
 
 namespace War {
 
     public class TurnData {
-
-        [Inject] private CameraWrapper _camera;
 
         public bool W, A, S, D, MB;
         public XY XY;
@@ -20,7 +18,7 @@ namespace War {
             S = Input.GetKey(KeyCode.S);
             D = Input.GetKey(KeyCode.D);
             MB = Input.GetMouseButton(0); // LMB
-            XY = _camera.WorldMousePosition;
+            XY = The<CameraWrapper>.Get().WorldMousePosition;
         }
 
 

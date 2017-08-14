@@ -1,21 +1,26 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Net;
 using UnityEngine;
 using Utils;
 using War.Camera;
 using War.Teams;
-using Zenject;
 using UnObject = UnityEngine.Object;
 
 
 namespace War {
 
+    [Obsolete]
     public class BF : MonoBehaviour {
 
-        [Inject] private CameraWrapper _cameraWrapper;
-        [Inject] private WSConnection _connection;
+        /*[Inject]*/
+        private CameraWrapper _cameraWrapper;
 
-        [Inject] private GameInitData _gameInitData;
+        /*[Inject]*/
+        private WSConnection _connection;
+
+        /*[Inject]*/
+        private GameInitData _gameInitData;
 
         /*[Inject(Id = Injectables.Id)]*/
         private int _id;

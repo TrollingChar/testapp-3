@@ -1,4 +1,5 @@
-﻿using Net;
+﻿using Messengers;
+using Net;
 using UnityEngine;
 using UnityEngine.UI;
 using Utils;
@@ -19,9 +20,6 @@ namespace Scenes {
 
         [SerializeField] private Text _hint;
         private GameInitData _initData;
-
-//        private BattleAssets _battleAssets;
-
         private bool _initialized;
         private EstimatedLandGen _landGen;
         [SerializeField] private SpriteRenderer _landRenderer;
@@ -29,18 +27,22 @@ namespace Scenes {
         private TeamManager _teams;
         private World _world;
 
-//        [SerializeField] private Ground _ground;
+        public BattleLoadedMessenger OnBattleLoaded { get; private set; }
 
-        public int I { get; private set; }
-
-
+        
         private void Awake () {
+            The<BattleScene>.Set(this);
+            OnBattleLoaded = new BattleLoadedMessenger();
+            
             _initData = (GameInitData) The<SceneSwitcher>.Get().Data[0];
             RNG.Init(_initData.Seed);
             _connection = The<WSConnection>.Get();
+            
             _camera = GetComponentInChildren<CameraWrapper>();
+            The<CameraWrapper>.Set(_camera);
 
-            _landGen = new EstimatedLandGen(
+            _landGen =
+                new EstimatedLandGen(
                     new LandGen(
                         new byte[,] {
                             {0, 0, 0, 0, 0},
@@ -78,7 +80,9 @@ namespace Scenes {
             _state = new GameStateController();
             _world = new World(gen, _landRenderer);
             _camera.LookAt(new Vector2(1000, 1000), true);
-            _world.SpawnTeams(_initData.Players, 5);
+            _teams = _world.SpawnTeams(_initData.Players, 5);
+            
+            OnBattleLoaded.Send();
         }
 
 

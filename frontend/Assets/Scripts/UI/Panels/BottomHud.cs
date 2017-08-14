@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Scenes;
+using UnityEngine;
 using UnityEngine.UI;
 using Utils.Singleton;
 using War;
@@ -17,9 +18,14 @@ namespace UI.Panels {
         private string _turnTime = "";
 
 
-        private void Start () {
-            _state = The<GameStateController>.Get();
+        private void Awake () {
+            The<BattleScene>.Get().OnBattleLoaded.Subscribe(OnBattleLoaded);
+        }
 
+
+        private void OnBattleLoaded () {
+            The<BattleScene>.Get().OnBattleLoaded.Unsubscribe(OnBattleLoaded);
+            _state = The<GameStateController>.Get();
             _state.OnTimerUpdated.Subscribe(UpdateTime);
         }
 

@@ -18,7 +18,7 @@ namespace War {
 
         private GameStates _next;
         private readonly int _id;
-        private readonly TeamManager _teamManager;
+//        private readonly TeamManager _teamManager;
 
         private int _time;
         private Worm _worm;
@@ -34,7 +34,7 @@ namespace War {
 
             _connection = The<WSConnection>.Get();
             _id = The<PlayerInfo>.Get().Id;
-            _teamManager = The<TeamManager>.Get();
+//            _teamManager = The<TeamManager>.Get(); // bug: circular dependency
 
             OnTimerUpdated = new TimerUpdatedMessenger();
 
@@ -73,9 +73,6 @@ namespace War {
             }
         }
 
-//        public string TimerString {
-//            get { return ((_time + 999) / 1000).ToString(); }
-//        }
 
         public bool WormFrozen { get; private set; }
 
@@ -98,7 +95,7 @@ namespace War {
 
         public void OnNewTurn (int id) {
             ActivePlayer = id;
-            Worm = _teamManager.Teams[id].NextWorm(); // todo: remove chain
+            Worm = The<TeamManager>.Get().Teams[id].NextWorm(); // todo: remove chain
 //            _camera.LookAt(Worm.Position);
             ChangeState();
         }
