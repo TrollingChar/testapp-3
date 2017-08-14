@@ -23,7 +23,7 @@ namespace UI.Panels {
 
         protected override void Activate () {
             _connection = The<WSConnection>.Get();
-            _onPlayerInfoReceived = _connection.OnPlayerInfoReceived;
+            _onPlayerInfoReceived = _connection.OnPlayerInfo;
             
             _onPlayerInfoReceived.Subscribe(OnPlayerInfo);
             _connectButton.onClick.AddListener(Send);

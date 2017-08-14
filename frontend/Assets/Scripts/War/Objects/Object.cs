@@ -41,7 +41,8 @@ namespace War.Objects {
         private Explosive _explosive;
         private CollisionHandler _collisionHandler;
         
-        private readonly BF _bf = The<BF>.Get();
+//        private readonly BF _bf = The<BF>.Get();
+        private readonly World _world = The<World>.Get();
 
         public Controller Controller {
             get { return _controller; }
@@ -113,7 +114,7 @@ namespace War.Objects {
             Collision min = null;
             foreach (var c in Colliders) {
                 var obstacles = new HashSet<Collider>(
-                    c.FindObstacles(_bf.World, v)
+                    c.FindObstacles(_world, v)
                         .Where(o => !o.Object.PassableFor(this))
                         .Where(o => !Excluded.Contains(o.Object))
                 );
@@ -135,7 +136,7 @@ namespace War.Objects {
         private Collision CollideWithLand (XY v) {
             Collision min = null;
             foreach (var c in Colliders) {
-                var temp = c.CollideWithLand(_bf.World.Land, v);
+                var temp = c.CollideWithLand(_world.Land, v);
                 if (temp < min) min = temp;
             }
             return min;
@@ -144,7 +145,7 @@ namespace War.Objects {
 
         public void ExcludeObjects () {
             foreach (var collider in Colliders)
-            foreach (var obstacle in collider.FindOverlapping(_bf.World)) {
+            foreach (var obstacle in collider.FindOverlapping(_world)) {
                 Excluded.Add(obstacle.Object);
             }
         }

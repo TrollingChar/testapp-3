@@ -1,9 +1,13 @@
-﻿using Net;
+﻿using Assets;
+using Net;
 using UnityEngine;
 using UnityEngine.UI;
+using Utils;
 using Utils.Singleton;
 using War;
+using War.Camera;
 using War.Generation;
+using War.Teams;
 
 
 namespace Scenes {
@@ -11,22 +15,30 @@ namespace Scenes {
     public class BattleScene : MonoBehaviour {
 
         [SerializeField] private Text _hint;
+        [SerializeField] private SpriteRenderer _landRenderer;
+        
+//        [SerializeField] private Ground _ground;
+
+        public int I { get; private set; }
 
         private WSConnection _connection;
         private World _world;
         private GameStateController _state;
         private GameInitData _initData;
         private EstimatedLandGen _landGen;
+        private CameraWrapper _camera;
+        private TeamManager _teams;
+        
+//        private BattleAssets _battleAssets;
 
         private bool _initialized;
 
 
         private void Awake () {
             _initData = (GameInitData) The<SceneSwitcher>.Get().Data[0];
+            RNG.Init(_initData.Seed);
             _connection = The<WSConnection>.Get();
-
-//            The<World>.Set(_world = new World());
-//            The<GameStateController>.Set(_state = new GameStateController());
+            _camera = GetComponentInChildren<CameraWrapper>();
 
             _landGen = new EstimatedLandGen(
                     new LandGen(
@@ -63,12 +75,30 @@ namespace Scenes {
             _landGen.OnComplete.Unsubscribe(OnComplete);
             
             // show ground, spawn worms
-            Debug.Log("done");
+            _state = new GameStateController();
+            _world = new World(gen, _landRenderer);
+            _camera.LookAt(new Vector2(1000, 1000), true);
+            _world.SpawnTeams(_initData.Players, 5);
         }
 
 
         private void FixedUpdate () {
             if (!_initialized) return;
+                
+            if (_state.IsMyTurn) {
+                // gather input and update world
+                var td = new TurnData();
+                _connection.SendTurnData(td);
+                Work(td);
+            } else if (_state.CurrentStates != GameStates.Synchronizing) {
+                Work(null);
+            }
+        }
+
+
+        private void Work (TurnData td) {
+            _world.Update(td);
+            _state.Update();
         }
 
 

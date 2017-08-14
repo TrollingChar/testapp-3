@@ -17,7 +17,7 @@ public class Context : MonoBehaviour {
         _connection = gameObject.AddComponent<WSConnection>();
         _sceneSwitcher = new SceneSwitcher();
         
-        _connection.OnPlayerInfoReceived.Subscribe(OnPlayerInfo);
+        _connection.OnPlayerInfo.Subscribe(OnPlayerInfo);
         _connection.OnStartGame.Subscribe(OnStartGame);
         _sceneSwitcher.Load(Scenes.Scenes.Menu);
     }
@@ -30,7 +30,7 @@ public class Context : MonoBehaviour {
 
     private void OnPlayerInfo (PlayerInfo playerInfo) {
         The<PlayerInfo>.Set(playerInfo);
-        _connection.OnPlayerInfoReceived.Unsubscribe(OnPlayerInfo);
+        _connection.OnPlayerInfo.Unsubscribe(OnPlayerInfo);
     }
 
 }

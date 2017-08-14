@@ -9,10 +9,9 @@ namespace War.Physics.Collisions {
     public abstract class Collider : Component {
 
         public float TangentialBounce, NormalBounce;
-        private List<Tile> _tiles;
-
-        private readonly BF _bf = The<BF>.Get();
-
+        private readonly List<Tile> _tiles;
+        private readonly World _world = The<World>.Get();
+        
         public abstract AABBF AABB { get; }
 
 
@@ -33,7 +32,7 @@ namespace War.Physics.Collisions {
             var box = AABB.ToTiles(Tile.Size);
             for (int x = box.Left; x < box.Right; x++)
             for (int y = box.Bottom; y < box.Top; y++) {
-                var tile = _bf.World.Tiles[x, y];
+                var tile = _world.Tiles[x, y];
                 tile.AddCollider(this);
                 _tiles.Add(tile);
             }
@@ -52,7 +51,7 @@ namespace War.Physics.Collisions {
 
             for (int x = box.Left; x < box.Right; x++)
             for (int y = box.Bottom; y < box.Top; y++) {
-                foreach (var c in _bf.World.Tiles[x, y].Colliders) {
+                foreach (var c in _world.Tiles[x, y].Colliders) {
                     result.Add(c);
                 }
             }
@@ -67,7 +66,7 @@ namespace War.Physics.Collisions {
 
             for (int x = box.Left; x < box.Right; x++)
             for (int y = box.Bottom; y < box.Top; y++) {
-                foreach (var c in _bf.World.Tiles[x, y].Colliders) {
+                foreach (var c in _world.Tiles[x, y].Colliders) {
                     if (OverlapsWith(c)) result.Add(c);
                 }
             }

@@ -1,41 +1,33 @@
-﻿using Net;
+﻿using Messengers;
+using Net;
 using UI;
 using UnityEngine;
 using Utils;
 using Utils.Singleton;
 using War.Camera;
 using War.Objects;
+using War.Teams;
 using Zenject;
 
 
 namespace War {
 
-    public enum GameState {
-
-        BeforeTurn,
-        Synchronizing,
-        Turn,
-        EndingTurn,
-        AfterTurn,
-        Remove0Hp
-
-    }
-
-
     public class GameStateController {
 
-        [Inject] private WSConnection _connection;
-        [Inject] private int _id;
-        [Inject] private CameraWrapper _camera;
+        private WSConnection _connection;
+        private int _id;
+        private TeamManager _teamManager;
+
+        public TimerUpdatedMessenger OnTimerUpdated { get; private set; }
 
         private const int TurnTime = 30000;
         private const int RetreatTime = 3000;
 
         public bool Synchronized;
 
-        private GameState _current, _next;
+        private GameStates _current, _next;
 
-        public GameState CurrentState {
+        public GameStates CurrentStates {
             get { return _current; }
         }
 
@@ -45,8 +37,8 @@ namespace War {
         private Worm _worm;
         private bool _wormFrozen;
 
-        private readonly BF _bf = The<BF>.Get();
-        private readonly CoreEvents _coreEvents = The<CoreEvents>.Get();
+//        private readonly BF _bf = The<BF>.Get();
+//        private readonly CoreEvents _coreEvents = The<CoreEvents>.Get();
 
         public Worm Worm {
             get { return _worm; }
@@ -61,29 +53,39 @@ namespace War {
             get { return _time; }
             set {
                 _time = value;
-                _coreEvents.SetTurnTime.Invoke(TimerString);
+                OnTimerUpdated.Send(value);
             }
         }
 
-        public string TimerString {
-            get { return ((_time + 999) / 1000).ToString(); }
-        }
+//        public string TimerString {
+//            get { return ((_time + 999) / 1000).ToString(); }
+//        }
 
         public bool WormFrozen { get; private set; }
 
 
         public bool IsMyTurn {
-            get { return ActivePlayer == _id && CurrentState == GameState.Turn; }
+            get { return ActivePlayer == _id && CurrentStates == GameStates.Turn; }
         }
 
 
         public GameStateController () {
-            _current = GameState.AfterTurn;
+            The<GameStateController>.Set(this);
+
+            _connection = The<WSConnection>.Get();
+            _id = The<PlayerInfo>.Get().Id;
+            _teamManager = The<TeamManager>.Get();
+
+            OnTimerUpdated = new TimerUpdatedMessenger();
+
+            _current = GameStates.AfterTurn;
             Hint("AFT");
-            _next = GameState.Remove0Hp;
+            _next = GameStates.Remove0Hp;
             Timer = 500;
             _wormFrozen = false;
             Worm = null;
+
+            _connection.OnNewTurn.Subscribe(OnNewTurn); // todo unsubscribe when battle ends
         }
 
 
@@ -93,28 +95,28 @@ namespace War {
 
 
         public void Wait (int milliseconds) {
-            if (_current == GameState.Turn) return;
+            if (_current == GameStates.Turn) return;
             if (Timer < milliseconds) Timer = milliseconds;
         }
 
 
-        public void StartTurn (int id) {
+        public void OnNewTurn (int id) {
             ActivePlayer = id;
-            Worm = _bf.Teams[id].NextWorm();
-            _camera.LookAt(Worm.Position);
+            Worm = _teamManager.Teams[id].NextWorm(); // todo: remove chain
+//            _camera.LookAt(Worm.Position);
             ChangeState();
         }
 
 
         private void Hint (string text) {
             Debug.Log(text);
-            _coreEvents.SetGameTime.Invoke(text);
         }
 
 
         private void ChangeState () {
             switch (_current = _next++) {
-                case GameState.BeforeTurn:
+
+                case GameStates.BeforeTurn:
                     Hint("BEF");
                     // Crates fall from the sky, regeneration works, shields replenish
                     if (RNG.Bool(0)) {
@@ -122,20 +124,23 @@ namespace War {
                         Timer = 500;
                     } else ChangeState();
                     break;
-                case GameState.Synchronizing:
+
+                case GameStates.Synchronizing:
                     Hint("SYN");
                     // Game sends a signal and waits until server receives all signals
                     Synchronized = true;
                     _connection.SendEndTurn(true);
                     break;
-                case GameState.Turn:
+
+                case GameStates.Turn:
                     Hint(ActivePlayer == _id ? "MY" : "TURN");
                     // Player moves his worm and uses weapon
                     _wormFrozen = false;
                     //Worm = Core.BF.NextWorm();
                     Timer = TurnTime;
                     break;
-                case GameState.EndingTurn:
+
+                case GameStates.EndingTurn:
                     Hint("END");
                     // Player ended his turn, but projectiles still flying
                     _wormFrozen = true;
@@ -144,7 +149,8 @@ namespace War {
                     //Core.bf.ResetActivePlayer();
                     Timer = 500;
                     break;
-                case GameState.AfterTurn:
+
+                case GameStates.AfterTurn:
                     Hint("AFT");
                     // Poisoned worms take damage
                     if (RNG.Bool(0)) {
@@ -152,17 +158,19 @@ namespace War {
                         Timer = 500;
                     } else ChangeState();
                     break;
-                case GameState.Remove0Hp:
+
+                case GameStates.Remove0Hp:
                     Hint("REM");
-                    _next = GameState.BeforeTurn; // no overflow
+                    _next = GameStates.BeforeTurn; // no overflow
                     // Worms with 0 HP explode
                     if (RNG.Bool(0)) {
                         // blow them up
-                        _next = GameState.Remove0Hp;
+                        _next = GameStates.Remove0Hp;
                         Timer = 500;
                     }
                     ChangeState();
                     break;
+
                 default:
                     Hint("ERR");
                     break;

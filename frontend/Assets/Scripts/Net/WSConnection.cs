@@ -17,9 +17,14 @@ namespace Net {
 
     public class WSConnection : MonoBehaviour {
 
-        public PlayerInfoReceivedMessenger OnPlayerInfoReceived { get; private set; }
+        public PlayerInfoReceivedMessenger OnPlayerInfo { get; private set; }
         public HubChangedMessenger OnHubChanged { get; private set; }
         public StartGameMessenger OnStartGame { get; private set; }
+        public PlayerQuitMessenger OnPlayerQuit { get; private set; }
+        public PlayerWinMessenger OnPlayerWin { get; private set; }
+        public TurnDataReceivedMessenger OnTurnData { get; private set; }
+        public NoWinnerMessenger OnNoWinner { get; private set; }
+        public NewTurnMessenger OnNewTurn { get; private set; }
 
         private WebSocket _socket;
         private ByteBuffer _bb = new ByteBuffer();
@@ -29,10 +34,15 @@ namespace Net {
 
         private void Awake () {
             The<WSConnection>.Set(this);
-            
-            OnPlayerInfoReceived = new PlayerInfoReceivedMessenger();
+
+            OnPlayerInfo = new PlayerInfoReceivedMessenger();
             OnHubChanged = new HubChangedMessenger();
             OnStartGame = new StartGameMessenger();
+            OnPlayerQuit = new PlayerQuitMessenger();
+            OnPlayerWin = new PlayerWinMessenger();
+            OnTurnData = new TurnDataReceivedMessenger();
+            OnNoWinner = new NoWinnerMessenger();
+            OnNewTurn = new NewTurnMessenger();
         }
 
 
@@ -67,39 +77,42 @@ namespace Net {
 
             switch (reader.ReadByte()) {
                 case ServerAPI.AccountData:
-                    OnPlayerInfoReceived.Send(new PlayerInfo(reader.ReadInt32()));
+                    OnPlayerInfo.Send(new PlayerInfo(reader.ReadInt32()));
                     break;
+
                 case ServerAPI.HubChanged:
                     OnHubChanged.Send(reader.ReadByte(), reader.ReadByte());
                     break;
+
                 case ServerAPI.StartGame:
                     int seed = reader.ReadInt32();
                     var players = new List<int>();
                     for (byte i = 0, end = reader.ReadByte(); i < end; ++i) players.Add(reader.ReadInt32());
                     OnStartGame.Send(new GameInitData(seed, players));
                     break;
-/*
+
                 case ServerAPI.LeftGame:
-                    _onPlayerQuit.Invoke(reader.ReadInt32());
+                    OnPlayerQuit.Send(reader.ReadInt32());
                     break;
 
                 case ServerAPI.ShowWinner:
-                    _onPlayerWin.Invoke(reader.ReadInt32());
+                    OnPlayerWin.Send(reader.ReadInt32());
                     break;
 
                 case ServerAPI.TurnData:
                     ++_turnDataRead;
                     var td = new TurnData(reader.ReadByte(), reader.ReadSingle(), reader.ReadSingle());
-                    _onTurnData.Invoke(td);
+                    OnTurnData.Send(td);
                     break;
 
                 case ServerAPI.NoWinner:
-                    _onNoWinner.Invoke();
+                    OnNoWinner.Send();
                     break;
 
                 case ServerAPI.NewTurn:
-                    _onNewTurn.Invoke(reader.ReadInt32());
-                    break;*/
+                    OnNewTurn.Send(reader.ReadInt32());
+                    break;
+
                 default: throw new NotImplementedException();
             }
             reader.Close();

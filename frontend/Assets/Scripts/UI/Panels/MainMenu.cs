@@ -22,7 +22,7 @@ namespace UI.Panels {
 
 
         protected override void Activate () {
-            _onPlayerInfoReceived = The<WSConnection>.Get().OnPlayerInfoReceived;
+            _onPlayerInfoReceived = The<WSConnection>.Get().OnPlayerInfo;
             _gameModeMenu = The<GameModeMenu>.Get();
             
             _onPlayerInfoReceived.Subscribe(OnPlayerInfo);

@@ -26,67 +26,28 @@ namespace War {
         public Tiles Tiles;
         private LinkedList<Object> _objects;
 
-        private BF _bf = The<BF>.Get();
-
+        private GameStateController _state;
         public const float Precision = 0.1f;
 
 
-        public World () {
-/*
-            new EstimatedLandGen(
-                new LandGen(
-                    new byte[,] {
-                        {0, 0, 0, 0, 0},
-                        {0, 1, 1, 1, 0},
-                        {0, 1, 0, 1, 0}
-                    }
-                )
-            ).SwitchDimensions()
-            .Expand(7)
-            .Cellular(0x01e801d0, 20)
-            .Cellular(0x01f001e0)
-            .Expand()
-            .Cellular(0x01e801d0, 20)
-            .Cellular(0x01f001e0)
-            .Rescale(2000, 1000)
-            .Cellular(0x01f001e0)
-            .Generate(coroutineKeeper);
-            /*
-            var tex = _assets.Land;
-            
+        // todo: wrap it in worldgen params
+        public World (LandGen gen, SpriteRenderer renderer) {
+            The<World>.Set(this);
+
+            _state = The<GameStateController>.Get();
+
             Gravity = -0.5f;
             WaterLevel = 0;
             Tiles = new Tiles();
-            
-            
 
-            Land = new Land(
-                new LandGen(
-                        new byte[,] {
-                            {0, 0, 0, 0, 0},
-                            {0, 1, 1, 1, 0},
-                            {0, 1, 0, 1, 0}
-                        }
-                    )
-                    .SwitchDimensions()
-                    .Expand(7)
-                    .Cellular(0x01e801d0, 20)
-                    .Cellular(0x01f001e0)
-                    .Expand()
-                    .Cellular(0x01e801d0, 20)
-                    .Cellular(0x01f001e0)
-                    .Rescale(2000, 1000)
-                    .Cellular(0x01f001e0),
-                tex,
-                renderer
-            );
-            _objects = new LinkedList<Object>();*/
+            Land = new Land(gen, The<BattleAssets>.Get().LandTexture, renderer);
+            _objects = new LinkedList<Object>();
         }
 
 
         [SuppressMessage("ReSharper", "InconsistentNaming")]
         public void Update (TurnData td) {
-            if (_bf.State.Timer % 500 == 0 && td != null && td.MB) {
+            if (_state.Timer % 500 == 0 && td != null && td.MB) {
                 // ???
             }
 
@@ -246,7 +207,7 @@ namespace War {
         }
 
 
-        public Dictionary<int, Team> SpawnTeams (List<int> players, int wormsInTeam) {
+        public /*Dictionary<int, Team>*/ TeamManager SpawnTeams (List<int> players, int wormsInTeam) {
             // determine where are valid spawns
             var spawnPoints = RNG.PickSome(GetSpawnPoints(), players.Count * wormsInTeam);
 
@@ -265,7 +226,7 @@ namespace War {
                 }
                 teams[players[pl]] = team;
             }
-            return teams;
+            return new TeamManager(teams);
         }
 
     }

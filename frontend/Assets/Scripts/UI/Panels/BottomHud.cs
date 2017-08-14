@@ -1,19 +1,31 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
+using Utils.Singleton;
+using War;
 
 
 namespace UI.Panels {
 
-    public class BottomHud : MonoBehaviour {
+    public class BottomHud : Panel {
 
         [SerializeField] private Text _middleText;
         [SerializeField] private Text _time;
 
+        private GameStateController _state;
         private string _turnTime = "";
         private string _gameTime = "";
 
 
-        public void SetTurnTime (string turnTime) {
+        private void Start () {
+            _state = The<GameStateController>.Get();
+            
+            _state.OnTimerUpdated.Subscribe(UpdateTime);
+        }
+
+
+        private void UpdateTime (int time) {
+            string turnTime = ((time + 999) / 1000).ToString();
             if (_turnTime == turnTime) return;
             _turnTime = turnTime;
             UpdateTimer();
