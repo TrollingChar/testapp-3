@@ -41,6 +41,7 @@ namespace Scenes {
             _camera = GetComponentInChildren<CameraWrapper>();
             The<CameraWrapper>.Set(_camera);
 
+            // todo refactor: extract method InitGeneration
             _landGen =
                 new EstimatedLandGen(
                     new LandGen(
@@ -72,7 +73,6 @@ namespace Scenes {
 
         private void OnComplete (LandGen gen) {
             _initialized = true;
-
             _landGen.OnProgress.Unsubscribe(OnProgress);
             _landGen.OnComplete.Unsubscribe(OnComplete);
 
