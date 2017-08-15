@@ -31,7 +31,8 @@ namespace UI.Panels {
 
 
         private void UpdateTime (int time) {
-            string turnTime = ((time + 999) / 1000).ToString();
+            //string turnTime = ((time + 999) / 1000).ToString();
+            string turnTime = (time / 1000f).ToString();
             if (_turnTime == turnTime) return;
             _turnTime = turnTime;
             UpdateTimer();

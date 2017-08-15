@@ -1,6 +1,6 @@
 ﻿namespace War {
 
-    public enum GameStates {
+    public enum GameState {
 
         BeforeTurn,
         Synchronizing,

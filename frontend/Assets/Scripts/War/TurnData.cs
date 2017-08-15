@@ -12,6 +12,19 @@ namespace War {
         public XY XY;
 
 
+        public byte Flags {
+            get {
+                return (byte) (
+                    (W ? 0x01 : 0) +
+                    (A ? 0x02 : 0) +
+                    (S ? 0x04 : 0) +
+                    (D ? 0x08 : 0) +
+                    (MB ? 0x10 : 0)
+                );
+            }
+        }
+
+
         public TurnData () {
             W = Input.GetKey(KeyCode.W);
             A = Input.GetKey(KeyCode.A);

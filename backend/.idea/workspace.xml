@@ -1,50 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="628a9806-3a1a-447f-b3d3-657fbecc6970" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../frontend/Assets/Scripts/Assets/BattleAssets.cs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../frontend/Assets/Scripts/Assets/BattleAssets.cs.meta" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../frontend/Assets/Scripts/Messengers/GameStateMessengers.cs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../frontend/Assets/Scripts/Messengers/GameStateMessengers.cs.meta" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../frontend/Assets/Scripts/War/GameStates.cs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../frontend/Assets/Scripts/War/GameStates.cs.meta" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../frontend/Assets/Scripts/War/Teams/TeamManager.cs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../frontend/Assets/Scripts/War/Teams/TeamManager.cs.meta" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/Assets/AssetContainer.cs" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/Assets/AssetContainer.cs.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/Installers.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/Installers/BattleInstaller.cs" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/Installers/BattleInstaller.cs.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/Installers/GlobalInstaller.cs" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/Installers/GlobalInstaller.cs.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/Installers/Injectables.cs" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/Installers/Injectables.cs.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/Installers/MenuInstaller.cs" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/Installers/MenuInstaller.cs.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/Loop.cs" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/Loop.cs.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/Scenes/BattleSceneInitializer.cs" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/Scenes/BattleSceneInitializer.cs.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/War/GameState.cs.meta" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/War/GameState.cs" afterPath="$PROJECT_DIR$/../frontend/Assets/Scripts/War/GameStateController.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Worm/Worm.prefab" afterPath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Worm/Worm.prefab" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/Scenes/BattleScene.unity" afterPath="$PROJECT_DIR$/../frontend/Assets/Scenes/BattleScene.unity" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/ProjectSettings/EditorBuildSettings.asset" afterPath="$PROJECT_DIR$/../frontend/ProjectSettings/EditorBuildSettings.asset" />
+    <list default="true" id="269334e0-7a7c-41c4-b55a-43b3a85fe476" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/Context.cs" afterPath="$PROJECT_DIR$/../frontend/Assets/Scripts/Context.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/Messengers/ConnectionMessengers.cs" afterPath="$PROJECT_DIR$/../frontend/Assets/Scripts/Messengers/ConnectionMessengers.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/Net/WSConnection.cs" afterPath="$PROJECT_DIR$/../frontend/Assets/Scripts/Net/WSConnection.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/Scenes/BattleScene.cs" afterPath="$PROJECT_DIR$/../frontend/Assets/Scripts/Scenes/BattleScene.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/UI/Panels/BottomHud.cs" afterPath="$PROJECT_DIR$/../frontend/Assets/Scripts/UI/Panels/BottomHud.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/UI/Panels/ConnectionMenu.cs" afterPath="$PROJECT_DIR$/../frontend/Assets/Scripts/UI/Panels/ConnectionMenu.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/UI/Panels/MainMenu.cs" afterPath="$PROJECT_DIR$/../frontend/Assets/Scripts/UI/Panels/MainMenu.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/War/BF.cs" afterPath="$PROJECT_DIR$/../frontend/Assets/Scripts/War/BF.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/War/Objects/Controllers/StandardController.cs" afterPath="$PROJECT_DIR$/../frontend/Assets/Scripts/War/Objects/Controllers/StandardController.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/War/Objects/Object.cs" afterPath="$PROJECT_DIR$/../frontend/Assets/Scripts/War/Objects/Object.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/War/Objects/Worm.cs" afterPath="$PROJECT_DIR$/../frontend/Assets/Scripts/War/Objects/Worm.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/War/Physics/Collisions/Collider.cs" afterPath="$PROJECT_DIR$/../frontend/Assets/Scripts/War/Physics/Collisions/Collider.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/War/Teams/TeamColors.cs" afterPath="$PROJECT_DIR$/../frontend/Assets/Scripts/War/Teams/TeamColors.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/War/World.cs" afterPath="$PROJECT_DIR$/../frontend/Assets/Scripts/War/World.cs" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -55,6 +13,9 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FileEditorManager">
+    <leaf />
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
@@ -79,6 +40,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -124,10 +86,23 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="backend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="backend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value=".idea" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -337,45 +312,42 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="628a9806-3a1a-447f-b3d3-657fbecc6970" name="Default" comment="" />
-      <created>1502640674762</created>
+      <changelist id="269334e0-7a7c-41c4-b55a-43b3a85fe476" name="Default" comment="" />
+      <created>1502817385585</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1502640674762</updated>
-      <workItem from="1502640678148" duration="717000" />
-      <workItem from="1502647445213" duration="1433000" />
-      <workItem from="1502731583024" duration="1119000" />
-      <workItem from="1502740187544" duration="1315000" />
+      <updated>1502817385585</updated>
+      <workItem from="1502817402524" duration="728000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4584000" />
+    <option name="totallyTimeSpent" value="728000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27770534" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32985657" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32985657" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -388,5 +360,15 @@
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
     <option name="FILTER_TARGETS" value="false" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-5997">
+          <caret line="18" column="21" lean-forward="true" selection-start-line="18" selection-start-column="21" selection-end-line="18" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
   </component>
 </project>

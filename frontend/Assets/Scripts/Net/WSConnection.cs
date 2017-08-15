@@ -53,8 +53,8 @@ namespace Net {
 
             _turnDataRead = 0;
             for (
-                var bytes = _socket.Recv();
-                bytes != null && _turnDataRead < 2;
+                var bytes = _socket.Recv(); // bug: Recv() called, but data discarded due to loop condition
+                bytes != null && _turnDataRead < 100; // todo: fix it properly
                 bytes = _socket.Recv()
             ) {
                 Debug.Log(BitConverter.ToString(bytes));
@@ -70,6 +70,7 @@ namespace Net {
         }
 
 
+        // todo: replace this with commands! 
         private void Parse (byte[] bytes) {
             var stream = new MemoryStream(bytes);
             var reader = new EndianBinaryReader(EndianBitConverter.Big, stream);
@@ -157,7 +158,14 @@ namespace Net {
         }
 
 
-        public void SendTurnData (TurnData td) {}
+        public void SendTurnData (TurnData td) {
+            _bb.Clear();
+            _bb.WriteByte(ClientAPI.TurnData);
+            _bb.WriteByte(td.Flags);
+            _bb.WriteFloat(td.XY.X);
+            _bb.WriteFloat(td.XY.Y);
+            _socket.Send(_bb);
+        }
 
 
         public void SendEndTurn (bool alive) {

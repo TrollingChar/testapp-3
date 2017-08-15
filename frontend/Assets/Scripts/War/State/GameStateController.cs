@@ -1,5 +1,6 @@
 ﻿using Messengers;
 using Net;
+using Scenes;
 using UnityEngine;
 using Utils;
 using Utils.Singleton;
@@ -11,12 +12,12 @@ namespace War {
 
     public class GameStateController {
 
-        private const int TurnTime = 30000;
+        private const int TurnTime = 5000;
         private const int RetreatTime = 3000;
 
         private readonly WSConnection _connection;
 
-        private GameStates _next;
+        private GameState _next;
         private readonly int _id;
 //        private readonly TeamManager _teamManager;
 
@@ -38,9 +39,9 @@ namespace War {
 
             OnTimerUpdated = new TimerUpdatedMessenger();
 
-            CurrentStates = GameStates.AfterTurn;
+            CurrentState = GameState.AfterTurn;
             Hint("AFT");
-            _next = GameStates.Remove0Hp;
+            _next = GameState.Remove0Hp;
             Timer = 500;
             _wormFrozen = false;
             Worm = null;
@@ -51,7 +52,7 @@ namespace War {
 
         public TimerUpdatedMessenger OnTimerUpdated { get; private set; }
 
-        public GameStates CurrentStates { get; private set; }
+        public GameState CurrentState { get; private set; }
 
 //        private readonly BF _bf = The<BF>.Get();
 //        private readonly CoreEvents _coreEvents = The<CoreEvents>.Get();
@@ -78,7 +79,7 @@ namespace War {
 
 
         public bool IsMyTurn {
-            get { return ActivePlayer == _id && CurrentStates == GameStates.Turn; }
+            get { return ActivePlayer == _id && CurrentState == GameState.Turn; }
         }
 
 
@@ -88,7 +89,7 @@ namespace War {
 
 
         public void Wait (int milliseconds) {
-            if (CurrentStates == GameStates.Turn) return;
+            if (CurrentState == GameState.Turn) return;
             if (Timer < milliseconds) Timer = milliseconds;
         }
 
@@ -103,13 +104,14 @@ namespace War {
 
         private void Hint (string text) {
             Debug.Log(text);
+            The<BattleScene>.Get().ShowHint(text);
         }
 
 
         private void ChangeState () {
-            switch (CurrentStates = _next++) {
+            switch (CurrentState = _next++) {
 
-                case GameStates.BeforeTurn:
+                case GameState.BeforeTurn:
                     Hint("BEF");
                     // Crates fall from the sky, regeneration works, shields replenish
                     if (RNG.Bool(0)) {
@@ -120,14 +122,14 @@ namespace War {
                     }
                     break;
 
-                case GameStates.Synchronizing:
+                case GameState.Synchronizing:
                     Hint("SYN");
                     // Game sends a signal and waits until server receives all signals
                     Synchronized = true;
                     _connection.SendEndTurn(true);
                     break;
 
-                case GameStates.Turn:
+                case GameState.Turn:
                     Hint(ActivePlayer == _id ? "MY" : "TURN");
                     // Player moves his worm and uses weapon
                     _wormFrozen = false;
@@ -135,7 +137,7 @@ namespace War {
                     Timer = TurnTime;
                     break;
 
-                case GameStates.EndingTurn:
+                case GameState.EndingTurn:
                     Hint("END");
                     // Player ended his turn, but projectiles still flying
                     _wormFrozen = true;
@@ -145,7 +147,7 @@ namespace War {
                     Timer = 500;
                     break;
 
-                case GameStates.AfterTurn:
+                case GameState.AfterTurn:
                     Hint("AFT");
                     // Poisoned worms take damage
                     if (RNG.Bool(0)) {
@@ -156,13 +158,13 @@ namespace War {
                     }
                     break;
 
-                case GameStates.Remove0Hp:
+                case GameState.Remove0Hp:
                     Hint("REM");
-                    _next = GameStates.BeforeTurn; // no overflow
+                    _next = GameState.BeforeTurn; // no overflow
                     // Worms with 0 HP explode
                     if (RNG.Bool(0)) {
                         // blow them up
-                        _next = GameStates.Remove0Hp;
+                        _next = GameState.Remove0Hp;
                         Timer = 500;
                     }
                     ChangeState();

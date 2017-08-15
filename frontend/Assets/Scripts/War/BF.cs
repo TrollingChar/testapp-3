@@ -56,7 +56,7 @@ namespace War {
                 var td = new TurnData();
                 _connection.SendTurnData(td);
                 Update(td);
-            } else if (State.CurrentStates != GameStates.Synchronizing) {
+            } else if (State.CurrentState != GameState.Synchronizing) {
                 Update(null);
             }
         }
