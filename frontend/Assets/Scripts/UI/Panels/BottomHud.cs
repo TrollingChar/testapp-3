@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Utils.Singleton;
 using War;
+using War.State;
 
 
 namespace UI.Panels {

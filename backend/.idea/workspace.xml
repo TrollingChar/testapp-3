@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="269334e0-7a7c-41c4-b55a-43b3a85fe476" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    <list default="true" id="0b1d56ee-c289-4539-ad59-aff2f2020bae" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -13,9 +13,6 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
-  <component name="FileEditorManager">
-    <leaf />
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
@@ -40,8 +37,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -103,6 +98,8 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -312,23 +309,23 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="269334e0-7a7c-41c4-b55a-43b3a85fe476" name="Default" comment="" />
-      <created>1502817385585</created>
+      <changelist id="0b1d56ee-c289-4539-ad59-aff2f2020bae" name="Default" comment="" />
+      <created>1502902536716</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1502817385585</updated>
-      <workItem from="1502817402524" duration="728000" />
+      <updated>1502902536716</updated>
+      <workItem from="1502902577242" duration="281000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="728000" />
+    <option name="totallyTimeSpent" value="281000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
+    <frame x="-8" y="-8" width="1616" height="876" extended-state="7" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32985657" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -360,15 +357,5 @@
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
     <option name="FILTER_TARGETS" value="false" />
-  </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-5997">
-          <caret line="18" column="21" lean-forward="true" selection-start-line="18" selection-start-column="21" selection-end-line="18" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
   </component>
 </project>

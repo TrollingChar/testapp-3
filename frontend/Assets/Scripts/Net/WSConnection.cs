@@ -54,7 +54,6 @@ namespace Net {
             for (_turnDataRead = 0; _turnDataRead < 2; ) {
                 var bytes = _socket.Recv();
                 if (bytes == null) break;
-                // todo: move logging to Parse method
                 Parse(bytes);
             }
         }
@@ -69,6 +68,7 @@ namespace Net {
 
         // todo: replace this with commands! 
         private void Parse (byte[] bytes) {
+            Debug.Log(BitConverter.ToString(bytes));
             var stream = new MemoryStream(bytes);
             var reader = new EndianBinaryReader(EndianBitConverter.Big, stream);
 

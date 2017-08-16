@@ -1,4 +1,5 @@
-﻿using Net;
+﻿using Assets;
+using Net;
 using Scenes;
 using UnityEngine;
 using Utils.Singleton;
@@ -20,6 +21,8 @@ public class Context : MonoBehaviour {
         _connection.OnPlayerInfo.Subscribe(OnPlayerInfo);
         _connection.OnStartGame.Subscribe(OnStartGame);
         _sceneSwitcher.Load(Scenes.Scenes.Menu);
+
+        gameObject.AddComponent<WeaponIcons>();
     }
 
 

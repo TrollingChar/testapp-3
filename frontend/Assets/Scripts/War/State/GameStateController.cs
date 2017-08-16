@@ -2,13 +2,13 @@
 using Net;
 using Scenes;
 using UnityEngine;
-using Utils;
+using Utils.Random;
 using Utils.Singleton;
 using War.Objects;
 using War.Teams;
 
 
-namespace War {
+namespace War.State {
 
     public class GameStateController {
 

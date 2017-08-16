@@ -1,16 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 
-namespace Utils {
+namespace Utils.Random {
 
     public static class RNG {
 
-        private static Random _rng = new Random();
+        private static System.Random _rng = new System.Random();
 
 
         public static void Init (int seed) {
-            _rng = new Random(seed);
+            _rng = new System.Random(seed);
         }
 
 

@@ -50,7 +50,7 @@ using System;
 // Converted to C#
 
 
-namespace Utils {
+namespace Utils.Random {
 
     /// <summary>
     ///     Summary description for MT19937.
