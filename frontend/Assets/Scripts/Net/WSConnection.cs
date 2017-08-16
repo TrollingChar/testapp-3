@@ -51,13 +51,10 @@ namespace Net {
         public void Update () {
             if (_socket == null) return;
 
-            _turnDataRead = 0;
-            for (
-                var bytes = _socket.Recv(); // bug: Recv() called, but data discarded due to loop condition
-                bytes != null && _turnDataRead < 100; // todo: fix it properly
-                bytes = _socket.Recv()
-            ) {
-                Debug.Log(BitConverter.ToString(bytes));
+            for (_turnDataRead = 0; _turnDataRead < 2; ) {
+                var bytes = _socket.Recv();
+                if (bytes == null) break;
+                // todo: move logging to Parse method
                 Parse(bytes);
             }
         }
