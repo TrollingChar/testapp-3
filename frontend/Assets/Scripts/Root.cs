@@ -1,6 +1,7 @@
 ﻿using Messengers;
 
 
+[Obsolete]
 public class Root {
 
     private readonly PlayerInfoReceivedMessenger _messenger;
