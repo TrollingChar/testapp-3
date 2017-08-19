@@ -4,7 +4,7 @@
 namespace War.Weapons {
 
     public class WeaponDescriptor {
-
+        
         public readonly int Id;
         public readonly Sprite Icon;
 
@@ -14,6 +14,6 @@ namespace War.Weapons {
             Icon = icon;
         }
 
-    }
+    }  
 
 }

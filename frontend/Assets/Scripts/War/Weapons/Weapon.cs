@@ -6,10 +6,6 @@ namespace War.Weapons {
 
     public abstract class Weapon {
 
-        public static int Id() {
-            return Weapons.None;
-        }
-
         private Arsenal Arsenal {
             get {
                 // todo: it must be the arsenal from which this weapon will subtract ammo
