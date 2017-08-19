@@ -1,5 +1,15 @@
-﻿namespace War.Weapons {
+﻿using Assets;
+using Utils.Singleton;
 
-    public class BazookaWeapon : StandardWeapon {}
+
+namespace War.Weapons {
+
+    public class BazookaWeapon : StandardWeapon {
+
+        public static WeaponDescriptor Descriptor {
+            get { return new WeaponDescriptor(1, The<WeaponIcons>.Get().Bazooka); }
+        }
+
+    }
 
 }

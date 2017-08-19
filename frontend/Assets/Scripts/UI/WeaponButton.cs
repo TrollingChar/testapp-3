@@ -12,12 +12,6 @@ namespace UI {
         [SerializeField] private Image _image;
 
 
-        private void Awake () {
-            Debug.Log(_image);
-            Debug.Log(_text);
-        }
-
-
         public void OnClick () {
             // if my turn
             // if arsenal not locked
@@ -26,13 +20,13 @@ namespace UI {
         }
 
 
-        public void SetImage (GameObject image) {
-            
+        public void SetImage (Sprite sprite) {
+            _image.sprite = sprite;
         }
 
 
         public void SetAmmo (int ammo) {
-            if (ammo == 0) _image.enabled = false;
+            _image.enabled = ammo != 0;
             _text.text = ammo > 0 ? ammo.ToString() : "";
         }
 

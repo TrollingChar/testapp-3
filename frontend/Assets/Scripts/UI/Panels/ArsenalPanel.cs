@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 using War.Weapons;
 
@@ -8,35 +9,33 @@ namespace UI.Panels {
     public class ArsenalPanel : MonoBehaviour {
 
         [SerializeField] private GameObject _weaponButton;
-        private int _i = 0;
 
         private void Start () {
-            AddWeapon<BazookaWeapon>();
-            AddWeapon<GrenadeWeapon>();
-            AddEmpty(6);
+            var i = AddWeapon(BazookaWeapon.Descriptor);
+            AddEmpty(3);
+            var j = AddWeapon(GrenadeWeapon.Descriptor);
+            AddEmpty(3);
         }
 
 
-        private void AddWeapon<T> () where T : Weapon {
-            var button = Instantiate(_weaponButton);
-            var component = _weaponButton.GetComponent<WeaponButton>();
-            component.SetAmmo(1);
-            button.transform.SetParent(gameObject.transform, false);
-            button.name = "button " + _i++;
+        private WeaponButton AddWeapon (WeaponDescriptor descriptor) {
+            var button = Instantiate(_weaponButton, gameObject.transform, false);
+            var component = button.GetComponent<WeaponButton>();
+            
+            component.SetImage(descriptor.Icon);
+            component.SetAmmo(descriptor.Id);
+            
             button.transform.SetAsLastSibling();
-//            button.transform.SetAsFirstSibling();
+            return component;
         }
 
 
         private void AddEmpty (int count = 1) {
             for (int i = 0; i < count; i++) {
-                var button = Instantiate(_weaponButton);
-                var component = _weaponButton.GetComponent<WeaponButton>();
+                var button = Instantiate(_weaponButton, gameObject.transform, false);
+                var component = button.GetComponent<WeaponButton>();
                 component.SetAmmo(0);
-                button.transform.SetParent(gameObject.transform, false);
-                button.name = "button " + _i++;
                 button.transform.SetAsLastSibling();
-//                button.transform.SetAsFirstSibling();
             }
         }
 

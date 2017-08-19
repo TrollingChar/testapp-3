@@ -1,11 +1,14 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using War.Teams;
 
 
 namespace War.Weapons {
 
     public abstract class Weapon {
+
+        public static int Id() {
+            return Weapons.None;
+        }
 
         private Arsenal Arsenal {
             get {
