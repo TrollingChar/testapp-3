@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using Utils.Singleton;
 
 
@@ -6,7 +7,7 @@ namespace Assets {
 
     public class WeaponIcons : MonoBehaviour {
 
-        public Sprite
+        public Image
             Bazooka, Plasmagun, HomingMissile, MultiLauncher, Minegun, Cryogun, BirdLauncher,
             Grenade, Limonka, Molotov, GasGrenade, ControlledGrenade, PhantomGrenade, HolyGrenade,
             MachineGun, Blaster, Pistol, HeatPistol, PoisonArrow, UltraRifle, GsomRaycaster,
