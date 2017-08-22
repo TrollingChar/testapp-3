@@ -7,7 +7,7 @@ namespace Assets {
 
     public class WeaponIcons : MonoBehaviour {
 
-        public Image
+        public GameObject
             Bazooka, Plasmagun, HomingMissile, MultiLauncher, Minegun, Cryogun, BirdLauncher,
             Grenade, Limonka, Molotov, GasGrenade, ControlledGrenade, PhantomGrenade, HolyGrenade,
             MachineGun, Blaster, Pistol, HeatPistol, PoisonArrow, UltraRifle, GsomRaycaster,

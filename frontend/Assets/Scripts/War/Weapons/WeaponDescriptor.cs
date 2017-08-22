@@ -6,10 +6,10 @@ namespace War.Weapons {
     public class WeaponDescriptor {
         
         public readonly int Id;
-        public readonly Sprite Icon;
+        public readonly GameObject Icon;
 
 
-        public WeaponDescriptor (int id, Sprite icon) {
+        public WeaponDescriptor (int id, GameObject icon) {
             Id = id;
             Icon = icon;
         }

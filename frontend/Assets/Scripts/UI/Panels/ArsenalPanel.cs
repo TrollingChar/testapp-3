@@ -82,8 +82,11 @@ namespace UI.Panels {
         private void AddWeapon (WeaponDescriptor descriptor) {
             var button = Instantiate(_weaponButton, gameObject.transform, false);
             var component = button.GetComponent<WeaponButton>();
-            
-            component.SetImage(descriptor.Icon);
+
+            var icon = Instantiate(descriptor.Icon, button.transform, false);
+            icon.name = WeaponButton.IconName;
+            icon.transform.SetAsFirstSibling();
+//            component.SetImage(descriptor.Icon);
             component.SetAmmo(1);
             
             button.transform.SetAsLastSibling();
@@ -93,8 +96,8 @@ namespace UI.Panels {
         private void AddEmpty (int count = 1) {
             for (int i = 0; i < count; i++) {
                 var button = Instantiate(_weaponButton, gameObject.transform, false);
-                var component = button.GetComponent<WeaponButton>();
-                component.SetAmmo(0);
+//                var component = button.GetComponent<WeaponButton>();
+//                component.SetAmmo(0);
                 button.transform.SetAsLastSibling();
             }
         }
