@@ -15,7 +15,7 @@ using War.Weapons.Thrown;
 
 namespace UI.Panels {
 
-    public class ArsenalPanel : MonoBehaviour {
+    public class ArsenalPanel : Panel {
 
         [SerializeField] private GameObject _weaponButton;
 
@@ -79,16 +79,15 @@ namespace UI.Panels {
         }
 
 
+        private void Update () {
+            if (Input.GetKeyDown(KeyCode.Q)) Toggle();
+        }
+
+
         private void AddWeapon (WeaponDescriptor descriptor) {
             var button = Instantiate(_weaponButton, gameObject.transform, false);
             var component = button.GetComponent<WeaponButton>();
-
-            var icon = Instantiate(descriptor.Icon, button.transform, false);
-            icon.name = WeaponButton.IconName;
-            icon.transform.SetAsFirstSibling();
-//            component.SetImage(descriptor.Icon);
-            component.SetAmmo(1);
-            
+            component.Configure(descriptor);
             button.transform.SetAsLastSibling();
         }
 
@@ -96,9 +95,8 @@ namespace UI.Panels {
         private void AddEmpty (int count = 1) {
             for (int i = 0; i < count; i++) {
                 var button = Instantiate(_weaponButton, gameObject.transform, false);
-//                var component = button.GetComponent<WeaponButton>();
-//                component.SetAmmo(0);
                 button.transform.SetAsLastSibling();
+//                button.GetComponent<Button>().interactable = false;
             }
         }
 

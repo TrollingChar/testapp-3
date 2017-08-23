@@ -1,22 +1,26 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using War.Weapons;
 
 
 namespace UI {
 
     public class WeaponButton : MonoBehaviour {
 
-        public const string IconName = "Icon";
-
         [SerializeField] private int _id;
         [SerializeField] private string _name;
         [SerializeField] private Text _text;
-
-//        [SerializeField] private Image _image;
-
         private GameObject _image;
-        private GameObject Image {
-            get { return _image ?? (_image = transform.Find(IconName).gameObject); }
+
+
+        public void Configure (WeaponDescriptor descriptor) {
+            _image = Instantiate(descriptor.Icon, transform, false);
+            _image.name = "Icon";
+            _image.transform.SetAsFirstSibling();
+
+            _id = descriptor.Id;
+            
+            SetAmmo(1);
         }
 
 
@@ -25,11 +29,12 @@ namespace UI {
             // if arsenal not locked
             // if have that weapon
             // EQUIP
+            Debug.Log("weapon id: " + _id);
         }
 
 
         public void SetAmmo (int ammo) {
-            Image.SetActive(ammo != 0);
+            _image.SetActive(ammo != 0);
             _text.text = ammo > 0 ? ammo.ToString() : "";
         }
 

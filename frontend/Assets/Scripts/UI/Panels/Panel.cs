@@ -38,6 +38,11 @@ namespace UI.Panels {
             _panelController.Hide(instantly);
         }
 
+
+        public void Toggle (bool instantly = false) {
+            _panelController.Toggle(instantly);
+        }
+
     }
 
 }
