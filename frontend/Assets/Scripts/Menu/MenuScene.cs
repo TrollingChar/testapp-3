@@ -1,0 +1,27 @@
+﻿using Battle;
+using Net;
+using UnityEngine;
+using Utils.Singleton;
+
+
+namespace Menu {
+
+    public class MenuScene : MonoBehaviour {
+
+        private void Awake () {
+            The<WSConnection>.Get().OnStartGame.Subscribe(StartGame);
+        }
+
+
+        private void StartGame (GameInitData gameInitData) {
+//            SceneSwitcher
+        }
+
+
+        private void OnDestroy () {
+            The<WSConnection>.Get().OnStartGame.Unsubscribe(StartGame);
+        }
+
+    }
+
+}
