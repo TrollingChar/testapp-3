@@ -6,24 +6,28 @@ using Utils.Random;
 using Utils.Singleton;
 using War.Objects;
 using War.Teams;
+using War.Weapons;
 
 
 namespace War.State {
 
     public class GameStateController {
 
-        private const int TurnTime = 5000;
+        private const int TurnTime = 10000;
         private const int RetreatTime = 3000;
 
         private readonly WSConnection _connection;
+        private readonly WeaponFactory _factory;
 
         private GameState _next;
         private readonly int _id;
-//        private readonly TeamManager _teamManager;
 
         private int _time;
+
         private Worm _worm;
         private bool _wormFrozen;
+
+        private Weapon _weapon;
 
         public int ActivePlayer;
 
@@ -34,8 +38,8 @@ namespace War.State {
             The<GameStateController>.Set(this);
 
             _connection = The<WSConnection>.Get();
+            _factory = The<WeaponFactory>.Get();
             _id = The<PlayerInfo>.Get().Id;
-//            _teamManager = The<TeamManager>.Get(); // bug: circular dependency
 
             OnTimerUpdated = new TimerUpdatedMessenger();
 
@@ -105,6 +109,12 @@ namespace War.State {
         private void Hint (string text) {
             Debug.Log(text);
             The<BattleScene>.Get().ShowHint(text);
+        }
+
+
+        public void SelectWeapon (int id) {
+            // if we can select weapon then arm active worm with it!
+            _weapon = _factory.CreateWeapon(id, _worm); // 0 - select none
         }
 
 

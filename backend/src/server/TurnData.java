@@ -5,6 +5,8 @@ package server;
  */
 public class TurnData {
     public byte flags;
+    public byte weapon;
+    public byte number;
     public float x, y;
 
     public TurnData(byte b, float x, float y) {

@@ -1,15 +1,15 @@
-﻿﻿using Messengers;
+﻿using Messengers;
 using Net;
 using UnityEngine;
 using UnityEngine.UI;
 using Utils;
- using Utils.Random;
- using Utils.Singleton;
+using Utils.Random;
+using Utils.Singleton;
 using War;
 using War.Camera;
 using War.Generation;
- using War.State;
- using War.Teams;
+using War.State;
+using War.Teams;
 
 
 namespace Scenes {
@@ -18,33 +18,34 @@ namespace Scenes {
 
         [SerializeField] private Text _hint;
         [SerializeField] private SpriteRenderer _landRenderer;
-        
+
         private WSConnection _connection;
         private CameraWrapper _camera;
         private GameStateController _state;
         private TeamManager _teams;
         private World _world;
-        
+
+        // temp fields
         private EstimatedLandGen _landGen;
         private GameInitData _initData;
         private bool _initialized;
 
         public BattleLoadedMessenger OnBattleLoaded { get; private set; }
 
-        
+
         private void Awake () {
             The<BattleScene>.Set(this);
             OnBattleLoaded = new BattleLoadedMessenger();
-            
+
             _initData = (GameInitData) The<SceneSwitcher>.Get().Data[0];
             RNG.Init(_initData.Seed);
-            
+
             _connection = The<WSConnection>.Get();
             _connection.OnTurnData.Subscribe(Work);
-            
+
             _camera = GetComponentInChildren<CameraWrapper>();
             The<CameraWrapper>.Set(_camera);
-            
+
             StartLandGen();
         }
 
@@ -90,7 +91,7 @@ namespace Scenes {
             _world = new World(gen, _landRenderer);
             _camera.LookAt(new Vector2(1000, 1000), true);
             _teams = _world.SpawnTeams(_initData.Players, 5);
-            
+
             OnBattleLoaded.Send();
         }
 
@@ -99,14 +100,14 @@ namespace Scenes {
             if (!_initialized) return;
 
             if (_state.CurrentState == GameState.Synchronizing) return;
-            
+
             if (_state.CurrentState != GameState.Turn) {
                 Work(null);
                 return;
             }
-            
+
             if (!_state.IsMyTurn) return;
-            
+
             // gather input and update world
             var td = new TurnData();
             _connection.SendTurnData(td);
@@ -125,6 +126,7 @@ namespace Scenes {
             The<World>.Set(null);
             The<GameStateController>.Set(null);
         }
+
 
         // temp method
         public void ShowHint (string text) {
