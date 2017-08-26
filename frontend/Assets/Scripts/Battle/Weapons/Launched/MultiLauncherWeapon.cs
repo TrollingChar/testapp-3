@@ -10,7 +10,7 @@ namespace Battle.Weapons.Launched {
         public static WeaponDescriptor Descriptor {
             get {
                 return new WeaponDescriptor(
-                    (int) WeaponId.MultiLauncher,
+                    WeaponId.MultiLauncher,
                     The<WeaponIcons>.Get().MultiLauncher
                 );
             }

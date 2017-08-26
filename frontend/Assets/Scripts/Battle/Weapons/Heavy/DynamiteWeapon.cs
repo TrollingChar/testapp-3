@@ -10,7 +10,7 @@ namespace Battle.Weapons.Heavy {
         public static WeaponDescriptor Descriptor {
             get {
                 return new WeaponDescriptor(
-                    (int) WeaponId.Dynamite,
+                    WeaponId.Dynamite,
                     The<WeaponIcons>.Get().Dynamite
                 );
             }

@@ -11,7 +11,7 @@ namespace Battle.Weapons.Launched {
         public static WeaponDescriptor Descriptor {
             get {
                 return new WeaponDescriptor(
-                    (int) WeaponId.Bazooka,
+                    WeaponId.Bazooka,
                     The<WeaponIcons>.Get().Bazooka
                 );
             }

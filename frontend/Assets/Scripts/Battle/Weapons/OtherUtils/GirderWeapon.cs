@@ -10,7 +10,7 @@ namespace Battle.Weapons.OtherUtils {
         public static WeaponDescriptor Descriptor {
             get {
                 return new WeaponDescriptor(
-                    (int) WeaponId.Girder,
+                    WeaponId.Girder,
                     The<WeaponIcons>.Get().Girder
                 );
             }

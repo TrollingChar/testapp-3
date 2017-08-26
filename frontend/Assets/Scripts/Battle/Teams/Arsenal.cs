@@ -1,15 +1,14 @@
 ﻿using System;
 using Battle.Weapons;
+using Utils.Singleton;
 
 
 namespace Battle.Teams {
 
     public class Arsenal {
 
+        private BattleScheme _scheme = The<BattleScheme>.Get();
         private int[] Weapons { get; set; }
-
-
-        public Arsenal () {}
 
 
         public int GetAmmo (int id) {
@@ -18,7 +17,7 @@ namespace Battle.Teams {
 
 
         public Weapon GetWeapon (int id) {
-            return null;
+            return _scheme.GetWeapon(id);
         }
 
 

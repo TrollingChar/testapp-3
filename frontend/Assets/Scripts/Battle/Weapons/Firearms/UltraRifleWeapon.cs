@@ -10,7 +10,7 @@ namespace Battle.Weapons.Firearms {
         public static WeaponDescriptor Descriptor {
             get {
                 return new WeaponDescriptor(
-                    (int) WeaponId.UltraRifle,
+                    WeaponId.UltraRifle,
                     The<WeaponIcons>.Get().UltraRifle
                 );
             }

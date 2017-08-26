@@ -10,7 +10,7 @@ namespace Battle.Weapons.MovementUtils {
         public static WeaponDescriptor Descriptor {
             get {
                 return new WeaponDescriptor(
-                    (int) WeaponId.WormSelect,
+                    WeaponId.WormSelect,
                     The<WeaponIcons>.Get().WormSelect
                 );
             }

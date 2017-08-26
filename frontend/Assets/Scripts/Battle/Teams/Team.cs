@@ -7,17 +7,17 @@ namespace Battle.Teams {
 
     public class Team {
 
-        private Worm _activeWorm;
-
         private int _player;
         private readonly LinkedList<Worm> _worms;
+        private Worm _activeWorm;
         private int _wormsAlive;
+        private Arsenal _arsenal;
 
-
-        public Team (int player, Color color) {
+        public Team (int player, Color color, Arsenal arsenal) {
             _player = player;
             Color = color;
             _worms = new LinkedList<Worm>();
+            _arsenal = arsenal;
         }
 
 

@@ -10,7 +10,7 @@ namespace Battle.Weapons.MovementUtils {
         public static WeaponDescriptor Descriptor {
             get {
                 return new WeaponDescriptor(
-                    (int) WeaponId.Teleport,
+                    WeaponId.Teleport,
                     The<WeaponIcons>.Get().Teleport
                 );
             }

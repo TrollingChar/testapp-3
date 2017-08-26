@@ -10,7 +10,7 @@ namespace Battle.Weapons.Spells {
         public static WeaponDescriptor Descriptor {
             get {
                 return new WeaponDescriptor(
-                    (int) WeaponId.Flood,
+                    WeaponId.Flood,
                     The<WeaponIcons>.Get().Flood
                 );
             }

@@ -10,7 +10,7 @@ namespace Battle.Weapons.CloseCombat {
         public static WeaponDescriptor Descriptor {
             get {
                 return new WeaponDescriptor(
-                    (int) WeaponId.Hammer,
+                    WeaponId.Hammer,
                     The<WeaponIcons>.Get().Hammer
                 );
             }
