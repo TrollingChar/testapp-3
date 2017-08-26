@@ -10,7 +10,7 @@ namespace Battle.Weapons.Airstrikes {
         public static WeaponDescriptor Descriptor {
             get {
                 return new WeaponDescriptor(
-                    (int) Weapons.Airstrike,
+                    (int) WeaponId.Airstrike,
                     The<WeaponIcons>.Get().Airstrike
                 );
             }

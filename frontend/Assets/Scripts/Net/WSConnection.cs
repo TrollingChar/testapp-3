@@ -34,7 +34,7 @@ namespace Net {
 
         private void Awake () {
             The<WSConnection>.Set(this);
-
+            
             OnPlayerInfo = new PlayerInfoReceivedMessenger();
             OnHubChanged = new HubChangedMessenger();
             OnStartGame = new StartGameMessenger();
@@ -99,7 +99,13 @@ namespace Net {
 
                 case ServerAPI.TurnData:
                     ++_turnDataRead;
-                    var td = new TurnData(reader.ReadByte(), reader.ReadSingle(), reader.ReadSingle());
+                    var td = new TurnData(
+                        reader.ReadByte(),
+                        reader.ReadSingle(),
+                        reader.ReadSingle(),
+                        0,
+                        0
+                    );
                     OnTurnData.Send(td);
                     break;
 

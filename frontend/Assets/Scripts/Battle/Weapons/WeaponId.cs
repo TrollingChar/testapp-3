@@ -1,6 +1,6 @@
 ﻿namespace Battle.Weapons {
 
-    public enum Weapons {
+    public enum WeaponId {
 
         None,
         Bazooka, Plasmagun, HomingMissile, MultiLauncher, Minegun, Cryogun, BirdLauncher,

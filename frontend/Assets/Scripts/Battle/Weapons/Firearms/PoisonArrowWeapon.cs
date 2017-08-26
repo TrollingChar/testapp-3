@@ -10,7 +10,7 @@ namespace Battle.Weapons.Firearms {
         public static WeaponDescriptor Descriptor {
             get {
                 return new WeaponDescriptor(
-                    (int) Weapons.PoisonArrow,
+                    (int) WeaponId.PoisonArrow,
                     The<WeaponIcons>.Get().PoisonArrow
                 );
             }

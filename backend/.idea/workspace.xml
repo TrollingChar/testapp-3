@@ -1,8 +1,13 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="064e2a93-1a05-41bd-8a1f-8d4839e06430" name="Default" comment="">
+    <list default="true" id="c10a3cd5-9c92-46bd-be39-7ab3e277d119" name="Default" comment="">
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/Menu/MenuScene.cs" afterPath="$PROJECT_DIR$/../frontend/Assets/Scripts/Menu/MenuScene.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/Menu/UI/ConnectionMenu.cs" afterPath="$PROJECT_DIR$/../frontend/Assets/Scripts/Menu/UI/ConnectionMenu.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/Menu/UI/GameModeMenu.cs" afterPath="$PROJECT_DIR$/../frontend/Assets/Scripts/Menu/UI/GameModeMenu.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/Menu/UI/MainMenu.cs" afterPath="$PROJECT_DIR$/../frontend/Assets/Scripts/Menu/UI/MainMenu.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/Menu/UI/OpponentSearchMenu.cs" afterPath="$PROJECT_DIR$/../frontend/Assets/Scripts/Menu/UI/OpponentSearchMenu.cs" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -40,8 +45,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -102,6 +105,8 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -312,17 +317,17 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="064e2a93-1a05-41bd-8a1f-8d4839e06430" name="Default" comment="" />
-      <created>1503507219300</created>
+      <changelist id="c10a3cd5-9c92-46bd-be39-7ab3e277d119" name="Default" comment="" />
+      <created>1503744484948</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1503507219300</updated>
-      <workItem from="1503507236433" duration="2333000" />
+      <updated>1503744484948</updated>
+      <workItem from="1503744500655" duration="1099000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2333000" />
+    <option name="totallyTimeSpent" value="1099000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />

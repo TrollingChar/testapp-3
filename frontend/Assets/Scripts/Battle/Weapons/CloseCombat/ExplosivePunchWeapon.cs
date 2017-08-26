@@ -10,7 +10,7 @@ namespace Battle.Weapons.CloseCombat {
         public static WeaponDescriptor Descriptor {
             get {
                 return new WeaponDescriptor(
-                    (int) Weapons.ExplosivePunch,
+                    (int) WeaponId.ExplosivePunch,
                     The<WeaponIcons>.Get().ExplosivePunch
                 );
             }

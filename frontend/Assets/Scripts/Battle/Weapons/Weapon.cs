@@ -12,6 +12,7 @@ namespace Battle.Weapons {
             }
         }
 
+
         public abstract void Update (TurnData td);
 
 

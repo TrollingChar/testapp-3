@@ -12,7 +12,7 @@ namespace Battle.Weapons.Thrown {
         public static WeaponDescriptor Descriptor {
             get {
                 return new WeaponDescriptor(
-                    (int) Weapons.HolyGrenade,
+                    (int) WeaponId.HolyGrenade,
                     The<WeaponIcons>.Get().HolyGrenade
                 );
             }

@@ -10,7 +10,7 @@ namespace Battle.Weapons.OtherUtils {
         public static WeaponDescriptor Descriptor {
             get {
                 return new WeaponDescriptor(
-                    (int) Weapons.Magnet,
+                    (int) WeaponId.Magnet,
                     The<WeaponIcons>.Get().Magnet
                 );
             }

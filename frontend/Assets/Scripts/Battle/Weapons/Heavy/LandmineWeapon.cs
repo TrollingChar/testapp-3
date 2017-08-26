@@ -10,7 +10,7 @@ namespace Battle.Weapons.Heavy {
         public static WeaponDescriptor Descriptor {
             get {
                 return new WeaponDescriptor(
-                    (int) Weapons.Landmine,
+                    (int) WeaponId.Landmine,
                     The<WeaponIcons>.Get().Landmine
                 );
             }

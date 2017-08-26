@@ -10,19 +10,12 @@ namespace Menu.UI {
 
         [SerializeField] private Button _1Player, _2Players, _3Players, _backButton;
 
-        private MainMenu _mainMenu;
-        private OpponentSearchMenu _opponentSearchMenu;
-
-
-        protected override void OnAwake () {
-            The<GameModeMenu>.Set(this);
-        }
+        private MenuScene MenuScene { get; set; }
 
 
         protected override void Activate () {
-            _mainMenu = The<MainMenu>.Get();
-            _opponentSearchMenu = The<OpponentSearchMenu>.Get();
-
+            MenuScene = The<MenuScene>.Get();
+            
             _1Player.onClick.AddListener(OnClicked1Player);
             _2Players.onClick.AddListener(OnClicked2Players);
             _3Players.onClick.AddListener(OnClicked3Players);
@@ -39,26 +32,22 @@ namespace Menu.UI {
 
 
         private void OnClicked1Player () {
-            Hide();
-            _opponentSearchMenu.JoinHub(1);
+            MenuScene.ShowOpponentSearchMenu(1);
         }
 
 
         private void OnClicked2Players () {
-            Hide();
-            _opponentSearchMenu.JoinHub(2);
+            MenuScene.ShowOpponentSearchMenu(2);
         }
 
 
         private void OnClicked3Players () {
-            Hide();
-            _opponentSearchMenu.JoinHub(3);
+            MenuScene.ShowOpponentSearchMenu(3);
         }
 
 
         private void OnClickedBack () {
-            Hide();
-            _mainMenu.Show();
+            MenuScene.ShowMainMenu();
         }
 
     }

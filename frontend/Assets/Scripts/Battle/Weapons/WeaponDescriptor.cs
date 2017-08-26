@@ -9,11 +9,11 @@ namespace Battle.Weapons {
         public readonly GameObject Icon;
 
 
-        public WeaponDescriptor (int id, GameObject icon) {
-            Id = id;
+        public WeaponDescriptor (WeaponId id, GameObject icon) {
+            Id = (int) id;
             Icon = icon;
         }
 
-    }  
+    }
 
 }

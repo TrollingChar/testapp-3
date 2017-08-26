@@ -10,7 +10,7 @@ namespace Battle.Weapons.MovementUtils {
         public static WeaponDescriptor Descriptor {
             get {
                 return new WeaponDescriptor(
-                    (int) Weapons.Jumper,
+                    (int) WeaponId.Jumper,
                     The<WeaponIcons>.Get().Jumper
                 );
             }

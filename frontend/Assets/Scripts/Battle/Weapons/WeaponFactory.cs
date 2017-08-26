@@ -23,7 +23,7 @@ namespace Battle.Weapons {
 
         
         public Weapon CreateWeapon (int id, Worm worm) {
-            
+            return null;
         }
 
     }

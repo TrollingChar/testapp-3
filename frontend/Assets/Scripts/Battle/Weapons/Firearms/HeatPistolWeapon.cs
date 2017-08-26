@@ -10,7 +10,7 @@ namespace Battle.Weapons.Firearms {
         public static WeaponDescriptor Descriptor {
             get {
                 return new WeaponDescriptor(
-                    (int) Weapons.HeatPistol,
+                    (int) WeaponId.HeatPistol,
                     The<WeaponIcons>.Get().HeatPistol
                 );
             }

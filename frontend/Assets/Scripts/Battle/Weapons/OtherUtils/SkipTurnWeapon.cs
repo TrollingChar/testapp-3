@@ -10,7 +10,7 @@ namespace Battle.Weapons.OtherUtils {
         public static WeaponDescriptor Descriptor {
             get {
                 return new WeaponDescriptor(
-                    (int) Weapons.SkipTurn,
+                    (int) WeaponId.SkipTurn,
                     The<WeaponIcons>.Get().SkipTurn
                 );
             }
