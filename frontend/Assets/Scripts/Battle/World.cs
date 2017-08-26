@@ -2,6 +2,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Assets;
+using Battle.Arsenals;
 using Battle.Generation;
 using Battle.Objects;
 using Battle.Physics;
@@ -188,7 +189,7 @@ namespace Battle {
             for (int y = 0; y < Land.Height / LandTile.Size; y++) {
                 // valid:
                 // . . .
-                // . . .
+                // . x .
                 // # # #
                 //   ^--- (x, y)
 
@@ -210,18 +211,18 @@ namespace Battle {
         }
 
 
-        public /*Dictionary<int, Team>*/ TeamManager SpawnTeams (List<int> players, int wormsInTeam) {
-            // determine where are valid spawns
+        public TeamManager SpawnTeams (List<int> players, int wormsInTeam) {
+            // find valid spawns
             var spawnPoints = RNG.PickSome(GetSpawnPoints(), players.Count * wormsInTeam);
 
-            // determine teams colors
+            // teams colors
             var teamColors = TeamColors.Colors.Take(players.Count).ToList();
 
             // spawn worms
             int currentSpawn = 0;
             var teams = new Dictionary<int, Team>();
             for (int pl = 0; pl < players.Count; pl++) {
-                var team = new Team(players[pl], teamColors[pl], TODO);
+                var team = new Team(players[pl], teamColors[pl], new StandardArsenal());
                 for (int w = 0; w < wormsInTeam; w++) {
                     var worm = new Worm();
                     AddObject(worm, spawnPoints[currentSpawn++]);

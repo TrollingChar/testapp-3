@@ -1,4 +1,5 @@
-﻿using Battle.Objects;
+﻿using Battle.Arsenal;
+using Battle.Objects;
 using Battle.Teams;
 using Battle.Weapons;
 using Core;
@@ -17,7 +18,6 @@ namespace Battle.State {
         private const int RetreatTime = 3000;
 
         private readonly WSConnection _connection;
-        private readonly WeaponFactory _factory;
 
         private GameState _next;
         private readonly int _id;
@@ -38,7 +38,6 @@ namespace Battle.State {
             The<GameStateController>.Set(this);
 
             _connection = The<WSConnection>.Get();
-            _factory = The<WeaponFactory>.Get();
             _id = The<PlayerInfo>.Get().Id;
 
             OnTimerUpdated = new TimerUpdatedMessenger();

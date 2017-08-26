@@ -18,11 +18,11 @@ namespace Battle {
         [SerializeField] private Text _hint;
         [SerializeField] private SpriteRenderer _landRenderer;
 
-        private WSConnection _connection;
-        private CameraWrapper _camera;
-        private GameStateController _state;
-        private TeamManager _teams;
-        private World _world;
+        public WSConnection Connection { get; private set; }
+        public CameraWrapper Camera { get; private set; }
+        public GameStateController State { get; private set; }
+        public TeamManager Teams { get; private set; }
+        public World World { get; private set; }
 
         // temp fields
         private EstimatedLandGen _landGen;
@@ -39,11 +39,11 @@ namespace Battle {
             _initData = (GameInitData) The<SceneSwitcher>.Get().Data[0];
             RNG.Init(_initData.Seed);
 
-            _connection = The<WSConnection>.Get();
-            _connection.OnTurnData.Subscribe(Work);
+            Connection = The<WSConnection>.Get();
+            Connection.OnTurnData.Subscribe(Work);
 
-            _camera = GetComponentInChildren<CameraWrapper>();
-            The<CameraWrapper>.Set(_camera);
+            Camera = GetComponentInChildren<CameraWrapper>();
+            The<CameraWrapper>.Set(Camera);
 
             StartLandGen();
         }
@@ -86,10 +86,10 @@ namespace Battle {
             _landGen.OnComplete.Unsubscribe(OnComplete);
 
             // show ground, spawn worms
-            _state = new GameStateController();
-            _world = new World(gen, _landRenderer);
-            _camera.LookAt(new Vector2(1000, 1000), true);
-            _teams = _world.SpawnTeams(_initData.Players, 5);
+            State = new GameStateController();
+            World = new World(gen, _landRenderer);
+            Camera.LookAt(new Vector2(1000, 1000), true);
+            Teams = World.SpawnTeams(_initData.Players, 5);
 
             OnBattleLoaded.Send();
         }
@@ -97,31 +97,28 @@ namespace Battle {
 
         private void FixedUpdate () {
             if (!_initialized) return;
-
-            if (_state.CurrentState == GameState.Synchronizing) return;
-
-            if (_state.CurrentState != GameState.Turn) {
+            if (State.CurrentState == GameState.Synchronizing) return;
+            if (State.CurrentState != GameState.Turn) {
                 Work(null);
                 return;
             }
-
-            if (!_state.IsMyTurn) return;
+            if (!State.IsMyTurn) return;
 
             // gather input and update world
             var td = new TurnData();
-            _connection.SendTurnData(td);
+            Connection.SendTurnData(td);
             Work(td);
         }
 
 
         private void Work (TurnData td) {
-            _world.Update(td);
-            _state.Update();
+            World.Update(td);
+            State.Update();
         }
 
 
         private void OnDestroy () {
-            _connection.OnTurnData.Unsubscribe(Work);
+            Connection.OnTurnData.Unsubscribe(Work);
             The<World>.Set(null);
             The<GameStateController>.Set(null);
         }

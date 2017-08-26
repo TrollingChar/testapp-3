@@ -1,11 +1,8 @@
-﻿using Battle.Teams;
-
-
-namespace Battle.Weapons {
+﻿namespace Battle.Weapons {
 
     public abstract class Weapon {
 
-        private Arsenal Arsenal {
+        private Arsenals.Arsenal Arsenal {
             get {
                 // todo: it must be the arsenal from which this weapon will subtract ammo
                 return null;
