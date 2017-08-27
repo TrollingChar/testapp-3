@@ -1,13 +1,23 @@
 ﻿using Attributes;
+using Net.Utils.IO;
 
 
 namespace Commands.Client {
 
-    [ClientCommand(1)]
-    public class EnterHubCommand : ClientCommand {
+    [ClientCommand(ClientAPI.EnterHub)]
+    public class EnterHubCommand : IClientCommand {
 
-        //[Transfer]
         private byte _hubId;
+
+
+        public EnterHubCommand (byte hubId) {
+            _hubId = hubId;
+        }
+
+
+        public void Serialize (EndianBinaryWriter writer) {
+            writer.WriteByte(_hubId);
+        }
 
     }
 

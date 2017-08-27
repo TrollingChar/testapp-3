@@ -1,9 +1,26 @@
 ﻿using Attributes;
+using Net.Utils.IO;
 
 
 namespace Commands.Server {
 
-    [ServerCommand(1)]
-    public class HubChangedCommand : ServerCommand {}
+    [ServerCommand(ServerAPI.HubChanged)]
+    public class HubChangedCommand : IServerCommand {
+
+        public byte HubId { get; private set; }
+        public byte Players { get; private set; }
+
+
+        public void Deserialize (EndianBinaryReader reader) {
+            HubId = reader.ReadByte();
+            Players = reader.ReadByte();
+        }
+
+
+        public void Execute () {
+            CommandExecutor<HubChangedCommand>.Execute(this);
+        }
+
+    }
 
 }

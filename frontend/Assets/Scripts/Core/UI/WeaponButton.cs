@@ -1,5 +1,4 @@
-﻿using Battle.Arsenal;
-using Battle.Weapons;
+﻿using Battle.Weapons;
 using UnityEngine;
 using UnityEngine.UI;
 

@@ -6,11 +6,11 @@ namespace Attributes {
     [AttributeUsage(AttributeTargets.Class)]
     public class ServerCommandAttribute : Attribute {
 
-        private readonly byte _code;
+        public readonly byte Id;
 
 
-        public ServerCommandAttribute (byte code) {
-            _code = code;
+        public ServerCommandAttribute (byte id) {
+            Id = id;
         }
 
 

@@ -1,12 +1,13 @@
 ﻿using Attributes;
+using Net.Utils.IO;
 
 
 namespace Commands.Client {
 
-    [ClientCommand(4)]
-    public class EndTurnCommand : ClientCommand {
+    [ClientCommand(ClientAPI.EndTurn)]
+    public class EndTurnCommand : IClientCommand {
 
-        
+        public void Serialize (EndianBinaryWriter writer) {}
 
     }
 

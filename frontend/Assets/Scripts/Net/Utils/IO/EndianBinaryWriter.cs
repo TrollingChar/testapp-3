@@ -130,7 +130,7 @@ namespace Net.Utils.IO {
         ///     Writes pos0 boolean value to the stream. 1 byte is written.
         /// </summary>
         /// <param name="value">The value to write</param>
-        public void Write (bool value) {
+        public void WriteBoolean (bool value) {
             BitConverter.CopyBytes(value, _buffer, 0);
             WriteInternal(_buffer, 1);
         }
@@ -141,7 +141,7 @@ namespace Net.Utils.IO {
         ///     for this writer. 2 bytes are written.
         /// </summary>
         /// <param name="value">The value to write</param>
-        public void Write (short value) {
+        public void WriteInt16 (short value) {
             BitConverter.CopyBytes(value, _buffer, 0);
             WriteInternal(_buffer, 2);
         }
@@ -152,7 +152,7 @@ namespace Net.Utils.IO {
         ///     for this writer. 4 bytes are written.
         /// </summary>
         /// <param name="value">The value to write</param>
-        public void Write (int value) {
+        public void WriteInt32 (int value) {
             BitConverter.CopyBytes(value, _buffer, 0);
             WriteInternal(_buffer, 4);
         }
@@ -163,7 +163,7 @@ namespace Net.Utils.IO {
         ///     for this writer. 8 bytes are written.
         /// </summary>
         /// <param name="value">The value to write</param>
-        public void Write (long value) {
+        public void WriteInt64 (long value) {
             BitConverter.CopyBytes(value, _buffer, 0);
             WriteInternal(_buffer, 8);
         }
@@ -174,7 +174,7 @@ namespace Net.Utils.IO {
         ///     for this writer. 2 bytes are written.
         /// </summary>
         /// <param name="value">The value to write</param>
-        public void Write (ushort value) {
+        public void WriteUInt16 (ushort value) {
             BitConverter.CopyBytes(value, _buffer, 0);
             WriteInternal(_buffer, 2);
         }
@@ -185,7 +185,7 @@ namespace Net.Utils.IO {
         ///     for this writer. 4 bytes are written.
         /// </summary>
         /// <param name="value">The value to write</param>
-        public void Write (uint value) {
+        public void WriteUInt32 (uint value) {
             BitConverter.CopyBytes(value, _buffer, 0);
             WriteInternal(_buffer, 4);
         }
@@ -196,7 +196,7 @@ namespace Net.Utils.IO {
         ///     for this writer. 8 bytes are written.
         /// </summary>
         /// <param name="value">The value to write</param>
-        public void Write (ulong value) {
+        public void WriteUInt64 (ulong value) {
             BitConverter.CopyBytes(value, _buffer, 0);
             WriteInternal(_buffer, 8);
         }
@@ -207,7 +207,7 @@ namespace Net.Utils.IO {
         ///     for this writer. 4 bytes are written.
         /// </summary>
         /// <param name="value">The value to write</param>
-        public void Write (float value) {
+        public void WriteFloat (float value) {
             BitConverter.CopyBytes(value, _buffer, 0);
             WriteInternal(_buffer, 4);
         }
@@ -218,7 +218,7 @@ namespace Net.Utils.IO {
         ///     for this writer. 8 bytes are written.
         /// </summary>
         /// <param name="value">The value to write</param>
-        public void Write (double value) {
+        public void WriteDouble (double value) {
             BitConverter.CopyBytes(value, _buffer, 0);
             WriteInternal(_buffer, 8);
         }
@@ -229,7 +229,7 @@ namespace Net.Utils.IO {
         ///     16 bytes are written.
         /// </summary>
         /// <param name="value">The value to write</param>
-        public void Write (decimal value) {
+        public void WriteDecimal (decimal value) {
             BitConverter.CopyBytes(value, _buffer, 0);
             WriteInternal(_buffer, 16);
         }
@@ -239,7 +239,7 @@ namespace Net.Utils.IO {
         ///     Writes pos0 signed byte to the stream.
         /// </summary>
         /// <param name="value">The value to write</param>
-        public void Write (byte value) {
+        public void WriteByte (byte value) {
             _buffer[0] = value;
             WriteInternal(_buffer, 1);
         }
@@ -249,7 +249,7 @@ namespace Net.Utils.IO {
         ///     Writes an unsigned byte to the stream.
         /// </summary>
         /// <param name="value">The value to write</param>
-        public void Write (sbyte value) {
+        public void WriteSByte (sbyte value) {
             _buffer[0] = unchecked((byte) value);
             WriteInternal(_buffer, 1);
         }
@@ -259,7 +259,7 @@ namespace Net.Utils.IO {
         ///     Writes an array of bytes to the stream.
         /// </summary>
         /// <param name="value">The values to write</param>
-        public void Write (byte[] value) {
+        public void WriteBytes (byte[] value) {
             if (value == null) {
                 throw new ArgumentNullException("value");
             }
@@ -273,7 +273,7 @@ namespace Net.Utils.IO {
         /// <param name="value">An array containing the bytes to write</param>
         /// <param name="offset">The index of the first byte to write within the array</param>
         /// <param name="count">The number of bytes to write</param>
-        public void Write (byte[] value, int offset, int count) {
+        public void WriteBytes (byte[] value, int offset, int count) {
             CheckDisposed();
             BaseStream.Write(value, offset, count);
         }
@@ -283,9 +283,9 @@ namespace Net.Utils.IO {
         ///     Writes pos0 single character to the stream, using the encoding for this writer.
         /// </summary>
         /// <param name="value">The value to write</param>
-        public void Write (char value) {
+        public void WriteChar (char value) {
             _charBuffer[0] = value;
-            Write(_charBuffer);
+            WriteChars(_charBuffer);
         }
 
 
@@ -293,7 +293,7 @@ namespace Net.Utils.IO {
         ///     Writes an array of characters to the stream, using the encoding for this writer.
         /// </summary>
         /// <param name="value">An array containing the characters to write</param>
-        public void Write (char[] value) {
+        public void WriteChars (char[] value) {
             if (value == null) {
                 throw new ArgumentNullException("value");
             }
@@ -308,7 +308,7 @@ namespace Net.Utils.IO {
         /// </summary>
         /// <param name="value">The value to write. Must not be null.</param>
         /// <exception cref="ArgumentNullException">value is null</exception>
-        public void Write (string value) {
+        public void WriteString (string value) {
             if (value == null) {
                 throw new ArgumentNullException("value");
             }

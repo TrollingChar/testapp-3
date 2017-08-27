@@ -1,7 +1,4 @@
-﻿using Core;
-using Core.UI;
-using Messengers;
-using Net;
+﻿using Core.UI;
 using UnityEngine;
 using UnityEngine.UI;
 using Utils.Singleton;

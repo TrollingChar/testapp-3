@@ -6,11 +6,16 @@ namespace Attributes {
     [AttributeUsage(AttributeTargets.Class)]
     public class ClientCommandAttribute : Attribute {
 
-        private readonly byte _code;
+        public readonly byte Id;
 
 
-        public ClientCommandAttribute (byte code) {
-            _code = code;
+        public ClientCommandAttribute (byte id) {
+            Id = id;
+        }
+
+
+        public ClientCommandAttribute (int id) {
+            Id = (byte) id;
         }
 
     }

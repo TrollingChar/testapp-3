@@ -4,8 +4,8 @@ using Net.Utils.IO;
 
 namespace Commands.Server {
 
-    [ServerCommand(ServerAPI.PlayerLeftGame)]
-    public class PlayerLeftGameCommand : IServerCommand {
+    [ServerCommand(ServerAPI.NoWinner)]
+    public class ShowNoWinnerCommand : IServerCommand {
 
         public void Deserialize (EndianBinaryReader reader) {
             throw new System.NotImplementedException();

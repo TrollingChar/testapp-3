@@ -2,7 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Reflection;
+using Attributes;
 using Battle;
+using Commands.Client;
+using Commands.Server;
 using Core;
 using Messengers;
 using Net.Utils;
@@ -16,33 +21,71 @@ namespace Net {
 
     public class WSConnection : MonoBehaviour {
 
-        private readonly ByteBuffer _bb = new ByteBuffer();
-
         private WebSocket _socket;
+
+        private readonly ByteBuffer _bb = new ByteBuffer();
+//        private readonly Dictionary<Type, Action> _clientCommands = new Dictionary<Type, Action>();
+//        private readonly Func<ServerCommand>[] _serverCommands = new Func<ServerCommand>[256];
 
         private int _turnDataRead;
 
-        public PlayerInfoReceivedMessenger OnPlayerInfo { get; private set; }
-        public HubChangedMessenger OnHubChanged { get; private set; }
-        public StartGameMessenger OnStartGame { get; private set; }
-        public PlayerQuitMessenger OnPlayerQuit { get; private set; }
-        public PlayerWinMessenger OnPlayerWin { get; private set; }
-        public TurnDataReceivedMessenger OnTurnData { get; private set; }
-        public NoWinnerMessenger OnNoWinner { get; private set; }
-        public NewTurnMessenger OnNewTurn { get; private set; }
+
+        private Dictionary<Type, byte> _codes = new Dictionary<Type, byte>();
+        private Type[] _types = new Type[256];
+
+//        public PlayerInfoReceivedMessenger OnPlayerInfo { get; private set; }
+//        public HubChangedMessenger OnHubChanged { get; private set; }
+//        public StartGameMessenger OnStartGame { get; private set; }
+//        public PlayerQuitMessenger OnPlayerQuit { get; private set; }
+//        public PlayerWinMessenger OnPlayerWin { get; private set; }
+//        public TurnDataReceivedMessenger OnTurnData { get; private set; }
+//        public NoWinnerMessenger OnNoWinner { get; private set; }
+//        public NewTurnMessenger OnNewTurn { get; private set; }
 
 
         private void Awake () {
             The<WSConnection>.Set(this);
+
+//            OnPlayerInfo = new PlayerInfoReceivedMessenger();
+//            OnHubChanged = new HubChangedMessenger();
+//            OnStartGame = new StartGameMessenger();
+//            OnPlayerQuit = new PlayerQuitMessenger();
+//            OnPlayerWin = new PlayerWinMessenger();
+//            OnTurnData = new TurnDataReceivedMessenger();
+//            OnNoWinner = new NoWinnerMessenger();
+//            OnNewTurn = new NewTurnMessenger();
+
+            ScanCommands();
+        }
+
+
+        private void ScanCommands () {
+            foreach (var type in Assembly.GetExecutingAssembly().GetTypes()) {
+                if (type.IsSubclassOf(typeof(IClientCommand))) AddClientCommand(type);
+                if (type.IsSubclassOf(typeof(IServerCommand))) AddServerCommand(type);
+            }
+        }
+
+
+        private void AddClientCommand (Type type) {
+            byte id = ((ClientCommandAttribute)
+                type.GetCustomAttributes(true).First(a => a is ClientCommandAttribute)
+            ).Id;
             
-            OnPlayerInfo = new PlayerInfoReceivedMessenger();
-            OnHubChanged = new HubChangedMessenger();
-            OnStartGame = new StartGameMessenger();
-            OnPlayerQuit = new PlayerQuitMessenger();
-            OnPlayerWin = new PlayerWinMessenger();
-            OnTurnData = new TurnDataReceivedMessenger();
-            OnNoWinner = new NoWinnerMessenger();
-            OnNewTurn = new NewTurnMessenger();
+            // todo: Commands must have unique identifiers!
+            
+            _codes[type] = id;
+        }
+
+
+        private void AddServerCommand (Type type) {
+            byte id = ((ServerCommandAttribute)
+                type.GetCustomAttributes(true).First(a => a is ServerCommandAttribute)
+            ).Id;
+            
+            if (_types[id] != null) throw new Exception("Commands must have unique identifiers!");
+            
+            _types[id] = type;
         }
 
 
@@ -52,7 +95,7 @@ namespace Net {
         public void Update () {
             if (_socket == null) return;
 
-            for (_turnDataRead = 0; _turnDataRead < 2; ) {
+            for (_turnDataRead = 0; _turnDataRead < 2;) {
                 var bytes = _socket.Recv();
                 if (bytes == null) break;
                 Parse(bytes);
@@ -73,6 +116,10 @@ namespace Net {
             var stream = new MemoryStream(bytes);
             var reader = new EndianBinaryReader(EndianBitConverter.Big, stream);
 
+            IServerCommand cmd = (IServerCommand) Activator.CreateInstance(_types[reader.ReadByte()]);
+            cmd.Deserialize(reader);
+            cmd.Execute();
+            /*
             switch (reader.ReadByte()) {
                 case ServerAPI.AccountData:
                     OnPlayerInfo.Send(new PlayerInfo(reader.ReadInt32()));
@@ -119,6 +166,7 @@ namespace Net {
 
                 default: throw new NotImplementedException();
             }
+            */
             reader.Close();
             stream.Close();
         }
@@ -151,6 +199,11 @@ namespace Net {
                 yield return new WaitForSecondsRealtime(60);
                 _socket.Send(new byte[0]);
             }
+        }
+
+
+        public void Send (IClientCommand cmd) {
+            
         }
 
 

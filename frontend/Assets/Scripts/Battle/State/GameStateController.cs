@@ -1,5 +1,4 @@
-﻿using Battle.Arsenal;
-using Battle.Objects;
+﻿using Battle.Objects;
 using Battle.Teams;
 using Battle.Weapons;
 using Core;
@@ -113,7 +112,7 @@ namespace Battle.State {
 
         public void SelectWeapon (int id) {
             // if we can select weapon then arm active worm with it!
-            _weapon = _factory.CreateWeapon(id, _worm); // 0 - select none
+            _weapon = null; //_factory.CreateWeapon(id, _worm); // 0 - select none
         }
 
 

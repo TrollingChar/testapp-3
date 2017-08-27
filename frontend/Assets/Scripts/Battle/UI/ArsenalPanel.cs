@@ -1,5 +1,4 @@
-﻿using Battle.Arsenal;
-using Battle.Weapons;
+﻿using Battle.Weapons;
 using Battle.Weapons.Airstrikes;
 using Battle.Weapons.CloseCombat;
 using Battle.Weapons.Firearms;

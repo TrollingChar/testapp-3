@@ -1,13 +1,25 @@
 ﻿using Attributes;
+using Net.Utils.IO;
 
 
 namespace Commands.Client {
 
-    [ClientCommand(0)]
-    public class AuthorizeCommand : ClientCommand {
+    [ClientCommand(ClientAPI.Authorize)]
+    public class AuthorizeCommand : IClientCommand {
 
-        private string _ip;
-        private string _id;
+        private readonly int _ip;
+        private readonly int _id;
+
+
+        public AuthorizeCommand (int ip, int id) {
+            _ip = ip;
+            _id = id;
+        }
+
+        public void Serialize (EndianBinaryWriter writer) {
+            writer.WriteInt32(_ip);
+            writer.WriteInt32(_id);
+        }
 
     }
 
