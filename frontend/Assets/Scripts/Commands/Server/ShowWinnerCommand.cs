@@ -6,14 +6,17 @@ namespace Commands.Server {
 
     [ServerCommand(ServerAPI.ShowWinner)]
     public class ShowWinnerCommand : IServerCommand {
+    
+        public int Winner { get; private set; }
+
 
         public void Deserialize (EndianBinaryReader reader) {
-            throw new System.NotImplementedException();
+            Winner = reader.ReadInt32();
         }
 
 
         public void Execute () {
-            throw new System.NotImplementedException();
+            CommandExecutor<ShowWinnerCommand>.Execute(this);
         }
 
     }
