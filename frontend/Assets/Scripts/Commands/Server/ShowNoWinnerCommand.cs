@@ -7,13 +7,11 @@ namespace Commands.Server {
     [ServerCommand(ServerAPI.NoWinner)]
     public class ShowNoWinnerCommand : IServerCommand {
 
-        public void Deserialize (EndianBinaryReader reader) {
-            throw new System.NotImplementedException();
-        }
+        public void Deserialize (EndianBinaryReader reader) {}
 
 
         public void Execute () {
-            throw new System.NotImplementedException();
+            CommandExecutor<ShowNoWinnerCommand>.Execute(this);
         }
 
     }
