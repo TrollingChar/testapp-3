@@ -29,13 +29,8 @@ namespace Net {
         private int _turnDataRead;
 
 
-        private Dictionary<Type, byte> _codes = new Dictionary<Type, byte>();
-        private Type[] _types = new Type[256];
-
-
         private void Awake () {
             The<WSConnection>.Set(this);
-            Serialization.ScanAssembly();
         }
 
 
@@ -60,13 +55,13 @@ namespace Net {
         }
 
 
-        // todo: replace this with commands! 
         private void Parse (byte[] bytes) {
             Debug.Log(BitConverter.ToString(bytes));
             var stream = new MemoryStream(bytes);
             var reader = new EndianBinaryReader(EndianBitConverter.Big, stream);
 
-            IServerCommand cmd = (IServerCommand) Activator.CreateInstance(_types[reader.ReadByte()]);
+            var cmd = Serialization.GetServerCmdByCode(reader.ReadByte());
+//            IServerCommand cmd = (IServerCommand) Activator.CreateInstance(_types[reader.ReadByte()]);
             cmd.Deserialize(reader);
             cmd.Execute();
             /*

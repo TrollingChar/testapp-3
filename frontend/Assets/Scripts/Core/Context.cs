@@ -1,4 +1,5 @@
 ﻿using Battle;
+using Commands;
 using Commands.Server;
 using Net;
 using UnityEngine;
@@ -15,6 +16,8 @@ namespace Core {
 
         private void Awake () {
             DontDestroyOnLoad(this);
+            
+            Serialization.ScanAssembly();
 
             _connection = gameObject.AddComponent<WSConnection>();
             _sceneSwitcher = new SceneSwitcher();
