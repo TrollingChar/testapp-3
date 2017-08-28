@@ -12,7 +12,6 @@ namespace Commands.Server {
 
 
         public void Deserialize (EndianBinaryReader reader) {
-            Data = reader.Read<TurnData>();
         }
 
 

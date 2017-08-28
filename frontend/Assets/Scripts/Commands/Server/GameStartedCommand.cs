@@ -1,4 +1,5 @@
-﻿using Attributes;
+﻿using System.Collections.Generic;
+using Attributes;
 using Battle;
 using Net.Utils.IO;
 
@@ -12,7 +13,11 @@ namespace Commands.Server {
 
 
         public void Deserialize (EndianBinaryReader reader) {
-            Data = reader.Read<GameInitData>();
+            // todo: use DTO
+            int seed = reader.ReadInt32();
+            var players = new List<int>();
+            for (byte i = 0, end = reader.ReadByte(); i < end; ++i) players.Add(reader.ReadInt32());
+            Data = new GameInitData(seed, players);
         }
 
 
