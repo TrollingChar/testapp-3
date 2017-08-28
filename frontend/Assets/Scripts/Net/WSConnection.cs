@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 using Attributes;
 using Battle;
+using Commands;
 using Commands.Client;
 using Commands.Server;
 using Core;
@@ -24,8 +25,6 @@ namespace Net {
         private WebSocket _socket;
 
         private readonly ByteBuffer _bb = new ByteBuffer();
-//        private readonly Dictionary<Type, Action> _clientCommands = new Dictionary<Type, Action>();
-//        private readonly Func<ServerCommand>[] _serverCommands = new Func<ServerCommand>[256];
 
         private int _turnDataRead;
 
@@ -33,59 +32,10 @@ namespace Net {
         private Dictionary<Type, byte> _codes = new Dictionary<Type, byte>();
         private Type[] _types = new Type[256];
 
-//        public PlayerInfoReceivedMessenger OnPlayerInfo { get; private set; }
-//        public HubChangedMessenger OnHubChanged { get; private set; }
-//        public StartGameMessenger OnStartGame { get; private set; }
-//        public PlayerQuitMessenger OnPlayerQuit { get; private set; }
-//        public PlayerWinMessenger OnPlayerWin { get; private set; }
-//        public TurnDataReceivedMessenger OnTurnData { get; private set; }
-//        public NoWinnerMessenger OnNoWinner { get; private set; }
-//        public NewTurnMessenger OnNewTurn { get; private set; }
-
 
         private void Awake () {
             The<WSConnection>.Set(this);
-
-//            OnPlayerInfo = new PlayerInfoReceivedMessenger();
-//            OnHubChanged = new HubChangedMessenger();
-//            OnStartGame = new StartGameMessenger();
-//            OnPlayerQuit = new PlayerQuitMessenger();
-//            OnPlayerWin = new PlayerWinMessenger();
-//            OnTurnData = new TurnDataReceivedMessenger();
-//            OnNoWinner = new NoWinnerMessenger();
-//            OnNewTurn = new NewTurnMessenger();
-
-            ScanCommands();
-        }
-
-
-        private void ScanCommands () {
-            foreach (var type in Assembly.GetExecutingAssembly().GetTypes()) {
-                if (type.IsSubclassOf(typeof(IClientCommand))) AddClientCommand(type);
-                if (type.IsSubclassOf(typeof(IServerCommand))) AddServerCommand(type);
-            }
-        }
-
-
-        private void AddClientCommand (Type type) {
-            byte id = ((ClientCommandAttribute)
-                type.GetCustomAttributes(true).First(a => a is ClientCommandAttribute)
-            ).Id;
-            
-            // todo: Commands must have unique identifiers!
-            
-            _codes[type] = id;
-        }
-
-
-        private void AddServerCommand (Type type) {
-            byte id = ((ServerCommandAttribute)
-                type.GetCustomAttributes(true).First(a => a is ServerCommandAttribute)
-            ).Id;
-            
-            if (_types[id] != null) throw new Exception("Commands must have unique identifiers!");
-            
-            _types[id] = type;
+            Serialization.ScanAssembly();
         }
 
 
@@ -202,9 +152,7 @@ namespace Net {
         }
 
 
-        public void Send (IClientCommand cmd) {
-            
-        }
+        public void Send (IClientCommand cmd) {}
 
 
         public void SendHubId (int id) {
