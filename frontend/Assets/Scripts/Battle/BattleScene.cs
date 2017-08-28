@@ -2,6 +2,7 @@
 using Battle.Generation;
 using Battle.State;
 using Battle.Teams;
+using Commands.Server;
 using Core;
 using Messengers;
 using Net;
@@ -40,12 +41,17 @@ namespace Battle {
             RNG.Init(_initData.Seed);
 
             Connection = The<WSConnection>.Get();
-            Connection.OnTurnData.Subscribe(Work);
+            CommandExecutor<HandleTurnDataCommand>.AddHandler(Handler);
 
             Camera = GetComponentInChildren<CameraWrapper>();
             The<CameraWrapper>.Set(Camera);
 
             StartLandGen();
+        }
+
+        private void Handler(HandleTurnDataCommand cmd)
+        {
+            Work(cmd.Data);
         }
 
 
@@ -118,7 +124,7 @@ namespace Battle {
 
 
         private void OnDestroy () {
-            Connection.OnTurnData.Unsubscribe(Work);
+            CommandExecutor<HandleTurnDataCommand>.RemoveHandler(Handler);
             The<World>.Set(null);
             The<GameStateController>.Set(null);
         }

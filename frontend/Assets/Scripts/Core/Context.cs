@@ -1,4 +1,5 @@
 ﻿using Battle;
+using Commands.Server;
 using Net;
 using UnityEngine;
 using Utils.Singleton;
@@ -18,20 +19,20 @@ namespace Core {
             _connection = gameObject.AddComponent<WSConnection>();
             _sceneSwitcher = new SceneSwitcher();
 
-            _connection.OnPlayerInfo.Subscribe(OnPlayerInfo);
-            _connection.OnStartGame.Subscribe(OnStartGame);
+            CommandExecutor<AuthorizedCommand>.AddHandler(OnAuthorized);
+            CommandExecutor<GameStartedCommand>.AddHandler(OnGameStarted);
             _sceneSwitcher.Load(Scenes.Menu);
         }
 
 
-        private void OnStartGame (GameInitData data) {
-            _sceneSwitcher.Load(Scenes.Battle, data);
+        private void OnGameStarted (GameStartedCommand cmd) {
+            _sceneSwitcher.Load(Scenes.Battle, cmd.Data);
         }
 
 
-        private void OnPlayerInfo (PlayerInfo playerInfo) {
-            The<PlayerInfo>.Set(playerInfo);
-            _connection.OnPlayerInfo.Unsubscribe(OnPlayerInfo);
+        private void OnAuthorized (AuthorizedCommand cmd) {
+            The<PlayerInfo>.Set(cmd.PlayerInfo);
+            CommandExecutor<AuthorizedCommand>.RemoveHandler(OnAuthorized);
         }
 
     }

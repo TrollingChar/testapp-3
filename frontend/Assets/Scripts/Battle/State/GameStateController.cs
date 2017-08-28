@@ -1,6 +1,7 @@
 ﻿using Battle.Objects;
 using Battle.Teams;
 using Battle.Weapons;
+using Commands.Server;
 using Core;
 using Messengers;
 using Net;
@@ -48,7 +49,7 @@ namespace Battle.State {
             _wormFrozen = false;
             Worm = null;
 
-            _connection.OnNewTurn.Subscribe(OnNewTurn); // todo unsubscribe when battle ends
+            CommandExecutor<StartNewTurnCommand>.AddHandler(OnNewTurn); // todo unsubscribe when battle ends
         }
 
 
@@ -96,7 +97,9 @@ namespace Battle.State {
         }
 
 
-        public void OnNewTurn (int id) {
+        public void OnNewTurn (StartNewTurnCommand startNewTurnCommand)
+        {
+            int id = startNewTurnCommand.Player;
             ActivePlayer = id;
             Worm = The<TeamManager>.Get().Teams[id].NextWorm(); // todo: remove chain
 //            _camera.LookAt(Worm.Position);

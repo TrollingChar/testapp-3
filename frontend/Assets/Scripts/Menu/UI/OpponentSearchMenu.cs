@@ -1,4 +1,5 @@
-﻿using Core.UI;
+﻿using Commands.Server;
+using Core.UI;
 using Net;
 using UnityEngine;
 using UnityEngine.UI;
@@ -21,13 +22,18 @@ namespace Menu.UI {
             _connection = The<WSConnection>.Get();
             _menuScene = The<MenuScene>.Get();
 
-            _connection.OnHubChanged.Subscribe(UpdateHubStatus);
+            CommandExecutor<HubChangedCommand>.AddHandler(OnHubStatusChanged);
             _cancelButton.onClick.AddListener(OnClickedCancel);
+        }
+
+        private void OnHubStatusChanged(HubChangedCommand obj)
+        {
+            UpdateHubStatus(obj.HubId, obj.Players);
         }
 
 
         protected override void Deactivate () {
-            _connection.OnHubChanged.Unsubscribe(UpdateHubStatus);
+            CommandExecutor<HubChangedCommand>.RemoveHandler(OnHubStatusChanged);
             _cancelButton.onClick.RemoveListener(OnClickedCancel);
         }
 

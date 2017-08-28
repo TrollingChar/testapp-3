@@ -1,4 +1,5 @@
 ﻿using Battle;
+using Commands.Server;
 using Core;
 using Menu.UI;
 using Net;
@@ -21,25 +22,24 @@ namespace Menu {
         private void Awake () {
             The<MenuScene>.Set(this);
             Connection = The<WSConnection>.Get();
-            Connection.OnPlayerInfo.Subscribe(OnPlayerInfo);
-            Connection.OnStartGame.Subscribe(StartGame);
+            CommandExecutor<AuthorizedCommand>.AddHandler(OnAuthorized);
+//            CommandExecutor<GameStartedCommand>.AddHandler(OnGameStarted);
+            
         }
 
-
-        private void OnPlayerInfo (PlayerInfo playerInfo) {
+        private void OnAuthorized(AuthorizedCommand obj)
+        {
             _connectionMenu.Hide();
             _mainMenu.Show();
         }
 
-
-        private void StartGame (GameInitData gameInitData) {
-//            SceneSwitcher
-        }
-
+//        private void OnGameStarted(GameStartedCommand obj)
+//        {
+//        }
 
         private void OnDestroy () {
-            Connection.OnPlayerInfo.Unsubscribe(OnPlayerInfo);
-            Connection.OnStartGame.Unsubscribe(StartGame);
+            CommandExecutor<AuthorizedCommand>.RemoveHandler(OnAuthorized);
+//            CommandExecutor<GameStartedCommand>.RemoveHandler(OnGameStarted);
             The<MenuScene>.Set(null);
         }
 
