@@ -7,7 +7,7 @@ namespace Commands.Server {
     public interface IServerCommand {
         
         void Deserialize (EndianBinaryReader reader);
-        void Execute ();
+        void Execute (); // maybe use static Messenger for each command instead of CommandExecutor class
 
     }
 
