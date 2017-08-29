@@ -7,7 +7,8 @@ namespace Battle.Arsenals {
 
     public class Arsenal {
 
-        public Messenger<int, int> OnAmmoChanged { get; private set; }
+        public readonly Messenger<int, int> OnAmmoChanged = new Messenger<int, int>();
+        // todo: use WeaponId enum
 
         private int[] Ammo { get; set; }
 
