@@ -61,57 +61,9 @@ namespace Net {
             var reader = new EndianBinaryReader(EndianBitConverter.Big, stream);
 
             var cmd = Serialization.GetServerCmdByCode(reader.ReadByte());
-//            IServerCommand cmd = (IServerCommand) Activator.CreateInstance(_types[reader.ReadByte()]);
             cmd.Deserialize(reader);
             cmd.Execute();
-            /*
-            switch (reader.ReadByte()) {
-                case ServerAPI.AccountData:
-                    OnPlayerInfo.Send(new PlayerInfo(reader.ReadInt32()));
-                    break;
-
-                case ServerAPI.HubChanged:
-                    OnHubChanged.Send(reader.ReadByte(), reader.ReadByte());
-                    break;
-
-                case ServerAPI.StartGame:
-                    int seed = reader.ReadInt32();
-                    var players = new List<int>();
-                    for (byte i = 0, end = reader.ReadByte(); i < end; ++i) players.Add(reader.ReadInt32());
-                    OnStartGame.Send(new GameInitData(seed, players));
-                    break;
-
-                case ServerAPI.LeftGame:
-                    OnPlayerQuit.Send(reader.ReadInt32());
-                    break;
-
-                case ServerAPI.ShowWinner:
-                    OnPlayerWin.Send(reader.ReadInt32());
-                    break;
-
-                case ServerAPI.TurnData:
-                    ++_turnDataRead;
-                    var td = new TurnData(
-                        reader.ReadByte(),
-                        reader.ReadSingle(),
-                        reader.ReadSingle(),
-                        0,
-                        0
-                    );
-                    OnTurnData.Send(td);
-                    break;
-
-                case ServerAPI.NoWinner:
-                    OnNoWinner.Send();
-                    break;
-
-                case ServerAPI.NewTurn:
-                    OnNewTurn.Send(reader.ReadInt32());
-                    break;
-
-                default: throw new NotImplementedException();
-            }
-            */
+            
             reader.Close();
             stream.Close();
         }
