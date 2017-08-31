@@ -5,7 +5,7 @@ using Net.Utils.IO;
 
 namespace Commands.Server {
 
-    [ServerCommand(ServerAPI.Authorized)]
+    [ServerCmd(ServerAPI.Authorized)]
     public class AuthorizedCommand : IServerCommand {
 
         public PlayerInfo PlayerInfo { get; private set; }

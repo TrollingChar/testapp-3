@@ -60,7 +60,7 @@ namespace Net {
             var stream = new MemoryStream(bytes);
             var reader = new EndianBinaryReader(EndianBitConverter.Big, stream);
 
-            var cmd = Serialization.GetServerCmdByCode(reader.ReadByte());
+            var cmd = Serialization<IServerCommand>.GetNewInstanceByCode(reader.ReadByte());
             cmd.Deserialize(reader);
             cmd.Execute();
             
@@ -99,7 +99,11 @@ namespace Net {
         }
 
 
-        public void Send (IClientCommand cmd) {}
+        public void Send (IClientCommand cmd) {
+            var writer = new EndianBinaryWriter(EndianBitConverter.Big, null); // here
+            writer.WriteByte(Serialization<IClientCommand>.GetCodeByType(cmd.GetType()));            
+            cmd.Serialize(writer);
+        }
 
 
         public void SendHubId (int id) {

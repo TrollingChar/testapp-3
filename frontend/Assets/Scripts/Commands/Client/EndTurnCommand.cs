@@ -4,7 +4,7 @@ using Net.Utils.IO;
 
 namespace Commands.Client {
 
-    [ClientCommand(ClientAPI.EndTurn)]
+    [ClientCmd(ClientAPI.EndTurn)]
     public class EndTurnCommand : IClientCommand {
 
         public void Serialize (EndianBinaryWriter writer) {}

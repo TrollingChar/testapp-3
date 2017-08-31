@@ -4,7 +4,7 @@ using Net.Utils.IO;
 
 namespace Commands.Client {
 
-    [ClientCommand(ClientAPI.QuitGame)]
+    [ClientCmd(ClientAPI.QuitGame)]
     public class QuitGameCommand : IClientCommand {
 
         public void Serialize (EndianBinaryWriter writer) {}

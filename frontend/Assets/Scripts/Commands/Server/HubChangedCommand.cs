@@ -4,7 +4,7 @@ using Net.Utils.IO;
 
 namespace Commands.Server {
 
-    [ServerCommand(ServerAPI.HubChanged)]
+    [ServerCmd(ServerAPI.HubChanged)]
     public class HubChangedCommand : IServerCommand {
 
         public byte HubId { get; private set; }

@@ -11,7 +11,7 @@
         Airstrike, Napalm, DropMole, DropFrog, MineStrike, VacuumBomb, Nuke,
         Erosion, PoisonCloud, Earthquake, Flood, BulletHell, MindControl, Armageddon,
         Rope, Jetpack, Parachute, Jumper, Teleport, MassTeleport, WormSelect,
-        Drill, Girder, Magnet, Medikit, Overheal, SkipTurn, Surrender
+        Drill, Girder, Magnet, Medikit, Overheal, SkipTurn, Surrender,
 
     }
 

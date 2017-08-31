@@ -6,7 +6,7 @@ using Net.Utils.IO;
 
 namespace Commands.Server {
 
-    [ServerCommand(ServerAPI.GameStarted)]
+    [ServerCmd(ServerAPI.GameStarted)]
     public class GameStartedCommand : IServerCommand {
 
         public GameInitData Data { get; private set; }

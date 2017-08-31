@@ -4,7 +4,7 @@ using Net.Utils.IO;
 
 namespace Commands.Client {
 
-    [ClientCommand(ClientAPI.EnterHub)]
+    [ClientCmd(ClientAPI.EnterHub)]
     public class EnterHubCommand : IClientCommand {
 
         private byte _hubId;

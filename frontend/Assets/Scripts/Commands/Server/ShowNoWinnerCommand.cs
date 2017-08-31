@@ -4,7 +4,7 @@ using Net.Utils.IO;
 
 namespace Commands.Server {
 
-    [ServerCommand(ServerAPI.NoWinner)]
+    [ServerCmd(ServerAPI.NoWinner)]
     public class ShowNoWinnerCommand : IServerCommand {
 
         public void Deserialize (EndianBinaryReader reader) {}

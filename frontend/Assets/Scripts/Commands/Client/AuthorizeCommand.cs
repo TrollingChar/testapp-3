@@ -4,7 +4,7 @@ using Net.Utils.IO;
 
 namespace Commands.Client {
 
-    [ClientCommand(ClientAPI.Authorize)]
+    [ClientCmd(ClientAPI.Authorize)]
     public class AuthorizeCommand : IClientCommand {
 
         private readonly int _ip;

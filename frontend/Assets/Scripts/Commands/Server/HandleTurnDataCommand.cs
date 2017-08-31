@@ -5,7 +5,7 @@ using Net.Utils.IO;
 
 namespace Commands.Server {
 
-    [ServerCommand(ServerAPI.HandleTurnData)]
+    [ServerCmd(ServerAPI.HandleTurnData)]
     public class HandleTurnDataCommand : IServerCommand {
 
         public TurnData Data { get; private set; }

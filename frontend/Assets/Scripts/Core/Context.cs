@@ -1,5 +1,7 @@
-﻿using Battle;
+﻿using Attributes;
+using Battle;
 using Commands;
+using Commands.Client;
 using Commands.Server;
 using Net;
 using UnityEngine;
@@ -17,7 +19,8 @@ namespace Core {
         private void Awake () {
             DontDestroyOnLoad(this);
             
-            Serialization.ScanAssembly();
+            Serialization<IClientCommand>.ScanAssembly<ClientCmdAttribute>();
+            Serialization<IServerCommand>.ScanAssembly<ServerCmdAttribute>();
 
             _connection = gameObject.AddComponent<WSConnection>();
             _sceneSwitcher = new SceneSwitcher();

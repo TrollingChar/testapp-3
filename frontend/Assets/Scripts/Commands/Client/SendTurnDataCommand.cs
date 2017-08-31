@@ -5,7 +5,7 @@ using Net.Utils.IO;
 
 namespace Commands.Client {
 
-    [ClientCommand(ClientAPI.SendTurnData)]
+    [ClientCmd(ClientAPI.SendTurnData)]
     public class SendTurnDataCommand : IClientCommand {
 
         private TurnData _td;
