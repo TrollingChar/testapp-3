@@ -1,12 +1,13 @@
 ﻿using Assets;
+using Attributes;
 using Utils.Singleton;
 
 
 namespace Battle.Weapons.OtherUtils {
 
-    public class MagnetWeapon {
+    [Weapon(WeaponId.Magnet)]
+    public class MagnetWeapon : StandardWeapon {
 
-        
         public static WeaponDescriptor Descriptor {
             get {
                 return new WeaponDescriptor(

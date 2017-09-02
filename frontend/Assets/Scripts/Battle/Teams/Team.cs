@@ -14,6 +14,7 @@ namespace Battle.Teams {
         private int _wormsAlive;
         private Arsenal _arsenal;
 
+
         public Team (int player, Color color, Arsenal arsenal) {
             _player = player;
             Color = color;

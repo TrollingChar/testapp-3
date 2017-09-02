@@ -6,8 +6,8 @@ using Net.Utils.IO;
 
 namespace Commands.Server {
 
-    [ServerCmd(ServerAPI.GameStarted)]
-    public class GameStartedCommand : IServerCommand {
+    [ServerCmd(ServerCmdId.GameStarted)]
+    public class GameStartedCmd : IServerCommand {
 
         public GameInitData Data { get; private set; }
 
@@ -22,7 +22,7 @@ namespace Commands.Server {
 
 
         public void Execute () {
-            CommandExecutor<GameStartedCommand>.Execute(this);
+            CommandExecutor<GameStartedCmd>.Execute(this);
         }
 
     }

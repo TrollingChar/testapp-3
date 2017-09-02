@@ -1,12 +1,13 @@
 ﻿using Assets;
+using Attributes;
 using Utils.Singleton;
 
 
 namespace Battle.Weapons.MovementUtils {
 
-    public class ParachuteWeapon {
+    [Weapon(WeaponId.Parachute)]
+    public class ParachuteWeapon : StandardWeapon {
 
-        
         public static WeaponDescriptor Descriptor {
             get {
                 return new WeaponDescriptor(

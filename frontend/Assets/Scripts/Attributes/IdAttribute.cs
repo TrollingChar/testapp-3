@@ -1,6 +1,9 @@
-﻿namespace Attributes {
+﻿using System;
 
-    public abstract class IdAttribute {
+
+namespace Attributes {
+
+    public abstract class IdAttribute : Attribute {
 
         public abstract byte Id { get; }
 

@@ -1,12 +1,13 @@
 ﻿using Assets;
+using Attributes;
 using Utils.Singleton;
 
 
 namespace Battle.Weapons.Spells {
 
-    public class FloodWeapon {
+    [Weapon(WeaponId.Flood)]
+    public class FloodWeapon : StandardWeapon {
 
-        
         public static WeaponDescriptor Descriptor {
             get {
                 return new WeaponDescriptor(

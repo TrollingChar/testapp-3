@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Attributes;
-using Commands.Client;
-using Commands.Server;
-using UnityEngine;
+
+// ReSharper disable StaticMemberInGenericType
 
 
-namespace Commands {
+namespace Core {
 
     public static class Serialization<TSerializable> {
 
@@ -17,8 +16,9 @@ namespace Commands {
 
 
         public static void ScanAssembly<TAttribute> () where TAttribute : IdAttribute {
+            var baseType = typeof(TSerializable);
             foreach (var type in Assembly.GetExecutingAssembly().GetTypes()) {
-                if (type.GetInterfaces().Contains(typeof(TSerializable))) {
+                if (type.IsSubclassOf(baseType) || type.GetInterfaces().Contains(baseType)) {
                     AddCommand<TAttribute>(type);
                 }
             }

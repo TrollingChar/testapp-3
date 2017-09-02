@@ -4,14 +4,14 @@ using Net.Utils.IO;
 
 namespace Commands.Server {
 
-    [ServerCmd(ServerAPI.NoWinner)]
-    public class ShowNoWinnerCommand : IServerCommand {
+    [ServerCmd(ServerCmdId.NoWinner)]
+    public class ShowNoWinnerCmd : IServerCommand {
 
         public void Deserialize (EndianBinaryReader reader) {}
 
 
         public void Execute () {
-            CommandExecutor<ShowNoWinnerCommand>.Execute(this);
+            CommandExecutor<ShowNoWinnerCmd>.Execute(this);
         }
 
     }

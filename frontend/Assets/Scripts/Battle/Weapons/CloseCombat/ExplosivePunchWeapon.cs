@@ -1,12 +1,13 @@
 ﻿using Assets;
+using Attributes;
 using Utils.Singleton;
 
 
 namespace Battle.Weapons.CloseCombat {
 
-    public class ExplosivePunchWeapon {
+    [Weapon(WeaponId.ExplosivePunch)]
+    public class ExplosivePunchWeapon : StandardWeapon {
 
-        
         public static WeaponDescriptor Descriptor {
             get {
                 return new WeaponDescriptor(
@@ -15,7 +16,6 @@ namespace Battle.Weapons.CloseCombat {
                 );
             }
         }
-
 
     }
 

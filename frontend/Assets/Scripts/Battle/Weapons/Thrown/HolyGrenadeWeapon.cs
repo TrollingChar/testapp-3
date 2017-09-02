@@ -1,10 +1,12 @@
 ﻿using Assets;
+using Attributes;
 using Utils.Singleton;
 
 
 namespace Battle.Weapons.Thrown {
 
-    public class HolyGrenadeWeapon {
+    [Weapon(WeaponId.HolyGrenade)]
+    public class HolyGrenadeWeapon : StandardWeapon {
 
         public static WeaponDescriptor Descriptor {
             get {

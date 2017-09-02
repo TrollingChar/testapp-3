@@ -1,12 +1,13 @@
 ﻿using Assets;
+using Attributes;
 using Utils.Singleton;
 
 
 namespace Battle.Weapons.Airstrikes {
 
-    public class MineStrikeWeapon {
+    [Weapon(WeaponId.MineStrike)]
+    public class MineStrikeWeapon : StandardWeapon {
 
-        
         public static WeaponDescriptor Descriptor {
             get {
                 return new WeaponDescriptor(

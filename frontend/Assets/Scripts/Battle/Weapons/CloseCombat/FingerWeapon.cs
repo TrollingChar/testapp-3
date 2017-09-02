@@ -1,9 +1,11 @@
 ﻿using Assets;
+using Attributes;
 using Utils.Singleton;
 
 
 namespace Battle.Weapons.CloseCombat {
 
+    [Weapon(WeaponId.Finger)]
     public class FingerWeapon : StandardWeapon {
 
         public static WeaponDescriptor Descriptor {

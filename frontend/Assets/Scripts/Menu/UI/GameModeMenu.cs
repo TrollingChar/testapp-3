@@ -15,7 +15,7 @@ namespace Menu.UI {
 
         protected override void Activate () {
             MenuScene = The<MenuScene>.Get();
-            
+
             _1Player.onClick.AddListener(OnClicked1Player);
             _2Players.onClick.AddListener(OnClicked2Players);
             _3Players.onClick.AddListener(OnClicked3Players);

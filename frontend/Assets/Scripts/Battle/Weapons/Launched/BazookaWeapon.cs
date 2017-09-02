@@ -1,13 +1,13 @@
 ﻿using Assets;
+using Attributes;
 using Utils.Singleton;
 
 
 namespace Battle.Weapons.Launched {
 
-    
+    [Weapon(WeaponId.Bazooka)]
     public class BazookaWeapon : StandardWeapon {
 
-        // todo: decsriptors must have unique id and icons. check it somewhere!
         public static WeaponDescriptor Descriptor {
             get {
                 return new WeaponDescriptor(

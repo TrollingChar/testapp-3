@@ -18,12 +18,13 @@ namespace Battle.UI {
 
         [SerializeField] private GameObject _weaponButton;
 
+
         private void Start () {
             AddWeapon(BazookaWeapon.Descriptor);
             AddEmpty(2);
             AddWeapon(MultiLauncherWeapon.Descriptor);
             AddEmpty(3);
-            
+
             AddWeapon(GrenadeWeapon.Descriptor);
             AddWeapon(LimonkaWeapon.Descriptor);
             AddWeapon(MolotovWeapon.Descriptor);
@@ -31,7 +32,7 @@ namespace Battle.UI {
             AddWeapon(ControlledGrenadeWeapon.Descriptor);
             AddEmpty();
             AddWeapon(HolyGrenadeWeapon.Descriptor);
-            
+
             AddWeapon(MachineGunWeapon.Descriptor);
             AddEmpty();
             AddWeapon(PistolWeapon.Descriptor);
@@ -39,27 +40,27 @@ namespace Battle.UI {
             AddWeapon(PoisonArrowWeapon.Descriptor);
             AddWeapon(UltraRifleWeapon.Descriptor);
             AddEmpty();
-            
+
             AddWeapon(FirePunchWeapon.Descriptor);
             AddWeapon(ExplosivePunchWeapon.Descriptor);
             AddWeapon(FingerWeapon.Descriptor);
             AddEmpty();
             AddWeapon(HammerWeapon.Descriptor);
             AddEmpty(2);
-            
+
             AddWeapon(LandmineWeapon.Descriptor);
             AddWeapon(DynamiteWeapon.Descriptor);
             AddEmpty(5);
-            
+
             AddWeapon(AirstrikeWeapon.Descriptor);
             AddEmpty(3);
             AddWeapon(MineStrikeWeapon.Descriptor);
             AddEmpty(2);
-            
+
             AddEmpty(3);
             AddWeapon(FloodWeapon.Descriptor);
             AddEmpty(3);
-            
+
             AddWeapon(RopeWeapon.Descriptor);
             AddEmpty();
             AddWeapon(ParachuteWeapon.Descriptor);
@@ -67,7 +68,7 @@ namespace Battle.UI {
             AddWeapon(TeleportWeapon.Descriptor);
             AddEmpty();
             AddWeapon(WormSelectWeapon.Descriptor);
-            
+
             AddEmpty();
             AddWeapon(GirderWeapon.Descriptor);
             AddWeapon(MagnetWeapon.Descriptor);

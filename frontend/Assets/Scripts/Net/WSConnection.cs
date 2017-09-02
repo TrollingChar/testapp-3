@@ -5,7 +5,6 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using Attributes;
-using Battle;
 using Commands;
 using Commands.Client;
 using Commands.Server;
@@ -24,7 +23,7 @@ namespace Net {
 
         private WebSocket _socket;
 
-        private readonly ByteBuffer _bb = new ByteBuffer();
+        [Obsolete] private readonly ByteBuffer _bb = new ByteBuffer();
 
         private int _turnDataRead;
 
@@ -63,18 +62,37 @@ namespace Net {
             var cmd = Serialization<IServerCommand>.GetNewInstanceByCode(reader.ReadByte());
             cmd.Deserialize(reader);
             cmd.Execute();
-            
+
             reader.Close();
             stream.Close();
         }
 
 
-        public void Authorize (string ip, int id) {
-            StartCoroutine(AuthCoroutine(ip, id));
+        public void Send (ClientCommand cmd) {
+            var authorizeCommand = cmd as AuthorizeCmd;
+            if (authorizeCommand != null) {
+                StartCoroutine(AuthCoroutine(authorizeCommand));
+                return;
+            }
+
+            DoSend(cmd);
         }
 
 
-        private IEnumerator AuthCoroutine (string ip, int id) {
+        private void DoSend (ClientCommand cmd) {
+            var stream = new MemoryStream();
+            var writer = new EndianBinaryWriter(EndianBitConverter.Big, stream);
+
+            writer.WriteByte(Serialization<ClientCommand>.GetCodeByType(cmd.GetType()));
+            cmd.Serialize(writer);
+            _socket.Send(stream.ToArray());
+
+            writer.Close();
+            stream.Close();
+        }
+
+
+        private IEnumerator AuthCoroutine (AuthorizeCmd cmd) {
             if (_socket != null) {
                 _socket.Close();
                 Debug.Log("TRYING TO OPEN SECOND CONNECTION");
@@ -84,10 +102,7 @@ namespace Net {
 
             StartCoroutine(SendPing());
 
-            _bb.Clear();
-            _bb.WriteByte(ClientAPI.Auth);
-            _bb.WriteInt32(id);
-            _socket.Send(_bb);
+            DoSend(cmd);
         }
 
 
@@ -96,39 +111,6 @@ namespace Net {
                 yield return new WaitForSecondsRealtime(60);
                 _socket.Send(new byte[0]);
             }
-        }
-
-
-        public void Send (IClientCommand cmd) {
-            var writer = new EndianBinaryWriter(EndianBitConverter.Big, null); // here
-            writer.WriteByte(Serialization<IClientCommand>.GetCodeByType(cmd.GetType()));            
-            cmd.Serialize(writer);
-        }
-
-
-        public void SendHubId (int id) {
-            _bb.Clear();
-            _bb.WriteByte(ClientAPI.ToHub);
-            _bb.WriteByte((byte) id);
-            _socket.Send(_bb);
-        }
-
-
-        public void SendTurnData (TurnData td) {
-            _bb.Clear();
-            _bb.WriteByte(ClientAPI.TurnData);
-            _bb.WriteByte(td.Flags);
-            _bb.WriteFloat(td.XY.X);
-            _bb.WriteFloat(td.XY.Y);
-            _socket.Send(_bb);
-        }
-
-
-        public void SendEndTurn (bool alive) {
-            _bb.Clear();
-            _bb.WriteByte(ClientAPI.EndTurn);
-            _bb.WriteByte((byte) (alive ? 1 : 0));
-            _socket.Send(_bb);
         }
 
     }

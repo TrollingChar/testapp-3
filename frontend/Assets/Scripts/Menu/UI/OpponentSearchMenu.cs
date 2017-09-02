@@ -1,4 +1,5 @@
-﻿using Commands.Server;
+﻿using Commands.Client;
+using Commands.Server;
 using Core.UI;
 using Net;
 using UnityEngine;
@@ -22,31 +23,31 @@ namespace Menu.UI {
             _connection = The<WSConnection>.Get();
             _menuScene = The<MenuScene>.Get();
 
-            CommandExecutor<HubChangedCommand>.AddHandler(OnHubStatusChanged);
+            CommandExecutor<HubChangedCmd>.AddHandler(OnHubStatusChanged);
             _cancelButton.onClick.AddListener(OnClickedCancel);
         }
 
-        private void OnHubStatusChanged(HubChangedCommand obj)
-        {
+
+        private void OnHubStatusChanged (HubChangedCmd obj) {
             UpdateHubStatus(obj.HubId, obj.Players);
         }
 
 
         protected override void Deactivate () {
-            CommandExecutor<HubChangedCommand>.RemoveHandler(OnHubStatusChanged);
+            CommandExecutor<HubChangedCmd>.RemoveHandler(OnHubStatusChanged);
             _cancelButton.onClick.RemoveListener(OnClickedCancel);
         }
 
 
         private void OnClickedCancel () {
-            _connection.SendHubId(0);
+            new EnterHubCmd(0).Send();
             _text.text = "Выход из комнаты...";
         }
 
 
-        public void JoinHub (int hub) {
+        public void JoinHub (byte hub) {
             _text.text = "Вход в комнату " + hub + "...";
-            _connection.SendHubId(hub);
+            new EnterHubCmd(hub).Send();
         }
 
 

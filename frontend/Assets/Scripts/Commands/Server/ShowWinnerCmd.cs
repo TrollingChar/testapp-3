@@ -4,9 +4,9 @@ using Net.Utils.IO;
 
 namespace Commands.Server {
 
-    [ServerCmd(ServerAPI.ShowWinner)]
-    public class ShowWinnerCommand : IServerCommand {
-    
+    [ServerCmd(ServerCmdId.ShowWinner)]
+    public class ShowWinnerCmd : IServerCommand {
+
         public int Winner { get; private set; }
 
 
@@ -16,7 +16,7 @@ namespace Commands.Server {
 
 
         public void Execute () {
-            CommandExecutor<ShowWinnerCommand>.Execute(this);
+            CommandExecutor<ShowWinnerCmd>.Execute(this);
         }
 
     }

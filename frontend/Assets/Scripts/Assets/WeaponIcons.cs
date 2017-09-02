@@ -16,7 +16,6 @@ namespace Assets {
             Erosion, PoisonCloud, Earthquake, Flood, BulletHell, MindControl, Armageddon,
             Rope, Jetpack, Parachute, Jumper, Teleport, MassTeleport, WormSelect,
             Drill, Girder, Magnet, Medikit, Overheal, SkipTurn, Surrender;
-            
 
 
         private void Awake () {

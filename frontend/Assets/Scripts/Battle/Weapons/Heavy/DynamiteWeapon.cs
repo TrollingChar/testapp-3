@@ -1,12 +1,13 @@
 ﻿using Assets;
+using Attributes;
 using Utils.Singleton;
 
 
 namespace Battle.Weapons.Heavy {
 
-    public class DynamiteWeapon {
+    [Weapon(WeaponId.Dynamite)]
+    public class DynamiteWeapon : StandardWeapon {
 
-        
         public static WeaponDescriptor Descriptor {
             get {
                 return new WeaponDescriptor(
@@ -15,7 +16,6 @@ namespace Battle.Weapons.Heavy {
                 );
             }
         }
-
 
     }
 

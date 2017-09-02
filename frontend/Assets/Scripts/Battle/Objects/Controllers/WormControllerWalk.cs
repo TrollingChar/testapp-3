@@ -9,7 +9,7 @@ namespace Battle.Objects.Controllers {
     public class WormControllerWalk : Controller {
 
         private readonly GameStateController _state = The<GameStateController>.Get();
-        
+
         // TODO: replace magic numbers with constants
 
 

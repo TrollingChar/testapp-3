@@ -4,8 +4,8 @@ using Net.Utils.IO;
 
 namespace Commands.Server {
 
-    [ServerCmd(ServerAPI.StartNewTurn)]
-    public class StartNewTurnCommand : IServerCommand {
+    [ServerCmd(ServerCmdId.StartNewTurn)]
+    public class StartNewTurnCmd : IServerCommand {
 
         public int Player { get; private set; }
 
@@ -16,7 +16,7 @@ namespace Commands.Server {
 
 
         public void Execute () {
-            CommandExecutor<StartNewTurnCommand>.Execute(this);
+            CommandExecutor<StartNewTurnCmd>.Execute(this);
         }
 
     }

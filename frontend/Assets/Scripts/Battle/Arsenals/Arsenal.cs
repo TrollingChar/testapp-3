@@ -16,7 +16,7 @@ namespace Battle.Arsenals {
             OnAmmoChanged = new Messenger<int, int>();
         }
 
-        
+
         private int this [int id] {
             get { return Ammo[id]; }
             set {

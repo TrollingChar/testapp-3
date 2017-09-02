@@ -1,9 +1,11 @@
 ﻿using Assets;
+using Attributes;
 using Utils.Singleton;
 
 
 namespace Battle.Weapons.CloseCombat {
 
+    [Weapon(WeaponId.FirePunch)]
     public class FirePunchWeapon : StandardWeapon {
 
         public static WeaponDescriptor Descriptor {

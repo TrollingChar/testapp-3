@@ -19,7 +19,7 @@ namespace Core.UI {
             _image.transform.SetAsFirstSibling();
 
             _id = descriptor.Id;
-            
+
             SetAmmo(1);
         }
 

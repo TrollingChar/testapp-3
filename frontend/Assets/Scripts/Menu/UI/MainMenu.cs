@@ -15,7 +15,7 @@ namespace Menu.UI {
 
         protected override void Activate () {
             MenuScene = The<MenuScene>.Get();
-            
+
             _playButton.onClick.AddListener(OnClickedPlay);
             _donateButton.onClick.AddListener(OnClickedDonate);
         }

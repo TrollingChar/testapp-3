@@ -4,8 +4,8 @@ using Net.Utils.IO;
 
 namespace Commands.Server {
 
-    [ServerCmd(ServerAPI.PlayerLeftGame)]
-    public class PlayerLeftGameCommand : IServerCommand {
+    [ServerCmd(ServerCmdId.PlayerLeftGame)]
+    public class PlayerLeftGameCmd : IServerCommand {
 
         public void Deserialize (EndianBinaryReader reader) {
             throw new System.NotImplementedException();

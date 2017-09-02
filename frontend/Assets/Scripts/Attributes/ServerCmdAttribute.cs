@@ -1,4 +1,5 @@
 ﻿using System;
+using Commands.Server;
 
 
 namespace Attributes {
@@ -9,8 +10,8 @@ namespace Attributes {
         private readonly byte _id;
 
 
-        public ServerCmdAttribute (byte id) {
-            _id = id;
+        public ServerCmdAttribute (ServerCmdId id) {
+            _id = (byte) id;
         }
 
 

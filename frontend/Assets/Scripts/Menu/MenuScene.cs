@@ -22,23 +22,25 @@ namespace Menu {
         private void Awake () {
             The<MenuScene>.Set(this);
             Connection = The<WSConnection>.Get();
-            CommandExecutor<AuthorizedCommand>.AddHandler(OnAuthorized);
+            CommandExecutor<AuthorizedCmd>.AddHandler(OnAuthorized);
 //            CommandExecutor<GameStartedCommand>.AddHandler(OnGameStarted);
-            
+
         }
 
-        private void OnAuthorized(AuthorizedCommand obj)
-        {
+
+        private void OnAuthorized (AuthorizedCmd obj) {
             _connectionMenu.Hide();
             _mainMenu.Show();
         }
+
 
 //        private void OnGameStarted(GameStartedCommand obj)
 //        {
 //        }
 
+
         private void OnDestroy () {
-            CommandExecutor<AuthorizedCommand>.RemoveHandler(OnAuthorized);
+            CommandExecutor<AuthorizedCmd>.RemoveHandler(OnAuthorized);
 //            CommandExecutor<GameStartedCommand>.RemoveHandler(OnGameStarted);
             The<MenuScene>.Set(null);
         }
@@ -55,7 +57,7 @@ namespace Menu {
         }
 
 
-        public void ShowOpponentSearchMenu (int hubId) {
+        public void ShowOpponentSearchMenu (byte hubId) {
             _gameModeMenu.Hide();
             _opponentSearchMenu.Show();
             _opponentSearchMenu.JoinHub(hubId);

@@ -1,5 +1,6 @@
 ﻿using Attributes;
 using Battle;
+using Battle.Weapons;
 using Commands;
 using Commands.Client;
 using Commands.Server;
@@ -18,27 +19,28 @@ namespace Core {
 
         private void Awake () {
             DontDestroyOnLoad(this);
-            
-            Serialization<IClientCommand>.ScanAssembly<ClientCmdAttribute>();
+
+            Serialization<ClientCommand>.ScanAssembly<ClientCmdAttribute>();
             Serialization<IServerCommand>.ScanAssembly<ServerCmdAttribute>();
+            Serialization<Weapon>.ScanAssembly<WeaponAttribute>();
 
             _connection = gameObject.AddComponent<WSConnection>();
             _sceneSwitcher = new SceneSwitcher();
 
-            CommandExecutor<AuthorizedCommand>.AddHandler(OnAuthorized);
-            CommandExecutor<GameStartedCommand>.AddHandler(OnGameStarted);
+            CommandExecutor<AuthorizedCmd>.AddHandler(OnAuthorized);
+            CommandExecutor<GameStartedCmd>.AddHandler(OnGameStarted);
             _sceneSwitcher.Load(Scenes.Menu);
         }
 
 
-        private void OnGameStarted (GameStartedCommand cmd) {
+        private void OnGameStarted (GameStartedCmd cmd) {
             _sceneSwitcher.Load(Scenes.Battle, cmd.Data);
         }
 
 
-        private void OnAuthorized (AuthorizedCommand cmd) {
+        private void OnAuthorized (AuthorizedCmd cmd) {
             The<PlayerInfo>.Set(cmd.PlayerInfo);
-            CommandExecutor<AuthorizedCommand>.RemoveHandler(OnAuthorized);
+            CommandExecutor<AuthorizedCmd>.RemoveHandler(OnAuthorized);
         }
 
     }

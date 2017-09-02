@@ -1,6 +1,7 @@
 ﻿using Battle.Objects;
 using Battle.Teams;
 using Battle.Weapons;
+using Commands.Client;
 using Commands.Server;
 using Core;
 using Messengers;
@@ -49,7 +50,7 @@ namespace Battle.State {
             _wormFrozen = false;
             Worm = null;
 
-            CommandExecutor<StartNewTurnCommand>.AddHandler(OnNewTurn); // todo unsubscribe when battle ends
+            CommandExecutor<StartNewTurnCmd>.AddHandler(OnNewTurn); // todo unsubscribe when battle ends
         }
 
 
@@ -97,8 +98,7 @@ namespace Battle.State {
         }
 
 
-        public void OnNewTurn (StartNewTurnCommand startNewTurnCommand)
-        {
+        public void OnNewTurn (StartNewTurnCmd startNewTurnCommand) {
             int id = startNewTurnCommand.Player;
             ActivePlayer = id;
             Worm = The<TeamManager>.Get().Teams[id].NextWorm(); // todo: remove chain
@@ -137,7 +137,7 @@ namespace Battle.State {
                     Hint("SYN");
                     // Game sends a signal and waits until server receives all signals
                     Synchronized = true;
-                    _connection.SendEndTurn(true);
+                    new EndTurnCmd(true).Send();
                     break;
 
                 case GameState.Turn:

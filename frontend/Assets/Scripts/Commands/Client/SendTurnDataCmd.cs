@@ -5,18 +5,18 @@ using Net.Utils.IO;
 
 namespace Commands.Client {
 
-    [ClientCmd(ClientAPI.SendTurnData)]
-    public class SendTurnDataCommand : IClientCommand {
+    [ClientCmd(ClientCmdId.SendTurnData)]
+    public class SendTurnDataCmd : ClientCommand {
 
-        private TurnData _td;
+        private readonly TurnData _td;
 
 
-        public SendTurnDataCommand (TurnData td) {
+        public SendTurnDataCmd (TurnData td) {
             _td = td;
         }
 
 
-        public void Serialize (EndianBinaryWriter writer) {
+        public override void Serialize (EndianBinaryWriter writer) {
             // todo: use DTO
             writer.WriteByte(_td.Flags);
             writer.WriteFloat(_td.XY.X);

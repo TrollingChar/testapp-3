@@ -1,12 +1,13 @@
 ﻿using Assets;
+using Attributes;
 using Utils.Singleton;
 
 
 namespace Battle.Weapons.OtherUtils {
 
-    public class SurrenderWeapon {
+    [Weapon(WeaponId.Surrender)]
+    public class SurrenderWeapon : StandardWeapon {
 
-        
         public static WeaponDescriptor Descriptor {
             get {
                 return new WeaponDescriptor(

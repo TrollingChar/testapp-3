@@ -1,16 +1,15 @@
 ﻿using System;
-using Commands.Client;
+using Battle.Weapons;
 
 
 namespace Attributes {
 
-    [AttributeUsage(AttributeTargets.Class)]
-    public class ClientCmdAttribute : IdAttribute {
+    public class WeaponAttribute : IdAttribute {
 
         private readonly byte _id;
 
 
-        public ClientCmdAttribute (ClientCmdId id) {
+        public WeaponAttribute (WeaponId id) {
             _id = (byte) id;
         }
 

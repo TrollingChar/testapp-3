@@ -1,12 +1,13 @@
 ﻿using Assets;
+using Attributes;
 using Utils.Singleton;
 
 
 namespace Battle.Weapons.Firearms {
 
-    public class UltraRifleWeapon {
+    [Weapon(WeaponId.UltraRifle)]
+    public class UltraRifleWeapon : StandardWeapon {
 
-        
         public static WeaponDescriptor Descriptor {
             get {
                 return new WeaponDescriptor(

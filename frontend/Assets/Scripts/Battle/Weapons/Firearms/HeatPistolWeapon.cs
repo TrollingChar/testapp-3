@@ -1,12 +1,13 @@
 ﻿using Assets;
+using Attributes;
 using Utils.Singleton;
 
 
 namespace Battle.Weapons.Firearms {
 
-    public class HeatPistolWeapon {
+    [Weapon(WeaponId.HeatPistol)]
+    public class HeatPistolWeapon : StandardWeapon {
 
-        
         public static WeaponDescriptor Descriptor {
             get {
                 return new WeaponDescriptor(

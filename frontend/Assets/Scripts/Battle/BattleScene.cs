@@ -2,6 +2,7 @@
 using Battle.Generation;
 using Battle.State;
 using Battle.Teams;
+using Commands.Client;
 using Commands.Server;
 using Core;
 using Messengers;
@@ -27,6 +28,7 @@ namespace Battle {
 
         // temp fields
         private EstimatedLandGen _landGen;
+
         private GameInitData _initData;
         private bool _initialized;
 
@@ -41,7 +43,7 @@ namespace Battle {
             RNG.Init(_initData.Seed);
 
             Connection = The<WSConnection>.Get();
-            CommandExecutor<HandleTurnDataCommand>.AddHandler(Handler);
+            CommandExecutor<HandleTurnDataCmd>.AddHandler(Handler);
 
             Camera = GetComponentInChildren<CameraWrapper>();
             The<CameraWrapper>.Set(Camera);
@@ -49,8 +51,8 @@ namespace Battle {
             StartLandGen();
         }
 
-        private void Handler(HandleTurnDataCommand cmd)
-        {
+
+        private void Handler (HandleTurnDataCmd cmd) {
             Work(cmd.Data);
         }
 
@@ -112,7 +114,7 @@ namespace Battle {
 
             // gather input and update world
             var td = new TurnData();
-            Connection.SendTurnData(td);
+            new SendTurnDataCmd(td).Send();
             Work(td);
         }
 
@@ -124,7 +126,7 @@ namespace Battle {
 
 
         private void OnDestroy () {
-            CommandExecutor<HandleTurnDataCommand>.RemoveHandler(Handler);
+            CommandExecutor<HandleTurnDataCmd>.RemoveHandler(Handler);
             The<World>.Set(null);
             The<GameStateController>.Set(null);
         }

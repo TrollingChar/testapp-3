@@ -8,7 +8,7 @@ namespace Battle.Objects.Controllers {
 
         private readonly GameStateController _state = The<GameStateController>.Get();
 
-        
+
         public virtual void Update (TurnData td) {}
 
 

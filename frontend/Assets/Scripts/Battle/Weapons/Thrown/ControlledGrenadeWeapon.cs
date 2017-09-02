@@ -1,12 +1,13 @@
 ﻿using Assets;
+using Attributes;
 using Utils.Singleton;
 
 
 namespace Battle.Weapons.Thrown {
 
-    public class ControlledGrenadeWeapon {
+    [Weapon(WeaponId.ControlledGrenade)]
+    public class ControlledGrenadeWeapon : StandardWeapon {
 
-        
         public static WeaponDescriptor Descriptor {
             get {
                 return new WeaponDescriptor(
@@ -15,8 +16,6 @@ namespace Battle.Weapons.Thrown {
                 );
             }
         }
-
-        
 
     }
 

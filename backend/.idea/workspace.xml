@@ -1,8 +1,38 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="21257060-81e8-4e09-82cf-3988a89d8b49" name="Default" comment="">
+    <list default="true" id="40297e15-dfb3-4f0b-8986-ce368735d218" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../frontend/Assets/Scripts/Commands/Client/ClientCmdId.cs" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../frontend/Assets/Scripts/Commands/Client/ClientCmdId.cs.meta" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../frontend/Assets/Scripts/Commands/Server/ServerCmdId.cs" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../frontend/Assets/Scripts/Commands/Server/ServerCmdId.cs.meta" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/Commands/Client/ClientAPI.cs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/Commands/Client/ClientAPI.cs.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/Commands/Server/ServerAPI.cs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/Commands/Server/ServerAPI.cs.meta" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/Commands/Client/IClientCommand.cs" afterPath="$PROJECT_DIR$/../frontend/Assets/Scripts/Commands/Client/ClientCommand.cs" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/Commands/Client/IClientCommand.cs.meta" afterPath="$PROJECT_DIR$/../frontend/Assets/Scripts/Commands/Client/ClientCommand.cs.meta" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/Attributes/ClientCmdAttribute.cs" afterPath="$PROJECT_DIR$/../frontend/Assets/Scripts/Attributes/ClientCmdAttribute.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/Attributes/IdAttribute.cs" afterPath="$PROJECT_DIR$/../frontend/Assets/Scripts/Attributes/IdAttribute.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/Attributes/ServerCmdAttribute.cs" afterPath="$PROJECT_DIR$/../frontend/Assets/Scripts/Attributes/ServerCmdAttribute.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/Commands/Client/AuthorizeCommand.cs" afterPath="$PROJECT_DIR$/../frontend/Assets/Scripts/Commands/Client/AuthorizeCommand.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/Commands/Client/EndTurnCommand.cs" afterPath="$PROJECT_DIR$/../frontend/Assets/Scripts/Commands/Client/EndTurnCommand.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/Commands/Client/EnterHubCommand.cs" afterPath="$PROJECT_DIR$/../frontend/Assets/Scripts/Commands/Client/EnterHubCommand.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/Commands/Client/QuitGameCommand.cs" afterPath="$PROJECT_DIR$/../frontend/Assets/Scripts/Commands/Client/QuitGameCommand.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/Commands/Client/SendTurnDataCommand.cs" afterPath="$PROJECT_DIR$/../frontend/Assets/Scripts/Commands/Client/SendTurnDataCommand.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/Commands/Server/AuthorizedCommand.cs" afterPath="$PROJECT_DIR$/../frontend/Assets/Scripts/Commands/Server/AuthorizedCommand.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/Commands/Server/GameStartedCommand.cs" afterPath="$PROJECT_DIR$/../frontend/Assets/Scripts/Commands/Server/GameStartedCommand.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/Commands/Server/HandleTurnDataCommand.cs" afterPath="$PROJECT_DIR$/../frontend/Assets/Scripts/Commands/Server/HandleTurnDataCommand.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/Commands/Server/HubChangedCommand.cs" afterPath="$PROJECT_DIR$/../frontend/Assets/Scripts/Commands/Server/HubChangedCommand.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/Commands/Server/PlayerQuitCommand.cs" afterPath="$PROJECT_DIR$/../frontend/Assets/Scripts/Commands/Server/PlayerQuitCommand.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/Commands/Server/ShowNoWinnerCommand.cs" afterPath="$PROJECT_DIR$/../frontend/Assets/Scripts/Commands/Server/ShowNoWinnerCommand.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/Commands/Server/ShowWinnerCommand.cs" afterPath="$PROJECT_DIR$/../frontend/Assets/Scripts/Commands/Server/ShowWinnerCommand.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/Commands/Server/StartNewTurnCommand.cs" afterPath="$PROJECT_DIR$/../frontend/Assets/Scripts/Commands/Server/StartNewTurnCommand.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/Core/Context.cs" afterPath="$PROJECT_DIR$/../frontend/Assets/Scripts/Core/Context.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/Menu/MenuScene.cs" afterPath="$PROJECT_DIR$/../frontend/Assets/Scripts/Menu/MenuScene.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/Menu/UI/OpponentSearchMenu.cs" afterPath="$PROJECT_DIR$/../frontend/Assets/Scripts/Menu/UI/OpponentSearchMenu.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/Net/WSConnection.cs" afterPath="$PROJECT_DIR$/../frontend/Assets/Scripts/Net/WSConnection.cs" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -40,6 +70,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
@@ -102,11 +133,11 @@
         </subPane>
       </pane>
       <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -312,22 +343,23 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="21257060-81e8-4e09-82cf-3988a89d8b49" name="Default" comment="" />
-      <created>1503941368164</created>
+      <changelist id="40297e15-dfb3-4f0b-8986-ce368735d218" name="Default" comment="" />
+      <created>1504339141801</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1503941368164</updated>
-      <workItem from="1503941396226" duration="536000" />
+      <updated>1504339141801</updated>
+      <workItem from="1504339219255" duration="2218000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="536000" />
+    <option name="totallyTimeSpent" value="2218000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="7" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Tool Output" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32985657" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
@@ -338,6 +370,7 @@
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="ANTLR Preview" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
@@ -364,8 +397,8 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="51">
+          <caret line="3" column="10" lean-forward="true" selection-start-line="3" selection-start-column="10" selection-end-line="3" selection-end-column="10" />
           <folding />
         </state>
       </provider>

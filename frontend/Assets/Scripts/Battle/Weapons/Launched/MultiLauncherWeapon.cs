@@ -1,11 +1,12 @@
 ﻿using Assets;
+using Attributes;
 using Utils.Singleton;
 
 
 namespace Battle.Weapons.Launched {
 
+    [Weapon(WeaponId.MultiLauncher)]
     public class MultiLauncherWeapon : StandardWeapon {
-
 
         public static WeaponDescriptor Descriptor {
             get {
@@ -15,7 +16,6 @@ namespace Battle.Weapons.Launched {
                 );
             }
         }
-        
 
     }
 
