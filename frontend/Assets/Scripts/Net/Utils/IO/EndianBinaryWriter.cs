@@ -207,7 +207,7 @@ namespace Net.Utils.IO {
         ///     for this writer. 4 bytes are written.
         /// </summary>
         /// <param name="value">The value to write</param>
-        public void WriteFloat (float value) {
+        public void WriteSingle (float value) {
             BitConverter.CopyBytes(value, _buffer, 0);
             WriteInternal(_buffer, 4);
         }

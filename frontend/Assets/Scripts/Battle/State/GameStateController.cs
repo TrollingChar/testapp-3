@@ -58,9 +58,6 @@ namespace Battle.State {
 
         public GameState CurrentState { get; private set; }
 
-//        private readonly BF _bf = The<BF>.Get();
-//        private readonly CoreEvents _coreEvents = The<CoreEvents>.Get();
-
         public Worm Worm {
             get { return _worm; }
             private set {

@@ -19,8 +19,10 @@ namespace Commands.Client {
         public override void Serialize (EndianBinaryWriter writer) {
             // todo: use DTO
             writer.WriteByte(_td.Flags);
-            writer.WriteFloat(_td.XY.X);
-            writer.WriteFloat(_td.XY.Y);
+            writer.WriteSingle(_td.XY.X);
+            writer.WriteSingle(_td.XY.Y);
+            writer.WriteByte(_td.Weapon);
+            writer.WriteByte(_td.Number);
         }
 
     }
