@@ -60,6 +60,7 @@ public class ServerSocket extends WebSocketAdapter {
         Session session = getSession();
         Player player = Players.get(session);
         try {
+            // todo: replace it with commands
             switch (bb.get()) {
                 case ClientAPI.AUTH:
                     player = Players.add(session, bb.getInt());
@@ -72,7 +73,13 @@ public class ServerSocket extends WebSocketAdapter {
                     // remove player from room
                     break;
                 case ClientAPI.TURN_DATA:
-                    player.room.onData(player, new TurnData(bb.get(), bb.getFloat(), bb.getFloat()));
+                    player.room.onData(player, new TurnData(
+                            bb.get(),
+                            bb.getFloat(),
+                            bb.getFloat(),
+                            bb.get(),
+                            bb.get()
+                    ));
                     break;
                 case ClientAPI.END_TURN:
                     player.room.onSync(player, new SyncData(bb.get()));

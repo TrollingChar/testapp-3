@@ -120,11 +120,13 @@ public class Room {
 
         if(player != activePlayer) return;
         ByteBuffer bb = ByteBuffer
-                .allocate(10)
+                .allocate(12)
                 .put(ServerAPI.TURN_DATA)
                 .put(data.flags)
                 .putFloat(data.x)
-                .putFloat(data.y);
+                .putFloat(data.y)
+                .put(data.weapon)
+                .put(data.number);
         Collection<Player> discon = sendToAll(bb, player);
         while (discon.size() > 0) sendQuitGame(discon);
         if (!players.contains(activePlayer)) newTurn();
