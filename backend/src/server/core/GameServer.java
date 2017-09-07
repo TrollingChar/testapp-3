@@ -1,9 +1,11 @@
-package server;
+package server.core;
 
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.ServerConnector;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
+import server.Hubs;
+import server.players.Players;
 
 import java.util.Random;
 

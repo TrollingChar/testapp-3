@@ -1,7 +1,11 @@
-package server;
+package server.core;
 
 import org.eclipse.jetty.websocket.api.Session;
 import org.eclipse.jetty.websocket.api.WebSocketAdapter;
+import server.players.PlayerImpl;
+import server.players.Players;
+import server.SyncData;
+import server.TurnData;
 import util.ClientAPI;
 import util.GameLogger;
 
@@ -58,7 +62,7 @@ public class ServerSocket extends WebSocketAdapter {
         if (len <= 0) return;
 
         Session session = getSession();
-        Player player = Players.get(session);
+        PlayerImpl player = Players.get(session);
         try {
             // todo: replace it with commands
             switch (bb.get()) {

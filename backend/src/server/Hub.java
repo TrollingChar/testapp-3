@@ -1,5 +1,7 @@
 package server;
 
+import server.players.PlayerImpl;
+
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -12,7 +14,7 @@ import java.util.Set;
  */
 public class Hub {
     int playersNeeded;
-    Set<Player> players;
+    Set<PlayerImpl> players;
 
     public Hub(int playersNeeded) {
         System.out.println("Hub.Hub");
@@ -20,7 +22,7 @@ public class Hub {
         players = new HashSet<>();
     }
 
-    public synchronized void add(Player player) {
+    public synchronized void add(PlayerImpl player) {
         System.out.println("Hub.add");
         player.hub = this;
         players.add(player);
@@ -28,14 +30,14 @@ public class Hub {
         if (players.size() == playersNeeded) startGame();
     }
 
-    public synchronized void removeSilently(Player player) {
+    public synchronized void removeSilently(PlayerImpl player) {
         System.out.println("Hub.removeSilently");
         players.remove(player);
         player.hub = null;
         sendPlayersCount();
     }
 
-    public synchronized void remove(Player player) throws IOException {
+    public synchronized void remove(PlayerImpl player) throws IOException {
         System.out.println("Hub.remove");
         players.remove(player);
         player.hub = null;
@@ -45,9 +47,9 @@ public class Hub {
 
     void sendPlayersCount() {
         System.out.println("Hub.sendPlayersCount");
-        Player player;
+        PlayerImpl player;
         int playersCount = players.size();
-        for (Iterator<Player> it = players.iterator(); it.hasNext(); ) {
+        for (Iterator<PlayerImpl> it = players.iterator(); it.hasNext(); ) {
             player = it.next();
             try {
                 player.sendHubStatus(playersNeeded, playersCount);
@@ -63,7 +65,7 @@ public class Hub {
     void startGame() {
         System.out.println("Hub.startGame");
         Room room = new Room(players);
-        for (Player player : players) player.hub = null;
+        for (PlayerImpl player : players) player.hub = null;
         players.clear();
         room.startGame();
     }

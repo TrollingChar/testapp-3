@@ -1,5 +1,8 @@
 package server;
 
+import server.core.GameServer;
+import server.players.PlayerImpl;
+
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.*;
@@ -21,20 +24,24 @@ import java.util.*;
  *   в конце хода отправлять список оставшихся в игре игроков
  *   клиенты могут кидать репорт если долго нет данных
  */
+@Deprecated
 public class Room {
-    Set<Player> observers; // игроки, которые наблюдают игру или сами играют
-    Queue<Player> players; // игроки, которые играют и по очереди делают ходы
+    // todo: PlayerImpl
+
+    Set<PlayerImpl> observers; // игроки, которые наблюдают игру или сами играют
+    Queue<PlayerImpl> players; // игроки, которые играют и по очереди делают ходы
     Replay replay;
-    Map<Player, SyncData> syncData; // данные синхронизации игры
-    Player activePlayer;
+    Map<PlayerImpl, SyncData> syncData; // данные синхронизации игры
+    PlayerImpl activePlayer;
 
     // когда всего 1 игрок
     boolean noWinFlag;
 
-    public Room(Set<Player> players) {
+    // fixme: why there is constructor and startGame method?
+    public Room(Set<PlayerImpl> players) {
         System.out.println("Room.Room");
         noWinFlag = players.size() == 1;
-        for(Player player : players) player.room = this;
+        for(PlayerImpl player : players) player.room = this;
         observers = new HashSet<>(players);
         this.players = new LinkedList<>(players);
         replay = new Replay();
@@ -44,16 +51,17 @@ public class Room {
     public void startGame() {
         System.out.println("Room.startGame");
         Collections.shuffle((List<?>) players);
-        Collection<Player> discon = sendStartGame();
+        Collection<PlayerImpl> discon = sendStartGame();
         while (discon.size() > 0) discon = sendQuitGame(discon);
         //newTurn();
     }
 
-    private Collection<Player> sendToAll(ByteBuffer bb, Player player) {
+    @Deprecated
+    private Collection<PlayerImpl> sendToAll(ByteBuffer bb, PlayerImpl player) {
         System.out.println("Room.sendToAll");
-        Collection<Player> discon = new LinkedList<>();
-        for (Iterator<Player> it = observers.iterator(); it.hasNext(); ) {
-            Player observer = it.next();
+        Collection<PlayerImpl> discon = new LinkedList<>();
+        for (Iterator<PlayerImpl> it = observers.iterator(); it.hasNext(); ) {
+            PlayerImpl observer = it.next();
             if (observer == player) continue;
             try {
                 observer.send(bb.duplicate());
@@ -69,11 +77,13 @@ public class Room {
         // we do not handle activePlayer here
     }
 
-    private Collection<Player> sendToAll(ByteBuffer bb) {
+    @Deprecated
+    private Collection<PlayerImpl> sendToAll(ByteBuffer bb) {
         return sendToAll(bb, null);
     }
 
-    private Collection<Player> sendStartGame() {
+    @Deprecated
+    private Collection<PlayerImpl> sendStartGame() {
         System.out.println("Room.sendStartGame");
         byte[] seed = new byte[4];
         GameServer.random.nextBytes(seed);
@@ -82,11 +92,12 @@ public class Room {
                 .put(ServerAPI.START_GAME)
                 .put(seed)
                 .put((byte) players.size());
-        for (Player player : players) bb.putInt(player.id);
+        for (PlayerImpl player : players) bb.putInt(player.id);
         return sendToAll(bb);
     }
 
-    private Collection<Player> sendQuitGame(Player player) {
+    @Deprecated
+    private Collection<PlayerImpl> sendQuitGame(PlayerImpl player) {
         ByteBuffer bb = ByteBuffer
                 .allocate(6)
                 .put(ServerAPI.LEFT_GAME)
@@ -95,16 +106,17 @@ public class Room {
         return sendToAll(bb);
     }
 
-    private Collection<Player> sendQuitGame(Collection<Player> discon) {
+    @Deprecated
+    private Collection<PlayerImpl> sendQuitGame(Collection<PlayerImpl> discon) {
         ByteBuffer bb = ByteBuffer
                 .allocate(2 + discon.size()*4)
                 .put(ServerAPI.LEFT_GAME)
                 .put((byte) discon.size());
-        for (Player player : discon) bb.putInt(player.id);
+        for (PlayerImpl player : discon) bb.putInt(player.id);
         return sendToAll(bb);
     }
 
-    public void onSync(Player player, SyncData data) {
+    public void onSync(PlayerImpl player, SyncData data) {
         System.out.println("Room.onSync");
         replay.log(player, data);
 
@@ -114,7 +126,8 @@ public class Room {
         if (syncData.size() == players.size()) newTurn();
     }
 
-    public void onData(Player player, TurnData data) {
+    @Deprecated
+    public void onData(PlayerImpl player, TurnData data) {
         System.out.println("Room.onData");
         replay.log(player, data);
 
@@ -127,18 +140,19 @@ public class Room {
                 .putFloat(data.y)
                 .put(data.weapon)
                 .put(data.number);
-        Collection<Player> discon = sendToAll(bb, player);
+        Collection<PlayerImpl> discon = sendToAll(bb, player);
         while (discon.size() > 0) sendQuitGame(discon);
         if (!players.contains(activePlayer)) newTurn();
     }
 
-    public void remove(Player player) {
+    @Deprecated
+    public void remove(PlayerImpl player) {
         System.out.println("Room.remove");
         Replay.logSurrender(player);
         player.room = null;
         observers.remove(player);
         players.remove(player);
-        Collection<Player> discon = sendQuitGame(player);
+        Collection<PlayerImpl> discon = sendQuitGame(player);
         while (discon.size() > 0) sendQuitGame(discon);
         if (!players.contains(activePlayer)) newTurn();
     }
@@ -161,13 +175,13 @@ public class Room {
                 }
             }
             players.add(activePlayer = players.remove());
-            Collection<Player> discon = sendNewTurn();
+            Collection<PlayerImpl> discon = sendNewTurn();
             while (discon.size() > 0) sendQuitGame(discon);
         } while (!players.contains(activePlayer));
     }
 
     private void endGame() {
-        for (Player observer : observers) observer.room = null;
+        for (PlayerImpl observer : observers) observer.room = null;
         observers.clear();
         players.clear();
         syncData.clear();
@@ -175,7 +189,8 @@ public class Room {
         replay.save();
     }
 
-    private Collection<Player> sendNewTurn() {
+    @Deprecated
+    private Collection<PlayerImpl> sendNewTurn() {
         ByteBuffer bb = ByteBuffer
                 .allocate(5)
                 .put(ServerAPI.NEW_TURN)
@@ -190,7 +205,7 @@ public class Room {
         sendToAll(bb);
     }
 
-    private void sendWin(Player winner) {
+    private void sendWin(PlayerImpl winner) {
         ByteBuffer bb = ByteBuffer
                 .allocate(5)
                 .put(ServerAPI.WINNER)

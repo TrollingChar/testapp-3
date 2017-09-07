@@ -1,5 +1,7 @@
 package server;
 
+import server.players.PlayerImpl;
+
 /**
  * Доступ к хабам, где сидят игроки.
  */
@@ -12,7 +14,7 @@ public class Hubs {
         for (int i = 1; i < 256; i++) hubs[i] = new Hub(i);
     }
 
-    public static void add(Player player, byte hubId) {
+    public static void add(PlayerImpl player, byte hubId) {
         System.out.println("Hubs.add");
         hubs[hubId].add(player);
     }
