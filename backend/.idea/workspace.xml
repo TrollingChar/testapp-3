@@ -2,32 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="86dbbdb7-2f6a-437f-92d5-abdb94d49076" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/server/event/Dispatcher.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/server/event/client/EndTurnEvent.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/server/event/client/JoinLobbyEvent.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/server/event/client/QuitGameEvent.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/server/event/client/TurnDataEvent.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/server/event/server/AuthorizedEvent.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/server/event/server/UpdateLobbyStatusEvent.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend.iml" afterPath="$PROJECT_DIR$/backend.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/server/core/ServerSocket.java" afterPath="$PROJECT_DIR$/src/server/core/ServerSocket.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/server/players/NullPlayer.java" afterPath="$PROJECT_DIR$/src/server/players/NullPlayer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/server/players/Player.java" afterPath="$PROJECT_DIR$/src/server/players/Player.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/server/players/PlayerImpl.java" afterPath="$PROJECT_DIR$/src/server/players/PlayerImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/server/players/Players.java" afterPath="$PROJECT_DIR$/src/server/players/Players.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/server/rooms/Battle.java" afterPath="$PROJECT_DIR$/src/server/rooms/Battle.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/server/rooms/Lobbies.java" afterPath="$PROJECT_DIR$/src/server/rooms/Lobbies.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/server/rooms/Lobby.java" afterPath="$PROJECT_DIR$/src/server/rooms/Lobby.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/server/rooms/Room.java" afterPath="$PROJECT_DIR$/src/server/rooms/Room.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/server/annotations/ClientCmdCode.java" afterPath="$PROJECT_DIR$/src/server/annotations/ClientEventCode.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/server/annotations/ServerCmdCode.java" afterPath="$PROJECT_DIR$/src/server/annotations/ServerEventCode.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/server/command/client/AuthorizeCmd.java" afterPath="$PROJECT_DIR$/src/server/event/client/AuthorizeEvent.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/server/command/client/ClientCommand.java" afterPath="$PROJECT_DIR$/src/server/event/client/ClientEvent.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/server/command/client/ClientCommands.java" afterPath="$PROJECT_DIR$/src/server/event/client/ClientEvents.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/server/command/server/ServerCommand.java" afterPath="$PROJECT_DIR$/src/server/event/server/ServerEvent.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/server/command/server/ServerCommands.java" afterPath="$PROJECT_DIR$/src/server/event/server/ServerEvents.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -1017,12 +992,20 @@
       <updated>1504724151680</updated>
       <workItem from="1504724153194" duration="10785000" />
       <workItem from="1504806173713" duration="7711000" />
-      <workItem from="1504871319796" duration="4129000" />
+      <workItem from="1504871319796" duration="4231000" />
     </task>
+    <task id="LOCAL-00001" summary="server refactoring: commands and dispatcher">
+      <created>1504875552377</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1504875552377</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22625000" />
+    <option name="totallyTimeSpent" value="22727000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1070,7 +1053,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="starting to refactor server" />
     <MESSAGE value="server refactoring partially done" />
-    <option name="LAST_COMMIT_MESSAGE" value="server refactoring partially done" />
+    <MESSAGE value="server refactoring: commands and dispatcher" />
+    <option name="LAST_COMMIT_MESSAGE" value="server refactoring: commands and dispatcher" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
