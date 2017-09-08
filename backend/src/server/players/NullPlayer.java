@@ -1,11 +1,11 @@
 package server.players;
 
-import server.command.server.ServerCommand;
+import server.event.server.ServerEvent;
 
 public class NullPlayer implements Player {
 
     @Override
-    public void send(ServerCommand cmd) {
+    public void send(ServerEvent cmd) {
     }
 
     @Override

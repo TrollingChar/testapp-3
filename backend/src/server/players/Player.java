@@ -1,9 +1,9 @@
 package server.players;
 
-import server.command.server.ServerCommand;
+import server.event.server.ServerEvent;
 
 public interface Player {
-    void send(ServerCommand cmd);
+    void send(ServerEvent cmd);
     void disconnect();
     int getId();
 }

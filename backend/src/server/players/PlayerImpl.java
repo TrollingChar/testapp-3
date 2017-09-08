@@ -5,7 +5,7 @@ import server.Hub;
 import server.Hubs;
 import server.Room;
 import server.ServerAPI;
-import server.command.server.ServerCommand;
+import server.event.server.ServerEvent;
 import util.GameLogger;
 
 import java.io.IOException;
@@ -27,7 +27,7 @@ public class PlayerImpl implements Player {
     }
 
     @Override
-    public void send(ServerCommand cmd) {
+    public void send(ServerEvent cmd) {
         // synchronize?
         if (dead) return;
         try {

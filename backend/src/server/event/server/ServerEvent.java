@@ -1,7 +1,7 @@
-package server.command.server;
+package server.event.server;
 
 import java.nio.ByteBuffer;
 
-public interface ServerCommand {
+public interface ServerEvent {
     ByteBuffer getByteBuffer();
 }

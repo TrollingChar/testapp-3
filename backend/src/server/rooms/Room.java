@@ -1,6 +1,6 @@
 package server.rooms;
 
-import server.command.server.ServerCommand;
+import server.event.server.ServerEvent;
 import server.players.Player;
 
 import java.util.List;
@@ -17,11 +17,11 @@ public class Room {
         players.remove(player);
     }
 
-    public void broadcast(ServerCommand cmd) {
+    public void broadcast(ServerEvent cmd) {
         for (Player p : players) p.send(cmd);
     }
 
-    public void broadcast(ServerCommand cmd, Predicate<Player> predicate) {
+    public void broadcast(ServerEvent cmd, Predicate<Player> predicate) {
         for (Player p : players) {
             if (predicate.test(p)) p.send(cmd);
         }

@@ -2,7 +2,7 @@ package server.core;
 
 import org.eclipse.jetty.websocket.api.Session;
 import org.eclipse.jetty.websocket.api.WebSocketAdapter;
-import server.players.PlayerImpl;
+import server.players.Player;
 import server.players.Players;
 import server.SyncData;
 import server.TurnData;
@@ -62,24 +62,24 @@ public class ServerSocket extends WebSocketAdapter {
         if (len <= 0) return;
 
         Session session = getSession();
-        PlayerImpl player = Players.get(session);
+        Player player = Players.get(session);
         try {
             // todo: replace it with commands
             switch (bb.get()) {
                 case ClientAPI.AUTH:
-                    // Players singleton subscribes to this command
+                    // Players singleton subscribes to this event
                     player = Players.add(session, bb.getInt());
                     player.sendAccountData();
                     break;
                 case ClientAPI.TO_HUB:
-                    /// Hubs singleton subscribes to this command
+                    /// Hubs singleton subscribes to this event
                     player.switchHub(bb.get());
                     break;
                 case ClientAPI.QUIT:
-                    // room subscribes to this command
+                    // room subscribes to this event
                     break;
                 case ClientAPI.TURN_DATA:
-                    // room subscribes to this command
+                    // room subscribes to this event
                     player.room.onData(player, new TurnData(
                             bb.get(),
                             bb.getFloat(),
@@ -89,7 +89,7 @@ public class ServerSocket extends WebSocketAdapter {
                     ));
                     break;
                 case ClientAPI.END_TURN:
-                    // room subscribes to this command
+                    // room subscribes to this event
                     player.room.onSync(player, new SyncData(bb.get()));
                     break;
                 default:
