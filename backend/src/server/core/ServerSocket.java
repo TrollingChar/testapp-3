@@ -67,16 +67,19 @@ public class ServerSocket extends WebSocketAdapter {
             // todo: replace it with commands
             switch (bb.get()) {
                 case ClientAPI.AUTH:
+                    // Players singleton subscribes to this command
                     player = Players.add(session, bb.getInt());
                     player.sendAccountData();
                     break;
                 case ClientAPI.TO_HUB:
+                    /// Hubs singleton subscribes to this command
                     player.switchHub(bb.get());
                     break;
                 case ClientAPI.QUIT:
-                    // remove player from room
+                    // room subscribes to this command
                     break;
                 case ClientAPI.TURN_DATA:
+                    // room subscribes to this command
                     player.room.onData(player, new TurnData(
                             bb.get(),
                             bb.getFloat(),
@@ -86,6 +89,7 @@ public class ServerSocket extends WebSocketAdapter {
                     ));
                     break;
                 case ClientAPI.END_TURN:
+                    // room subscribes to this command
                     player.room.onSync(player, new SyncData(bb.get()));
                     break;
                 default:
