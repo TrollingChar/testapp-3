@@ -4,8 +4,8 @@ using Net.Utils.IO;
 
 namespace Commands.Server {
 
-    [ServerCmd(ServerCmdId.HubChanged)]
-    public class HubChangedCmd : IServerCommand {
+    [ServerCmd(ServerCmdId.UpdateLobbyStatus)]
+    public class UpdateLobbyStatusCmd : IServerCommand {
 
         public byte HubId { get; private set; }
         public byte Players { get; private set; }
@@ -18,7 +18,7 @@ namespace Commands.Server {
 
 
         public void Execute () {
-            CommandExecutor<HubChangedCmd>.Execute(this);
+            CommandExecutor<UpdateLobbyStatusCmd>.Execute(this);
         }
 
     }

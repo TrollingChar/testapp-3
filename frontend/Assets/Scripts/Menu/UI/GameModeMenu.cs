@@ -32,17 +32,17 @@ namespace Menu.UI {
 
 
         private void OnClicked1Player () {
-            MenuScene.ShowOpponentSearchMenu(1);
+            MenuScene.ShowLobbyMenu(1);
         }
 
 
         private void OnClicked2Players () {
-            MenuScene.ShowOpponentSearchMenu(2);
+            MenuScene.ShowLobbyMenu(2);
         }
 
 
         private void OnClicked3Players () {
-            MenuScene.ShowOpponentSearchMenu(3);
+            MenuScene.ShowLobbyMenu(3);
         }
 
 

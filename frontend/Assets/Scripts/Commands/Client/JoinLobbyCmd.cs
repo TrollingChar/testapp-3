@@ -6,13 +6,13 @@ using Utils.Singleton;
 
 namespace Commands.Client {
 
-    [ClientCmd(ClientCmdId.EnterHub)]
-    public class EnterHubCmd : ClientCommand {
+    [ClientCmd(ClientCmdId.JoinLobby)]
+    public class JoinLobbyCmd : ClientCommand {
 
         private readonly byte _hubId;
 
 
-        public EnterHubCmd (byte hubId) {
+        public JoinLobbyCmd (byte hubId) {
             _hubId = hubId;
         }
 

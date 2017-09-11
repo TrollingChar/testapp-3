@@ -14,7 +14,7 @@ namespace Menu {
         [SerializeField] private ConnectionMenu _connectionMenu;
         [SerializeField] private MainMenu _mainMenu;
         [SerializeField] private GameModeMenu _gameModeMenu;
-        [SerializeField] private OpponentSearchMenu _opponentSearchMenu;
+        [SerializeField] private LobbyMenu _lobbyMenu;
 
         private WSConnection Connection { get; set; }
 
@@ -57,10 +57,10 @@ namespace Menu {
         }
 
 
-        public void ShowOpponentSearchMenu (byte hubId) {
+        public void ShowLobbyMenu (byte hubId) {
             _gameModeMenu.Hide();
-            _opponentSearchMenu.Show();
-            _opponentSearchMenu.JoinHub(hubId);
+            _lobbyMenu.Show();
+            _lobbyMenu.JoinHub(hubId);
         }
 
 
@@ -68,7 +68,7 @@ namespace Menu {
             // todo: hide current menu
             _connectionMenu.Hide();
             _gameModeMenu.Hide();
-            _opponentSearchMenu.Hide();
+            _lobbyMenu.Hide();
 
             _mainMenu.Show();
         }

@@ -3,13 +3,14 @@
     public enum ServerCmdId : byte {
 
         Authorized = 0,
-        HubChanged = 1,
-        GameStarted = 2,
+        UpdateLobbyStatus = 1,
+        RemovedFromLobby = 2,
         PlayerLeftGame = 3,
         ShowWinner = 4,
         HandleTurnData = 5,
         NoWinner = 6,
-        StartNewTurn = 7
+        StartNewTurn = 7,
+        GameStarted = 8,
 
     }
 

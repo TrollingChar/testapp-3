@@ -9,7 +9,7 @@ using Utils.Singleton;
 
 namespace Menu.UI {
 
-    public class OpponentSearchMenu : Panel {
+    public class LobbyMenu : Panel {
 
         [SerializeField] private Button _cancelButton;
 
@@ -23,40 +23,42 @@ namespace Menu.UI {
             _connection = The<WSConnection>.Get();
             _menuScene = The<MenuScene>.Get();
 
-            CommandExecutor<HubChangedCmd>.AddHandler(OnHubStatusChanged);
+            CommandExecutor<UpdateLobbyStatusCmd>.AddHandler(OnHubStatusChanged);
+            CommandExecutor<RemovedFromLobbyCmd>.AddHandler(OnRemoval);
             _cancelButton.onClick.AddListener(OnClickedCancel);
         }
 
 
-        private void OnHubStatusChanged (HubChangedCmd obj) {
+        private void OnHubStatusChanged (UpdateLobbyStatusCmd obj) {
             UpdateHubStatus(obj.HubId, obj.Players);
         }
 
 
         protected override void Deactivate () {
-            CommandExecutor<HubChangedCmd>.RemoveHandler(OnHubStatusChanged);
+            CommandExecutor<UpdateLobbyStatusCmd>.RemoveHandler(OnHubStatusChanged);
             _cancelButton.onClick.RemoveListener(OnClickedCancel);
         }
 
 
         private void OnClickedCancel () {
-            new EnterHubCmd(0).Send();
+            new QuitLobbyCmd().Send();
+//            new JoinLobbyCmd(0).Send();
             _text.text = "Выход из комнаты...";
         }
 
 
         public void JoinHub (byte hub) {
             _text.text = "Вход в комнату " + hub + "...";
-            new EnterHubCmd(hub).Send();
+            new JoinLobbyCmd(hub).Send();
         }
 
 
         public void UpdateHubStatus (int hub, int players) {
-            if (hub != 0) {
-                _text.text = "Игроков в комнате\n" + players + " / " + hub;
-                return;
-            }
+            _text.text = "Игроков в комнате\n" + players + " / " + hub;
+        }
 
+
+        public void OnRemoval (RemovedFromLobbyCmd removedFromLobbyCmd) {
             _menuScene.ShowMainMenu();
             _text.text = "Игра отменена";
         }
