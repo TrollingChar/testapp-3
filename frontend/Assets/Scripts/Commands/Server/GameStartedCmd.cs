@@ -13,10 +13,11 @@ namespace Commands.Server {
 
 
         public void Deserialize (EndianBinaryReader reader) {
-            // todo: use DTO
             int seed = reader.ReadInt32();
             var players = new List<int>();
-            for (byte i = 0, end = reader.ReadByte(); i < end; ++i) players.Add(reader.ReadInt32());
+            for (byte i = 0, end = reader.ReadByte(); i < end; ++i) {
+                players.Add(reader.ReadInt32());
+            }
             Data = new GameInitData(seed, players);
         }
 
