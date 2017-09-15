@@ -6,21 +6,23 @@ import rooms.Battle;
 
 import java.nio.ByteBuffer;
 
+
 /**
  * @author trollingchar
  */
 @ClientCommandCode(ClientCommandCodes.END_TURN)
 public class EndTurnCmd extends ClientCommand {
+    private EndTurnData endTurnData;
 
-    EndTurnData endTurnData;
 
     @Override
-    public void deserialize(ByteBuffer byteBuffer) {
-        // todo
+    public void deserialize (ByteBuffer byteBuffer) {
+        endTurnData = new EndTurnData(byteBuffer);
     }
 
+
     @Override
-    public void execute() {
+    public void execute () {
         Battle battle = (Battle) player.getRoom(room -> room instanceof Battle);
         if (battle != null) battle.onEndTurn(player, endTurnData);
     }

@@ -7,19 +7,22 @@ import players.Players;
 
 import java.nio.ByteBuffer;
 
+
 @ClientCommandCode(ClientCommandCodes.AUTHORIZE)
 public class AuthorizeCmd extends ClientCommand {
 
     public Session session;
     private int id;
 
+
     @Override
-    public void deserialize(ByteBuffer byteBuffer) {
+    public void deserialize (ByteBuffer byteBuffer) {
         id = byteBuffer.getInt();
     }
 
+
     @Override
-    public void execute() {
+    public void execute () {
         if (player != null) {
             // todo: bind info to player
             System.err.println("Double authorization attempt!");

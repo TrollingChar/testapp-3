@@ -10,10 +10,12 @@ import rooms.Lobbies;
 
 import java.util.Random;
 
+
 public class Context {
     public static Random random = new Random();
 
-    public static void main(String[] args) {
+
+    public static void main (String[] args) {
         Commands.init();
         Lobbies.init();
 

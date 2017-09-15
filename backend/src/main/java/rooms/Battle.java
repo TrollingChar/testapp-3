@@ -8,6 +8,7 @@ import players.Player;
 
 import java.util.*;
 
+
 /**
  * @author trollingchar
  */
@@ -27,13 +28,14 @@ public class Battle extends Room {
 
     // receive commands: turnData, syncData, quitGame
 
+
     @Override
-    protected void onPlayerRemoved(Player player) {
+    protected void onPlayerRemoved (Player player) {
         broadcast(new LeftGameCmd(player.getId()));
     }
 
-    public void start() {
 
+    public void start () {
         List<Player> playerList = new ArrayList<>(players);
         Collections.shuffle(playerList, Context.random);
         activePlayers = new LinkedList<>(playerList);
@@ -42,7 +44,8 @@ public class Battle extends Room {
         broadcast(new NewGameCmd(Context.random.nextInt(), activePlayers));
     }
 
-    public void onTurnData(Player player, TurnData turnData) {
+
+    public void onTurnData (Player player, TurnData turnData) {
         if (player != currentPlayer) {
             player.logCheating("is sending turn data during turn of other player");
             return;
@@ -50,7 +53,8 @@ public class Battle extends Room {
         broadcast(new UpdateWorldCmd(turnData), p -> p != player);
     }
 
-    public void onEndTurn(Player player, EndTurnData endTurnData) {
+
+    public void onEndTurn (Player player, EndTurnData endTurnData) {
         if (!endTurnData.alive) {
             // remove player from active players and notify players
         }
@@ -61,26 +65,31 @@ public class Battle extends Room {
         newTurn();
     }
 
-    private void newTurn() {
+
+    private void newTurn () {
         etdMap.clear();
-        checkVictoryConditions();
+        if (checkVictoryConditions()) return;
         // select next active player and notify players about that
         broadcast(new NewTurnCmd(currentPlayer.getId()));
     }
 
-    protected boolean checkVictoryConditions() {
+
+    protected boolean checkVictoryConditions () {
         switch (activePlayers.size()) {
             case 0:
                 broadcast(GameEndedCmd.draw());
                 break;
-            case 1: broadcast(GameEndedCmd.victory(activePlayers.peek().getId()));
+            case 1:
+                broadcast(GameEndedCmd.victory(activePlayers.peek().getId()));
                 break;
-            default: return false;
+            default:
+                return false;
         }
         return true;
     }
 
-    private void onDesync() {
+
+    private void onDesync () {
         System.out.println("ERROR - BATTLE DESYNCRONIZED");
         broadcast(GameEndedCmd.desync());
     }

@@ -10,16 +10,19 @@ import util.ByteBufferLogger;
 
 import java.nio.ByteBuffer;
 
+
 public class GameServerSocket extends WebSocketAdapter {
     private Player player;
 
+
     @Override
-    public void onWebSocketConnect(Session sess) {
+    public void onWebSocketConnect (Session sess) {
         super.onWebSocketConnect(sess);
     }
 
+
     @Override
-    public void onWebSocketBinary(byte[] payload, int offset, int len) {
+    public void onWebSocketBinary (byte[] payload, int offset, int len) {
         // empty array is ping
         if (len == 0) return;
 
@@ -38,19 +41,22 @@ public class GameServerSocket extends WebSocketAdapter {
         player = cmd.player;
     }
 
+
     @Override
-    public void onWebSocketText(String message) {
+    public void onWebSocketText (String message) {
         // no text allowed
     }
 
+
     @Override
-    public void onWebSocketError(Throwable cause) {
+    public void onWebSocketError (Throwable cause) {
         System.err.println("WEBSOCKET ERROR");
         cause.printStackTrace();
     }
 
+
     @Override
-    public void onWebSocketClose(int statusCode, String reason) {
+    public void onWebSocketClose (int statusCode, String reason) {
         if (player != null) {
             player.disconnect();
         }

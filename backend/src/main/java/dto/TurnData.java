@@ -2,6 +2,7 @@ package dto;
 
 import java.nio.ByteBuffer;
 
+
 /**
  * @author trollingchar
  */
@@ -11,18 +12,25 @@ public class TurnData implements DTO {
     private byte weapon; // 0 - not selected
     private byte numKey; // 1-5, 0 - not pressed
 
-    @Override
-    public void serialize(ByteBuffer byteBuffer) {
-        byteBuffer
-                .put(keys)
-                .putFloat(x)
-                .putFloat(y)
-                .put(weapon)
-                .put(numKey);
+
+    public TurnData (ByteBuffer byteBuffer) {
+        deserialize(byteBuffer);
     }
 
+
     @Override
-    public void deserialize(ByteBuffer byteBuffer) {
+    public void serialize (ByteBuffer byteBuffer) {
+        byteBuffer
+            .put(keys)
+            .putFloat(x)
+            .putFloat(y)
+            .put(weapon)
+            .put(numKey);
+    }
+
+
+    @Override
+    public void deserialize (ByteBuffer byteBuffer) {
         keys = byteBuffer.get();
         x = byteBuffer.getFloat();
         y = byteBuffer.getFloat();

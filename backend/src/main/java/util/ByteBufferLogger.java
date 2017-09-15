@@ -2,11 +2,13 @@ package util;
 
 import java.nio.ByteBuffer;
 
+
 public class ByteBufferLogger {
 
-    private ByteBufferLogger() {
+    private ByteBufferLogger () {
         // no instance
     }
+
 
     public static void log (ByteBuffer byteBuffer) {
         int pos = byteBuffer.position();

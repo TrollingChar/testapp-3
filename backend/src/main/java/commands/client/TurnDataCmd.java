@@ -6,21 +6,23 @@ import rooms.Battle;
 
 import java.nio.ByteBuffer;
 
+
 /**
  * @author trollingchar
  */
 @ClientCommandCode(ClientCommandCodes.TURN_DATA)
 public class TurnDataCmd extends ClientCommand {
-
     private TurnData turnData;
 
-    @Override
-    public void deserialize(ByteBuffer byteBuffer) {
-        // todo
-    }
 
     @Override
-    public void execute() {
+    public void deserialize (ByteBuffer byteBuffer) {
+        turnData = new TurnData(byteBuffer);
+    }
+
+
+    @Override
+    public void execute () {
         Battle battle = (Battle) player.getRoom(room -> room instanceof Battle);
         if (battle != null) battle.onTurnData(player, turnData);
     }

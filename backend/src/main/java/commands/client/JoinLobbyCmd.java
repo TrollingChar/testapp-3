@@ -5,18 +5,21 @@ import rooms.Lobbies;
 
 import java.nio.ByteBuffer;
 
+
 @ClientCommandCode(ClientCommandCodes.JOIN_LOBBY)
 public class JoinLobbyCmd extends ClientCommand {
 
     private byte lobbyId;
 
+
     @Override
-    public void deserialize(ByteBuffer byteBuffer) {
+    public void deserialize (ByteBuffer byteBuffer) {
         lobbyId = byteBuffer.get();
     }
 
+
     @Override
-    public void execute() {
+    public void execute () {
         player.joinRoom(Lobbies.getLobby(lobbyId));
     }
 }

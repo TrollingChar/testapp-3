@@ -8,9 +8,9 @@ import rooms.Room;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.Set;
 import java.util.function.Predicate;
+
 
 public class Player {
     private final int id;
@@ -18,7 +18,8 @@ public class Player {
     private Session session;
     private Set<Room> rooms;
 
-    public Player(int id, Session session) {
+
+    public Player (int id, Session session) {
         online = true;
         rooms = new HashSet<>();
 
@@ -26,7 +27,8 @@ public class Player {
         this.session = session;
     }
 
-    public void send(ServerCommand cmd) {
+
+    public void send (ServerCommand cmd) {
         if (!online) return;
 
         ByteBuffer bb = ByteBuffer.allocate(64);
@@ -42,11 +44,14 @@ public class Player {
         }
     }
 
-    public void disconnect() {
-        if (online) try {
-            session.disconnect();
-        } catch (IOException e) {
-            System.err.println("ERROR WHEN DISCONNECTING PLAYER");
+
+    public void disconnect () {
+        if (online) {
+            try {
+                session.disconnect();
+            } catch (IOException e) {
+                System.err.println("ERROR WHEN DISCONNECTING PLAYER");
+            }
         }
         online = false;
         // notify rooms
@@ -54,34 +59,41 @@ public class Player {
         Players.logout(id);
     }
 
-    public void joinRoom(Room room) {
+
+    public void joinRoom (Room room) {
         rooms.add(room);
         room.addPlayer(this);
     }
 
-    public void quitRoom(Room room) {
+
+    public void quitRoom (Room room) {
         rooms.remove(room);
         room.removePlayer(this);
     }
 
-    public Room getRoom(Predicate<Room> predicate) {
+
+    public Room getRoom (Predicate<Room> predicate) {
         for (Room room : rooms) if (predicate.test(room)) return room;
         return null;
     }
 
-    public Set<Room> getRooms() {
+
+    public Set<Room> getRooms () {
         return rooms;
     }
 
-    public void log(String msg) {
+
+    public void log (String msg) {
         System.out.printf("player %d : %s\n", id, msg);
     }
 
-    public void logCheating(String msg) {
+
+    public void logCheating (String msg) {
         System.out.printf("player %d : cheating attempt : %s\n", id, msg);
     }
 
-    public int getId() {
+
+    public int getId () {
         return id;
     }
 }
