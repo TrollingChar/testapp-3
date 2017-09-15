@@ -2,44 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2b6ee35c-c815-4572-a419-9640a7ca2828" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Weapons/Armageddon.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Weapons/Axe.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Weapons/BirdLauncher.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Weapons/Blaster.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Weapons/BulletHell.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Weapons/Drill.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Weapons/DropFrog.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Weapons/DropMole.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Weapons/Earthquake.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Weapons/Erosion.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Weapons/Flamethrower.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Weapons/Frog.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Weapons/GsomRaycaster.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Weapons/Harpoon.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Weapons/HomingMissile.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Weapons/Jetpack.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Weapons/MassTeleport.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Weapons/Medikit.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Weapons/MindControl.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Weapons/MineGun.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Weapons/Mole.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Weapons/Napalm.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Weapons/Nuke.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Weapons/PhantomGrenade.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Weapons/Plasmagun.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Weapons/PoisonCloud.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Weapons/PoisonContainer.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Weapons/Superfrog.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Weapons/Turret.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Weapons/VacuumBomb.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/Battle/Arsenal.meta" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/ProjectSettings/ProjectSettings.asset" afterPath="$PROJECT_DIR$/../frontend/ProjectSettings/ProjectSettings.asset" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/dto/EndTurnData.java" afterPath="$PROJECT_DIR$/src/main/java/dto/EndTurnData.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/dto/TurnData.java" afterPath="$PROJECT_DIR$/src/main/java/dto/TurnData.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/rooms/Battle.java" afterPath="$PROJECT_DIR$/src/main/java/rooms/Battle.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/ProjectSettings/ProjectVersion.txt" afterPath="$PROJECT_DIR$/../frontend/ProjectSettings/ProjectVersion.txt" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -59,11 +23,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Battle.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Battle.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/rooms/Battle.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="367">
-              <caret line="52" column="47" lean-forward="true" selection-start-line="52" selection-start-column="47" selection-end-line="52" selection-end-column="47" />
+            <state relative-caret-position="454">
+              <caret line="52" column="20" lean-forward="true" selection-start-line="52" selection-start-column="20" selection-end-line="52" selection-end-column="20" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -106,7 +70,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TurnData.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="TurnData.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/dto/TurnData.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="352">
@@ -184,12 +148,12 @@
         <option value="$PROJECT_DIR$/src/main/java/Context.java" />
         <option value="$PROJECT_DIR$/src/main/java/core/Context.java" />
         <option value="$PROJECT_DIR$/src/main/java/commands/server/NewGameCmd.java" />
-        <option value="$PROJECT_DIR$/src/main/java/rooms/Battle.java" />
         <option value="$PROJECT_DIR$/src/main/java/dto/Boolean.java" />
         <option value="$PROJECT_DIR$/src/main/java/dto/Booleans.java" />
         <option value="$PROJECT_DIR$/src/main/java/dto/DTO.java" />
         <option value="$PROJECT_DIR$/src/main/java/dto/EndTurnData.java" />
         <option value="$PROJECT_DIR$/src/main/java/dto/TurnData.java" />
+        <option value="$PROJECT_DIR$/src/main/java/rooms/Battle.java" />
       </list>
     </option>
   </component>
@@ -1012,12 +976,20 @@
       <workItem from="1505244482308" duration="1285000" />
       <workItem from="1505373241169" duration="15390000" />
       <workItem from="1505417018336" duration="5228000" />
-      <workItem from="1505463640540" duration="4173000" />
+      <workItem from="1505463640540" duration="6397000" />
     </task>
+    <task id="LOCAL-00001" summary="TurnData &amp; EndTurnData are DTOs">
+      <created>1505475627915</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1505475627915</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="68311000" />
+    <option name="totallyTimeSpent" value="70535000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1062,6 +1034,10 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="TurnData &amp; EndTurnData are DTOs" />
+    <option name="LAST_COMMIT_MESSAGE" value="TurnData &amp; EndTurnData are DTOs" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <option name="time" value="8" />
@@ -1073,14 +1049,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/GameServer.java" />
     <entry file="jar://$MAVEN_REPOSITORY$/org/eclipse/jetty/websocket/websocket-api/9.2.7.v20150116/websocket-api-9.2.7.v20150116.jar!/org/eclipse/jetty/websocket/api/Session.class">
       <provider selected="true" editor-type-id="text-editor">
@@ -1322,16 +1290,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/rooms/Battle.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="367">
-          <caret line="52" column="47" lean-forward="true" selection-start-line="52" selection-start-column="47" selection-end-line="52" selection-end-column="47" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/commands/client/EndTurnCmd.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
@@ -1374,6 +1332,24 @@
         <state relative-caret-position="352">
           <caret line="27" column="34" lean-forward="true" selection-start-line="27" selection-start-column="34" selection-end-line="27" selection-end-column="34" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/tools/jdk1.8.0_121/src.zip!/java/util/Map.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="392">
+          <caret line="239" column="6" lean-forward="false" selection-start-line="239" selection-start-column="6" selection-end-line="239" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/rooms/Battle.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="454">
+          <caret line="52" column="20" lean-forward="true" selection-start-line="52" selection-start-column="20" selection-end-line="52" selection-end-column="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

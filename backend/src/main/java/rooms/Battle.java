@@ -54,11 +54,15 @@ public class Battle extends Room {
         if (!endTurnData.alive) {
             // remove player from active players and notify players
         }
-        // if received this message from all active players and checksums are same,
+        if (etdMap.put(player, endTurnData) != null) {
+            player.logCheating("is sending end turn data more than once");
+        }
+        // check if all players sent end turn data
         newTurn();
     }
 
     private void newTurn() {
+        etdMap.clear();
         checkVictoryConditions();
         // select next active player and notify players about that
         broadcast(new NewTurnCmd(currentPlayer.getId()));
