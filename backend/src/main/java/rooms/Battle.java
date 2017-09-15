@@ -6,16 +6,16 @@ import dto.EndTurnData;
 import dto.TurnData;
 import players.Player;
 
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 
 /**
  * @author trollingchar
  */
 public class Battle extends Room {
     // field 'players' inherited - they are observers here
-    private Queue<Player> activePlayers = new LinkedList<>();
+    private Queue<Player> activePlayers;
     private Player currentPlayer;
+    private Map<Player, EndTurnData> etdMap = new HashMap<>();
 
     /* rules:
      *  server broadcasts players order and rng seed
@@ -33,6 +33,11 @@ public class Battle extends Room {
     }
 
     public void start() {
+
+        List<Player> playerList = new ArrayList<>(players);
+        Collections.shuffle(playerList, Context.random);
+        activePlayers = new LinkedList<>(playerList);
+
         // init all
         broadcast(new NewGameCmd(Context.random.nextInt(), activePlayers));
     }
@@ -42,7 +47,7 @@ public class Battle extends Room {
             player.logCheating("is sending turn data during turn of other player");
             return;
         }
-        broadcast(new UpdateWorldCmd(turnData));
+        broadcast(new UpdateWorldCmd(turnData), p -> p != player);
     }
 
     public void onEndTurn(Player player, EndTurnData endTurnData) {
@@ -59,13 +64,16 @@ public class Battle extends Room {
         broadcast(new NewTurnCmd(currentPlayer.getId()));
     }
 
-    protected void checkVictoryConditions() {
+    protected boolean checkVictoryConditions() {
         switch (activePlayers.size()) {
             case 0:
                 broadcast(GameEndedCmd.draw());
-            case 1:
-                broadcast(GameEndedCmd.victory(activePlayers.peek().getId()));
+                break;
+            case 1: broadcast(GameEndedCmd.victory(activePlayers.peek().getId()));
+                break;
+            default: return false;
         }
+        return true;
     }
 
     private void onDesync() {
