@@ -15,8 +15,6 @@ namespace Core.UI {
         [SerializeField] private Text _text;
         private GameObject _image;
 
-        private GameStateController _state = The<GameStateController>.Get();
-
         public void Configure (WeaponDescriptor descriptor) {
             _image = Instantiate(descriptor.Icon, transform, false);
             _image.name = "Icon";
@@ -35,7 +33,7 @@ namespace Core.UI {
             // if have that weapon
             // EQUIP
             if (state.IsMyTurn) {
-                _state.SelectWeapon(_id);
+                state.SelectWeapon(_id);
                 Debug.Log("weapon id: " + _id);
             }
         }
