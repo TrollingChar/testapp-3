@@ -1,4 +1,5 @@
 ﻿using Battle.Camera;
+using Battle.State;
 using Geometry;
 using UnityEngine;
 using Utils.Singleton;
@@ -34,7 +35,8 @@ namespace Battle {
             D = Input.GetKey(KeyCode.D);
             MB = Input.GetMouseButton(0); // LMB
             XY = The<CameraWrapper>.Get().WorldMousePosition;
-            Weapon = Number = 0;
+            Weapon = (byte) The<GameStateController>.Get().WeaponId;
+            Number = 0;
         }
 
 

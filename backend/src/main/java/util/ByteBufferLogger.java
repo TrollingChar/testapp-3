@@ -10,11 +10,11 @@ public class ByteBufferLogger {
     }
 
 
-    public static void log (ByteBuffer byteBuffer) {
+    public static String str (ByteBuffer byteBuffer) {
         int pos = byteBuffer.position();
         StringBuilder s = new StringBuilder("bytes:");
         while (byteBuffer.hasRemaining()) s.append(String.format(" %02x", byteBuffer.get()));
-        System.out.println(s);
         byteBuffer.position(pos);
+        return s.toString();
     }
 }

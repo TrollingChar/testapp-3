@@ -32,6 +32,7 @@ public class Battle extends Room {
     @Override
     protected void onPlayerRemoved (Player player) {
         broadcast(new LeftGameCmd(player.getId()));
+        // they will trigger ent of turn on client side
     }
 
 
@@ -61,15 +62,17 @@ public class Battle extends Room {
         if (etdMap.put(player, endTurnData) != null) {
             player.logCheating("is sending end turn data more than once");
         }
-        // check if all players sent end turn data
-        newTurn();
+        if (etdMap.size() >= activePlayers.size()) newTurn();
     }
 
 
     private void newTurn () {
         etdMap.clear();
-        if (checkVictoryConditions()) return;
-        // select next active player and notify players about that
+//        if (checkVictoryConditions()) return;
+
+        currentPlayer = activePlayers.poll();
+        activePlayers.add(currentPlayer);
+
         broadcast(new NewTurnCmd(currentPlayer.getId()));
     }
 

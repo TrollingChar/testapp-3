@@ -15,57 +15,14 @@ namespace Battle.State {
 
     public class GameStateController {
 
-        private const int TurnTime = 10000;
-        private const int RetreatTime = 3000;
-
         private readonly WSConnection _connection;
 
-        private GameState _next;
-        private readonly int _id;
 
+        #region TIMER
+        private const int TurnTime = 10000;
+        private const int RetreatTime = 3000;
         private int _time;
-
-        private Worm _worm;
-        private bool _wormFrozen;
-
-        private Weapon _weapon;
-
-        public int ActivePlayer;
-
-        public bool Synchronized;
-
-
-        public GameStateController () {
-            The<GameStateController>.Set(this);
-
-            _connection = The<WSConnection>.Get();
-            _id = The<PlayerInfo>.Get().Id;
-
-            OnTimerUpdated = new TimerUpdatedMessenger();
-
-            CurrentState = GameState.AfterTurn;
-            Hint("AFT");
-            _next = GameState.Remove0Hp;
-            Timer = 500;
-            _wormFrozen = false;
-            Worm = null;
-
-            CommandExecutor<StartNewTurnCmd>.AddHandler(OnNewTurn); // todo unsubscribe when battle ends
-        }
-
-
         public TimerUpdatedMessenger OnTimerUpdated { get; private set; }
-
-        public GameState CurrentState { get; private set; }
-
-        public Worm Worm {
-            get { return _worm; }
-            private set {
-                if (_worm != null) _worm.ArrowVisible = false;
-                if ((_worm = value) == null) return;
-                _worm.ArrowVisible = true;
-            }
-        }
 
         public int Timer {
             get { return _time; }
@@ -76,44 +33,61 @@ namespace Battle.State {
         }
 
 
-        public bool WormFrozen { get; private set; }
-
-
-        public bool IsMyTurn {
-            get { return ActivePlayer == _id && CurrentState == GameState.Turn; }
-        }
-
-
-        public void Update () {
-            if ((Timer -= 20) <= 0) ChangeState();
-        }
-
-
         public void Wait (int milliseconds) {
             if (CurrentState == GameState.Turn) return;
             if (Timer < milliseconds) Timer = milliseconds;
         }
 
 
-        public void OnNewTurn (StartNewTurnCmd startNewTurnCommand) {
-            int id = startNewTurnCommand.Player;
-            ActivePlayer = id;
-            Worm = The<TeamManager>.Get().Teams[id].NextWorm(); // todo: remove chain
-//            _camera.LookAt(Worm.Position);
-            ChangeState();
+        public void Update () {
+            if ((Timer -= 20) <= 0) ChangeState();
         }
+        #endregion
 
 
-        private void Hint (string text) {
-            Debug.Log(text);
-            The<BattleScene>.Get().ShowHint(text);
+        #region WORM
+        private Worm _worm;
+        public bool WormFrozen { get; private set; }
+
+        public Worm Worm {
+            get { return _worm; }
+            private set {
+                if (_worm != null) _worm.ArrowVisible = false;
+                _worm = value;
+                if (value == null) return;
+                _worm.ArrowVisible = true;
+            }
         }
+        #endregion
+
+
+        #region WEAPON
+        public Weapon Weapon { get; private set; }
+        public int WeaponId { get; private set; }
 
 
         public void SelectWeapon (int id) {
             // if we can select weapon then arm active worm with it!
-            _weapon = null; //_factory.CreateWeapon(id, _worm); // 0 - select none
+            Weapon = null; //_factory.CreateWeapon(id, _worm); // 0 - select none
+            WeaponId = id;
         }
+        #endregion
+
+
+        #region PLAYER
+        private readonly int _playerId;
+        public int ActivePlayer;
+
+        public bool IsMyTurn {
+            get { return ActivePlayer == _playerId && CurrentState == GameState.Turn; }
+        }
+        #endregion
+
+
+        #region STATE
+        private GameState _next;
+        public GameState CurrentState { get; private set; }
+        public bool Synchronized;
 
 
         private void ChangeState () {
@@ -138,9 +112,9 @@ namespace Battle.State {
                     break;
 
                 case GameState.Turn:
-                    Hint(ActivePlayer == _id ? "MY" : "TURN");
+                    Hint(ActivePlayer == _playerId ? "MY" : "TURN");
                     // Player moves his worm and uses weapon
-                    _wormFrozen = false;
+                    WormFrozen = false;
                     //Worm = Core.BF.NextWorm();
                     Timer = TurnTime;
                     break;
@@ -148,7 +122,7 @@ namespace Battle.State {
                 case GameState.EndingTurn:
                     Hint("END");
                     // Player ended his turn, but projectiles still flying
-                    _wormFrozen = true;
+                    WormFrozen = true;
                     Synchronized = false;
                     Worm = null;
                     //Core.bf.ResetActivePlayer();
@@ -182,6 +156,42 @@ namespace Battle.State {
                     Hint("ERR");
                     break;
             }
+        }
+        #endregion
+
+
+        public GameStateController () {
+            The<GameStateController>.Set(this);
+
+            _connection = The<WSConnection>.Get();
+            _playerId = The<PlayerInfo>.Get().Id;
+
+            OnTimerUpdated = new TimerUpdatedMessenger();
+
+            CurrentState = GameState.AfterTurn;
+            Hint("AFT");
+            _next = GameState.Remove0Hp;
+            Timer = 500;
+            WormFrozen = false;
+            Worm = null;
+
+            CommandExecutor<StartNewTurnCmd>.AddHandler(OnNewTurn); // todo unsubscribe when battle ends
+        }
+
+
+        public void OnNewTurn (StartNewTurnCmd startNewTurnCommand) {
+            int id = startNewTurnCommand.Player;
+            ActivePlayer = id;
+            Worm = The<TeamManager>.Get().Teams[id].NextWorm(); // todo: remove chain
+//            _camera.LookAt(Worm.Position);
+            SelectWeapon(0);
+            ChangeState();
+        }
+
+
+        private void Hint (string text) {
+            Debug.Log(text);
+            The<BattleScene>.Get().ShowHint(text);
         }
 
     }

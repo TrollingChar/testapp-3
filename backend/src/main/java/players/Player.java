@@ -4,6 +4,7 @@ import annotations.ServerCommandCode;
 import commands.server.ServerCommand;
 import org.eclipse.jetty.websocket.api.Session;
 import rooms.Room;
+import util.ByteBufferLogger;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -13,6 +14,7 @@ import java.util.function.Predicate;
 
 
 public class Player {
+
     private final int id;
     private boolean online;
     private Session session;
@@ -35,9 +37,13 @@ public class Player {
         bb.put(cmd.getClass().getAnnotation(ServerCommandCode.class).value());
         cmd.serialize(bb);
         bb.flip();
+
+        System.out.printf("player %d <- %s\n", id, ByteBufferLogger.str(bb));
+
         try {
             session.getRemote().sendBytes(bb);
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             online = false;
             System.err.println("ERROR WHEN SENDING DATA TO THE PLAYER");
             disconnect();
@@ -49,7 +55,8 @@ public class Player {
         if (online) {
             try {
                 session.disconnect();
-            } catch (IOException e) {
+            }
+            catch (IOException e) {
                 System.err.println("ERROR WHEN DISCONNECTING PLAYER");
             }
         }

@@ -1,6 +1,9 @@
-﻿using Battle.Weapons;
+﻿using Battle;
+using Battle.State;
+using Battle.Weapons;
 using UnityEngine;
 using UnityEngine.UI;
+using Utils.Singleton;
 
 
 namespace Core.UI {
@@ -12,6 +15,7 @@ namespace Core.UI {
         [SerializeField] private Text _text;
         private GameObject _image;
 
+        private GameStateController _state = The<GameStateController>.Get();
 
         public void Configure (WeaponDescriptor descriptor) {
             _image = Instantiate(descriptor.Icon, transform, false);
@@ -25,11 +29,15 @@ namespace Core.UI {
 
 
         public void OnClick () {
+            var state = The<GameStateController>.Get();
             // if my turn
             // if arsenal not locked
             // if have that weapon
             // EQUIP
-            Debug.Log("weapon id: " + _id);
+            if (state.IsMyTurn) {
+                _state.SelectWeapon(_id);
+                Debug.Log("weapon id: " + _id);
+            }
         }
 
 

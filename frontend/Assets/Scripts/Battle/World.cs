@@ -31,7 +31,6 @@ namespace Battle {
         public Tiles Tiles;
         public float WaterLevel;
 
-
         // todo: wrap it in worldgen params
         public World (LandGen gen, SpriteRenderer renderer) {
             The<World>.Set(this);

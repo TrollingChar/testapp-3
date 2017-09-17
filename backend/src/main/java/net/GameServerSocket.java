@@ -27,7 +27,11 @@ public class GameServerSocket extends WebSocketAdapter {
         if (len == 0) return;
 
         ByteBuffer bb = ByteBuffer.wrap(payload, offset, len);
-        ByteBufferLogger.log(bb);
+        if (player == null) {
+            System.out.println("anonymous -> " + ByteBufferLogger.str(bb));
+        } else {
+            System.out.printf("player %d -> %s\n", player.getId(), ByteBufferLogger.str(bb));
+        }
         byte code = bb.get();
 
         // resolve command
@@ -57,7 +61,10 @@ public class GameServerSocket extends WebSocketAdapter {
 
     @Override
     public void onWebSocketClose (int statusCode, String reason) {
-        if (player != null) {
+        if (player == null) {
+            System.out.println("anonymous -- disconnected");
+        } else {
+            System.out.printf("player %d -- disconnected", player.getId());
             player.disconnect();
         }
         super.onWebSocketClose(statusCode, reason);
