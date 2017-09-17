@@ -68,8 +68,8 @@ namespace Battle.State {
 
         public void SelectWeapon (int id) {
             // if we can select weapon then arm active worm with it!
-            Weapon = null; //_factory.CreateWeapon(id, _worm); // 0 - select none
             WeaponId = id;
+            Weapon = id == 0 ? null : Serialization<Weapon>.GetNewInstanceByCode(id); // 0 - select none
         }
         #endregion
 

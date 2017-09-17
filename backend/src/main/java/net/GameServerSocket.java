@@ -64,7 +64,7 @@ public class GameServerSocket extends WebSocketAdapter {
         if (player == null) {
             System.out.println("anonymous -- disconnected");
         } else {
-            System.out.printf("player %d -- disconnected", player.getId());
+            System.out.printf("player %d -- disconnected\n", player.getId());
             player.disconnect();
         }
         super.onWebSocketClose(statusCode, reason);

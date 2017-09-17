@@ -43,6 +43,11 @@ namespace Core {
         }
 
 
+        public static TSerializable GetNewInstanceByCode (int code) {
+            return GetNewInstanceByCode((byte) code);
+        }
+
+
         public static byte GetCodeByType (Type type) {
             return _codeByType[type];
         }
