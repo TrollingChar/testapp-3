@@ -35,7 +35,7 @@ namespace Battle {
             D = Input.GetKey(KeyCode.D);
             MB = Input.GetMouseButton(0); // LMB
             XY = The<CameraWrapper>.Get().WorldMousePosition;
-            Weapon = (byte) The<GameStateController>.Get().WeaponId;
+            Weapon = (byte) The<GameStateController>.Get().PreparedWeaponId;
             Number = 0;
         }
 

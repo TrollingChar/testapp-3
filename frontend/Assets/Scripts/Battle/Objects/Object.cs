@@ -17,7 +17,6 @@ namespace Battle.Objects {
 
         private static readonly NullObject _empty = new NullObject();
 
-//        private readonly BF _bf = The<BF>.Get();
         private readonly World _world = The<World>.Get();
 
         private CollisionHandler _collisionHandler;

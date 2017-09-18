@@ -2,6 +2,7 @@
 using Battle.Generation;
 using Battle.State;
 using Battle.Teams;
+using Battle.UI;
 using Commands.Client;
 using Commands.Server;
 using Core;
@@ -25,6 +26,7 @@ namespace Battle {
         public GameStateController State { get; private set; }
         public TeamManager Teams { get; private set; }
         public World World { get; private set; }
+        public ArsenalPanel ArsenalPanel { get; private set; }
 
         // temp fields
         private EstimatedLandGen _landGen;
@@ -136,7 +138,6 @@ namespace Battle {
         public void ShowHint (string text) {
             _hint.text = text;
         }
-
     }
 
 }

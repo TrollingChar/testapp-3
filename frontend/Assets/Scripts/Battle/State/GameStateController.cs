@@ -63,13 +63,19 @@ namespace Battle.State {
 
         #region WEAPON
         public Weapon Weapon { get; private set; }
-        public int WeaponId { get; private set; }
+        public int PreparedWeaponId { get; private set; }
 
 
-        public void SelectWeapon (int id) {
+        public void PrepareWeapon (int id) {
             // if we can select weapon then arm active worm with it!
-            WeaponId = id;
-            Weapon = id == 0 ? null : Serialization<Weapon>.GetNewInstanceByCode(id); // 0 - select none
+            PreparedWeaponId = id;
+            //Weapon = id == 0 ? null : Serialization<Weapon>.GetNewInstanceByCode(id); // 0 - select none
+        }
+
+        public void SelectWeapon(int id)
+        {
+            PreparedWeaponId = 0;
+            Weapon = id == 0 ? null : Serialization<Weapon>.GetNewInstanceByCode(PreparedWeaponId);
         }
         #endregion
 
@@ -184,7 +190,7 @@ namespace Battle.State {
             ActivePlayer = id;
             Worm = The<TeamManager>.Get().Teams[id].NextWorm(); // todo: remove chain
 //            _camera.LookAt(Worm.Position);
-            SelectWeapon(0);
+            PrepareWeapon(0);
             ChangeState();
         }
 

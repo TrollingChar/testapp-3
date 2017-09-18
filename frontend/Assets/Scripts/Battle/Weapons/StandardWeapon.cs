@@ -15,7 +15,6 @@ namespace Battle.Weapons {
         private int _shotCooldown;
         private int _shotsLeft;
         protected int AttackCooldown;
-
         protected int Attacks; // blaster has 2
         protected bool ConstPower;
         protected int Power;

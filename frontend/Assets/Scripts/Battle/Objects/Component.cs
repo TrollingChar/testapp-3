@@ -1,6 +1,6 @@
 ﻿namespace Battle.Objects {
 
-    public abstract class Component {
+    public abstract class Component/*<T> where T : Object*/ {
 
         public Object Object;
 

@@ -47,12 +47,19 @@ namespace Battle {
 
 
         [SuppressMessage("ReSharper", "InconsistentNaming")]
-        public void Update (TurnData td) {
+        public void Update (TurnData td)
+        {
             if (_state.Timer % 500 == 0 && td != null && td.MB) {
                 // ???
             }
 
-            foreach (var o in _objects) o.Update(td);
+            PhysicsTick(td);
+        }
+
+        private void PhysicsTick(TurnData td)
+        {
+            foreach (var o in _objects)
+                o.Update(td);
             foreach (var o in _objects) {
                 o.Movement = 1;
                 o.Excluded.Clear();
@@ -61,7 +68,8 @@ namespace Battle {
 
             for (int i = 0, iter = 5; i < iter; i++) {
                 foreach (var o in _objects) {
-                    if (o.Velocity.Length * o.Movement <= Precision) continue;
+                    if (o.Velocity.Length * o.Movement <= Precision)
+                        continue;
 
                     var c = o.NextCollision(o.Movement);
                     var o2 = c == null || c.Collider2 == null
@@ -142,14 +150,17 @@ namespace Battle {
                                 float normBounce = Mathf.Sqrt(
                                     c.Collider1.NormalBounce * c.Collider2.NormalBounce
                                 );
-                                if (o2wcc) o.Velocity = velocity + Geom.Bounce(v1, c.Normal, tangBounce, normBounce);
-                                if (owcc) o2.Velocity = velocity + Geom.Bounce(v2, c.Normal, tangBounce, normBounce);
+                                if (o2wcc)
+                                    o.Velocity = velocity + Geom.Bounce(v1, c.Normal, tangBounce, normBounce);
+                                if (owcc)
+                                    o2.Velocity = velocity + Geom.Bounce(v2, c.Normal, tangBounce, normBounce);
                             }
                             o.OnCollision(c);
                             o2.OnCollision(-c);
                         }
                     }
-                    if (o.Position.Y < WaterLevel) o.Remove();
+                    if (o.Position.Y < WaterLevel)
+                        o.Remove();
                 }
             }
 
