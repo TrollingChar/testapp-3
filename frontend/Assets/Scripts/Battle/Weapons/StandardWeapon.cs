@@ -6,31 +6,30 @@ namespace Battle.Weapons {
 
     public abstract class StandardWeapon : Weapon {
 
-        private int _attackCooldown;
-
-        private int _attacksLeft;
         private bool _equipped;
+        private int _attackCooldown;
+        private int _attacksLeft; // bug: not initialized
+        private int _shotCooldown;
+        private int _shotsLeft;
         private bool _fires;
         private int _power;
         private bool _ready; // used when weapon requires click
-        private int _shotCooldown;
-        private int _shotsLeft;
-        protected int AttackCooldown;
-        protected int Attacks; // blaster has 2
-        protected bool ConstPower;
-        protected int Power;
-        protected bool Removable; // if false, locks arsenal when used
-        protected bool RequiresClick; // if true, will fire 2nd shot when button is clicked, if false - when held
-        protected int ShotCooldown;
-        protected int Shots; // machine gun has many
+        protected int AttackCooldown = 25;
+        protected int Attacks = 1; // blaster has 2 // bug: no usage
+        protected bool ConstPower = false; // if false, will require to hold the button. true for grenade, false for machine gun
+        protected bool Removable = false; // if false, locks arsenal when used
+        protected bool RequiresClick = true; // if true, will fire 2nd shot when button is clicked, if false - when held
+        protected int ShotCooldown = 5;
+        protected int Shots = 1; // machine gun has many
 
-        protected Crosshair CrossHair;
+        protected Crosshair CrossHair { get; set; }
 
+        // todo: use GameStateController
         public bool TimerFrozen { get; set; }
 
 
         protected virtual void OnEquip () {}
-        protected virtual void OnFirstAttack () {}
+        protected virtual void OnFirstAttack () {} // bug: no usage
         protected virtual void OnBeginAttack () {}
         protected virtual void OnShoot () {}
         protected virtual void OnEndAttack () {}
@@ -45,7 +44,9 @@ namespace Battle.Weapons {
         }
 
 
-        protected virtual void Configure () {}
+        protected virtual void Configure()
+        {
+        }
 
 
         public override void Update (TurnData td) {
