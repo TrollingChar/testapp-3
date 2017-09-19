@@ -1,22 +1,34 @@
-﻿namespace Battle.Weapons {
+﻿using System;
+using Battle.Objects;
+using Battle.State;
 
-    public abstract class Weapon {
+namespace Battle.Weapons {
+
+    public abstract class Weapon : Component {
+        private GameStateController _state;
+
+        public Worm Worm
+        {
+            get { return (Worm) Object; }
+            set { Object = value; }
+        }
 
         private Arsenals.Arsenal Arsenal {
-            get {
-                // todo: it must be the arsenal from which this weapon will subtract ammo
-                return null;
-            }
+            get { return Worm.Team.Arsenal; }
         }
 
 
         public abstract void Update (TurnData td);
 
 
-        protected void WasteAmmo () {
-//            Arsenal.WasteAmmo(Id);
+        protected void UseAmmo () {
+            Arsenal.UseAmmo(Id);
         }
 
+        protected void LockArsenal ()
+        {
+            _state;
+        }
     }
 
 }

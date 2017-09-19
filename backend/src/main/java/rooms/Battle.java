@@ -32,7 +32,7 @@ public class Battle extends Room {
     @Override
     protected void onPlayerRemoved (Player player) {
         broadcast(new LeftGameCmd(player.getId()));
-        // they will trigger ent of turn on client side
+        // they will trigger end of turn on client side
     }
 
 
@@ -57,7 +57,8 @@ public class Battle extends Room {
 
     public void onEndTurn (Player player, EndTurnData endTurnData) {
         if (!endTurnData.alive) {
-            // remove player from active players and notify players
+            // remove player from active players
+//            activePlayers.remove()
         }
         if (etdMap.put(player, endTurnData) != null) {
             player.logCheating("is sending end turn data more than once");

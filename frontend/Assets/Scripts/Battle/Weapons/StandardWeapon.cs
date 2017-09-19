@@ -1,4 +1,5 @@
 ﻿using System;
+using Battle.Weapons.Crosshairs;
 
 
 namespace Battle.Weapons {
@@ -23,6 +24,7 @@ namespace Battle.Weapons {
         protected int ShotCooldown;
         protected int Shots; // machine gun has many
 
+        protected Crosshair CrossHair;
 
         public bool TimerFrozen { get; set; }
 
@@ -70,11 +72,6 @@ namespace Battle.Weapons {
         }
 
 
-        private void LockArsenal () {
-            throw new NotImplementedException();
-        }
-
-
         private void BeginAttack () {
             TimerFrozen = true;
             _ready = false;
@@ -116,5 +113,4 @@ namespace Battle.Weapons {
         }
 
     }
-
 }
