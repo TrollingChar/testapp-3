@@ -1,13 +1,13 @@
 ﻿using Battle.Weapons;
-using Battle.Weapons.Airstrikes;
-using Battle.Weapons.CloseCombat;
-using Battle.Weapons.Firearms;
-using Battle.Weapons.Heavy;
-using Battle.Weapons.Launched;
-using Battle.Weapons.MovementUtils;
-using Battle.Weapons.OtherUtils;
-using Battle.Weapons.Spells;
-using Battle.Weapons.Thrown;
+using Battle.Weapons.WeaponTypes.Airstrikes;
+using Battle.Weapons.WeaponTypes.CloseCombat;
+using Battle.Weapons.WeaponTypes.Firearms;
+using Battle.Weapons.WeaponTypes.Heavy;
+using Battle.Weapons.WeaponTypes.Launched;
+using Battle.Weapons.WeaponTypes.MovementUtils;
+using Battle.Weapons.WeaponTypes.OtherUtils;
+using Battle.Weapons.WeaponTypes.Spells;
+using Battle.Weapons.WeaponTypes.Thrown;
 using Core.UI;
 using UnityEngine;
 

@@ -6,6 +6,7 @@ namespace Battle.State {
     {
         public Weapon Weapon { get; private set; }
         public int PreparedWeaponId { get; private set; }
+        public bool CanSelectWeapon { get; private set; }
 
         public void PrepareWeapon(int id)
         {
@@ -18,6 +19,11 @@ namespace Battle.State {
         {
             PreparedWeaponId = 0;
             Weapon = id == 0 ? null : Serialization<Weapon>.GetNewInstanceByCode(PreparedWeaponId);
+        }
+
+        public void LockWeaponSelect()
+        {
+            CanSelectWeapon = false;
         }
     }
 }

@@ -32,12 +32,15 @@ namespace Battle.State {
         }
 
 
-        public void OnNewTurn (StartNewTurnCmd startNewTurnCommand) {
+        // todo: move logic to state machine
+        private void OnNewTurn (StartNewTurnCmd startNewTurnCommand) {
             int id = startNewTurnCommand.Player;
             ActivePlayer = id;
             Worm = The<TeamManager>.Get().Teams[id].NextWorm(); // todo: remove chain
 //            _camera.LookAt(Worm.Position);
             PrepareWeapon(0);
+            CanSelectWeapon = true;
+            
             ChangeState();
         }
 

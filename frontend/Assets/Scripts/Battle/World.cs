@@ -46,20 +46,21 @@ namespace Battle {
         }
 
 
-        [SuppressMessage("ReSharper", "InconsistentNaming")]
         public void Update (TurnData td)
         {
             if (_state.Timer % 500 == 0 && td != null && td.MB) {
                 // ???
             }
 
+            foreach (var o in _objects)
+                o.Update(td);
+            
             PhysicsTick(td);
         }
 
+        [SuppressMessage("ReSharper", "InconsistentNaming")]
         private void PhysicsTick(TurnData td)
         {
-            foreach (var o in _objects)
-                o.Update(td);
             foreach (var o in _objects) {
                 o.Movement = 1;
                 o.Excluded.Clear();
