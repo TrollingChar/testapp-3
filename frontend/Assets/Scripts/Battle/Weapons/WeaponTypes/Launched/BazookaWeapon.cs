@@ -1,6 +1,7 @@
 ﻿using Assets;
 using Attributes;
 using Battle.Weapons.Crosshairs;
+using UnityEngine;
 using Utils.Singleton;
 
 namespace Battle.Weapons.WeaponTypes.Launched {
@@ -19,6 +20,7 @@ namespace Battle.Weapons.WeaponTypes.Launched {
 
         protected override void OnEquip()
         {
+            Debug.Log("Bazooka selected");
             ConstPower = false;
             CrossHair = new LineCrosshair();
         }

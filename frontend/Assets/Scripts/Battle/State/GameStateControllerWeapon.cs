@@ -4,7 +4,17 @@ using Core;
 namespace Battle.State {
     public partial class GameStateController
     {
-        public Weapon Weapon { get; private set; }
+        private Weapon _weapon;
+        public Weapon Weapon
+        {
+            get { return _weapon; }
+            private set
+            {
+                _weapon = value;
+                value.Equip(Worm);
+            }
+        }
+
         public int PreparedWeaponId { get; private set; }
         public bool CanSelectWeapon { get; private set; }
 

@@ -12,14 +12,14 @@ namespace Battle.Teams {
         private readonly LinkedList<Worm> _worms;
         private Worm _activeWorm;
         private int _wormsAlive;
-        private Arsenal _arsenal;
+        public Arsenal Arsenal { get; private set; }
 
 
         public Team (int player, Color color, Arsenal arsenal) {
             _player = player;
             Color = color;
             _worms = new LinkedList<Worm>();
-            _arsenal = arsenal;
+            Arsenal = arsenal;
         }
 
 
