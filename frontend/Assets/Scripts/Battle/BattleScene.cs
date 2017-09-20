@@ -50,6 +50,9 @@ namespace Battle {
             Camera = GetComponentInChildren<CameraWrapper>();
             The<CameraWrapper>.Set(Camera);
 
+            ArsenalPanel = GetComponentInChildren<ArsenalPanel>();
+            The<ArsenalPanel>.Set(ArsenalPanel);
+
             StartLandGen();
         }
 

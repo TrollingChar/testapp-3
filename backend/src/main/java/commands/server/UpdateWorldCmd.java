@@ -18,6 +18,6 @@ public class UpdateWorldCmd implements ServerCommand {
 
     @Override
     public void serialize(ByteBuffer byteBuffer) {
-        // todo
+        turnData.serialize(byteBuffer);
     }
 }

@@ -4,6 +4,10 @@ import commands.server.LobbyUpdatedCmd;
 import commands.server.RemovedFromLobbyCmd;
 import players.Player;
 
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
+
 
 public class Lobby extends Room {
     private int size;
@@ -30,7 +34,7 @@ public class Lobby extends Room {
 
     private void startGame () {
         Battle battle = new Battle();
-        for (Player player : players) {
+        for (Player player : new HashSet<>(players)) {
             player.joinRoom(battle);
             player.quitRoom(this);
         }
