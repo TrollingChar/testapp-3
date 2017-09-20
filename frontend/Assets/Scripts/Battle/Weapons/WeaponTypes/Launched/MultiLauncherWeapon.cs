@@ -1,5 +1,7 @@
-﻿using Assets;
+﻿using System;
+using Assets;
 using Attributes;
+using Battle.Weapons.Crosshairs;
 using Utils.Singleton;
 
 namespace Battle.Weapons.WeaponTypes.Launched {
@@ -16,6 +18,21 @@ namespace Battle.Weapons.WeaponTypes.Launched {
             }
         }
 
+        protected override void OnEquip()
+        {
+            Attacks = Math.Min(5, GetAmmo());
+            CrossHair = new LineCrosshair();
+        }
+
+        protected override void OnNumberPress(int n)
+        {
+            Attacks = Math.Min(n, GetAmmo());
+        }
+
+        protected override void OnShoot()
+        {
+            
+        }
     }
 
 }

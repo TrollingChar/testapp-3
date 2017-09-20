@@ -28,25 +28,13 @@ namespace Battle.Weapons {
         public bool TimerFrozen { get; set; }
 
 
-        protected virtual void OnEquip () {}
+        protected override void OnEquip() {}
         protected virtual void OnFirstAttack () {} // bug: no usage
         protected virtual void OnBeginAttack () {}
         protected virtual void OnShoot () {}
         protected virtual void OnEndAttack () {}
-        protected virtual void OnUnequip () {}
+        protected override void OnUnequip () {}
         protected virtual void OnNumberPress (int n) {}
-
-
-        public void Equip () {
-            Configure();
-            _equipped = true;
-            OnEquip();
-        }
-
-
-        protected virtual void Configure()
-        {
-        }
 
 
         public override void Update (TurnData td) {

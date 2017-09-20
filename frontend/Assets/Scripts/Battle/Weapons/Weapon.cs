@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Attributes;
 using Battle.Arsenals;
 using Battle.Objects;
@@ -7,20 +8,15 @@ using Utils.Singleton;
 
 namespace Battle.Weapons {
 
-    public abstract class Weapon : Component
+    public abstract class Weapon
     {
-        private GameStateController _gameState;
-        private int _id;
-        
-        public Worm Worm
-        {
-            get { return (Worm) Object; }
-            set { Object = value; }
-        }
+        private readonly GameStateController _gameState;
+        private readonly int _id;
+        private bool _equipped;
+        private Arsenal _arsenal;
 
-        private Arsenal Arsenal {
-            get { return Worm.Team.Arsenal; }
-        }
+        public Worm Worm { get; set; }
+
 
         
         protected Weapon()
@@ -30,17 +26,40 @@ namespace Battle.Weapons {
         }
 
 
+        public void Equip(Worm worm)
+        {
+            Worm = worm;
+            _arsenal = worm.Team.Arsenal;
+            _equipped = true;
+            OnEquip();
+        }
+
+
+        public void Unequip()
+        {
+            if (_equipped) return;
+            _equipped = false;
+            OnUnequip();
+        }
+
+        protected virtual void OnEquip() {}
+        protected virtual void OnUnequip() {}
         public abstract void Update (TurnData td);
 
 
         protected void UseAmmo () {
-            Arsenal.UseAmmo(_id);
+            _arsenal.UseAmmo(_id);
         }
 
 
         protected void LockArsenal ()
         {
-            GameState.LockWeaponSelect();
+            _gameState.LockWeaponSelect();
+        }
+
+        protected int GetAmmo()
+        {
+            throw new NotImplementedException();
         }
     }
 

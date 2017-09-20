@@ -2,5 +2,9 @@
     public class AirstrikeCrosshair : Crosshair
     {
         // for directional airstrikes
+        //       /
+        //     |/
+        //     '-
+        // [  +  ]
     }
 }
