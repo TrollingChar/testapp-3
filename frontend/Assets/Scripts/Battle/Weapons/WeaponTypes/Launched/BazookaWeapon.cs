@@ -19,6 +19,7 @@ namespace Battle.Weapons.WeaponTypes.Launched {
 
         protected override void OnEquip()
         {
+            ConstPower = false;
             CrossHair = new LineCrosshair();
         }
 

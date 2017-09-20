@@ -1,5 +1,7 @@
-﻿using Assets;
+﻿using System;
+using Assets;
 using Attributes;
+using Battle.Weapons.Crosshairs;
 using Utils.Singleton;
 
 namespace Battle.Weapons.WeaponTypes.Firearms {
@@ -14,6 +16,17 @@ namespace Battle.Weapons.WeaponTypes.Firearms {
                     The<WeaponIcons>.Get().PoisonArrow
                 );
             }
+        }
+
+        protected override void OnEquip()
+        {
+            Attacks = 2;
+            // todo: what if player has only 1 arrow
+            CrossHair = new LineCrosshair();
+        }
+
+        protected override void OnShoot()
+        {
         }
 
     }

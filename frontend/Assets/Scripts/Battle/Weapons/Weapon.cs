@@ -50,6 +50,12 @@ namespace Battle.Weapons {
         protected void UseAmmo () {
             _arsenal.UseAmmo(_id);
         }
+        
+        
+        protected int GetAmmo()
+        {
+            return _arsenal.GetAmmo(_id);
+        }
 
 
         protected void LockArsenal ()
@@ -57,10 +63,6 @@ namespace Battle.Weapons {
             _gameState.LockWeaponSelect();
         }
 
-        protected int GetAmmo()
-        {
-            throw new NotImplementedException();
-        }
     }
 
 }

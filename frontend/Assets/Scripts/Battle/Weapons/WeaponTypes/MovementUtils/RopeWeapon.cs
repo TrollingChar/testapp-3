@@ -1,5 +1,6 @@
 ﻿using Assets;
 using Attributes;
+using Battle.Weapons.Crosshairs;
 using Utils.Singleton;
 
 namespace Battle.Weapons.WeaponTypes.MovementUtils {
@@ -14,6 +15,13 @@ namespace Battle.Weapons.WeaponTypes.MovementUtils {
                     The<WeaponIcons>.Get().Rope
                 );
             }
+        }
+
+        protected override void OnEquip()
+        {
+            // todo: handle all these rope mechanics
+            Removable = true;
+            CrossHair = new LineCrosshair();
         }
 
     }

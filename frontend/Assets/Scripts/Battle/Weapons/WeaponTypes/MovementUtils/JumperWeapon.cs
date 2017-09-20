@@ -1,5 +1,6 @@
 ﻿using Assets;
 using Attributes;
+using Battle.Weapons.Crosshairs;
 using Utils.Singleton;
 
 namespace Battle.Weapons.WeaponTypes.MovementUtils {
@@ -16,6 +17,11 @@ namespace Battle.Weapons.WeaponTypes.MovementUtils {
             }
         }
 
+        protected override void OnEquip()
+        {
+            Removable = true;
+            CrossHair = new LineCrosshair();
+        }
     }
 
 }

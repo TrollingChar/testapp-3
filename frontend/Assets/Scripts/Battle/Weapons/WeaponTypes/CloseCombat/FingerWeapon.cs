@@ -16,6 +16,9 @@ namespace Battle.Weapons.WeaponTypes.CloseCombat {
             }
         }
 
+        protected override void OnShoot()
+        {
+        }
     }
 
 }

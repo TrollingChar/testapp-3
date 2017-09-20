@@ -16,6 +16,9 @@ namespace Battle.Weapons.WeaponTypes.OtherUtils {
             }
         }
 
+        protected override void OnShoot()
+        {
+        }
     }
 
 }

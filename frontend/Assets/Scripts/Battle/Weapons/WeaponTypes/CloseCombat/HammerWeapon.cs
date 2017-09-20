@@ -1,5 +1,6 @@
 ﻿using Assets;
 using Attributes;
+using Battle.Weapons.Crosshairs;
 using Utils.Singleton;
 
 namespace Battle.Weapons.WeaponTypes.CloseCombat {
@@ -16,6 +17,14 @@ namespace Battle.Weapons.WeaponTypes.CloseCombat {
             }
         }
 
+        protected override void OnEquip()
+        {
+            CrossHair = new LineCrosshair();
+        }
+
+        protected override void OnShoot()
+        {
+        }
     }
 
 }

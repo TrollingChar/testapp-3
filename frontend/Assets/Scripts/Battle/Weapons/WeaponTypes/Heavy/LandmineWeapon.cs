@@ -16,6 +16,9 @@ namespace Battle.Weapons.WeaponTypes.Heavy {
             }
         }
 
+        protected override void OnShoot()
+        {
+        }
     }
 
 }

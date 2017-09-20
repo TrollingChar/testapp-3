@@ -1,5 +1,6 @@
 ﻿using Assets;
 using Attributes;
+using Battle.Weapons.Crosshairs;
 using Utils.Singleton;
 
 namespace Battle.Weapons.WeaponTypes.Airstrikes {
@@ -16,6 +17,14 @@ namespace Battle.Weapons.WeaponTypes.Airstrikes {
             }
         }
 
+        protected override void OnEquip()
+        {
+            CrossHair = new AirstrikeCrosshair();
+        }
+
+        protected override void OnShoot()
+        {
+        }
     }
 
 }

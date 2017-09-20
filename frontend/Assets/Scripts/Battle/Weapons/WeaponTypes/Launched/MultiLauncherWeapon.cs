@@ -20,6 +20,7 @@ namespace Battle.Weapons.WeaponTypes.Launched {
 
         protected override void OnEquip()
         {
+            ConstPower = true;
             Attacks = Math.Min(5, GetAmmo());
             CrossHair = new LineCrosshair();
         }

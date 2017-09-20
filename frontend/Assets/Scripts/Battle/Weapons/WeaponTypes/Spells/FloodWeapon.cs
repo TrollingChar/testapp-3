@@ -16,6 +16,9 @@ namespace Battle.Weapons.WeaponTypes.Spells {
             }
         }
 
+        protected override void OnShoot()
+        {
+        }
     }
 
 }
