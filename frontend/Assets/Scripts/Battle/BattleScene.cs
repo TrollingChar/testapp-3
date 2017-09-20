@@ -125,6 +125,7 @@ namespace Battle {
 
 
         private void Work (TurnData td) {
+            // todo: select and update weapon
             World.Update(td);
             State.Update();
         }

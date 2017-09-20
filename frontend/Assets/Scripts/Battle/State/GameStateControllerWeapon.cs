@@ -4,6 +4,7 @@ using Core;
 namespace Battle.State {
     public partial class GameStateController
     {
+        // todo: use arsenal
         private Weapon _weapon;
         public Weapon Weapon
         {
@@ -25,6 +26,7 @@ namespace Battle.State {
             //Weapon = id == 0 ? null : Serialization<Weapon>.GetNewInstanceByCode(id); // 0 - select none
         }
 
+        // method not used
         public void SelectWeapon(int id)
         {
             PreparedWeaponId = 0;
