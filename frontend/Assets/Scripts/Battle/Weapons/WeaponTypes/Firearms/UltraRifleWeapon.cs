@@ -3,6 +3,7 @@ using Attributes;
 using Battle.Weapons.Crosshairs;
 using Utils.Singleton;
 
+
 namespace Battle.Weapons.WeaponTypes.Firearms {
 
     [Weapon(WeaponId.UltraRifle)]
@@ -17,20 +18,20 @@ namespace Battle.Weapons.WeaponTypes.Firearms {
             }
         }
 
-        protected override void OnEquip()
-        {
+
+        protected override void OnEquip () {
             Shots = 15;
             CrossHair = new LineCrosshair();
         }
 
-        protected override void OnBeginAttack()
-        {
+
+        protected override void OnBeginAttack () {
             UseAmmo();
         }
 
-        protected override void OnShoot()
-        {
-        }
+
+        protected override void OnShoot () {}
+
     }
 
 }

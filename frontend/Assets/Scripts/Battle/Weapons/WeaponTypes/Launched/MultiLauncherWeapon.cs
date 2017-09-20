@@ -4,6 +4,7 @@ using Attributes;
 using Battle.Weapons.Crosshairs;
 using Utils.Singleton;
 
+
 namespace Battle.Weapons.WeaponTypes.Launched {
 
     [Weapon(WeaponId.MultiLauncher)]
@@ -18,22 +19,21 @@ namespace Battle.Weapons.WeaponTypes.Launched {
             }
         }
 
-        protected override void OnEquip()
-        {
+
+        protected override void OnEquip () {
             ConstPower = true;
             Attacks = Math.Min(5, GetAmmo());
             CrossHair = new LineCrosshair();
         }
 
-        protected override void OnNumberPress(int n)
-        {
+
+        protected override void OnNumberPress (int n) {
             Attacks = Math.Min(n, GetAmmo());
         }
 
-        protected override void OnShoot()
-        {
-            
-        }
+
+        protected override void OnShoot () {}
+
     }
 
 }

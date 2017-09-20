@@ -2,6 +2,7 @@
 using Attributes;
 using Utils.Singleton;
 
+
 namespace Battle.Weapons.WeaponTypes.Spells {
 
     [Weapon(WeaponId.Flood)]
@@ -16,9 +17,8 @@ namespace Battle.Weapons.WeaponTypes.Spells {
             }
         }
 
-        protected override void OnShoot()
-        {
-        }
+        protected override void OnShoot () {}
+
     }
 
 }

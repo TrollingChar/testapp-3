@@ -2,6 +2,7 @@
 using Attributes;
 using Utils.Singleton;
 
+
 namespace Battle.Weapons.WeaponTypes.MovementUtils {
 
     [Weapon(WeaponId.Parachute)]
@@ -16,8 +17,8 @@ namespace Battle.Weapons.WeaponTypes.MovementUtils {
             }
         }
 
-        protected override void OnEquip()
-        {
+
+        protected override void OnEquip () {
             Removable = true;
         }
 

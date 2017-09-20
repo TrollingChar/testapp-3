@@ -2,6 +2,7 @@
 using Attributes;
 using Utils.Singleton;
 
+
 namespace Battle.Weapons.WeaponTypes.CloseCombat {
 
     [Weapon(WeaponId.Finger)]
@@ -16,9 +17,8 @@ namespace Battle.Weapons.WeaponTypes.CloseCombat {
             }
         }
 
-        protected override void OnShoot()
-        {
-        }
+        protected override void OnShoot () {}
+
     }
 
 }

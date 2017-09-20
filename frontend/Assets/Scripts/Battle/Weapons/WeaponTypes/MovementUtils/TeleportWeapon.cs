@@ -3,6 +3,7 @@ using Attributes;
 using Battle.Weapons.Crosshairs;
 using Utils.Singleton;
 
+
 namespace Battle.Weapons.WeaponTypes.MovementUtils {
 
     [Weapon(WeaponId.Teleport)]
@@ -17,15 +18,15 @@ namespace Battle.Weapons.WeaponTypes.MovementUtils {
             }
         }
 
-        protected override void OnEquip()
-        {
+
+        protected override void OnEquip () {
             Removable = true;
             CrossHair = new PointCrosshair();
         }
 
-        protected override void OnShoot()
-        {
-        }
+
+        protected override void OnShoot () {}
+
     }
 
 }

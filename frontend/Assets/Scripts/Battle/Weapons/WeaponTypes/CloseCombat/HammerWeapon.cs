@@ -3,6 +3,7 @@ using Attributes;
 using Battle.Weapons.Crosshairs;
 using Utils.Singleton;
 
+
 namespace Battle.Weapons.WeaponTypes.CloseCombat {
 
     [Weapon(WeaponId.Hammer)]
@@ -17,14 +18,14 @@ namespace Battle.Weapons.WeaponTypes.CloseCombat {
             }
         }
 
-        protected override void OnEquip()
-        {
+
+        protected override void OnEquip () {
             CrossHair = new LineCrosshair();
         }
 
-        protected override void OnShoot()
-        {
-        }
+
+        protected override void OnShoot () {}
+
     }
 
 }

@@ -2,6 +2,7 @@
 using Attributes;
 using Utils.Singleton;
 
+
 namespace Battle.Weapons.WeaponTypes.OtherUtils {
 
     [Weapon(WeaponId.Girder)]
@@ -16,9 +17,8 @@ namespace Battle.Weapons.WeaponTypes.OtherUtils {
             }
         }
 
-        protected override void OnShoot()
-        {
-        }
+        protected override void OnShoot () {}
+
     }
 
 }

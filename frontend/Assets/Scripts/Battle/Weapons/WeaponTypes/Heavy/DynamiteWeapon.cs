@@ -2,6 +2,7 @@
 using Attributes;
 using Utils.Singleton;
 
+
 namespace Battle.Weapons.WeaponTypes.Heavy {
 
     [Weapon(WeaponId.Dynamite)]
@@ -16,9 +17,8 @@ namespace Battle.Weapons.WeaponTypes.Heavy {
             }
         }
 
-        protected override void OnShoot()
-        {
-        }
+        protected override void OnShoot () {}
+
     }
 
 }

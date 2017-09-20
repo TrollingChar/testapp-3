@@ -1,15 +1,17 @@
 ﻿using Commands.Client;
 using Utils.Random;
 
+
 namespace Battle.State {
-    public partial class GameStateController
-    {
+
+    public partial class GameStateController {
+
         private GameState _next;
         public GameState CurrentState { get; private set; }
         public bool Synchronized;
 
-        private void ChangeState()
-        {
+
+        private void ChangeState () {
             switch (CurrentState = _next++) {
 
                 case GameState.BeforeTurn:
@@ -76,5 +78,7 @@ namespace Battle.State {
                     break;
             }
         }
+
     }
+
 }

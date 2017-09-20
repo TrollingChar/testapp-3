@@ -3,6 +3,7 @@ using Attributes;
 using Battle.Weapons.Crosshairs;
 using Utils.Singleton;
 
+
 namespace Battle.Weapons.WeaponTypes.MovementUtils {
 
     [Weapon(WeaponId.Rope)]
@@ -17,8 +18,8 @@ namespace Battle.Weapons.WeaponTypes.MovementUtils {
             }
         }
 
-        protected override void OnEquip()
-        {
+
+        protected override void OnEquip () {
             // todo: handle all these rope mechanics
             Removable = true;
             CrossHair = new LineCrosshair();

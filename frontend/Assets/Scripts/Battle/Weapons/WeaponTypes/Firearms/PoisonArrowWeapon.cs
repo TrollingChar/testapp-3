@@ -4,6 +4,7 @@ using Attributes;
 using Battle.Weapons.Crosshairs;
 using Utils.Singleton;
 
+
 namespace Battle.Weapons.WeaponTypes.Firearms {
 
     [Weapon(WeaponId.PoisonArrow)]
@@ -18,16 +19,15 @@ namespace Battle.Weapons.WeaponTypes.Firearms {
             }
         }
 
-        protected override void OnEquip()
-        {
+
+        protected override void OnEquip () {
             Attacks = 2;
             // todo: what if player has only 1 arrow
             CrossHair = new LineCrosshair();
         }
 
-        protected override void OnShoot()
-        {
-        }
+
+        protected override void OnShoot () {}
 
     }
 

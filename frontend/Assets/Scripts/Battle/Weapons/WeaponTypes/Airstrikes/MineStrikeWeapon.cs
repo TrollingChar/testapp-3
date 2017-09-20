@@ -3,6 +3,7 @@ using Attributes;
 using Battle.Weapons.Crosshairs;
 using Utils.Singleton;
 
+
 namespace Battle.Weapons.WeaponTypes.Airstrikes {
 
     [Weapon(WeaponId.MineStrike)]
@@ -17,14 +18,14 @@ namespace Battle.Weapons.WeaponTypes.Airstrikes {
             }
         }
 
-        protected override void OnEquip()
-        {
+
+        protected override void OnEquip () {
             CrossHair = new AirstrikeCrosshair();
         }
 
-        protected override void OnShoot()
-        {
-        }
+
+        protected override void OnShoot () {}
+
     }
 
 }
