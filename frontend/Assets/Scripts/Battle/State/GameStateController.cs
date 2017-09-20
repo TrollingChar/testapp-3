@@ -6,6 +6,7 @@ using Net;
 using UnityEngine;
 using Utils.Singleton;
 
+
 namespace Battle.State {
 
     public partial class GameStateController {
@@ -40,7 +41,7 @@ namespace Battle.State {
 //            _camera.LookAt(Worm.Position);
             PrepareWeapon(0);
             CanSelectWeapon = true;
-            
+
             ChangeState();
         }
 

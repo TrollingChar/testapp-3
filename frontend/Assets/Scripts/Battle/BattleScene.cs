@@ -142,6 +142,7 @@ namespace Battle {
         public void ShowHint (string text) {
             _hint.text = text;
         }
+
     }
 
 }

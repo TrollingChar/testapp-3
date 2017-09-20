@@ -6,10 +6,11 @@ using Battle.Objects;
 using Battle.State;
 using Utils.Singleton;
 
+
 namespace Battle.Weapons {
 
-    public abstract class Weapon
-    {
+    public abstract class Weapon {
+
         private readonly GameStateController _gameState;
         private readonly int _id;
         private bool _equipped;
@@ -18,16 +19,13 @@ namespace Battle.Weapons {
         public Worm Worm { get; set; }
 
 
-        
-        protected Weapon()
-        {
+        protected Weapon () {
             _gameState = The<GameStateController>.Get();
             _id = ((WeaponAttribute) GetType().GetCustomAttributes(true).First(a => a is WeaponAttribute)).Id;
         }
 
 
-        public void Equip(Worm worm)
-        {
+        public void Equip (Worm worm) {
             Worm = worm;
             _arsenal = worm.Team.Arsenal;
             _equipped = true;
@@ -35,31 +33,29 @@ namespace Battle.Weapons {
         }
 
 
-        public void Unequip()
-        {
+        public void Unequip () {
             if (_equipped) return;
             _equipped = false;
             OnUnequip();
         }
 
-        protected virtual void OnEquip() {}
-        protected virtual void OnUnequip() {}
+
+        protected virtual void OnEquip () {}
+        protected virtual void OnUnequip () {}
         public abstract void Update (TurnData td);
 
 
         protected void UseAmmo () {
             _arsenal.UseAmmo(_id);
         }
-        
-        
-        protected int GetAmmo()
-        {
+
+
+        protected int GetAmmo () {
             return _arsenal.GetAmmo(_id);
         }
 
 
-        protected void LockArsenal ()
-        {
+        protected void LockArsenal () {
             _gameState.LockWeaponSelect();
         }
 

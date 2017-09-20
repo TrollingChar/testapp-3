@@ -25,6 +25,7 @@ namespace Net.Utils.IO {
         }
         #endregion
 
+
         #region Fields not directly related to properties
         /// <summary>
         ///     Whether or not this reader has been disposed yet.
@@ -51,6 +52,7 @@ namespace Net.Utils.IO {
         /// </summary>
         private readonly int _minBytesPerChar;
         #endregion
+
 
         #region Constructors
         /// <summary>
@@ -96,6 +98,7 @@ namespace Net.Utils.IO {
         }
         #endregion
 
+
         #region Properties
         /// <summary>
         ///     The bit converter used to read values from the stream
@@ -112,6 +115,7 @@ namespace Net.Utils.IO {
         /// </summary>
         public Stream BaseStream { get; private set; }
         #endregion
+
 
         #region Public methods
         /// <summary>
@@ -491,6 +495,7 @@ namespace Net.Utils.IO {
             return Encoding.GetString(data, 0, data.Length);
         }
         #endregion
+
 
         #region Private methods
         /// <summary>

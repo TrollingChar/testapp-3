@@ -16,7 +16,8 @@ namespace Battle.Weapons {
         private bool _ready; // used when weapon requires click
         protected int AttackCooldown = 25;
         protected int Attacks = 1; // blaster has 2 // bug: no usage
-        protected bool ConstPower = true; // if false, will require to hold the button. true for grenade, false for machine gun
+        protected bool ConstPower = true
+            ; // if false, will require to hold the button. true for grenade, false for machine gun
         protected bool Removable = false; // if false, locks arsenal when used
         protected bool RequiresClick = true; // if true, will fire 2nd shot when button is clicked, if false - when held
         protected int ShotCooldown = 5;
@@ -28,7 +29,7 @@ namespace Battle.Weapons {
         public bool TimerFrozen { get; set; }
 
 
-        protected override void OnEquip() {}
+        protected override void OnEquip () {}
         protected virtual void OnFirstAttack () {} // bug: no usage
         protected virtual void OnBeginAttack () {}
         protected virtual void OnShoot () {}
@@ -102,4 +103,5 @@ namespace Battle.Weapons {
         }
 
     }
+
 }

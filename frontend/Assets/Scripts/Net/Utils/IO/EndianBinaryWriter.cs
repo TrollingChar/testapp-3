@@ -25,6 +25,7 @@ namespace Net.Utils.IO {
         }
         #endregion
 
+
         #region Fields not directly related to properties
         /// <summary>
         ///     Whether or not this writer has been disposed yet.
@@ -41,6 +42,7 @@ namespace Net.Utils.IO {
         /// </summary>
         private readonly char[] _charBuffer = new char[1];
         #endregion
+
 
         #region Constructors
         /// <summary>
@@ -80,6 +82,7 @@ namespace Net.Utils.IO {
         }
         #endregion
 
+
         #region Properties
         /// <summary>
         ///     The bit converter used to write values to the stream
@@ -96,6 +99,7 @@ namespace Net.Utils.IO {
         /// </summary>
         public Stream BaseStream { get; private set; }
         #endregion
+
 
         #region Public methods
         /// <summary>
@@ -340,6 +344,7 @@ namespace Net.Utils.IO {
             BaseStream.Write(_buffer, 0, index);
         }
         #endregion
+
 
         #region Private methods
         /// <summary>

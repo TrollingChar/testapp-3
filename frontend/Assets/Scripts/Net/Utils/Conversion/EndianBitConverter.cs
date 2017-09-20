@@ -64,6 +64,7 @@ namespace Net.Utils.Conversion {
         }
         #endregion
 
+
         #region Endianness of this converter
         /// <summary>
         ///     Indicates the byte order ("endianess") in which data is converted using this class.
@@ -82,6 +83,7 @@ namespace Net.Utils.Conversion {
         /// </summary>
         public abstract Endianness Endianness { get; }
         #endregion
+
 
         #region Factory properties
         private static readonly LittleEndianBitConverter _little = new LittleEndianBitConverter();
@@ -104,6 +106,7 @@ namespace Net.Utils.Conversion {
             get { return _big; }
         }
         #endregion
+
 
         #region Double/primitive conversions
         /// <summary>
@@ -153,6 +156,7 @@ namespace Net.Utils.Conversion {
             return new Int32SingleUnion(value).AsSingle;
         }
         #endregion
+
 
         #region To(PrimitiveType) conversions
         /// <summary>
@@ -314,6 +318,7 @@ namespace Net.Utils.Conversion {
         protected abstract long FromBytes (byte[] value, int startIndex, int bytesToConvert);
         #endregion
 
+
         #region ToString conversions
         /// <summary>
         ///     Returns pos0 String converted from the elements of pos0 byte array.
@@ -359,6 +364,7 @@ namespace Net.Utils.Conversion {
             return BitConverter.ToString(value, startIndex, length);
         }
         #endregion
+
 
         #region	Decimal conversions
         /// <summary>
@@ -409,6 +415,7 @@ namespace Net.Utils.Conversion {
             }
         }
         #endregion
+
 
         #region GetBytes conversions
         /// <summary>
@@ -524,6 +531,7 @@ namespace Net.Utils.Conversion {
             return GetBytes(unchecked((long) value), 8);
         }
         #endregion
+
 
         #region CopyBytes conversions
         /// <summary>

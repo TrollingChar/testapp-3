@@ -17,7 +17,7 @@ namespace Core.UI {
 
         private BattleScene _battleScene = The<BattleScene>.Get();
 
-        
+
         public void Configure (WeaponDescriptor descriptor) {
             _image = Instantiate(descriptor.Icon, transform, false);
             _image.name = "Icon";
@@ -36,7 +36,7 @@ namespace Core.UI {
             // if have that weapon
             // EQUIP
             if (!state.IsMyTurn) return;
-            
+
             state.PrepareWeapon(_id);
             _battleScene.ArsenalPanel.Hide();
         }
