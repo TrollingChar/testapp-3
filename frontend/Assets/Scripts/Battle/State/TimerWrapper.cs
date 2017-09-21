@@ -1,4 +1,4 @@
-﻿using Messengers;
+﻿using Utils.Messenger;
 
 namespace Battle.State
 {
@@ -9,7 +9,7 @@ namespace Battle.State
         
         private int _time;
         private bool _frozen;
-        public readonly TimerUpdatedMessenger OnTimerUpdated = new TimerUpdatedMessenger();
+        public readonly Messenger<int> OnTimerUpdated = new Messenger<int>();
         public readonly TimerElapsedMessenger OnTimerElapsed = new TimerElapsedMessenger();
 
         public int Time

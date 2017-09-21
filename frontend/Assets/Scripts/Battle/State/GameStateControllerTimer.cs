@@ -1,4 +1,4 @@
-﻿using Messengers;
+﻿using Utils.Messenger;
 
 
 namespace Battle.State {
@@ -9,7 +9,7 @@ namespace Battle.State {
         private const int TurnTime = 10000;
         private const int RetreatTime = 3000;
         private int _time;
-        public TimerUpdatedMessenger OnTimerUpdated { get; private set; }
+        public Messenger<int> OnTimerUpdated { get; private set; }
 
         public int Timer {
             get { return _time; }

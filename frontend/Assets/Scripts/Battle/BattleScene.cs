@@ -10,6 +10,7 @@ using Messengers;
 using Net;
 using UnityEngine;
 using UnityEngine.UI;
+using Utils.Messenger;
 using Utils.Random;
 using Utils.Singleton;
 
@@ -37,12 +38,11 @@ namespace Battle {
         private GameInitData _initData;
         private bool _initialized;
 
-        public BattleLoadedMessenger OnBattleLoaded { get; private set; }
+        public readonly Messenger OnBattleLoaded = new Messenger();
 
 
         private void Awake () {
             The<BattleScene>.Set(this);
-            OnBattleLoaded = new BattleLoadedMessenger();
 
             _initData = (GameInitData) The<SceneSwitcher>.Get().Data[0];
             RNG.Init(_initData.Seed);

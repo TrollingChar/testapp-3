@@ -2,9 +2,9 @@
 using Battle.Teams;
 using Commands.Server;
 using Core;
-using Messengers;
 using Net;
 using UnityEngine;
+using Utils.Messenger;
 using Utils.Singleton;
 
 
@@ -22,7 +22,7 @@ namespace Battle.State {
             _connection = The<WSConnection>.Get();
             _playerId = The<PlayerInfo>.Get().Id;
 
-            OnTimerUpdated = new TimerUpdatedMessenger();
+            OnTimerUpdated = new Messenger<int>();
 
             CurrentState = GameState.AfterTurn;
             Hint("AFT");

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using Messengers;
 using UnityEngine;
+using Utils.Messenger;
 
 
 namespace Battle.Generation {
@@ -12,9 +12,9 @@ namespace Battle.Generation {
         private const int CellularEstimation = 10;
         private const int RescaleEstimation = 5;
         private const int RotateEstimation = 5;
-        public readonly LandGenCompleteMessenger OnComplete;
+        public readonly Messenger<LandGen> OnComplete;
 
-        public readonly LandGenProgressMessenger OnProgress;
+        public readonly Messenger<float> OnProgress;
         private MonoBehaviour _coroutineKeeper;
 
         private long _done;
@@ -30,8 +30,8 @@ namespace Battle.Generation {
             _width = landGen.Array.GetLength(0);
             _height = landGen.Array.GetLength(1);
 
-            OnProgress = new LandGenProgressMessenger();
-            OnComplete = new LandGenCompleteMessenger();
+            OnProgress = new Messenger<float>();
+            OnComplete = new Messenger<LandGen>();
             _instructions = new Queue<IEnumerator>();
         }
 
