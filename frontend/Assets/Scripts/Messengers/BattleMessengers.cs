@@ -1,8 +1,8 @@
-﻿using Utils.Messenger;
-
+﻿using System;
+using Utils.Messenger;
 
 namespace Messengers {
 
-    public class BattleLoadedMessenger : Messenger {}
+    [Obsolete] public class BattleLoadedMessenger : Messenger {}
 
 }

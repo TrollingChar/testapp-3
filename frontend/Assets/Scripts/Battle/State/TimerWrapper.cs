@@ -8,6 +8,7 @@ namespace Battle.State
         private const int RetreatTime = 3000; 
         
         private int _time;
+        private bool _frozen;
         public readonly TimerUpdatedMessenger OnTimerUpdated = new TimerUpdatedMessenger();
         public readonly TimerElapsedMessenger OnTimerElapsed = new TimerElapsedMessenger();
 
@@ -28,6 +29,7 @@ namespace Battle.State
 
         public void Update()
         {
+            if (_frozen) return;
             Time -= 20;
             if (Time <= 0) OnTimerElapsed.Send();
         }

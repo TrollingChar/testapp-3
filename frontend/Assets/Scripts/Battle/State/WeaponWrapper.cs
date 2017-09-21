@@ -16,7 +16,7 @@ namespace Battle.State
             if (_weapon != null) _weapon.Update(td);
         }
 
-        private void SelectWeapon(int preparedId)
+        private void SelectWeapon(int weaponId)
         {
             _weapon = null;
         }

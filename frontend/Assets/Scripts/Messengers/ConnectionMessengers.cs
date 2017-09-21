@@ -1,31 +1,18 @@
-﻿using Battle;
+﻿using System;
+using Battle;
 using Core;
 using Utils.Messenger;
 
 
 namespace Messengers {
 
-    public class PlayerInfoReceivedMessenger : Messenger<PlayerInfo> {}
-
-
-    public class HubChangedMessenger : Messenger<int, int> {}
-
-
-    public class StartGameMessenger : Messenger<GameInitData> {}
-
-
-    public class PlayerQuitMessenger : Messenger<int> {}
-
-
-    public class PlayerWinMessenger : Messenger<int> {}
-
-
-    public class TurnDataReceivedMessenger : Messenger<TurnData> {}
-
-
-    public class NoWinnerMessenger : Messenger {}
-
-
-    public class NewTurnMessenger : Messenger<int> {} // int - player that receive turn
+    [Obsolete] public class PlayerInfoReceivedMessenger : Messenger<PlayerInfo> {}
+    [Obsolete] public class HubChangedMessenger : Messenger<int, int> {}
+    [Obsolete] public class StartGameMessenger : Messenger<GameInitData> {}
+    [Obsolete] public class PlayerQuitMessenger : Messenger<int> {}
+    [Obsolete] public class PlayerWinMessenger : Messenger<int> {}
+    [Obsolete] public class TurnDataReceivedMessenger : Messenger<TurnData> {}
+    [Obsolete] public class NoWinnerMessenger : Messenger {}
+    [Obsolete] public class NewTurnMessenger : Messenger<int> {} // int - player that receive turn
 
 }

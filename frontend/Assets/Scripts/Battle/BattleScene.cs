@@ -24,6 +24,9 @@ namespace Battle {
         public WSConnection Connection { get; private set; }
         public CameraWrapper Camera { get; private set; }
         public GameStateController State { get; private set; }
+        public WeaponWrapper Weapon { get; private set; }
+        public TimerWrapper Timer { get; private set; }
+        
         public TeamManager Teams { get; private set; }
         public World World { get; private set; }
         public ArsenalPanel ArsenalPanel { get; private set; }
@@ -45,7 +48,7 @@ namespace Battle {
             RNG.Init(_initData.Seed);
 
             Connection = The<WSConnection>.Get();
-            CommandExecutor<HandleTurnDataCmd>.AddHandler(Handler);
+            CommandExecutor<HandleTurnDataCmd>.AddHandler(TurnDataHandler);
 
             Camera = GetComponentInChildren<CameraWrapper>();
             The<CameraWrapper>.Set(Camera);
@@ -54,11 +57,6 @@ namespace Battle {
             The<ArsenalPanel>.Set(ArsenalPanel);
 
             StartLandGen();
-        }
-
-
-        private void Handler (HandleTurnDataCmd cmd) {
-            Work(cmd.Data);
         }
 
 
@@ -87,6 +85,11 @@ namespace Battle {
         }
 
 
+        private void TurnDataHandler (HandleTurnDataCmd cmd) {
+            Work(cmd.Data);
+        }
+
+
         private void OnProgress (float progress) {
             _hint.text = "Прогресс генерации: " + (int) progress + "%";
         }
@@ -101,6 +104,8 @@ namespace Battle {
             // show ground, spawn worms
             State = new GameStateController();
             World = new World(gen, _landRenderer);
+            Timer = new TimerWrapper();
+            Weapon = new WeaponWrapper();
             Camera.LookAt(new Vector2(1000, 1000), true);
             Teams = World.SpawnTeams(_initData.Players, 5);
 
@@ -125,14 +130,15 @@ namespace Battle {
 
 
         private void Work (TurnData td) {
-            // todo: select and update weapon
+//            Weapon.Update(td);
             World.Update(td);
+//            Timer.Update();
             State.Update();
         }
 
 
         private void OnDestroy () {
-            CommandExecutor<HandleTurnDataCmd>.RemoveHandler(Handler);
+            CommandExecutor<HandleTurnDataCmd>.RemoveHandler(TurnDataHandler);
             The<World>.Set(null);
             The<GameStateController>.Set(null);
         }

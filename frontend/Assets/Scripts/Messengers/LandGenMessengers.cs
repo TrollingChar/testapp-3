@@ -1,12 +1,11 @@
-﻿using Battle.Generation;
+﻿using System;
+using Battle.Generation;
 using Utils.Messenger;
 
 
 namespace Messengers {
 
-    public class LandGenProgressMessenger : Messenger<float> {}
-
-
-    public class LandGenCompleteMessenger : Messenger<LandGen> {}
+    [Obsolete] public class LandGenProgressMessenger : Messenger<float> {}
+    [Obsolete] public class LandGenCompleteMessenger : Messenger<LandGen> {}
 
 }
