@@ -16,17 +16,19 @@ namespace Battle.UI {
         private GameStateController _state;
         [SerializeField] private Text _time;
         private string _turnTime = "";
+        private BattleScene _battleScene;
 
 
-        private void Awake () {
-            The<BattleScene>.Get().OnBattleLoaded.Subscribe(OnBattleLoaded);
+        private void Awake ()
+        {
+            _battleScene = The<BattleScene>.Get();
+            _battleScene.OnBattleLoaded.Subscribe(OnBattleLoaded);
         }
 
 
         private void OnBattleLoaded () {
-            The<BattleScene>.Get().OnBattleLoaded.Unsubscribe(OnBattleLoaded);
-            _state = The<GameStateController>.Get();
-            _state.OnTimerUpdated.Subscribe(UpdateTime);
+            _battleScene.OnBattleLoaded.Unsubscribe(OnBattleLoaded);
+            _battleScene.Timer.OnTimerUpdated.Subscribe(UpdateTime);
         }
 
 

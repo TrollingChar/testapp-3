@@ -6,7 +6,6 @@ using Battle.UI;
 using Commands.Client;
 using Commands.Server;
 using Core;
-using Messengers;
 using Net;
 using UnityEngine;
 using UnityEngine.UI;
@@ -130,10 +129,10 @@ namespace Battle {
 
 
         private void Work (TurnData td) {
-//            Weapon.Update(td);
+            Weapon.Update(td);
             World.Update(td);
-//            Timer.Update();
-            State.Update();
+            Timer.Update();
+//            State.Update();
         }
 
 

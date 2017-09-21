@@ -9,8 +9,9 @@ namespace Battle.State
         
         private int _time;
         private bool _frozen;
+        
         public readonly Messenger<int> OnTimerUpdated = new Messenger<int>();
-        public readonly TimerElapsedMessenger OnTimerElapsed = new TimerElapsedMessenger();
+        public readonly Messenger OnTimerElapsed = new Messenger();
 
         public int Time
         {
@@ -24,6 +25,7 @@ namespace Battle.State
 
         public void Wait(int milliseconds)
         {
+            //if (_battle.State.Is(GameState.Turn)) return;
             if (Time < milliseconds) Time = milliseconds;
         }
 
