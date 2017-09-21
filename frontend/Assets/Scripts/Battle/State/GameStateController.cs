@@ -25,15 +25,15 @@ namespace Battle.State
         private GameState _currentState;
         private GameState NextState { get; set; }
 
-        private int _time;
+//        private int _time;
         
         // todo: remove from there, it's moved to WeaponWrapper
         // todo: use arsenal
-        private Weapon _weapon;
+//        private Weapon _weapon;
         
         // todo: move to ActiveWormWrapper
-        private Worm _worm;
-        public int ActivePlayer;
+//        private Worm _worm;
+//        public int ActivePlayer;
 
         public readonly Messenger<int> OnTimerUpdated = new Messenger<int>();
         
@@ -50,32 +50,32 @@ namespace Battle.State
             CommandExecutor<StartNewTurnCmd>.AddHandler(OnNewTurn); // todo unsubscribe when battle ends
         }
 
-        public bool WormFrozen { get; private set; }
-        public Worm Worm
-        {
-            get { return _worm; }
-            private set
-            {
-                if (_worm != null) {
-                    _worm.ArrowVisible = false;
-                }
-                _worm = value;
-                if (value == null) {
-                    return;
-                }
-                _worm.ArrowVisible = true;
-            }
-        }
+//        public bool WormFrozen { get; private set; }
+//        public Worm Worm
+//        {
+//            get { return _worm; }
+//            private set
+//            {
+//                if (_worm != null) {
+//                    _worm.ArrowVisible = false;
+//                }
+//                _worm = value;
+//                if (value == null) {
+//                    return;
+//                }
+//                _worm.ArrowVisible = true;
+//            }
+//        }
 
-        public int Timer
-        {
-            get { return _time; }
-            set
-            {
-                _time = value;
-                OnTimerUpdated.Send(value);
-            }
-        }
+//        public int Timer
+//        {
+//            get { return _time; }
+//            set
+//            {
+//                _time = value;
+//                OnTimerUpdated.Send(value);
+//            }
+//        }
 
         public GameState CurrentState
         {
@@ -88,71 +88,85 @@ namespace Battle.State
             }
         }
 
-        [Obsolete]
-        public bool IsMyTurn
-        {
-            get { return ActivePlayer == _playerId && CurrentState == GameState.Turn; }
-        }
+//        [Obsolete]
+//        public bool IsMyTurn
+//        {
+//            get { return ActivePlayer == _playerId && CurrentState == GameState.Turn; }
+//        }
 
 
-        private void OnNewTurn(StartNewTurnCmd startNewTurnCommand)
-        {
+//        private void OnNewTurn(StartNewTurnCmd startNewTurnCommand)
+//        {
             // too many references from here
-            int id = startNewTurnCommand.Player;
-            ActivePlayer = id;
-            Worm = The<TeamManager>.Get().Teams[id].NextWorm(); // todo: remove chain
+//            int id = startNewTurnCommand.Player;
+//            ActivePlayer = id;
+//            Worm = The<TeamManager>.Get().Teams[id].NextWorm(); // todo: remove chain
 //            _camera.LookAt(Worm.Position);
 //            PrepareWeapon(0);
 //            CanSelectWeapon = true;
-            ChangeState();
-        }
+//            ChangeState();
+//        }
 
-        public void Wait(int milliseconds)
+//        public void Wait(int milliseconds)
+//        {
+//            if (CurrentState == GameState.Turn) {
+//                return;
+//            }
+//            if (Timer < milliseconds) {
+//                Timer = milliseconds;
+//            }
+//        }
+
+
+//        public void Update()
+//        {
+//            if ((Timer -= 20) <= 0) {
+//                ChangeState();
+//            }
+//        }
+
+        public readonly Messenger<TimerWrapper> OnBeforeTurnPhase;
+        public readonly Messenger OnSynchroPhase;
+        public readonly Messenger<TimerWrapper> OnTurnPhase;
+        public readonly Messenger<TimerWrapper> OnEndTurnPhase;
+        public readonly Messenger<TimerWrapper> OnAfterTurnPhase;
+        public readonly Messenger<TimerWrapper> OnRemove0HpPhase;
+
+        public void ChangeState()
         {
-            if (CurrentState == GameState.Turn) {
-                return;
-            }
-            if (Timer < milliseconds) {
-                Timer = milliseconds;
-            }
-        }
-
-
-        public void Update()
-        {
-            if ((Timer -= 20) <= 0) {
-                ChangeState();
-            }
-        }
-
-
-        private void ChangeState()
-        {
+            _timer.Time = 0;
             do switch (CurrentState = NextState++) {
                 case GameState.BeforeTurn:
-                    DropCrates();
-                    RegenHp();
-                    RenewShields();
+                    OnBeforeTurnPhase.Send(_timer);
+//                    DropCrates();
+//                    RegenHp();
+//                    RenewShields();
                     break;
                 case GameState.Synchronizing:
-                    SendSyncData();
-                    return; // special case
+                    // special case
+                    OnSynchroPhase.Send();
+//                    SendSyncData();
+                    return;
                 case GameState.Turn:
-                    StartTurn();
+                    OnTurnPhase.Send(_timer);
+//                    StartTurn();
                     break;
                 case GameState.EndingTurn:
-                    FreezeWorm();
+                    OnEndTurnPhase.Send(_timer);
+//                    FreezeWorm();
                     break;
                 case GameState.AfterTurn:
-                    PoisonDamage();
+                    OnAfterTurnPhase.Send(_timer);
+//                    PoisonDamage();
                     break;
                 case GameState.Remove0Hp:
-                    Remove0Hp();
-                    NextState = Timer > 0 ? GameState.Remove0Hp : GameState.BeforeTurn; // special case
+                    OnRemove0HpPhase.Send(_timer);
+//                    Remove0Hp();
+                    NextState = _timer.HasElapsed ? GameState.BeforeTurn : GameState.Remove0Hp; // special case
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
-            } while (Timer <= 0);
+            } while (_timer.HasElapsed);
             return;
             
             
