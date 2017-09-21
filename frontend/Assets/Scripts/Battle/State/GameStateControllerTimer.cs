@@ -4,6 +4,7 @@
 namespace Battle.State {
 
     public partial class GameStateController {
+        // todo: remove from there, it's moved to TimerWrapper
 
         private const int TurnTime = 10000;
         private const int RetreatTime = 3000;

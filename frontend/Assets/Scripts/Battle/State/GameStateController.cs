@@ -1,4 +1,5 @@
-﻿using Battle.Teams;
+﻿using System;
+using Battle.Teams;
 using Commands.Server;
 using Core;
 using Messengers;
@@ -9,9 +10,10 @@ using Utils.Singleton;
 
 namespace Battle.State {
 
+    // todo: split this to smaller classes
     public partial class GameStateController {
 
-        private readonly WSConnection _connection;
+        private readonly WSConnection _connection; // todo: move to BattleScene
 
 
         public GameStateController () {
@@ -46,6 +48,7 @@ namespace Battle.State {
         }
 
 
+        [Obsolete]
         private void Hint (string text) {
             Debug.Log(text);
             The<BattleScene>.Get().ShowHint(text);

@@ -5,6 +5,7 @@ using Core;
 namespace Battle.State {
 
     public partial class GameStateController {
+        // todo: remove from there, it's moved to WeaponWrapper
 
         // todo: use arsenal
         private Weapon _weapon;

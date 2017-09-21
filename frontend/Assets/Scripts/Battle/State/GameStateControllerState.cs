@@ -8,7 +8,7 @@ namespace Battle.State {
 
         private GameState _next;
         public GameState CurrentState { get; private set; }
-        public bool Synchronized;
+        public bool Synchronized; // todo: remove?
 
 
         private void ChangeState () {

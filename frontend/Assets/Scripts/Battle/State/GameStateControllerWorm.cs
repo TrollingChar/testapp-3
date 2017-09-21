@@ -4,6 +4,7 @@
 namespace Battle.State {
 
     public partial class GameStateController {
+        // todo: move to ActiveWormWrapper
 
         private Worm _worm;
         public bool WormFrozen { get; private set; }
