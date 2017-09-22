@@ -1,4 +1,5 @@
 ﻿using Battle.Objects;
+using Utils.Singleton;
 
 namespace Battle.State
 {
@@ -6,6 +7,12 @@ namespace Battle.State
     {
         private Worm _worm;
         public bool CanMove { get; set; }
+
+
+        public ActiveWormWrapper()
+        {
+            The<ActiveWormWrapper>.Set(this);
+        }
         
         
         public Worm Worm {
