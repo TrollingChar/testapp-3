@@ -11,7 +11,7 @@ namespace Battle.Weapons {
 
     public abstract class Weapon {
 
-        private readonly GameStateController _gameState;
+        private readonly WeaponWrapper _weaponWrapper;
         private readonly int _id;
         private bool _equipped;
         private Arsenal _arsenal;
@@ -20,7 +20,7 @@ namespace Battle.Weapons {
 
 
         protected Weapon () {
-            _gameState = The<GameStateController>.Get();
+            _weaponWrapper = The<WeaponWrapper>.Get();
             _id = ((WeaponAttribute) GetType().GetCustomAttributes(true).First(a => a is WeaponAttribute)).Id;
         }
 
@@ -56,7 +56,7 @@ namespace Battle.Weapons {
 
 
         protected void LockArsenal () {
-            _gameState.LockWeaponSelect();
+            _weaponWrapper.LockSelect();
         }
 
     }

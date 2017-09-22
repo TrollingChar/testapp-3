@@ -1,5 +1,6 @@
 ﻿using Battle;
 using Battle.State;
+using Battle.Teams;
 using Battle.Weapons;
 using UnityEngine;
 using UnityEngine.UI;
@@ -29,15 +30,17 @@ namespace Core.UI {
         }
 
 
-        public void OnClick () {
-            var state = The<GameStateController>.Get();
+        public void OnClick ()
+        {
+            var teamManager = The<TeamManager>.Get();
+            var weaponWrapper = The<WeaponWrapper>.Get();
             // if my turn
             // if arsenal not locked
             // if have that weapon
             // EQUIP
-            if (!state.IsMyTurn) return;
+            if (!teamManager.IsMyTurn) return;
 
-            state.PrepareWeapon(_id);
+            weaponWrapper.PreparedId = _id;
             _battleScene.ArsenalPanel.Hide();
         }
 

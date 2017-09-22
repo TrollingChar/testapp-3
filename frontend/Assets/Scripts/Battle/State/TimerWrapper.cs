@@ -1,4 +1,5 @@
 ﻿using Utils.Messenger;
+using Utils.Singleton;
 
 namespace Battle.State
 {
@@ -12,6 +13,11 @@ namespace Battle.State
         
         public readonly Messenger<int> OnTimerUpdated = new Messenger<int>();
         public readonly Messenger OnTimerElapsed = new Messenger();
+
+        public TimerWrapper()
+        {
+            The<TimerWrapper>.Set(this);
+        }
 
         public int Time
         {

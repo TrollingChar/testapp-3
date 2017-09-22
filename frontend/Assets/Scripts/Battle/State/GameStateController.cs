@@ -5,7 +5,6 @@ using Battle.Teams;
 using Battle.Weapons;
 using Commands.Client;
 using Commands.Server;
-using Core;
 using UnityEngine;
 using Utils.Messenger;
 using Utils.Random;
@@ -16,19 +15,15 @@ namespace Battle.State
     public class GameStateController
     {
         private BattleScene _battle;
-        private readonly int _playerId;
 
         private GameState _currentState;
         private GameState NextState { get; set; }
 
-//        public readonly Messenger<int> OnTimerUpdated = new Messenger<int>();
-        
         
         public GameStateController()
         {
             The<GameStateController>.Set(this);
 
-            _playerId = The<PlayerInfo>.Get().Id;
             _battle = The<BattleScene>.Get();
 
             CurrentState = GameState.AfterTurn;

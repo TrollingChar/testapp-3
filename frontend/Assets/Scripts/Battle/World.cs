@@ -24,8 +24,6 @@ namespace Battle {
         public const float Precision = 0.1f;
         private readonly LinkedList<Object> _objects;
 
-        private readonly GameStateController _state;
-
         public float Gravity;
         public Land Land;
         public Tiles Tiles;
@@ -36,7 +34,7 @@ namespace Battle {
         public World (LandGen gen, SpriteRenderer renderer) {
             The<World>.Set(this);
 
-            _state = The<GameStateController>.Get();
+            The<GameStateController>.Get();
 
             Gravity = -0.5f;
             WaterLevel = 0;
@@ -48,9 +46,9 @@ namespace Battle {
 
 
         public void Update (TurnData td) {
-            if (_state.Timer % 500 == 0 && td != null && td.MB) {
+//            if (_state.Timer % 500 == 0 && td != null && td.MB) {
                 // ???
-            }
+//            }
 
             foreach (var o in _objects) o.Update(td);
 

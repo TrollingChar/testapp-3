@@ -5,8 +5,8 @@ namespace Battle.State
     public class ActiveWormWrapper
     {
         private Worm _worm;
-        private bool _canMove;
-
+        public bool CanMove { get; set; }
+        
         
         public Worm Worm {
             get { return _worm; }
@@ -18,7 +18,7 @@ namespace Battle.State
             }
         }
 
-        
+
         public bool Is(Worm worm) {
             return worm == _worm;
         }

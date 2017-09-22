@@ -110,20 +110,10 @@ namespace Battle {
             Camera.LookAt(new Vector2(1000, 1000), true);
             Teams = World.SpawnTeams(_initData.Players, 5);
             ActiveWorm = new ActiveWormWrapper();
-            CommandExecutor<StartNewTurnCmd>.AddHandler(OnNewTurnCmd);
+            CommandExecutor<StartNewTurnCmd>.AddHandler(NewTurn);
             
             OnBattleLoaded.Send();
             Timer.Time = 500;
-        }
-
-        
-        private void OnNewTurnCmd(StartNewTurnCmd cmd)
-        {
-            Teams.SetActive(cmd.Player);
-            ActiveWorm.Worm = Teams.NextWorm();
-            Camera.LookAt(ActiveWorm.Worm.Position);
-            Weapon.OnNewTurn();
-            State.ChangeState();
         }
 
 
@@ -134,8 +124,9 @@ namespace Battle {
                 Work(null);
                 return;
             }
-            if (!State.IsMyTurn) return;
-
+//            if (!State.IsMyTurn) return;
+            if (!Teams.IsMyTurn) return;
+            
             // gather input and update world
             var td = new TurnData();
             new SendTurnDataCmd(td).Send();
@@ -147,8 +138,7 @@ namespace Battle {
             Weapon.Update(td);
             World.Update(td);
             Timer.Update();
-            State.Update();
-//            State.Update();
+            if (Timer.HasElapsed) State.ChangeState();
         }
 
 
@@ -175,15 +165,21 @@ namespace Battle {
             Connection.Send(new EndTurnCmd(true));
         }
 
-        public void NewTurn()
+        
+        private void NewTurn(StartNewTurnCmd cmd)
         {
-            // ActiveWorm...
+            Teams.SetActive(cmd.Player);
+            ActiveWorm.Worm = Teams.NextWorm();
+            ActiveWorm.CanMove = true;
+            Camera.LookAt(ActiveWorm.Worm.Position);
+            Weapon.OnNewTurn();
+            State.ChangeState();
             Timer.Time = 10000;
         }
 
         public void EndTurn()
         {
-            // ActiveWorm...
+            ActiveWorm.CanMove = false;
         }
 
         public void AfterTurn()

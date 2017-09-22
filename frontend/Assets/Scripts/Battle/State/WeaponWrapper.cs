@@ -5,14 +5,14 @@ namespace Battle.State
 {
     public class WeaponWrapper
     {
-        private int _preparedId;
+        public int PreparedId { get; set; }
         private Weapon _weapon;
         private bool _locked;
 
         public void Update(TurnData td)
         {
-            if (!_locked && _preparedId != 0) SelectWeapon(_preparedId);
-            _preparedId = 0;
+            if (!_locked && PreparedId != 0) SelectWeapon(PreparedId);
+            PreparedId = 0;
             if (_weapon != null) _weapon.Update(td);
         }
 
@@ -28,8 +28,14 @@ namespace Battle.State
 
         public void OnNewTurn()
         {
-            _preparedId = 0;
+            PreparedId = 0;
             _weapon = null;
+            _locked = false;
+        }
+
+        public void LockSelect()
+        {
+            _locked = true;
         }
     }
 }

@@ -8,7 +8,7 @@ namespace Battle.Objects.Controllers {
 
     public class WormControllerWalk : Controller {
 
-        private readonly GameStateController _state = The<GameStateController>.Get();
+        private readonly ActiveWormWrapper _activeWorm = The<ActiveWormWrapper>.Get();
 
         // TODO: replace magic numbers with constants
 
@@ -34,7 +34,7 @@ namespace Battle.Objects.Controllers {
             }
 
             // can move?
-            if (td == null || worm != _state.Worm || _state.WormFrozen) {
+            if (td == null || !_activeWorm.Is(worm) || !_activeWorm.CanMove) {
                 if (-collision.Offset.Y < World.Precision) {
                     collision.Offset.Y = 0;
                 } else {
