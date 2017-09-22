@@ -22,5 +22,11 @@ namespace Battle.State
         public bool Is(Worm worm) {
             return worm == _worm;
         }
+
+
+        public void Set(Worm worm)
+        {
+            _worm = worm;
+        }
     }
 }

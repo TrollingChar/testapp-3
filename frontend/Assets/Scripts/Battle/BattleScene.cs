@@ -1,4 +1,5 @@
-﻿using Battle.Camera;
+﻿using System;
+using Battle.Camera;
 using Battle.Generation;
 using Battle.State;
 using Battle.Teams;
@@ -26,6 +27,7 @@ namespace Battle {
         public GameStateController State { get; private set; }
         public WeaponWrapper Weapon { get; private set; }
         public TimerWrapper Timer { get; private set; }
+        public ActiveWormWrapper ActiveWorm { get; private set; }
         
         public TeamManager Teams { get; private set; }
         public World World { get; private set; }
@@ -102,11 +104,16 @@ namespace Battle {
 
             // show ground, spawn worms
             State = new GameStateController();
-            World = new World(gen, _landRenderer);
             Timer = new TimerWrapper();
+            World = new World(gen, _landRenderer);
             Weapon = new WeaponWrapper();
             Camera.LookAt(new Vector2(1000, 1000), true);
             Teams = World.SpawnTeams(_initData.Players, 5);
+            ActiveWorm = new ActiveWormWrapper();
+            
+//            State.OnTurnPhase.Subscribe(StartTurn);
+//            State.OnEndTurnPhase.Subscribe(EndTurn);
+//            State.OnSynchroPhase.Subscribe(Synchronize);
 
             OnBattleLoaded.Send();
         }
@@ -143,11 +150,41 @@ namespace Battle {
         }
 
 
-        // temp method
+        [Obsolete]
         public void ShowHint (string text) {
             _hint.text = text;
         }
 
+
+        public void BeforeTurn()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Synchronize()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void NewTurn()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void EndTurn()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AfterTurn()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Remove0Hp()
+        {
+            throw new NotImplementedException();
+        }
     }
 
 }

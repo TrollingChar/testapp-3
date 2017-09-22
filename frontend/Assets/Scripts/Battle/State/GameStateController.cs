@@ -59,44 +59,45 @@ namespace Battle.State
 //            ChangeState();
 //        }
 
-        public readonly Messenger<TimerWrapper> OnBeforeTurnPhase;
-        public readonly Messenger OnSynchroPhase;
-        public readonly Messenger<TimerWrapper> OnTurnPhase;
-        public readonly Messenger<TimerWrapper> OnEndTurnPhase;
-        public readonly Messenger<TimerWrapper> OnAfterTurnPhase;
-        public readonly Messenger<TimerWrapper> OnRemove0HpPhase;
+//        public readonly Messenger<TimerWrapper> OnBeforeTurnPhase;
+//        public readonly Messenger OnSynchroPhase;
+//        public readonly Messenger<TimerWrapper> OnTurnPhase;
+//        public readonly Messenger<TimerWrapper> OnEndTurnPhase;
+//        public readonly Messenger<TimerWrapper> OnAfterTurnPhase;
+//        public readonly Messenger<TimerWrapper> OnRemove0HpPhase;
 
-        private TimerWrapper _timer;
+        private BattleScene _battle;
 
         public void ChangeState()
         {
+            var _timer = _battle.Timer;
             _timer.Time = 0;
             do switch (CurrentState = NextState++) {
                 case GameState.BeforeTurn:
-                    OnBeforeTurnPhase.Send(_timer);
+                    _battle.BeforeTurn();
 //                    DropCrates();
 //                    RegenHp();
 //                    RenewShields();
                     break;
                 case GameState.Synchronizing:
+                    _battle.Synchronize();
                     // special case
-                    OnSynchroPhase.Send();
-                    SendSyncData();
+//                    SendSyncData();
                     return;
                 case GameState.Turn:
-                    OnTurnPhase.Send(_timer);
-                    StartTurn();
+                    _battle.NewTurn();
+//                    StartTurn();
                     break;
                 case GameState.EndingTurn:
-                    OnEndTurnPhase.Send(_timer);
-                    FreezeWorm();
+                    _battle.EndTurn();
+//                    FreezeWorm();
                     break;
                 case GameState.AfterTurn:
-                    OnAfterTurnPhase.Send(_timer);
+                    _battle.AfterTurn();
 //                    PoisonDamage();
                     break;
                 case GameState.Remove0Hp:
-                    OnRemove0HpPhase.Send(_timer);
+                    _battle.Remove0Hp();
 //                    Remove0Hp();
                     NextState = _timer.HasElapsed ? GameState.BeforeTurn : GameState.Remove0Hp; // special case
                     break;
