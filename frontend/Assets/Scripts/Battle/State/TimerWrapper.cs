@@ -16,8 +16,7 @@ namespace Battle.State
         public int Time
         {
             get { return _time; }
-            private set
-            {
+            set {
                 _time = value;
                 OnTimerUpdated.Send(value);
             }
@@ -33,7 +32,12 @@ namespace Battle.State
         {
             if (_frozen) return;
             Time -= 20;
-            if (Time <= 0) OnTimerElapsed.Send();
+            if (HasElapsed) OnTimerElapsed.Send();
+        }
+
+        public bool HasElapsed
+        {
+            get { return Time <= 0; }
         }
     }
 }
