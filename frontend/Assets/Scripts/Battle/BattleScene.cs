@@ -110,7 +110,8 @@ namespace Battle {
             Camera.LookAt(new Vector2(1000, 1000), true);
             Teams = World.SpawnTeams(_initData.Players, 5);
             ActiveWorm = new ActiveWormWrapper();
-            CommandExecutor<StartNewTurnCmd>.AddHandler(NewTurn);
+            
+            CommandExecutor<StartNewTurnCmd>.AddHandler(PrepareTurn);
             
             OnBattleLoaded.Send();
             Timer.Time = 500;
@@ -164,16 +165,19 @@ namespace Battle {
         {
             Connection.Send(new EndTurnCmd(true));
         }
-
         
-        private void NewTurn(StartNewTurnCmd cmd)
+        private void PrepareTurn(StartNewTurnCmd cmd)
         {
             Teams.SetActive(cmd.Player);
+            State.ChangeState();
+        }
+
+        public void NewTurn()
+        {
             ActiveWorm.Worm = Teams.NextWorm();
             ActiveWorm.CanMove = true;
             Camera.LookAt(ActiveWorm.Worm.Position);
             Weapon.OnNewTurn();
-            State.ChangeState();
             Timer.Time = 10000;
         }
 

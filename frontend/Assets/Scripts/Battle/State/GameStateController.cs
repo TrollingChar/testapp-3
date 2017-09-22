@@ -60,9 +60,9 @@ namespace Battle.State
 //                    SendSyncData();
                     return;
                 case GameState.Turn:
-//                    _battle.NewTurn(); - commented - this is called from BattleScene
+                    _battle.NewTurn(); // - commented - this is called from BattleScene
 //                    StartTurn();
-                    break;
+                    return;
                 case GameState.EndingTurn:
                     _battle.EndTurn();
 //                    FreezeWorm();
