@@ -5,12 +5,11 @@ namespace Core.UI {
 
     public class StandardPanelController : PanelController {
 
-        [SerializeField] private float
-            _openAnchorY,
-            _closedAnchorY,
-            _openPositionY,
-            _closedPositionY;
-
+        [SerializeField] private float _openAnchorY; 
+        [SerializeField] private float _closedAnchorY; 
+        [SerializeField] private float _openPositionY; 
+        [SerializeField] private float _closedPositionY;
+        
 
         protected override void UpdatePosition () {
             var rt = (RectTransform) Canvas.transform;

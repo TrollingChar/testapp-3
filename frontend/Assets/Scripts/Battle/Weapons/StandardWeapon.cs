@@ -5,8 +5,8 @@ using Battle.Weapons.Crosshairs;
 namespace Battle.Weapons {
 
     public abstract class StandardWeapon : Weapon {
+        // bug: fires multiple times
 
-        private bool _equipped;
         private int _attackCooldown;
         private int _attacksLeft; // bug: not initialized
         private int _shotCooldown;
@@ -25,7 +25,7 @@ namespace Battle.Weapons {
 
         protected Crosshair CrossHair { get; set; }
 
-        // todo: use GameStateController
+        // todo: use TimerWrapper
         public bool TimerFrozen { get; set; }
 
 
@@ -93,13 +93,6 @@ namespace Battle.Weapons {
                 return;
             }
             _attackCooldown = AttackCooldown;
-        }
-
-
-        private void Unequip () {
-            if (!_equipped) return;
-            _equipped = false;
-            OnUnequip();
         }
 
     }

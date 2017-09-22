@@ -5,6 +5,31 @@ using Geometry;
 namespace Battle.Physics.Collisions {
 
     public class Collision : IEquatable<Collision>, IComparable<Collision> {
+        /*
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj))
+                return false;
+            if (ReferenceEquals(this, obj))
+                return true;
+            if (obj.GetType() != this.GetType())
+                return false;
+            return Equals((Collision) obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked {
+                int hashCode = (Collider1 != null ? Collider1.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ (Collider2 != null ? Collider2.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ Offset.GetHashCode();
+                hashCode = (hashCode * 397) ^ Normal.GetHashCode();
+                hashCode = (hashCode * 397) ^ (Primitive1 != null ? Primitive1.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ (Primitive2 != null ? Primitive2.GetHashCode() : 0);
+                return hashCode;
+            }
+        }
+        */
 
         public Collider Collider1, Collider2;
 

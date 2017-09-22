@@ -106,10 +106,10 @@ namespace Battle {
             State = new GameStateController();
             Timer = new TimerWrapper();
             World = new World(gen, _landRenderer);
+            ActiveWorm = new ActiveWormWrapper();
             Weapon = new WeaponWrapper();
             Camera.LookAt(new Vector2(1000, 1000), true);
             Teams = World.SpawnTeams(_initData.Players, 5);
-            ActiveWorm = new ActiveWormWrapper();
             
             CommandExecutor<StartNewTurnCmd>.AddHandler(PrepareTurn);
             
@@ -177,13 +177,15 @@ namespace Battle {
             ActiveWorm.Worm = Teams.NextWorm();
             ActiveWorm.CanMove = true;
             Camera.LookAt(ActiveWorm.Worm.Position);
-            Weapon.OnNewTurn();
+            Weapon.Reset();
             Timer.Time = 10000;
         }
 
         public void EndTurn()
         {
             ActiveWorm.CanMove = false;
+            Weapon.Unequip();
+            Timer.Wait(500);
         }
 
         public void AfterTurn()

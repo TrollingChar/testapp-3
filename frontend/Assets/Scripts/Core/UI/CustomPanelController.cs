@@ -7,13 +7,12 @@ namespace Core.UI {
 
         private bool _initialized;
 
-        [SerializeField] private Vector2
-            _openPosition,
-            _closedPosition,
-            _openAnchorMin,
-            _closedAnchorMin,
-            _openAnchorMax,
-            _closedAnchorMax;
+        [SerializeField] private Vector2 _openPosition;
+        [SerializeField] private Vector2 _closedPosition;
+        [SerializeField] private Vector2 _openAnchorMin;
+        [SerializeField] private Vector2 _closedAnchorMin;
+        [SerializeField] private Vector2 _openAnchorMax;
+        [SerializeField] private Vector2 _closedAnchorMax;
 
         [SerializeField] private int _timeToOpen;
 

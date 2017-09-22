@@ -11,7 +11,8 @@ namespace Menu.UI {
     public class ConnectionMenu : Panel {
 
         [SerializeField] private Button _connectButton;
-        [SerializeField] private InputField _ipText, _idText;
+        [SerializeField] private InputField _ipText;
+        [SerializeField] private InputField _idText;
 
         private WSConnection _connection;
 

@@ -9,7 +9,7 @@ namespace Battle.State
         private const int RetreatTime = 3000; 
         
         private int _time;
-        private bool _frozen;
+        private bool _frozen; // todo: access it from weapon
         
         public readonly Messenger<int> OnTimerUpdated = new Messenger<int>();
         public readonly Messenger OnTimerElapsed = new Messenger();

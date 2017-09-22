@@ -8,7 +8,8 @@ namespace Menu.UI {
 
     public class MainMenu : Panel {
 
-        [SerializeField] private Button _playButton, _donateButton;
+        [SerializeField] private Button _playButton;
+        [SerializeField] private Button _donateButton;
 
         private MenuScene MenuScene { get; set; }
 

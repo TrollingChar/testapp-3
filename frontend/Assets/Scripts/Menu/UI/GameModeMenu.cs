@@ -8,7 +8,10 @@ namespace Menu.UI {
 
     public class GameModeMenu : Panel {
 
-        [SerializeField] private Button _1Player, _2Players, _3Players, _backButton;
+        [SerializeField] private Button _1Player;
+        [SerializeField] private Button _2Players;
+        [SerializeField] private Button _3Players;
+        [SerializeField] private Button _backButton;
 
         private MenuScene MenuScene { get; set; }
 

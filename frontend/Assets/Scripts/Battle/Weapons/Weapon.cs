@@ -13,7 +13,7 @@ namespace Battle.Weapons {
 
         private readonly WeaponWrapper _weaponWrapper;
         private readonly int _id;
-        private bool _equipped;
+        protected bool _equipped;
         private Arsenal _arsenal;
 
         public Worm Worm { get; set; }

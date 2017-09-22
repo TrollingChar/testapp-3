@@ -6,11 +6,16 @@ namespace Battle.Objects.GameObjects {
 
     public class WormGO : MonoBehaviour {
 
-        [SerializeField] private SpriteRenderer _arrow, _headRenderer, _tailRenderer;
+        [SerializeField] private SpriteRenderer _arrow;
+        [SerializeField] private SpriteRenderer _headRenderer;
+        [SerializeField] private SpriteRenderer _tailRenderer;
         private float _headAngle;
 
-        [SerializeField] private Text _name, _hp;
-        [SerializeField] private Transform _sprite, _head, _tail;
+        [SerializeField] private Text _name;
+        [SerializeField] private Text _hp;
+        [SerializeField] private Transform _sprite;
+        [SerializeField] private Transform _head;
+        [SerializeField] private Transform _tail;
 
         private Worm _worm;
 

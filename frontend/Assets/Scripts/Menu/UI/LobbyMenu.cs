@@ -42,7 +42,6 @@ namespace Menu.UI {
 
         private void OnClickedCancel () {
             new QuitLobbyCmd().Send();
-//            new JoinLobbyCmd(0).Send();
             _text.text = "Выход из комнаты...";
         }
 

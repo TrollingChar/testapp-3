@@ -9,7 +9,6 @@ using Commands;
 using Commands.Client;
 using Commands.Server;
 using Core;
-using Net.Utils;
 using Net.Utils.Conversion;
 using Net.Utils.IO;
 using UnityEngine;
@@ -21,8 +20,6 @@ namespace Net {
     public class WSConnection : MonoBehaviour {
 
         private WebSocket _socket;
-
-        [Obsolete] private readonly ByteBuffer _bb = new ByteBuffer();
 
         private int _turnDataRead;
 
