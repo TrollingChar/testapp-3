@@ -15,26 +15,27 @@ namespace Battle.State
 {
     public class GameStateController
     {
+        private BattleScene _battle;
         private readonly int _playerId;
 
         private GameState _currentState;
         private GameState NextState { get; set; }
 
-        public readonly Messenger<int> OnTimerUpdated = new Messenger<int>();
+//        public readonly Messenger<int> OnTimerUpdated = new Messenger<int>();
+        
         
         public GameStateController()
         {
             The<GameStateController>.Set(this);
 
             _playerId = The<PlayerInfo>.Get().Id;
+            _battle = The<BattleScene>.Get();
 
             CurrentState = GameState.AfterTurn;
             NextState = GameState.Remove0Hp;
-            _timer.Time = 500;
-            
-            CommandExecutor<StartNewTurnCmd>.AddHandler(OnNewTurn); // todo unsubscribe when battle ends
         }
 
+        
         public GameState CurrentState
         {
             get { return _currentState; }
@@ -42,36 +43,15 @@ namespace Battle.State
             {
                 _currentState = value;
                 Debug.Log(value.ToString());
-                The<BattleScene>.Get().ShowHint(value.ToString());
+                _battle.ShowHint(value.ToString());
             }
         }
 
 
-//        private void OnNewTurn(StartNewTurnCmd startNewTurnCommand)
-//        {
-            // too many references from here
-//            int id = startNewTurnCommand.Player;
-//            ActivePlayer = id;
-//            Worm = The<TeamManager>.Get().Teams[id].NextWorm(); // todo: remove chain
-//            _camera.LookAt(Worm.Position);
-//            PrepareWeapon(0);
-//            CanSelectWeapon = true;
-//            ChangeState();
-//        }
-
-//        public readonly Messenger<TimerWrapper> OnBeforeTurnPhase;
-//        public readonly Messenger OnSynchroPhase;
-//        public readonly Messenger<TimerWrapper> OnTurnPhase;
-//        public readonly Messenger<TimerWrapper> OnEndTurnPhase;
-//        public readonly Messenger<TimerWrapper> OnAfterTurnPhase;
-//        public readonly Messenger<TimerWrapper> OnRemove0HpPhase;
-
-        private BattleScene _battle;
-
         public void ChangeState()
         {
-            var _timer = _battle.Timer;
-            _timer.Time = 0;
+            var timer = _battle.Timer;
+            timer.Time = 0;
             do switch (CurrentState = NextState++) {
                 case GameState.BeforeTurn:
                     _battle.BeforeTurn();
@@ -85,7 +65,7 @@ namespace Battle.State
 //                    SendSyncData();
                     return;
                 case GameState.Turn:
-                    _battle.NewTurn();
+//                    _battle.NewTurn(); - commented - this is called from BattleScene
 //                    StartTurn();
                     break;
                 case GameState.EndingTurn:
@@ -99,11 +79,11 @@ namespace Battle.State
                 case GameState.Remove0Hp:
                     _battle.Remove0Hp();
 //                    Remove0Hp();
-                    NextState = _timer.HasElapsed ? GameState.BeforeTurn : GameState.Remove0Hp; // special case
+                    NextState = timer.HasElapsed ? GameState.BeforeTurn : GameState.Remove0Hp; // special case
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
-            } while (_timer.HasElapsed);
+            } while (timer.HasElapsed);
         }
     }
 }

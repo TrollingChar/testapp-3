@@ -18,12 +18,18 @@ namespace Battle.State
 
         private void SelectWeapon(int weaponId)
         {
-            _weapon = null;
+            
         }
 
         public WeaponWrapper()
         {
             The<WeaponWrapper>.Set(this);
+        }
+
+        public void OnNewTurn()
+        {
+            _preparedId = 0;
+            _weapon = null;
         }
     }
 }

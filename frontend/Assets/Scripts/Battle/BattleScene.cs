@@ -110,12 +110,20 @@ namespace Battle {
             Camera.LookAt(new Vector2(1000, 1000), true);
             Teams = World.SpawnTeams(_initData.Players, 5);
             ActiveWorm = new ActiveWormWrapper();
+            CommandExecutor<StartNewTurnCmd>.AddHandler(OnNewTurnCmd);
             
-//            State.OnTurnPhase.Subscribe(StartTurn);
-//            State.OnEndTurnPhase.Subscribe(EndTurn);
-//            State.OnSynchroPhase.Subscribe(Synchronize);
-
             OnBattleLoaded.Send();
+            Timer.Time = 500;
+        }
+
+        
+        private void OnNewTurnCmd(StartNewTurnCmd cmd)
+        {
+            Teams.SetActive(cmd.Player);
+            ActiveWorm.Worm = Teams.NextWorm();
+            Camera.LookAt(ActiveWorm.Worm.Position);
+            Weapon.OnNewTurn();
+            State.ChangeState();
         }
 
 
@@ -139,6 +147,7 @@ namespace Battle {
             Weapon.Update(td);
             World.Update(td);
             Timer.Update();
+            State.Update();
 //            State.Update();
         }
 
@@ -158,32 +167,33 @@ namespace Battle {
 
         public void BeforeTurn()
         {
-            throw new NotImplementedException();
+            // drop crates
         }
 
         public void Synchronize()
         {
-            throw new NotImplementedException();
+            Connection.Send(new EndTurnCmd(true));
         }
 
         public void NewTurn()
         {
-            throw new NotImplementedException();
+            // ActiveWorm...
+            Timer.Time = 10000;
         }
 
         public void EndTurn()
         {
-            throw new NotImplementedException();
+            // ActiveWorm...
         }
 
         public void AfterTurn()
         {
-            throw new NotImplementedException();
+            // poison damage
         }
 
         public void Remove0Hp()
         {
-            throw new NotImplementedException();
+            // remove worms with 0 hp
         }
     }
 
