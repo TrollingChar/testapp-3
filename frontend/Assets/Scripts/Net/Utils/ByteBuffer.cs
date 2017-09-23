@@ -1,9 +1,11 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Net.Utils.Conversion;
 
 
 namespace Net.Utils {
 
+    [Obsolete]
     internal class ByteBuffer {
 
         private static readonly EndianBitConverter _bitConverter = new BigEndianBitConverter();
