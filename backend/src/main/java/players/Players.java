@@ -1,32 +1,25 @@
 package players;
 
-import org.eclipse.jetty.websocket.api.Session;
-
-import java.util.HashMap;
-import java.util.Map;
+import io.netty.channel.ChannelHandlerContext;
 
 
 public class Players {
 
-    private static Map<Integer, Player> players = new HashMap<>();
-
-
     private Players () {
-        // no instance
     }
 
 
-    public static Player login (Session session, int id) {
-        Player player = new Player(id, session);
-        if (players.put(id, player) != null) {
-            // todo: disconnect him and register new player with that id
-            return null;
-        }
-        return player;
+    static void register (ChannelHandlerContext chan) {
+
     }
 
 
-    public static void logout (int id) {
-        players.remove(id);
+    static Player get (ChannelHandlerContext chan) {
+        return null;
+    }
+
+
+    static void remove (ChannelHandlerContext chan) {
+
     }
 }
