@@ -4,6 +4,7 @@ using Battle.Weapons;
 using Commands;
 using Commands.Client;
 using Commands.Server;
+using DataTransfer;
 using Net;
 using UnityEngine;
 using Utils.Singleton;
@@ -19,9 +20,11 @@ namespace Core {
 
         private void Awake () {
             DontDestroyOnLoad(this);
-
-            Serialization<ClientCommand>.ScanAssembly<ClientCmdAttribute>();
-            Serialization<IServerCommand>.ScanAssembly<ServerCmdAttribute>();
+            
+            DTO.Init();
+            
+//            Serialization<ClientCommand>.ScanAssembly<ClientCmdAttribute>();
+//            Serialization<IServerCommand>.ScanAssembly<ServerCmdAttribute>();
             Serialization<Weapon>.ScanAssembly<WeaponAttribute>();
 
             _connection = gameObject.AddComponent<WSConnection>();
