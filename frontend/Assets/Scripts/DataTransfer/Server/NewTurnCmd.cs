@@ -1,10 +1,12 @@
 using System;
 using System.IO;
+using Attributes;
 
 
 namespace DataTransfer.Server {
 
-    public class NewTurnCmd: ServerCommand {
+    [DTO(DTOCode.NewTurn)]
+    public class NewTurnCmd : ServerCommand {
 
         protected override void ReadMembers (BinaryReader reader) {
             throw new NotImplementedException();
