@@ -6,22 +6,19 @@ import io.netty.buffer.ByteBuf;
 
 
 @DTOCode(DTOs.AUTH_REQUEST)
-public class AuthRequestCmd extends Command {
+public class AuthRequestCmd extends ClientCommand {
+
+    public int id;
+
 
     @Override
     public void execute () {
-
+        // todo: remove a player with same id if exists
     }
 
 
     @Override
-    protected void writeMembers (ByteBuf byteBuf) {
-
-    }
-
-
-    @Override
-    protected void readMembers (ByteBuf buffer) {
-
+    protected void readMembers (ByteBuf buffer) throws Exception {
+        id = buffer.readInt();
     }
 }

@@ -9,6 +9,8 @@ using Commands;
 using Commands.Client;
 using Commands.Server;
 using Core;
+using DataTransfer;
+using DataTransfer.Server;
 using Net.Utils.Conversion;
 using Net.Utils.IO;
 using UnityEngine;
@@ -17,7 +19,7 @@ using Utils.Singleton;
 
 namespace Net {
 
-    public class WSConnection : MonoBehaviour {
+    public class Connection : MonoBehaviour {
 
         private WebSocket _socket;
 
@@ -25,7 +27,7 @@ namespace Net {
 
 
         private void Awake () {
-            The<WSConnection>.Set(this);
+            The<Connection>.Set(this);
         }
 
 
@@ -52,18 +54,16 @@ namespace Net {
 
         private void Parse (byte[] bytes) {
             Debug.Log(BitConverter.ToString(bytes));
-            var stream = new MemoryStream(bytes);
-            var reader = new EndianBinaryReader(EndianBitConverter.Big, stream);
-
-            var cmd = Serialization<IServerCommand>.GetNewInstanceByCode(reader.ReadByte());
-            cmd.Deserialize(reader);
-            cmd.Execute();
-
-            reader.Close();
-            stream.Close();
+            
+            using (var stream = new MemoryStream(bytes))
+            using (var reader = new BigEndianBinaryReader(stream)) {
+                var cmd = (ServerCommand) DTO.Read(reader);
+                cmd.Execute();
+            }
         }
 
 
+        [Obsolete]
         public void Send (ClientCommand cmd) {
             var authorizeCommand = cmd as AuthorizeCmd;
             if (authorizeCommand != null) {
@@ -75,6 +75,7 @@ namespace Net {
         }
 
 
+        [Obsolete]
         private void DoSend (ClientCommand cmd) {
             var stream = new MemoryStream();
             var writer = new EndianBinaryWriter(EndianBitConverter.Big, stream);
@@ -108,6 +109,15 @@ namespace Net {
                 yield return new WaitForSecondsRealtime(60);
                 _socket.Send(new byte[0]);
             }
+        }
+
+    }
+
+
+    public class BigEndianBinaryReader : BinaryReader {
+
+        public BigEndianBinaryReader (MemoryStream stream) {
+            throw new NotImplementedException();
         }
 
     }

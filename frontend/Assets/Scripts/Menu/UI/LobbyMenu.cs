@@ -13,14 +13,14 @@ namespace Menu.UI {
 
         [SerializeField] private Button _cancelButton;
 
-        private WSConnection _connection;
+        private Connection _connection;
         private MenuScene _menuScene;
 
         [SerializeField] private Text _text;
 
 
         protected override void Activate () {
-            _connection = The<WSConnection>.Get();
+            _connection = The<Connection>.Get();
             _menuScene = The<MenuScene>.Get();
 
             CommandExecutor<UpdateLobbyStatusCmd>.AddHandler(OnHubStatusChanged);

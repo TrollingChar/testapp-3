@@ -6,7 +6,7 @@ import io.netty.buffer.ByteBuf;
 
 
 @DTOCode(DTOs.JOIN_LOBBY)
-public class JoinLobbyCmd extends Command {
+public class JoinLobbyCmd extends ClientCommand {
 
     @Override
     public void execute () {

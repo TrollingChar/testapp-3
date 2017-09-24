@@ -6,7 +6,7 @@ import io.netty.buffer.ByteBuf;
 
 
 @DTOCode(DTOs.LEAVE_LOBBY)
-public class LeaveLobbyCmd extends Command {
+public class LeaveLobbyCmd extends ClientCommand {
 
     @Override
     public void execute () {

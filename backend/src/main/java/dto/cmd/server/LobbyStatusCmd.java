@@ -1,13 +1,12 @@
 package dto.cmd.server;
 
-import dto.DTO;
 import dto.DTOCode;
 import dto.DTOs;
 import io.netty.buffer.ByteBuf;
 
 
 @DTOCode(DTOs.LOBBY_STATUS)
-public class LobbyStatusCmd extends DTO {
+public class LobbyStatusCmd extends ServerCommand {
 
     @Override
     protected void writeMembers (ByteBuf byteBuf) {

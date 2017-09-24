@@ -27,7 +27,7 @@ namespace DataTransfer {
                 
                 var attribute = (DTOAttribute) type.GetCustomAttributes(true).FirstOrDefault(a => a is DTOAttribute);
                 if (attribute == null) {
-                    Debug.LogError("No attribute on class " + type);
+//                    Debug.LogError("No attribute on class " + type);
                     continue;
                 }
                 Register(type, attribute.Code);
@@ -42,11 +42,11 @@ namespace DataTransfer {
         }
 
 
-        public static T Read<T> (BinaryReader reader) where T : DTO {
+        public static DTO Read (BinaryReader reader) {
             short code = reader.ReadInt16();
             var result = (DTO) Activator.CreateInstance(_types[code]);
             result.ReadMembers(reader);
-            return (T) result;
+            return result;
         }
 
 

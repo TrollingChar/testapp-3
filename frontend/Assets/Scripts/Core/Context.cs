@@ -14,7 +14,7 @@ namespace Core {
 
     public class Context : MonoBehaviour {
 
-        private WSConnection _connection;
+        private Connection _connection;
         private SceneSwitcher _sceneSwitcher;
 
 
@@ -27,7 +27,7 @@ namespace Core {
 //            Serialization<IServerCommand>.ScanAssembly<ServerCmdAttribute>();
             Serialization<Weapon>.ScanAssembly<WeaponAttribute>();
 
-            _connection = gameObject.AddComponent<WSConnection>();
+            _connection = gameObject.AddComponent<Connection>();
             _sceneSwitcher = new SceneSwitcher();
 
             CommandExecutor<AuthorizedCmd>.AddHandler(OnAuthorized);

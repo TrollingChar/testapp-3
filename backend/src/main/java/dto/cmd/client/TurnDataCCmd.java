@@ -6,7 +6,7 @@ import io.netty.buffer.ByteBuf;
 
 
 @DTOCode(DTOs.TURN_DATA_CLIENT)
-public class TurnDataCCmd extends Command {
+public class TurnDataCCmd extends ClientCommand {
 
     @Override
     public void execute () {

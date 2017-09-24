@@ -22,7 +22,7 @@ namespace Battle {
         [SerializeField] private Text _hint;
         [SerializeField] private SpriteRenderer _landRenderer;
 
-        public WSConnection Connection { get; private set; }
+        public Connection Connection { get; private set; }
         public CameraWrapper Camera { get; private set; }
         public GameStateController State { get; private set; }
         public WeaponWrapper Weapon { get; private set; }
@@ -48,7 +48,7 @@ namespace Battle {
             _initData = (GameInitData) The<SceneSwitcher>.Get().Data[0];
             RNG.Init(_initData.Seed);
 
-            Connection = The<WSConnection>.Get();
+            Connection = The<Connection>.Get();
             CommandExecutor<HandleTurnDataCmd>.AddHandler(TurnDataHandler);
 
             Camera = GetComponentInChildren<CameraWrapper>();

@@ -57,12 +57,17 @@ public abstract class DTO {
     }
 
 
-    public void write (ByteBuf byteBuf) {
-        byteBuf.writeShort(getClass().getAnnotation(DTOCode.class).value().code);
-        writeMembers(byteBuf);
+    public void write (ByteBuf byteBuf) throws DTOException {
+        try {
+            byteBuf.writeShort(getClass().getAnnotation(DTOCode.class).value().code);
+            writeMembers(byteBuf);
+        }
+        catch (Exception e) {
+            throw new DTOException("Unable to write DTO to byteBuf", e);
+        }
     }
 
 
-    protected abstract void writeMembers (ByteBuf byteBuf);
-    protected abstract void readMembers (ByteBuf buffer);
+    protected abstract void writeMembers (ByteBuf byteBuf) throws Exception;
+    protected abstract void readMembers (ByteBuf buffer) throws Exception;
 }

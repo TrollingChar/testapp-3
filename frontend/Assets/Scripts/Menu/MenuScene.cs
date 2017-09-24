@@ -16,12 +16,12 @@ namespace Menu {
         [SerializeField] private GameModeMenu _gameModeMenu;
         [SerializeField] private LobbyMenu _lobbyMenu;
 
-        private WSConnection Connection { get; set; }
+        private Connection Connection { get; set; }
 
 
         private void Awake () {
             The<MenuScene>.Set(this);
-            Connection = The<WSConnection>.Get();
+            Connection = The<Connection>.Get();
             CommandExecutor<AuthorizedCmd>.AddHandler(OnAuthorized);
 //            CommandExecutor<GameStartedCommand>.AddHandler(OnGameStarted);
 

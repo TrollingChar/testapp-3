@@ -14,11 +14,11 @@ namespace Menu.UI {
         [SerializeField] private InputField _ipText;
         [SerializeField] private InputField _idText;
 
-        private WSConnection _connection;
+        private Connection _connection;
 
 
         protected override void Activate () {
-            _connection = The<WSConnection>.Get();
+            _connection = The<Connection>.Get();
             _connectButton.onClick.AddListener(Send);
         }
 

@@ -1,25 +1,39 @@
 package players;
 
 import io.netty.channel.ChannelHandlerContext;
+import io.netty.util.AttributeKey;
+import util.Dispatcher;
 
 
 public class Players {
 
-    private Players () {
+    public static final Dispatcher<Player> onPlayerConnected = new Dispatcher<>();
+    public static final Dispatcher<Player> onClientDisconnected = new Dispatcher<>();
+    private static final AttributeKey<Player> KEY = AttributeKey.newInstance("player");
+
+
+    public static void register (ChannelHandlerContext chan, int id) {
+        if (chan.hasAttr(KEY)) {
+            System.err.println("player already registered");
+            return;
+        }
+        Player player = new Player(chan, id);
+        chan.attr(KEY).set(player);
+        onPlayerConnected.dispatch(player);
     }
 
 
-    static void register (ChannelHandlerContext chan) {
-
+    public static Player get (ChannelHandlerContext chan) {
+        return chan.attr(KEY).get();
     }
 
 
-    static Player get (ChannelHandlerContext chan) {
-        return null;
-    }
-
-
-    static void remove (ChannelHandlerContext chan) {
-
+    public static void remove (ChannelHandlerContext chan) {
+        if (!chan.hasAttr(KEY)) {
+            System.err.println("no such player");
+            return;
+        }
+        Player player = chan.attr(KEY).getAndSet(null);
+        onClientDisconnected.dispatch(player);
     }
 }
