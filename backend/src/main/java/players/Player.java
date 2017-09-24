@@ -27,5 +27,6 @@ public class Player {
         if (!online) return;
         Players.remove(ctx);
         online = false;
+        // rooms
     }
 }

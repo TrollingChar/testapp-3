@@ -51,7 +51,6 @@ namespace Battle {
 //            }
 
             foreach (var o in _objects) o.Update(td);
-
             PhysicsTick(td);
         }
 
