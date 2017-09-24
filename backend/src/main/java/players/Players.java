@@ -12,14 +12,15 @@ public class Players {
     private static final AttributeKey<Player> KEY = AttributeKey.newInstance("player");
 
 
-    public static void register (ChannelHandlerContext chan, int id) {
+    public static Player register (ChannelHandlerContext chan, int id) {
         if (chan.hasAttr(KEY)) {
             System.err.println("player already registered");
-            return;
+            return null;
         }
         Player player = new Player(chan, id);
         chan.attr(KEY).set(player);
         onPlayerConnected.dispatch(player);
+        return player;
     }
 
 

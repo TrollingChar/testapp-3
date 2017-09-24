@@ -8,14 +8,16 @@ import io.netty.buffer.ByteBuf;
 @DTOCode(DTOs.AUTH_SUCCESS)
 public class AuthSuccessCmd extends ServerCommand {
 
-    @Override
-    protected void writeMembers (ByteBuf byteBuf) {
+    private final int id;
 
+
+    public AuthSuccessCmd (int id) {
+        this.id = id;
     }
 
 
     @Override
-    protected void readMembers (ByteBuf buffer) {
-
+    protected void writeMembers (ByteBuf byteBuf) {
+        byteBuf.writeInt(id);
     }
 }

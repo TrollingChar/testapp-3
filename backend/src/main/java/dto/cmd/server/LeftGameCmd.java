@@ -8,14 +8,16 @@ import io.netty.buffer.ByteBuf;
 @DTOCode(DTOs.LEFT_GAME)
 public class LeftGameCmd extends ServerCommand {
 
-    @Override
-    protected void writeMembers (ByteBuf byteBuf) {
+    private int id;
 
+
+    public LeftGameCmd (int id) {
+        this.id = id;
     }
 
 
     @Override
-    protected void readMembers (ByteBuf buffer) {
-
+    protected void writeMembers (ByteBuf byteBuf) {
+        byteBuf.writeInt(id);
     }
 }

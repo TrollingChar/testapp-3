@@ -8,14 +8,19 @@ import io.netty.buffer.ByteBuf;
 @DTOCode(DTOs.LOBBY_STATUS)
 public class LobbyStatusCmd extends ServerCommand {
 
-    @Override
-    protected void writeMembers (ByteBuf byteBuf) {
+    private final int lobbySize;
+    private final int playersCount;
 
+
+    public LobbyStatusCmd (int lobbySize, int playersCount) {
+
+        this.lobbySize = lobbySize;
+        this.playersCount = playersCount;
     }
 
 
     @Override
-    protected void readMembers (ByteBuf buffer) {
+    protected void writeMembers (ByteBuf byteBuf) {
 
     }
 }

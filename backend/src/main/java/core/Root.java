@@ -1,8 +1,15 @@
+package core;
+
 import dto.DTO;
 import net.Server;
 
+import java.util.Random;
+
 
 public class Root {
+
+    public static final Random random = new Random();
+
 
     public static void main (String[] args) {
         try {
