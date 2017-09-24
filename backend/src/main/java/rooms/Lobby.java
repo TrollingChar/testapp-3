@@ -1,6 +1,6 @@
 package rooms;
 
-import dto.cmd.server.LobbyStatusCmd;
+import dto.server.LobbyStatusCmd;
 import players.Player;
 
 

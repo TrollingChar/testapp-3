@@ -1,4 +1,4 @@
-package dto.cmd.server;
+package dto.server;
 
 import dto.DTOCode;
 import dto.DTOs;

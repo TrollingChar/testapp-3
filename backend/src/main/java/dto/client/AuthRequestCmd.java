@@ -1,4 +1,4 @@
-package dto.cmd.client;
+package dto.client;
 
 import dto.DTOCode;
 import dto.DTOs;

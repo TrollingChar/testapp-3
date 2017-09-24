@@ -1,6 +1,6 @@
 package players;
 
-import dto.cmd.server.ServerCommand;
+import dto.server.ServerCommand;
 import io.netty.channel.ChannelHandlerContext;
 import rooms.Room;
 

@@ -1,8 +1,10 @@
 package rooms;
 
 import core.Root;
-import dto.cmd.server.LeftGameCmd;
-import dto.cmd.server.NewGameCmd;
+import dto.data.EndTurnData;
+import dto.data.TurnData;
+import dto.server.LeftGameCmd;
+import dto.server.NewGameCmd;
 import players.Player;
 
 import java.util.Collections;
@@ -26,5 +28,15 @@ public class Game extends Room {
     @Override
     protected void onRemovePlayer (Player player) {
         broadcast(new LeftGameCmd(player.id));
+    }
+
+
+    public void processTurnData (Player player, TurnData data) {
+
+    }
+
+
+    public void processEndTurn (Player player, EndTurnData data) {
+
     }
 }

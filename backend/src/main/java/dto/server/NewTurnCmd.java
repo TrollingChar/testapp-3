@@ -1,4 +1,4 @@
-package dto.cmd.server;
+package dto.server;
 
 import dto.DTOCode;
 import dto.DTOs;
@@ -10,12 +10,6 @@ public class NewTurnCmd extends ServerCommand {
 
     @Override
     protected void writeMembers (ByteBuf byteBuf) {
-
-    }
-
-
-    @Override
-    protected void readMembers (ByteBuf buffer) {
 
     }
 }

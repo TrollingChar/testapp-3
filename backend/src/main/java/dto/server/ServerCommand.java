@@ -1,4 +1,4 @@
-package dto.cmd.server;
+package dto.server;
 
 import dto.DTO;
 import io.netty.buffer.ByteBuf;

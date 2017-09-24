@@ -1,9 +1,9 @@
 package net;
 
 import dto.DTO;
-import dto.cmd.client.AuthRequestCmd;
-import dto.cmd.client.ClientCommand;
-import dto.cmd.server.AuthSuccessCmd;
+import dto.client.AuthRequestCmd;
+import dto.client.ClientCommand;
+import dto.server.AuthSuccessCmd;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import players.Player;

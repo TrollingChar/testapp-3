@@ -1,6 +1,6 @@
 package rooms;
 
-import dto.cmd.server.ServerCommand;
+import dto.server.ServerCommand;
 import players.Player;
 
 import java.util.ArrayList;
