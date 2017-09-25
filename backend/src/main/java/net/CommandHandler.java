@@ -12,16 +12,25 @@ import players.Players;
 
 public class CommandHandler extends SimpleChannelInboundHandler<DTO> {
 
+    Player player;
+
+    @Override
+    public void handlerAdded (ChannelHandlerContext ctx) throws Exception {
+        System.out.println(this + "added");
+    }
+
 
     protected void channelRead0 (ChannelHandlerContext ctx, DTO dto) throws Exception {
+        System.out.println(dto);
+
         if (!(dto instanceof ClientCommand)) throw new Exception("This is not a command!");
 
         ClientCommand cmd = (ClientCommand) dto;
-        cmd.player = Players.get(ctx);
+        cmd.player = player;
         cmd.execute();
 
         if (cmd instanceof AuthRequestCmd) {
-            Player player = Players.register(ctx, ((AuthRequestCmd) cmd).id);
+            player = Players.register(ctx, ((AuthRequestCmd) cmd).id);
             if (player != null) player.send(new AuthSuccessCmd(player.id));
         }
     }

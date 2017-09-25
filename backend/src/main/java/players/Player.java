@@ -11,7 +11,7 @@ import java.util.function.Predicate;
 
 public final class Player {
 
-    public final ChannelHandlerContext ctx;
+    private final ChannelHandlerContext ctx;
     public final int id;
     private boolean online;
     private Collection<Room> rooms;
@@ -33,7 +33,7 @@ public final class Player {
     public final void disconnect () {
         if (!online) return;
         online = false;
-        Players.remove(ctx);
+        Players.remove(id);
         for (Room room : rooms) room.removePlayer(this);
         rooms.clear();
     }
@@ -58,7 +58,11 @@ public final class Player {
 
 
     public final Room getRoom (Predicate<Room> predicate) {
-        for (Room room : rooms) if (predicate.test(room)) return room;
+        for (Room room : rooms) {
+            if (predicate.test(room)) {
+                return room;
+            }
+        }
         return null;
     }
 
