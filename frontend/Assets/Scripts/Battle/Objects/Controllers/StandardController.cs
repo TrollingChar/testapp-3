@@ -1,4 +1,5 @@
-﻿using Utils.Singleton;
+﻿using DataTransfer.Data;
+using Utils.Singleton;
 
 
 namespace Battle.Objects.Controllers {

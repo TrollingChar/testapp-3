@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 
 
-namespace Battle {
+namespace DataTransfer.Data {
 
     public class GameInitData {
 

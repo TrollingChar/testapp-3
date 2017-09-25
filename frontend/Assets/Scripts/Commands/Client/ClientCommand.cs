@@ -12,7 +12,7 @@ namespace Commands.Client {
 
 
         public void Send () {
-            The<Connection>.Get().Send(this);
+//            The<Connection>.Get().Send(this);
         }
 
     }

@@ -7,7 +7,7 @@ import io.netty.buffer.ByteBuf;
 public abstract class ServerCommand extends DTO {
 
     @Override
-    protected final void readMembers (ByteBuf buffer) throws Exception {
+    public final void readMembers (ByteBuf buffer) throws Exception {
         throw new Exception("attempt to deserialize server command");
     }
 }

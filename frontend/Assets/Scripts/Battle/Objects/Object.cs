@@ -3,6 +3,7 @@ using System.Linq;
 using Battle.Objects.CollisionHandlers;
 using Battle.Objects.Controllers;
 using Battle.Objects.Explosives;
+using DataTransfer.Data;
 using Geometry;
 using UnityEngine;
 using Utils.Singleton;

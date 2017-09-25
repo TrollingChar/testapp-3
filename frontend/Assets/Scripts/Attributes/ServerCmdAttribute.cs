@@ -5,6 +5,7 @@ using Commands.Server;
 namespace Attributes {
 
     [AttributeUsage(AttributeTargets.Class)]
+    [Obsolete]
     public class ServerCmdAttribute : IdAttribute {
 
         private readonly byte _id;

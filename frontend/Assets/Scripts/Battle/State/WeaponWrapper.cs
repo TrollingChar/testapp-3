@@ -1,5 +1,6 @@
 ﻿using Battle.Weapons;
 using Core;
+using DataTransfer.Data;
 using UnityEngine;
 using Utils.Singleton;
 

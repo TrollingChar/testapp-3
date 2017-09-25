@@ -21,7 +21,7 @@ public class TurnDataCCmd extends ClientCommand {
 
 
     @Override
-    protected void readMembers (ByteBuf buffer) {
+    public void readMembers (ByteBuf buffer) {
         data = new TurnData();
         data.readMembers(buffer);
     }

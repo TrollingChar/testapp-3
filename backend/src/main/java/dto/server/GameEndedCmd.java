@@ -9,7 +9,7 @@ import io.netty.buffer.ByteBuf;
 public class GameEndedCmd extends ServerCommand {
 
     @Override
-    protected void writeMembers (ByteBuf byteBuf) {
+    public void writeMembers (ByteBuf byteBuf) {
 
     }
 }

@@ -1,4 +1,7 @@
-﻿namespace Battle.Objects.Controllers {
+﻿using DataTransfer.Data;
+
+
+namespace Battle.Objects.Controllers {
 
     internal class WormControllerFall : StandardController {
 

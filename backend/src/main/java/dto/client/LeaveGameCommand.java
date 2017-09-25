@@ -18,7 +18,7 @@ public class LeaveGameCommand extends ClientCommand {
 
 
     @Override
-    protected void readMembers (ByteBuf buffer) {
+    public void readMembers (ByteBuf buffer) {
         // nothing
     }
 }

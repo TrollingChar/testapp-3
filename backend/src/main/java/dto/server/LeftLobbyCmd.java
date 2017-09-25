@@ -9,7 +9,7 @@ import io.netty.buffer.ByteBuf;
 public class LeftLobbyCmd extends ServerCommand {
 
     @Override
-    protected void writeMembers (ByteBuf byteBuf) {
+    public void writeMembers (ByteBuf byteBuf) {
         // nothing
     }
 }

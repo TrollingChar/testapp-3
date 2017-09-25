@@ -1,18 +1,10 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Reflection;
-using Attributes;
-using Commands;
-using Commands.Client;
-using Commands.Server;
-using Core;
 using DataTransfer;
+using DataTransfer.Client;
 using DataTransfer.Server;
-using Net.Utils.Conversion;
-using Net.Utils.IO;
+using Net.Utils;
 using UnityEngine;
 using Utils.Singleton;
 
@@ -22,7 +14,6 @@ namespace Net {
     public class Connection : MonoBehaviour {
 
         private WebSocket _socket;
-
         private int _turnDataRead;
 
 
@@ -54,7 +45,7 @@ namespace Net {
 
         private void Parse (byte[] bytes) {
             Debug.Log(BitConverter.ToString(bytes));
-            
+
             using (var stream = new MemoryStream(bytes))
             using (var reader = new BigEndianBinaryReader(stream)) {
                 var cmd = (ServerCommand) DTO.Read(reader);
@@ -63,33 +54,17 @@ namespace Net {
         }
 
 
-        [Obsolete]
         public void Send (ClientCommand cmd) {
-            var authorizeCommand = cmd as AuthorizeCmd;
+            var authorizeCommand = cmd as AuthRequestCmd;
             if (authorizeCommand != null) {
                 StartCoroutine(AuthCoroutine(authorizeCommand));
                 return;
             }
-
             DoSend(cmd);
         }
 
 
-        [Obsolete]
-        private void DoSend (ClientCommand cmd) {
-            var stream = new MemoryStream();
-            var writer = new EndianBinaryWriter(EndianBitConverter.Big, stream);
-
-            writer.WriteByte(Serialization<ClientCommand>.GetCodeByType(cmd.GetType()));
-            cmd.Serialize(writer);
-            _socket.Send(stream.ToArray());
-
-            writer.Close();
-            stream.Close();
-        }
-
-
-        private IEnumerator AuthCoroutine (AuthorizeCmd cmd) {
+        private IEnumerator AuthCoroutine (AuthRequestCmd cmd) {
             if (_socket != null) {
                 _socket.Close();
                 Debug.Log("TRYING TO OPEN SECOND CONNECTION");
@@ -99,8 +74,16 @@ namespace Net {
             yield return StartCoroutine(_socket.Connect());
 
             StartCoroutine(SendPing());
-
             DoSend(cmd);
+        }
+
+
+        private void DoSend (ClientCommand cmd) {
+            using (var stream = new MemoryStream())
+            using (var writer = new BigEndianBinaryWriter(stream)) {
+                cmd.Write(writer);
+                _socket.Send(stream.ToArray());
+            }
         }
 
 
@@ -109,15 +92,6 @@ namespace Net {
                 yield return new WaitForSecondsRealtime(60);
                 _socket.Send(new byte[0]);
             }
-        }
-
-    }
-
-
-    public class BigEndianBinaryReader : BinaryReader {
-
-        public BigEndianBinaryReader (MemoryStream stream) {
-            throw new NotImplementedException();
         }
 
     }

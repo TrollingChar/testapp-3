@@ -5,7 +5,7 @@ using UnityEngine;
 using Utils.Singleton;
 
 
-namespace Battle {
+namespace DataTransfer.Data {
 
     public class TurnData {
 

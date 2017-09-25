@@ -18,7 +18,7 @@ public class TurnDataSCmd extends ServerCommand {
 
 
     @Override
-    protected void writeMembers (ByteBuf byteBuf) {
+    public void writeMembers (ByteBuf byteBuf) {
         data.writeMembers(byteBuf);
     }
 }

@@ -4,6 +4,7 @@ using Attributes;
 using Battle.Arsenals;
 using Battle.Objects;
 using Battle.State;
+using DataTransfer.Data;
 using Utils.Singleton;
 
 

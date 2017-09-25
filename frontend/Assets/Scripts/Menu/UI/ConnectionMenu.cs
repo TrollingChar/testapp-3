@@ -1,5 +1,6 @@
 ﻿using Commands.Client;
 using Core.UI;
+using DataTransfer.Client;
 using Net;
 using UnityEngine;
 using UnityEngine.UI;
@@ -29,8 +30,7 @@ namespace Menu.UI {
 
 
         private void Send () {
-            new AuthorizeCmd(_ipText.text, int.Parse(_idText.text)).Send();
-//            _connection.Authorize(_ipText.text, int.Parse(_idText.text));
+            _connection.Send(new AuthRequestCmd(_idText.text, int.Parse(_idText.text)));
         }
 
     }

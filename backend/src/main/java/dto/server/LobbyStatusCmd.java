@@ -19,7 +19,7 @@ public class LobbyStatusCmd extends ServerCommand {
 
 
     @Override
-    protected void writeMembers (ByteBuf byteBuf) {
+    public void writeMembers (ByteBuf byteBuf) {
         byteBuf
             .writeByte(lobbySize)
             .writeByte(playersCount);

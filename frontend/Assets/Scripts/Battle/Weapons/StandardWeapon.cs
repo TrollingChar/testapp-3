@@ -1,5 +1,6 @@
 ﻿using System;
 using Battle.Weapons.Crosshairs;
+using DataTransfer.Data;
 
 
 namespace Battle.Weapons {

@@ -14,7 +14,7 @@ public abstract class ClientCommand extends DTO {
 
 
     @Override
-    protected final void writeMembers (ByteBuf byteBuf) throws Exception {
+    public final void writeMembers (ByteBuf byteBuf) throws Exception {
         throw new Exception("attempt to serialize client command");
     }
 }

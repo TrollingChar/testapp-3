@@ -17,7 +17,7 @@ public class LeftGameCmd extends ServerCommand {
 
 
     @Override
-    protected void writeMembers (ByteBuf byteBuf) {
+    public void writeMembers (ByteBuf byteBuf) {
         byteBuf.writeInt(id);
     }
 }

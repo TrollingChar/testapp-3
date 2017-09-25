@@ -7,6 +7,7 @@ using Battle.UI;
 using Commands.Client;
 using Commands.Server;
 using Core;
+using DataTransfer.Data;
 using Net;
 using UnityEngine;
 using UnityEngine.UI;
@@ -163,7 +164,7 @@ namespace Battle {
 
         public void Synchronize()
         {
-            Connection.Send(new EndTurnCmd(true));
+//            Connection.Send(new EndTurnCmd(true));
         }
         
         private void PrepareTurn(StartNewTurnCmd cmd)

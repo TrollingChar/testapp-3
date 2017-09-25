@@ -21,7 +21,7 @@ public class TurnEndedCmd extends ClientCommand {
 
 
     @Override
-    protected void readMembers (ByteBuf buffer) {
+    public void readMembers (ByteBuf buffer) {
         data = new EndTurnData();
         data.readMembers(buffer);
     }

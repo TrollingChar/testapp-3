@@ -17,7 +17,7 @@ public class NewTurnCmd extends ServerCommand {
 
 
     @Override
-    protected void writeMembers (ByteBuf byteBuf) {
+    public void writeMembers (ByteBuf byteBuf) {
         byteBuf.writeInt(playerId);
     }
 }

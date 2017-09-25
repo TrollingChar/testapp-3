@@ -1,4 +1,5 @@
 ﻿using Battle.Objects.CollisionHandlers;
+using DataTransfer.Data;
 
 
 namespace Battle.Objects.Controllers {
