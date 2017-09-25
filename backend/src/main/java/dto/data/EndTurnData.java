@@ -7,13 +7,13 @@ import io.netty.buffer.ByteBuf;
 public class EndTurnData extends DTO {
 
     @Override
-    protected void writeMembers (ByteBuf byteBuf) throws Exception {
+    public void writeMembers (ByteBuf byteBuf) {
 
     }
 
 
     @Override
-    protected void readMembers (ByteBuf buffer) throws Exception {
+    public void readMembers (ByteBuf buffer) {
 
     }
 }

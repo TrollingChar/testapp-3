@@ -13,7 +13,6 @@ public class LobbyStatusCmd extends ServerCommand {
 
 
     public LobbyStatusCmd (int lobbySize, int playersCount) {
-
         this.lobbySize = lobbySize;
         this.playersCount = playersCount;
     }
@@ -21,6 +20,8 @@ public class LobbyStatusCmd extends ServerCommand {
 
     @Override
     protected void writeMembers (ByteBuf byteBuf) {
-
+        byteBuf
+            .writeByte(lobbySize)
+            .writeByte(playersCount);
     }
 }

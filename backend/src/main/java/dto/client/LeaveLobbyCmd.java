@@ -18,5 +18,6 @@ public class LeaveLobbyCmd extends ClientCommand {
 
     @Override
     protected void readMembers (ByteBuf buffer) {
+        // nothing
     }
 }
