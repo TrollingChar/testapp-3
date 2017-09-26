@@ -6,17 +6,10 @@ namespace Battle.Physics.Collisions {
 
     public class BoxCollider : Collider {
 
-        private readonly float
-            _leftOffset;
-
-        private readonly float
-            _rightOffset;
-
-        private readonly float
-            _bottomOffset;
-
-        private readonly float
-            _topOffset;
+        private readonly float _bottomOffset; 
+        private readonly float _leftOffset;
+        private readonly float _rightOffset;
+        private readonly float _topOffset;
 
 
         public BoxCollider (

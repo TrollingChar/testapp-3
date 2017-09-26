@@ -1,6 +1,6 @@
-using System;
 using System.IO;
 using Attributes;
+using Commands.Server;
 
 
 namespace DataTransfer.Server {
@@ -8,13 +8,11 @@ namespace DataTransfer.Server {
     [DTO(DTOCode.LeftLobby)]
     public class LeftLobbyCmd : ServerCommand {
 
-        protected override void ReadMembers (BinaryReader reader) {
-            throw new NotImplementedException();
-        }
+        protected override void ReadMembers (BinaryReader reader) {}
 
 
         public override void Execute () {
-            throw new NotImplementedException();
+            CommandExecutor<LeftLobbyCmd>.Execute(this);
         }
 
     }

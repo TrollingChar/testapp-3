@@ -6,7 +6,7 @@ using Attributes;
 namespace DataTransfer.Server {
 
     [DTO(DTOCode.LeftGame)]
-    public class LeftGameCmd: ServerCommand {
+    public class LeftGameCmd : ServerCommand {
 
         protected override void ReadMembers (BinaryReader reader) {
             throw new NotImplementedException();

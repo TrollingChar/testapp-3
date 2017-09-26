@@ -12,14 +12,14 @@ namespace Battle.Generation {
         private const int CellularEstimation = 10;
         private const int RescaleEstimation = 5;
         private const int RotateEstimation = 5;
+
+        private readonly Queue<IEnumerator> _instructions;
         public readonly Messenger<LandGen> OnComplete;
 
         public readonly Messenger<float> OnProgress;
         private MonoBehaviour _coroutineKeeper;
 
         private long _done;
-
-        private readonly Queue<IEnumerator> _instructions;
 
         private LandGen _landGen;
         private int _width, _height;

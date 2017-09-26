@@ -1,5 +1,4 @@
-﻿using System;
-using Battle.Weapons;
+﻿using Battle.Weapons;
 
 
 namespace Attributes {

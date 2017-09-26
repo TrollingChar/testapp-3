@@ -1,10 +1,8 @@
 ﻿using Attributes;
-using Battle;
 using Battle.Weapons;
-using Commands;
-using Commands.Client;
 using Commands.Server;
 using DataTransfer;
+using DataTransfer.Server;
 using Net;
 using UnityEngine;
 using Utils.Singleton;
@@ -20,9 +18,9 @@ namespace Core {
 
         private void Awake () {
             DontDestroyOnLoad(this);
-            
+
             DTO.Init();
-            
+
 //            Serialization<ClientCommand>.ScanAssembly<ClientCmdAttribute>();
 //            Serialization<IServerCommand>.ScanAssembly<ServerCmdAttribute>();
             Serialization<Weapon>.ScanAssembly<WeaponAttribute>();
@@ -30,20 +28,20 @@ namespace Core {
             _connection = gameObject.AddComponent<Connection>();
             _sceneSwitcher = new SceneSwitcher();
 
-            CommandExecutor<AuthorizedCmd>.AddHandler(OnAuthorized);
-            CommandExecutor<GameStartedCmd>.AddHandler(OnGameStarted);
+            CommandExecutor<AuthSuccessCmd>.AddHandler(OnAuthSuccess);
+            CommandExecutor<NewGameCmd>.AddHandler(OnNewGame);
             _sceneSwitcher.Load(Scenes.Menu);
         }
 
 
-        private void OnGameStarted (GameStartedCmd cmd) {
+        private void OnNewGame (NewGameCmd cmd) {
             _sceneSwitcher.Load(Scenes.Battle, cmd.Data);
         }
 
 
-        private void OnAuthorized (AuthorizedCmd cmd) {
+        private void OnAuthSuccess (AuthSuccessCmd cmd) {
             The<PlayerInfo>.Set(cmd.PlayerInfo);
-            CommandExecutor<AuthorizedCmd>.RemoveHandler(OnAuthorized);
+            CommandExecutor<AuthSuccessCmd>.RemoveHandler(OnAuthSuccess);
         }
 
     }

@@ -47,9 +47,6 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/Commands/Server/UpdateLobbyStatusCmd.cs" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/Commands/Server/UpdateLobbyStatusCmd.cs.meta" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/ProjectSettings/ProjectSettings.asset" afterPath="$PROJECT_DIR$/../frontend/ProjectSettings/ProjectSettings.asset" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/core/Root.java" afterPath="$PROJECT_DIR$/src/main/java/core/Root.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/rooms/Lobbies.java" afterPath="$PROJECT_DIR$/src/main/java/rooms/Lobbies.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/rooms/Lobby.java" afterPath="$PROJECT_DIR$/src/main/java/rooms/Lobby.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/Attributes/DTOAttribute.cs" afterPath="$PROJECT_DIR$/../frontend/Assets/Scripts/Attributes/DTOAttribute.cs" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/Attributes/WeaponAttribute.cs" afterPath="$PROJECT_DIR$/../frontend/Assets/Scripts/Attributes/WeaponAttribute.cs" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/Scripts/Battle/Arsenals/Arsenal.cs" afterPath="$PROJECT_DIR$/../frontend/Assets/Scripts/Battle/Arsenals/Arsenal.cs" />
@@ -215,6 +212,9 @@
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="1" />
@@ -555,10 +555,18 @@
     <configuration />
   </component>
   <component name="TaskManager">
+    <task id="LOCAL-00001" summary="bug with lobbies fixed">
+      <created>1506465359540</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1506465359540</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5000" />
+    <option name="totallyTimeSpent" value="60000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1" y="0" width="1598" height="860" extended-state="0" />
@@ -581,7 +589,7 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39946738" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39946738" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />

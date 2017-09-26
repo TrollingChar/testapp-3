@@ -20,11 +20,11 @@ namespace DataTransfer {
             _codes = new Dictionary<Type, DTOCode>();
 
             Debug.Log("scanning DTO...");
-            
+
             var baseType = typeof(DTO);
             foreach (var type in Assembly.GetExecutingAssembly().GetTypes()) {
                 if (!type.IsSubclassOf(baseType) && !type.GetInterfaces().Contains(baseType)) continue;
-                
+
                 var attribute = (DTOAttribute) type.GetCustomAttributes(true).FirstOrDefault(a => a is DTOAttribute);
                 if (attribute == null) {
 //                    Debug.LogError("No attribute on class " + type);

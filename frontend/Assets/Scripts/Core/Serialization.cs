@@ -11,8 +11,8 @@ namespace Core {
 
     public static class Serialization<TSerializable> {
 
-        private static Dictionary<Type, byte> _codeByType = new Dictionary<Type, byte>();
-        private static Dictionary<byte, Type> _typeByCode = new Dictionary<byte, Type>();
+        private static readonly Dictionary<Type, byte> _codeByType = new Dictionary<Type, byte>();
+        private static readonly Dictionary<byte, Type> _typeByCode = new Dictionary<byte, Type>();
 
 
         public static void ScanAssembly<TAttribute> () where TAttribute : IdAttribute {

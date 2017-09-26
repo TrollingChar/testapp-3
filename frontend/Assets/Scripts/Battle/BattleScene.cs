@@ -4,10 +4,11 @@ using Battle.Generation;
 using Battle.State;
 using Battle.Teams;
 using Battle.UI;
-using Commands.Client;
 using Commands.Server;
 using Core;
+using DataTransfer.Client;
 using DataTransfer.Data;
+using DataTransfer.Server;
 using Net;
 using UnityEngine;
 using UnityEngine.UI;
@@ -20,7 +21,16 @@ namespace Battle {
 
     public class BattleScene : MonoBehaviour {
 
+        public readonly Messenger OnBattleLoaded = new Messenger();
+
         [SerializeField] private Text _hint;
+
+        private GameInitData _initData;
+        private bool _initialized;
+
+        // temp fields
+        private EstimatedLandGen _landGen;
+
         [SerializeField] private SpriteRenderer _landRenderer;
 
         public Connection Connection { get; private set; }
@@ -29,18 +39,9 @@ namespace Battle {
         public WeaponWrapper Weapon { get; private set; }
         public TimerWrapper Timer { get; private set; }
         public ActiveWormWrapper ActiveWorm { get; private set; }
-        
         public TeamManager Teams { get; private set; }
         public World World { get; private set; }
         public ArsenalPanel ArsenalPanel { get; private set; }
-
-        // temp fields
-        private EstimatedLandGen _landGen;
-
-        private GameInitData _initData;
-        private bool _initialized;
-
-        public readonly Messenger OnBattleLoaded = new Messenger();
 
 
         private void Awake () {
@@ -50,7 +51,7 @@ namespace Battle {
             RNG.Init(_initData.Seed);
 
             Connection = The<Connection>.Get();
-            CommandExecutor<HandleTurnDataCmd>.AddHandler(TurnDataHandler);
+            CommandExecutor<TurnDataSCmd>.AddHandler(TurnDataHandler);
 
             Camera = GetComponentInChildren<CameraWrapper>();
             The<CameraWrapper>.Set(Camera);
@@ -87,7 +88,7 @@ namespace Battle {
         }
 
 
-        private void TurnDataHandler (HandleTurnDataCmd cmd) {
+        private void TurnDataHandler (TurnDataSCmd cmd) {
             Work(cmd.Data);
         }
 
@@ -111,9 +112,9 @@ namespace Battle {
             Weapon = new WeaponWrapper();
             Camera.LookAt(new Vector2(1000, 1000), true);
             Teams = World.SpawnTeams(_initData.Players, 5);
-            
-            CommandExecutor<StartNewTurnCmd>.AddHandler(PrepareTurn);
-            
+
+            CommandExecutor<NewTurnCmd>.AddHandler(PrepareTurn);
+
             OnBattleLoaded.Send();
             Timer.Time = 500;
         }
@@ -126,12 +127,11 @@ namespace Battle {
                 Work(null);
                 return;
             }
-//            if (!State.IsMyTurn) return;
             if (!Teams.IsMyTurn) return;
-            
+
             // gather input and update world
             var td = new TurnData();
-            new SendTurnDataCmd(td).Send();
+            Connection.Send(new TurnDataCCmd(td));
             Work(td);
         }
 
@@ -145,7 +145,7 @@ namespace Battle {
 
 
         private void OnDestroy () {
-            CommandExecutor<HandleTurnDataCmd>.RemoveHandler(TurnDataHandler);
+            CommandExecutor<TurnDataSCmd>.RemoveHandler(TurnDataHandler);
             The<World>.Set(null);
             The<GameStateController>.Set(null);
         }
@@ -157,24 +157,23 @@ namespace Battle {
         }
 
 
-        public void BeforeTurn()
-        {
+        public void BeforeTurn () {
             // drop crates
         }
 
-        public void Synchronize()
-        {
+
+        public void Synchronize () {
 //            Connection.Send(new EndTurnCmd(true));
         }
-        
-        private void PrepareTurn(StartNewTurnCmd cmd)
-        {
+
+
+        private void PrepareTurn (NewTurnCmd cmd) {
             Teams.SetActive(cmd.Player);
             State.ChangeState();
         }
 
-        public void NewTurn()
-        {
+
+        public void NewTurn () {
             ActiveWorm.Worm = Teams.NextWorm();
             ActiveWorm.CanMove = true;
             Camera.LookAt(ActiveWorm.Worm.Position);
@@ -182,22 +181,23 @@ namespace Battle {
             Timer.Time = 10000;
         }
 
-        public void EndTurn()
-        {
+
+        public void EndTurn () {
             ActiveWorm.CanMove = false;
             Weapon.Unequip();
             Timer.Wait(500);
         }
 
-        public void AfterTurn()
-        {
+
+        public void AfterTurn () {
             // poison damage
         }
 
-        public void Remove0Hp()
-        {
+
+        public void Remove0Hp () {
             // remove worms with 0 hp
         }
+
     }
 
 }

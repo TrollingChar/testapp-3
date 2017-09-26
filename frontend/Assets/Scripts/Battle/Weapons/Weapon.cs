@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using Attributes;
 using Battle.Arsenals;
 using Battle.Objects;
@@ -12,18 +11,20 @@ namespace Battle.Weapons {
 
     public abstract class Weapon {
 
-        private readonly WeaponWrapper _weaponWrapper;
         private readonly int _id;
-        protected bool _equipped;
-        private Arsenal _arsenal;
 
-        public Worm Worm { get; set; }
+        private readonly WeaponWrapper _weaponWrapper;
+        private Arsenal _arsenal;
+        protected bool _equipped;
 
 
         protected Weapon () {
             _weaponWrapper = The<WeaponWrapper>.Get();
             _id = ((WeaponAttribute) GetType().GetCustomAttributes(true).First(a => a is WeaponAttribute)).Id;
         }
+
+
+        public Worm Worm { get; set; }
 
 
         public void Equip (Worm worm) {

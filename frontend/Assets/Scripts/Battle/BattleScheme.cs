@@ -7,7 +7,7 @@ namespace Battle {
 
     public class BattleScheme {
 
-        private List<Func<Weapon>> _weapons = new List<Func<Weapon>>();
+        private readonly List<Func<Weapon>> _weapons = new List<Func<Weapon>>();
 
 
         public Weapon GetWeapon (int id) {

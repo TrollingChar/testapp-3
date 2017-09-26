@@ -5,6 +5,7 @@ using Geometry;
 namespace Battle.Physics.Collisions {
 
     public class Collision : IEquatable<Collision>, IComparable<Collision> {
+
         /*
         public override bool Equals(object obj)
         {

@@ -27,8 +27,7 @@ namespace Battle.Weapons.WeaponTypes.Launched {
         }
 
 
-        protected override void OnShoot()
-        {
+        protected override void OnShoot () {
             Debug.Log("fire!");
         }
 

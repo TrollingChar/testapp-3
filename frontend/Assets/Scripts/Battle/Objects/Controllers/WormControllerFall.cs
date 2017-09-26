@@ -7,8 +7,8 @@ namespace Battle.Objects.Controllers {
 
         private int _stillTime = 0;
 
-        public override void Update(TurnData td)
-        {
+
+        public override void Update (TurnData td) {
             base.Update(td);
             Wait();
         }

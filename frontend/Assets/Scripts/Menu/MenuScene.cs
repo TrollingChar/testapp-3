@@ -1,6 +1,5 @@
-﻿using Battle;
-using Commands.Server;
-using Core;
+﻿using Commands.Server;
+using DataTransfer.Server;
 using Menu.UI;
 using Net;
 using UnityEngine;
@@ -12,9 +11,9 @@ namespace Menu {
     public class MenuScene : MonoBehaviour {
 
         [SerializeField] private ConnectionMenu _connectionMenu;
-        [SerializeField] private MainMenu _mainMenu;
         [SerializeField] private GameModeMenu _gameModeMenu;
         [SerializeField] private LobbyMenu _lobbyMenu;
+        [SerializeField] private MainMenu _mainMenu;
 
         private Connection Connection { get; set; }
 
@@ -22,13 +21,13 @@ namespace Menu {
         private void Awake () {
             The<MenuScene>.Set(this);
             Connection = The<Connection>.Get();
-            CommandExecutor<AuthorizedCmd>.AddHandler(OnAuthorized);
+            CommandExecutor<AuthSuccessCmd>.AddHandler(OnAuthorized);
 //            CommandExecutor<GameStartedCommand>.AddHandler(OnGameStarted);
 
         }
 
 
-        private void OnAuthorized (AuthorizedCmd obj) {
+        private void OnAuthorized (AuthSuccessCmd obj) {
             _connectionMenu.Hide();
             _mainMenu.Show();
         }
@@ -40,7 +39,7 @@ namespace Menu {
 
 
         private void OnDestroy () {
-            CommandExecutor<AuthorizedCmd>.RemoveHandler(OnAuthorized);
+            CommandExecutor<AuthSuccessCmd>.RemoveHandler(OnAuthorized);
 //            CommandExecutor<GameStartedCommand>.RemoveHandler(OnGameStarted);
             The<MenuScene>.Set(null);
         }

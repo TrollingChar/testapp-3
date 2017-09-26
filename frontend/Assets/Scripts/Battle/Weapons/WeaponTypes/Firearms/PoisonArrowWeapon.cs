@@ -1,5 +1,4 @@
-﻿using System;
-using Assets;
+﻿using Assets;
 using Attributes;
 using Battle.Weapons.Crosshairs;
 using Utils.Singleton;

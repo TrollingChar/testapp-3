@@ -34,7 +34,7 @@ namespace Net.Utils {
             if (BitConverter.IsLittleEndian) Array.Reverse(bytes);
             return BitConverter.ToInt64(bytes, 0);
         }
-        
+
 
         public override ushort ReadUInt16 () {
             var bytes = ReadBytes(sizeof(ushort));

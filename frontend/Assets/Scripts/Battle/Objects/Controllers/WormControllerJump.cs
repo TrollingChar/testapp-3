@@ -11,11 +11,11 @@ namespace Battle.Objects.Controllers {
         }
 
 
-        public override void Update(TurnData td)
-        {
+        public override void Update (TurnData td) {
             base.Update(td);
             Wait();
         }
+
 
         public override void OnRemove () {
             Object.CollisionHandler = null;

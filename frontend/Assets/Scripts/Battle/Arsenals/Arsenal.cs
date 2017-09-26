@@ -7,14 +7,14 @@ namespace Battle.Arsenals {
 
     public class Arsenal {
 
-        public Messenger<int, int> OnAmmoChanged { get; private set; }
-        private int[] Ammo { get; set; }
-
-
         public Arsenal () {
             Ammo = new int[Enum.GetValues(typeof(WeaponId)).Length];
             OnAmmoChanged = new Messenger<int, int>();
         }
+
+
+        public Messenger<int, int> OnAmmoChanged { get; private set; }
+        private int[] Ammo { get; set; }
 
 
         private int this [int id] {

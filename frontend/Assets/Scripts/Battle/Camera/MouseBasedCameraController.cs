@@ -6,8 +6,8 @@ namespace Battle.Camera {
 
     public class MouseBasedCameraController : CameraController {
 
-        private readonly Vector3 _origin;
         private readonly Vector3 _click;
+        private readonly Vector3 _origin;
 
 
         public MouseBasedCameraController (CameraWrapper camera) : base(camera) {

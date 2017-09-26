@@ -1,12 +1,17 @@
 ﻿using System;
 using System.IO;
 using Attributes;
+using Commands.Server;
+using DataTransfer.Data;
 
 
 namespace DataTransfer.Server {
 
     [DTO(DTOCode.NewGame)]
-    public class NewGameCmd: ServerCommand {
+    public class NewGameCmd : ServerCommand {
+
+        public GameInitData Data { get; private set; }
+
 
         protected override void ReadMembers (BinaryReader reader) {
             throw new NotImplementedException();
@@ -14,7 +19,7 @@ namespace DataTransfer.Server {
 
 
         public override void Execute () {
-            throw new NotImplementedException();
+            CommandExecutor<NewGameCmd>.Execute(this);
         }
 
     }

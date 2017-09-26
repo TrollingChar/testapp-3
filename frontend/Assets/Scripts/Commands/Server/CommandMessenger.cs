@@ -1,12 +1,14 @@
 ﻿using System;
+using DataTransfer.Server;
 using Utils.Messenger;
 
 
 namespace Commands.Server {
 
-    public static class CommandExecutor<T> where T : IServerCommand {
+    [Obsolete("use static messengers in commands instead")]
+    public static class CommandExecutor<T> where T : ServerCommand {
 
-        private static Messenger<T> _onReceived = new Messenger<T>();
+        private static readonly Messenger<T> _onReceived = new Messenger<T>();
 
 
         public static void AddHandler (Action<T> handler) {

@@ -8,9 +8,7 @@ namespace DataTransfer.Client {
     [DTO(DTOCode.LeaveLobby)]
     public class LeaveLobbyCmd : ClientCommand {
 
-        protected override void WriteMembers (BinaryWriter writer) {
-            throw new NotImplementedException();
-        }
+        protected override void WriteMembers (BinaryWriter writer) {}
 
     }
 

@@ -7,11 +7,10 @@ using UnityEngine;
 namespace Battle.Teams {
 
     public class Team {
-        public int Player { get; private set; }
+
         private readonly LinkedList<Worm> _worms;
         private Worm _activeWorm;
         private int _wormsAlive;
-        public Arsenal Arsenal { get; private set; }
 
 
         public Team (int player, Color color, Arsenal arsenal) {
@@ -20,6 +19,10 @@ namespace Battle.Teams {
             _worms = new LinkedList<Worm>();
             Arsenal = arsenal;
         }
+
+
+        public int Player { get; private set; }
+        public Arsenal Arsenal { get; private set; }
 
 
         public Color Color { get; private set; }
@@ -41,7 +44,7 @@ namespace Battle.Teams {
                 _activeWorm = _worms.First.Value;
                 _worms.RemoveFirst();
             } while (_activeWorm.HP <= 0);
-            
+
             _worms.AddLast(_activeWorm);
             return _activeWorm;
         }

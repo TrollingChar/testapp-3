@@ -1,5 +1,4 @@
-﻿using Commands.Client;
-using Core.UI;
+﻿using Core.UI;
 using DataTransfer.Client;
 using Net;
 using UnityEngine;
@@ -12,10 +11,9 @@ namespace Menu.UI {
     public class ConnectionMenu : Panel {
 
         [SerializeField] private Button _connectButton;
-        [SerializeField] private InputField _ipText;
-        [SerializeField] private InputField _idText;
-
         private Connection _connection;
+        [SerializeField] private InputField _idText;
+        [SerializeField] private InputField _ipText;
 
 
         protected override void Activate () {

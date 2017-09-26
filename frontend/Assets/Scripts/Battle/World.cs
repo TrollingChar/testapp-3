@@ -48,7 +48,7 @@ namespace Battle {
 
         public void Update (TurnData td) {
 //            if (_state.Timer % 500 == 0 && td != null && td.MB) {
-                // ???
+            // ???
 //            }
 
             foreach (var o in _objects) o.Update(td);

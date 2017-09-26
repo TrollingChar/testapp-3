@@ -1,6 +1,7 @@
-﻿using Commands.Client;
-using Commands.Server;
+﻿using Commands.Server;
 using Core.UI;
+using DataTransfer.Client;
+using DataTransfer.Server;
 using Net;
 using UnityEngine;
 using UnityEngine.UI;
@@ -23,32 +24,32 @@ namespace Menu.UI {
             _connection = The<Connection>.Get();
             _menuScene = The<MenuScene>.Get();
 
-            CommandExecutor<UpdateLobbyStatusCmd>.AddHandler(OnHubStatusChanged);
-            CommandExecutor<RemovedFromLobbyCmd>.AddHandler(OnRemoval);
+            CommandExecutor<LobbyStatusCmd>.AddHandler(OnLobbyStatusChanged);
+            CommandExecutor<LeftLobbyCmd>.AddHandler(OnLeftLobby);
             _cancelButton.onClick.AddListener(OnClickedCancel);
         }
 
 
-        private void OnHubStatusChanged (UpdateLobbyStatusCmd obj) {
-            UpdateHubStatus(obj.HubId, obj.Players);
+        private void OnLobbyStatusChanged (LobbyStatusCmd cmd) {
+            UpdateHubStatus(cmd.HubId, cmd.Players);
         }
 
 
         protected override void Deactivate () {
-            CommandExecutor<UpdateLobbyStatusCmd>.RemoveHandler(OnHubStatusChanged);
+            CommandExecutor<LobbyStatusCmd>.RemoveHandler(OnLobbyStatusChanged);
             _cancelButton.onClick.RemoveListener(OnClickedCancel);
         }
 
 
         private void OnClickedCancel () {
-            new QuitLobbyCmd().Send();
+            _connection.Send(new LeaveLobbyCmd());
             _text.text = "Выход из комнаты...";
         }
 
 
-        public void JoinHub (byte hub) {
-            _text.text = "Вход в комнату " + hub + "...";
-            new JoinLobbyCmd(hub).Send();
+        public void JoinHub (byte lobbyId) {
+            _text.text = "Вход в комнату " + lobbyId + "...";
+            _connection.Send(new JoinLobbyCmd(lobbyId));
         }
 
 
@@ -57,7 +58,7 @@ namespace Menu.UI {
         }
 
 
-        public void OnRemoval (RemovedFromLobbyCmd removedFromLobbyCmd) {
+        public void OnLeftLobby (LeftLobbyCmd cmd) {
             _menuScene.ShowMainMenu();
             _text.text = "Игра отменена";
         }

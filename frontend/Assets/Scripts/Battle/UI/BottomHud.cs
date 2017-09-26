@@ -9,6 +9,8 @@ namespace Battle.UI {
 
     public class BottomHud : Panel {
 
+        private BattleScene _battleScene;
+
         private string _gameTime = "";
 
         [SerializeField] private Text _middleText;
@@ -16,11 +18,9 @@ namespace Battle.UI {
         private GameStateController _state;
         [SerializeField] private Text _time;
         private string _turnTime = "";
-        private BattleScene _battleScene;
 
 
-        private void Awake ()
-        {
+        private void Awake () {
             _battleScene = The<BattleScene>.Get();
             _battleScene.OnBattleLoaded.Subscribe(OnBattleLoaded);
         }
