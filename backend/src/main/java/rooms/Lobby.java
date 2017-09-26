@@ -1,5 +1,6 @@
 package rooms;
 
+import dto.server.LeftLobbyCmd;
 import dto.server.LobbyStatusCmd;
 import players.Player;
 
@@ -27,11 +28,12 @@ public class Lobby extends Room {
 
     @Override
     protected void onPlayerRemoved (Player player) {
+        player.send(new LeftLobbyCmd());
         notifyPlayers();
     }
 
 
     private void notifyPlayers () {
-        new LobbyStatusCmd(size, players.size());
+        broadcast(new LobbyStatusCmd(size, players.size()));
     }
 }
