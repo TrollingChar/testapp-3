@@ -17,7 +17,7 @@ namespace DataTransfer.Client {
         public TurnData Data { get; private set; }
 
 
-        protected override void WriteMembers (BinaryWriter writer) {
+        public override void WriteMembers (BinaryWriter writer) {
             throw new NotImplementedException();
         }
 

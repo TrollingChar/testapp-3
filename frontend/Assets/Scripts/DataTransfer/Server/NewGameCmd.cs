@@ -13,7 +13,7 @@ namespace DataTransfer.Server {
         public GameInitData Data { get; private set; }
 
 
-        protected override void ReadMembers (BinaryReader reader) {
+        public override void ReadMembers (BinaryReader reader) {
             throw new NotImplementedException();
         }
 

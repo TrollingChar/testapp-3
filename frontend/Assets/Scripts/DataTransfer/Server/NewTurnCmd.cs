@@ -12,7 +12,7 @@ namespace DataTransfer.Server {
         public int Player { get; private set; }
 
 
-        protected override void ReadMembers (BinaryReader reader) {
+        public override void ReadMembers (BinaryReader reader) {
             Player = reader.ReadInt32();
         }
 

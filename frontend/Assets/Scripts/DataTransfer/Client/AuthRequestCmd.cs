@@ -17,7 +17,7 @@ namespace DataTransfer.Client {
         public string Ip { get; private set; }
 
 
-        protected override void WriteMembers (BinaryWriter writer) {
+        public override void WriteMembers (BinaryWriter writer) {
             writer.Write(Id);
         }
 

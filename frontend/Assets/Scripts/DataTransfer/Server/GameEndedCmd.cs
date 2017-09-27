@@ -8,7 +8,7 @@ namespace DataTransfer.Server {
     [DTO(DTOCode.GameEnded)]
     public class GameEndedCmd : ServerCommand {
 
-        protected override void ReadMembers (BinaryReader reader) {
+        public override void ReadMembers (BinaryReader reader) {
             throw new NotImplementedException();
         }
 

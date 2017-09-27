@@ -6,7 +6,7 @@ namespace DataTransfer.Server {
 
     public abstract class ServerCommand : DTO {
 
-        protected override void WriteMembers (BinaryWriter writer) {
+        public override void WriteMembers (BinaryWriter writer) {
             throw new NotSupportedException("Attempt to serialize a server command!");
         }
 

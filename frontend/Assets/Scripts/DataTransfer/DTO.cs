@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace DataTransfer {
 
-    public abstract class DTO {
+    public abstract class DTO : IDTO {
 
         private static Dictionary<short, Type> _types;
         private static Dictionary<Type, DTOCode> _codes;
@@ -56,8 +56,8 @@ namespace DataTransfer {
         }
 
 
-        protected abstract void WriteMembers (BinaryWriter writer);
-        protected abstract void ReadMembers (BinaryReader reader);
+        public abstract void WriteMembers (BinaryWriter writer);
+        public abstract void ReadMembers (BinaryReader reader);
 
     }
 

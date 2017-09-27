@@ -15,7 +15,7 @@ namespace DataTransfer.Client {
         }
 
 
-        protected override void WriteMembers (BinaryWriter writer) {
+        public override void WriteMembers (BinaryWriter writer) {
             writer.Write(LobbyId);
         }
 
