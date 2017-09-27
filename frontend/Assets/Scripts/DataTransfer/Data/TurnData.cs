@@ -52,18 +52,6 @@ namespace DataTransfer.Data {
         }
 
 
-//        public TurnData (byte flags, float x, float y, byte weapon, byte numKey) {
-//            W = (flags & 0x01) != 0;
-//            A = (flags & 0x02) != 0;
-//            S = (flags & 0x04) != 0;
-//            D = (flags & 0x08) != 0;
-//            MB = (flags & 0x10) != 0;
-//            XY = new XY(x, y);
-//            Weapon = weapon;
-//            NumKey = numKey;
-//        }
-
-
         public override void ReadMembers (BinaryReader reader) {
             Flags = reader.ReadByte();
             XY = new XY(reader.ReadSingle(), reader.ReadSingle());

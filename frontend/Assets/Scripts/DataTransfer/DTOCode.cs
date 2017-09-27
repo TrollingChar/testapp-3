@@ -24,7 +24,8 @@
         AccountData = 2,
         TurnData = 12,
         EndTurnData = 22,
-        EndGameData = 32
+        EndGameData = 32,
+        GameInitData = 42
 
     }
 

@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using Attributes;
 
 
 namespace DataTransfer.Data {
 
+    [DTO(DTOCode.GameInitData)]
     public class GameInitData : DTO {
 
         public int Seed;
@@ -14,17 +16,11 @@ namespace DataTransfer.Data {
         public GameInitData () {
             Players = new List<int>();
         }
-        
-
-//        public GameInitData (int seed, List<int> players) {
-//            Seed = seed;
-//            Players = players;
-//        }
 
 
         public override void ReadMembers (BinaryReader reader) {
             Seed = reader.ReadInt32();
-            for (int i = 0; i < reader.ReadByte(); i++) {
+            for (int i = 0, count = reader.ReadByte(); i < count; i++) {
                 Players.Add(reader.ReadInt32());
             }
         }
