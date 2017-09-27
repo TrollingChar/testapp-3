@@ -24,6 +24,7 @@ public enum DTOs {
     TURN_DATA(12),
     END_TURN_DATA(22),
     END_GAME_DATA(32),
+    GAME_INIT_DATA(32),
 
     ;
 

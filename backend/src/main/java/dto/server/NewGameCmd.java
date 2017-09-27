@@ -11,13 +11,22 @@ import java.util.List;
 @DTOCode(DTOs.NEW_GAME)
 public class NewGameCmd extends ServerCommand {
 
+    private final int seed;
+    private final List<Player> players;
+
+
     public NewGameCmd (int seed, List<Player> players) {
-        // todo
+        this.seed = seed;
+        this.players = players;
     }
 
 
     @Override
     public void writeMembers (ByteBuf byteBuf) {
+        byteBuf
+            .writeInt(seed)
+            .writeByte(players.size());
 
+        for (Player player : players) byteBuf.writeInt(player.id);
     }
 }
