@@ -9,16 +9,16 @@ namespace DataTransfer.Client {
     [DTO(DTOCode.TurnDataClient)]
     public class TurnDataCCmd : ClientCommand {
 
+        public TurnData Data { get; private set; }
+
+
         public TurnDataCCmd (TurnData data) {
             Data = data;
         }
 
 
-        public TurnData Data { get; private set; }
-
-
         public override void WriteMembers (BinaryWriter writer) {
-            throw new NotImplementedException();
+            Data.WriteMembers(writer);
         }
 
     }

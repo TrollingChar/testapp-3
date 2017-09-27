@@ -8,9 +8,7 @@ namespace DataTransfer.Client {
     [DTO(DTOCode.LeaveGame)]
     public class LeaveGameCmd : ClientCommand {
 
-        public override void WriteMembers (BinaryWriter writer) {
-            throw new NotImplementedException();
-        }
+        public override void WriteMembers (BinaryWriter writer) {}
 
     }
 

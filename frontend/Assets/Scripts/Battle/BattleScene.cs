@@ -130,7 +130,7 @@ namespace Battle {
             if (!Teams.IsMyTurn) return;
 
             // gather input and update world
-            var td = new TurnData();
+            var td = TurnData.FromInput();
             Connection.Send(new TurnDataCCmd(td));
             Work(td);
         }

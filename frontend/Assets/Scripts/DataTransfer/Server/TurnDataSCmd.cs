@@ -14,7 +14,8 @@ namespace DataTransfer.Server {
 
 
         public override void ReadMembers (BinaryReader reader) {
-            throw new NotImplementedException();
+            Data = new TurnData();
+            Data.ReadMembers(reader);
         }
 
 
