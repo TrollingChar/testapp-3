@@ -163,7 +163,7 @@ namespace Battle {
 
 
         public void Synchronize () {
-//            Connection.Send(new EndTurnCmd(true));
+            Connection.Send(new TurnEndedCmd(true));
         }
 
 
