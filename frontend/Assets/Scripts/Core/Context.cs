@@ -11,30 +11,21 @@ using Utils.Singleton;
 namespace Core {
 
     public class Context : MonoBehaviour {
-
-        private Connection _connection;
-        private SceneSwitcher _sceneSwitcher;
+        
+        public Connection Connection { get; private set; }
+        public SceneSwitcher Switcher { get; private set; }
 
 
         private void Awake () {
             DontDestroyOnLoad(this);
 
             DTO.Init();
-
-//            Serialization<ClientCommand>.ScanAssembly<ClientCmdAttribute>();
-//            Serialization<IServerCommand>.ScanAssembly<ServerCmdAttribute>();
             Serialization<Weapon>.ScanAssembly<WeaponAttribute>();
 
-            _connection = gameObject.AddComponent<Connection>();
-            _sceneSwitcher = new SceneSwitcher();
+            Connection = gameObject.AddComponent<Connection>();
+            Switcher = new SceneSwitcher();
 
-            CommandExecutor<NewGameCmd>.AddHandler(OnNewGame);
-            _sceneSwitcher.Load(Scenes.Menu);
-        }
-
-
-        private void OnNewGame (NewGameCmd cmd) {
-            _sceneSwitcher.Load(Scenes.Battle, cmd.Data);
+            Switcher.Load(Scenes.Menu);
         }
 
     }

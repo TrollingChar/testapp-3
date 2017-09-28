@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using Attributes;
 using Commands.Server;
+using Utils.Messenger;
 
 
 namespace DataTransfer.Server {
@@ -11,6 +12,7 @@ namespace DataTransfer.Server {
 
         public int HubId { get; private set; }
         public int Players { get; private set; }
+        public static readonly Messenger<LobbyStatusCmd> OnReceived = new Messenger<LobbyStatusCmd>();
 
 
         public override void ReadMembers (BinaryReader reader) {
@@ -20,7 +22,7 @@ namespace DataTransfer.Server {
 
 
         public override void Execute () {
-            CommandExecutor<LobbyStatusCmd>.Execute(this);
+            OnReceived.Send(this);
         }
 
     }

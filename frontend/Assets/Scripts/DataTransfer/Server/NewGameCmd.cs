@@ -2,7 +2,9 @@
 using System.IO;
 using Attributes;
 using Commands.Server;
+using Core;
 using DataTransfer.Data;
+using Utils.Singleton;
 
 
 namespace DataTransfer.Server {
@@ -20,7 +22,7 @@ namespace DataTransfer.Server {
 
 
         public override void Execute () {
-            CommandExecutor<NewGameCmd>.Execute(this);
+            The<SceneSwitcher>.Get().Load(Scenes.Battle, Data);
         }
 
     }
