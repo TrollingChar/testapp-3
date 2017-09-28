@@ -1,6 +1,7 @@
 using System.IO;
 using Attributes;
 using Core;
+using Utils.Messenger;
 using Utils.Singleton;
 
 namespace DataTransfer.Server {
@@ -8,6 +9,7 @@ namespace DataTransfer.Server {
     [DTO(DTOCode.AuthSuccess)]
     public class AuthSuccessCmd : ServerCommand {
 
+        public static readonly Messenger<AuthSuccessCmd> OnReceived = new Messenger<AuthSuccessCmd>();
         public PlayerInfo PlayerInfo { get; private set; }
 
 
@@ -18,8 +20,8 @@ namespace DataTransfer.Server {
 
 
         public override void Execute () {
-//            CommandExecutor<AuthSuccessCmd>.Execute(this);
             The<PlayerInfo>.Set(PlayerInfo);
+            OnReceived.Send(this);
         }
 
     }

@@ -15,32 +15,21 @@ namespace Menu {
         [SerializeField] private LobbyMenu _lobbyMenu;
         [SerializeField] private MainMenu _mainMenu;
 
-        private Connection Connection { get; set; }
-
-
+        
         private void Awake () {
             The<MenuScene>.Set(this);
-            Connection = The<Connection>.Get();
-            CommandExecutor<AuthSuccessCmd>.AddHandler(OnAuthorized);
-//            CommandExecutor<GameStartedCommand>.AddHandler(OnGameStarted);
-
+            AuthSuccessCmd.OnReceived.Subscribe(OnAuthSuccess);
         }
 
 
-        private void OnAuthorized (AuthSuccessCmd obj) {
+        private void OnAuthSuccess (AuthSuccessCmd obj) {
+            AuthSuccessCmd.OnReceived.Unsubscribe(OnAuthSuccess);
             _connectionMenu.Hide();
             _mainMenu.Show();
         }
 
 
-//        private void OnGameStarted(GameStartedCommand obj)
-//        {
-//        }
-
-
         private void OnDestroy () {
-            CommandExecutor<AuthSuccessCmd>.RemoveHandler(OnAuthorized);
-//            CommandExecutor<GameStartedCommand>.RemoveHandler(OnGameStarted);
             The<MenuScene>.Set(null);
         }
 
@@ -68,7 +57,7 @@ namespace Menu {
             _connectionMenu.Hide();
             _gameModeMenu.Hide();
             _lobbyMenu.Hide();
-
+            
             _mainMenu.Show();
         }
 
