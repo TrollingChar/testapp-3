@@ -1,8 +1,8 @@
 ﻿using System;
 using System.IO;
 using Attributes;
-using Commands.Server;
 using DataTransfer.Data;
+using Utils.Messenger;
 
 
 namespace DataTransfer.Server {
@@ -10,6 +10,7 @@ namespace DataTransfer.Server {
     [DTO(DTOCode.TurnDataServer)]
     public class TurnDataSCmd : ServerCommand {
 
+        public static readonly Messenger<TurnDataSCmd> OnReceived = new Messenger<TurnDataSCmd>();
         public TurnData Data { get; private set; }
 
 
@@ -20,7 +21,7 @@ namespace DataTransfer.Server {
 
 
         public override void Execute () {
-            CommandExecutor<TurnDataSCmd>.Execute(this);
+            OnReceived.Send(this);
         }
 
     }

@@ -4,7 +4,6 @@ using Battle.Generation;
 using Battle.State;
 using Battle.Teams;
 using Battle.UI;
-using Commands.Server;
 using Core;
 using DataTransfer.Client;
 using DataTransfer.Data;
@@ -51,7 +50,6 @@ namespace Battle {
             RNG.Init(_initData.Seed);
 
             Connection = The<Connection>.Get();
-            CommandExecutor<TurnDataSCmd>.AddHandler(TurnDataHandler);
 
             Camera = GetComponentInChildren<CameraWrapper>();
             The<CameraWrapper>.Set(Camera);
@@ -113,8 +111,8 @@ namespace Battle {
             Camera.LookAt(new Vector2(1000, 1000), true);
             Teams = World.SpawnTeams(_initData.Players, 5);
 
-//            CommandExecutor<NewTurnCmd>.AddHandler(PrepareTurn);
             NewTurnCmd.OnReceived.Subscribe(PrepareTurn);
+            TurnDataSCmd.OnReceived.Subscribe(TurnDataHandler);
 
             OnBattleLoaded.Send();
             Timer.Time = 500;
@@ -147,7 +145,7 @@ namespace Battle {
 
         private void OnDestroy () {
             NewTurnCmd.OnReceived.Unsubscribe(PrepareTurn);
-            CommandExecutor<TurnDataSCmd>.RemoveHandler(TurnDataHandler);
+            TurnDataSCmd.OnReceived.Unsubscribe(TurnDataHandler);
             The<World>.Set(null);
             The<GameStateController>.Set(null);
         }
