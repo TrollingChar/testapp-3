@@ -15,6 +15,7 @@ class DTOCodec extends MessageToMessageCodec<BinaryWebSocketFrame, DTO> {
 
 
     protected void encode (ChannelHandlerContext ctx, DTO dto, List<Object> list) throws Exception {
+        System.out.println("sendind " + dto);
         ByteBuf buffer = PooledByteBufAllocator.DEFAULT.buffer();
         dto.write(buffer);
         list.add(new BinaryWebSocketFrame(buffer));
@@ -22,6 +23,8 @@ class DTOCodec extends MessageToMessageCodec<BinaryWebSocketFrame, DTO> {
 
 
     protected void decode (ChannelHandlerContext ctx, BinaryWebSocketFrame frame, List<Object> list) throws Exception {
-        list.add(DTO.read(frame.content()));
+        DTO dto = DTO.read(frame.content());
+        System.out.println("received " + dto);
+        list.add(dto);
     }
 }

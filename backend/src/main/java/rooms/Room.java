@@ -14,7 +14,7 @@ public abstract class Room {
     protected List<Player> players = new ArrayList<>();
 
 
-    public final synchronized void addPlayer (Player player) {
+    public final void addPlayer (Player player) {
         // called from Player
         onAddPlayer(player);
         players.add(player);
@@ -22,7 +22,7 @@ public abstract class Room {
     }
 
 
-    public final synchronized void removePlayer (Player player) {
+    public final void removePlayer (Player player) {
         // called from Player
         onRemovePlayer(player);
         players.remove(player);
@@ -37,18 +37,18 @@ public abstract class Room {
     }
 
 
-    public final synchronized void clear () {
+    public final void clear () {
         for (Player player : players) player.onKick(this);
         players.clear();
     }
 
 
-    public final synchronized void broadcast (ServerCommand cmd) {
+    public final void broadcast (ServerCommand cmd) {
         for (Player player : new ArrayList<>(players)) player.send(cmd);
     }
 
 
-    public final synchronized void broadcast (ServerCommand cmd, Predicate<Player> predicate) {
+    public final void broadcast (ServerCommand cmd, Predicate<Player> predicate) {
         LinkedList<Player> receivers = new LinkedList<>(players);
         players.removeIf(predicate.negate());
         for (Player player : receivers) player.send(cmd);
