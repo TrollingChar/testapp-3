@@ -1,9 +1,7 @@
-using System;
 using System.IO;
 using Attributes;
-using Commands.Server;
 using Core;
-
+using Utils.Singleton;
 
 namespace DataTransfer.Server {
 
@@ -20,7 +18,7 @@ namespace DataTransfer.Server {
 
 
         public override void Execute () {
-            CommandExecutor<AuthSuccessCmd>.Execute(this);
+            The<PlayerInfo>.Set(PlayerInfo);
         }
 
     }

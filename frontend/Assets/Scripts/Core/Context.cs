@@ -28,7 +28,6 @@ namespace Core {
             _connection = gameObject.AddComponent<Connection>();
             _sceneSwitcher = new SceneSwitcher();
 
-            CommandExecutor<AuthSuccessCmd>.AddHandler(OnAuthSuccess);
             CommandExecutor<NewGameCmd>.AddHandler(OnNewGame);
             _sceneSwitcher.Load(Scenes.Menu);
         }
@@ -36,12 +35,6 @@ namespace Core {
 
         private void OnNewGame (NewGameCmd cmd) {
             _sceneSwitcher.Load(Scenes.Battle, cmd.Data);
-        }
-
-
-        private void OnAuthSuccess (AuthSuccessCmd cmd) {
-            The<PlayerInfo>.Set(cmd.PlayerInfo);
-            CommandExecutor<AuthSuccessCmd>.RemoveHandler(OnAuthSuccess);
         }
 
     }
