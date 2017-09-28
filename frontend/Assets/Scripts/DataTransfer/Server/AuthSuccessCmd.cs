@@ -18,6 +18,7 @@ namespace DataTransfer.Server {
 
 
         public override void Execute () {
+//            CommandExecutor<AuthSuccessCmd>.Execute(this);
             The<PlayerInfo>.Set(PlayerInfo);
         }
 
