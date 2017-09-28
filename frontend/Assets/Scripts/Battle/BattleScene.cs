@@ -113,7 +113,8 @@ namespace Battle {
             Camera.LookAt(new Vector2(1000, 1000), true);
             Teams = World.SpawnTeams(_initData.Players, 5);
 
-            CommandExecutor<NewTurnCmd>.AddHandler(PrepareTurn);
+//            CommandExecutor<NewTurnCmd>.AddHandler(PrepareTurn);
+            NewTurnCmd.OnReceived.Subscribe(PrepareTurn);
 
             OnBattleLoaded.Send();
             Timer.Time = 500;
@@ -145,6 +146,7 @@ namespace Battle {
 
 
         private void OnDestroy () {
+            NewTurnCmd.OnReceived.Unsubscribe(PrepareTurn);
             CommandExecutor<TurnDataSCmd>.RemoveHandler(TurnDataHandler);
             The<World>.Set(null);
             The<GameStateController>.Set(null);

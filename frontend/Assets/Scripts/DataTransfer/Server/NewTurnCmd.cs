@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using Attributes;
 using Commands.Server;
+using Utils.Messenger;
 
 
 namespace DataTransfer.Server {
@@ -9,6 +10,7 @@ namespace DataTransfer.Server {
     [DTO(DTOCode.NewTurn)]
     public class NewTurnCmd : ServerCommand {
 
+        public static readonly Messenger<NewTurnCmd> OnReceived = new Messenger<NewTurnCmd>();
         public int Player { get; private set; }
 
 
@@ -18,7 +20,7 @@ namespace DataTransfer.Server {
 
 
         public override void Execute () {
-            CommandExecutor<NewTurnCmd>.Execute(this);
+            OnReceived.Send(this);
         }
 
     }
