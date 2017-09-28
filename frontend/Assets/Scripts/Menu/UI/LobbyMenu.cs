@@ -25,7 +25,7 @@ namespace Menu.UI {
             _menuScene = The<MenuScene>.Get();
 
             LobbyStatusCmd.OnReceived.Subscribe(OnLobbyStatusChanged);
-//            CommandExecutor<LeftLobbyCmd>.AddHandler(OnLeftLobby);
+            LeftLobbyCmd.OnReceived.Subscribe(OnLeftLobby);
             _cancelButton.onClick.AddListener(OnClickedCancel);
         }
 
@@ -37,6 +37,7 @@ namespace Menu.UI {
 
         protected override void Deactivate () {
             LobbyStatusCmd.OnReceived.Unsubscribe(OnLobbyStatusChanged);
+            LeftLobbyCmd.OnReceived.Unsubscribe(OnLeftLobby);
             _cancelButton.onClick.RemoveListener(OnClickedCancel);
         }
 
