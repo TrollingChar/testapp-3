@@ -14,6 +14,7 @@ public class CommandHandler extends SimpleChannelInboundHandler<DTO> {
 
     Player player;
 
+
     @Override
     public void handlerAdded (ChannelHandlerContext ctx) throws Exception {
         System.out.println(this + "added");
@@ -23,9 +24,9 @@ public class CommandHandler extends SimpleChannelInboundHandler<DTO> {
     protected void channelRead0 (ChannelHandlerContext ctx, DTO dto) throws Exception {
         if (!(dto instanceof ClientCommand)) throw new Exception("This is not a command!");
 
+        ClientCommand cmd = (ClientCommand) dto;
+        cmd.player = player;
         synchronized (CommandHandler.class) {
-            ClientCommand cmd = (ClientCommand) dto;
-            cmd.player = player;
             cmd.execute();
 
             if (cmd instanceof AuthRequestCmd) {
@@ -34,5 +35,4 @@ public class CommandHandler extends SimpleChannelInboundHandler<DTO> {
             }
         }
     }
-
 }

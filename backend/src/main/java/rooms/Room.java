@@ -50,7 +50,7 @@ public abstract class Room {
 
     public final void broadcast (ServerCommand cmd, Predicate<Player> predicate) {
         LinkedList<Player> receivers = new LinkedList<>(players);
-        players.removeIf(predicate.negate());
+        receivers.removeIf(predicate.negate());
         for (Player player : receivers) player.send(cmd);
     }
 

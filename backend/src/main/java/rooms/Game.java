@@ -31,7 +31,7 @@ public class Game extends Room {
         queue = new LinkedList<>(players);
         etdMap = new HashMap<>();
         broadcast(new NewGameCmd(Root.random.nextInt(), players));
-        newTurn();
+        // newTurn(); - DO NOT DO THIS - wait until they synchronize!
     }
 
 
