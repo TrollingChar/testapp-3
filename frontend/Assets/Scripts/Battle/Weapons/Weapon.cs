@@ -16,11 +16,12 @@ namespace Battle.Weapons {
         private readonly WeaponWrapper _weaponWrapper;
         private Arsenal _arsenal;
         protected bool _equipped;
-        protected TimerWrapper GameTimer = The<TimerWrapper>.Get();
+        protected TimerWrapper GameTimer;
 
 
         protected Weapon () {
             _weaponWrapper = The<WeaponWrapper>.Get();
+            GameTimer = The<TimerWrapper>.Get();
             _id = ((WeaponAttribute) GetType().GetCustomAttributes(true).First(a => a is WeaponAttribute)).Id;
         }
 
@@ -59,13 +60,13 @@ namespace Battle.Weapons {
 
 
         protected void LockArsenal () {
-            _weaponWrapper.LockSelect();
+            _weaponWrapper.Lock();
         }
 
 
         protected void InitRetreat(int milliseconds)
         {
-            LockArsenal();
+            _weaponWrapper.LockAndUnequip();
             GameTimer.Time = milliseconds;
             GameTimer.Frozen = false;
         }

@@ -10,7 +10,7 @@ namespace Battle.State {
 
         private readonly ActiveWormWrapper _activeWorm = The<ActiveWormWrapper>.Get();
         private bool _locked;
-        private Weapon _weapon;
+        private Weapon _weapon; // todo: should use property?
 
 
         public WeaponWrapper () {
@@ -22,13 +22,13 @@ namespace Battle.State {
 
 
         public void Update (TurnData td) {
-            if (!_locked && PreparedId != 0) SelectWeapon(PreparedId);
+            if (!_locked && PreparedId != 0) Select(PreparedId);
             PreparedId = 0;
             if (_weapon != null) _weapon.Update(td);
         }
 
 
-        private void SelectWeapon (int weaponId) {
+        private void Select (int weaponId) {
             _weapon = Serialization<Weapon>.GetNewInstanceByCode(weaponId);
             _weapon.Equip(_activeWorm.Worm);
         }
@@ -41,12 +41,12 @@ namespace Battle.State {
         }
 
 
-        public void LockSelect () {
+        public void Lock () {
             _locked = true;
         }
 
 
-        public void Unequip () {
+        public void LockAndUnequip () {
             _weapon = null;
             _locked = true;
         }

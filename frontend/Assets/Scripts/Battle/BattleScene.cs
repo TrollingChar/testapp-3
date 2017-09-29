@@ -184,7 +184,7 @@ namespace Battle {
 
         public void EndTurn () {
             ActiveWorm.CanMove = false;
-            Weapon.Unequip();
+            Weapon.LockAndUnequip();
             Timer.Wait(500);
         }
 
