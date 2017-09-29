@@ -26,11 +26,30 @@ namespace Battle.Weapons.WeaponTypes.Launched {
             CrossHair = new LineCrosshair();
         }
 
-
-        protected override void OnShoot () {
-            Debug.Log("fire!");
+        protected override void OnBeginAttack()
+        {
+            Debug.Log("begin attack");
         }
 
+        protected override void OnEndAttack()
+        {
+            Debug.Log("end attack");
+        }
+
+        protected override void OnUnequip()
+        {
+            Debug.Log("unequip");
+        }
+
+        protected override void OnShoot () {
+            Debug.Log("shoot!");
+        }
+
+        protected override void OnLastAttack()
+        {
+            base.OnLastAttack();
+            Debug.Log("last attack");
+        }
     }
 
 }

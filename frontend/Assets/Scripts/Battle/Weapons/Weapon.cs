@@ -16,6 +16,7 @@ namespace Battle.Weapons {
         private readonly WeaponWrapper _weaponWrapper;
         private Arsenal _arsenal;
         protected bool _equipped;
+        protected TimerWrapper GameTimer = The<TimerWrapper>.Get();
 
 
         protected Weapon () {
@@ -59,6 +60,14 @@ namespace Battle.Weapons {
 
         protected void LockArsenal () {
             _weaponWrapper.LockSelect();
+        }
+
+
+        protected void InitRetreat(int milliseconds)
+        {
+            LockArsenal();
+            GameTimer.Time = milliseconds;
+            GameTimer.Frozen = false;
         }
 
     }

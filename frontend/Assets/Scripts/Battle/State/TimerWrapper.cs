@@ -9,9 +9,8 @@ namespace Battle.State {
         private const int TurnTime = 10000;
         private const int RetreatTime = 3000;
         public readonly Messenger OnTimerElapsed = new Messenger();
-
         public readonly Messenger<int> OnTimerUpdated = new Messenger<int>();
-        private bool _frozen; // todo: access it from weapon
+        public bool Frozen { get; set; }
 
         private int _time;
 
@@ -34,6 +33,7 @@ namespace Battle.State {
         }
 
 
+
         public void Wait (int milliseconds) {
             //if (_battle.State.Is(GameState.Turn)) return;
             if (Time < milliseconds) Time = milliseconds;
@@ -41,7 +41,7 @@ namespace Battle.State {
 
 
         public void Update () {
-            if (_frozen) return;
+            if (Frozen) return;
             Time -= 20;
             if (HasElapsed) OnTimerElapsed.Send();
         }
