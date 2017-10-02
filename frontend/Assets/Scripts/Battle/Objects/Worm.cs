@@ -32,7 +32,7 @@ namespace Battle.Objects {
         private int _hp;
         private string _name;
 
-        private WormGO _spriteExtension;
+        private WormGO _wormGO;
 
 
         public Worm (string name = "?", int hp = 60) : base(60, 1) {
@@ -51,7 +51,7 @@ namespace Battle.Objects {
             get { return _facesRight; }
             set {
                 _facesRight = value;
-                if (_spriteExtension != null) _spriteExtension.FacesRight = _facesRight;
+                if (_wormGO != null) _wormGO.FacesRight = _facesRight;
             }
         }
 
@@ -59,7 +59,7 @@ namespace Battle.Objects {
             get { return !_facesRight; }
             set {
                 _facesRight = !value;
-                if (_spriteExtension != null) _spriteExtension.FacesRight = _facesRight;
+                if (_wormGO != null) _wormGO.FacesRight = _facesRight;
             }
         }
 
@@ -67,7 +67,7 @@ namespace Battle.Objects {
             get { return _hp; }
             set {
                 _hp = value;
-                if (_spriteExtension != null) _spriteExtension.HP = value;
+                if (_wormGO != null) _wormGO.HP = value;
             }
         }
 
@@ -75,7 +75,7 @@ namespace Battle.Objects {
             get { return _name; }
             set {
                 _name = value;
-                if (_spriteExtension != null) _spriteExtension.Name = value;
+                if (_wormGO != null) _wormGO.Name = value;
             }
         }
 
@@ -83,7 +83,7 @@ namespace Battle.Objects {
             get { return _color; }
             set {
                 _color = value;
-                if (_spriteExtension != null) _spriteExtension.Color = value;
+                if (_wormGO != null) _wormGO.Color = value;
             }
         }
 
@@ -92,15 +92,15 @@ namespace Battle.Objects {
             get { return _arrowVisible; }
             set {
                 _arrowVisible = value;
-                if (_spriteExtension != null) _spriteExtension.ArrowVisible = value;
+                if (_wormGO != null) _wormGO.ArrowVisible = value;
             }
         }
 
 
         public override void OnAdd () {
-            Sprite = UnObject.Instantiate(The<BattleAssets>.Get().Worm);
-            _spriteExtension = Sprite.GetComponent<WormGO>();
-            _spriteExtension.OnAdd(this);
+            var obj = UnObject.Instantiate(The<BattleAssets>.Get().Worm, GameObject.transform);
+            _wormGO = obj.GetComponent<WormGO>();
+            _wormGO.OnAdd(this);
 
             Name = "Кек";
 
@@ -123,8 +123,8 @@ namespace Battle.Objects {
 
 
         public void LookAt (XY target) {
-            if (_spriteExtension == null) return;
-            _spriteExtension.Look(Mathf.Rad2Deg * XY.DirectionAngle(Head.Center, target));
+            if (_wormGO == null) return;
+            _wormGO.Look(Mathf.Rad2Deg * XY.DirectionAngle(Head.Center, target));
         }
 
     }

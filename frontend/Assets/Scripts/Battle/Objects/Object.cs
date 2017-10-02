@@ -32,7 +32,6 @@ namespace Battle.Objects {
 
         public LinkedListNode<Object> Node;
 
-//        protected GameObject Sprite;
         public GameObject GameObject; 
         
         public float Movement;
@@ -79,7 +78,7 @@ namespace Battle.Objects {
 
 
         public virtual void OnAdd () {
-            // Sprite = UnObject.Instantiate(...
+            // ... = UnObject.Instantiate(..., GameObject.transform);
             // AddCollider(...
             // Explosive = ...
             // Controller = ...
@@ -93,7 +92,6 @@ namespace Battle.Objects {
             CollisionHandler = null;
             Explosive = null;
             Controller = null;
-//            RemoveSprite();
             UnObject.Destroy(GameObject);
         }
 
@@ -156,9 +154,8 @@ namespace Battle.Objects {
         }
 
 
-        public void UpdateSpritePosition () {
-            if (Sprite == null) return;
-            Sprite.transform.position = new Vector3(Position.X, Position.Y, Sprite.transform.position.z);
+        public void UpdateGameObjectPosition () {
+            GameObject.transform.position = new Vector3(Position.X, Position.Y, GameObject.transform.position.z);
         }
 
 
@@ -181,11 +178,6 @@ namespace Battle.Objects {
         protected void RemoveCollider (Collider c) {
             c.FreeTiles();
             Colliders.Remove(c);
-        }
-
-
-        private void RemoveSprite () {
-            if (Sprite != null) UnObject.Destroy(Sprite);
         }
 
 

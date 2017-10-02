@@ -160,7 +160,7 @@ namespace Battle {
 
             // handle stuck objects:
             foreach (var o in _objects) {
-                o.UpdateSpritePosition();
+                o.UpdateGameObjectPosition();
                 o.Velocity *= 1 - o.Movement;
             }
 
@@ -181,9 +181,9 @@ namespace Battle {
             o.Node = _objects.AddLast(o);
             o.Position = position;
             o.Velocity = velocity;
-            o.OnAdd();
             o.GameObject = new GameObject();
-            o.UpdateSpritePosition();
+            o.OnAdd();
+            o.UpdateGameObjectPosition();
         }
 
 
