@@ -20,21 +20,23 @@ namespace Battle.Objects {
 
         private readonly World _world = The<World>.Get();
 
+        
         private CollisionHandler _collisionHandler;
         private Controller _controller;
         private Explosive _explosive;
-
-        private XY _position;
         public List<Collider> Colliders;
         public HashSet<Object> Excluded;
+        
         public float Mass;
-
-        public float Movement;
-        public LinkedListNode<Object> Node;
-
-        protected GameObject Sprite;
         public int SuperMass;
 
+        public LinkedListNode<Object> Node;
+
+//        protected GameObject Sprite;
+        public GameObject GameObject; 
+        
+        public float Movement;
+        private XY _position;
         public XY Velocity;
 
 
@@ -91,7 +93,8 @@ namespace Battle.Objects {
             CollisionHandler = null;
             Explosive = null;
             Controller = null;
-            RemoveSprite();
+//            RemoveSprite();
+            UnObject.Destroy(GameObject);
         }
 
 

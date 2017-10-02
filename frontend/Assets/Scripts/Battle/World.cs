@@ -182,6 +182,7 @@ namespace Battle {
             o.Position = position;
             o.Velocity = velocity;
             o.OnAdd();
+            o.GameObject = new GameObject();
             o.UpdateSpritePosition();
         }
 

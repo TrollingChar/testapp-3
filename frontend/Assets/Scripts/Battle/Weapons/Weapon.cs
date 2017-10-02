@@ -3,6 +3,7 @@ using Attributes;
 using Battle.Arsenals;
 using Battle.Objects;
 using Battle.State;
+using Battle.Weapons.Crosshairs;
 using DataTransfer.Data;
 using Utils.Singleton;
 
@@ -27,6 +28,7 @@ namespace Battle.Weapons {
 
 
         public Worm Worm { get; set; }
+        protected Crosshair CrossHair { get; set; }
 
 
         public void Equip (Worm worm) {

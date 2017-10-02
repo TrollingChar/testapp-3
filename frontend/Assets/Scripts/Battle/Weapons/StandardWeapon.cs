@@ -24,8 +24,7 @@ namespace Battle.Weapons {
         protected bool RequiresClick = true; // if true, will fire 2nd shot when button is clicked, if false - when held
         protected int ShotCooldown = 5;
         protected int Shots = 1; // machine gun has many
-        
-        protected Crosshair CrossHair { get; set; }
+
 
         protected override void OnEquip () {}
 //        protected virtual void OnFirstAttack () {}
