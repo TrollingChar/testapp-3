@@ -120,8 +120,8 @@ namespace Battle.Objects {
             Transform transform = GameObject.transform;
 
             _arrow = UnObject.Instantiate(assets.Arrow, transform);
-            _nameField = UnObject.Instantiate(assets.NameField, transform).GetComponent<Text>();
-            _hpField = UnObject.Instantiate(assets.HPField, transform).GetComponent<Text>();
+//            _nameField = UnObject.Instantiate(assets.NameField, transform).GetComponent<Text>();
+//            _hpField = UnObject.Instantiate(assets.HPField, transform).GetComponent<Text>();
             
             var obj = UnObject.Instantiate(assets.Worm, transform);
             _wormGO = obj.GetComponent<WormGO>();
