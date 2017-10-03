@@ -35,7 +35,7 @@ namespace Battle.Objects {
         private string _name;
 
         private WormGO _wormGO;
-        private GameObject _arrow;
+        private SpriteRenderer _arrow;
         private Text _nameField;
         private Text _hpField;
 
@@ -103,6 +103,7 @@ namespace Battle.Objects {
                 _color = value;
                 if (_hpField   != null) _hpField.color   = value;
                 if (_nameField != null) _nameField.color = value;
+                if (_arrow != null)     _arrow.color = value;
             }
         }
 
@@ -111,25 +112,14 @@ namespace Battle.Objects {
             get { return _arrowVisible; }
             set {
                 _arrowVisible = value;
-                if (_arrow != null) _arrow.SetActive(value);
+                if (_arrow != null) _arrow.enabled = value;
             }
         }
 
 
         public override void OnAdd ()
         {
-            BattleAssets assets = The<BattleAssets>.Get();
-            Transform transform = GameObject.transform;
-
-            _canvas = UnObject.Instantiate(assets.TopCanvas, transform, false);
-
-            _arrow = UnObject.Instantiate(assets.Arrow, transform, false);
-//            _nameField = UnObject.Instantiate(assets.NameField, transform).GetComponent<Text>();
-//            _hpField = UnObject.Instantiate(assets.HPField, transform).GetComponent<Text>();
-            
-            var obj = UnObject.Instantiate(assets.Worm, transform, false);
-            _wormGO = obj.GetComponent<WormGO>();
-            _wormGO.OnAdd(this);
+            InitGraphics();
 
             Name = "Кек";
 
@@ -138,6 +128,29 @@ namespace Battle.Objects {
             //AddCollider(new BoxCollider(-5, 5, -2.5f, 2.5f));
 
             Controller = new WormControllerJump();
+        }
+
+        
+        private void InitGraphics() {
+            BattleAssets assets = The<BattleAssets>.Get();
+            Transform transform = GameObject.transform;
+
+            _canvas = UnObject.Instantiate(assets.TopCanvas, transform, false);
+            _canvas.transform.localPosition += new Vector3(0, 20, 0);
+            _canvas.transform.localScale = new Vector3(0.7f, 0.7f, 1f);
+
+            _nameField = UnObject.Instantiate(assets.Text, _canvas.transform, false).GetComponent<Text>();
+            _hpField = UnObject.Instantiate(assets.Text, _canvas.transform, false).GetComponent<Text>();
+
+            _arrow = UnObject.Instantiate(assets.Arrow, transform, false).GetComponentInChildren<SpriteRenderer>();
+
+            var obj = UnObject.Instantiate(assets.Worm, transform, false);
+            _wormGO = obj.GetComponent<WormGO>();
+            _wormGO.OnAdd(this);
+
+            HP = HP;
+            Name = Name;
+            ArrowVisible = false;
         }
 
 
