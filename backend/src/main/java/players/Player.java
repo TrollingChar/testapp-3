@@ -34,6 +34,7 @@ public final class Player {
         if (!online) return;
         online = false;
         Players.remove(id);
+        // bug: concurrent modification
         for (Room room : rooms) room.removePlayer(this);
         rooms.clear();
     }
