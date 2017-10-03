@@ -3,8 +3,10 @@ using Battle.Objects.Controllers;
 using Battle.Objects.GameObjects;
 using Battle.Physics.Collisions;
 using Battle.Teams;
+using Battle.Weapons;
 using Geometry;
 using UnityEngine;
+using UnityEngine.UI;
 using Utils.Random;
 using Utils.Singleton;
 using UnObject = UnityEngine.Object;
@@ -33,6 +35,13 @@ namespace Battle.Objects {
         private string _name;
 
         private WormGO _wormGO;
+        private GameObject _arrow;
+        private Text _nameField;
+        private Text _hpField;
+
+        private Weapon _weapon; // todo: property
+        
+        
         /* todo
             worm - wormGO
             name - text
@@ -74,7 +83,7 @@ namespace Battle.Objects {
             get { return _hp; }
             set {
                 _hp = value;
-                if (_wormGO != null) _wormGO.HP = value;
+                if (_hpField != null) _hpField.text = value.ToString();
             }
         }
 
@@ -82,7 +91,7 @@ namespace Battle.Objects {
             get { return _name; }
             set {
                 _name = value;
-                if (_wormGO != null) _wormGO.Name = value;
+                if (_nameField != null) _nameField.text = value;
             }
         }
 
@@ -90,7 +99,8 @@ namespace Battle.Objects {
             get { return _color; }
             set {
                 _color = value;
-                if (_wormGO != null) _wormGO.Color = value;
+                if (_hpField   != null) _hpField.color   = value;
+                if (_nameField != null) _nameField.color = value;
             }
         }
 
@@ -99,19 +109,21 @@ namespace Battle.Objects {
             get { return _arrowVisible; }
             set {
                 _arrowVisible = value;
-                if (_wormGO != null) _wormGO.ArrowVisible = value;
+                if (_arrow != null) _arrow.SetActive(value);
             }
         }
 
 
-        public override void OnAdd () {
-            /* todo
-                instantiate worm sprite, text sprite, arrow sprite
-                store them in different variables
-                remove WormGO class
-            */
+        public override void OnAdd ()
+        {
+            BattleAssets assets = The<BattleAssets>.Get();
+            Transform transform = GameObject.transform;
+
+            _arrow = UnObject.Instantiate(assets.Arrow, transform);
+            _nameField = UnObject.Instantiate(assets.NameField, transform).GetComponent<Text>();
+            _hpField = UnObject.Instantiate(assets.HPField, transform).GetComponent<Text>();
             
-            var obj = UnObject.Instantiate(The<BattleAssets>.Get().Worm, GameObject.transform);
+            var obj = UnObject.Instantiate(assets.Worm, transform);
             _wormGO = obj.GetComponent<WormGO>();
             _wormGO.OnAdd(this);
 

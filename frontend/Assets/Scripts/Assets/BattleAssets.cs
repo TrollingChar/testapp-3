@@ -9,6 +9,9 @@ namespace Assets {
         public Texture2D LandTexture;
 
         public GameObject Worm;
+        public GameObject Arrow;
+        public GameObject NameField;
+        public GameObject HPField;
 
 
         private void Awake () {
