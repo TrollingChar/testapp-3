@@ -33,6 +33,13 @@ namespace Battle.Objects {
         private string _name;
 
         private WormGO _wormGO;
+        /* todo
+            worm - wormGO
+            name - text
+            hp - text
+            weapon - (component)
+            crosshair - from weapon
+        */
 
 
         public Worm (string name = "?", int hp = 60) : base(60, 1) {
