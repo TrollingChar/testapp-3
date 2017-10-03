@@ -181,7 +181,7 @@ namespace Battle {
             o.Node = _objects.AddLast(o);
             o.Position = position;
             o.Velocity = velocity;
-            o.GameObject = new GameObject();
+            o.GameObject = new GameObject(o.GetType().ToString());
             o.OnAdd();
             o.UpdateGameObjectPosition();
         }
