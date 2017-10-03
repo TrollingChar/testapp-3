@@ -27,9 +27,9 @@ namespace Battle.Objects {
 
         public const float MaxClimb = 5f;
         public const float MaxDescend = 5f;
+        
         private bool _arrowVisible;
         private Color _color;
-
         private bool _facesRight;
         private int _hp;
         private string _name;
@@ -38,6 +38,8 @@ namespace Battle.Objects {
         private GameObject _arrow;
         private Text _nameField;
         private Text _hpField;
+
+        private GameObject _canvas;
 
         private Weapon _weapon; // todo: property
         
@@ -119,11 +121,13 @@ namespace Battle.Objects {
             BattleAssets assets = The<BattleAssets>.Get();
             Transform transform = GameObject.transform;
 
-            _arrow = UnObject.Instantiate(assets.Arrow, transform);
+            _canvas = UnObject.Instantiate(assets.TopCanvas, transform, false);
+
+            _arrow = UnObject.Instantiate(assets.Arrow, transform, false);
 //            _nameField = UnObject.Instantiate(assets.NameField, transform).GetComponent<Text>();
 //            _hpField = UnObject.Instantiate(assets.HPField, transform).GetComponent<Text>();
             
-            var obj = UnObject.Instantiate(assets.Worm, transform);
+            var obj = UnObject.Instantiate(assets.Worm, transform, false);
             _wormGO = obj.GetComponent<WormGO>();
             _wormGO.OnAdd(this);
 
