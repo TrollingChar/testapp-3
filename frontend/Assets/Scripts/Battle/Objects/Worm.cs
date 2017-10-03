@@ -98,6 +98,12 @@ namespace Battle.Objects {
 
 
         public override void OnAdd () {
+            /* todo
+                instantiate worm sprite, text sprite, arrow sprite
+                store them in different variables
+                remove WormGO class
+            */
+            
             var obj = UnObject.Instantiate(The<BattleAssets>.Get().Worm, GameObject.transform);
             _wormGO = obj.GetComponent<WormGO>();
             _wormGO.OnAdd(this);
