@@ -1,16 +1,19 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Attributes;
 using Battle.Arsenals;
 using Battle.Objects;
 using Battle.State;
 using Battle.Weapons.Crosshairs;
 using DataTransfer.Data;
+using UnityEngine;
 using Utils.Singleton;
+using Component = Battle.Objects.Component;
 
 
 namespace Battle.Weapons {
 
-    public abstract class Weapon {
+    public abstract class Weapon : Component {
 
         private readonly int _id;
 
@@ -18,6 +21,8 @@ namespace Battle.Weapons {
         private Arsenal _arsenal;
         protected bool _equipped;
         protected TimerWrapper GameTimer;
+
+        protected GameObject GameObject;
 
 
         protected Weapon () {
@@ -27,13 +32,28 @@ namespace Battle.Weapons {
         }
 
 
-        public Worm Worm { get; set; }
-        protected Crosshair CrossHair { get; set; }
+//        public Worm Worm { get; set; }
+
+        private Crosshair _crossHair;
+        protected Crosshair CrossHair {
+            get { return _crossHair; }
+            set { _crossHair = value; }
+        }
 
 
+        [Obsolete]
         public void Equip (Worm worm) {
-            Worm = worm;
+//            Worm = worm;
             _arsenal = worm.Team.Arsenal;
+            _equipped = true;
+            OnEquip();
+        }
+
+
+        public override void OnAdd () {
+            _arsenal = ((Worm) Object).Team.Arsenal;
+            GameObject = new GameObject(GetType().ToString());
+            GameObject.transform.SetParent(Object.GameObject.transform, false);
             _equipped = true;
             OnEquip();
         }
@@ -42,11 +62,14 @@ namespace Battle.Weapons {
         public void Unequip () {
             if (_equipped) return;
             _equipped = false;
+            ((Worm) Object).Weapon = null;
             OnUnequip();
         }
 
 
         protected virtual void OnEquip () {}
+
+
         protected virtual void OnUnequip () {}
         public abstract void Update (TurnData td);
 
@@ -66,8 +89,7 @@ namespace Battle.Weapons {
         }
 
 
-        protected void InitRetreat(int milliseconds)
-        {
+        protected void InitRetreat (int milliseconds) {
             _weaponWrapper.LockAndUnequip();
             GameTimer.Time = milliseconds;
             GameTimer.Frozen = false;

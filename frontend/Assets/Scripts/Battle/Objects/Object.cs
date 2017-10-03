@@ -191,7 +191,7 @@ namespace Battle.Objects {
         }
 
 
-        private void SwapComponent<T> (ref T component, T newComponent) where T : Component {
+        protected void SwapComponent<T> (ref T component, T newComponent) where T : Component {
             if (component != null) {
                 component.OnRemove();
                 //component.Object = null;

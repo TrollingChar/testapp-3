@@ -27,7 +27,7 @@ namespace Battle.Objects {
 
         public const float MaxClimb = 5f;
         public const float MaxDescend = 5f;
-        
+
         private bool _arrowVisible;
         private Color _color;
         private bool _facesRight;
@@ -41,9 +41,9 @@ namespace Battle.Objects {
 
         private GameObject _canvas;
 
-        private Weapon _weapon; // todo: property
-        
-        
+        private Weapon _weapon;
+
+
         /* todo
             worm - wormGO
             name - text
@@ -101,9 +101,9 @@ namespace Battle.Objects {
             get { return _color; }
             set {
                 _color = value;
-                if (_hpField   != null) _hpField.color   = value;
+                if (_hpField != null) _hpField.color = value;
                 if (_nameField != null) _nameField.color = value;
-                if (_arrow != null)     _arrow.color = value;
+                if (_arrow != null) _arrow.color = value;
             }
         }
 
@@ -116,9 +116,13 @@ namespace Battle.Objects {
             }
         }
 
+        public Weapon Weapon {
+            get { return _weapon; }
+            set { SwapComponent(ref _weapon, value); }
+        }
 
-        public override void OnAdd ()
-        {
+
+        public override void OnAdd () {
             InitGraphics();
 
             Name = "Кек";
@@ -130,8 +134,8 @@ namespace Battle.Objects {
             Controller = new WormControllerJump();
         }
 
-        
-        private void InitGraphics() {
+
+        private void InitGraphics () {
             BattleAssets assets = The<BattleAssets>.Get();
             Transform transform = GameObject.transform;
 
