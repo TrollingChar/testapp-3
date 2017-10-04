@@ -37,7 +37,17 @@ namespace Battle.Weapons {
         private Crosshair _crossHair;
         protected Crosshair CrossHair {
             get { return _crossHair; }
-            set { _crossHair = value; }
+            set {
+                if (_crossHair != null) {
+                    _crossHair.OnRemove();
+                    //_crossHair.Weapon = null;
+                }
+                if (value != null) {
+                    value.Weapon = this;
+                    value.OnAdd();
+                }
+                _crossHair = value;
+            }
         }
 
 
@@ -59,17 +69,21 @@ namespace Battle.Weapons {
         }
 
 
+        public override void OnRemove () {
+            CrossHair = null;
+            UnityEngine.Object.Destroy(GameObject);
+        }
+
+
         public void Unequip () {
-            if (_equipped) return;
+            if (!_equipped) return;
             _equipped = false;
-            ((Worm) Object).Weapon = null;
             OnUnequip();
+            ((Worm) Object).Weapon = null;
         }
 
 
         protected virtual void OnEquip () {}
-
-
         protected virtual void OnUnequip () {}
         public abstract void Update (TurnData td);
 

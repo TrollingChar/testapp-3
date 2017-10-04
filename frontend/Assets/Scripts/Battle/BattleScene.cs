@@ -178,7 +178,7 @@ namespace Battle {
             ActiveWorm.CanMove = true;
             Camera.LookAt(ActiveWorm.Worm.Position);
             Weapon.Reset();
-            Timer.Time = 10000;
+            Timer.Time = 30000;
         }
 
 

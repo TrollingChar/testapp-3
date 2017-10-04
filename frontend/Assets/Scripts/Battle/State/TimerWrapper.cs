@@ -6,8 +6,6 @@ namespace Battle.State {
 
     public class TimerWrapper {
 
-        private const int TurnTime = 10000;
-        private const int RetreatTime = 3000;
         public readonly Messenger OnTimerElapsed = new Messenger();
         public readonly Messenger<int> OnTimerUpdated = new Messenger<int>();
         public bool Frozen { get; set; }
