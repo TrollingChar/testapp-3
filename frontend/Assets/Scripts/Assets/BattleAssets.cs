@@ -17,6 +17,9 @@ namespace Assets {
         public Texture2D LandTexture;
 
         [Space]
+        public GameObject LineCrosshair;
+
+        [Space]
         public GameObject Worm;
         public GameObject Arrow;
         public GameObject NameField;

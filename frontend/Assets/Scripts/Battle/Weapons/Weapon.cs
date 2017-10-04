@@ -70,7 +70,6 @@ namespace Battle.Weapons {
 
 
         public override void OnRemove () {
-            CrossHair = null;
             UnityEngine.Object.Destroy(GameObject);
         }
 
