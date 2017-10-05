@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Battle.Weapons.Crosshairs {
 
@@ -34,6 +35,13 @@ namespace Battle.Weapons.Crosshairs {
                 var position = _ring.transform.localPosition;
                 position.x = Mathf.LerpUnclamped(_firstPointOffset, _lastPointOffset, value);
                 _ring.transform.localPosition = position;
+            }
+        }
+
+        public float Angle {
+            set {
+                Vector3 eulerAngles = new Vector3(0, 0, value * Mathf.Rad2Deg);
+                gameObject.transform.localRotation = Quaternion.Euler(eulerAngles);
             }
         }
 
