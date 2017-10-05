@@ -19,10 +19,11 @@ namespace Battle.Weapons {
 
         private readonly WeaponWrapper _weaponWrapper;
         private Arsenal _arsenal;
-        protected bool _equipped;
+        protected bool Equipped;
         protected TimerWrapper GameTimer;
 
         protected GameObject GameObject;
+        public TurnData TurnData { get; private set; }
 
 
         protected Weapon () {
@@ -55,7 +56,7 @@ namespace Battle.Weapons {
         public void Equip (Worm worm) {
 //            Worm = worm;
             _arsenal = worm.Team.Arsenal;
-            _equipped = true;
+            Equipped = true;
             OnEquip();
         }
 
@@ -64,7 +65,7 @@ namespace Battle.Weapons {
             _arsenal = ((Worm) Object).Team.Arsenal;
             GameObject = new GameObject(GetType().ToString());
             GameObject.transform.SetParent(Object.GameObject.transform, false);
-            _equipped = true;
+            Equipped = true;
             OnEquip();
         }
 
@@ -75,8 +76,8 @@ namespace Battle.Weapons {
 
 
         public void Unequip () {
-            if (!_equipped) return;
-            _equipped = false;
+            if (!Equipped) return;
+            Equipped = false;
             OnUnequip();
             ((Worm) Object).Weapon = null;
         }
@@ -84,7 +85,11 @@ namespace Battle.Weapons {
 
         protected virtual void OnEquip () {}
         protected virtual void OnUnequip () {}
-        public abstract void Update (TurnData td);
+
+
+        public virtual void Update (TurnData td) {
+            TurnData = td;
+        }
 
 
         protected void UseAmmo () {

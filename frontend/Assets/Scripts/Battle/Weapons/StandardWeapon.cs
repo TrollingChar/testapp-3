@@ -2,27 +2,27 @@
 using Battle.State;
 using Battle.Weapons.Crosshairs;
 using DataTransfer.Data;
+using Geometry;
 using Utils.Singleton;
 
 
 namespace Battle.Weapons {
 
     public abstract class StandardWeapon : Weapon {
-        // bug: fires multiple times
 
         private int _attackCooldown;
         private int _shotCooldown;
-        private int _shotsLeft;
-        private bool _fires;
-        private int _power;
+        protected int ShotsLeft { get; private set; }
+        protected bool Fires { get; private set; }
+        protected int Power { get; private set; }
         private bool _ready; // used when weapon requires click
 
         protected int AttackCooldown = 25;
+        protected int ShotCooldown = 5;
         protected bool ConstPower = true; // if false, will require to hold the button
         protected int Attacks = 1; // blaster has 2
         protected bool Removable = false; // if false, locks arsenal when used
         protected bool RequiresClick = true; // if true, will fire 2nd shot when button is clicked, if false - when held
-        protected int ShotCooldown = 5;
         protected int Shots = 1; // machine gun has many
 
 
@@ -34,12 +34,14 @@ namespace Battle.Weapons {
         protected virtual void OnLastAttack () { InitRetreat(3000); }
         protected override void OnUnequip () {}
         protected virtual void OnNumberPress (int n) {}
+        protected virtual void OnUpdate () {}
 
 
         public override void Update (TurnData td) {
-            if (!_equipped) return;
+            base.Update(td);
+            if (!Equipped) return;
 
-            if (_fires) {
+            if (Fires) {
                 if (--_shotCooldown <= 0) Shoot();
                 return;
             }
@@ -51,12 +53,13 @@ namespace Battle.Weapons {
                 if (RequiresClick && !_ready) return;
                 if (!Removable) LockArsenal();
                 GameTimer.Frozen = true;
-                if (ConstPower || ++_power >= 50) BeginAttack();
+                if (ConstPower || ++Power >= 50) BeginAttack();
             } else {
                 _ready = true;
                 // if we released button while holding grenade, throw it
-                if (_power > 0) BeginAttack();
+                if (Power > 0) BeginAttack();
             }
+            OnUpdate();
         }
 
 
@@ -64,17 +67,17 @@ namespace Battle.Weapons {
             GameTimer.Frozen = true;
             _ready = false;
             Attacks--;
-            _shotsLeft = Shots;
-            _fires = true;
+            ShotsLeft = Shots;
+            Fires = true;
             OnBeginAttack();
             Shoot();
         }
 
 
         private void Shoot () {
-            _shotsLeft--;
+            ShotsLeft--;
             OnShoot();
-            if (_shotsLeft <= 0) {
+            if (ShotsLeft <= 0) {
                 EndAttack();
                 return;
             }
@@ -83,8 +86,8 @@ namespace Battle.Weapons {
 
 
         private void EndAttack () {
-            _fires = false;
-            _power = 0;
+            Fires = false;
+            Power = 0;
             OnEndAttack();
             if (Attacks <= 0) {
                 OnLastAttack();
@@ -92,6 +95,15 @@ namespace Battle.Weapons {
                 return;
             }
             _attackCooldown = AttackCooldown;
+        }
+
+
+        protected void UpdateLineCrosshair (LineCrosshair crosshair) {
+            var xy = TurnData.XY - Object.Position;
+            if (xy == XY.Zero) xy = XY.Up;
+            crosshair.Angle = xy.Angle;
+            crosshair.RingVisible = Power > 0;
+            crosshair.RingPosition = Power / 50f;
         }
 
     }

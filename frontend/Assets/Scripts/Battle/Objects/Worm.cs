@@ -40,18 +40,7 @@ namespace Battle.Objects {
         private Text _hpField;
 
         private GameObject _canvas;
-
         private Weapon _weapon;
-
-
-        /* todo
-            worm - wormGO
-            name - text
-            hp - text
-            weapon - (component)
-            crosshair - from weapon
-        */
-
 
         public Worm (string name = "?", int hp = 60) : base(60, 1) {
             Name = name;
@@ -160,6 +149,8 @@ namespace Battle.Objects {
 
         public virtual void OnAddToTeam (Team team) {
             Color = team.Color;
+            // todo remove temp code
+//            Color = RNG.Pick(TeamColors.Colors);
         }
 
 
