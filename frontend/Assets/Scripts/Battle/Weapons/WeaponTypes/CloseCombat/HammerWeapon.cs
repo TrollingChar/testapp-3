@@ -20,7 +20,7 @@ namespace Battle.Weapons.WeaponTypes.CloseCombat {
 
 
         protected override void OnEquip () {
-            CrossHair = new LineCrosshair();
+//            CrossHair = new LineCrosshair();
         }
 
 

@@ -22,7 +22,7 @@ namespace Battle.Weapons.WeaponTypes.MovementUtils {
         protected override void OnEquip () {
             // todo: handle all these rope mechanics
             Removable = true;
-            CrossHair = new LineCrosshair();
+//            CrossHair = new LineCrosshair();
         }
 
     }

@@ -34,21 +34,21 @@ namespace Battle.Weapons {
 
 //        public Worm Worm { get; set; }
 
-        private Crosshair _crossHair;
-        protected Crosshair CrossHair {
-            get { return _crossHair; }
-            set {
-                if (_crossHair != null) {
-                    _crossHair.OnRemove();
-                    //_crossHair.Weapon = null;
-                }
-                if (value != null) {
-                    value.Weapon = this;
-                    value.OnAdd();
-                }
-                _crossHair = value;
-            }
-        }
+//        private Crosshair _crossHair;
+//        protected Crosshair CrossHair {
+//            get { return _crossHair; }
+//            set {
+//                if (_crossHair != null) {
+//                    _crossHair.OnRemove();
+//                    //_crossHair.Weapon = null;
+//                }
+//                if (value != null) {
+//                    value.Weapon = this;
+//                    value.OnAdd();
+//                }
+//                _crossHair = value;
+//            }
+//        }
 
 
         [Obsolete]

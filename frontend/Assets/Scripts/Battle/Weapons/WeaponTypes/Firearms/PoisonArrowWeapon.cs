@@ -22,7 +22,7 @@ namespace Battle.Weapons.WeaponTypes.Firearms {
         protected override void OnEquip () {
             Attacks = 2;
             // todo: what if player has only 1 arrow
-            CrossHair = new LineCrosshair();
+//            CrossHair = new LineCrosshair();
         }
 
 

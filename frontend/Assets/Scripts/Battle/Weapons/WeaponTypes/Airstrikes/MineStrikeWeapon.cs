@@ -20,7 +20,7 @@ namespace Battle.Weapons.WeaponTypes.Airstrikes {
 
 
         protected override void OnEquip () {
-            CrossHair = new AirstrikeCrosshair();
+//            CrossHair = new AirstrikeCrosshair();
         }
 
 

@@ -21,7 +21,7 @@ namespace Battle.Weapons.WeaponTypes.Firearms {
 
         protected override void OnEquip () {
             Shots = 30;
-            CrossHair = new LineCrosshair();
+//            CrossHair = new LineCrosshair();
         }
 
 

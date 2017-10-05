@@ -23,7 +23,7 @@ namespace Battle.Weapons.WeaponTypes.Launched {
         protected override void OnEquip () {
             Debug.Log("Bazooka selected");
             ConstPower = false;
-            CrossHair = new LineCrosshair();
+//            CrossHair = new LineCrosshair();
         }
 
         protected override void OnBeginAttack()

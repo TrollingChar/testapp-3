@@ -21,7 +21,7 @@ namespace Battle.Weapons.WeaponTypes.MovementUtils {
 
         protected override void OnEquip () {
             Removable = true;
-            CrossHair = new PointCrosshair();
+//            CrossHair = new PointCrosshair();
         }
 
 
