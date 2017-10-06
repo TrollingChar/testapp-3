@@ -23,7 +23,7 @@ namespace Battle.Weapons.WeaponTypes.MovementUtils {
 
 
         protected override void OnEquip () {
-            Removable = true;
+            Removable = true; // todo handle ammo
             ConstPower = false;
 
             _crosshair = UnityEngine.Object.Instantiate(
