@@ -31,7 +31,7 @@ namespace Battle.Weapons {
         protected virtual void OnBeginAttack () {}
         protected virtual void OnShoot () {}
         protected virtual void OnEndAttack () {}
-        protected virtual void OnLastAttack () { InitRetreat(3000); }
+        protected virtual void OnLastAttack () { if (!Removable) InitRetreat(3000); }
         protected override void OnUnequip () {}
         protected virtual void OnNumberPress (int n) {}
         protected virtual void OnUpdate () {}
