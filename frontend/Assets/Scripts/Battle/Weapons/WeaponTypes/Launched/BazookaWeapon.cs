@@ -1,7 +1,7 @@
 ﻿using Assets;
 using Attributes;
 using Battle.Weapons.Crosshairs;
-using DataTransfer.Data;
+using Geometry;
 using UnityEngine;
 using Utils.Singleton;
 
@@ -12,6 +12,7 @@ namespace Battle.Weapons.WeaponTypes.Launched {
     public class BazookaWeapon : StandardWeapon {
 
         private LineCrosshair _crosshair;
+        private GameObject _sprite;
 
         public static WeaponDescriptor Descriptor {
             get {
@@ -32,6 +33,12 @@ namespace Battle.Weapons.WeaponTypes.Launched {
                 GameObject.transform,
                 false
             ).GetComponent<LineCrosshair>();
+
+            _sprite = UnityEngine.Object.Instantiate(
+                The<BattleAssets>.Get().BazookaWeapon,
+                GameObject.transform,
+                false
+            );
         }
 
         protected override void OnBeginAttack()
@@ -56,6 +63,14 @@ namespace Battle.Weapons.WeaponTypes.Launched {
 
         protected override void OnUpdate () {
             UpdateLineCrosshair(_crosshair);
+            UpdateAimedWeapon(_sprite);
+        }
+
+
+        private void UpdateAimedWeapon (GameObject sprite) {
+            var xy = TurnData.XY - Object.Position;
+            if (xy == XY.Zero) xy = XY.Up;
+            sprite.transform.localRotation = Quaternion.Euler(0, 0, xy.Angle * Mathf.Rad2Deg);
         }
 
 
