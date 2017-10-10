@@ -64,7 +64,7 @@ namespace Battle.Objects.GameObjects {
         public void Look (float angle) {
             _headAngle = angle;
             if (_sprite.localScale.x > 0) {
-                if (Mathf.Abs(angle) < 100) {
+                if (Mathf.Abs(angle) < 90) {
                     _headRenderer.flipX = false;
                     _head.localEulerAngles = new Vector3(0, 0, angle * 0.5f);
                 } else {
@@ -72,7 +72,7 @@ namespace Battle.Objects.GameObjects {
                     _head.localEulerAngles = new Vector3(0, 0, angle * 0.5f + (angle < 0 ? 90 : -90));
                 }
             } else {
-                if (Mathf.Abs(angle) > 80) {
+                if (Mathf.Abs(angle) > 90) {
                     _headRenderer.flipX = false;
                     _head.localEulerAngles = new Vector3(0, 0, angle * -0.5f - (angle < 0 ? 90 : -90));
                 } else {
@@ -80,6 +80,26 @@ namespace Battle.Objects.GameObjects {
                     _head.localEulerAngles = new Vector3(0, 0, angle * -0.5f);
                 }
             }
+            
+            
+//            _headAngle = angle;
+//            if (_sprite.localScale.x > 0) {
+//                if (Mathf.Abs(angle) < 100) {
+//                    _headRenderer.flipX = false;
+//                    _head.localEulerAngles = new Vector3(0, 0, angle * 0.5f);
+//                } else {
+//                    _headRenderer.flipX = true;
+//                    _head.localEulerAngles = new Vector3(0, 0, angle * 0.5f + (angle < 0 ? 90 : -90));
+//                }
+//            } else {
+//                if (Mathf.Abs(angle) > 80) {
+//                    _headRenderer.flipX = false;
+//                    _head.localEulerAngles = new Vector3(0, 0, angle * -0.5f - (angle < 0 ? 90 : -90));
+//                } else {
+//                    _headRenderer.flipX = true;
+//                    _head.localEulerAngles = new Vector3(0, 0, angle * -0.5f);
+//                }
+//            }
         }
 
     }
