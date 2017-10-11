@@ -164,6 +164,11 @@ namespace Battle.Objects {
             _wormGO.Look(Mathf.Rad2Deg * XY.DirectionAngle(Head.Center, target));
         }
 
+
+        public override void GetDamage(int damage)
+        {
+            HP -= damage;
+        }
     }
 
 }

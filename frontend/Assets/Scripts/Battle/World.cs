@@ -238,6 +238,17 @@ namespace Battle {
             return new TeamManager(teams);
         }
 
+
+        public void DealDamage(int damage, XY center, float radius)
+        {
+            foreach (var o in _objects) {
+                float distance = XY.Distance(center, o.Position);
+                if (distance >= radius) continue;
+                int currentDamage = Mathf.CeilToInt(damage * (1f - distance / radius));
+                o.GetDamage(currentDamage);
+            }
+        }
+
     }
 
 }

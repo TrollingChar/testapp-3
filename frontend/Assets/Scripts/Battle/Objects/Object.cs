@@ -204,6 +204,7 @@ namespace Battle.Objects {
             component = newComponent;
         }
 
+        public virtual void GetDamage(int damage) {}
     }
 
 }
