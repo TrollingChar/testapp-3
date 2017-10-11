@@ -3,8 +3,7 @@ using Utils.Singleton;
 
 
 namespace Battle.Objects.Controllers {
-
-    internal class StandardController : Controller {
+    public class StandardController : Controller {
 
         private readonly float _gravity = The<World>.Get().Gravity;
 

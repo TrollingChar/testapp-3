@@ -2,8 +2,7 @@
 
 
 namespace Battle.Objects.Controllers {
-
-    internal class WormControllerFall : StandardController {
+    public class WormControllerFall : StandardController {
 
         private int _stillTime = 0;
 

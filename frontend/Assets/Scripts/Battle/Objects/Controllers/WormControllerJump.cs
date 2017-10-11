@@ -3,8 +3,7 @@ using DataTransfer.Data;
 
 
 namespace Battle.Objects.Controllers {
-
-    internal class WormControllerJump : StandardController {
+    public class WormControllerJump : StandardController {
 
         public override void OnAdd () {
             Object.CollisionHandler = new WormJumpCollisionHandler();

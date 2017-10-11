@@ -15,7 +15,7 @@ namespace Battle.Objects.Projectiles
             UnityEngine.Object.Instantiate(The<BattleAssets>.Get().BazookaShell, GameObject.transform, false);
             AddCollider(new CircleCollider(XY.Zero, 5f));
             Explosive = new Explosive25();
-            Controller = new StandardController();
+            Controller = new BazookaShellController();
             CollisionHandler = new DetonatorCollisionHandler();
         }
     }
