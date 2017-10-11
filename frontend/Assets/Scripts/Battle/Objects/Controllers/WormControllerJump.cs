@@ -7,7 +7,7 @@ namespace Battle.Objects.Controllers {
     internal class WormControllerJump : StandardController {
 
         public override void OnAdd () {
-            Object.CollisionHandler = new CollisionHandlerWormJump();
+            Object.CollisionHandler = new WormJumpCollisionHandler();
         }
 
 

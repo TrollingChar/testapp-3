@@ -155,6 +155,7 @@ namespace Battle.Objects {
 
 
         public void UpdateGameObjectPosition () {
+            if (GameObject == null) return;
             GameObject.transform.position = new Vector3(Position.X, Position.Y, GameObject.transform.position.z);
         }
 

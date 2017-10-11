@@ -4,7 +4,7 @@ using Battle.Physics.Collisions;
 
 namespace Battle.Objects.CollisionHandlers {
 
-    public class CollisionHandlerWormJump : CollisionHandler {
+    public class WormJumpCollisionHandler : CollisionHandler {
 
         public override bool WillCauseCollision (Collision c) {
             return

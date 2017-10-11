@@ -16,7 +16,7 @@ namespace Battle.Objects.Projectiles
             AddCollider(new CircleCollider(XY.Zero, 5f));
             Explosive = new Explosive25();
             Controller = new StandardController();
-            CollisionHandler = new CollisionHandler();
+            CollisionHandler = new DetonatorCollisionHandler();
         }
     }
 }
