@@ -1,11 +1,12 @@
 ﻿namespace Battle.Objects.Explosives {
 
-    public class Explosive : Component {
+    public abstract class Explosive : Component {
 
-        public virtual void Detonate () {
+        public void Detonate() {
             Object.Remove();
+            OnDetonate();
         }
 
+        protected abstract void OnDetonate();
     }
-
 }
