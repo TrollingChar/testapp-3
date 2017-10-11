@@ -6,36 +6,13 @@ namespace Battle.Objects.GameObjects {
 
     public class WormGO : MonoBehaviour {
 
-//        [SerializeField] private SpriteRenderer _arrow;
         [SerializeField] private SpriteRenderer _headRenderer;
         [SerializeField] private SpriteRenderer _tailRenderer;
         private float _headAngle;
 
-//        [SerializeField] private Text _name;
-//        [SerializeField] private Text _hp;
         [SerializeField] private Transform _sprite;
         [SerializeField] private Transform _head;
         [SerializeField] private Transform _tail;
-
-//        public string Name {
-//            set { _name.text = value; }
-//        }
-
-//        public Color Color {
-//            set {
-//                _name.color =
-//                    _hp.color =
-//                        _arrow.color = value;
-//            }
-//        }
-
-//        public int HP {
-//            set { _hp.text = value.ToString(); }
-//        }
-
-//        public bool ArrowVisible {
-//            set { _arrow.enabled = value; }
-//        }
 
 
         public bool FacesRight {
@@ -51,13 +28,8 @@ namespace Battle.Objects.GameObjects {
 
 
         public void OnAdd (Worm worm) {
-//            _worm = worm;
-//            Name = worm.Name;
-//            HP = worm.HP;
-//            Color = worm.Color;
-//            ArrowVisible = worm.ArrowVisible;
             FacesRight = worm.FacesRight;
-            Look(_headAngle = worm.FacesRight ? 0 : 180);
+            Look(worm.FacesRight ? 0 : 180);
         }
 
 
