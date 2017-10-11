@@ -75,9 +75,9 @@ namespace Battle.Weapons.WeaponTypes.Launched {
 
             float angle = xy.Angle * Mathf.Rad2Deg;
             bool tooBigDelta = Mathf.Abs(Mathf.DeltaAngle(0, angle)) > 90;
-            foreach (var renderer in sprite.GetComponentsInChildren<SpriteRenderer>()) {
-                renderer.flipX = tooBigDelta;
-            }
+            Vector3 scale = sprite.transform.localScale;
+            scale.x *= scale.x > 0 ^ tooBigDelta ? 1f : -1f;
+            sprite.transform.localScale = scale;
             sprite.transform.localEulerAngles = new Vector3(0, 0, angle + (tooBigDelta ? 180 : 0));
             
         }
