@@ -73,29 +73,12 @@ namespace Battle.Weapons.WeaponTypes.Launched {
             if (xy == XY.Zero) xy = XY.Up;
             sprite.transform.localRotation = Quaternion.Euler(0, 0, xy.Angle * Mathf.Rad2Deg);
 
-            // todo: refactor
             float angle = xy.Angle * Mathf.Rad2Deg;
-//            if (((Worm)Object).FacesRight) {
-                if (Mathf.Abs(angle) < 90) {
-                    foreach (var renderer in sprite.GetComponentsInChildren<SpriteRenderer>()) {
-                        renderer.flipX = false;
-                    }
-                    sprite.transform.localEulerAngles = new Vector3(0, 0, angle);
-                } else {
-                    foreach (var renderer in sprite.GetComponentsInChildren<SpriteRenderer>()) {
-                        renderer.flipX = true;
-                    }
-                    sprite.transform.localEulerAngles = new Vector3(0, 0, angle + (angle < 0 ? 180 : -180));
-                }
-//            } else {
-//                if (Mathf.Abs(angle) > 90) {
-//                    sprite.GetComponentInChildren<SpriteRenderer>().flipX = true;
-//                    sprite.transform.localEulerAngles = new Vector3(0, 0, -angle - (angle < 0 ? 180 : -180));
-//                } else {
-//                    sprite.GetComponentInChildren<SpriteRenderer>().flipX = false;
-//                    sprite.transform.localEulerAngles = new Vector3(0, 0, -angle);
-//                }
-//            }
+            bool tooBigDelta = Mathf.Abs(Mathf.DeltaAngle(0, angle)) > 90;
+            foreach (var renderer in sprite.GetComponentsInChildren<SpriteRenderer>()) {
+                renderer.flipX = tooBigDelta;
+            }
+            sprite.transform.localEulerAngles = new Vector3(0, 0, angle + (tooBigDelta ? 180 : 0));
             
         }
 

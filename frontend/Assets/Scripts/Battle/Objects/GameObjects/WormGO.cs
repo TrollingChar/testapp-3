@@ -35,6 +35,29 @@ namespace Battle.Objects.GameObjects {
 
         public void Look (float angle) {
             _headAngle = angle;
+
+            if (_sprite.localScale.x > 0) {
+                // facing right
+                float lookingAngle = 0;
+                if (Mathf.Abs(Mathf.DeltaAngle(angle, lookingAngle)) < 90) {
+                    _headRenderer.flipX = false;
+                    _head.localEulerAngles = new Vector3(0, 0, Mathf.LerpAngle(0, angle, 0.5f));
+                } else {
+                    _headRenderer.flipX = true;
+                    _head.localEulerAngles = new Vector3(0, 0, Mathf.LerpAngle(0, angle - 180, 0.5f));
+                }
+            } else {
+                // facing left
+                float lookingAngle = 180;
+                if (Mathf.Abs(Mathf.DeltaAngle(angle, lookingAngle)) < 90) {
+                    _headRenderer.flipX = false;
+                    _head.localEulerAngles = new Vector3(0, 0, Mathf.LerpAngle(0, -angle - 180, 0.5f));
+                } else {
+                    _headRenderer.flipX = true;
+                    _head.localEulerAngles = new Vector3(0, 0, Mathf.LerpAngle(0, -angle, 0.5f));
+                }
+            }
+/*
             if (_sprite.localScale.x > 0) {
                 if (Mathf.Abs(angle) < 90) {
                     _headRenderer.flipX = false;
@@ -52,7 +75,7 @@ namespace Battle.Objects.GameObjects {
                     _head.localEulerAngles = new Vector3(0, 0, angle * -0.5f);
                 }
             }
-            
+            */
             
 //            _headAngle = angle;
 //            if (_sprite.localScale.x > 0) {
