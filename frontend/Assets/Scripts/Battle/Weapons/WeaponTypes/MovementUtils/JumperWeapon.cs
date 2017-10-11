@@ -39,8 +39,7 @@ namespace Battle.Weapons.WeaponTypes.MovementUtils {
 
         protected override void OnShoot() {
             Object.Controller = new WormControllerJump();
-            var xy = TurnData.XY - Object.Position;
-            Object.Velocity = xy.WithLength(Power * 0.4f);
+            Object.Velocity = (TurnData.XY - Object.Position).WithLength(Power * 0.4f);
         }
     }
 

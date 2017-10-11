@@ -1,6 +1,7 @@
 ﻿using Assets;
 using Attributes;
 using Battle.Objects;
+using Battle.Objects.Projectiles;
 using Battle.Weapons.Crosshairs;
 using Geometry;
 using UnityEngine;
@@ -26,7 +27,6 @@ namespace Battle.Weapons.WeaponTypes.Launched {
 
 
         protected override void OnEquip () {
-            Debug.Log("Bazooka selected");
             ConstPower = false;
             
             _crosshair = UnityEngine.Object.Instantiate(
@@ -41,24 +41,16 @@ namespace Battle.Weapons.WeaponTypes.Launched {
                 false
             );
         }
-
-        protected override void OnBeginAttack()
+        
+        
+        protected override void OnShoot ()
         {
-            Debug.Log("begin attack");
-        }
-
-        protected override void OnEndAttack()
-        {
-            Debug.Log("end attack");
-        }
-
-        protected override void OnUnequip()
-        {
-            Debug.Log("unequip");
-        }
-
-        protected override void OnShoot () {
-            Debug.Log("shoot!");
+            var projectile = new BazookaShell();
+            The<World>.Get().AddObject(
+                projectile,
+                Object.Position,
+                (TurnData.XY - Object.Position).WithLength(Power * 0.6f)
+            );
         }
 
 
@@ -79,14 +71,6 @@ namespace Battle.Weapons.WeaponTypes.Launched {
             scale.x *= scale.x > 0 ^ deltaTooBig ? 1f : -1f;
             sprite.transform.localScale = scale;
             sprite.transform.localEulerAngles = new Vector3(0, 0, angle + (deltaTooBig ? 180 : 0));
-            
-        }
-
-
-        protected override void OnLastAttack()
-        {
-            base.OnLastAttack();
-            Debug.Log("last attack");
         }
     }
 

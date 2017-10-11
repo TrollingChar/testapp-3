@@ -22,6 +22,8 @@ namespace Assets {
         public GameObject HPField;
         [Space]
         public GameObject BazookaWeapon;
+        [Space]
+        public GameObject BazookaShell;
 
         private void Awake () {
             The<BattleAssets>.Set(this);
