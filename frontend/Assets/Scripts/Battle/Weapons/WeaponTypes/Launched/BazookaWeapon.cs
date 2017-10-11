@@ -74,11 +74,11 @@ namespace Battle.Weapons.WeaponTypes.Launched {
             sprite.transform.localRotation = Quaternion.Euler(0, 0, xy.Angle * Mathf.Rad2Deg);
 
             float angle = xy.Angle * Mathf.Rad2Deg;
-            bool tooBigDelta = Mathf.Abs(Mathf.DeltaAngle(0, angle)) > 90;
+            bool deltaTooBig = Mathf.Abs(Mathf.DeltaAngle(0, angle)) > 90;
             Vector3 scale = sprite.transform.localScale;
-            scale.x *= scale.x > 0 ^ tooBigDelta ? 1f : -1f;
+            scale.x *= scale.x > 0 ^ deltaTooBig ? 1f : -1f;
             sprite.transform.localScale = scale;
-            sprite.transform.localEulerAngles = new Vector3(0, 0, angle + (tooBigDelta ? 180 : 0));
+            sprite.transform.localEulerAngles = new Vector3(0, 0, angle + (deltaTooBig ? 180 : 0));
             
         }
 
