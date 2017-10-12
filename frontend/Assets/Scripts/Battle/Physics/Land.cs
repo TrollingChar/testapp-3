@@ -11,6 +11,7 @@ namespace Battle.Physics {
     public class Land {
 
         private byte[,] _array;
+        private Texture2D _tex;
 
         private int _progress, _fullProgress;
 
@@ -52,13 +53,13 @@ namespace Battle.Physics {
 
 
         private void InitTexture (Texture2D landTexture, SpriteRenderer renderer) {
-            var tex = new Texture2D(Width, Height);
+            _tex = new Texture2D(Width, Height);
             for (int x = 0; x < Width; ++x)
             for (int y = 0; y < Height; ++y) {
-                tex.SetPixel(x, y, _array[x, y] == 0 ? Color.clear : landTexture.GetPixel(x & 0xff, y & 0xff));
+                _tex.SetPixel(x, y, _array[x, y] == 0 ? Color.clear : landTexture.GetPixel(x & 0xff, y & 0xff));
             }
-            tex.Apply();
-            renderer.sprite = Sprite.Create(tex, new Rect(0, 0, Width, Height), new Vector2(0, 0), 1f);
+            _tex.Apply();
+            renderer.sprite = Sprite.Create(_tex, new Rect(0, 0, Width, Height), new Vector2(0, 0), 1f);
         }
 
 
@@ -310,27 +311,30 @@ namespace Battle.Physics {
             center -= new XY(0.5f, 0.5f);
             
             // affect array and texture
-            int left, right, bottom, top;
-            left = right = top = bottom = 0;
-            Texture2D tex = null;
+            int left   = Mathf.Max(0,          Mathf.FloorToInt(center.X - radius));
+            int right  = Mathf.Min(Width,  1 + Mathf.FloorToInt(center.X + radius));
+            int bottom = Mathf.Max(0,          Mathf.FloorToInt(center.Y - radius));
+            int top    = Mathf.Min(Height, 1 + Mathf.FloorToInt(center.Y + radius));
             
             for (int x = left; x < right; x++)
             for (int y = bottom; y < top; y++) {
                 if (XY.SqrDistance(center, new XY(x, y)) > sqrRadius) continue;
                 _array[x, y] = 0;
-                tex.SetPixel(x, y, Color.clear);
+                _tex.SetPixel(x, y, Color.clear);
             }
-            tex.Apply();
-            
+            _tex.Apply();
+            /*
             // affect tiles
             left = right = top = bottom = 0;
             for (int x = left; x < right; x++)
             for (int y = bottom; y < top; y++) {
                 // if entirely inside circle
                 Tiles[x, y].Erase();
-                // else
+                // if only partially affected
                 Tiles[x, y].Recalculate(this);
+                // if not affected do nothing
             }
+            */
         }
     }
 
