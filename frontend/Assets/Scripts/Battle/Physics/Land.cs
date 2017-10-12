@@ -323,18 +323,32 @@ namespace Battle.Physics {
                 _tex.SetPixel(x, y, Color.clear);
             }
             _tex.Apply();
-            /*
+
+            var aabb = new AABBF(left, right, bottom, top).ToTiles(LandTile.Size);
+            
             // affect tiles
-            left = right = top = bottom = 0;
-            for (int x = left; x < right; x++)
-            for (int y = bottom; y < top; y++) {
-                // if entirely inside circle
-                Tiles[x, y].Erase();
-                // if only partially affected
-                Tiles[x, y].Recalculate(this);
+            for (int x = aabb.Left; x < aabb.Right; x++)
+            for (int y = aabb.Bottom; y < aabb.Top; y++) {
+                var tile = Tiles[x, y];
+                if (tile.Land == 0) continue;
+                
+                // check tile corners
+                byte b = 0;
+                if (XY.SqrDistance(center, new XY(x * LandTile.Size, y * LandTile.Size)) > sqrRadius) b++;
+                if (XY.SqrDistance(center, new XY((x + 1) * LandTile.Size, y * LandTile.Size)) > sqrRadius) b++;
+                if (XY.SqrDistance(center, new XY(x * LandTile.Size, (y + 1) * LandTile.Size)) > sqrRadius) b++;
+                if (XY.SqrDistance(center, new XY((x + 1) * LandTile.Size, (y + 1) * LandTile.Size)) > sqrRadius) b++;
+                
                 // if not affected do nothing
+                if (b == 0) continue;
+                
+                // if entirely inside circle
+                if (b == 4) tile.Erase();
+                
+                // if only partially affected
+                else tile.Recalculate(this);
             }
-            */
+            
         }
     }
 
