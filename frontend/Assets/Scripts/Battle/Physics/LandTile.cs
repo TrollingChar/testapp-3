@@ -53,6 +53,7 @@ namespace Battle.Physics {
 
 
         private void CalculateVertices (Land land) {
+            Vertices.Clear();
             for (int ix = _x * Size, xx = ix + Size; ix <= xx; ix++)
             for (int iy = _y * Size, yy = iy + Size; iy <= yy; iy++) {
                 int temp

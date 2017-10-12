@@ -330,23 +330,24 @@ namespace Battle.Physics {
             for (int x = aabb.Left; x < aabb.Right; x++)
             for (int y = aabb.Bottom; y < aabb.Top; y++) {
                 var tile = Tiles[x, y];
-                if (tile.Land == 0) continue;
+//                if (tile.Land == 0) continue;
                 
                 // check tile corners
-                byte b = 0;
-                if (XY.SqrDistance(center, new XY(x * LandTile.Size, y * LandTile.Size)) > sqrRadius) b++;
-                if (XY.SqrDistance(center, new XY((x + 1) * LandTile.Size, y * LandTile.Size)) > sqrRadius) b++;
-                if (XY.SqrDistance(center, new XY(x * LandTile.Size, (y + 1) * LandTile.Size)) > sqrRadius) b++;
-                if (XY.SqrDistance(center, new XY((x + 1) * LandTile.Size, (y + 1) * LandTile.Size)) > sqrRadius) b++;
+//                byte temp = 0;
+//                if (XY.SqrDistance(center, new XY(x * LandTile.Size, y * LandTile.Size)) > sqrRadius) temp++;
+//                if (XY.SqrDistance(center, new XY((x + 1) * LandTile.Size, y * LandTile.Size)) > sqrRadius) temp++;
+//                if (XY.SqrDistance(center, new XY(x * LandTile.Size, (y + 1) * LandTile.Size)) > sqrRadius) temp++;
+//                if (XY.SqrDistance(center, new XY((x + 1) * LandTile.Size, (y + 1) * LandTile.Size)) > sqrRadius) temp++;
                 
                 // if not affected do nothing
-                if (b == 0) continue;
+//                if (temp == 4) continue;
                 
                 // if entirely inside circle
-                if (b == 4) tile.Erase();
+//                if (temp == 0) tile.Erase();
                 
                 // if only partially affected
-                else tile.Recalculate(this);
+//                else
+                tile.Recalculate(this);
             }
             
         }
