@@ -302,6 +302,36 @@ namespace Battle.Physics {
             return dd < 1 ? new Collision(v, normal, null, null, pr1, pr2) : min;
         }
 
+        public void DestroyTerrain(XY center, float radius)
+        {
+            float sqrRadius = radius * radius;
+            
+            // offset the center because of the alignment of pixels
+            center -= new XY(0.5f, 0.5f);
+            
+            // affect array and texture
+            int left, right, bottom, top;
+            left = right = top = bottom = 0;
+            Texture2D tex = null;
+            
+            for (int x = left; x < right; x++)
+            for (int y = bottom; y < top; y++) {
+                if (XY.SqrDistance(center, new XY(x, y)) > sqrRadius) continue;
+                _array[x, y] = 0;
+                tex.SetPixel(x, y, Color.clear);
+            }
+            tex.Apply();
+            
+            // affect tiles
+            left = right = top = bottom = 0;
+            for (int x = left; x < right; x++)
+            for (int y = bottom; y < top; y++) {
+                // if entirely inside circle
+                Tiles[x, y].Erase();
+                // else
+                Tiles[x, y].Recalculate(this);
+            }
+        }
     }
 
 }

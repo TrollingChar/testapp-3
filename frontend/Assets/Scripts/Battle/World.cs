@@ -249,6 +249,10 @@ namespace Battle {
             }
         }
 
+        public void DestroyTerrain(XY center, float radius)
+        {
+            Land.DestroyTerrain(center, radius);
+        }
     }
 
 }
