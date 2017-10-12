@@ -16,7 +16,7 @@ namespace Core.UI {
         [SerializeField] private Text _text;
         private GameObject _image;
 
-        private BattleScene _battleScene = The<BattleScene>.Get();
+        private readonly BattleScene _battleScene = The<BattleScene>.Get();
 
 
         public void Configure (WeaponDescriptor descriptor) {
@@ -30,8 +30,7 @@ namespace Core.UI {
         }
 
 
-        public void OnClick ()
-        {
+        public void OnClick () {
             var teamManager = The<TeamManager>.Get();
             var weaponWrapper = The<WeaponWrapper>.Get();
             // if my turn

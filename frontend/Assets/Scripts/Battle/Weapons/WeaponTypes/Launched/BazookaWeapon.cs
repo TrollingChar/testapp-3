@@ -28,7 +28,7 @@ namespace Battle.Weapons.WeaponTypes.Launched {
 
         protected override void OnEquip () {
             ConstPower = false;
-            
+
             _crosshair = UnityEngine.Object.Instantiate(
                 The<BattleAssets>.Get().LineCrosshair,
                 GameObject.transform,
@@ -41,16 +41,30 @@ namespace Battle.Weapons.WeaponTypes.Launched {
                 false
             );
         }
-        
-        
-        protected override void OnShoot ()
-        {
-            World world = The<World>.Get();
-            world.AddObject(new BazookaShell(), Object.Position, (TurnData.XY - Object.Position).WithLength(Power * 0.4f));
-            world.AddObject(new BazookaShell(), Object.Position, (TurnData.XY - Object.Position).WithLength(Power * 0.5f));
-            world.AddObject(new BazookaShell(), Object.Position, (TurnData.XY - Object.Position).WithLength(Power * 0.6f));
-            world.AddObject(new BazookaShell(), Object.Position, (TurnData.XY - Object.Position).WithLength(Power * 0.7f));
-            world.AddObject(new BazookaShell(), Object.Position, (TurnData.XY - Object.Position).WithLength(Power * 0.8f));
+
+
+        protected override void OnShoot () {
+            var world = The<World>.Get();
+            world.AddObject(
+                new BazookaShell(),
+                Object.Position,
+                (TurnData.XY - Object.Position).WithLength(Power * 0.4f));
+            world.AddObject(
+                new BazookaShell(),
+                Object.Position,
+                (TurnData.XY - Object.Position).WithLength(Power * 0.5f));
+            world.AddObject(
+                new BazookaShell(),
+                Object.Position,
+                (TurnData.XY - Object.Position).WithLength(Power * 0.6f));
+            world.AddObject(
+                new BazookaShell(),
+                Object.Position,
+                (TurnData.XY - Object.Position).WithLength(Power * 0.7f));
+            world.AddObject(
+                new BazookaShell(),
+                Object.Position,
+                (TurnData.XY - Object.Position).WithLength(Power * 0.8f));
         }
 
 
@@ -67,11 +81,12 @@ namespace Battle.Weapons.WeaponTypes.Launched {
 
             float angle = xy.Angle * Mathf.Rad2Deg;
             bool deltaTooBig = Mathf.Abs(Mathf.DeltaAngle(0, angle)) > 90;
-            Vector3 scale = sprite.transform.localScale;
+            var scale = sprite.transform.localScale;
             scale.x *= scale.x > 0 ^ deltaTooBig ? 1f : -1f;
             sprite.transform.localScale = scale;
             sprite.transform.localEulerAngles = new Vector3(0, 0, angle + (deltaTooBig ? 180 : 0));
         }
+
     }
 
 }

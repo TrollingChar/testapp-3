@@ -10,6 +10,7 @@ namespace Battle.Weapons.WeaponTypes.MovementUtils {
 
     [Weapon(WeaponId.Jumper)]
     public class JumperWeapon : StandardWeapon {
+
         private LineCrosshair _crosshair;
 
         public static WeaponDescriptor Descriptor {
@@ -33,14 +34,17 @@ namespace Battle.Weapons.WeaponTypes.MovementUtils {
             ).GetComponent<LineCrosshair>();
         }
 
-        protected override void OnUpdate() {
+
+        protected override void OnUpdate () {
             UpdateLineCrosshair(_crosshair);
         }
 
-        protected override void OnShoot() {
+
+        protected override void OnShoot () {
             Object.Controller = new WormControllerJump();
             Object.Velocity = (TurnData.XY - Object.Position).WithLength(Power * 0.4f);
         }
+
     }
 
 }

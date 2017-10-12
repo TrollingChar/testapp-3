@@ -239,8 +239,7 @@ namespace Battle {
         }
 
 
-        public void DealDamage(int damage, XY center, float radius)
-        {
+        public void DealDamage (int damage, XY center, float radius) {
             // todo use sqr
             foreach (var o in _objects) {
                 float distance = XY.Distance(center, o.Position);
@@ -250,10 +249,11 @@ namespace Battle {
             }
         }
 
-        public void DestroyTerrain(XY center, float radius)
-        {
+
+        public void DestroyTerrain (XY center, float radius) {
             Land.DestroyTerrain(center, radius);
         }
+
     }
 
 }

@@ -13,4 +13,5 @@ namespace Battle.Objects.CollisionHandlers {
         public virtual void OnCollision (Collision c) {}
 
     }
+
 }

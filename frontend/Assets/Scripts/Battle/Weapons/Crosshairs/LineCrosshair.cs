@@ -45,7 +45,7 @@ namespace Battle.Weapons.Crosshairs {
 
         public float Angle {
             set {
-                Vector3 eulerAngles = new Vector3(0, 0, value * Mathf.Rad2Deg);
+                var eulerAngles = new Vector3(0, 0, value * Mathf.Rad2Deg);
                 gameObject.transform.localRotation = Quaternion.Euler(eulerAngles);
             }
         }

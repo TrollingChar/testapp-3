@@ -39,7 +39,9 @@ namespace Battle.Objects.GameObjects {
             bool flipped = _sprite.localScale.x < 0;
             bool deltaTooBig = Mathf.Abs(Mathf.DeltaAngle(angle, flipped ? 180 : 0)) > 90;
             _head.localEulerAngles = new Vector3(
-                0, 0, Mathf.LerpAngle(0, (deltaTooBig ? 180 : 0) + (flipped ? 180 - angle : angle), 0.5f)
+                0,
+                0,
+                Mathf.LerpAngle(0, (deltaTooBig ? 180 : 0) + (flipped ? 180 - angle : angle), 0.5f)
             );
             _headRenderer.flipX = deltaTooBig;
         }

@@ -20,20 +20,20 @@ namespace Battle.Objects {
 
         private readonly World _world = The<World>.Get();
 
-        
+
         private CollisionHandler _collisionHandler;
         private Controller _controller;
         private Explosive _explosive;
         public List<Collider> Colliders;
         public HashSet<Object> Excluded;
-        
+
         public float Mass;
         public int SuperMass;
 
         public LinkedListNode<Object> Node;
 
-        public GameObject GameObject; 
-        
+        public GameObject GameObject;
+
         public float Movement;
         private XY _position;
         public XY Velocity;
@@ -204,7 +204,9 @@ namespace Battle.Objects {
             component = newComponent;
         }
 
-        public virtual void GetDamage(int damage) {}
+
+        public virtual void GetDamage (int damage) {}
+
     }
 
 }

@@ -3,6 +3,7 @@ using DataTransfer.Data;
 
 
 namespace Battle.Objects.Controllers {
+
     public class WormControllerJump : StandardController {
 
         public override void OnAdd () {

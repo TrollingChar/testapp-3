@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+
 namespace Geometry {
 
     public static class Angles {
@@ -11,7 +12,7 @@ namespace Geometry {
                     angle = Mathf.LerpAngle(0, angle, lerpCoeff);
                 } else {
                     isRight = false;
-                    angle = Mathf.LerpAngle(0, angle-180, lerpCoeff);
+                    angle = Mathf.LerpAngle(0, angle - 180, lerpCoeff);
                 }
             } else {
                 if (Mathf.Abs(Mathf.DeltaAngle(angle, 180)) < 90) {

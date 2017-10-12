@@ -303,19 +303,19 @@ namespace Battle.Physics {
             return dd < 1 ? new Collision(v, normal, null, null, pr1, pr2) : min;
         }
 
-        public void DestroyTerrain(XY center, float radius)
-        {
+
+        public void DestroyTerrain (XY center, float radius) {
             float sqrRadius = radius * radius;
-            
+
             // offset the center because of the alignment of pixels
             center -= new XY(0.5f, 0.5f);
-            
+
             // affect array and texture
-            int left   = Mathf.Max(0,          Mathf.FloorToInt(center.X - radius));
-            int right  = Mathf.Min(Width,  1 + Mathf.FloorToInt(center.X + radius));
-            int bottom = Mathf.Max(0,          Mathf.FloorToInt(center.Y - radius));
-            int top    = Mathf.Min(Height, 1 + Mathf.FloorToInt(center.Y + radius));
-            
+            int left = Mathf.Max(0, Mathf.FloorToInt(center.X - radius));
+            int right = Mathf.Min(Width, 1 + Mathf.FloorToInt(center.X + radius));
+            int bottom = Mathf.Max(0, Mathf.FloorToInt(center.Y - radius));
+            int top = Mathf.Min(Height, 1 + Mathf.FloorToInt(center.Y + radius));
+
             for (int x = left; x < right; x++)
             for (int y = bottom; y < top; y++) {
                 if (XY.SqrDistance(center, new XY(x, y)) > sqrRadius) continue;
@@ -325,33 +325,34 @@ namespace Battle.Physics {
             _tex.Apply();
 
             var aabb = new AABBF(left, right, bottom, top).ToTiles(LandTile.Size);
-            
+
             // affect tiles
             for (int x = aabb.Left; x < aabb.Right; x++)
             for (int y = aabb.Bottom; y < aabb.Top; y++) {
                 var tile = Tiles[x, y];
-                
+
                 if (tile.Land == 0 && tile.Vertices.Count > 0) Debug.LogError("bug was here");
-                
+
                 // check tile corners
 //                byte temp = 0;
 //                if (XY.SqrDistance(center, new XY(x * LandTile.Size, y * LandTile.Size)) > sqrRadius) temp++;
 //                if (XY.SqrDistance(center, new XY((x + 1) * LandTile.Size, y * LandTile.Size)) > sqrRadius) temp++;
 //                if (XY.SqrDistance(center, new XY(x * LandTile.Size, (y + 1) * LandTile.Size)) > sqrRadius) temp++;
 //                if (XY.SqrDistance(center, new XY((x + 1) * LandTile.Size, (y + 1) * LandTile.Size)) > sqrRadius) temp++;
-                
+
                 // if not affected do nothing
 //                if (temp == 4) continue;
-                
+
                 // if entirely inside circle
 //                if (temp == 0) tile.Erase();
-                
+
                 // if only partially affected
 //                else
                 tile.Recalculate(this);
             }
-            
+
         }
+
     }
 
 }

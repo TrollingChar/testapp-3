@@ -14,7 +14,7 @@ namespace Menu {
         [SerializeField] private LobbyMenu _lobbyMenu;
         [SerializeField] private MainMenu _mainMenu;
 
-        
+
         private void Awake () {
             The<MenuScene>.Set(this);
             AuthSuccessCmd.OnReceived.Subscribe(OnAuthSuccess);
@@ -56,7 +56,7 @@ namespace Menu {
             _connectionMenu.Hide();
             _gameModeMenu.Hide();
             _lobbyMenu.Hide();
-            
+
             _mainMenu.Show();
         }
 

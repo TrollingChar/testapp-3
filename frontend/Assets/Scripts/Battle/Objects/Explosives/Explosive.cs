@@ -2,11 +2,14 @@
 
     public abstract class Explosive : Component {
 
-        public void Detonate() {
+        public void Detonate () {
             Object.Remove();
             OnDetonate();
         }
 
-        protected abstract void OnDetonate();
+
+        protected abstract void OnDetonate ();
+
     }
+
 }

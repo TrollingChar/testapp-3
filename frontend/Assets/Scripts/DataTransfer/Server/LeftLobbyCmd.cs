@@ -9,8 +9,8 @@ namespace DataTransfer.Server {
     public class LeftLobbyCmd : ServerCommand {
 
         public static readonly Messenger<LeftLobbyCmd> OnReceived = new Messenger<LeftLobbyCmd>();
-            
-        
+
+
         public override void ReadMembers (BinaryReader reader) {}
 
 

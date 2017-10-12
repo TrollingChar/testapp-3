@@ -42,6 +42,7 @@ namespace Battle.Objects {
         private GameObject _canvas;
         private Weapon _weapon;
 
+
         public Worm (string name = "?", int hp = 60) : base(60, 1) {
             Name = name;
             HP = hp;
@@ -125,8 +126,8 @@ namespace Battle.Objects {
 
 
         private void InitGraphics () {
-            BattleAssets assets = The<BattleAssets>.Get();
-            Transform transform = GameObject.transform;
+            var assets = The<BattleAssets>.Get();
+            var transform = GameObject.transform;
 
             _canvas = UnObject.Instantiate(assets.TopCanvas, transform, false);
             _canvas.transform.localPosition += new Vector3(0, 20, 0);
@@ -165,10 +166,10 @@ namespace Battle.Objects {
         }
 
 
-        public override void GetDamage(int damage)
-        {
+        public override void GetDamage (int damage) {
             HP -= damage;
         }
+
     }
 
 }

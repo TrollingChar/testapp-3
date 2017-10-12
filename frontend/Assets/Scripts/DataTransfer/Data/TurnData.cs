@@ -13,9 +13,9 @@ namespace DataTransfer.Data {
     public class TurnData : DTO {
 
         public bool W, A, S, D, MB; // byte - space reserved for Tab etc.
-        public XY XY;               // 2 floats
-        public byte Weapon;         // byte
-        public byte NumKey;         // 3 bits: 0-5
+        public XY XY; // 2 floats
+        public byte Weapon; // byte
+        public byte NumKey; // 3 bits: 0-5
 
 
         public byte Flags {
@@ -36,7 +36,7 @@ namespace DataTransfer.Data {
                 MB = (value & 0x10) != 0;
             }
         }
-        
+
 
         public static TurnData FromInput () {
             return new TurnData {

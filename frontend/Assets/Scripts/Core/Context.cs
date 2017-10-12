@@ -10,7 +10,7 @@ using Utils.Singleton;
 namespace Core {
 
     public class Context : MonoBehaviour {
-        
+
         public Connection Connection { get; private set; }
         public SceneSwitcher Switcher { get; private set; }
 
