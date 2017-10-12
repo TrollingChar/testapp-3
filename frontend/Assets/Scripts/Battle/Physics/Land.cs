@@ -330,7 +330,8 @@ namespace Battle.Physics {
             for (int x = aabb.Left; x < aabb.Right; x++)
             for (int y = aabb.Bottom; y < aabb.Top; y++) {
                 var tile = Tiles[x, y];
-//                if (tile.Land == 0) continue;
+                
+                if (tile.Land == 0 && tile.Vertices.Count > 0) Debug.LogError("bug was here");
                 
                 // check tile corners
 //                byte temp = 0;

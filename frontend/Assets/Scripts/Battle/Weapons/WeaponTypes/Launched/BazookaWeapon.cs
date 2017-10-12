@@ -45,12 +45,12 @@ namespace Battle.Weapons.WeaponTypes.Launched {
         
         protected override void OnShoot ()
         {
-            var projectile = new BazookaShell();
-            The<World>.Get().AddObject(
-                projectile,
-                Object.Position,
-                (TurnData.XY - Object.Position).WithLength(Power * 0.6f)
-            );
+            World world = The<World>.Get();
+            world.AddObject(new BazookaShell(), Object.Position, (TurnData.XY - Object.Position).WithLength(Power * 0.4f));
+            world.AddObject(new BazookaShell(), Object.Position, (TurnData.XY - Object.Position).WithLength(Power * 0.5f));
+            world.AddObject(new BazookaShell(), Object.Position, (TurnData.XY - Object.Position).WithLength(Power * 0.6f));
+            world.AddObject(new BazookaShell(), Object.Position, (TurnData.XY - Object.Position).WithLength(Power * 0.7f));
+            world.AddObject(new BazookaShell(), Object.Position, (TurnData.XY - Object.Position).WithLength(Power * 0.8f));
         }
 
 
