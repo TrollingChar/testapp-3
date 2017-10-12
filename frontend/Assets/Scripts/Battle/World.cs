@@ -241,6 +241,7 @@ namespace Battle {
 
         public void DealDamage(int damage, XY center, float radius)
         {
+            // todo use sqr
             foreach (var o in _objects) {
                 float distance = XY.Distance(center, o.Position);
                 if (distance >= radius) continue;
