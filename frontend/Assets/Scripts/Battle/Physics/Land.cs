@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Battle.Generation;
 using Battle.Physics.Collisions;
 using Geometry;
@@ -331,24 +332,30 @@ namespace Battle.Physics {
             for (int y = aabb.Bottom; y < aabb.Top; y++) {
                 var tile = Tiles[x, y];
 
-                if (tile.Land == 0 && tile.Vertices.Count > 0) Debug.LogError("bug was here");
+                if (tile.Land == 0 && tile.Vertices.Count > 0) {
+                    string s = tile.Vertices.Aggregate(
+                        "vertices of tile[" + x + ", " + y + "] :",
+                        (current, xy) => current + ("\n" + xy)
+                    );
+                    Debug.LogError(s);
+                }
+                if (tile.Land == 0 && tile.Vertices.Count == 0) continue;
 
                 // check tile corners
-//                byte temp = 0;
-//                if (XY.SqrDistance(center, new XY(x * LandTile.Size, y * LandTile.Size)) > sqrRadius) temp++;
-//                if (XY.SqrDistance(center, new XY((x + 1) * LandTile.Size, y * LandTile.Size)) > sqrRadius) temp++;
-//                if (XY.SqrDistance(center, new XY(x * LandTile.Size, (y + 1) * LandTile.Size)) > sqrRadius) temp++;
-//                if (XY.SqrDistance(center, new XY((x + 1) * LandTile.Size, (y + 1) * LandTile.Size)) > sqrRadius) temp++;
+                byte temp = 0;
+                if (XY.SqrDistance(center, new XY(x * LandTile.Size - 1, y * LandTile.Size - 1)) > sqrRadius) temp++;
+                if (XY.SqrDistance(center, new XY((x + 1) * LandTile.Size, y * LandTile.Size - 1)) > sqrRadius) temp++;
+                if (XY.SqrDistance(center, new XY(x * LandTile.Size - 1, (y + 1) * LandTile.Size)) > sqrRadius) temp++;
+                if (XY.SqrDistance(center, new XY((x + 1) * LandTile.Size, (y + 1) * LandTile.Size)) > sqrRadius) temp++;
 
                 // if not affected do nothing
-//                if (temp == 4) continue;
+                if (temp == 4) continue;
 
                 // if entirely inside circle
-//                if (temp == 0) tile.Erase();
+                if (temp == 0) tile.Erase();
 
                 // if only partially affected
-//                else
-                tile.Recalculate(this);
+                else tile.Recalculate(this);
             }
 
         }
