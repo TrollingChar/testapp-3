@@ -33,7 +33,15 @@ namespace Battle.Physics {
                 _gameObject.transform.SetParent(_parent, false);
                 var renderer = _gameObject.GetComponent<SpriteRenderer>();
                 _tex = new Texture2D(Size, Size);
+//                for (int ix = 0; ix < Size; ix++)
+//                for (int iy = 0; iy < Size; iy++) {
+//                    _tex.SetPixel(ix, iy, Color.clear);
+//                }
+//                var colors = new Color[Size * Size];
+//                for (int i = 0; i < colors.Length; i++) colors[i] = (i == 0) ? Color.yellow : Color.clear;
+//                _tex.SetPixels(colors);
                 renderer.sprite = Sprite.Create(_tex, new Rect(0, 0, Size, Size), new Vector2(0, 0), 1f);
+                _tex.SetPixels(new Color[Size * Size]);
             }
             _tex.SetPixel(x, y, color);
             _dirty = true;

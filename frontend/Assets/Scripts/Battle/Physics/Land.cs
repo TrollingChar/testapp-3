@@ -330,7 +330,7 @@ namespace Battle.Physics {
                 _array[x, y] = 0;
 //                int arrayIndex = (x - left) + (y - bottom) * (right - left);
 //                pixels[arrayIndex] = Random.ColorHSV();
-                _landRenderer.SetPixel(x, y, Color.clear);
+                _landRenderer.SetPixel(x, y, Color.red);
             }
 //            _tex.SetPixels(left, bottom, right - left, top - bottom, pixels);
             _landRenderer.Apply();
