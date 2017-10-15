@@ -1,6 +1,7 @@
 ﻿using System;
 using Battle.Camera;
 using Battle.Generation;
+using Battle.Physics;
 using Battle.State;
 using Battle.Teams;
 using Battle.UI;
@@ -30,7 +31,7 @@ namespace Battle {
         // temp fields
         private EstimatedLandGen _landGen;
 
-        [SerializeField] private SpriteRenderer _landRenderer;
+        [SerializeField] private LandRenderer _landRenderer;
 
         public Connection Connection { get; private set; }
         public CameraWrapper Camera { get; private set; }

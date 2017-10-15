@@ -12,17 +12,18 @@ namespace Battle.Physics {
     public class Land {
 
         private byte[,] _array;
-        private Texture2D _tex;
-
+        //private Texture2D _tex;
+        private LandRenderer _landRenderer;
+        
         private int _progress, _fullProgress;
 
         public float TangentialBounce, NormalBounce;
 
 
-        public Land (LandGen gen, Texture2D landTexture, SpriteRenderer renderer) {
+        public Land (LandGen gen, LandRenderer renderer, Texture2D landTexture) {
             InitArray(gen);
             InitTiles();
-            InitTexture(landTexture, renderer);
+            InitTexture(renderer, landTexture);
             TangentialBounce = 0.9f;
             NormalBounce = 0.5f;
         }
@@ -53,14 +54,18 @@ namespace Battle.Physics {
         }
 
 
-        private void InitTexture (Texture2D landTexture, SpriteRenderer renderer) {
-            _tex = new Texture2D(Width, Height);
+        private void InitTexture (Texture2D landTexture, SpriteRenderer renderer) {}
+
+
+        private void InitTexture (LandRenderer landRenderer, Texture2D landTexture) {
+            _landRenderer = landRenderer;
+//            _tex = new Texture2D(Width, Height);
             for (int x = 0; x < Width; ++x)
             for (int y = 0; y < Height; ++y) {
-                _tex.SetPixel(x, y, _array[x, y] == 0 ? Color.clear : landTexture.GetPixel(x & 0xff, y & 0xff));
+                _landRenderer.SetPixel(x, y, _array[x, y] == 0 ? Color.clear : landTexture.GetPixel(x & 0xff, y & 0xff));
             }
-            _tex.Apply();
-            renderer.sprite = Sprite.Create(_tex, new Rect(0, 0, Width, Height), new Vector2(0, 0), 1f);
+            _landRenderer.Apply();
+            //renderer.sprite = Sprite.Create(_tex, new Rect(0, 0, Width, Height), new Vector2(0, 0), 1f);
         }
 
 
@@ -317,13 +322,18 @@ namespace Battle.Physics {
             int bottom = Mathf.Max(0, Mathf.FloorToInt(center.Y - radius));
             int top = Mathf.Min(Height, 1 + Mathf.FloorToInt(center.Y + radius));
 
+//            var pixels = _tex.GetPixels(left, bottom, right - left, top - bottom);
+            
             for (int x = left; x < right; x++)
             for (int y = bottom; y < top; y++) {
                 if (XY.SqrDistance(center, new XY(x, y)) > sqrRadius) continue;
                 _array[x, y] = 0;
-                _tex.SetPixel(x, y, Color.clear);
+//                int arrayIndex = (x - left) + (y - bottom) * (right - left);
+//                pixels[arrayIndex] = Random.ColorHSV();
+                _landRenderer.SetPixel(x, y, Color.clear);
             }
-            _tex.Apply();
+//            _tex.SetPixels(left, bottom, right - left, top - bottom, pixels);
+            _landRenderer.Apply();
 
             var aabb = new AABBF(left, right, bottom, top).ToTiles(LandTile.Size);
 
@@ -332,13 +342,6 @@ namespace Battle.Physics {
             for (int y = aabb.Bottom; y < aabb.Top; y++) {
                 var tile = Tiles[x, y];
 
-                if (tile.Land == 0 && tile.Vertices.Count > 0) {
-                    string s = tile.Vertices.Aggregate(
-                        "vertices of tile[" + x + ", " + y + "] :",
-                        (current, xy) => current + ("\n" + xy)
-                    );
-                    Debug.LogError(s);
-                }
                 if (tile.Land == 0 && tile.Vertices.Count == 0) continue;
 
                 // check tile corners

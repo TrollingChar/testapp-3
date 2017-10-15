@@ -32,7 +32,7 @@ namespace Battle {
 
 
         // todo: wrap it in worldgen params
-        public World (LandGen gen, SpriteRenderer renderer) {
+        public World (LandGen gen, LandRenderer renderer) {
             The<World>.Set(this);
 
             The<GameStateController>.Get();
@@ -41,7 +41,7 @@ namespace Battle {
             WaterLevel = 0;
             Tiles = new Tiles();
 
-            Land = new Land(gen, The<BattleAssets>.Get().LandTexture, renderer);
+            Land = new Land(gen, renderer, The<BattleAssets>.Get().LandTexture);
             _objects = new LinkedList<Object>();
         }
 
