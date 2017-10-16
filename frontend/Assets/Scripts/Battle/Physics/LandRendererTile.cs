@@ -5,7 +5,7 @@ namespace Battle.Physics {
 
     public class LandRendererTile {
 
-        public const int Size = 256;
+        public const int Size = 256; // maybe use 254 with offset
         private GameObject _gameObject;
         private readonly Vector3 _position;
         private Texture2D _tex;
