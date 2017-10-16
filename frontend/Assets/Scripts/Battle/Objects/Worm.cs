@@ -1,4 +1,5 @@
-﻿using Assets;
+﻿using System;
+using Assets;
 using Battle.Objects.Controllers;
 using Battle.Objects.GameObjects;
 using Battle.Physics.Collisions;
@@ -168,6 +169,16 @@ namespace Battle.Objects {
 
         public override void GetDamage (int damage) {
             HP -= damage;
+        }
+
+
+        public bool CanLandThere {
+            get { throw new NotImplementedException(); }
+        }
+
+
+        public void LandThere () {
+            throw new NotImplementedException();
         }
 
     }
