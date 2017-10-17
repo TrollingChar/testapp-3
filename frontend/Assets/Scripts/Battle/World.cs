@@ -240,11 +240,12 @@ namespace Battle {
 
 
         public void DealDamage (int damage, XY center, float radius) {
-            // todo use sqr
+            float sqrRadius = radius * radius;
             foreach (var o in _objects) {
-                float distance = XY.Distance(center, o.Position);
-                if (distance >= radius) continue;
-                int currentDamage = Mathf.CeilToInt(damage * (1f - distance / radius));
+                float sqrDistance = XY.SqrDistance(center, o.Position);
+                if (sqrDistance >= sqrRadius) continue;
+                
+                int currentDamage = Mathf.CeilToInt(damage * (1f - Mathf.Sqrt(sqrDistance / sqrRadius)));
                 o.GetDamage(currentDamage);
             }
         }
@@ -252,6 +253,18 @@ namespace Battle {
 
         public void DestroyTerrain (XY center, float radius) {
             Land.DestroyTerrain(center, radius);
+        }
+
+
+        public void SendBlastWave (float impulse, XY center, float radius) {
+            float sqrRadius = radius * radius;
+            foreach (var o in _objects) {
+                float sqrDistance = XY.SqrDistance(center, o.Position);
+                if (sqrDistance >= sqrRadius) continue;
+                
+                float currentImpulse = impulse * (1f - Mathf.Sqrt(sqrDistance / sqrRadius));
+                o.ReceiveBlastWave((o.Position - center).WithLength(currentImpulse));
+            }
         }
 
     }

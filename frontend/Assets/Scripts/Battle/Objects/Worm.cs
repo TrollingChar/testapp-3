@@ -172,13 +172,21 @@ namespace Battle.Objects {
         }
 
 
+        public override void ReceiveBlastWave (XY impulse) {
+            Controller = new WormControllerFall();
+            base.ReceiveBlastWave(impulse);
+        }
+
+
         public bool CanLandThere {
-            get { throw new NotImplementedException(); }
+            get { /*throw new NotImplementedException();*/
+                return true;
+            }
         }
 
 
         public void LandThere () {
-            throw new NotImplementedException();
+            Controller = new WormControllerJump();
         }
 
     }

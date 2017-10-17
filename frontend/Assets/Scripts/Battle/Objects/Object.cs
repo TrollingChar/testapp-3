@@ -207,6 +207,11 @@ namespace Battle.Objects {
 
         public virtual void GetDamage (int damage) {}
 
+
+        public virtual void ReceiveBlastWave (XY impulse) {
+            Velocity += impulse;
+        }
+
     }
 
 }
