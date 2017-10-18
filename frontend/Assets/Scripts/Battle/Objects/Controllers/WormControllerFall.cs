@@ -12,7 +12,7 @@ namespace Battle.Objects.Controllers {
             base.Update(td);
             Wait();
 
-            if (Object.Velocity.SqrLength > 0.01f) {
+            if (Object.Velocity.SqrLength > 0.5f) {
                 _control = 0;
                 return;
             }
