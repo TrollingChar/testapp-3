@@ -27,16 +27,15 @@ namespace Geometry {
 
         public static float CastRayToCircle (XY o, XY dir, XY circleCenter, float r) {
             var originToCircle = circleCenter - o;
-
+            // если луч направлен в другую сторону
             if (XY.Dot(dir, originToCircle) <= 0) return 1; //float.NaN;
-
+            // квадрат расстояния от центра окружности до луча
             float h2 = XY.Cross(dir, originToCircle);
             h2 *= h2 / dir.SqrLength;
 
             float r2 = r * r;
-
             if (h2 > r2) return 1; //float.NaN
-
+            // да, тут может вернуться отрицательное число, поэтому Clamp
             return Mathf.Clamp01((Mathf.Sqrt(originToCircle.SqrLength - h2) - Mathf.Sqrt(r2 - h2)) / dir.Length);
         }
 
@@ -61,6 +60,7 @@ namespace Geometry {
         ) {
             // если окружность полностью внутри прямоугольника
             if (circleCenter.X > boxLeft && circleCenter.X < boxRight && circleCenter.Y > boxBottom && circleCenter.Y < boxTop) return true;
+            
             float sqrRadius = circleRadius * circleRadius;
                 // стороны
             return boxLeft < circleCenter.X + circleRadius
