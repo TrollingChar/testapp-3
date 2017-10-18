@@ -120,6 +120,7 @@ namespace Battle.Objects {
             AddCollider(Head = new CircleCollider(new XY(0f, BodyHeight * 0.5f), HeadRadius));
             AddCollider(Tail = new CircleCollider(new XY(0f, BodyHeight * -0.5f), HeadRadius));
             AddCollider(new Physics.Collisions.BoxCollider(-5, 5, -2.5f, 2.5f));
+//            AddCollider(new Physics.Collisions.BoxCollider(-5, 5, -7.5f, 7.5f));
 
             Controller = new WormControllerJump();
         }

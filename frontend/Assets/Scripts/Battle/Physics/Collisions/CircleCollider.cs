@@ -56,7 +56,7 @@ namespace Battle.Physics.Collisions {
 
 
         public override Collision CollideWithBox (BoxCollider c, XY velocity) {
-            return null;
+            throw new NotImplementedException();
         }
 
 
