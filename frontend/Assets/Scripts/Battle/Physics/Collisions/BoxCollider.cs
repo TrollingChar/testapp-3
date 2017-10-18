@@ -69,17 +69,20 @@ namespace Battle.Physics.Collisions {
 
 
         public override bool OverlapsWith (Collider c) {
-            throw new NotImplementedException();
+            return c.OverlapsWithBox(this);
         }
 
 
         public override bool OverlapsWithCircle (CircleCollider c) {
-            throw new NotImplementedException();
+            return Geom.AreOverlapping(c.Center, c.Radius, Left, Right, Bottom, Top);
         }
 
 
         public override bool OverlapsWithBox (BoxCollider c) {
-            throw new NotImplementedException();
+            return Left < c.Right
+                && Right > c.Left
+                && Bottom < c.Top
+                && Top > c.Bottom;
         }
 
 

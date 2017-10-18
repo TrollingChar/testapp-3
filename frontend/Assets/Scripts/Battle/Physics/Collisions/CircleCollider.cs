@@ -7,28 +7,30 @@ namespace Battle.Physics.Collisions {
     public class CircleCollider : Collider {
 
         private readonly XY _offset;
-        private readonly float _radius;
 
 
         public CircleCollider (XY offset, float radius) {
             _offset = offset;
-            _radius = radius;
+            Radius = radius;
         }
 
 
         public XY Center {
             get { return _offset + Object.Position; }
         }
+        
+        
+        public float Radius { get; private set; }
 
 
         public override AABBF AABB {
             get {
                 var center = Center;
                 return new AABBF(
-                    center.X - _radius,
-                    center.X + _radius,
-                    center.Y - _radius,
-                    center.Y + _radius
+                    center.X - Radius,
+                    center.X + Radius,
+                    center.Y - Radius,
+                    center.Y + Radius
                 );
             }
         }
@@ -40,15 +42,15 @@ namespace Battle.Physics.Collisions {
 
 
         public override Collision CollideWithCircle (CircleCollider c, XY velocity) {
-            float mv = Geom.CastRayToCircle(Center, velocity, c.Center, _radius + c._radius);
+            float mv = Geom.CastRayToCircle(Center, velocity, c.Center, Radius + c.Radius);
             return mv < 1
                 ? new Collision(
                     velocity * mv,
                     Center + velocity * mv - c.Center,
                     this,
                     c,
-                    CirclePrimitive.New(Center, _radius),
-                    CirclePrimitive.New(c.Center, c._radius)
+                    CirclePrimitive.New(Center, Radius),
+                    CirclePrimitive.New(c.Center, c.Radius)
                 ) : null;
         }
 
@@ -59,7 +61,7 @@ namespace Battle.Physics.Collisions {
 
 
         public override Collision CollideWithLand (Land land, XY v) {
-            var result = land.CastRay(Center, v, _radius);
+            var result = land.CastRay(Center, v, Radius);
             if (result != null) result.Collider1 = this;
             return result;
         }
@@ -71,13 +73,13 @@ namespace Battle.Physics.Collisions {
 
 
         public override bool OverlapsWithCircle (CircleCollider c) {
-            float radii = _radius + c._radius;
+            float radii = Radius + c.Radius;
             return (Center - c.Center).SqrLength < radii * radii;
         }
 
 
         public override bool OverlapsWithBox (BoxCollider c) {
-            throw new NotImplementedException();
+            return Geom.AreOverlapping(Center, Radius, c.Left, c.Right, c.Bottom, c.Top);
         }
 
 

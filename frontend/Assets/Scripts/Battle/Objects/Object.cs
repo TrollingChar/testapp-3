@@ -9,7 +9,6 @@ using UnityEngine;
 using Utils.Singleton;
 using Collider = Battle.Physics.Collisions.Collider;
 using Collision = Battle.Physics.Collisions.Collision;
-using UnObject = UnityEngine.Object;
 
 
 namespace Battle.Objects {
@@ -78,7 +77,7 @@ namespace Battle.Objects {
 
 
         public virtual void OnAdd () {
-            // ... = UnObject.Instantiate(..., GameObject.transform);
+            // ... = UnityEngine.Object.Instantiate(..., GameObject.transform);
             // AddCollider(...
             // Explosive = ...
             // Controller = ...
@@ -92,7 +91,7 @@ namespace Battle.Objects {
             CollisionHandler = null;
             Explosive = null;
             Controller = null;
-            UnObject.Destroy(GameObject);
+            UnityEngine.Object.Destroy(GameObject);
         }
 
 

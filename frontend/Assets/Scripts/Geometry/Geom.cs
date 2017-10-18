@@ -54,6 +54,26 @@ namespace Geometry {
             return d < 0 || d > 1 ? 1 : d;
         }
 
+
+        public static bool AreOverlapping(
+            XY circleCenter, float circleRadius,
+            float boxLeft, float boxRight, float boxBottom, float boxTop
+        ) {
+            // если окружность полностью внутри прямоугольника
+            if (circleCenter.X > boxLeft && circleCenter.X < boxRight && circleCenter.Y > boxBottom && circleCenter.Y < boxTop) return true;
+            float sqrRadius = circleRadius * circleRadius;
+                // стороны
+            return boxLeft < circleCenter.X + circleRadius
+                && boxRight > circleCenter.X - circleRadius
+                && boxBottom < circleCenter.Y + circleRadius
+                && boxTop > circleCenter.Y - circleRadius
+                // вершины
+                && XY.SqrDistance(circleCenter, new XY(boxLeft, boxBottom)) < sqrRadius
+                && XY.SqrDistance(circleCenter, new XY(boxLeft, boxTop)) < sqrRadius
+                && XY.SqrDistance(circleCenter, new XY(boxRight, boxBottom)) < sqrRadius
+                && XY.SqrDistance(circleCenter, new XY(boxRight, boxTop)) < sqrRadius;
+        }
+
     }
 
 }
