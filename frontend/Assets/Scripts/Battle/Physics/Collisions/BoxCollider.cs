@@ -52,7 +52,7 @@ namespace Battle.Physics.Collisions {
 
 
         public override Collision CollideWithCircle (CircleCollider c, XY velocity) {
-            throw new NotImplementedException();
+            return -c.CollideWithBox(this, -velocity);
         }
 
 

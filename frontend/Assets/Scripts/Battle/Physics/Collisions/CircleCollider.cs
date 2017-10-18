@@ -56,7 +56,32 @@ namespace Battle.Physics.Collisions {
 
 
         public override Collision CollideWithBox (BoxCollider c, XY velocity) {
-            throw new NotImplementedException();
+            float
+                left = c.Left,
+                right = c.Right,
+                bottom = c.Bottom,
+                top = c.Top;
+            
+            float minDist = 1;
+            Collision result = null;
+
+            // todo: еще проверить будет ли лежать ли точка окружности на отрезке
+            if (velocity.X < 0) {
+                float mv = Geom.CastRayToVertical(Center, velocity, right + Radius);
+            } // check right  side
+            if (velocity.X > 0) {
+                float mv = Geom.CastRayToVertical(Center, velocity, left - Radius);
+            } // check left   side
+            if (velocity.Y < 0) {
+                float mv = Geom.CastRayToHorizontal(Center, velocity, top + Radius);
+            } // check top    side
+            if (velocity.Y > 0) {
+                float mv = Geom.CastRayToHorizontal(Center, velocity, bottom - Radius);
+            } // check bottom side
+            if (velocity.X < 0 || velocity.Y < 0) ; // check upright   corner
+            if (velocity.X > 0 || velocity.Y < 0) ; // check upleft    corner
+            if (velocity.X > 0 || velocity.Y > 0) ; // check downleft  corner
+            if (velocity.X < 0 || velocity.Y > 0) ; // check downright corner
         }
 
 
