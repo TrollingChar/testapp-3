@@ -11,9 +11,7 @@ namespace Battle.Objects.Controllers {
 
         private readonly ActiveWormWrapper _activeWorm = The<ActiveWormWrapper>.Get();
 
-        // TODO: replace magic numbers with constants
-
-
+        
         public override void OnAdd () {
             Object.Velocity = XY.Zero;
         }
@@ -51,9 +49,9 @@ namespace Battle.Objects.Controllers {
             if (td.S || td.W) {
                 if (td.S) {
                     Object.Velocity = new XY(0f, Worm.HighJumpSpeed);
-                    if (td.A ^ td.D) Object.Velocity.Rotate(td.A ? 0.1f : -0.1f);
+                    if (td.A ^ td.D) Object.Velocity.Rotate(td.A ? Worm.HighJumpAngle : -Worm.HighJumpAngle);
                 } else {
-                    Object.Velocity = new XY(0f, Worm.JumpSpeed).Rotated(worm.FacesRight ? -0.5f : 0.5f);
+                    Object.Velocity = new XY(0f, Worm.JumpSpeed).Rotated(worm.FacesRight ? -Worm.JumpAngle : Worm.JumpAngle);
                 }
                 Object.Controller = new WormControllerJump();
                 return;

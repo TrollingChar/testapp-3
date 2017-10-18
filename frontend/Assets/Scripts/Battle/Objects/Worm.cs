@@ -24,6 +24,8 @@ namespace Battle.Objects {
         public const float WalkSpeed = 1f;
         public const float JumpSpeed = 6f;
         public const float HighJumpSpeed = 9f;
+        public const float JumpAngle = 0.5f;
+        public const float HighJumpAngle = 0.1f;
 
         public const float MaxClimb = 5f;
         public const float MaxDescend = 5f;
