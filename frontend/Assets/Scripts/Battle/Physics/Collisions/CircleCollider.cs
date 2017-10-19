@@ -1,5 +1,6 @@
 ﻿using System;
 using Geometry;
+using UnityEngine;
 
 
 namespace Battle.Physics.Collisions {
@@ -55,7 +56,7 @@ namespace Battle.Physics.Collisions {
         }
 
 
-        public override Collision CollideWithBox (BoxCollider c, XY velocity) {
+        public override Collision CollideWithBox (BoxCollider c, XY v) {
             float
                 left = c.Left,
                 right = c.Right,
@@ -65,23 +66,45 @@ namespace Battle.Physics.Collisions {
             float minDist = 1;
             Collision result = null;
 
-            // todo: еще проверить будет ли лежать ли точка окружности на отрезке
-            if (velocity.X < 0) {
-                float mv = Geom.CastRayToVertical(Center, velocity, right + Radius);
+            XY center = Center;
+            float d;
+            if (v.X < 0) {
+                d = Geom.CastRayToVertical(center, v, right + Radius);
+                float y = center.Y + v.Y * d;
+                if (d < minDist && bottom <= y && y <= top) {
+                    minDist = d;
+                    // collision
+                }
             } // check right  side
-            if (velocity.X > 0) {
-                float mv = Geom.CastRayToVertical(Center, velocity, left - Radius);
+            if (v.X > 0) {
+                d = Geom.CastRayToVertical(center, v, left - Radius);
+                float y = center.Y + v.Y * d;
+                if (d < minDist && bottom <= y && y <= top) {
+                    minDist = d;
+                    // collision
+                }
             } // check left   side
-            if (velocity.Y < 0) {
-                float mv = Geom.CastRayToHorizontal(Center, velocity, top + Radius);
+            if (v.Y < 0) {
+                d = Geom.CastRayToHorizontal(center, v, top + Radius);
+                float x = center.X + v.X * d;
+                if (d < minDist && left <= x && x <= right) {
+                    minDist = d;
+                    // collision
+                }
             } // check top    side
-            if (velocity.Y > 0) {
-                float mv = Geom.CastRayToHorizontal(Center, velocity, bottom - Radius);
+            if (v.Y > 0) {
+                d = Geom.CastRayToHorizontal(center, v, bottom - Radius);
+                float x = center.X + v.X * d;
+                if (d < minDist && left <= x && x <= right) {
+                    minDist = d;
+                    // collision
+                }
             } // check bottom side
-            if (velocity.X < 0 || velocity.Y < 0) ; // check upright   corner
-            if (velocity.X > 0 || velocity.Y < 0) ; // check upleft    corner
-            if (velocity.X > 0 || velocity.Y > 0) ; // check downleft  corner
-            if (velocity.X < 0 || velocity.Y > 0) ; // check downright corner
+            
+            if (v.X < 0 || v.Y < 0) ; // check upright   corner
+            if (v.X > 0 || v.Y < 0) ; // check upleft    corner
+            if (v.X > 0 || v.Y > 0) ; // check downleft  corner
+            if (v.X < 0 || v.Y > 0) ; // check downright corner
         }
 
 
