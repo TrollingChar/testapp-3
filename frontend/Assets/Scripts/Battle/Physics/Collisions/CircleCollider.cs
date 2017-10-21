@@ -1,5 +1,6 @@
 ﻿using System;
 using Geometry;
+using UnityEditor;
 using UnityEngine;
 
 
@@ -19,8 +20,8 @@ namespace Battle.Physics.Collisions {
         public XY Center {
             get { return _offset + Object.Position; }
         }
-        
-        
+
+
         public float Radius { get; private set; }
 
 
@@ -62,49 +63,137 @@ namespace Battle.Physics.Collisions {
                 right = c.Right,
                 bottom = c.Bottom,
                 top = c.Top;
-            
+
             float minDist = 1;
             Collision result = null;
 
             XY center = Center;
             float d;
+            // check right side
             if (v.X < 0) {
                 d = Geom.CastRayToVertical(center, v, right + Radius);
                 float y = center.Y + v.Y * d;
                 if (d < minDist && bottom <= y && y <= top) {
                     minDist = d;
-                    // collision
+                    result = new Collision(
+                        v * d,
+                        XY.Right,
+                        this,
+                        c,
+                        CirclePrimitive.New(center, Radius),
+                        VerticalEdgePrimitive.Right(right)
+                    );
                 }
-            } // check right  side
+            }
+            // check left side
             if (v.X > 0) {
                 d = Geom.CastRayToVertical(center, v, left - Radius);
                 float y = center.Y + v.Y * d;
                 if (d < minDist && bottom <= y && y <= top) {
                     minDist = d;
-                    // collision
+                    result = new Collision(
+                        v * d,
+                        XY.Left,
+                        this,
+                        c,
+                        CirclePrimitive.New(center, Radius),
+                        VerticalEdgePrimitive.Left(left)
+                    );
                 }
-            } // check left   side
+            }
+            // check top side
             if (v.Y < 0) {
                 d = Geom.CastRayToHorizontal(center, v, top + Radius);
                 float x = center.X + v.X * d;
                 if (d < minDist && left <= x && x <= right) {
                     minDist = d;
-                    // collision
+                    result = new Collision(
+                        v * d,
+                        XY.Up,
+                        this,
+                        c,
+                        CirclePrimitive.New(center, Radius),
+                        HorizontalEdgePrimitive.Up(top)
+                    );
                 }
-            } // check top    side
+            }
+            // check bottom side
             if (v.Y > 0) {
                 d = Geom.CastRayToHorizontal(center, v, bottom - Radius);
                 float x = center.X + v.X * d;
                 if (d < minDist && left <= x && x <= right) {
                     minDist = d;
-                    // collision
+                    result = new Collision(
+                        v * d,
+                        XY.Down,
+                        this,
+                        c,
+                        CirclePrimitive.New(center, Radius),
+                        HorizontalEdgePrimitive.Down(bottom)
+                    );
                 }
-            } // check bottom side
-            
-            if (v.X < 0 || v.Y < 0) ; // check upright   corner
-            if (v.X > 0 || v.Y < 0) ; // check upleft    corner
-            if (v.X > 0 || v.Y > 0) ; // check downleft  corner
-            if (v.X < 0 || v.Y > 0) ; // check downright corner
+            }
+            // check upright corner
+            if (v.X < 0 || v.Y < 0) {
+                d = Geom.CastRayToCircle(center, v, new XY(right, top), Radius);
+                if (d < minDist) {
+                    minDist = d;
+                    result = new Collision(
+                        v * d,
+                        Center + v * d - new XY(right, top),
+                        this,
+                        c,
+                        CirclePrimitive.New(Center, Radius),
+                        CirclePrimitive.New(new XY(right, top))
+                    );
+                }
+            }
+            // check upleft corner
+            if (v.X > 0 || v.Y < 0) {
+                d = Geom.CastRayToCircle(center, v, new XY(left, top), Radius);
+                if (d < minDist) {
+                    minDist = d;
+                    result = new Collision(
+                        v * d,
+                        Center + v * d - new XY(left, top),
+                        this,
+                        c,
+                        CirclePrimitive.New(Center, Radius),
+                        CirclePrimitive.New(new XY(left, top))
+                    );
+                }
+            }
+            // check downleft corner
+            if (v.X > 0 || v.Y > 0) {
+                d = Geom.CastRayToCircle(center, v, new XY(left, bottom), Radius);
+                if (d < minDist) {
+                    minDist = d;
+                    result = new Collision(
+                        v * d,
+                        Center + v * d - new XY(left, bottom),
+                        this,
+                        c,
+                        CirclePrimitive.New(Center, Radius),
+                        CirclePrimitive.New(new XY(left, bottom))
+                    );
+                }
+            }
+            // check downright corner
+            if (v.X < 0 || v.Y > 0) {
+                d = Geom.CastRayToCircle(center, v, new XY(right, bottom), Radius);
+                if (d < minDist) {
+                    minDist = d;
+                    result = new Collision(
+                        v * d,
+                        Center + v * d - new XY(right, bottom),
+                        this,
+                        c,
+                        CirclePrimitive.New(Center, Radius),
+                        CirclePrimitive.New(new XY(right, bottom))
+                    );
+                }
+            }
+            return result;
         }
 
 
