@@ -57,7 +57,86 @@ namespace Battle.Physics.Collisions {
 
 
         public override Collision CollideWithBox (BoxCollider c, XY velocity) {
-            throw new NotImplementedException();
+            float
+                left = Left,
+                right = Right,
+                bottom = Bottom,
+                top = Top,
+                cleft = c.Left,
+                cright = c.Right,
+                cbottom = c.Bottom,
+                ctop = c.Top;
+
+            float minDist = 1;
+            Collision result = null;
+            
+            float d;
+            if (velocity.X < 0) {
+                d = Geom.CastRayToVertical(new XY(left, bottom), velocity, cright);
+                // спроецировать на прямую сразу две точки
+                float topY = top + velocity.Y * d;
+                float bottomY = bottom + velocity.Y * d;
+                if (d < minDist && topY < cbottom && bottomY > ctop) {
+                    minDist = d;
+                    result = new Collision(
+                        velocity * d,
+                        XY.Right,
+                        this,
+                        c,
+                        VerticalEdgePrimitive.Left(left),
+                        VerticalEdgePrimitive.Right(cright)
+                    );
+                }
+            }
+            if (velocity.X > 0) {
+                d = Geom.CastRayToVertical(new XY(right, top), velocity, cleft);
+                float topY = top + velocity.Y * d;
+                float bottomY = bottom + velocity.Y * d;
+                if (d < minDist && topY < cbottom && bottomY > ctop) {
+                    minDist = d;
+                    result = new Collision(
+                        velocity * d,
+                        XY.Left,
+                        this,
+                        c,
+                        VerticalEdgePrimitive.Right(right),
+                        VerticalEdgePrimitive.Left(cleft)
+                    );
+                }
+            }
+            if (velocity.Y < 0) {
+                d = Geom.CastRayToHorizontal(new XY(left, bottom), velocity, ctop);
+                float leftX = left + velocity.X * d;
+                float rightX = right + velocity.X * d;
+                if (d < minDist && rightX < cleft && leftX > cright) {
+                    minDist = d;
+                    result = new Collision(
+                        velocity * d,
+                        XY.Up,
+                        this,
+                        c,
+                        HorizontalEdgePrimitive.Down(bottom),
+                        HorizontalEdgePrimitive.Up(ctop)
+                    );
+                }
+            }
+            if (velocity.Y > 0) {
+                d = Geom.CastRayToVertical(new XY(right, top), velocity, cbottom);
+                float leftX = left + velocity.X * d;
+                float rightX = right + velocity.X * d;
+                if (d < minDist && rightX < cleft && leftX > cright) {
+                    minDist = d;
+                    result = new Collision(
+                        velocity * d,
+                        XY.Down,
+                        this,
+                        c,
+                        HorizontalEdgePrimitive.Up(top),
+                        HorizontalEdgePrimitive.Down(cbottom)
+                    );
+                }
+            }
+            return result;
         }
 
 

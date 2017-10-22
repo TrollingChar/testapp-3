@@ -1,4 +1,5 @@
-﻿using DataTransfer.Data;
+﻿using Battle.Objects.CollisionHandlers;
+using DataTransfer.Data;
 
 
 namespace Battle.Objects.Controllers {
@@ -6,6 +7,11 @@ namespace Battle.Objects.Controllers {
     public class WormControllerFall : StandardController {
 
         private float _control = 0;
+
+
+        public override void OnAdd () {
+            Object.CollisionHandler = new WormFallCollisionHandler();
+        }
 
 
         public override void Update (TurnData td) {

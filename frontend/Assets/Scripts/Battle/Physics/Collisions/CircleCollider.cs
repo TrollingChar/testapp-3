@@ -57,7 +57,7 @@ namespace Battle.Physics.Collisions {
         }
 
 
-        public override Collision CollideWithBox (BoxCollider c, XY v) {
+        public override Collision CollideWithBox (BoxCollider c, XY velocity) {
             float
                 left = c.Left,
                 right = c.Right,
@@ -70,13 +70,13 @@ namespace Battle.Physics.Collisions {
             XY center = Center;
             float d;
             // check right side
-            if (v.X < 0) {
-                d = Geom.CastRayToVertical(center, v, right + Radius);
-                float y = center.Y + v.Y * d;
+            if (velocity.X < 0) {
+                d = Geom.CastRayToVertical(center, velocity, right + Radius);
+                float y = center.Y + velocity.Y * d;
                 if (d < minDist && bottom <= y && y <= top) {
                     minDist = d;
                     result = new Collision(
-                        v * d,
+                        velocity * d,
                         XY.Right,
                         this,
                         c,
@@ -86,13 +86,13 @@ namespace Battle.Physics.Collisions {
                 }
             }
             // check left side
-            if (v.X > 0) {
-                d = Geom.CastRayToVertical(center, v, left - Radius);
-                float y = center.Y + v.Y * d;
+            if (velocity.X > 0) {
+                d = Geom.CastRayToVertical(center, velocity, left - Radius);
+                float y = center.Y + velocity.Y * d;
                 if (d < minDist && bottom <= y && y <= top) {
                     minDist = d;
                     result = new Collision(
-                        v * d,
+                        velocity * d,
                         XY.Left,
                         this,
                         c,
@@ -102,13 +102,13 @@ namespace Battle.Physics.Collisions {
                 }
             }
             // check top side
-            if (v.Y < 0) {
-                d = Geom.CastRayToHorizontal(center, v, top + Radius);
-                float x = center.X + v.X * d;
+            if (velocity.Y < 0) {
+                d = Geom.CastRayToHorizontal(center, velocity, top + Radius);
+                float x = center.X + velocity.X * d;
                 if (d < minDist && left <= x && x <= right) {
                     minDist = d;
                     result = new Collision(
-                        v * d,
+                        velocity * d,
                         XY.Up,
                         this,
                         c,
@@ -118,13 +118,13 @@ namespace Battle.Physics.Collisions {
                 }
             }
             // check bottom side
-            if (v.Y > 0) {
-                d = Geom.CastRayToHorizontal(center, v, bottom - Radius);
-                float x = center.X + v.X * d;
+            if (velocity.Y > 0) {
+                d = Geom.CastRayToHorizontal(center, velocity, bottom - Radius);
+                float x = center.X + velocity.X * d;
                 if (d < minDist && left <= x && x <= right) {
                     minDist = d;
                     result = new Collision(
-                        v * d,
+                        velocity * d,
                         XY.Down,
                         this,
                         c,
@@ -134,13 +134,13 @@ namespace Battle.Physics.Collisions {
                 }
             }
             // check upright corner
-            if (v.X < 0 || v.Y < 0) {
-                d = Geom.CastRayToCircle(center, v, new XY(right, top), Radius);
+            if (velocity.X < 0 || velocity.Y < 0) {
+                d = Geom.CastRayToCircle(center, velocity, new XY(right, top), Radius);
                 if (d < minDist) {
                     minDist = d;
                     result = new Collision(
-                        v * d,
-                        Center + v * d - new XY(right, top),
+                        velocity * d,
+                        Center + velocity * d - new XY(right, top),
                         this,
                         c,
                         CirclePrimitive.New(Center, Radius),
@@ -149,13 +149,13 @@ namespace Battle.Physics.Collisions {
                 }
             }
             // check upleft corner
-            if (v.X > 0 || v.Y < 0) {
-                d = Geom.CastRayToCircle(center, v, new XY(left, top), Radius);
+            if (velocity.X > 0 || velocity.Y < 0) {
+                d = Geom.CastRayToCircle(center, velocity, new XY(left, top), Radius);
                 if (d < minDist) {
                     minDist = d;
                     result = new Collision(
-                        v * d,
-                        Center + v * d - new XY(left, top),
+                        velocity * d,
+                        Center + velocity * d - new XY(left, top),
                         this,
                         c,
                         CirclePrimitive.New(Center, Radius),
@@ -164,13 +164,13 @@ namespace Battle.Physics.Collisions {
                 }
             }
             // check downleft corner
-            if (v.X > 0 || v.Y > 0) {
-                d = Geom.CastRayToCircle(center, v, new XY(left, bottom), Radius);
+            if (velocity.X > 0 || velocity.Y > 0) {
+                d = Geom.CastRayToCircle(center, velocity, new XY(left, bottom), Radius);
                 if (d < minDist) {
                     minDist = d;
                     result = new Collision(
-                        v * d,
-                        Center + v * d - new XY(left, bottom),
+                        velocity * d,
+                        Center + velocity * d - new XY(left, bottom),
                         this,
                         c,
                         CirclePrimitive.New(Center, Radius),
@@ -179,13 +179,13 @@ namespace Battle.Physics.Collisions {
                 }
             }
             // check downright corner
-            if (v.X < 0 || v.Y > 0) {
-                d = Geom.CastRayToCircle(center, v, new XY(right, bottom), Radius);
+            if (velocity.X < 0 || velocity.Y > 0) {
+                d = Geom.CastRayToCircle(center, velocity, new XY(right, bottom), Radius);
                 if (d < minDist) {
                     minDist = d;
                     result = new Collision(
-                        v * d,
-                        Center + v * d - new XY(right, bottom),
+                        velocity * d,
+                        Center + velocity * d - new XY(right, bottom),
                         this,
                         c,
                         CirclePrimitive.New(Center, Radius),

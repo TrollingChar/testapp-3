@@ -1,5 +1,6 @@
 ﻿using Battle.Objects.Controllers;
-using Battle.Physics.Collisions;
+using UnityEngine;
+using Collision = Battle.Physics.Collisions.Collision;
 
 
 namespace Battle.Objects.CollisionHandlers {
@@ -7,14 +8,22 @@ namespace Battle.Objects.CollisionHandlers {
     public class WormJumpCollisionHandler : CollisionHandler {
 
         public override bool WillCauseCollision (Collision c) {
+            // wtf
             return
-                !(c.Collider2.Object.Controller is WormControllerWalk)
-                && c.Collider1 != ((Worm) Object).Tail;
+                c.Collider1 != ((Worm) Object).Tail
+                && !(c.Collider2 != null && c.Collider2.Object.Controller is WormControllerWalk);
         }
 
 
         public override void OnCollision (Collision c) {
-            if (c.Collider1 == ((Worm) Object).Tail) Object.Controller = new WormControllerWalk();
+//            if (c.Collider2 != null && c.Collider2.Object.Controller is WormControllerFall) {
+//                Object.Controller = new WormControllerFall();
+//                Debug.LogWarning("1");
+//                return;
+//            }
+            if (c.Collider1 == ((Worm) Object).Tail) {
+                Object.Controller = new WormControllerWalk();
+            }
         }
 
     }
