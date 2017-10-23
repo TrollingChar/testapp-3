@@ -47,7 +47,7 @@
 			    float2 uv = i.uv;
 			    uv.x *= _Waves;
 			    uv.x -= floor(uv.x);
-			    uv.x = 2 * uv.x - 1;
+			    uv.x = abs(2 * uv.x - 1);
 				return tex2D(_MainTex, uv);
 			}
 			ENDCG
