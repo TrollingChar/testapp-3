@@ -6,7 +6,13 @@ namespace Battle.Water {
     public class WaterGO : MonoBehaviour {
         private float _wind;
 
-        [SerializeField] private GameObject _wavesPrefab;
+        [SerializeField] private GameObject _staticWaterPrefab;
+        [SerializeField] private GameObject _frontWavesPrefab;
+        [SerializeField] private GameObject _backWavesPrefab;
+
+        [SerializeField] private float[] _backWavesOffsets;
+        [SerializeField] private float[] _frontWavesOffsets;
+        
         private SpriteRenderer _waves;
 
         // ширина спрайта воды

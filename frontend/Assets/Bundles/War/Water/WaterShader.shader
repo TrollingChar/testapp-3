@@ -3,7 +3,9 @@
 	Properties
 	{
 		_MainTex ("Texture", 2D) = "white" {}
-		_Waves ("Waves", Range(0, 100)) = 10
+		_Waves ("Waves", Float) = 5000
+		_Offset ("Offset", Float) = 0
+		_Wind ("Wind", Float) = 0
 	}
 	SubShader
 	{
@@ -41,11 +43,15 @@
 			
 			sampler2D _MainTex;
 			float _Waves;
+			float _Offset;
+			float _Wind;
 
 			fixed4 frag (v2f i) : SV_Target
 			{
 			    float2 uv = i.uv;
+			    uv.x -= _Time * _Wind;
 			    uv.x *= _Waves;
+			    uv.x += _Offset;
 			    uv.x -= floor(uv.x);
 			    uv.x = abs(2 * uv.x - 1);
 				return tex2D(_MainTex, uv);
