@@ -32,6 +32,25 @@ namespace Battle.Water {
                 // _waves.scaleY `set to` 1;
             }
         }
+
+        private void MakeWaves(GameObject prefab, float yOffset, float phase, int layer) {
+            var waves = Instantiate(prefab, transform);
+            var position = waves.transform.localPosition;
+            position.y = yOffset;
+            waves.transform.position = position;
+            var spriteRenderer = waves.GetComponent<SpriteRenderer>();
+            spriteRenderer.sortingOrder = layer;
+            var material = spriteRenderer.material;
+            material.SetFloat("_Offset", phase);
+            material.SetFloat("_Wind", 0.03f);
+        }
+
+        private void Awake() {
+            bool b = false;
+            int layer = 0;
+            foreach (float y in _backWavesOffsets)  MakeWaves(_backWavesPrefab,  y, (b = !b) ? 0 : 0.5f, ++layer);
+            foreach (float y in _frontWavesOffsets) MakeWaves(_frontWavesPrefab, y, (b = !b) ? 0 : 0.5f, ++layer);
+        }
     }
 
 
@@ -43,7 +62,8 @@ namespace Battle.Water {
         private void Awake()
         {
             var material = GetComponent<SpriteRenderer>().material;
-            material.SetFloat("_Waves", 100);
+//            material.SetFloat("_Waves", 100);
+            material.SetFloat("_Wind", 0.1f);
         }
     }
 
