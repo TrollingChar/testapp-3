@@ -27,11 +27,21 @@ namespace Battle.Weapons {
 
 
         protected override void OnEquip () {}
+
+
 //        protected virtual void OnFirstAttack () {}
         protected virtual void OnBeginAttack () {}
+
+
         protected virtual void OnShoot () {}
         protected virtual void OnEndAttack () {}
-        protected virtual void OnLastAttack () { if (!Removable) InitRetreat(3000); }
+
+
+        protected virtual void OnLastAttack () {
+            if (!Removable) InitRetreat(3000);
+        }
+
+
         protected override void OnUnequip () {}
         protected virtual void OnNumberPress (int n) {}
         protected virtual void OnUpdate () {}
@@ -43,14 +53,14 @@ namespace Battle.Weapons {
 
             if (Fires) {
                 if (--_shotCooldown <= 0) Shoot();
-                return;
+                goto end;
             }
 
-            if (--_attackCooldown > 0) return;
+            if (--_attackCooldown > 0) goto end;
 
             GameTimer.Frozen = false;
             if (td.MB) {
-                if (RequiresClick && !_ready) return;
+                if (RequiresClick && !_ready) goto end;
                 if (!Removable) LockArsenal();
                 GameTimer.Frozen = true;
                 if (ConstPower || ++Power >= 50) BeginAttack();
@@ -59,6 +69,7 @@ namespace Battle.Weapons {
                 // if we released button while holding grenade, throw it
                 if (Power > 0) BeginAttack();
             }
+            end:
             OnUpdate();
         }
 

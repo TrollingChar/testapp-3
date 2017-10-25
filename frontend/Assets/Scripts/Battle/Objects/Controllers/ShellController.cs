@@ -6,7 +6,7 @@ namespace Battle.Objects.Controllers {
 
     // todo сделать лучше ControllerBuilder.MakeNew.GravityAffected.WindAffected.DirectionChanging.Controller;
     // todo и не создавать класс под каждый объект
-    public class BazookaShellController : StandardController {
+    public class ShellController : StandardController {
 
         public override void Update (TurnData td) {
             base.Update(td);
