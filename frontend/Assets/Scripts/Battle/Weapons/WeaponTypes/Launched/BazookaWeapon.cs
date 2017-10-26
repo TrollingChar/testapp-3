@@ -58,20 +58,6 @@ namespace Battle.Weapons.WeaponTypes.Launched {
             UpdateAimedWeapon(_sprite);
         }
 
-
-        private void UpdateAimedWeapon (GameObject sprite) {
-            var xy = TurnData.XY - Object.Position;
-            if (xy == XY.Zero) xy = XY.Up;
-            sprite.transform.localRotation = Quaternion.Euler(0, 0, xy.Angle * Mathf.Rad2Deg);
-
-            float angle = xy.Angle * Mathf.Rad2Deg;
-            bool deltaTooBig = Mathf.Abs(Mathf.DeltaAngle(0, angle)) > 90;
-            var scale = sprite.transform.localScale;
-            scale.x *= scale.x > 0 ^ deltaTooBig ? 1f : -1f;
-            sprite.transform.localScale = scale;
-            sprite.transform.localEulerAngles = new Vector3(0, 0, angle + (deltaTooBig ? 180 : 0));
-        }
-
     }
 
 }
