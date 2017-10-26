@@ -66,6 +66,13 @@ namespace Battle {
 
             for (int i = 0, iter = 5; i < iter; i++) {
                 foreach (var o in _objects) {
+                    // bug: InvalidOperationException: list modified
+                    // System.Collections.Generic.LinkedList`1+Enumerator[Battle.Objects.Object].MoveNext ()
+                    // Battle.World.PhysicsTick (DataTransfer.Data.TurnData td) (at Assets/Scripts/Battle/World.cs:68)
+                    // Battle.World.Update (DataTransfer.Data.TurnData td) (at Assets/Scripts/Battle/World.cs:55)
+                    // Battle.BattleScene.Work (DataTransfer.Data.TurnData td) (at Assets/Scripts/Battle/BattleScene.cs:141)
+                    // Battle.BattleScene.FixedUpdate () (at Assets/Scripts/Battle/BattleScene.cs:135)
+
                     if (o.Velocity.Length * o.Movement <= Precision) continue;
 
                     var c = o.NextCollision(o.Movement);

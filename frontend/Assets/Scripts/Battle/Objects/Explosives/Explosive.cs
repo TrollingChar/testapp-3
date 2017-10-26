@@ -10,6 +10,13 @@
 
         protected abstract void OnDetonate ();
 
+
+        public Explosive WithClusters(Object cluster, float coneAngle, float velocity, float velocityDelta)
+        {
+            // todo
+            return this;
+        }
+
     }
 
 }

@@ -27,8 +27,6 @@ namespace Battle.Weapons.WeaponTypes.Thrown {
 
         protected override void OnEquip () {
             ConstPower = false;
-            Shots = Math.Min(5, GetAmmo());
-            Shots = 15;
 
             _crosshair = UnityEngine.Object.Instantiate(
                 The<BattleAssets>.Get().LineCrosshair,
