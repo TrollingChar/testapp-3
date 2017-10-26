@@ -22,6 +22,8 @@ namespace Assets {
         public GameObject HPField;
         [Space]
         public GameObject BazookaWeapon;
+        public GameObject GrenadeWeapon;
+        public GameObject LimonkaWeapon;
         [Space]
         public GameObject BazookaShell;
 
