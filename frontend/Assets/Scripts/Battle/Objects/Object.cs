@@ -15,7 +15,7 @@ namespace Battle.Objects {
 
     public abstract class Object {
 
-        private static readonly NullObject _empty = new NullObject();
+        private static readonly NullObject _null = new NullObject();
 
         private readonly World _world = The<World>.Get();
 
@@ -85,8 +85,20 @@ namespace Battle.Objects {
         }
 
 
+        public void Spawn(Object o, XY position, XY velocity = default(XY))
+        {
+            o.Node = Node.List.AddBefore(Node, o);
+            // todo get rid of duplicate code: World.cs
+            o.Position = position;
+            o.Velocity = velocity;
+            o.GameObject = new GameObject(o.GetType().ToString());
+            o.OnAdd();
+            o.UpdateGameObjectPosition();
+        }
+
+
         public void Remove () {
-            Node.Value = _empty;
+            Node.Value = _null;
             RemoveColliders();
             CollisionHandler = null;
             Explosive = null;

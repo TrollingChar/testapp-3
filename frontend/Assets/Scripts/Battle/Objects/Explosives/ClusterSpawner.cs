@@ -13,7 +13,7 @@ namespace Battle.Objects.Explosives
             for (int i = 0; i < 6; i++) {
                 var cluster = new LimonkaCluster();
                 XY velocity = XY.FromPolar(8 + RNG.Float() * 8, (RNG.Float() - RNG.Float()) * 0.5f).Rotated90CCW();
-                The<World>.Get().AddObject(cluster, Object.Position, velocity);
+                Object.Spawn(cluster, Object.Position, velocity);
             }
         }
     }

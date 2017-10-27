@@ -48,8 +48,7 @@ namespace Battle.Weapons.WeaponTypes.Thrown {
 
 
         protected override void OnShoot () {
-            var world = The<World>.Get();
-            world.AddObject(
+            Object.Spawn(
                 new Limonka(),
                 Object.Position,
                 (TurnData.XY - Object.Position).WithLength(Power * 0.6f)

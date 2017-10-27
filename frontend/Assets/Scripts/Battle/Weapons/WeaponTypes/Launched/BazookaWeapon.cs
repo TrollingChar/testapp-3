@@ -44,8 +44,7 @@ namespace Battle.Weapons.WeaponTypes.Launched {
 
 
         protected override void OnShoot () {
-            var world = The<World>.Get();
-            world.AddObject(
+            Object.Spawn(
                 new BazookaShell(),
                 Object.Position,
                 (TurnData.XY - Object.Position).WithLength(Power * 0.6f)
