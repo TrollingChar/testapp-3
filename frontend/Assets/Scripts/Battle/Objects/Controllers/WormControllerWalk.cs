@@ -17,7 +17,7 @@ namespace Battle.Objects.Controllers {
         }
 
 
-        public override void Update (TurnData td) {
+        protected override void DoUpdate (TurnData td) {
             var worm = (Worm) Object;
 
             if (td != null) worm.LookAt(td.XY);

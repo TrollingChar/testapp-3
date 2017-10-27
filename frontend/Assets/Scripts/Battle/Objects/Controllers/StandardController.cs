@@ -9,7 +9,7 @@ namespace Battle.Objects.Controllers {
         private readonly float _gravity = The<World>.Get().Gravity;
 
 
-        public override void Update (TurnData td) {
+        protected override void DoUpdate (TurnData td) {
             Object.Velocity.Y += _gravity;
         }
 

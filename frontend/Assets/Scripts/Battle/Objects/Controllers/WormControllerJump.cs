@@ -11,8 +11,8 @@ namespace Battle.Objects.Controllers {
         }
 
 
-        public override void Update (TurnData td) {
-            base.Update(td);
+        protected override void DoUpdate (TurnData td) {
+            base.DoUpdate(td);
             Wait();
         }
 

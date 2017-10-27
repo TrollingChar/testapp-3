@@ -1,5 +1,6 @@
 ﻿using Battle.State;
 using DataTransfer.Data;
+using UnityEngine;
 using Utils.Singleton;
 
 
@@ -7,13 +8,34 @@ namespace Battle.Objects.Controllers {
 
     public class Controller : Component {
 
-        private readonly TimerWrapper _timer = The<TimerWrapper>.Get();
+        private TimerWrapper _gameTimer = The<TimerWrapper>.Get();
+        private int _timer = 20000;
 
-        public virtual void Update (TurnData td) {}
+        public int Timer
+        {
+            get { return _timer; }
+            set { _timer = value; }
+        }
+
+        public void Update(TurnData td)
+        {
+            if (Timer > 0 & (Timer -= 20) <= 0) {
+                DoUpdate(td);
+                OnTimer();
+            } else {
+                DoUpdate(td);
+            }
+            if (this is GrenadeController) Debug.Log(Timer);
+        }
+
+        protected virtual void DoUpdate(TurnData td) {}
+
+
+        public virtual void OnTimer() {}
 
 
         protected void Wait (int milliseconds = 500) {
-            _timer.Wait(milliseconds);
+            _gameTimer.Wait(milliseconds);
         }
 
     }

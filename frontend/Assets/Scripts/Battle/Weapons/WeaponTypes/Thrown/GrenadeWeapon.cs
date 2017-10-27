@@ -14,6 +14,7 @@ namespace Battle.Weapons.WeaponTypes.Thrown {
 
         private LineCrosshair _crosshair;
         private GameObject _sprite;
+        private int _timer = 5;
 
         public static WeaponDescriptor Descriptor {
             get {
@@ -43,13 +44,13 @@ namespace Battle.Weapons.WeaponTypes.Thrown {
 
 
         protected override void OnNumberPress (int n) {
-            // todo
+            _timer = n;
         }
 
 
         protected override void OnShoot () {
             Object.Spawn(
-                new Grenade(),
+                new Grenade(_timer),
                 Object.Position,
                 (TurnData.XY - Object.Position).WithLength(Power * 0.6f)
             );

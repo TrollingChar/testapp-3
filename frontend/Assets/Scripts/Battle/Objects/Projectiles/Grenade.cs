@@ -9,12 +9,18 @@ using Utils.Singleton;
 namespace Battle.Objects.Objects {
 
     public class Grenade : Object {
+        private readonly int _timer;
+
+        public Grenade(int timer)
+        {
+            _timer = timer;
+        }
         
         public override void OnAdd () {
             UnityEngine.Object.Instantiate(The<BattleAssets>.Get().BazookaShell, GameObject.transform, false);
             AddCollider(new CircleCollider(XY.Zero, 5f));
             Explosive = new Explosive25();
-            Controller = new ShellController(); // todo: grenade controller
+            Controller = new GrenadeController(_timer * 1000); // todo: grenade controller
             CollisionHandler = new CollisionHandler();
         }
         

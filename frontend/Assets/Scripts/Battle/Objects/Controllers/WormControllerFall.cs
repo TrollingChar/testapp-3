@@ -14,8 +14,8 @@ namespace Battle.Objects.Controllers {
         }
 
 
-        public override void Update (TurnData td) {
-            base.Update(td);
+        protected virtual void DoUpdate (TurnData td) {
+            base.DoUpdate(td);
             Wait();
 
             if (Object.Velocity.SqrLength > 0.5f) {
