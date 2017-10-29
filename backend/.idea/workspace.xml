@@ -1,8 +1,272 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="97d48aad-0c33-47c3-91aa-39728bf94522" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    <list default="true" id="73af048a-4846-472c-b87d-dbc711b82fea" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/AirstrikeIcon.PNG" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/AirstrikeIcon.PNG.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/AirstrikeIcon.prefab" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/AirstrikeIcon.prefab.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/AngryBirdIcon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/AngryBirdIcon.png.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/AngryBirdIcon.prefab" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/AngryBirdIcon.prefab.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/ArmageddonIcon.PNG" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/ArmageddonIcon.PNG.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/ArmageddonIcon.prefab" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/ArmageddonIcon.prefab.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/AxeIcon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/AxeIcon.png.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/AxeIcon.prefab" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/AxeIcon.prefab.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/BazookaIcon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/BazookaIcon.png.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/BazookaIcon.prefab" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/BazookaIcon.prefab.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/BlasterIcon.prefab" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/BlasterIcon.prefab.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/BlinkIcon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/BlinkIcon.png.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/BulletHellIcon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/BulletHellIcon.png.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/BulletHellIcon.prefab" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/BulletHellIcon.prefab.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/ControlledGrenadeIcon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/ControlledGrenadeIcon.png.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/ControlledGrenadeIcon.prefab" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/ControlledGrenadeIcon.prefab.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/CrossbowIcon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/CrossbowIcon.png.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/CrossbowIcon.prefab" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/CrossbowIcon.prefab.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/CryogunIcon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/CryogunIcon.png.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/CryogunIcon.prefab" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/CryogunIcon.prefab.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/DrillIcon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/DrillIcon.png.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/DrillIcon.prefab" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/DrillIcon.prefab.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/DynamiteIcon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/DynamiteIcon.png.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/DynamiteIcon.prefab" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/DynamiteIcon.prefab.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/EarthquakeIcon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/EarthquakeIcon.png.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/EarthquakeIcon.prefab" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/EarthquakeIcon.prefab.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/ErosionIcon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/ErosionIcon.png.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/ErosionIcon.prefab" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/ErosionIcon.prefab.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/ExplosivePunchIcon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/ExplosivePunchIcon.png.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/ExplosivePunchIcon.prefab" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/ExplosivePunchIcon.prefab.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/FingerIcon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/FingerIcon.png.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/FingerIcon.prefab" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/FingerIcon.prefab.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/FirePunchIcon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/FirePunchIcon.png.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/FirePunchIcon.prefab" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/FirePunchIcon.prefab.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/FlamethrowerIcon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/FlamethrowerIcon.png.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/FlamethrowerIcon.prefab" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/FlamethrowerIcon.prefab.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/FloodIcon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/FloodIcon.png.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/FloodIcon.prefab" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/FloodIcon.prefab.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/FrogIcon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/FrogIcon.png.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/FrogIcon.prefab" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/FrogIcon.prefab.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/FrogStrikeIcon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/FrogStrikeIcon.png.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/FrogStrikeIcon.prefab" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/FrogStrikeIcon.prefab.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/GasGrenadeIcon.PNG" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/GasGrenadeIcon.PNG.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/GasGrenageIcon.prefab" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/GasGrenageIcon.prefab.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/GirderIcon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/GirderIcon.png.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/GirderIcon.prefab" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/GirderIcon.prefab.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/GrenadeIcon.PNG" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/GrenadeIcon.PNG.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/GrenadeIcon.prefab" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/GrenadeIcon.prefab.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/GsomRaycasterIcon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/GsomRaycasterIcon.png.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/GsomRaycasterIcon.prefab" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/GsomRaycasterIcon.prefab.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/HammerIcon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/HammerIcon.png.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/HammerIcon.prefab" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/HammerIcon.prefab.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/HarpoonIcon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/HarpoonIcon.png.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/HarpoonIcon.prefab" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/HarpoonIcon.prefab.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/HeatPistolIcon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/HeatPistolIcon.png.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/HeatPistolIcon.prefab" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/HeatPistolIcon.prefab.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/HeatPistolOldIcon.PNG" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/HeatPistolOldIcon.PNG.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/HolyGrenadeIcon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/HolyGrenadeIcon.png.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/HolyGrenadeIcon.prefab" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/HolyGrenadeIcon.prefab.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/HomingMissileIcon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/HomingMissileIcon.png.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/HomingMissileIcon.prefab" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/HomingMissileIcon.prefab.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/JetpackIcon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/JetpackIcon.png.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/JetpackIcon.prefab" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/JetpackIcon.prefab.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/JumperIcon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/JumperIcon.png.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/JumperIcon.prefab" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/JumperIcon.prefab.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/LandmineIcon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/LandmineIcon.png.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/LandmineIcon.prefab" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/LandmineIcon.prefab.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/LimonkaIcon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/LimonkaIcon.png.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/LimonkaIcon.prefab" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/LimonkaIcon.prefab.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/MachineGunIcon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/MachineGunIcon.png.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/MachineGunIcon.prefab" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/MachineGunIcon.prefab.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/MagnetIcon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/MagnetIcon.png.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/MagnetIcon.prefab" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/MagnetIcon.prefab.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/MassTeleportIcon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/MassTeleportIcon.png.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/MassTeleportIcon.prefab" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/MassTeleportIcon.prefab.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/MedikitIcon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/MedikitIcon.png.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/MedikitIcon.prefab" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/MedikitIcon.prefab.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/MindControlIcon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/MindControlIcon.png.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/MindControlIcon.prefab" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/MindControlIcon.prefab.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/MineStrikeIcon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/MineStrikeIcon.png.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/MineStrikeIcon.prefab" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/MineStrikeIcon.prefab.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/MinegunIcon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/MinegunIcon.png.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/MinegunIcon.prefab" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/MinegunIcon.prefab.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/MoleIcon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/MoleIcon.png.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/MoleIcon.prefab" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/MoleIcon.prefab.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/MoleStrikeIcon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/MoleStrikeIcon.png.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/MoleStrikeIcon.prefab" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/MoleStrikeIcon.prefab.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/MolotovIcon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/MolotovIcon.png.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/MolotovIcon.prefab" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/MolotovIcon.prefab.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/MultiLauncherIcon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/MultiLauncherIcon.png.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/MultiLauncherIcon.prefab" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/MultiLauncherIcon.prefab.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/NapalmStrikeIcon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/NapalmStrikeIcon.png.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/NapalmStrikeIcon.prefab" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/NapalmStrikeIcon.prefab.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/NukeIcon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/NukeIcon.png.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/NukeIcon.prefab" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/NukeIcon.prefab.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/OverhealIcon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/OverhealIcon.png.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/OverhealIcon.prefab" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/OverhealIcon.prefab.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/ParachuteIcon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/ParachuteIcon.png.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/ParachuteIcon.prefab" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/ParachuteIcon.prefab.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/PhantomGrenadeIcon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/PhantomGrenadeIcon.png.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/PhantomGrenadeIcon.prefab" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/PhantomGrenadeIcon.prefab.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/PistolIcon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/PistolIcon.png.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/PistolIcon.prefab" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/PistolIcon.prefab.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/PlasmagunIcon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/PlasmagunIcon.png.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/PlasmagunIcon.prefab" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/PlasmagunIcon.prefab.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/PoisonCloudIcon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/PoisonCloudIcon.png.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/PoisonCloudIcon.prefab" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/PoisonCloudIcon.prefab.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/PoisonContainerIcon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/PoisonContainerIcon.png.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/PoisonContainerIcon.prefab" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/PoisonContainerIcon.prefab.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/RopeIcon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/RopeIcon.png.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/RopeIcon.prefab" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/RopeIcon.prefab.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/SkipTurnIcon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/SkipTurnIcon.png.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/SkipTurnIcon.prefab" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/SkipTurnIcon.prefab.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/SuperfrogIcon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/SuperfrogIcon.png.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/SuperfrogIcon.prefab" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/SuperfrogIcon.prefab.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/SurrenderIcon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/SurrenderIcon.png.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/SurrenderIcon.prefab" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/SurrenderIcon.prefab.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/TeleportIcon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/TeleportIcon.png.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/TeleportIcon.prefab" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/TeleportIcon.prefab.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/TurretIcon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/TurretIcon.png.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/TurretIcon.prefab" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/TurretIcon.prefab.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/UltraRifleIcon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/UltraRifleIcon.png.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/UltraRifleIcon.prefab" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/UltraRifleIcon.prefab.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/VacuumBombIcon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/VacuumBombIcon.png.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/VacuumBombIcon.prefab" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/VacuumBombIcon.prefab.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/WormSelectIcon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/WormSelectIcon.png.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/WormSelectIcon.prefab" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Icons/WormSelectIcon.prefab.meta" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Weapons/Bazooka/BazookaIcon.prefab" afterPath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Weapons/Bazooka/BazookaIcon.prefab" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Weapons/Grenade/GrenadeIcon.prefab" afterPath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Weapons/Grenade/GrenadeIcon.prefab" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Weapons/Limonka/LimonkaIcon.prefab" afterPath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Weapons/Limonka/LimonkaIcon.prefab" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Weapons/Bazooka/BazookaIcon.png.meta" afterPath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Weapons/Bazooka/BazookaIcon.png.meta" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Weapons/Bazooka/BazookaIcon.prefab.meta" afterPath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Weapons/Bazooka/BazookaIcon.prefab.meta" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Weapons/Grenade/GrenadeIcon.png.meta" afterPath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Weapons/Grenade/GrenadeIcon.png.meta" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Weapons/Grenade/GrenadeIcon.prefab.meta" afterPath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Weapons/Grenade/GrenadeIcon.prefab.meta" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Weapons/Limonka/LimonkaIcon.png.meta" afterPath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Weapons/Limonka/LimonkaIcon.png.meta" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Weapons/Limonka/LimonkaIcon.prefab.meta" afterPath="$PROJECT_DIR$/../frontend/Assets/Bundles/War/Weapons/Limonka/LimonkaIcon.prefab.meta" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -13,6 +277,9 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FileEditorManager">
+    <leaf />
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
@@ -37,6 +304,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -129,11 +397,24 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="backend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="backend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value=".idea" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scratches" />
       <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -344,47 +625,46 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="97d48aad-0c33-47c3-91aa-39728bf94522" name="Default" comment="" />
-      <created>1509044170375</created>
+      <changelist id="73af048a-4846-472c-b87d-dbc711b82fea" name="Default" comment="" />
+      <created>1509268131007</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1509044170375</updated>
-      <workItem from="1509044196651" duration="1514000" />
-      <workItem from="1509126972197" duration="2632000" />
+      <updated>1509268131007</updated>
+      <workItem from="1509268191580" duration="1247000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4146000" />
+    <option name="totallyTimeSpent" value="1247000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1620" height="920" extended-state="0" />
     <layout>
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Tool Output" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3292232" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="ANTLR Preview" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Tool Output" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3292232" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3292232" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="ANTLR Preview" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -397,5 +677,15 @@
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
     <option name="FILTER_TARGETS" value="false" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
   </component>
 </project>

@@ -21,58 +21,73 @@ namespace Battle.UI {
 
         private void Start () {
             AddWeapon(BazookaWeapon.Descriptor);
-            AddEmpty(2);
+            AddWeapon(PlasmagunWeapon.Descriptor);
+            AddWeapon(HomingMissileWeapon.Descriptor);
             AddWeapon(MultiLauncherWeapon.Descriptor);
-            AddEmpty(3);
+            AddWeapon(MinegunWeapon.Descriptor);
+            AddWeapon(CryogunWeapon.Descriptor);
+            AddWeapon(BirdLauncherWeapon.Descriptor);
 
             AddWeapon(GrenadeWeapon.Descriptor);
             AddWeapon(LimonkaWeapon.Descriptor);
             AddWeapon(MolotovWeapon.Descriptor);
             AddWeapon(GasGrenadeWeapon.Descriptor);
             AddWeapon(ControlledGrenadeWeapon.Descriptor);
-            AddEmpty();
+            AddWeapon(PhantomGrenadeWeapon.Descriptor);
             AddWeapon(HolyGrenadeWeapon.Descriptor);
 
             AddWeapon(MachineGunWeapon.Descriptor);
-            AddEmpty();
+            AddWeapon(BlasterWeapon.Descriptor);
             AddWeapon(PistolWeapon.Descriptor);
             AddWeapon(HeatPistolWeapon.Descriptor);
             AddWeapon(PoisonArrowWeapon.Descriptor);
             AddWeapon(UltraRifleWeapon.Descriptor);
-            AddEmpty();
+            AddWeapon(GsomRaycasterWeapon.Descriptor);
 
             AddWeapon(FirePunchWeapon.Descriptor);
             AddWeapon(ExplosivePunchWeapon.Descriptor);
             AddWeapon(FingerWeapon.Descriptor);
-            AddEmpty();
+            AddWeapon(AxeWeapon.Descriptor);
             AddWeapon(HammerWeapon.Descriptor);
-            AddEmpty(2);
+            AddWeapon(FlamerthrowerWeapon.Descriptor);
+            AddWeapon(HarpoonWeapon.Descriptor);
 
             AddWeapon(LandmineWeapon.Descriptor);
             AddWeapon(DynamiteWeapon.Descriptor);
-            AddEmpty(5);
+            AddWeapon(PoisonContainerWeapon.Descriptor);
+            AddWeapon(TurretWeapon.Descriptor);
+            AddWeapon(FrogWeapon.Descriptor);
+            AddWeapon(MoleWeapon.Descriptor);
+            AddWeapon(SuperfrogWeapon.Descriptor);
 
             AddWeapon(AirstrikeWeapon.Descriptor);
-            AddEmpty(3);
+            AddWeapon(NapalmWeapon.Descriptor);
+            AddWeapon(DropMoleWeapon.Descriptor);
+            AddWeapon(DropFrogWeapon.Descriptor);
             AddWeapon(MineStrikeWeapon.Descriptor);
-            AddEmpty(2);
+            AddWeapon(VacuumBombWeapon.Descriptor);
+            AddWeapon(NukeWeapon.Descriptor);
 
-            AddEmpty(3);
+            AddWeapon(ErosionWeapon.Descriptor);
+            AddWeapon(PoisonCloudWeapon.Descriptor);
+            AddWeapon(EarthquakeWeapon.Descriptor);
             AddWeapon(FloodWeapon.Descriptor);
-            AddEmpty(3);
+            AddWeapon(BulletHellWeapon.Descriptor);
+            AddWeapon(MindControlWeapon.Descriptor);
+            AddWeapon(ArmageddonWeapon.Descriptor);
 
             AddWeapon(RopeWeapon.Descriptor);
-            AddEmpty();
+            AddWeapon(JetpackWeapon.Descriptor);
             AddWeapon(ParachuteWeapon.Descriptor);
             AddWeapon(JumperWeapon.Descriptor);
             AddWeapon(TeleportWeapon.Descriptor);
-            AddEmpty();
+            AddWeapon(MassTeleportWeapon.Descriptor);
             AddWeapon(WormSelectWeapon.Descriptor);
 
-            AddEmpty();
+            AddWeapon(DrillWeapon.Descriptor);
             AddWeapon(GirderWeapon.Descriptor);
             AddWeapon(MagnetWeapon.Descriptor);
-            AddEmpty();
+            AddWeapon(MedikitWeapon.Descriptor);
             AddWeapon(OverhealWeapon.Descriptor);
             AddWeapon(SkipTurnWeapon.Descriptor);
             AddWeapon(SurrenderWeapon.Descriptor);
