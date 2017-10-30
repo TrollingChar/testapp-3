@@ -5,14 +5,14 @@ using Utils.Singleton;
 
 namespace Battle.Weapons.WeaponTypes.Airstrikes {
 
-    [Weapon(WeaponId.Airstrike)]
-    public class AirstrikeWeapon : StandardWeapon {
+    [Weapon(WeaponId.Napalm)]
+    public class NapalmWeapon : StandardWeapon {
 
         public static WeaponDescriptor Descriptor {
             get {
                 return new WeaponDescriptor(
-                    WeaponId.Airstrike,
-                    The<WeaponIcons>.Get().Airstrike
+                    WeaponId.Napalm,
+                    The<WeaponIcons>.Get().Napalm
                 );
             }
         }
