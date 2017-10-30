@@ -15,6 +15,7 @@ namespace Assets {
         public Texture2D LandTexture;
         [Space]
         public GameObject LineCrosshair;
+        public GameObject PointCrosshair;
         [Space]
         public GameObject Worm;
         public GameObject Arrow;
@@ -25,12 +26,14 @@ namespace Assets {
         public GameObject MultiLauncherWeapon;
         public GameObject GrenadeWeapon;
         public GameObject LimonkaWeapon;
+        public GameObject PhantomGrenadeWeapon;
         [Space]
         public GameObject BazookaShell;
         public GameObject MultiLauncherShell;
         public GameObject Grenade;
         public GameObject Limonka;
         public GameObject LimonkaCluster;
+        public GameObject PhantomGrenade;
 
         private void Awake () {
             The<BattleAssets>.Set(this);

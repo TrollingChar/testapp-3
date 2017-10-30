@@ -1,6 +1,5 @@
 ﻿using Assets;
 using Attributes;
-using Battle.Objects.Objects;
 using Battle.Objects.Projectiles;
 using Battle.Weapons.Crosshairs;
 using UnityEngine;

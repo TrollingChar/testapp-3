@@ -49,7 +49,7 @@ namespace Battle.UI {
             AddWeapon(FingerWeapon.Descriptor);
             AddWeapon(AxeWeapon.Descriptor);
             AddWeapon(HammerWeapon.Descriptor);
-            AddWeapon(FlamerthrowerWeapon.Descriptor);
+            AddWeapon(FlamethrowerWeapon.Descriptor);
             AddWeapon(HarpoonWeapon.Descriptor);
 
             AddWeapon(LandmineWeapon.Descriptor);

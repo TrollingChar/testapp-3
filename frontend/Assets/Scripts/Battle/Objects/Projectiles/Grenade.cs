@@ -6,7 +6,7 @@ using Battle.Physics.Collisions;
 using Geometry;
 using Utils.Singleton;
 
-namespace Battle.Objects.Objects {
+namespace Battle.Objects.Projectiles {
 
     public class Grenade : Object {
         private readonly int _timer;
@@ -25,5 +25,4 @@ namespace Battle.Objects.Objects {
         }
         
     }
-
 }

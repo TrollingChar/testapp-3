@@ -1,26 +1,24 @@
-﻿using System;
-using Assets;
+﻿using Assets;
 using Attributes;
 using Battle.Objects.Projectiles;
 using Battle.Weapons.Crosshairs;
 using UnityEngine;
 using Utils.Singleton;
 
-
-namespace Battle.Weapons.WeaponTypes.Thrown {
-
-    [Weapon(WeaponId.Grenade)]
-    public class GrenadeWeapon : StandardWeapon {
+namespace Battle.Weapons.WeaponTypes.Thrown
+{
+    [Weapon(WeaponId.PhantomGrenade)]
+    public class PhantomGrenadeWeapon : StandardWeapon {
 
         private LineCrosshair _crosshair;
         private GameObject _sprite;
-        private int _timer = 5;
-
+        private int _timer = 1;
+        
         public static WeaponDescriptor Descriptor {
             get {
                 return new WeaponDescriptor(
-                    WeaponId.Grenade,
-                    The<WeaponIcons>.Get().Grenade
+                    WeaponId.PhantomGrenade,
+                    The<WeaponIcons>.Get().PhantomGrenade
                 );
             }
         }
@@ -36,7 +34,7 @@ namespace Battle.Weapons.WeaponTypes.Thrown {
             ).GetComponent<LineCrosshair>();
 
             _sprite = UnityEngine.Object.Instantiate(
-                The<BattleAssets>.Get().GrenadeWeapon,
+                The<BattleAssets>.Get().PhantomGrenadeWeapon,
                 GameObject.transform,
                 false
             );
@@ -50,7 +48,7 @@ namespace Battle.Weapons.WeaponTypes.Thrown {
 
         protected override void OnShoot () {
             Object.Spawn(
-                new Grenade(_timer),
+                new PhantomGrenade(_timer),
                 Object.Position,
                 (TurnData.XY - Object.Position).WithLength(Power * 0.6f)
             );
@@ -63,5 +61,5 @@ namespace Battle.Weapons.WeaponTypes.Thrown {
         }
 
     }
-
+    
 }
