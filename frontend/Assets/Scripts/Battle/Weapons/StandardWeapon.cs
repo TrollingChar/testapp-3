@@ -51,6 +51,8 @@ namespace Battle.Weapons {
         public override void Update (TurnData td) {
             base.Update(td);
             if (!Equipped) return;
+            
+            if (td.NumKey > 0) OnNumberPress(td.NumKey);
 
             if (Fires) {
                 if (--_shotCooldown <= 0) Shoot();
