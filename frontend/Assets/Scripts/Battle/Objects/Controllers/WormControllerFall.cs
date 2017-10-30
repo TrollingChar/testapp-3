@@ -6,7 +6,7 @@ namespace Battle.Objects.Controllers {
 
     public class WormControllerFall : StandardController {
 
-        private float _control = 0;
+        private float _control;
 
 
         public override void OnAdd () {

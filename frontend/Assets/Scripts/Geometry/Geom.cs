@@ -54,15 +54,20 @@ namespace Geometry {
         }
 
 
-        public static bool AreOverlapping(
-            XY circleCenter, float circleRadius,
-            float boxLeft, float boxRight, float boxBottom, float boxTop
+        public static bool AreOverlapping (
+            XY circleCenter,
+            float circleRadius,
+            float boxLeft,
+            float boxRight,
+            float boxBottom,
+            float boxTop
         ) {
             // если окружность полностью внутри прямоугольника
-            if (circleCenter.X > boxLeft && circleCenter.X < boxRight && circleCenter.Y > boxBottom && circleCenter.Y < boxTop) return true;
-            
+            if (circleCenter.X > boxLeft && circleCenter.X < boxRight && circleCenter.Y > boxBottom &&
+                circleCenter.Y < boxTop) return true;
+
             float sqrRadius = circleRadius * circleRadius;
-                // стороны
+            // стороны
             return boxLeft < circleCenter.X + circleRadius
                 && boxRight > circleCenter.X - circleRadius
                 && boxBottom < circleCenter.Y + circleRadius

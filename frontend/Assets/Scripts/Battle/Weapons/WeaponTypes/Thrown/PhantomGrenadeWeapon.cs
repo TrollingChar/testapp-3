@@ -5,15 +5,16 @@ using Battle.Weapons.Crosshairs;
 using UnityEngine;
 using Utils.Singleton;
 
-namespace Battle.Weapons.WeaponTypes.Thrown
-{
+
+namespace Battle.Weapons.WeaponTypes.Thrown {
+
     [Weapon(WeaponId.PhantomGrenade)]
     public class PhantomGrenadeWeapon : StandardWeapon {
 
         private LineCrosshair _crosshair;
         private GameObject _sprite;
         private int _timer = 1;
-        
+
         public static WeaponDescriptor Descriptor {
             get {
                 return new WeaponDescriptor(
@@ -61,5 +62,5 @@ namespace Battle.Weapons.WeaponTypes.Thrown
         }
 
     }
-    
+
 }

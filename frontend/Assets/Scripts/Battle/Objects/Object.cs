@@ -85,8 +85,7 @@ namespace Battle.Objects {
         }
 
 
-        public void Spawn(Object o, XY position, XY velocity = default(XY))
-        {
+        public void Spawn (Object o, XY position, XY velocity = default(XY)) {
             o.Node = Node.List.AddBefore(Node, o);
             // todo get rid of duplicate code: World.cs
             o.Position = position;

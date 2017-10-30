@@ -2,11 +2,12 @@
 using Attributes;
 using Utils.Singleton;
 
-namespace Battle.Weapons.WeaponTypes.OtherUtils
-{
+
+namespace Battle.Weapons.WeaponTypes.OtherUtils {
+
     [Weapon(WeaponId.Drill)]
-    public class DrillWeapon : StandardWeapon
-    {
+    public class DrillWeapon : StandardWeapon {
+
         public static WeaponDescriptor Descriptor {
             get {
                 return new WeaponDescriptor(
@@ -15,5 +16,7 @@ namespace Battle.Weapons.WeaponTypes.OtherUtils
                 );
             }
         }
+
     }
+
 }

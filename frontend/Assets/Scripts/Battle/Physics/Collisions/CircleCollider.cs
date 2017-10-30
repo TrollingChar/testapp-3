@@ -67,7 +67,7 @@ namespace Battle.Physics.Collisions {
             float minDist = 1;
             Collision result = null;
 
-            XY center = Center;
+            var center = Center;
             float d;
             // check right side
             if (velocity.X < 0) {

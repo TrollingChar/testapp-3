@@ -2,8 +2,9 @@
 using Attributes;
 using Utils.Singleton;
 
-namespace Battle.Weapons.WeaponTypes.Airstrikes
-{
+
+namespace Battle.Weapons.WeaponTypes.Airstrikes {
+
     [Weapon(WeaponId.DropMole)]
     public class DropMoleWeapon : StandardWeapon {
 
@@ -25,4 +26,5 @@ namespace Battle.Weapons.WeaponTypes.Airstrikes
         protected override void OnShoot () {}
 
     }
+
 }

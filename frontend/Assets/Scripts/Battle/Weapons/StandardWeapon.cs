@@ -51,7 +51,7 @@ namespace Battle.Weapons {
         public override void Update (TurnData td) {
             base.Update(td);
             if (!Equipped) return;
-            
+
             if (td.NumKey > 0) OnNumberPress(td.NumKey);
 
             if (Fires) {
@@ -120,7 +120,7 @@ namespace Battle.Weapons {
             crosshair.RingPosition = Power / 50f;
         }
 
-        
+
         protected void UpdateAimedWeapon (GameObject sprite) {
             var xy = TurnData.XY - Object.Position;
             if (xy == XY.Zero) xy = XY.Up;
@@ -133,7 +133,7 @@ namespace Battle.Weapons {
             sprite.transform.localScale = scale;
             sprite.transform.localEulerAngles = new Vector3(0, 0, angle + (deltaTooBig ? 180 : 0));
         }
-        
+
     }
 
 }

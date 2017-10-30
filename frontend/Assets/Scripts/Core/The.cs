@@ -7,10 +7,11 @@ using Battle.UI;
 using Menu;
 using Net;
 
-namespace Core
-{
-    public static class The
-    {
+
+namespace Core {
+
+    public static class The {
+
         public static BattleAssets BattleAssets;
         public static WeaponIcons WeaponIcons;
         public static TimerWrapper TimerWrapper;
@@ -26,5 +27,7 @@ namespace Core
         public static CameraWrapper CameraWrapper;
         public static ArsenalPanel ArsenalPanel;
         public static MenuScene MenuScene;
+
     }
+
 }

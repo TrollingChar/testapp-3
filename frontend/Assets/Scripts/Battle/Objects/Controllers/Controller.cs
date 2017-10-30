@@ -8,17 +8,16 @@ namespace Battle.Objects.Controllers {
 
     public class Controller : Component {
 
-        private TimerWrapper _gameTimer = The<TimerWrapper>.Get();
+        private readonly TimerWrapper _gameTimer = The<TimerWrapper>.Get();
         private int _timer = 20000;
 
-        public int Timer
-        {
+        public int Timer {
             get { return _timer; }
             set { _timer = value; }
         }
 
-        public void Update(TurnData td)
-        {
+
+        public void Update (TurnData td) {
             if (Timer > 0 & (Timer -= 20) <= 0) {
                 DoUpdate(td);
                 OnTimer();
@@ -28,10 +27,11 @@ namespace Battle.Objects.Controllers {
             if (this is GrenadeController) Debug.Log(Timer);
         }
 
-        protected virtual void DoUpdate(TurnData td) {}
+
+        protected virtual void DoUpdate (TurnData td) {}
 
 
-        public virtual void OnTimer() {}
+        public virtual void OnTimer () {}
 
 
         protected void Wait (int milliseconds = 500) {

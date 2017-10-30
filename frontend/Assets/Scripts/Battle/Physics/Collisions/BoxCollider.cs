@@ -69,7 +69,7 @@ namespace Battle.Physics.Collisions {
 
             float minDist = 1;
             Collision result = null;
-            
+
             float d;
             if (velocity.X < 0) {
                 d = Geom.CastRayToVertical(new XY(left, bottom), velocity, cright);

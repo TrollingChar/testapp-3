@@ -6,15 +6,18 @@ using Battle.Physics.Collisions;
 using Geometry;
 using Utils.Singleton;
 
-namespace Battle.Objects.Projectiles
-{
-    public class Limonka : Object
-    {
-        private int _timer;
-        
-        public Limonka(int timer) {
+
+namespace Battle.Objects.Projectiles {
+
+    public class Limonka : Object {
+
+        private readonly int _timer;
+
+
+        public Limonka (int timer) {
             _timer = timer;
         }
+
 
         public override void OnAdd () {
             UnityEngine.Object.Instantiate(The<BattleAssets>.Get().Limonka, GameObject.transform, false);
@@ -23,5 +26,7 @@ namespace Battle.Objects.Projectiles
             Controller = new GrenadeController(_timer * 1000);
             CollisionHandler = new CollisionHandler();
         }
+
     }
+
 }

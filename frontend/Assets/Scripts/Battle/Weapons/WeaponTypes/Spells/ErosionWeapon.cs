@@ -8,7 +8,7 @@ namespace Battle.Weapons.WeaponTypes.Spells {
 
     [Weapon(WeaponId.Erosion)]
     public class ErosionWeapon : StandardWeapon {
-        
+
         private PointCrosshair _crosshair;
 
         public static WeaponDescriptor Descriptor {
@@ -20,8 +20,8 @@ namespace Battle.Weapons.WeaponTypes.Spells {
             }
         }
 
-        protected override void OnEquip()
-        {
+
+        protected override void OnEquip () {
 //            _crosshair = UnityEngine.Object.Instantiate(
 //                The<BattleAssets>.Get().PointCrosshair,
 //                GameObject.transform,
@@ -36,8 +36,8 @@ namespace Battle.Weapons.WeaponTypes.Spells {
 //            );
         }
 
-        protected override void OnShoot()
-        {
+
+        protected override void OnShoot () {
             The<World>.Get().DestroyTerrain(TurnData.XY, 40f);
         }
 

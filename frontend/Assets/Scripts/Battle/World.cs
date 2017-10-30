@@ -54,7 +54,7 @@ namespace Battle {
             for (var node = _objects.First; node != null; node = node.Next) {
                 node.Value.Update(td);
             }
-            
+
             PhysicsTick(td);
 
             // clear all NullObjects WITHOUT INVALIDATING THEIR NODES!
@@ -163,10 +163,8 @@ namespace Battle {
                             float normBounce = Mathf.Sqrt(
                                 c.Collider1.NormalBounce * c.Collider2.NormalBounce
                             );
-                            if (o2wcc)
-                                o.Velocity = velocity + Geom.Bounce(v1, c.Normal, tangBounce, normBounce);
-                            if (owcc)
-                                o2.Velocity = velocity + Geom.Bounce(v2, c.Normal, tangBounce, normBounce);
+                            if (o2wcc) o.Velocity = velocity + Geom.Bounce(v1, c.Normal, tangBounce, normBounce);
+                            if (owcc) o2.Velocity = velocity + Geom.Bounce(v2, c.Normal, tangBounce, normBounce);
                         }
                         o.OnCollision(c);
                         o2.OnCollision(-c);
@@ -250,7 +248,7 @@ namespace Battle {
             foreach (var o in _objects) {
                 float sqrDistance = XY.SqrDistance(center, o.Position);
                 if (sqrDistance >= sqrRadius) continue;
-                
+
                 int currentDamage = Mathf.CeilToInt(damage * (1f - Mathf.Sqrt(sqrDistance / sqrRadius)));
                 o.GetDamage(currentDamage);
             }
@@ -267,7 +265,7 @@ namespace Battle {
             foreach (var o in _objects) {
                 float sqrDistance = XY.SqrDistance(center, o.Position);
                 if (sqrDistance >= sqrRadius) continue;
-                
+
                 float currentImpulse = impulse * (1f - Mathf.Sqrt(sqrDistance / sqrRadius));
                 o.ReceiveBlastWave((o.Position - center).WithLength(currentImpulse));
             }

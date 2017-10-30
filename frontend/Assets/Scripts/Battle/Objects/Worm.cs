@@ -9,6 +9,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Utils.Random;
 using Utils.Singleton;
+using BoxCollider = Battle.Physics.Collisions.BoxCollider;
 using UnObject = UnityEngine.Object;
 
 
@@ -121,7 +122,7 @@ namespace Battle.Objects {
 
             AddCollider(Head = new CircleCollider(new XY(0f, BodyHeight * 0.5f), HeadRadius));
             AddCollider(Tail = new CircleCollider(new XY(0f, BodyHeight * -0.5f), HeadRadius));
-            AddCollider(new Physics.Collisions.BoxCollider(-5, 5, -2.5f, 2.5f));
+            AddCollider(new BoxCollider(-5, 5, -2.5f, 2.5f));
 //            AddCollider(new Physics.Collisions.BoxCollider(-5, 5, -7.5f, 7.5f));
 
             Controller = new WormControllerJump();
@@ -181,7 +182,8 @@ namespace Battle.Objects {
 
 
         public bool CanLandThere {
-            get { /*throw new NotImplementedException();*/
+            get {
+                /*throw new NotImplementedException();*/
                 return true;
             }
         }

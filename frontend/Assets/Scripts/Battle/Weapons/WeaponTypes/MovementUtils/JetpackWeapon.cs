@@ -2,11 +2,12 @@
 using Attributes;
 using Utils.Singleton;
 
-namespace Battle.Weapons.WeaponTypes.MovementUtils
-{
+
+namespace Battle.Weapons.WeaponTypes.MovementUtils {
+
     [Weapon(WeaponId.Jetpack)]
-    public class JetpackWeapon : StandardWeapon
-    {
+    public class JetpackWeapon : StandardWeapon {
+
         public static WeaponDescriptor Descriptor {
             get {
                 return new WeaponDescriptor(
@@ -15,5 +16,7 @@ namespace Battle.Weapons.WeaponTypes.MovementUtils
                 );
             }
         }
+
     }
+
 }

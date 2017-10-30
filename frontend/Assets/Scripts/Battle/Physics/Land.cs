@@ -12,9 +12,10 @@ namespace Battle.Physics {
     public class Land {
 
         private byte[,] _array;
+
         //private Texture2D _tex;
         private LandRenderer _landRenderer;
-        
+
         private int _progress, _fullProgress;
 
         public float TangentialBounce, NormalBounce;
@@ -323,7 +324,7 @@ namespace Battle.Physics {
             int top = Mathf.Min(Height, 1 + Mathf.FloorToInt(center.Y + radius));
 
 //            var pixels = _tex.GetPixels(left, bottom, right - left, top - bottom);
-            
+
             for (int x = left; x < right; x++)
             for (int y = bottom; y < top; y++) {
                 if (XY.SqrDistance(center, new XY(x, y)) > sqrRadius) continue;

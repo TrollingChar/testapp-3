@@ -6,8 +6,9 @@ using Battle.Physics.Collisions;
 namespace Battle.Objects.CollisionHandlers {
 
     public class WormFallCollisionHandler : CollisionHandler {
-        
+
         // bug: 2 worms in a pit cause game to never end a turn
+
 
         public override void OnCollision (Collision c) {
             if (c.Collider2 == null) return;

@@ -6,17 +6,19 @@ using Battle.Physics.Collisions;
 using Geometry;
 using Utils.Singleton;
 
-namespace Battle.Objects.Projectiles
-{
-    public class LimonkaCluster : Object
-    {
-        public override void OnAdd()
-        {
+
+namespace Battle.Objects.Projectiles {
+
+    public class LimonkaCluster : Object {
+
+        public override void OnAdd () {
             UnityEngine.Object.Instantiate(The<BattleAssets>.Get().LimonkaCluster, GameObject.transform, false);
             AddCollider(new CircleCollider(XY.Zero, 5f));
             Explosive = new Explosive10Wide();
             Controller = new StandardController();
             CollisionHandler = new DetonatorCollisionHandler();
         }
+
     }
+
 }

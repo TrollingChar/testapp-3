@@ -40,11 +40,11 @@ namespace DataTransfer.Data {
 
         public static TurnData FromInput () {
             byte numKey = 0;
-            if (Input.GetKey(KeyCode.Alpha1)) numKey = 1; 
-            if (Input.GetKey(KeyCode.Alpha2)) numKey = 2; 
-            if (Input.GetKey(KeyCode.Alpha3)) numKey = 3; 
-            if (Input.GetKey(KeyCode.Alpha4)) numKey = 4; 
-            if (Input.GetKey(KeyCode.Alpha5)) numKey = 5; 
+            if (Input.GetKey(KeyCode.Alpha1)) numKey = 1;
+            if (Input.GetKey(KeyCode.Alpha2)) numKey = 2;
+            if (Input.GetKey(KeyCode.Alpha3)) numKey = 3;
+            if (Input.GetKey(KeyCode.Alpha4)) numKey = 4;
+            if (Input.GetKey(KeyCode.Alpha5)) numKey = 5;
             return new TurnData {
                 W = Input.GetKey(KeyCode.W),
                 A = Input.GetKey(KeyCode.A),

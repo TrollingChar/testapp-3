@@ -2,11 +2,12 @@
 using Attributes;
 using Utils.Singleton;
 
-namespace Battle.Weapons.WeaponTypes.Launched
-{
+
+namespace Battle.Weapons.WeaponTypes.Launched {
+
     [Weapon(WeaponId.Cryogun)]
-    public class CryogunWeapon : StandardWeapon
-    {
+    public class CryogunWeapon : StandardWeapon {
+
         public static WeaponDescriptor Descriptor {
             get {
                 return new WeaponDescriptor(
@@ -15,5 +16,7 @@ namespace Battle.Weapons.WeaponTypes.Launched
                 );
             }
         }
+
     }
+
 }
