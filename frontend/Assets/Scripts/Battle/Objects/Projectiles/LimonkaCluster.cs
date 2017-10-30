@@ -15,7 +15,7 @@ namespace Battle.Objects.Projectiles
             UnityEngine.Object.Instantiate(The<BattleAssets>.Get().LimonkaCluster, GameObject.transform, false);
             AddCollider(new CircleCollider(XY.Zero, 5f));
             Explosive = new Explosive10Wide();
-            Controller = new ShellController();
+            Controller = new StandardController();
             CollisionHandler = new DetonatorCollisionHandler();
         }
     }

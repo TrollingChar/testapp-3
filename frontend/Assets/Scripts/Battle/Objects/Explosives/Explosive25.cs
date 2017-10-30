@@ -8,9 +8,9 @@ namespace Battle.Objects.Explosives {
 
         protected override void OnDetonate () {
             var world = The<World>.Get();
-            world.DealDamage(25, Object.Position, 80f);
-            world.DestroyTerrain(Object.Position, 40f);
-            world.SendBlastWave(10f, Object.Position, 80f);
+            world.DealDamage(25, Object.Position, 100f);
+            world.DestroyTerrain(Object.Position, 50f);
+            world.SendBlastWave(10f, Object.Position, 100f);
         }
 
     }

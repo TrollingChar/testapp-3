@@ -30,7 +30,7 @@ namespace Battle.Weapons.WeaponTypes.Launched {
             ConstPower = false;
             Shots = Math.Min(5, GetAmmo());
             Shots = 5;
-            ShotCooldown = 15;
+            ShotCooldown = 10;
 
             _crosshair = UnityEngine.Object.Instantiate(
                 The<BattleAssets>.Get().LineCrosshair,
