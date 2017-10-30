@@ -38,7 +38,7 @@ namespace Battle.Weapons.WeaponTypes.Launched {
             ).GetComponent<LineCrosshair>();
 
             _sprite = UnityEngine.Object.Instantiate(
-                The<BattleAssets>.Get().BazookaWeapon,
+                The<BattleAssets>.Get().MultiLauncherWeapon,
                 GameObject.transform,
                 false
             );

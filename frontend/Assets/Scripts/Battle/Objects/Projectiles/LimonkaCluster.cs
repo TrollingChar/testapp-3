@@ -12,7 +12,7 @@ namespace Battle.Objects.Projectiles
     {
         public override void OnAdd()
         {
-            UnityEngine.Object.Instantiate(The<BattleAssets>.Get().BazookaShell, GameObject.transform, false);
+            UnityEngine.Object.Instantiate(The<BattleAssets>.Get().LimonkaCluster, GameObject.transform, false);
             AddCollider(new CircleCollider(XY.Zero, 5f));
             Explosive = new Explosive10Wide();
             Controller = new ShellController();

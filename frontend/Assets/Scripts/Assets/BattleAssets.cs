@@ -18,14 +18,19 @@ namespace Assets {
         [Space]
         public GameObject Worm;
         public GameObject Arrow;
-        public GameObject NameField;
-        public GameObject HPField;
+//        public GameObject NameField;
+//        public GameObject HPField;
         [Space]
         public GameObject BazookaWeapon;
+        public GameObject MultiLauncherWeapon;
         public GameObject GrenadeWeapon;
         public GameObject LimonkaWeapon;
         [Space]
         public GameObject BazookaShell;
+        public GameObject MultiLauncherShell;
+        public GameObject Grenade;
+        public GameObject Limonka;
+        public GameObject LimonkaCluster;
 
         private void Awake () {
             The<BattleAssets>.Set(this);

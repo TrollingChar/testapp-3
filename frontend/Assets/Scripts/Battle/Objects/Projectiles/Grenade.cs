@@ -17,7 +17,7 @@ namespace Battle.Objects.Objects {
         }
         
         public override void OnAdd () {
-            UnityEngine.Object.Instantiate(The<BattleAssets>.Get().BazookaShell, GameObject.transform, false);
+            UnityEngine.Object.Instantiate(The<BattleAssets>.Get().Grenade, GameObject.transform, false);
             AddCollider(new CircleCollider(XY.Zero, 5f));
             Explosive = new Explosive25();
             Controller = new GrenadeController(_timer * 1000); // todo: grenade controller

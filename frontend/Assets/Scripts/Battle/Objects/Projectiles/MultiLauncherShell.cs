@@ -13,7 +13,7 @@ namespace Battle.Objects.Projectiles {
 
         public override void OnAdd () {
             // todo: sprite
-            UnityEngine.Object.Instantiate(The<BattleAssets>.Get().BazookaShell, GameObject.transform, false);
+            UnityEngine.Object.Instantiate(The<BattleAssets>.Get().MultiLauncherShell, GameObject.transform, false);
             AddCollider(new CircleCollider(XY.Zero, 5f));
             Explosive = new Explosive15();
             Controller = new ShellController();
