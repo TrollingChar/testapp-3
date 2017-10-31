@@ -1,13 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using Assets;
 using Battle.Arsenals;
 using Battle.Generation;
 using Battle.Objects;
 using Battle.Physics;
 using Battle.Physics.Collisions;
-using Battle.State;
 using Battle.Teams;
 using Core;
 using DataTransfer.Data;
@@ -180,25 +178,37 @@ namespace Battle {
         }
 
 
-        public Collision CastRay(XY origin, XY direction, float width = 0)
-        {
+        public Collision CastRay(XY origin, XY direction, float width = 0) {
+            Collision result = null;
+            var point = new CircleCollider(origin, width);
+            point.Object = new NullObject();
+            
             foreach (var o in _objects)
             foreach (var c in o.Colliders) {
-                // cast ray
+                var temp = point.CollideWith(c, direction); // todo: handle infinite speed of the ray
             }
             
             // cast ray to land
+
+            return result;
         }
 
 
         public List<Collision> CastUltraRay(XY origin, XY direction, float width = 0)
         {
-            foreach (var o in _objects)
-            foreach (var c in o.Colliders) {
-                // cast ray
+            var result = new List<Collision>();
+            // one collision per object
+
+            foreach (var o in _objects) {
+                Collision min = null;
+                foreach (var c in o.Colliders) {
+                    // cast ray
+                }
+                if (min != null) result.Add(min);
             }
-            
+
             // do not cast to land because ultrawave weapons penetrate terrain
+            return result;
         }
         
 
