@@ -1,13 +1,14 @@
-﻿using Assets;
-using Attributes;
+﻿using Attributes;
 using Battle.Weapons.Crosshairs;
 using Core;
-
+using UnityEngine;
 
 namespace Battle.Weapons.WeaponTypes.Firearms {
 
     [Weapon(WeaponId.PoisonArrow)]
     public class PoisonArrowWeapon : StandardWeapon {
+        
+        private LineCrosshair _crosshair;
 
         public static WeaponDescriptor Descriptor {
             get {
@@ -19,14 +20,38 @@ namespace Battle.Weapons.WeaponTypes.Firearms {
         }
 
 
-        protected override void OnEquip () {
+        protected override void OnEquip ()
+        {
             Attacks = 2;
-            // todo: what if player has only 1 arrow
-//            CrossHair = new LineCrosshair();
+
+            var battleAssets = The.BattleAssets;
+            
+            _crosshair = UnityEngine.Object.Instantiate(
+                battleAssets.LineCrosshair,
+                GameObject.transform,
+                false
+            ).GetComponent<LineCrosshair>();
+            
+            // todo: sprite
         }
 
 
-        protected override void OnShoot () {}
+        protected override void OnBeginAttack () {
+            UseAmmo();
+        }
+
+
+        protected override void OnShoot() {
+            // todo
+            The.World.CastRay(Object.Position, TurnData.XY - Object.Position);
+            Debug.Log("...");
+        }
+
+
+        protected override void OnUpdate () {
+            UpdateLineCrosshair(_crosshair);
+//            UpdateAimedWeapon(_sprite);
+        }
 
     }
 
