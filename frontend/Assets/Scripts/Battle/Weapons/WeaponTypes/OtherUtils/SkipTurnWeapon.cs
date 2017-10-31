@@ -1,6 +1,6 @@
 ﻿using Assets;
 using Attributes;
-using Utils.Singleton;
+using Core;
 
 
 namespace Battle.Weapons.WeaponTypes.OtherUtils {
@@ -12,7 +12,7 @@ namespace Battle.Weapons.WeaponTypes.OtherUtils {
             get {
                 return new WeaponDescriptor(
                     WeaponId.SkipTurn,
-                    The<WeaponIcons>.Get().SkipTurn
+                    The.WeaponIcons.SkipTurn
                 );
             }
         }

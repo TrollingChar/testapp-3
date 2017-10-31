@@ -1,6 +1,6 @@
 ﻿using Assets;
 using Attributes;
-using Utils.Singleton;
+using Core;
 
 
 namespace Battle.Weapons.WeaponTypes.CloseCombat {
@@ -12,7 +12,7 @@ namespace Battle.Weapons.WeaponTypes.CloseCombat {
             get {
                 return new WeaponDescriptor(
                     WeaponId.Finger,
-                    The<WeaponIcons>.Get().Finger
+                    The.WeaponIcons.Finger
                 );
             }
         }

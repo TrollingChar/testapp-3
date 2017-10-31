@@ -1,7 +1,7 @@
 ﻿using Assets;
 using Attributes;
 using Battle.Weapons.Crosshairs;
-using Utils.Singleton;
+using Core;
 
 
 namespace Battle.Weapons.WeaponTypes.Spells {
@@ -15,7 +15,7 @@ namespace Battle.Weapons.WeaponTypes.Spells {
             get {
                 return new WeaponDescriptor(
                     WeaponId.Erosion,
-                    The<WeaponIcons>.Get().Erosion
+                    The.WeaponIcons.Erosion
                 );
             }
         }
@@ -38,7 +38,7 @@ namespace Battle.Weapons.WeaponTypes.Spells {
 
 
         protected override void OnShoot () {
-            The<World>.Get().DestroyTerrain(TurnData.XY, 40f);
+            The.World.DestroyTerrain(TurnData.XY, 40f);
         }
 
     }

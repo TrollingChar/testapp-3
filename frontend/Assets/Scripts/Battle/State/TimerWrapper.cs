@@ -1,5 +1,5 @@
-﻿using Utils.Messenger;
-using Utils.Singleton;
+﻿using Core;
+using Utils.Messenger;
 
 
 namespace Battle.State {
@@ -14,7 +14,7 @@ namespace Battle.State {
 
 
         public TimerWrapper () {
-            The<TimerWrapper>.Set(this);
+            The.TimerWrapper = this;
         }
 
 

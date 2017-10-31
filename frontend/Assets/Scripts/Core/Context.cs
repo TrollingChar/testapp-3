@@ -1,11 +1,8 @@
 ﻿using Attributes;
 using Battle.Weapons;
 using DataTransfer;
-using DataTransfer.Server;
 using Net;
 using UnityEngine;
-using Utils.Singleton;
-
 
 namespace Core {
 

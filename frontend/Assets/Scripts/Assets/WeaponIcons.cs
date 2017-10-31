@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using Utils.Singleton;
+﻿using Core;
+using UnityEngine;
 
 
 namespace Assets {
@@ -19,7 +19,7 @@ namespace Assets {
 
 
         private void Awake () {
-            The<WeaponIcons>.Set(this);
+            The.WeaponIcons = this;
         }
 
     }

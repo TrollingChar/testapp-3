@@ -3,10 +3,10 @@ using System.Linq;
 using Battle.Objects.CollisionHandlers;
 using Battle.Objects.Controllers;
 using Battle.Objects.Explosives;
+using Core;
 using DataTransfer.Data;
 using Geometry;
 using UnityEngine;
-using Utils.Singleton;
 using Collider = Battle.Physics.Collisions.Collider;
 using Collision = Battle.Physics.Collisions.Collision;
 
@@ -17,7 +17,7 @@ namespace Battle.Objects {
 
         private static readonly NullObject _null = new NullObject();
 
-        private readonly World _world = The<World>.Get();
+        private readonly World _world = The.World;
 
 
         private CollisionHandler _collisionHandler;

@@ -2,7 +2,6 @@ using System.IO;
 using Attributes;
 using Core;
 using Utils.Messenger;
-using Utils.Singleton;
 
 
 namespace DataTransfer.Server {
@@ -21,7 +20,7 @@ namespace DataTransfer.Server {
 
 
         public override void Execute () {
-            The<PlayerInfo>.Set(PlayerInfo);
+            The.PlayerInfo = PlayerInfo;
             OnReceived.Send(this);
         }
 

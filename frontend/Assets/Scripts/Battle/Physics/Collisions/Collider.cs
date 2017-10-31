@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Battle.Objects;
+using Core;
 using Geometry;
-using Utils.Singleton;
 
 
 namespace Battle.Physics.Collisions {
@@ -9,7 +9,7 @@ namespace Battle.Physics.Collisions {
     public abstract class Collider : Component {
 
         private readonly List<Tile> _tiles;
-        private readonly World _world = The<World>.Get();
+        private readonly World _world = The.World;
 
         public float TangentialBounce, NormalBounce;
 

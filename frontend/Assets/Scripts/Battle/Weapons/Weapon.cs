@@ -4,12 +4,10 @@ using Attributes;
 using Battle.Arsenals;
 using Battle.Objects;
 using Battle.State;
-using Battle.Weapons.Crosshairs;
+using Core;
 using DataTransfer.Data;
 using UnityEngine;
-using Utils.Singleton;
 using Component = Battle.Objects.Component;
-
 
 namespace Battle.Weapons {
 
@@ -27,8 +25,8 @@ namespace Battle.Weapons {
 
 
         protected Weapon () {
-            _weaponWrapper = The<WeaponWrapper>.Get();
-            GameTimer = The<TimerWrapper>.Get();
+            _weaponWrapper = The.WeaponWrapper;
+            GameTimer = The.TimerWrapper;
             _id = ((WeaponAttribute) GetType().GetCustomAttributes(true).First(a => a is WeaponAttribute)).Id;
         }
 

@@ -1,11 +1,7 @@
 ﻿using Battle;
-using Battle.State;
-using Battle.Teams;
 using Battle.Weapons;
 using UnityEngine;
 using UnityEngine.UI;
-using Utils.Singleton;
-
 
 namespace Core.UI {
 
@@ -16,7 +12,7 @@ namespace Core.UI {
         [SerializeField] private Text _text;
         private GameObject _image;
 
-        private readonly BattleScene _battleScene = The<BattleScene>.Get();
+        private readonly BattleScene _battleScene = The.BattleScene;
 
 
         public void Configure (WeaponDescriptor descriptor) {
@@ -31,8 +27,8 @@ namespace Core.UI {
 
 
         public void OnClick () {
-            var teamManager = The<TeamManager>.Get();
-            var weaponWrapper = The<WeaponWrapper>.Get();
+            var teamManager = The.TeamManager;
+            var weaponWrapper = The.WeaponWrapper;
             // if my turn
             // if arsenal not locked
             // if have that weapon

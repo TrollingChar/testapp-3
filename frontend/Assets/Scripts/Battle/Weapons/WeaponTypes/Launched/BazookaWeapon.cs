@@ -5,7 +5,7 @@ using Battle.Objects.Projectiles;
 using Battle.Weapons.Crosshairs;
 using Geometry;
 using UnityEngine;
-using Utils.Singleton;
+using Core;
 
 
 namespace Battle.Weapons.WeaponTypes.Launched {
@@ -20,7 +20,7 @@ namespace Battle.Weapons.WeaponTypes.Launched {
             get {
                 return new WeaponDescriptor(
                     WeaponId.Bazooka,
-                    The<WeaponIcons>.Get().Bazooka
+                    The.WeaponIcons.Bazooka
                 );
             }
         }
@@ -29,14 +29,16 @@ namespace Battle.Weapons.WeaponTypes.Launched {
         protected override void OnEquip () {
             ConstPower = false;
 
+            var battleAssets = The.BattleAssets;
+            
             _crosshair = UnityEngine.Object.Instantiate(
-                The<BattleAssets>.Get().LineCrosshair,
+                battleAssets.LineCrosshair,
                 GameObject.transform,
                 false
             ).GetComponent<LineCrosshair>();
 
             _sprite = UnityEngine.Object.Instantiate(
-                The<BattleAssets>.Get().BazookaWeapon,
+                battleAssets.BazookaWeapon,
                 GameObject.transform,
                 false
             );

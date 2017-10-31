@@ -1,6 +1,6 @@
 ﻿using Assets;
 using Attributes;
-using Utils.Singleton;
+using Core;
 
 
 namespace Battle.Weapons.WeaponTypes.Spells {
@@ -12,7 +12,7 @@ namespace Battle.Weapons.WeaponTypes.Spells {
             get {
                 return new WeaponDescriptor(
                     WeaponId.PoisonCloud,
-                    The<WeaponIcons>.Get().PoisonCloud
+                    The.WeaponIcons.PoisonCloud
                 );
             }
         }

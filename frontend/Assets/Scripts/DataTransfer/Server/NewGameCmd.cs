@@ -1,9 +1,7 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using Attributes;
 using Core;
 using DataTransfer.Data;
-using Utils.Singleton;
 
 
 namespace DataTransfer.Server {
@@ -21,7 +19,7 @@ namespace DataTransfer.Server {
 
 
         public override void Execute () {
-            The<SceneSwitcher>.Get().Load(Scenes.Battle, Data);
+            The.SceneSwitcher.Load(Scenes.Battle, Data);
         }
 
     }

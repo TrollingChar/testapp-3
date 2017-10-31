@@ -1,10 +1,10 @@
-﻿using Core.UI;
+﻿using Core;
+using Core.UI;
 using DataTransfer.Client;
 using DataTransfer.Server;
 using Net;
 using UnityEngine;
 using UnityEngine.UI;
-using Utils.Singleton;
 
 
 namespace Menu.UI {
@@ -20,8 +20,8 @@ namespace Menu.UI {
 
 
         protected override void Activate () {
-            _connection = The<Connection>.Get();
-            _menuScene = The<MenuScene>.Get();
+            _connection = The.Connection;
+            _menuScene = The.MenuScene;
 
             LobbyStatusCmd.OnReceived.Subscribe(OnLobbyStatusChanged);
             LeftLobbyCmd.OnReceived.Subscribe(OnLeftLobby);

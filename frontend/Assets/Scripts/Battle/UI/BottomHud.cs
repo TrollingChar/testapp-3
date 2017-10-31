@@ -1,9 +1,8 @@
 ﻿using Battle.State;
+using Core;
 using Core.UI;
 using UnityEngine;
 using UnityEngine.UI;
-using Utils.Singleton;
-
 
 namespace Battle.UI {
 
@@ -21,7 +20,7 @@ namespace Battle.UI {
 
 
         private void Awake () {
-            _battleScene = The<BattleScene>.Get();
+            _battleScene = The.BattleScene;
             _battleScene.OnBattleLoaded.Subscribe(OnBattleLoaded);
         }
 

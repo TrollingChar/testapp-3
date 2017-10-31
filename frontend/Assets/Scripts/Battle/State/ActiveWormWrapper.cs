@@ -1,5 +1,5 @@
 ﻿using Battle.Objects;
-using Utils.Singleton;
+using Core;
 
 
 namespace Battle.State {
@@ -10,7 +10,7 @@ namespace Battle.State {
 
 
         public ActiveWormWrapper () {
-            The<ActiveWormWrapper>.Set(this);
+            The.ActiveWormWrapper = this;
         }
 
 

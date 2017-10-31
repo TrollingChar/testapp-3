@@ -1,15 +1,15 @@
 ﻿using Battle.Physics.Collisions;
 using Battle.State;
+using Core;
 using DataTransfer.Data;
 using Geometry;
-using Utils.Singleton;
 
 
 namespace Battle.Objects.Controllers {
 
     public class WormControllerWalk : Controller {
 
-        private readonly ActiveWormWrapper _activeWorm = The<ActiveWormWrapper>.Get();
+        private readonly ActiveWormWrapper _activeWorm = The.ActiveWormWrapper;
 
 
         public override void OnAdd () {

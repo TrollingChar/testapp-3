@@ -1,20 +1,20 @@
 ﻿using Battle.Weapons;
 using Core;
 using DataTransfer.Data;
-using Utils.Singleton;
 
 
 namespace Battle.State {
 
-    public class WeaponWrapper {
+    public class WeaponWrapper
+    {
 
-        private readonly ActiveWormWrapper _activeWorm = The<ActiveWormWrapper>.Get();
+        private readonly ActiveWormWrapper _activeWorm = The.ActiveWormWrapper;
         private bool _locked;
         private Weapon _weapon; // todo: should use property?
 
 
         public WeaponWrapper () {
-            The<WeaponWrapper>.Set(this);
+            The.WeaponWrapper = this;
         }
 
 

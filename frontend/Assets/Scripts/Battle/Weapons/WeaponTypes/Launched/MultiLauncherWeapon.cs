@@ -5,7 +5,7 @@ using Battle.Objects.Projectiles;
 using Battle.Weapons.Crosshairs;
 using Geometry;
 using UnityEngine;
-using Utils.Singleton;
+using Core;
 
 
 namespace Battle.Weapons.WeaponTypes.Launched {
@@ -20,7 +20,7 @@ namespace Battle.Weapons.WeaponTypes.Launched {
             get {
                 return new WeaponDescriptor(
                     WeaponId.MultiLauncher,
-                    The<WeaponIcons>.Get().MultiLauncher
+                    The.WeaponIcons.MultiLauncher
                 );
             }
         }
@@ -32,14 +32,16 @@ namespace Battle.Weapons.WeaponTypes.Launched {
             Shots = 5;
             ShotCooldown = 10;
 
+            var battleAssets = The.BattleAssets;
+            
             _crosshair = UnityEngine.Object.Instantiate(
-                The<BattleAssets>.Get().LineCrosshair,
+                battleAssets.LineCrosshair,
                 GameObject.transform,
                 false
             ).GetComponent<LineCrosshair>();
 
             _sprite = UnityEngine.Object.Instantiate(
-                The<BattleAssets>.Get().MultiLauncherWeapon,
+                battleAssets.MultiLauncherWeapon,
                 GameObject.transform,
                 false
             );

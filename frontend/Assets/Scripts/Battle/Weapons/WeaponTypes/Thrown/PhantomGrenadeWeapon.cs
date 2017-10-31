@@ -3,7 +3,7 @@ using Attributes;
 using Battle.Objects.Projectiles;
 using Battle.Weapons.Crosshairs;
 using UnityEngine;
-using Utils.Singleton;
+using Core;
 
 
 namespace Battle.Weapons.WeaponTypes.Thrown {
@@ -19,7 +19,7 @@ namespace Battle.Weapons.WeaponTypes.Thrown {
             get {
                 return new WeaponDescriptor(
                     WeaponId.PhantomGrenade,
-                    The<WeaponIcons>.Get().PhantomGrenade
+                    The.WeaponIcons.PhantomGrenade
                 );
             }
         }
@@ -28,14 +28,16 @@ namespace Battle.Weapons.WeaponTypes.Thrown {
         protected override void OnEquip () {
             ConstPower = false;
 
+            var battleAssets = The.BattleAssets;
+            
             _crosshair = UnityEngine.Object.Instantiate(
-                The<BattleAssets>.Get().LineCrosshair,
+                battleAssets.LineCrosshair,
                 GameObject.transform,
                 false
             ).GetComponent<LineCrosshair>();
 
             _sprite = UnityEngine.Object.Instantiate(
-                The<BattleAssets>.Get().PhantomGrenadeWeapon,
+                battleAssets.PhantomGrenadeWeapon,
                 GameObject.transform,
                 false
             );

@@ -1,9 +1,9 @@
-﻿using Core.UI;
+﻿using Core;
+using Core.UI;
 using DataTransfer.Client;
 using Net;
 using UnityEngine;
 using UnityEngine.UI;
-using Utils.Singleton;
 
 
 namespace Menu.UI {
@@ -17,7 +17,7 @@ namespace Menu.UI {
 
 
         protected override void Activate () {
-            _connection = The<Connection>.Get();
+            _connection = The.Connection;
             _connectButton.onClick.AddListener(Send);
         }
 

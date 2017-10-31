@@ -1,10 +1,9 @@
-﻿using Assets;
-using Battle.Objects.CollisionHandlers;
+﻿using Battle.Objects.CollisionHandlers;
 using Battle.Objects.Controllers;
 using Battle.Objects.Explosives;
 using Battle.Physics.Collisions;
+using Core;
 using Geometry;
-using Utils.Singleton;
 
 
 namespace Battle.Objects.Projectiles {
@@ -12,7 +11,7 @@ namespace Battle.Objects.Projectiles {
     public class BazookaShell : Object {
 
         public override void OnAdd () {
-            UnityEngine.Object.Instantiate(The<BattleAssets>.Get().BazookaShell, GameObject.transform, false);
+            UnityEngine.Object.Instantiate(The.BattleAssets.BazookaShell, GameObject.transform, false);
             AddCollider(new CircleCollider(XY.Zero, 5f));
             Explosive = new Explosive25();
             Controller = new ShellController();

@@ -1,7 +1,7 @@
-﻿using Core.UI;
+﻿using Core;
+using Core.UI;
 using UnityEngine;
 using UnityEngine.UI;
-using Utils.Singleton;
 
 
 namespace Menu.UI {
@@ -16,7 +16,7 @@ namespace Menu.UI {
 
 
         protected override void Activate () {
-            MenuScene = The<MenuScene>.Get();
+            MenuScene = The.MenuScene;
 
             _playButton.onClick.AddListener(OnClickedPlay);
             _donateButton.onClick.AddListener(OnClickedDonate);

@@ -1,7 +1,7 @@
 ﻿using Assets;
 using Attributes;
 using Battle.Weapons.Crosshairs;
-using Utils.Singleton;
+using Core;
 
 
 namespace Battle.Weapons.WeaponTypes.Firearms {
@@ -13,7 +13,7 @@ namespace Battle.Weapons.WeaponTypes.Firearms {
             get {
                 return new WeaponDescriptor(
                     WeaponId.HeatPistol,
-                    The<WeaponIcons>.Get().HeatPistol
+                    The.WeaponIcons.HeatPistol
                 );
             }
         }

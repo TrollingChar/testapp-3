@@ -1,7 +1,7 @@
 ﻿using Assets;
 using Attributes;
 using Battle.Weapons.Crosshairs;
-using Utils.Singleton;
+using Core;
 
 
 namespace Battle.Weapons.WeaponTypes.CloseCombat {
@@ -13,7 +13,7 @@ namespace Battle.Weapons.WeaponTypes.CloseCombat {
             get {
                 return new WeaponDescriptor(
                     WeaponId.Hammer,
-                    The<WeaponIcons>.Get().Hammer
+                    The.WeaponIcons.Hammer
                 );
             }
         }

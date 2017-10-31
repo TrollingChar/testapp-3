@@ -1,6 +1,6 @@
 ﻿using Assets;
 using Attributes;
-using Utils.Singleton;
+using Core;
 
 
 namespace Battle.Weapons.WeaponTypes.Airstrikes {
@@ -12,7 +12,7 @@ namespace Battle.Weapons.WeaponTypes.Airstrikes {
             get {
                 return new WeaponDescriptor(
                     WeaponId.Napalm,
-                    The<WeaponIcons>.Get().Napalm
+                    The.WeaponIcons.Napalm
                 );
             }
         }

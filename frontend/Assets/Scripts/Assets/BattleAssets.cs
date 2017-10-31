@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using Utils.Singleton;
+﻿using Core;
+using UnityEngine;
 
 
 namespace Assets {
@@ -36,7 +36,7 @@ namespace Assets {
         public GameObject PhantomGrenade;
 
         private void Awake () {
-            The<BattleAssets>.Set(this);
+            The.BattleAssets = this;
         }
 
     }

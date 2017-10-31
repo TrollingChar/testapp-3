@@ -1,6 +1,6 @@
 ﻿using System;
 using UnityEngine;
-using Utils.Singleton;
+using Core;
 
 
 namespace Battle.State {
@@ -12,10 +12,11 @@ namespace Battle.State {
         private GameState _currentState;
 
 
-        public GameStateController () {
-            The<GameStateController>.Set(this);
+        public GameStateController ()
+        {
+            The.GameStateController = this;
 
-            _battle = The<BattleScene>.Get();
+            _battle = The.BattleScene;
 
             CurrentState = GameState.AfterTurn;
             NextState = GameState.Remove0Hp;

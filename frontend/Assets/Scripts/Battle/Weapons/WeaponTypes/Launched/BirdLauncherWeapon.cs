@@ -1,6 +1,6 @@
 ﻿using Assets;
 using Attributes;
-using Utils.Singleton;
+using Core;
 
 
 namespace Battle.Weapons.WeaponTypes.Launched {
@@ -12,7 +12,7 @@ namespace Battle.Weapons.WeaponTypes.Launched {
             get {
                 return new WeaponDescriptor(
                     WeaponId.BirdLauncher,
-                    The<WeaponIcons>.Get().BirdLauncher
+                    The.WeaponIcons.BirdLauncher
                 );
             }
         }

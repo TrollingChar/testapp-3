@@ -1,11 +1,7 @@
-﻿using System;
-using Battle.State;
-using Battle.Weapons.Crosshairs;
+﻿using Battle.Weapons.Crosshairs;
 using DataTransfer.Data;
 using Geometry;
 using UnityEngine;
-using Utils.Singleton;
-
 
 namespace Battle.Weapons {
 

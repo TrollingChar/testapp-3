@@ -3,7 +3,7 @@ using Attributes;
 using Battle.Objects.Controllers;
 using Battle.Weapons.Crosshairs;
 using Geometry;
-using Utils.Singleton;
+using Core;
 
 
 namespace Battle.Weapons.WeaponTypes.MovementUtils {
@@ -17,7 +17,7 @@ namespace Battle.Weapons.WeaponTypes.MovementUtils {
             get {
                 return new WeaponDescriptor(
                     WeaponId.Jumper,
-                    The<WeaponIcons>.Get().Jumper
+                    The.WeaponIcons.Jumper
                 );
             }
         }
@@ -28,7 +28,7 @@ namespace Battle.Weapons.WeaponTypes.MovementUtils {
             ConstPower = false;
 
             _crosshair = UnityEngine.Object.Instantiate(
-                The<BattleAssets>.Get().LineCrosshair,
+                The.BattleAssets.LineCrosshair,
                 GameObject.transform,
                 false
             ).GetComponent<LineCrosshair>();

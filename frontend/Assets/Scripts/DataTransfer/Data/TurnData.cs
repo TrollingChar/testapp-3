@@ -2,9 +2,9 @@
 using Attributes;
 using Battle.Camera;
 using Battle.State;
+using Core;
 using Geometry;
 using UnityEngine;
-using Utils.Singleton;
 
 
 namespace DataTransfer.Data {
@@ -51,8 +51,8 @@ namespace DataTransfer.Data {
                 S = Input.GetKey(KeyCode.S),
                 D = Input.GetKey(KeyCode.D),
                 MB = Input.GetMouseButton(0), // LMB
-                XY = The<CameraWrapper>.Get().WorldMousePosition,
-                Weapon = (byte) The<WeaponWrapper>.Get().PreparedId,
+                XY = The.CameraWrapper.WorldMousePosition,
+                Weapon = (byte) The.WeaponWrapper.PreparedId,
                 NumKey = numKey
             };
         }

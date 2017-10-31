@@ -1,7 +1,7 @@
 ﻿using Assets;
 using Attributes;
 using Battle.Weapons.Crosshairs;
-using Utils.Singleton;
+using Core;
 
 
 namespace Battle.Weapons.WeaponTypes.Thrown {
@@ -13,7 +13,7 @@ namespace Battle.Weapons.WeaponTypes.Thrown {
             get {
                 return new WeaponDescriptor(
                     WeaponId.HolyGrenade,
-                    The<WeaponIcons>.Get().HolyGrenade
+                    The.WeaponIcons.HolyGrenade
                 );
             }
         }

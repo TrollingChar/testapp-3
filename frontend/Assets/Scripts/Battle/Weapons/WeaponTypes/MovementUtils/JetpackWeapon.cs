@@ -1,6 +1,6 @@
 ﻿using Assets;
 using Attributes;
-using Utils.Singleton;
+using Core;
 
 
 namespace Battle.Weapons.WeaponTypes.MovementUtils {
@@ -12,7 +12,7 @@ namespace Battle.Weapons.WeaponTypes.MovementUtils {
             get {
                 return new WeaponDescriptor(
                     WeaponId.Jetpack,
-                    The<WeaponIcons>.Get().Jetpack
+                    The.WeaponIcons.Jetpack
                 );
             }
         }

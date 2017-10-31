@@ -4,11 +4,11 @@ using Battle.Objects.GameObjects;
 using Battle.Physics.Collisions;
 using Battle.Teams;
 using Battle.Weapons;
+using Core;
 using Geometry;
 using UnityEngine;
 using UnityEngine.UI;
 using Utils.Random;
-using Utils.Singleton;
 using BoxCollider = Battle.Physics.Collisions.BoxCollider;
 using UnObject = UnityEngine.Object;
 
@@ -130,7 +130,7 @@ namespace Battle.Objects {
 
 
         private void InitGraphics () {
-            var assets = The<BattleAssets>.Get();
+            var assets = The.BattleAssets;
             var transform = GameObject.transform;
 
             _canvas = UnObject.Instantiate(assets.TopCanvas, transform, false);

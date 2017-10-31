@@ -1,8 +1,6 @@
-using Assets;
 using Battle.Objects.Controllers;
 using Battle.Objects.Explosives;
-using Utils.Singleton;
-
+using Core;
 
 namespace Battle.Objects.Projectiles {
 
@@ -17,7 +15,7 @@ namespace Battle.Objects.Projectiles {
 
 
         public override void OnAdd () {
-            UnityEngine.Object.Instantiate(The<BattleAssets>.Get().PhantomGrenade, GameObject.transform, false);
+            UnityEngine.Object.Instantiate(The.BattleAssets.PhantomGrenade, GameObject.transform, false);
             Explosive = new Explosive25();
             Controller = new GrenadeController(_timer * 1000);
             // no colliders, no collision handler

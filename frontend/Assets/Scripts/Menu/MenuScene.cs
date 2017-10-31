@@ -1,8 +1,7 @@
-﻿using DataTransfer.Server;
+﻿using Core;
+using DataTransfer.Server;
 using Menu.UI;
-using Net;
 using UnityEngine;
-using Utils.Singleton;
 
 
 namespace Menu {
@@ -16,7 +15,7 @@ namespace Menu {
 
 
         private void Awake () {
-            The<MenuScene>.Set(this);
+            The.MenuScene = this;
             AuthSuccessCmd.OnReceived.Subscribe(OnAuthSuccess);
         }
 
@@ -29,7 +28,7 @@ namespace Menu {
 
 
         private void OnDestroy () {
-            The<MenuScene>.Set(null);
+            The.MenuScene = null;
         }
 
 

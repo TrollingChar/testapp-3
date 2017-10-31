@@ -1,6 +1,6 @@
 ﻿using Assets;
 using Attributes;
-using Utils.Singleton;
+using Core;
 
 
 namespace Battle.Weapons.WeaponTypes.Heavy {
@@ -12,7 +12,7 @@ namespace Battle.Weapons.WeaponTypes.Heavy {
             get {
                 return new WeaponDescriptor(
                     WeaponId.Superfrog,
-                    The<WeaponIcons>.Get().Superfrog
+                    The.WeaponIcons.Superfrog
                 );
             }
         }

@@ -9,11 +9,11 @@ using Battle.Physics;
 using Battle.Physics.Collisions;
 using Battle.State;
 using Battle.Teams;
+using Core;
 using DataTransfer.Data;
 using Geometry;
 using UnityEngine;
 using Utils.Random;
-using Utils.Singleton;
 using Object = Battle.Objects.Object;
 using Ray = Battle.Objects.Ray;
 
@@ -33,15 +33,13 @@ namespace Battle {
 
         // todo: wrap it in worldgen params
         public World (LandGen gen, LandRenderer renderer) {
-            The<World>.Set(this);
-
-            The<GameStateController>.Get();
+            The.World = this;
 
             Gravity = -0.5f;
             WaterLevel = 0;
             Tiles = new Tiles();
 
-            Land = new Land(gen, renderer, The<BattleAssets>.Get().LandTexture);
+            Land = new Land(gen, renderer, The.BattleAssets.LandTexture);
             _objects = new LinkedList<Object>();
         }
 

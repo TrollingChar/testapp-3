@@ -1,7 +1,7 @@
 ﻿using Assets;
 using Attributes;
 using Battle.Weapons.Crosshairs;
-using Utils.Singleton;
+using Core;
 
 
 namespace Battle.Weapons.WeaponTypes.MovementUtils {
@@ -13,7 +13,7 @@ namespace Battle.Weapons.WeaponTypes.MovementUtils {
             get {
                 return new WeaponDescriptor(
                     WeaponId.Rope,
-                    The<WeaponIcons>.Get().Rope
+                    The.WeaponIcons.Rope
                 );
             }
         }

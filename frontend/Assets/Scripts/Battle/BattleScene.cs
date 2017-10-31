@@ -14,7 +14,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using Utils.Messenger;
 using Utils.Random;
-using Utils.Singleton;
 
 
 namespace Battle {
@@ -45,18 +44,14 @@ namespace Battle {
 
 
         private void Awake () {
-            The<BattleScene>.Set(this);
+            The.BattleScene = this;
 
-            _initData = (GameInitData) The<SceneSwitcher>.Get().Data[0];
+            _initData = (GameInitData) The.SceneSwitcher.Data[0];
             RNG.Init(_initData.Seed);
 
-            Connection = The<Connection>.Get();
-
-            Camera = GetComponentInChildren<CameraWrapper>();
-            The<CameraWrapper>.Set(Camera);
-
-            ArsenalPanel = GetComponentInChildren<ArsenalPanel>();
-            The<ArsenalPanel>.Set(ArsenalPanel);
+            Connection = The.Connection;
+            The.CameraWrapper = Camera = GetComponentInChildren<CameraWrapper>();
+            The.ArsenalPanel = ArsenalPanel = GetComponentInChildren<ArsenalPanel>();
 
             StartLandGen();
         }
@@ -147,8 +142,8 @@ namespace Battle {
         private void OnDestroy () {
             NewTurnCmd.OnReceived.Unsubscribe(PrepareTurn);
             TurnDataSCmd.OnReceived.Unsubscribe(TurnDataHandler);
-            The<World>.Set(null);
-            The<GameStateController>.Set(null);
+            The.World = null;
+            The.GameStateController = null;
         }
 
 

@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections;
 using System.IO;
+using Core;
 using DataTransfer;
 using DataTransfer.Client;
 using DataTransfer.Server;
 using Net.Utils;
 using UnityEngine;
-using Utils.Singleton;
 
 
 namespace Net {
@@ -18,7 +18,7 @@ namespace Net {
 
 
         private void Awake () {
-            The<Connection>.Set(this);
+            The.Connection = this;
         }
 
 

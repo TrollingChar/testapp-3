@@ -1,7 +1,7 @@
-﻿using Core.UI;
+﻿using Core;
+using Core.UI;
 using UnityEngine;
 using UnityEngine.UI;
-using Utils.Singleton;
 
 
 namespace Menu.UI {
@@ -17,7 +17,7 @@ namespace Menu.UI {
 
 
         protected override void Activate () {
-            MenuScene = The<MenuScene>.Get();
+            MenuScene = The.MenuScene;
 
             _1Player.onClick.AddListener(OnClicked1Player);
             _2Players.onClick.AddListener(OnClicked2Players);

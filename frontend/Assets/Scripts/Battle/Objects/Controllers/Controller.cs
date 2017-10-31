@@ -1,14 +1,14 @@
 ﻿using Battle.State;
+using Core;
 using DataTransfer.Data;
 using UnityEngine;
-using Utils.Singleton;
 
 
 namespace Battle.Objects.Controllers {
 
     public class Controller : Component {
 
-        private readonly TimerWrapper _gameTimer = The<TimerWrapper>.Get();
+        private readonly TimerWrapper _gameTimer = The.TimerWrapper;
         private int _timer = 20000;
 
         public int Timer {

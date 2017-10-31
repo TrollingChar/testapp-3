@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Battle.Objects;
 using Core;
-using Utils.Singleton;
 
 
 namespace Battle.Teams {
@@ -14,8 +13,8 @@ namespace Battle.Teams {
 
 
         public TeamManager (Dictionary<int, Team> teams) {
-            The<TeamManager>.Set(this);
-            _myId = The<PlayerInfo>.Get().Id;
+            The.TeamManager = this;
+            _myId = The.PlayerInfo.Id;
             Teams = teams;
         }
 

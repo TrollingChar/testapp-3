@@ -1,5 +1,4 @@
 ﻿using UnityEngine.SceneManagement;
-using Utils.Singleton;
 
 
 namespace Core {
@@ -7,7 +6,7 @@ namespace Core {
     public class SceneSwitcher {
 
         public SceneSwitcher () {
-            The<SceneSwitcher>.Set(this);
+            The.SceneSwitcher = this;
         }
 
 
