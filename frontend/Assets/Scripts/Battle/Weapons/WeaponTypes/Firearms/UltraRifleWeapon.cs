@@ -1,13 +1,14 @@
-﻿using Assets;
-using Attributes;
+﻿using Attributes;
 using Battle.Weapons.Crosshairs;
 using Core;
-
+using UnityEngine;
 
 namespace Battle.Weapons.WeaponTypes.Firearms {
 
     [Weapon(WeaponId.UltraRifle)]
     public class UltraRifleWeapon : StandardWeapon {
+        
+        private LineCrosshair _crosshair;
 
         public static WeaponDescriptor Descriptor {
             get {
@@ -21,7 +22,16 @@ namespace Battle.Weapons.WeaponTypes.Firearms {
 
         protected override void OnEquip () {
             Shots = 15;
-//            CrossHair = new LineCrosshair();
+
+            var battleAssets = The.BattleAssets;
+            
+            _crosshair = UnityEngine.Object.Instantiate(
+                battleAssets.LineCrosshair,
+                GameObject.transform,
+                false
+            ).GetComponent<LineCrosshair>();
+            
+            // todo: sprite
         }
 
 
@@ -30,7 +40,16 @@ namespace Battle.Weapons.WeaponTypes.Firearms {
         }
 
 
-        protected override void OnShoot () {}
+        protected override void OnShoot() {
+            The.World.CastUltraRay(Object.Position, TurnData.XY - Object.Position);
+            Debug.Log("zap");
+        }
+
+
+        protected override void OnUpdate () {
+            UpdateLineCrosshair(_crosshair);
+//            UpdateAimedWeapon(_sprite);
+        }
 
     }
 

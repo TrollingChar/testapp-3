@@ -1,9 +1,7 @@
-﻿using Assets;
-using Attributes;
+﻿using Attributes;
 using Battle.Weapons.Crosshairs;
 using Core;
 using UnityEngine;
-
 
 namespace Battle.Weapons.WeaponTypes.Firearms {
 
@@ -48,6 +46,7 @@ namespace Battle.Weapons.WeaponTypes.Firearms {
             // создать снаряд и сразу же вызвать у него Update
             // или написать функцию World.CastRay
             // второй вариант предпочтительнее так как есть еще ультравинтовка лучи которой проходят через все
+            The.World.CastRay(Object.Position, TurnData.XY - Object.Position);
             Debug.Log("bang");
         }
 

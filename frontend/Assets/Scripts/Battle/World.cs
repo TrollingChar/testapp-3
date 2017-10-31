@@ -14,6 +14,7 @@ using DataTransfer.Data;
 using Geometry;
 using UnityEngine;
 using Utils.Random;
+using Collision = Battle.Physics.Collisions.Collision;
 using Object = Battle.Objects.Object;
 using Ray = Battle.Objects.Ray;
 
@@ -178,6 +179,28 @@ namespace Battle {
             }
         }
 
+
+        public Collision CastRay(XY origin, XY direction, float width = 0)
+        {
+            foreach (var o in _objects)
+            foreach (var c in o.Colliders) {
+                // cast ray
+            }
+            
+            // cast ray to land
+        }
+
+
+        public List<Collision> CastUltraRay(XY origin, XY direction, float width = 0)
+        {
+            foreach (var o in _objects)
+            foreach (var c in o.Colliders) {
+                // cast ray
+            }
+            
+            // do not cast to land because ultrawave weapons penetrate terrain
+        }
+        
 
         public void Spawn (Object o, XY position, XY velocity = default(XY)) {
             o.Node = _objects.AddLast(o);

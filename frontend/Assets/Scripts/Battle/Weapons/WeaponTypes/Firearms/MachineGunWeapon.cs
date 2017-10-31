@@ -1,13 +1,14 @@
-﻿using Assets;
-using Attributes;
+﻿using Attributes;
 using Battle.Weapons.Crosshairs;
 using Core;
-
+using UnityEngine;
 
 namespace Battle.Weapons.WeaponTypes.Firearms {
 
     [Weapon(WeaponId.MachineGun)]
     public class MachineGunWeapon : StandardWeapon {
+        
+        private LineCrosshair _crosshair;
 
         public static WeaponDescriptor Descriptor {
             get {
@@ -21,7 +22,16 @@ namespace Battle.Weapons.WeaponTypes.Firearms {
 
         protected override void OnEquip () {
             Shots = 30;
-//            CrossHair = new LineCrosshair();
+
+            var battleAssets = The.BattleAssets;
+            
+            _crosshair = UnityEngine.Object.Instantiate(
+                battleAssets.LineCrosshair,
+                GameObject.transform,
+                false
+            ).GetComponent<LineCrosshair>();
+            
+            // todo: sprite
         }
 
 
@@ -30,7 +40,20 @@ namespace Battle.Weapons.WeaponTypes.Firearms {
         }
 
 
-        protected override void OnShoot () {}
+        protected override void OnShoot() {
+            // todo
+            // создать снаряд и сразу же вызвать у него Update
+            // или написать функцию World.CastRay
+            // второй вариант предпочтительнее так как есть еще ультравинтовка лучи которой проходят через все
+            The.World.CastRay(Object.Position, TurnData.XY - Object.Position);
+            Debug.Log("bang");
+        }
+
+
+        protected override void OnUpdate () {
+            UpdateLineCrosshair(_crosshair);
+//            UpdateAimedWeapon(_sprite);
+        }
 
     }
 
