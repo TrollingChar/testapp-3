@@ -46,7 +46,6 @@ namespace Battle.Weapons.WeaponTypes.Firearms {
             foreach (var c in collisions) {
                 c.Collider2.Object.GetDamage(1);
             }
-            Debug.Log("zap");
         }
 
 

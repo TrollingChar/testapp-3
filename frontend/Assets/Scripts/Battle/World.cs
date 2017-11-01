@@ -180,17 +180,17 @@ namespace Battle {
 
         public Collision CastRay(XY origin, XY direction, float width = 0)
         {
+            var point = new CircleCollider(origin, width);
+            point.Object = new NullObject();
+
             // todo: find overlapping objects and dont collide with them
             direction.Length = 10000; // todo: handle infinite length of the ray
             
             Collision result = null;
             
-            var point = new CircleCollider(origin, width);
-            point.Object = new NullObject();
-
-            Collision temp = null;
+            Collision temp;
             
-            foreach (var o in _objects)
+            foreach (var o in _objects.Where(o => o.Colliders.TrueForAll(c => !c.OverlapsWith(point))))
             foreach (var c in o.Colliders) {
                 temp = point.CollideWith(c, direction);
                 if (temp < result) result = temp;
@@ -203,15 +203,15 @@ namespace Battle {
 
         public List<Collision> CastUltraRay(XY origin, XY direction, float width = 0)
         {
+            var point = new CircleCollider(origin, width);
+            point.Object = new NullObject();
+
             // todo: find overlapping objects and dont collide with them
             direction.Length = 10000; // todo: handle infinite length of the ray
             
             var result = new List<Collision>();
             
-            var point = new CircleCollider(origin, width);
-            point.Object = new NullObject();
-
-            foreach (var o in _objects) {
+            foreach (var o in _objects.Where(o => o.Colliders.TrueForAll(c => !c.OverlapsWith(point)))) {
                 // no more than one collision per object
                 Collision min = null;
                 foreach (var c in o.Colliders) {
