@@ -28,6 +28,13 @@ namespace Assets {
         public GameObject GrenadeWeapon;
         public GameObject LimonkaWeapon;
         public GameObject PhantomGrenadeWeapon;
+        public GameObject MachineGunWeapon;
+        public GameObject BlasterWeapon;
+        public GameObject PistolWeapon;
+        public GameObject HeatPistolWeapon;
+        public GameObject CrossbowWeapon;
+        public GameObject UltraRifleWeapon;
+        public GameObject GsomRaycasterWeapon;
         [Space]
         public GameObject BazookaShell;
         public GameObject PlasmaBall;
