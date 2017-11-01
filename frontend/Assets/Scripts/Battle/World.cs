@@ -183,7 +183,6 @@ namespace Battle {
             var point = new CircleCollider(origin, width);
             point.Object = new NullObject();
 
-            // todo: find overlapping objects and dont collide with them
             direction.Length = 10000; // todo: handle infinite length of the ray
             
             Collision result = null;
@@ -206,7 +205,6 @@ namespace Battle {
             var point = new CircleCollider(origin, width);
             point.Object = new NullObject();
 
-            // todo: find overlapping objects and dont collide with them
             direction.Length = 10000; // todo: handle infinite length of the ray
             
             var result = new List<Collision>();
@@ -220,7 +218,6 @@ namespace Battle {
                 }
                 if (min != null) result.Add(min);
             }
-
             // do not cast to land because ultrawave weapons penetrate terrain
             return result;
         }
