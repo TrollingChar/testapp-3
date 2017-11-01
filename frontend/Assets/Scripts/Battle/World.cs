@@ -187,16 +187,17 @@ namespace Battle {
             
             var point = new CircleCollider(origin, width);
             point.Object = new NullObject();
+
+            Collision temp = null;
             
             foreach (var o in _objects)
             foreach (var c in o.Colliders) {
-                var temp = point.CollideWith(c, direction);
+                temp = point.CollideWith(c, direction);
                 if (temp < result) result = temp;
             }
-            
-            // cast ray to land
 
-            return result;
+            temp = Land.CastRay(origin, direction, width);
+            return temp < result ? temp : result;
         }
 
 

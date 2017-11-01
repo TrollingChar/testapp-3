@@ -40,8 +40,12 @@ namespace Battle.Weapons.WeaponTypes.Firearms {
         }
 
 
-        protected override void OnShoot() {
-            The.World.CastUltraRay(Object.Position, TurnData.XY - Object.Position);
+        protected override void OnShoot()
+        {
+            var collisions = The.World.CastUltraRay(Object.Position, TurnData.XY - Object.Position);
+            foreach (var c in collisions) {
+                c.Collider2.Object.GetDamage(1);
+            }
             Debug.Log("zap");
         }
 
