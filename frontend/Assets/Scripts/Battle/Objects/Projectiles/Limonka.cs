@@ -30,7 +30,7 @@ namespace Battle.Objects.Projectiles {
             
             var timerText = UnityEngine.Object.Instantiate(assets.Text, canvas.transform, false).GetComponent<Text>();
             
-            UnityEngine.Object.Instantiate(assets.Grenade, transform, false);
+            UnityEngine.Object.Instantiate(assets.Limonka, transform, false);
             AddCollider(new CircleCollider(XY.Zero, 5f));
             Explosive = new ClusterSpawner();
             Controller = new GrenadeController(_timer * 1000, timerText);

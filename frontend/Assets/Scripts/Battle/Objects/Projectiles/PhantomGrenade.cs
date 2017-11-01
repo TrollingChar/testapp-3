@@ -26,7 +26,7 @@ namespace Battle.Objects.Projectiles {
             
             var timerText = UnityEngine.Object.Instantiate(assets.Text, canvas.transform, false).GetComponent<Text>();
             
-            UnityEngine.Object.Instantiate(The.BattleAssets.PhantomGrenade, GameObject.transform, false);
+            UnityEngine.Object.Instantiate(assets.PhantomGrenade, transform, false);
             Explosive = new Explosive25();
             Controller = new GrenadeController(_timer * 1000, timerText);
             // no colliders, no collision handler
