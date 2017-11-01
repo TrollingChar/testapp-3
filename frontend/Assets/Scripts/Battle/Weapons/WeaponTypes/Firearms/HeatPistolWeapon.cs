@@ -42,9 +42,10 @@ namespace Battle.Weapons.WeaponTypes.Firearms {
 
 
         protected override void OnShoot() {
-            // todo
-            The.World.CastRay(Object.Position, TurnData.XY - Object.Position);
-            Debug.Log("shhh");
+            var direction = TurnData.XY - Object.Position;
+            var collision = The.World.CastRay(Object.Position, direction);
+            if (collision == null) return;
+            // todo: spawn flames
         }
 
 

@@ -2,6 +2,7 @@
 using Battle.Weapons.Crosshairs;
 using Core;
 using UnityEngine;
+using Utils.Random;
 
 namespace Battle.Weapons.WeaponTypes.Firearms {
 
@@ -22,6 +23,7 @@ namespace Battle.Weapons.WeaponTypes.Firearms {
 
         protected override void OnEquip () {
             Shots = 30;
+            ShotCooldown = 3;
 
             var battleAssets = The.BattleAssets;
             
@@ -40,7 +42,8 @@ namespace Battle.Weapons.WeaponTypes.Firearms {
         }
 
 
-        protected override void OnShoot() {var direction = TurnData.XY - Object.Position;
+        protected override void OnShoot() {
+            var direction = (TurnData.XY - Object.Position).Rotated(0.1f * (RNG.Float() - RNG.Float()));
             var collision = The.World.CastRay(Object.Position, direction);
             if (collision == null) return;
             if (collision.Collider2 == null) {

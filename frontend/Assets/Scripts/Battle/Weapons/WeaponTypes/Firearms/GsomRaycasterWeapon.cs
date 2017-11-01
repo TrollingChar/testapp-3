@@ -22,6 +22,7 @@ namespace Battle.Weapons.WeaponTypes.Firearms {
 
         protected override void OnEquip () {
             Shots = 15;
+            ShotCooldown = 10;
 
             var battleAssets = The.BattleAssets;
             
@@ -41,13 +42,15 @@ namespace Battle.Weapons.WeaponTypes.Firearms {
 
 
         protected override void OnShoot() {
-            // todo
-            // создать снаряд и сразу же вызвать у него Update
-            // или написать функцию World.CastRay
-            // второй вариант предпочтительнее так как есть еще ультравинтовка лучи которой проходят через все
-            The.World.CastRay(Object.Position, TurnData.XY - Object.Position);
-            The.World.CastRay(Object.Position, TurnData.XY - Object.Position);
-            Debug.Log("GSOMGSOM!!1");
+            var direction = TurnData.XY - Object.Position;
+            var collision = The.World.CastRay(Object.Position, direction);
+            if (collision == null) return;
+            // todo: make green blasts, annihilate everything, heal allies...
+            var world = The.World;
+            var blastXY = Object.Position + collision.Offset;
+            world.DealDamage(9999, blastXY, 160f);
+            world.DestroyTerrain(blastXY, 130f);
+            world.SendBlastWave(16f, blastXY, 160f);
         }
 
 

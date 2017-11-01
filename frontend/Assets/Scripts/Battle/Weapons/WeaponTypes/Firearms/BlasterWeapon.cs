@@ -42,9 +42,15 @@ namespace Battle.Weapons.WeaponTypes.Firearms {
 
 
         protected override void OnShoot() {
-            // todo
-            The.World.CastRay(Object.Position, TurnData.XY - Object.Position);
-            Debug.Log("boom");
+            var direction = TurnData.XY - Object.Position;
+            var collision = The.World.CastRay(Object.Position, direction);
+            if (collision == null) return;
+            // todo: refactor explosives
+            var world = The.World;
+            var blastXY = Object.Position + collision.Offset;
+            world.DealDamage(15, blastXY, 60f);
+            world.DestroyTerrain(blastXY, 30f);
+            world.SendBlastWave(6f, blastXY, 60f);
         }
 
 

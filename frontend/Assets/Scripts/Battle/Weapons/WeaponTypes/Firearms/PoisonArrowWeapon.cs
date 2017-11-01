@@ -42,9 +42,18 @@ namespace Battle.Weapons.WeaponTypes.Firearms {
 
 
         protected override void OnShoot() {
-            // todo
-            The.World.CastRay(Object.Position, TurnData.XY - Object.Position);
-            Debug.Log("...");
+            var direction = TurnData.XY - Object.Position;
+            var collision = The.World.CastRay(Object.Position, direction);
+            if (collision == null) return;
+            if (collision.Collider2 == null) {
+                // todo: CREATE terrain in shape of arrow
+                The.World.DestroyTerrain(Object.Position + collision.Offset, 5f);
+            } else {
+                var target = collision.Collider2.Object;
+                target.GetDamage(2);
+                target.ReceiveBlastWave(direction.WithLength(3f));
+                // todo: target.AddPoison(2);
+            }
         }
 
 
