@@ -1,7 +1,10 @@
 ﻿using Attributes;
 using Battle.Weapons.Crosshairs;
 using Core;
+using Geometry;
 using UnityEngine;
+using Collision = Battle.Physics.Collisions.Collision;
+using Object = Battle.Objects.Object;
 
 namespace Battle.Weapons.WeaponTypes.Firearms {
 
@@ -41,10 +44,18 @@ namespace Battle.Weapons.WeaponTypes.Firearms {
         }
 
 
-        protected override void OnShoot() {
-            // todo
-            The.World.CastRay(Object.Position, TurnData.XY - Object.Position);
-            Debug.Log("bang");
+        protected override void OnShoot()
+        {
+            var direction = TurnData.XY - Object.Position;
+            var collision = The.World.CastRay(Object.Position, direction);
+            if (collision == null) return;
+            if (collision.Collider2 == null) {
+                The.World.DestroyTerrain(Object.Position + collision.Offset, 5f);
+            } else {
+                var target = collision.Collider2.Object;
+                target.GetDamage(2);
+                target.ReceiveBlastWave(direction.WithLength(3f));
+            }
         }
 
 
