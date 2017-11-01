@@ -23,12 +23,14 @@ namespace Assets {
 //        public GameObject HPField;
         [Space]
         public GameObject BazookaWeapon;
+        public GameObject PlasmagunWeapon;
         public GameObject MultiLauncherWeapon;
         public GameObject GrenadeWeapon;
         public GameObject LimonkaWeapon;
         public GameObject PhantomGrenadeWeapon;
         [Space]
         public GameObject BazookaShell;
+        public GameObject PlasmaBall;
         public GameObject MultiLauncherShell;
         public GameObject Grenade;
         public GameObject Limonka;
