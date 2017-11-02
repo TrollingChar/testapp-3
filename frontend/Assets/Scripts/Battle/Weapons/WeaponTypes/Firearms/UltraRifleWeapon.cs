@@ -43,7 +43,7 @@ namespace Battle.Weapons.WeaponTypes.Firearms {
 
         protected override void OnShoot()
         {
-            var direction = (TurnData.XY - Object.Position).Rotated(0.1f * (RNG.Float() - RNG.Float()));
+            var direction = (TurnData.XY - Object.Position).Rotated(0.05f * (RNG.Float() - RNG.Float()));
             var collisions = The.World.CastUltraRay(Object.Position, direction);
             foreach (var c in collisions) {
                 c.Collider2.Object.GetDamage(1);

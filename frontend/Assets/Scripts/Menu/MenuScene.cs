@@ -51,7 +51,6 @@ namespace Menu {
 
 
         public void ShowMainMenu () {
-            // todo: hide current menu
             _connectionMenu.Hide();
             _gameModeMenu.Hide();
             _lobbyMenu.Hide();

@@ -31,8 +31,9 @@ namespace Battle.Arsenals {
         }
 
 
+        [Obsolete]
         public Weapon GetWeapon (int id) {
-            return null; // todo: implement this
+            return null;
         }
 
 

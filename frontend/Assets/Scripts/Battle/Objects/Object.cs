@@ -132,7 +132,7 @@ namespace Battle.Objects {
                         .Where(o => !Excluded.Contains(o.Object))
                 );
                 foreach (var o in obstacles) {
-                    var temp = c.CollideWith(o, v);
+                    var temp = c.FlyInto(o, v);
                     if (temp < min) min = temp;
                 }
                 obstacles.Clear();
@@ -149,7 +149,7 @@ namespace Battle.Objects {
         private Collision CollideWithLand (XY v) {
             Collision min = null;
             foreach (var c in Colliders) {
-                var temp = c.CollideWithLand(_world.Land, v);
+                var temp = c.FlyInto(_world.Land, v);
                 if (temp < min) min = temp;
             }
             return min;

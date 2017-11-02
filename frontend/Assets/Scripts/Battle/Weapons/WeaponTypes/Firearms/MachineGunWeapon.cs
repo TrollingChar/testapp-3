@@ -43,7 +43,7 @@ namespace Battle.Weapons.WeaponTypes.Firearms {
 
 
         protected override void OnShoot() {
-            var direction = (TurnData.XY - Object.Position).Rotated(0.1f * (RNG.Float() - RNG.Float()));
+            var direction = (TurnData.XY - Object.Position).Rotated(0.05f * (RNG.Float() - RNG.Float()));
             var collision = The.World.CastRay(Object.Position, direction);
             if (collision == null) return;
             if (collision.Collider2 == null) {
@@ -51,7 +51,7 @@ namespace Battle.Weapons.WeaponTypes.Firearms {
             } else {
                 var target = collision.Collider2.Object;
                 target.GetDamage(1);
-                target.ReceiveBlastWave(direction.WithLength(3f));
+                target.ReceiveBlastWave(direction.WithLength(2f));
             }
         }
 

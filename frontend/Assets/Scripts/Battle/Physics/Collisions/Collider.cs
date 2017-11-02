@@ -69,22 +69,22 @@ namespace Battle.Physics.Collisions {
             for (int x = box.Left; x < box.Right; x++)
             for (int y = box.Bottom; y < box.Top; y++) {
                 foreach (var c in _world.Tiles[x, y].Colliders) {
-                    if (OverlapsWith(c)) result.Add(c);
+                    if (Overlaps(c)) result.Add(c);
                 }
             }
             return result;
         }
 
 
-        public abstract Collision CollideWith (Collider c, XY velocity);
-        public abstract Collision CollideWithCircle (CircleCollider c, XY velocity);
-        public abstract Collision CollideWithBox (BoxCollider c, XY velocity);
-        public abstract Collision CollideWithLand (Land land, XY v);
+        public abstract Collision FlyInto (Collider c, XY velocity);
+        public abstract Collision FlyInto (CircleCollider c, XY velocity);
+        public abstract Collision FlyInto (BoxCollider c, XY velocity);
+        public abstract Collision FlyInto (Land land, XY velocity);
 
-        public abstract bool OverlapsWith (Collider c);
-        public abstract bool OverlapsWithCircle (CircleCollider c);
-        public abstract bool OverlapsWithBox (BoxCollider c);
-        public abstract bool OverlapsWithLand (Land land);
+        public abstract bool Overlaps (Collider c);
+        public abstract bool Overlaps (CircleCollider c);
+        public abstract bool Overlaps (BoxCollider c);
+        public abstract bool Overlaps (Land land);
 
     }
 
