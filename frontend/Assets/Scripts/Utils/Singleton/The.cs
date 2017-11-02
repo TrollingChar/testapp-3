@@ -3,9 +3,6 @@
 
 namespace Utils.Singleton {
 
-    // todo: replace
-    // The<World>.Get().Update();
-    // The.World.Update();
     [Obsolete]
     public class The<T> {
 
