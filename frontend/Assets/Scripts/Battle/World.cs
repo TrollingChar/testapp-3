@@ -12,6 +12,7 @@ using DataTransfer.Data;
 using Geometry;
 using UnityEngine;
 using Utils.Random;
+using Collider = Battle.Physics.Collisions.Collider;
 using Collision = Battle.Physics.Collisions.Collision;
 using Object = Battle.Objects.Object;
 using Ray = Battle.Objects.Ray;
@@ -189,9 +190,9 @@ namespace Battle {
             
             Collision temp;
             
-            foreach (var o in _objects.Where(o => o.Colliders.TrueForAll(c => !c.OverlapsWith(point))))
+            foreach (var o in _objects.Where(o => o.Colliders.TrueForAll(c => !c.Overlaps((Collider) point))))
             foreach (var c in o.Colliders) {
-                temp = point.CollideWith(c, direction);
+                temp = point.FlyInto(c, direction);
                 if (temp < result) result = temp;
             }
 
@@ -209,11 +210,11 @@ namespace Battle {
             
             var result = new List<Collision>();
             
-            foreach (var o in _objects.Where(o => o.Colliders.TrueForAll(c => !c.OverlapsWith(point)))) {
+            foreach (var o in _objects.Where(o => o.Colliders.TrueForAll(c => !c.Overlaps((Collider) point)))) {
                 // no more than one collision per object
                 Collision min = null;
                 foreach (var c in o.Colliders) {
-                    var temp = point.CollideWith(c, direction);
+                    var temp = point.FlyInto(c, direction);
                     if (temp < min) min = temp;
                 }
                 if (min != null) result.Add(min);

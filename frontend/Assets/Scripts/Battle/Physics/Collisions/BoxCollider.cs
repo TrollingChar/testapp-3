@@ -46,17 +46,17 @@ namespace Battle.Physics.Collisions {
         }
 
 
-        public override Collision CollideWith (Collider c, XY velocity) {
-            return velocity == XY.Zero ? null : -c.CollideWithBox(this, -velocity);
+        public override Collision FlyInto (Collider c, XY velocity) {
+            return velocity == XY.Zero ? null : -c.FlyInto(this, -velocity);
         }
 
 
-        public override Collision CollideWithCircle (CircleCollider c, XY velocity) {
-            return -c.CollideWithBox(this, -velocity);
+        public override Collision FlyInto (CircleCollider c, XY velocity) {
+            return -c.FlyInto(this, -velocity);
         }
 
 
-        public override Collision CollideWithBox (BoxCollider c, XY velocity) {
+        public override Collision FlyInto (BoxCollider c, XY velocity) {
             float
                 left = Left,
                 right = Right,
@@ -140,24 +140,24 @@ namespace Battle.Physics.Collisions {
         }
 
 
-        public override Collision CollideWithLand (Land land, XY v) {
-            var result = land.CastRectRay(Left, Right, Bottom, Top, v);
+        public override Collision FlyInto (Land land, XY velocity) {
+            var result = land.CastRectRay(Left, Right, Bottom, Top, velocity);
             if (result != null) result.Collider1 = this;
             return result;
         }
 
 
-        public override bool OverlapsWith (Collider c) {
-            return c.OverlapsWithBox(this);
+        public override bool Overlaps (Collider c) {
+            return c.Overlaps(this);
         }
 
 
-        public override bool OverlapsWithCircle (CircleCollider c) {
+        public override bool Overlaps (CircleCollider c) {
             return Geom.AreOverlapping(c.Center, c.Radius, Left, Right, Bottom, Top);
         }
 
 
-        public override bool OverlapsWithBox (BoxCollider c) {
+        public override bool Overlaps (BoxCollider c) {
             return Left < c.Right
                 && Right > c.Left
                 && Bottom < c.Top
@@ -165,7 +165,7 @@ namespace Battle.Physics.Collisions {
         }
 
 
-        public override bool OverlapsWithLand (Land land) {
+        public override bool Overlaps (Land land) {
             throw new NotImplementedException();
         }
 
