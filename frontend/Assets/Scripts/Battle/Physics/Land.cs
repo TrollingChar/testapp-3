@@ -339,6 +339,7 @@ namespace Battle.Physics {
             var aabb = new AABBF(left, right, bottom, top).ToTiles(LandTile.Size);
 
             // affect tiles
+            bool holeLargeEnough = sqrRadius * 2 > LandTile.Size * LandTile.Size;
             for (int x = aabb.Left; x < aabb.Right; x++)
             for (int y = aabb.Bottom; y < aabb.Top; y++) {
                 var tile = Tiles[x, y];
@@ -353,7 +354,7 @@ namespace Battle.Physics {
                 if (XY.SqrDistance(center, new XY((x + 1) * LandTile.Size, (y + 1) * LandTile.Size)) > sqrRadius) temp++;
 
                 // if not affected do nothing (hole must be large enough for this to work)
-                if (temp == 4 && sqrRadius * 2 > LandTile.Size * LandTile.Size) continue;
+                if (temp == 4 && holeLargeEnough) continue;
 
                 // if entirely inside circle
                 if (temp == 0) tile.Erase();
