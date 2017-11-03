@@ -3,6 +3,7 @@ using System.Linq;
 using Battle.Objects.CollisionHandlers;
 using Battle.Objects.Controllers;
 using Battle.Objects.Explosives;
+using Battle.Physics.Collisions;
 using Core;
 using DataTransfer.Data;
 using Geometry;
@@ -132,7 +133,7 @@ namespace Battle.Objects {
                         .Where(o => !Excluded.Contains(o.Object))
                 );
                 foreach (var o in obstacles) {
-                    var temp = c.FlyInto(o, v);
+                    var temp = PhysicsCore.FlyInto(c, o, v);
                     if (temp < min) min = temp;
                 }
                 obstacles.Clear();
