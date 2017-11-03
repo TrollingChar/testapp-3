@@ -12,6 +12,7 @@ namespace Battle.Weapons.WeaponTypes.Firearms {
     public class PistolWeapon : StandardWeapon {
         
         private LineCrosshair _crosshair;
+        private GameObject _sprite;
 
         public static WeaponDescriptor Descriptor {
             get {
@@ -35,7 +36,11 @@ namespace Battle.Weapons.WeaponTypes.Firearms {
                 false
             ).GetComponent<LineCrosshair>();
             
-            // todo: sprite
+            _sprite = UnityEngine.Object.Instantiate(
+                battleAssets.PistolWeapon,
+                GameObject.transform,
+                false
+            );
         }
 
 
@@ -61,7 +66,7 @@ namespace Battle.Weapons.WeaponTypes.Firearms {
 
         protected override void OnUpdate () {
             UpdateLineCrosshair(_crosshair);
-//            UpdateAimedWeapon(_sprite);
+            UpdateAimedWeapon(_sprite);
         }
 
     }
