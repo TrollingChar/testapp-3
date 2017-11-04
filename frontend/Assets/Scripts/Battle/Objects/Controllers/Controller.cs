@@ -24,7 +24,6 @@ namespace Battle.Objects.Controllers {
             } else {
                 DoUpdate(td);
             }
-            if (this is GrenadeController) Debug.Log(Timer);
         }
 
 
