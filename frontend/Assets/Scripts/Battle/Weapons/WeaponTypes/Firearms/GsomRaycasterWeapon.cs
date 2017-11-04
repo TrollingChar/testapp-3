@@ -3,11 +3,12 @@ using Battle.Weapons.Crosshairs;
 using Core;
 using UnityEngine;
 
+
 namespace Battle.Weapons.WeaponTypes.Firearms {
 
     [Weapon(WeaponId.GsomRaycaster)]
     public class GsomRaycasterWeapon : StandardWeapon {
-        
+
         private LineCrosshair _crosshair;
 
         public static WeaponDescriptor Descriptor {
@@ -25,13 +26,13 @@ namespace Battle.Weapons.WeaponTypes.Firearms {
             ShotCooldown = 10;
 
             var battleAssets = The.BattleAssets;
-            
+
             _crosshair = UnityEngine.Object.Instantiate(
                 battleAssets.LineCrosshair,
                 GameObject.transform,
                 false
             ).GetComponent<LineCrosshair>();
-            
+
             // todo: sprite
         }
 
@@ -41,7 +42,7 @@ namespace Battle.Weapons.WeaponTypes.Firearms {
         }
 
 
-        protected override void OnShoot() {
+        protected override void OnShoot () {
             var direction = TurnData.XY - Object.Position;
             var collision = The.World.CastRay(Object.Position, direction);
             if (collision == null) return;

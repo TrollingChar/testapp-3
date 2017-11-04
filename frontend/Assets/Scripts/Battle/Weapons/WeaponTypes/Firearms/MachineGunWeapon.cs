@@ -4,11 +4,12 @@ using Core;
 using UnityEngine;
 using Utils.Random;
 
+
 namespace Battle.Weapons.WeaponTypes.Firearms {
 
     [Weapon(WeaponId.MachineGun)]
     public class MachineGunWeapon : StandardWeapon {
-        
+
         private LineCrosshair _crosshair;
 
         public static WeaponDescriptor Descriptor {
@@ -26,13 +27,13 @@ namespace Battle.Weapons.WeaponTypes.Firearms {
             ShotCooldown = 3;
 
             var battleAssets = The.BattleAssets;
-            
+
             _crosshair = UnityEngine.Object.Instantiate(
                 battleAssets.LineCrosshair,
                 GameObject.transform,
                 false
             ).GetComponent<LineCrosshair>();
-            
+
             // todo: sprite
         }
 
@@ -42,7 +43,7 @@ namespace Battle.Weapons.WeaponTypes.Firearms {
         }
 
 
-        protected override void OnShoot() {
+        protected override void OnShoot () {
             var direction = (TurnData.XY - Object.Position).Rotated(0.05f * (RNG.Float() - RNG.Float()));
             var collision = The.World.CastRay(Object.Position, direction);
             if (collision == null) return;

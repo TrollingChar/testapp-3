@@ -33,7 +33,7 @@ namespace Battle.Weapons.WeaponTypes.Launched {
             ShotCooldown = 10;
 
             var battleAssets = The.BattleAssets;
-            
+
             _crosshair = UnityEngine.Object.Instantiate(
                 battleAssets.LineCrosshair,
                 GameObject.transform,

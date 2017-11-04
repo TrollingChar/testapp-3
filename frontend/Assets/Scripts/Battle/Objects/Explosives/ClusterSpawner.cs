@@ -2,6 +2,7 @@
 using Geometry;
 using Utils.Random;
 
+
 namespace Battle.Objects.Explosives {
 
     public class ClusterSpawner : Explosive {

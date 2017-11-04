@@ -24,8 +24,7 @@ namespace Battle.Weapons.WeaponTypes.Airstrikes {
         }
 
 
-        protected override void OnShoot()
-        {
+        protected override void OnShoot () {
             // todo: launch airplane/helicopter/ufo that will drop bombs to target location
         }
 

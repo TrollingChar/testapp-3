@@ -9,6 +9,7 @@ using DataTransfer.Data;
 using UnityEngine;
 using Component = Battle.Objects.Component;
 
+
 namespace Battle.Weapons {
 
     public abstract class Weapon : Component {

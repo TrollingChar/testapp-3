@@ -63,8 +63,10 @@ namespace Geometry {
             float boxTop
         ) {
             // если окружность полностью внутри прямоугольника
-            if (circleCenter.X > boxLeft && circleCenter.X < boxRight && circleCenter.Y > boxBottom &&
-                circleCenter.Y < boxTop) return true;
+            if (circleCenter.X > boxLeft && circleCenter.X < boxRight &&
+                circleCenter.Y > boxBottom && circleCenter.Y < boxTop) {
+                return true;
+            }
 
             float sqrRadius = circleRadius * circleRadius;
             // стороны

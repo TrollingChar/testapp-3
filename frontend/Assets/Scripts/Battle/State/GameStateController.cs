@@ -12,8 +12,7 @@ namespace Battle.State {
         private GameState _currentState;
 
 
-        public GameStateController ()
-        {
+        public GameStateController () {
             The.GameStateController = this;
 
             _battle = The.BattleScene;

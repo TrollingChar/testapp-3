@@ -4,6 +4,7 @@ using Battle.Weapons.Crosshairs;
 using Core;
 using UnityEngine;
 
+
 namespace Battle.Weapons.WeaponTypes.Launched {
 
     [Weapon(WeaponId.Plasmagun)]
@@ -26,7 +27,7 @@ namespace Battle.Weapons.WeaponTypes.Launched {
             ConstPower = false;
 
             var battleAssets = The.BattleAssets;
-            
+
             _crosshair = UnityEngine.Object.Instantiate(
                 battleAssets.LineCrosshair,
                 GameObject.transform,

@@ -4,11 +4,12 @@ using Core;
 using UnityEngine;
 using Utils.Random;
 
+
 namespace Battle.Weapons.WeaponTypes.Firearms {
 
     [Weapon(WeaponId.UltraRifle)]
     public class UltraRifleWeapon : StandardWeapon {
-        
+
         private LineCrosshair _crosshair;
         private GameObject _sprite;
 
@@ -26,13 +27,13 @@ namespace Battle.Weapons.WeaponTypes.Firearms {
             Shots = 15;
 
             var battleAssets = The.BattleAssets;
-            
+
             _crosshair = UnityEngine.Object.Instantiate(
                 battleAssets.LineCrosshair,
                 GameObject.transform,
                 false
             ).GetComponent<LineCrosshair>();
-            
+
             _sprite = UnityEngine.Object.Instantiate(
                 battleAssets.UltraRifleWeapon,
                 GameObject.transform,
@@ -46,8 +47,7 @@ namespace Battle.Weapons.WeaponTypes.Firearms {
         }
 
 
-        protected override void OnShoot()
-        {
+        protected override void OnShoot () {
             var direction = (TurnData.XY - Object.Position).Rotated(0.05f * (RNG.Float() - RNG.Float()));
             var collisions = The.World.CastUltraRay(Object.Position, direction);
             foreach (var c in collisions) {

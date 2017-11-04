@@ -179,17 +179,16 @@ namespace Battle {
         }
 
 
-        public Collision CastRay(XY origin, XY direction, float width = 0)
-        {
+        public Collision CastRay (XY origin, XY direction, float width = 0) {
             var point = new CircleCollider(origin, width);
             point.Object = new NullObject();
 
             direction.Length = 10000; // todo: handle infinite length of the ray
-            
+
             Collision result = null;
-            
+
             Collision temp;
-            
+
             foreach (var o in _objects.Where(o => o.Colliders.TrueForAll(c => PhysicsCore.Overlap(c, point))))
             foreach (var c in o.Colliders) {
                 temp = PhysicsCore.FlyInto(point, c, direction);
@@ -201,15 +200,14 @@ namespace Battle {
         }
 
 
-        public List<Collision> CastUltraRay(XY origin, XY direction, float width = 0)
-        {
+        public List<Collision> CastUltraRay (XY origin, XY direction, float width = 0) {
             var point = new CircleCollider(origin, width);
             point.Object = new NullObject();
 
             direction.Length = 10000; // todo: handle infinite length of the ray
-            
+
             var result = new List<Collision>();
-            
+
             foreach (var o in _objects.Where(o => o.Colliders.TrueForAll(c => PhysicsCore.Overlap(c, point)))) {
                 // no more than one collision per object
                 Collision min = null;
@@ -222,7 +220,7 @@ namespace Battle {
             // do not cast to land because ultrawave weapons penetrate terrain
             return result;
         }
-        
+
 
         public void Spawn (Object o, XY position, XY velocity = default(XY)) {
             o.Node = _objects.AddLast(o);

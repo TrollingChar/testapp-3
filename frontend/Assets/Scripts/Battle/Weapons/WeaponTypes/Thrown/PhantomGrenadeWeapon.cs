@@ -29,7 +29,7 @@ namespace Battle.Weapons.WeaponTypes.Thrown {
             ConstPower = false;
 
             var battleAssets = The.BattleAssets;
-            
+
             _crosshair = UnityEngine.Object.Instantiate(
                 battleAssets.LineCrosshair,
                 GameObject.transform,

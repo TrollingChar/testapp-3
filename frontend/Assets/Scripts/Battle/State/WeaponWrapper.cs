@@ -5,8 +5,7 @@ using DataTransfer.Data;
 
 namespace Battle.State {
 
-    public class WeaponWrapper
-    {
+    public class WeaponWrapper {
 
         private readonly ActiveWormWrapper _activeWorm = The.ActiveWormWrapper;
         private bool _locked;

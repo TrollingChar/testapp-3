@@ -28,9 +28,9 @@ namespace Battle.Objects.Projectiles {
             var canvas = UnityEngine.Object.Instantiate(assets.TopCanvas, transform, false);
             canvas.transform.localPosition += new Vector3(0, 5, 0);
             canvas.transform.localScale = new Vector3(0.7f, 0.7f, 1f);
-            
+
             var timerText = UnityEngine.Object.Instantiate(assets.Text, canvas.transform, false).GetComponent<Text>();
-            
+
             UnityEngine.Object.Instantiate(assets.Grenade, transform, false);
             AddCollider(new CircleCollider(XY.Zero, 5f));
             Explosive = new Explosive25();

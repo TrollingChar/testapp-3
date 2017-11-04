@@ -6,11 +6,12 @@ using UnityEngine;
 using Collision = Battle.Physics.Collisions.Collision;
 using Object = Battle.Objects.Object;
 
+
 namespace Battle.Weapons.WeaponTypes.Firearms {
 
     [Weapon(WeaponId.Pistol)]
     public class PistolWeapon : StandardWeapon {
-        
+
         private LineCrosshair _crosshair;
         private GameObject _sprite;
 
@@ -29,13 +30,13 @@ namespace Battle.Weapons.WeaponTypes.Firearms {
             ShotCooldown = 30;
 
             var battleAssets = The.BattleAssets;
-            
+
             _crosshair = UnityEngine.Object.Instantiate(
                 battleAssets.LineCrosshair,
                 GameObject.transform,
                 false
             ).GetComponent<LineCrosshair>();
-            
+
             _sprite = UnityEngine.Object.Instantiate(
                 battleAssets.PistolWeapon,
                 GameObject.transform,
@@ -49,8 +50,7 @@ namespace Battle.Weapons.WeaponTypes.Firearms {
         }
 
 
-        protected override void OnShoot()
-        {
+        protected override void OnShoot () {
             var direction = TurnData.XY - Object.Position;
             var collision = The.World.CastRay(Object.Position, direction);
             if (collision == null) return;

@@ -6,10 +6,11 @@ using UnityEngine.UI;
 namespace Battle.Objects.Controllers {
 
     public class GrenadeController : StandardController {
+
         public Text TimerText { get; private set; }
 
-        public GrenadeController (int timer, Text timerText)
-        {
+
+        public GrenadeController (int timer, Text timerText) {
             TimerText = timerText;
             Timer = timer;
         }
