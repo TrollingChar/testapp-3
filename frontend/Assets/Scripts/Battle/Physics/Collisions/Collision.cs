@@ -61,7 +61,13 @@ namespace Battle.Physics.Collisions {
 
 
         public bool Equals (Collision other) {
-            return (object) other != null && Offset.SqrLength.Equals(other.Offset.SqrLength);
+            return (object) other != null
+                && other.Offset == Offset
+                && other.Normal == Normal
+                && other.Primitive1 == Primitive1
+                && other.Primitive2 == Primitive2
+                && other.Collider1 == Collider1
+                && other.Collider2 == Collider2;
         }
 
 
@@ -80,14 +86,14 @@ namespace Battle.Physics.Collisions {
 
         public static bool operator == (Collision a, Collision b) {
             return (object) a == null
-                ? (object) b == null
+                ?  (object) b == null
                 : a.Equals(b);
         }
 
 
         public static bool operator != (Collision a, Collision b) {
             return (object) a == null
-                ? (object) b != null
+                ?  (object) b != null
                 : !a.Equals(b);
         }
 

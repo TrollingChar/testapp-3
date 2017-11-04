@@ -224,6 +224,11 @@ namespace Battle.Physics.Collisions {
             throw new NotImplementedException();
         }
 
+
+        public override string ToString () {
+            return "Circle: center:" + Center.ToString("R") + ", radius:" + Radius.ToString("R");
+        }
+
     }
 
 }

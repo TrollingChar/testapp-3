@@ -29,7 +29,8 @@ namespace Battle.Physics.Collisions
                 ab == -ba,
                 "2nd law of collisions does not work when:\n" +
                 "a = " + a + ",\n" +
-                "b = " + b + "!"
+                "b = " + b + ",\n" +
+                "v = " + v.ToString("R")
             );
             return ab;
         }

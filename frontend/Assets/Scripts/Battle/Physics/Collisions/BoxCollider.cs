@@ -169,6 +169,12 @@ namespace Battle.Physics.Collisions {
             throw new NotImplementedException();
         }
 
+
+        public override string ToString () {
+            return "Box: left:" + Left.ToString("R") + ", right:" + Right.ToString("R")
+                + ", bottom:" + Bottom.ToString("R") + ", top:" + Top.ToString("R");
+        }
+
     }
 
 }
