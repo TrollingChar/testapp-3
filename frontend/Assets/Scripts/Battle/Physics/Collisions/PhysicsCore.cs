@@ -23,8 +23,8 @@ namespace Battle.Physics.Collisions
         // todo: 3rd law
         public static Collision FlyInto(Collider a, Collider b, XY v)
         {
-            Collision ab = a.FlyInto(b, v);
-            Collision ba = b.FlyInto(a, -v);
+            var ab = a.FlyInto(b, v);
+            var ba = b.FlyInto(a, -v);
             Debug.Assert(
                 ab == -ba,
                 "2nd law of collisions does not work when:\n" +

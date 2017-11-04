@@ -56,51 +56,46 @@ namespace Battle.Physics.Collisions {
 
 
         public int CompareTo (Collision other) {
-            return (object) other == null ? 1 : Offset.SqrLength.CompareTo(other.Offset.SqrLength);
+            return ReferenceEquals(other, null) ? 1 : Offset.SqrLength.CompareTo(other.Offset.SqrLength);
         }
 
 
         public bool Equals (Collision other) {
-            return (object) other != null
+            return !ReferenceEquals(other, null)
                 && other.Offset == Offset
                 && other.Normal == Normal
-                && other.Primitive1 == Primitive1
-                && other.Primitive2 == Primitive2
                 && other.Collider1 == Collider1
                 && other.Collider2 == Collider2;
         }
 
 
         public static Collision operator - (Collision c) {
-            return c != null
-                ? new Collision(
-                    -c.Offset,
-                    -c.Normal,
-                    c.Collider2,
-                    c.Collider1,
-                    c.Primitive2,
-                    c.Primitive1
-                ) : null;
+            return ReferenceEquals(c, null) ? null : new Collision(
+                -c.Offset,
+                -c.Normal,
+                c.Collider2,
+                c.Collider1,
+                c.Primitive2,
+                c.Primitive1
+            );
         }
 
 
         public static bool operator == (Collision a, Collision b) {
-            return (object) a == null
-                ?  (object) b == null
-                : a.Equals(b);
+            return ReferenceEquals(a, null)
+                 ? ReferenceEquals(b, null)
+                 : a.Equals(b);
         }
 
 
         public static bool operator != (Collision a, Collision b) {
-            return (object) a == null
-                ?  (object) b != null
-                : !a.Equals(b);
+            return !(a == b);
         }
 
 
         public static bool operator < (Collision a, Collision b) {
-            if ((object) a == null) return false;
-            if ((object) b == null) return true;
+            if (ReferenceEquals(a, null)) return false;
+            if (ReferenceEquals(b, null)) return true;
             return a.Offset.SqrLength < b.Offset.SqrLength;
         }
 
