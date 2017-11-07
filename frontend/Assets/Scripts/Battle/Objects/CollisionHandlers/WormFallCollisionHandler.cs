@@ -9,9 +9,11 @@ namespace Battle.Objects.CollisionHandlers {
 
         public override bool WillCauseCollision(Collision c)
         {
-            return
-                Object.Velocity.SqrLength <= 4f
-                || !(c.Collider2 != null && c.Collider2.Object.Controller is WormControllerWalk);
+            return Object.Velocity.SqrLength <= 4f || !(
+                c.Collider2 != null
+                && c.Collider2.Object is Worm
+                && !(c.Collider2.Object.Controller is WormControllerFall)
+            );
         }
 
 

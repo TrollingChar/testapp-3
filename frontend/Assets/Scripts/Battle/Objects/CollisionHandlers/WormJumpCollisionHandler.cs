@@ -9,8 +9,7 @@ namespace Battle.Objects.CollisionHandlers {
 
         public override bool WillCauseCollision (Collision c) {
             // wtf
-            return
-                c.Collider1 != ((Worm) Object).Tail
+            return c.Collider1 != ((Worm) Object).Tail
                 && !(c.Collider2 != null && c.Collider2.Object.Controller is WormControllerWalk);
         }
 
