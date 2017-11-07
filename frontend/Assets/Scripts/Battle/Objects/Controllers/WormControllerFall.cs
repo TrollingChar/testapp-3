@@ -1,5 +1,6 @@
 ﻿using Battle.Objects.CollisionHandlers;
 using DataTransfer.Data;
+using UnityEngine;
 
 
 namespace Battle.Objects.Controllers {
@@ -14,15 +15,15 @@ namespace Battle.Objects.Controllers {
         }
 
 
-        protected virtual void DoUpdate (TurnData td) {
+        protected override void DoUpdate (TurnData td) {
             base.DoUpdate(td);
             Wait();
 
-            if (Object.Velocity.SqrLength > 0.5f) {
+            if (Object.Velocity.SqrLength > 4f) {
                 _control = 0;
                 return;
             }
-            _control += 0.2f;
+            _control += 0.02f;
             if (_control >= 1f && ((Worm) Object).CanLandThere) {
                 ((Worm) Object).LandThere();
             }

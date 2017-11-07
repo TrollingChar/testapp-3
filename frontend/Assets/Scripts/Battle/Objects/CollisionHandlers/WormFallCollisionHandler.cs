@@ -11,6 +11,7 @@ namespace Battle.Objects.CollisionHandlers {
 
 
         public override void OnCollision (Collision c) {
+            if (Object.Velocity.SqrLength <= 4f) return;
             if (c.Collider2 == null) return;
             var worm = c.Collider2.Object as Worm;
             if (worm == null) return;
