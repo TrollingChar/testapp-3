@@ -38,13 +38,13 @@ namespace Battle.Physics.Collisions {
 
             var before = a.Object.Position;
             a.Object.Position += ab == null ? v : ab.Offset;
-            Debug.Assert(
+            /*Debug.Assert(
                 !Overlap(a, b),
                 "3rd law of collisions does not work when:\n" +
                 "a = " + a + ",\n" +
                 "b = " + b + ",\n" +
                 "v = " + v.ToString("R")
-            );
+            );*/
             a.Object.Position = before;
             
             return ab;

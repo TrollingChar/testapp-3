@@ -19,7 +19,7 @@ namespace Battle.Objects.Controllers {
             Wait();
 
             if (Object.Velocity.SqrLength > 4f) {
-                _control = 0;
+                _control = _control < 0.06f ? 0 : _control - 0.06f;
                 return;
             }
             _control += 0.02f;
