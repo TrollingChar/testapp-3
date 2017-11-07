@@ -7,11 +7,15 @@ namespace Battle.Objects.CollisionHandlers {
 
     public class WormFallCollisionHandler : CollisionHandler {
 
-        // bug: 2 worms in a pit cause game to never end a turn
+        public override bool WillCauseCollision(Collision c)
+        {
+            return
+                Object.Velocity.SqrLength <= 4f
+                || !(c.Collider2 != null && c.Collider2.Object.Controller is WormControllerWalk);
+        }
 
 
         public override void OnCollision (Collision c) {
-            if (Object.Velocity.SqrLength <= 4f) return;
             if (c.Collider2 == null) return;
             var worm = c.Collider2.Object as Worm;
             if (worm == null) return;

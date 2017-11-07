@@ -13,7 +13,6 @@ namespace Battle.Objects.CollisionHandlers {
 //                Debug.LogWarning("2");
 //            }
 //        }
-
     }
 
 }
