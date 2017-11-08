@@ -1,4 +1,5 @@
-﻿using Battle.State;
+﻿using Battle.Objects.Projectiles;
+using Battle.State;
 using Core;
 using DataTransfer.Data;
 using UnityEngine;
@@ -18,6 +19,9 @@ namespace Battle.Objects.Controllers {
 
 
         public void Update (TurnData td) {
+            
+            if (Object is Limonka) Debug.Log(Object.Velocity.Length.ToString("R"));
+            
             if (Timer > 0 & (Timer -= 20) <= 0) {
                 DoUpdate(td);
                 OnTimer();

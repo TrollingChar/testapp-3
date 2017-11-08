@@ -105,7 +105,7 @@ namespace Battle {
             ActiveWorm = new ActiveWormWrapper();
             Weapon = new WeaponWrapper();
             Camera.LookAt(new Vector2(1000, 1000), true);
-            Teams = World.SpawnTeams(_initData.Players, 5);
+            Teams = World.SpawnTeams(_initData.Players, 10);
 
             NewTurnCmd.OnReceived.Subscribe(PrepareTurn);
             TurnDataSCmd.OnReceived.Subscribe(TurnDataHandler);

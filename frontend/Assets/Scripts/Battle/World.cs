@@ -29,6 +29,7 @@ namespace Battle {
         public Land Land;
         public Tiles Tiles;
         public float WaterLevel;
+        public long Time;
 
 
         // todo: wrap it in worldgen params
@@ -38,6 +39,7 @@ namespace Battle {
             Gravity = -0.5f;
             WaterLevel = 0;
             Tiles = new Tiles();
+            Time = 0;
 
             Land = new Land(gen, renderer, The.BattleAssets.LandTexture);
             _objects = new LinkedList<Object>();
@@ -65,6 +67,8 @@ namespace Battle {
                     node = node.Next;
                 }
             }
+
+            Time += 20;
         }
 
 

@@ -1,12 +1,14 @@
 ﻿using Battle.Objects.CollisionHandlers;
+using Core;
 using DataTransfer.Data;
+using UnityEngine;
 
 
 namespace Battle.Objects.Controllers {
 
     public class WormControllerFall : StandardController {
 
-        private float _control;
+        private int _control;
 
 
         public override void OnAdd () {
@@ -18,13 +20,14 @@ namespace Battle.Objects.Controllers {
             base.DoUpdate(td);
             Wait();
 
-            if (Object.Velocity.SqrLength > 4f) {
-                _control = _control < 0.06f ? 0 : _control - 0.06f;
-                return;
-            }
-            _control += 0.02f;
-            if (_control >= 1f && ((Worm) Object).CanLandThere) {
-                ((Worm) Object).LandThere();
+            if (Object.Velocity.Length < 1) _control += 20;
+            if (The.World.Time % 1000 == 0) {
+                // 50 ticks
+                var worm = (Worm) Object;
+                if (_control >= 900 && worm.CanLandThere) {
+                    worm.LandThere();
+                }
+                _control = 0;
             }
 
         }
