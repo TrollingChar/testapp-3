@@ -11,22 +11,25 @@ using Net;
 namespace Core {
 
     public static class The {
+        
+        public static SceneSwitcher SceneSwitcher;
+        public static Connection Connection;
+        public static PlayerInfo PlayerInfo;
 
         public static BattleAssets BattleAssets;
         public static WeaponIcons WeaponIcons;
-        public static TimerWrapper TimerWrapper;
+        
+        public static MenuScene MenuScene;
+        public static BattleScene BattleScene;
+        
         public static World World;
+        public static TimerWrapper TimerWrapper;
         public static ActiveWormWrapper ActiveWormWrapper;
         public static GameStateController GameStateController;
         public static WeaponWrapper WeaponWrapper;
         public static TeamManager TeamManager;
-        public static PlayerInfo PlayerInfo;
-        public static BattleScene BattleScene;
-        public static SceneSwitcher SceneSwitcher;
-        public static Connection Connection;
-        public static CameraWrapper CameraWrapper;
         public static ArsenalPanel ArsenalPanel;
-        public static MenuScene MenuScene;
+        public static CameraWrapper CameraWrapper;
 
     }
 

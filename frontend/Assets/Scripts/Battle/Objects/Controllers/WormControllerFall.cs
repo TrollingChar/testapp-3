@@ -20,7 +20,7 @@ namespace Battle.Objects.Controllers {
             base.DoUpdate(td);
             Wait();
 
-            if (Object.Velocity.Length < 1) _control += 20;
+            if (Object.Velocity.SqrLength < 1) _control += 20;
             if (The.World.Time % 1000 == 0) {
                 // 50 ticks
                 var worm = (Worm) Object;

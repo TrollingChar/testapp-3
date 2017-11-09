@@ -8,7 +8,7 @@ namespace Battle.Objects.CollisionHandlers {
 
         public override bool WillCauseCollision(Collision c)
         {
-            return Object.Velocity.SqrLength <= 4f || !(
+            return Object.Velocity.SqrLength < 1f || !(
                 c.Collider2 != null
                 && c.Collider2.Object.Controller is WormControllerWalk
             );
