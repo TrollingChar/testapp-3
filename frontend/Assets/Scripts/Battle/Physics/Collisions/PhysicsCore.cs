@@ -28,13 +28,13 @@ namespace Battle.Physics.Collisions {
             
             var ab = a.FlyInto(b, v);
             var ba = b.FlyInto(a, -v);
-            Debug.Assert(
-                ab == -ba,
-                "2nd law of collisions does not work when:\n" +
-                "a = " + a + ",\n" +
-                "b = " + b + ",\n" +
-                "v = " + v.ToString("R")
-            );
+//            Debug.Assert(
+//                ab == -ba,
+//                "2nd law of collisions does not work when:\n" +
+//                "a = " + a + ",\n" +
+//                "b = " + b + ",\n" +
+//                "v = " + v.ToString("R")
+//            );
 
             var before = a.Object.Position;
             a.Object.Position += ab == null ? v : ab.Offset;

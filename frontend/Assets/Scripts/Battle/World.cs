@@ -193,7 +193,7 @@ namespace Battle {
 
             Collision temp;
 
-            foreach (var o in _objects.Where(o => o.Colliders.TrueForAll(c => PhysicsCore.Overlap(c, point))))
+            foreach (var o in _objects.Where(o => o.Colliders.TrueForAll(c => !PhysicsCore.Overlap(c, point))))
             foreach (var c in o.Colliders) {
                 temp = PhysicsCore.FlyInto(point, c, direction);
                 if (temp < result) result = temp;
@@ -212,7 +212,7 @@ namespace Battle {
 
             var result = new List<Collision>();
 
-            foreach (var o in _objects.Where(o => o.Colliders.TrueForAll(c => PhysicsCore.Overlap(c, point)))) {
+            foreach (var o in _objects.Where(o => o.Colliders.TrueForAll(c => !PhysicsCore.Overlap(c, point)))) {
                 // no more than one collision per object
                 Collision min = null;
                 foreach (var c in o.Colliders) {
