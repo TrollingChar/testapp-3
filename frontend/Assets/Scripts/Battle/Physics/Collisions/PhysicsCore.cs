@@ -24,7 +24,7 @@ namespace Battle.Physics.Collisions {
 
         // todo: 3rd law
         public static Collision FlyInto (Collider a, Collider b, XY v) {
-//            if (Overlap(a, b)) return null;
+            bool overlapped = Overlap(a, b);
             
             var ab = a.FlyInto(b, v);
             var ba = b.FlyInto(a, -v);
@@ -36,17 +36,38 @@ namespace Battle.Physics.Collisions {
 //                "v = " + v.ToString("R")
 //            );
 
+            if (overlapped) return ab;
+            
             var before = a.Object.Position;
-            a.Object.Position += ab == null ? v : ab.Offset;
-            /*Debug.Assert(
+
+            if (a is CircleCollider && b is CircleCollider) {
+                var lo = XY.Zero;
+                var hi = ab == null ? v : ab.Offset;
+
+                a.Object.Position += hi;
+                if (!Overlap(a, b)) goto @return;
+                for (int i = 0; i < 10; i++) {
+                    var mid = (lo + hi) * 0.5f;
+                    a.Object.Position = before + mid;
+                    if (Overlap(a, b)) {
+                        hi = mid;
+                    } else {
+                        lo = mid;
+                    }
+                }
+                if (ab != null) ab.Offset = lo;
+            }
+
+            a.Object.Position = before + (ab == null ? v : ab.Offset);
+            Debug.Assert(
                 !Overlap(a, b),
                 "3rd law of collisions does not work when:\n" +
                 "a = " + a + ",\n" +
                 "b = " + b + ",\n" +
                 "v = " + v.ToString("R")
-            );*/
+            );
+        @return:
             a.Object.Position = before;
-            
             return ab;
         }
 
