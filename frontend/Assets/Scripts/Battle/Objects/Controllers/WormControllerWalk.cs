@@ -20,7 +20,7 @@ namespace Battle.Objects.Controllers {
         protected override void DoUpdate (TurnData td) {
             var worm = (Worm) Object;
 
-            if (td != null) worm.LookAt(td.XY);
+            //if (td != null) worm.LookAt(td.XY);
 
             var collision =
                 new Ray(worm.Tail.Center, new CircleCollider(XY.Zero, Worm.HeadRadius))

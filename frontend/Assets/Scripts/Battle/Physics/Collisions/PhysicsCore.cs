@@ -1,4 +1,5 @@
-﻿using Geometry;
+﻿using Battle.Objects;
+using Geometry;
 using UnityEngine;
 
 
@@ -18,6 +19,9 @@ namespace Battle.Physics.Collisions {
                 "a = " + a + ",\n" +
                 "b = " + b + "!"
             );
+            if (ab && a.Object is Worm && b.Object is Worm) {
+                Debug.LogWarning(a.Object.Controller.GetType() + " >< " + b.Object.Controller.GetType());
+            }
             return ab;
         }
 
