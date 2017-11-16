@@ -26,7 +26,6 @@ namespace Battle.Physics.Collisions {
         }
 
 
-        // todo: 3rd law
         public static Collision FlyInto (Collider a, Collider b, XY v) {
             bool overlapped = Overlap(a, b);
             
@@ -50,6 +49,7 @@ namespace Battle.Physics.Collisions {
 
                 a.Object.Position += hi;
                 if (!Overlap(a, b)) goto @return;
+                
                 for (int i = 0; i < 10; i++) {
                     var mid = (lo + hi) * 0.5f;
                     a.Object.Position = before + mid;
