@@ -59,7 +59,7 @@ namespace Battle.Physics.Collisions {
                         lo = mid;
                     }
                 }
-                if (ab != null) ab.Offset = lo;
+                if (ab != null) ab.Offset = lo; // possible bug caused by condition
             }
 
             a.Object.Position = before + (ab == null ? v : ab.Offset);
