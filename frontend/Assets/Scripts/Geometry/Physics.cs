@@ -18,16 +18,9 @@ namespace Geometry
             float left = b.Left;
             float right = b.Right;
             float bottom = b.Bottom;
-            
-            // todo:
-            // если лежит в прямоугольнике - вернуть true
-            // 
-            
-            // если окружность полностью внутри прямоугольника
-//            if (o.X > left && o.X < right && o.Y > bottom && o.Y < top) return true;
 
             float r2 = r * r;
-            // стороны
+            
             if (left >= o.X + r || right <= o.X - r || bottom >= o.Y + r || top <= o.Y - r) return false;
 
             if (o.X >= right) {
