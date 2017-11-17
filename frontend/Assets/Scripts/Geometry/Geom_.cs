@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 
 namespace Geometry {
@@ -54,6 +55,8 @@ namespace Geometry {
         }
 
 
+        // BUG!!!
+        [Obsolete]
         public static bool AreOverlapping (
             XY circleCenter,
             float circleRadius,
