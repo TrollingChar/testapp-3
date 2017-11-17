@@ -182,6 +182,11 @@ namespace Geometry {
         }
 
 
+        public static XY Project (XY a, XY b) {
+            return a - Dot(a, b) / b.SqrLength * b;
+        }
+
+
         public static XY FromPolar (float length, float angle) {
             return new XY(Mathf.Cos(angle) * length, Mathf.Sin(angle) * length);
         }

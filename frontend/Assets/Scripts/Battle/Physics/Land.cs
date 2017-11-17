@@ -119,7 +119,7 @@ namespace Battle.Physics {
                     endX = Mathf.CeilToInt(ep.X);
                 }
                 for (int x = startX; x != endX;) {
-                    float d = Geom.CastRayToVertical(bp, v, x);
+                    float d = Geom_.CastRayToVertical(bp, v, x);
                     int y = Mathf.FloorToInt(bp.Y + v.Y * d);
                     if (v.X < 0) --x;
                     if (d < 1 && this[x, y] != 0) {
@@ -154,7 +154,7 @@ namespace Battle.Physics {
                     endY = Mathf.CeilToInt(ep.Y);
                 }
                 for (int y = startY; y != endY;) {
-                    float d = Geom.CastRayToHorizontal(bp, v, y);
+                    float d = Geom_.CastRayToHorizontal(bp, v, y);
                     int x = Mathf.FloorToInt(bp.X + v.X * d);
                     if (v.Y < 0) --y;
                     if (d < 1 && this[x, y] != 0) {
@@ -189,7 +189,7 @@ namespace Battle.Physics {
                 for (int x = aabb.Left; x < aabb.Right; x++)
                 for (int y = aabb.Bottom; y < aabb.Top; y++) {
                     foreach (var pt in Tiles[x, y].Vertices) {
-                        float dd = Geom.CastRayToCircle(bp, v, pt, width);
+                        float dd = Geom_.CastRayToCircle(bp, v, pt, width);
                         if (dd >= d) continue;
                         d = dd;
                         normal = bp + v * d - pt;
@@ -264,7 +264,7 @@ namespace Battle.Physics {
                 for (int x = aabb.Left; x < aabb.Right; x++)
                 for (int y = aabb.Bottom; y < aabb.Top; y++) {
                     foreach (var pt in Tiles[x, y].Vertices) {
-                        float d = Geom.CastRayToVertical(pt, -v, xx);
+                        float d = Geom_.CastRayToVertical(pt, -v, xx);
                         float yy = pt.Y - v.Y * d;
                         if (yy <= bottom || yy >= top || d >= dd) continue;
                         dd = d;
@@ -294,7 +294,7 @@ namespace Battle.Physics {
                 for (int x = aabb.Left; x < aabb.Right; x++)
                 for (int y = aabb.Bottom; y < aabb.Top; y++) {
                     foreach (var pt in Tiles[x, y].Vertices) {
-                        float d = Geom.CastRayToHorizontal(pt, -v, yy);
+                        float d = Geom_.CastRayToHorizontal(pt, -v, yy);
                         float xx = pt.X - v.X * d;
                         if (xx <= left || xx >= right || d >= dd) continue;
                         dd = d;

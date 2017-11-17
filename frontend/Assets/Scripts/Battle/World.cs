@@ -113,7 +113,7 @@ namespace Battle {
                     // collided with land
                     o.Position += c.Offset;//.WithLengthReduced(Precision);
                     o.Movement -= Mathf.Sqrt(c.Offset.SqrLength / o.Velocity.SqrLength);
-                    o.Velocity = Geom.Bounce(
+                    o.Velocity = Geom_.Bounce(
                         o.Velocity,
                         c.Normal,
                         Mathf.Sqrt(c.Collider1.TangentialBounce * Land.TangentialBounce),
@@ -128,7 +128,7 @@ namespace Battle {
                     o.Movement -= Mathf.Sqrt(c.Offset.SqrLength / o.Velocity.SqrLength);
                     bool o2wcc = o2.WillCauseCollision(-c);
                     if (o2wcc) {
-                        o.Velocity = Geom.Bounce(
+                        o.Velocity = Geom_.Bounce(
                             o.Velocity,
                             c.Normal,
                             Mathf.Sqrt(c.Collider1.TangentialBounce * c.Collider2.TangentialBounce),
@@ -144,7 +144,7 @@ namespace Battle {
                     o.Movement -= Mathf.Sqrt(c.Offset.SqrLength / o.Velocity.SqrLength);
                     bool o2wcc = o2.WillCauseCollision(-c);
                     if (o2wcc) {
-                        o.Velocity = Geom.Bounce(
+                        o.Velocity = Geom_.Bounce(
                             o.Velocity,
                             c.Normal,
                             Mathf.Sqrt(c.Collider1.TangentialBounce * c.Collider2.TangentialBounce),
@@ -177,8 +177,8 @@ namespace Battle {
                             float normBounce = Mathf.Sqrt(
                                 c.Collider1.NormalBounce * c.Collider2.NormalBounce
                             );
-                            if (o2wcc) o.Velocity = velocity + Geom.Bounce(v1, c.Normal, tangBounce, normBounce);
-                            if (owcc) o2.Velocity = velocity + Geom.Bounce(v2, c.Normal, tangBounce, normBounce);
+                            if (o2wcc) o.Velocity = velocity + Geom_.Bounce(v1, c.Normal, tangBounce, normBounce);
+                            if (owcc) o2.Velocity = velocity + Geom_.Bounce(v2, c.Normal, tangBounce, normBounce);
                         }
                         o.OnCollision(c);
                         o2.OnCollision(-c);

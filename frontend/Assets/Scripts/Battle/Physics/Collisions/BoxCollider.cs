@@ -72,7 +72,7 @@ namespace Battle.Physics.Collisions {
 
             float d;
             if (velocity.X < 0) {
-                d = Geom.CastRayToVertical(new XY(left, bottom), velocity, cright);
+                d = Geom_.CastRayToVertical(new XY(left, bottom), velocity, cright);
                 // спроецировать на прямую сразу две точки
                 float topY = top + velocity.Y * d;
                 float bottomY = bottom + velocity.Y * d;
@@ -89,7 +89,7 @@ namespace Battle.Physics.Collisions {
                 }
             }
             if (velocity.X > 0) {
-                d = Geom.CastRayToVertical(new XY(right, top), velocity, cleft);
+                d = Geom_.CastRayToVertical(new XY(right, top), velocity, cleft);
                 float topY = top + velocity.Y * d;
                 float bottomY = bottom + velocity.Y * d;
                 if (d < minDist && topY < cbottom && bottomY > ctop) {
@@ -105,7 +105,7 @@ namespace Battle.Physics.Collisions {
                 }
             }
             if (velocity.Y < 0) {
-                d = Geom.CastRayToHorizontal(new XY(left, bottom), velocity, ctop);
+                d = Geom_.CastRayToHorizontal(new XY(left, bottom), velocity, ctop);
                 float leftX = left + velocity.X * d;
                 float rightX = right + velocity.X * d;
                 if (d < minDist && rightX < cleft && leftX > cright) {
@@ -121,7 +121,7 @@ namespace Battle.Physics.Collisions {
                 }
             }
             if (velocity.Y > 0) {
-                d = Geom.CastRayToVertical(new XY(right, top), velocity, cbottom);
+                d = Geom_.CastRayToVertical(new XY(right, top), velocity, cbottom);
                 float leftX = left + velocity.X * d;
                 float rightX = right + velocity.X * d;
                 if (d < minDist && rightX < cleft && leftX > cright) {
@@ -153,7 +153,7 @@ namespace Battle.Physics.Collisions {
 
 
         public override bool Overlaps (CircleCollider c) {
-            return Geom.AreOverlapping(c.Center, c.Radius, Left, Right, Bottom, Top);
+            return Geom_.AreOverlapping(c.Center, c.Radius, Left, Right, Bottom, Top);
         }
 
 
