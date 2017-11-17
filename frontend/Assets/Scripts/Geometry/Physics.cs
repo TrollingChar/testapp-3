@@ -24,27 +24,23 @@ namespace Geometry
             // 
             
             // если окружность полностью внутри прямоугольника
-            if (o.X > left && o.X < right && o.Y > bottom && o.Y < top) return true;
+//            if (o.X > left && o.X < right && o.Y > bottom && o.Y < top) return true;
 
             float r2 = r * r;
             // стороны
-            return top > o.Y - r
-                && left < o.X + r
-                && right > o.X - r
-                && bottom < o.Y + r
-            /* BUG!!! -
-                 ____
-                |    |
-                |    |
-               /|____|\
-               \_/ .\_/
-                   |_______if point is circle center then algorithm returns false instead of true!
-            */
-            // вершины
-                && XY.SqrDistance(o, new XY(left, bottom)) < r2
-                && XY.SqrDistance(o, new XY(left, top)) < r2
-                && XY.SqrDistance(o, new XY(right, bottom)) < r2
-                && XY.SqrDistance(o, new XY(right, top)) < r2;
+            if (left >= o.X + r || right <= o.X - r || bottom >= o.Y + r || top <= o.Y - r) return false;
+
+            if (o.X >= right) {
+                if (o.Y >= top)    return XY.SqrDistance(o, new XY(right, top)) < r2;
+                if (o.Y <= bottom) return XY.SqrDistance(o, new XY(right, bottom)) < r2;
+                return true;
+            }
+            if (o.X <= left) {
+                if (o.Y >= top)    return XY.SqrDistance(o, new XY(left, top)) < r2;
+                if (o.Y <= bottom) return XY.SqrDistance(o, new XY(left, bottom)) < r2;
+                return true;
+            }
+            return true;
         }
 
         public static bool Overlap(BoxCollider a, BoxCollider b)
