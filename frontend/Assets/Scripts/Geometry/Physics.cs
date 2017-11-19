@@ -1,6 +1,7 @@
 ﻿using Battle.Physics.Collisions;
-using UnityEngine.Rendering;
-using Mathf = UnityEngine.Mathf;
+using UnityEngine;
+using BoxCollider = Battle.Physics.Collisions.BoxCollider;
+using Collider = Battle.Physics.Collisions.Collider;
 
 
 namespace Geometry {
@@ -86,12 +87,135 @@ namespace Geometry {
 
 
         public static NCollision FlyInto (CircleCollider c, BoxCollider b, XY v) {
-            // todo
+            // сначала стороны, потом углы, потом численными методами доделать
+            float min = 1;
+            if (v.X > 0) {
+                float d = Geom.ORayToVertical(left, v.X);
+                float y = v.Y * d;
+                if (d >= 0 && d < min && y >= bottom && y <= top) {
+                    min = d;
+                }
+            }
+            if (v.X < 0) {
+                float d = Geom.ORayToVertical(right, v.X);
+                float y = v.Y * d;
+                if (d >= 0 && d < min && y >= bottom && y <= top) {
+                    min = d;
+                }
+            }
+            if (v.Y > 0) {
+                float d = Geom.ORayToHorizontal(bottom, v.Y);
+                float x = v.X * d;
+                if (d >= 0 && d < min && x >= left && x <= right) {
+                    min = d;
+                }
+            }
+            if (v.Y < 0) {
+                float d = Geom.ORayToHorizontal(top, v.Y);
+                float x = v.X * d;
+                if (d >= 0 && d < min && x >= left && x <= right) {
+                    min = d;
+                }
+            }
+            if (v.X > 0 || v.Y > 0) {
+                // bottom left
+            }
+            if (v.X < 0 || v.Y > 0) {
+                // bottom right
+            }
+            if (v.X < 0 || v.Y < 0) {
+                // top right
+            }
+            if (v.X > 0 || v.Y < 0) {
+                // top left
+            }
+            
+            // todo: find closest point using clamp, then compute normal vector
         }
 
 
         public static NCollision FlyInto (BoxCollider a, BoxCollider b, XY v) {
-            // todo
+            // todo: optimize formulas
+            float hw = 0.5f * (a.Right - a.Left + b.Right - b.Left);
+            float hh = 0.5f * (a.Top - a.Bottom + b.Top - b.Bottom);
+            float dx = 0.5f * (b.Left - a.Left + b.Right - a.Right);
+            float dy = 0.5f * (b.Bottom - a.Bottom + b.Top - a.Top);
+
+            float top = dy + hh;
+            float left = dx - hw;
+            float right = dx + hw;
+            float bottom = dy - hh;
+
+            float min = 1;
+            XY normal = XY.NaN;
+            if (v.X > 0) {
+                float d = Geom.ORayToVertical(left, v.X);
+                float y = v.Y * d;
+                if (d >= 0 && d < min && y >= bottom && y <= top) {
+                    min = d;
+                    normal = XY.Left;
+                }
+            }
+            if (v.X < 0) {
+                float d = Geom.ORayToVertical(right, v.X);
+                float y = v.Y * d;
+                if (d >= 0 && d < min && y >= bottom && y <= top) {
+                    min = d;
+                    normal = XY.Right;
+                }
+            }
+            if (v.Y > 0) {
+                float d = Geom.ORayToHorizontal(bottom, v.Y);
+                float x = v.X * d;
+                if (d >= 0 && d < min && x >= left && x <= right) {
+                    min = d;
+                    normal = XY.Down;
+                }
+            }
+            if (v.Y < 0) {
+                float d = Geom.ORayToHorizontal(top, v.Y);
+                float x = v.X * d;
+                if (d >= 0 && d < min && x >= left && x <= right) {
+                    min = d;
+                    normal = XY.Up;
+                }
+            }
+
+            if (v.Y + a.Top > b.Bottom &&
+                v.X + a.Left < b.Right &&
+                v.X + a.Right > b.Left &&
+                v.Y + a.Bottom < b.Top) {
+                return new NCollision(v, XY.NaN, null, null);
+            }
+
+            // включаем численные методы
+            float lo = 0;
+            float hi = min;
+            float l = v.Length;
+            for (int i = 0; i < 10 && l * (hi - lo) > Epsilon; i++) {
+                float mid = 0.5f * (lo + hi);
+                var offset = v * mid;
+                if (offset.Y + a.Top > b.Bottom &&
+                    offset.X + a.Left < b.Right &&
+                    offset.X + a.Right > b.Left &&
+                    offset.Y + a.Bottom < b.Top) {
+                    hi = mid;
+                } else {
+                    lo = mid;
+                }
+            }
+
+            if (normal.IsNaN) {
+                var center = v * lo;
+                var otherCenter = new XY(dx, dy);
+                var line = otherCenter - center;
+                if (line.X > 0) {
+                    normal = Geom.LineIntersectsSegment(center, otherCenter, new XY(left, bottom), new XY(left, top))
+                        ? XY.Left
+                        : new XY(0, -Mathf.Sign(line.Y));
+                }
+            }
+            return new NCollision(v * lo, normal, a, b);
         }
 
     }

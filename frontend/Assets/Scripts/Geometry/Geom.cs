@@ -33,6 +33,22 @@ namespace Geometry {
         public static float RayToHorizontal (XY origin, XY dir, float y) {
             return dir.Y == 0 ? float.NaN : (y - origin.Y) / dir.Y;
         }
+        
+        
+        public static float ORayToVertical (float dirX, float x) {
+            return dirX == 0 ? float.NaN : x / dirX;
+        }
+
+
+        public static float ORayToHorizontal (float dirY, float y) {
+            return dirY == 0 ? float.NaN : y / dirY;
+        }
+
+
+        public static bool LineIntersectsSegment (XY la, XY lb, XY sa, XY sb) {
+            var line = la - lb;
+            return XY.Cross(line, sa - la) * XY.Cross(line, sb - lb) < 0;
+        }
 
     }
 
