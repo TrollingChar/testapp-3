@@ -25,13 +25,13 @@ namespace Geometry {
 
 
         // return relative distance or NaN
-        public static float RayToVertical (XY origin, XY dir, float x) {
-            return dir.X == 0 ? float.NaN : (x - origin.X) / dir.X;
+        public static float RayToVertical (float originX, float dirX, float x) {
+            return dirX == 0 ? float.NaN : (x - originX) / dirX;
         }
 
 
-        public static float RayToHorizontal (XY origin, XY dir, float y) {
-            return dir.Y == 0 ? float.NaN : (y - origin.Y) / dir.Y;
+        public static float RayToHorizontal (float originY, float dirY, float y) {
+            return dirY == 0 ? float.NaN : (y - originY) / dirY;
         }
         
         
