@@ -1,4 +1,5 @@
-﻿using Battle.Physics.Collisions;
+﻿using System;
+using Battle.Physics.Collisions;
 using UnityEngine;
 using BoxCollider = Battle.Physics.Collisions.BoxCollider;
 using Collider = Battle.Physics.Collisions.Collider;
@@ -90,51 +91,68 @@ namespace Geometry {
             // сначала стороны, потом углы, потом численными методами доделать
             float min = 1;
             if (v.X > 0) {
-                float d = Geom.ORayToVertical(left, v.X);
+                float d = Geom.RayToVertical(left, v.X);
                 float y = v.Y * d;
                 if (d >= 0 && d < min && y >= bottom && y <= top) {
                     min = d;
                 }
             }
             if (v.X < 0) {
-                float d = Geom.ORayToVertical(right, v.X);
+                float d = Geom.RayToVertical(right, v.X);
                 float y = v.Y * d;
                 if (d >= 0 && d < min && y >= bottom && y <= top) {
                     min = d;
                 }
             }
             if (v.Y > 0) {
-                float d = Geom.ORayToHorizontal(bottom, v.Y);
+                float d = Geom.RayToHorizontal(bottom, v.Y);
                 float x = v.X * d;
                 if (d >= 0 && d < min && x >= left && x <= right) {
                     min = d;
                 }
             }
             if (v.Y < 0) {
-                float d = Geom.ORayToHorizontal(top, v.Y);
+                float d = Geom.RayToHorizontal(top, v.Y);
                 float x = v.X * d;
                 if (d >= 0 && d < min && x >= left && x <= right) {
                     min = d;
                 }
             }
             if (v.X > 0 || v.Y > 0) {
+                // ray to circle
                 // bottom left
             }
             if (v.X < 0 || v.Y > 0) {
+                // ray to circle
                 // bottom right
             }
             if (v.X < 0 || v.Y < 0) {
+                // ray to circle
                 // top right
             }
             if (v.X > 0 || v.Y < 0) {
+                // ray to circle
                 // top left
             }
             
-            // todo: find closest point using clamp, then compute normal vector
-            XY newPosition;
+            // todo: численные методы
             
-//            float closestX = Mathf.Clamp(c.Center.X, b.Left, b.Right);
-//            float closestY = Mathf.Clamp(c.Center.Y, b.Bottom, b.Top);
+            XY newPosition;
+
+            if (newPosition.X < left) {
+                if (newPosition.Y < bottom) return new NCollision(offset, newPosition - new XY(left, bottom));
+                if (newPosition.Y > top)    return new NCollision(offset, newPosition - new XY(left, top));
+                return new NCollision(offset, XY.Left, c, b);
+            }
+            if (newPosition.X > right) {
+                if (newPosition.Y < bottom) return new NCollision(offset, newPosition - new XY(right, bottom));
+                if (newPosition.Y > top)    return new NCollision(offset, newPosition - new XY(right, top));
+                return new NCollision(offset, XY.Right, c, b);
+            }
+            if (newPosition.Y < bottom) return new NCollision(offset, XY.Down, c, b);
+            if (newPosition.Y > top) return new NCollision(offset, XY.Up, c, b);
+            
+            throw new Exception("Circle center inside of rectangle after collision!");
         }
 
 
