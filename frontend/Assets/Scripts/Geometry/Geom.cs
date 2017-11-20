@@ -50,6 +50,17 @@ namespace Geometry {
             return XY.Cross(line, sa - la) * XY.Cross(line, sb - lb) < 0;
         }
 
+
+        public static XY BoxQuarter(XY point, float left, float right, float bottom, float top)
+        {
+            bool belowMainDiagonal = XY.Cross(new XY(right - left, top - bottom), point - new XY(left, bottom)) < 0;
+            bool belowSecondDiagonal = XY.Cross(new XY(right - left, bottom - top), point - new XY(left, top)) < 0;
+            
+            return belowMainDiagonal
+                ? (belowSecondDiagonal ? XY.Down : XY.Right)
+                : (belowSecondDiagonal ? XY.Left : XY.Up);
+        }
+
     }
 
 }

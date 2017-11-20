@@ -131,6 +131,10 @@ namespace Geometry {
             }
             
             // todo: find closest point using clamp, then compute normal vector
+            XY newPosition;
+            
+//            float closestX = Mathf.Clamp(c.Center.X, b.Left, b.Right);
+//            float closestY = Mathf.Clamp(c.Center.Y, b.Bottom, b.Top);
         }
 
 
