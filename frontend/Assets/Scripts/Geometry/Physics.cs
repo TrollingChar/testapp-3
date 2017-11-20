@@ -88,32 +88,37 @@ namespace Geometry {
 
 
         public static NCollision FlyInto (CircleCollider c, BoxCollider b, XY v) {
+            float top = b.Top;
+            float left = b.Left;
+            float right = b.Right;
+            float bottom = b.Bottom;
+            
             // сначала стороны, потом углы, потом численными методами доделать
             float min = 1;
             if (v.X > 0) {
-                float d = Geom.RayToVertical(left, v.X);
-                float y = v.Y * d;
+                float d = Geom.RayToVertical(c.Center.X, left, v.X);
+                float y = c.Center.Y + v.Y * d;
                 if (d >= 0 && d < min && y >= bottom && y <= top) {
                     min = d;
                 }
             }
             if (v.X < 0) {
-                float d = Geom.RayToVertical(right, v.X);
-                float y = v.Y * d;
+                float d = Geom.RayToVertical(c.Center.X, right, v.X);
+                float y = c.Center.Y + v.Y * d;
                 if (d >= 0 && d < min && y >= bottom && y <= top) {
                     min = d;
                 }
             }
             if (v.Y > 0) {
-                float d = Geom.RayToHorizontal(bottom, v.Y);
-                float x = v.X * d;
+                float d = Geom.RayToHorizontal(c.Center.Y, bottom, v.Y);
+                float x = c.Center.X + v.X * d;
                 if (d >= 0 && d < min && x >= left && x <= right) {
                     min = d;
                 }
             }
             if (v.Y < 0) {
-                float d = Geom.RayToHorizontal(top, v.Y);
-                float x = v.X * d;
+                float d = Geom.RayToHorizontal(c.Center.Y, top, v.Y);
+                float x = c.Center.X + v.X * d;
                 if (d >= 0 && d < min && x >= left && x <= right) {
                     min = d;
                 }
