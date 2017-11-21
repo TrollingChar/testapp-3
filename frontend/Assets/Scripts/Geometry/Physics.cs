@@ -52,27 +52,35 @@ namespace Geometry {
                 && a.Right > b.Left
                 && a.Bottom < b.Top;
         }
+        
+        
+        /* общий алгоритм:
+            найти "точное" значение по формуле и есть ли коллизия
+            если коллизии типа нет, то проверить вычисленное значение, если нет перекрывания то вернуть пустую коллизию
+            если коллизия есть то проверить вычисленное значение и если нет перекрывания то вернуть коллизию
+            если есть перекрывание то подогнать результат численными методами и вернуть коллизию
+        */
 
 
         public static NCollision FlyInto (CircleCollider a, CircleCollider b, XY v) {
+            // вычисляем значение
             float dist = Geom.RayToCircle(a.Center, v, b.Center, a.Radius + b.Radius);
-            if (float.IsNaN(dist) || dist < 0 || dist * dist > v.SqrLength) {
-                // no collision
-                dist = v.Length;
-            }
-
+            
             var ao = a.Center;
             var bo = b.Center;
             float r2 = a.Radius + b.Radius;
             r2 *= r2;
-
-            // проверим значение из формулы
-            if (XY.SqrDistance(ao + v, bo) < r2) return new NCollision(v, XY.NaN, null, null);
-
-            float lo = 0;
-            float hi = dist;
+            if (float.IsNaN(dist) || dist < 0 || dist * dist >= v.SqrLength) {
+                // нет коллизии, проверить перекрывание
+                if (XY.SqrDistance(ao + v, bo) < r2) return new NCollision(v, XY.NaN, null, null);
+                dist = v.Length;
+            }
+            // есть коллизия, проверить перекрывание
+            else if (XY.SqrDistance(ao + v.WithLength(dist), bo) < r2) return new NCollision(v, XY.NaN, null, null);
 
             // численными методами делаем чтобы не было ошибки с перекрыванием
+            float lo = 0;
+            float hi = dist;
             for (int i = 0; i < 10 && hi - lo > Epsilon; i++) {
                 float mid = 0.5f * (lo + hi);
                 if (XY.SqrDistance(ao + v.WithLength(mid), bo) < r2) {
@@ -171,7 +179,7 @@ namespace Geometry {
             XY closestPoint = new XY(Mathf.Clamp(newPosition.X, left, right), Mathf.Clamp(newPosition.Y, bottom, top));
             
             return new NCollision(offset, newPosition - closestPoint, c, b);
-
+/*
             if (newPosition.X < left) {
                 if (newPosition.Y < bottom) return new NCollision(offset, newPosition - new XY(left, bottom));
                 if (newPosition.Y > top)    return new NCollision(offset, newPosition - new XY(left, top));
@@ -186,6 +194,7 @@ namespace Geometry {
             if (newPosition.Y > top) return new NCollision(offset, XY.Up, c, b);
             
             throw new Exception("Circle center inside of rectangle after collision!");
+*/
         }
 
 
@@ -202,45 +211,37 @@ namespace Geometry {
             float bottom = dy - hh;
 
             float min = 1;
-            XY normal = XY.NaN;
+//            XY normal = XY.NaN; // todo: нормаль определяем в конце по методу BoxQuarter
             if (v.X > 0) {
                 float d = Geom.ORayToVertical(left, v.X);
                 float y = v.Y * d;
-                if (d >= 0 && d < min && y >= bottom && y <= top) {
-                    min = d;
-                    normal = XY.Left;
-                }
+                if (d >= 0 && d < min && y >= bottom && y <= top) min = d;
             }
             if (v.X < 0) {
                 float d = Geom.ORayToVertical(right, v.X);
                 float y = v.Y * d;
-                if (d >= 0 && d < min && y >= bottom && y <= top) {
-                    min = d;
-                    normal = XY.Right;
-                }
+                if (d >= 0 && d < min && y >= bottom && y <= top) min = d;
             }
             if (v.Y > 0) {
                 float d = Geom.ORayToHorizontal(bottom, v.Y);
                 float x = v.X * d;
-                if (d >= 0 && d < min && x >= left && x <= right) {
-                    min = d;
-                    normal = XY.Down;
-                }
+                if (d >= 0 && d < min && x >= left && x <= right) min = d;
             }
             if (v.Y < 0) {
                 float d = Geom.ORayToHorizontal(top, v.Y);
                 float x = v.X * d;
-                if (d >= 0 && d < min && x >= left && x <= right) {
-                    min = d;
-                    normal = XY.Up;
-                }
+                if (d >= 0 && d < min && x >= left && x <= right) min = d;
             }
 
-            if (v.Y + a.Top > b.Bottom &&
-                v.X + a.Left < b.Right &&
-                v.X + a.Right > b.Left &&
-                v.Y + a.Bottom < b.Top) {
-                return new NCollision(v, XY.NaN, null, null);
+            var offset = v * min;
+            if (offset.Y + a.Top > b.Bottom &&
+                offset.X + a.Left < b.Right &&
+                offset.X + a.Right > b.Left &&
+                offset.Y + a.Bottom < b.Top) {
+                // если нет перекрывания
+                return min == 1
+                    ? new NCollision(offset, XY.NaN, null, null)
+                    : new NCollision(offset, Geom.BoxQuarter(offset, left, right, bottom, top), a, b);
             }
 
             // включаем численные методы
@@ -249,7 +250,7 @@ namespace Geometry {
             float l = v.Length;
             for (int i = 0; i < 10 && l * (hi - lo) > Epsilon; i++) {
                 float mid = 0.5f * (lo + hi);
-                var offset = v * mid;
+                offset = v * mid;
                 if (offset.Y + a.Top > b.Bottom &&
                     offset.X + a.Left < b.Right &&
                     offset.X + a.Right > b.Left &&
@@ -260,17 +261,17 @@ namespace Geometry {
                 }
             }
 
-            if (normal.IsNaN) {
-                var center = v * lo;
-                var otherCenter = new XY(dx, dy);
-                var line = otherCenter - center;
-                if (line.X > 0) {
-                    normal = Geom.LineIntersectsSegment(center, otherCenter, new XY(left, bottom), new XY(left, top))
-                        ? XY.Left
-                        : new XY(0, -Mathf.Sign(line.Y));
-                }
-            }
-            return new NCollision(v * lo, normal, a, b);
+//            if (normal.IsNaN) {
+//                var center = v * lo;
+//                var otherCenter = new XY(dx, dy);
+//                var line = otherCenter - center;
+//                if (line.X > 0) {
+//                    normal = Geom.LineIntersectsSegment(center, otherCenter, new XY(left, bottom), new XY(left, top))
+//                        ? XY.Left
+//                        : new XY(0, -Mathf.Sign(line.Y));
+//                }
+//            }
+            return new NCollision(v * lo, Geom.BoxQuarter(offset, left, right, bottom, top), a, b);
         }
     }
 }
