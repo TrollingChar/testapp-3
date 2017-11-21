@@ -2,7 +2,6 @@
 using Battle.Physics.Collisions;
 using UnityEngine;
 using BoxCollider = Battle.Physics.Collisions.BoxCollider;
-using Collider = Battle.Physics.Collisions.Collider;
 
 
 namespace Geometry {
@@ -93,56 +92,85 @@ namespace Geometry {
             float right = b.Right;
             float bottom = b.Bottom;
             
+            float cx = c.Center.X;
+            float cy = c.Center.Y;
+            
             // сначала стороны, потом углы, потом численными методами доделать
             float min = 1;
             if (v.X > 0) {
-                float d = Geom.RayToVertical(c.Center.X, left, v.X);
-                float y = c.Center.Y + v.Y * d;
+                float d = Geom.RayToVertical(cx, left, v.X);
+                float y = cy + v.Y * d;
                 if (d >= 0 && d < min && y >= bottom && y <= top) {
                     min = d;
                 }
             }
             if (v.X < 0) {
-                float d = Geom.RayToVertical(c.Center.X, right, v.X);
-                float y = c.Center.Y + v.Y * d;
+                float d = Geom.RayToVertical(cx, right, v.X);
+                float y = cy + v.Y * d;
                 if (d >= 0 && d < min && y >= bottom && y <= top) {
                     min = d;
                 }
             }
             if (v.Y > 0) {
-                float d = Geom.RayToHorizontal(c.Center.Y, bottom, v.Y);
-                float x = c.Center.X + v.X * d;
+                float d = Geom.RayToHorizontal(cy, bottom, v.Y);
+                float x = cx + v.X * d;
                 if (d >= 0 && d < min && x >= left && x <= right) {
                     min = d;
                 }
             }
             if (v.Y < 0) {
-                float d = Geom.RayToHorizontal(c.Center.Y, top, v.Y);
-                float x = c.Center.X + v.X * d;
+                float d = Geom.RayToHorizontal(cy, top, v.Y);
+                float x = cx + v.X * d;
                 if (d >= 0 && d < min && x >= left && x <= right) {
                     min = d;
                 }
             }
+            float minDist = min * v.Length;
             if (v.X > 0 || v.Y > 0) {
                 // ray to circle
                 // bottom left
+                float dist = Geom.RayToCircle(c.Center, v, new XY(left, bottom), c.Radius);
+                if (dist >= 0 && dist < minDist) minDist = dist;
             }
             if (v.X < 0 || v.Y > 0) {
                 // ray to circle
                 // bottom right
+                float dist = Geom.RayToCircle(c.Center, v, new XY(right, bottom), c.Radius);
+                if (dist >= 0 && dist < minDist) minDist = dist;
             }
             if (v.X < 0 || v.Y < 0) {
                 // ray to circle
                 // top right
+                float dist = Geom.RayToCircle(c.Center, v, new XY(right, top), c.Radius);
+                if (dist >= 0 && dist < minDist) minDist = dist;
             }
             if (v.X > 0 || v.Y < 0) {
                 // ray to circle
                 // top left
+                float dist = Geom.RayToCircle(c.Center, v, new XY(left, top), c.Radius);
+                if (dist >= 0 && dist < minDist) minDist = dist;
             }
             
-            // todo: численные методы
+            if () return new NCollision(v, XY.NaN, null, null);
             
-            XY newPosition;
+            // todo: численные методы
+            float hi, lo;
+            for () {
+                float mid;
+                if () {
+                    hi = mid;
+                } else {
+                    lo = mid;
+                }
+            }
+
+            XY offset;
+            XY newPosition = c.Center + offset;
+            
+            // будет (0, 0) если точка лежит внутри прямоугольника, но численные методы должны это исключить
+            XY closestPoint = new XY(Mathf.Clamp(newPosition.X, left, right), Mathf.Clamp(newPosition.Y, bottom, top));
+            
+            return new NCollision(offset, newPosition - closestPoint, c, b);
 
             if (newPosition.X < left) {
                 if (newPosition.Y < bottom) return new NCollision(offset, newPosition - new XY(left, bottom));
@@ -244,30 +272,5 @@ namespace Geometry {
             }
             return new NCollision(v * lo, normal, a, b);
         }
-
     }
-
-
-    public struct NCollision {
-
-        public readonly XY Offset;
-        public readonly XY Normal;
-        public readonly Collider C1;
-        public readonly Collider C2;
-
-
-        public NCollision (XY offset, XY normal, Collider c1, Collider c2) {
-            Offset = offset;
-            Normal = normal;
-            C1 = c1;
-            C2 = c2;
-        }
-
-
-        public static NCollision operator - (NCollision c) {
-            return new NCollision(-c.Offset, -c.Normal, c.C2, c.C1);
-        }
-
-    }
-
 }
