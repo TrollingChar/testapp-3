@@ -199,19 +199,17 @@ namespace Geometry {
 
 
         public static NCollision FlyInto (BoxCollider a, BoxCollider b, XY v) {
-            // todo: optimize formulas
-            float hw = 0.5f * (a.Right - a.Left + b.Right - b.Left);
-            float hh = 0.5f * (a.Top - a.Bottom + b.Top - b.Bottom);
-            float dx = 0.5f * (b.Left - a.Left + b.Right - a.Right);
-            float dy = 0.5f * (b.Bottom - a.Bottom + b.Top - a.Top);
+//            float hw = 0.5f * (a.Right - a.Left + b.Right - b.Left);
+//            float hh = 0.5f * (a.Top - a.Bottom + b.Top - b.Bottom);
+//            float dx = 0.5f * (b.Left - a.Left + b.Right - a.Right);
+//            float dy = 0.5f * (b.Bottom - a.Bottom + b.Top - a.Top);
 
-            float top = dy + hh;
-            float left = dx - hw;
-            float right = dx + hw;
-            float bottom = dy - hh;
+            float top = b.Top - a.Bottom; //dy + hh;
+            float left = b.Left - a.Right; //dx - hw;
+            float right = b.Right - a.Left; //dx + hw;
+            float bottom = b.Bottom - a.Top; //dy - hh;
 
             float min = 1;
-//            XY normal = XY.NaN; // todo: нормаль определяем в конце по методу BoxQuarter
             if (v.X > 0) {
                 float d = Geom.ORayToVertical(left, v.X);
                 float y = v.Y * d;
@@ -260,17 +258,7 @@ namespace Geometry {
                     lo = mid;
                 }
             }
-
-//            if (normal.IsNaN) {
-//                var center = v * lo;
-//                var otherCenter = new XY(dx, dy);
-//                var line = otherCenter - center;
-//                if (line.X > 0) {
-//                    normal = Geom.LineIntersectsSegment(center, otherCenter, new XY(left, bottom), new XY(left, top))
-//                        ? XY.Left
-//                        : new XY(0, -Mathf.Sign(line.Y));
-//                }
-//            }
+            
             return new NCollision(v * lo, Geom.BoxQuarter(offset, left, right, bottom, top), a, b);
         }
     }
