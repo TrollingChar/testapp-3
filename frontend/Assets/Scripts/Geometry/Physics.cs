@@ -108,31 +108,24 @@ namespace Geometry {
             if (v.X > 0) {
                 float d = Geom.RayToVertical(cx, left, v.X);
                 float y = cy + v.Y * d;
-                if (d >= 0 && d < min && y >= bottom && y <= top) {
-                    min = d;
-                }
+                if (d >= 0 && d < min && y >= bottom && y <= top) min = d;
             }
             if (v.X < 0) {
                 float d = Geom.RayToVertical(cx, right, v.X);
                 float y = cy + v.Y * d;
-                if (d >= 0 && d < min && y >= bottom && y <= top) {
-                    min = d;
-                }
+                if (d >= 0 && d < min && y >= bottom && y <= top) min = d;
             }
             if (v.Y > 0) {
                 float d = Geom.RayToHorizontal(cy, bottom, v.Y);
                 float x = cx + v.X * d;
-                if (d >= 0 && d < min && x >= left && x <= right) {
-                    min = d;
-                }
+                if (d >= 0 && d < min && x >= left && x <= right) min = d;
             }
             if (v.Y < 0) {
                 float d = Geom.RayToHorizontal(cy, top, v.Y);
                 float x = cx + v.X * d;
-                if (d >= 0 && d < min && x >= left && x <= right) {
-                    min = d;
-                }
+                if (d >= 0 && d < min && x >= left && x <= right) min = d;
             }
+            
             float minDist = min * v.Length;
             if (v.X > 0 || v.Y > 0) {
                 // ray to circle
@@ -199,10 +192,10 @@ namespace Geometry {
 
 
         public static NCollision FlyInto (BoxCollider a, BoxCollider b, XY v) {
-//            float hw = 0.5f * (a.Right - a.Left + b.Right - b.Left);
-//            float hh = 0.5f * (a.Top - a.Bottom + b.Top - b.Bottom);
-//            float dx = 0.5f * (b.Left - a.Left + b.Right - a.Right);
-//            float dy = 0.5f * (b.Bottom - a.Bottom + b.Top - a.Top);
+            // float hw = 0.5f * (a.Right - a.Left + b.Right - b.Left);
+            // float hh = 0.5f * (a.Top - a.Bottom + b.Top - b.Bottom);
+            // float dx = 0.5f * (b.Left - a.Left + b.Right - a.Right);
+            // float dy = 0.5f * (b.Bottom - a.Bottom + b.Top - a.Top);
 
             float top = b.Top - a.Bottom; //dy + hh;
             float left = b.Left - a.Right; //dx - hw;
