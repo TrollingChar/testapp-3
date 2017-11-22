@@ -99,7 +99,8 @@ namespace Geometry {
             float left = b.Left;
             float right = b.Right;
             float bottom = b.Bottom;
-            
+
+            XY cCenter = c.Center;
             float cx = c.Center.X;
             float cy = c.Center.Y;
             
@@ -125,39 +126,38 @@ namespace Geometry {
                 float x = cx + v.X * d;
                 if (d >= 0 && d < min && x >= left && x <= right) min = d;
             }
-            
-            float minDist = min * v.Length;
+            // если нет столкновений то min будет 1
+            float l = v.Length;
+            float minDist = min * l;
             if (v.X > 0 || v.Y > 0) {
-                // ray to circle
-                // bottom left
-                float dist = Geom.RayToCircle(c.Center, v, new XY(left, bottom), c.Radius);
+                float dist = Geom.RayToCircle(cCenter, v, new XY(left, bottom), c.Radius);
                 if (dist >= 0 && dist < minDist) minDist = dist;
             }
             if (v.X < 0 || v.Y > 0) {
-                // ray to circle
-                // bottom right
-                float dist = Geom.RayToCircle(c.Center, v, new XY(right, bottom), c.Radius);
+                float dist = Geom.RayToCircle(cCenter, v, new XY(right, bottom), c.Radius);
                 if (dist >= 0 && dist < minDist) minDist = dist;
             }
             if (v.X < 0 || v.Y < 0) {
-                // ray to circle
-                // top right
-                float dist = Geom.RayToCircle(c.Center, v, new XY(right, top), c.Radius);
+                float dist = Geom.RayToCircle(cCenter, v, new XY(right, top), c.Radius);
                 if (dist >= 0 && dist < minDist) minDist = dist;
             }
             if (v.X > 0 || v.Y < 0) {
-                // ray to circle
-                // top left
-                float dist = Geom.RayToCircle(c.Center, v, new XY(left, top), c.Radius);
+                float dist = Geom.RayToCircle(cCenter, v, new XY(left, top), c.Radius);
                 if (dist >= 0 && dist < minDist) minDist = dist;
             }
-            
-            if () return new NCollision(v, XY.NaN, null, null);
+
+//            XY offset = v.WithLength(minDist);
+            if (minDist == l) {
+                if (TODO) return new NCollision(v, XY.NaN, null, null);
+            } else {
+                if (TODO) return TODO;
+            }
             
             // todo: численные методы
-            float hi, lo;
+            float lo = 0;
+            float hi = minDist;
             for () {
-                float mid;
+                float mid = 0.5f * (lo + hi);
                 if () {
                     hi = mid;
                 } else {
@@ -165,29 +165,13 @@ namespace Geometry {
                 }
             }
 
-            XY offset;
-            XY newPosition = c.Center + offset;
+            XY offset = v.WithLength(lo);
+            XY newPosition = cCenter + offset;
             
             // будет (0, 0) если точка лежит внутри прямоугольника, но численные методы должны это исключить
             XY closestPoint = new XY(Mathf.Clamp(newPosition.X, left, right), Mathf.Clamp(newPosition.Y, bottom, top));
             
             return new NCollision(offset, newPosition - closestPoint, c, b);
-/*
-            if (newPosition.X < left) {
-                if (newPosition.Y < bottom) return new NCollision(offset, newPosition - new XY(left, bottom));
-                if (newPosition.Y > top)    return new NCollision(offset, newPosition - new XY(left, top));
-                return new NCollision(offset, XY.Left, c, b);
-            }
-            if (newPosition.X > right) {
-                if (newPosition.Y < bottom) return new NCollision(offset, newPosition - new XY(right, bottom));
-                if (newPosition.Y > top)    return new NCollision(offset, newPosition - new XY(right, top));
-                return new NCollision(offset, XY.Right, c, b);
-            }
-            if (newPosition.Y < bottom) return new NCollision(offset, XY.Down, c, b);
-            if (newPosition.Y > top) return new NCollision(offset, XY.Up, c, b);
-            
-            throw new Exception("Circle center inside of rectangle after collision!");
-*/
         }
 
 
