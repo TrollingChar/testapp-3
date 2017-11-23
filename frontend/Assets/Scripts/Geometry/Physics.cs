@@ -134,15 +134,17 @@ namespace Geometry {
             if (minDist == l) {
                 if (Geom.SqrDistance(c.Center + v, b) >= r2) return new NCollision(v, XY.NaN, null, null);
             } else {
-                if (Geom.SqrDistance(c.Center + v.WithLength(minDist), b) >= r2) return TODO;
+                if (Geom.SqrDistance(c.Center + v.WithLength(minDist), b) >= r2) {
+                    // todo use clamp
+                    return TODO;
+                }
             }
             
-            // todo: численные методы
             float lo = 0;
             float hi = minDist;
-            for () {
+            for (int i = 0; i < 10 && hi - lo > Epsilon; i++) {
                 float mid = 0.5f * (lo + hi);
-                if () {
+                if (Geom.SqrDistance(c.Center + v.WithLength(mid), b) < r2) {
                     hi = mid;
                 } else {
                     lo = mid;
@@ -153,6 +155,7 @@ namespace Geometry {
             XY newPosition = c.Center + offset;
             
             // будет (0, 0) если точка лежит внутри прямоугольника, но численные методы должны это исключить
+            // todo use clamp
             XY closestPoint = new XY(Mathf.Clamp(newPosition.X, b.Left, b.Right), Mathf.Clamp(newPosition.Y, b.Bottom, b.Top));
             
             return new NCollision(offset, newPosition - closestPoint, c, b);
