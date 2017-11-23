@@ -13,13 +13,13 @@ namespace Geometry {
         private const float SqrEpsilon = Epsilon * Epsilon;
 
 
-        public static bool Overlap (CircleCollider a, CircleCollider b) {
+        public static bool Overlap (Circle a, Circle b) {
             float rr = a.Radius + b.Radius;
             return XY.SqrDistance(a.Center, b.Center) < rr * rr;
         }
 
 
-        public static bool Overlap (CircleCollider c, BoxCollider b) {
+        public static bool Overlap (Circle c, Box b) {
             //* switch algorithm
             float closestX = Mathf.Clamp(c.Center.X, b.Left, b.Right);
             float closestY = Mathf.Clamp(c.Center.Y, b.Bottom, b.Top);
@@ -46,7 +46,7 @@ namespace Geometry {
         }
 
 
-        public static bool Overlap (BoxCollider a, BoxCollider b) {
+        public static bool Overlap (Box a, Box b) {
             return a.Top > b.Bottom
                 && a.Left < b.Right
                 && a.Right > b.Left
@@ -62,94 +62,87 @@ namespace Geometry {
         */
 
 
-        public static NCollision FlyInto (CircleCollider a, CircleCollider b, XY v) {
+        public static NCollision FlyInto (Circle a, Circle b, XY v) {
             // вычисляем значение
             float dist = Geom.RayToCircle(a.Center, v, b.Center, a.Radius + b.Radius);
-            
-            var ao = a.Center;
-            var bo = b.Center;
+
             float r2 = a.Radius + b.Radius;
             r2 *= r2;
             if (float.IsNaN(dist) || dist < 0 || dist * dist >= v.SqrLength) {
                 // нет коллизии, проверить перекрывание
-                if (XY.SqrDistance(ao + v, bo) < r2) return new NCollision(v, XY.NaN, null, null);
+                if (XY.SqrDistance(a.Center + v, b.Center) < r2) return new NCollision(v, XY.NaN, null, null);
                 dist = v.Length;
             }
             // есть коллизия, проверить перекрывание
-            else if (XY.SqrDistance(ao + v.WithLength(dist), bo) < r2) return new NCollision(v, XY.NaN, null, null);
+            else if (XY.SqrDistance(a.Center + v.WithLength(dist), b.Center) < r2) return new NCollision(v, XY.NaN, null, null);
 
             // численными методами делаем чтобы не было ошибки с перекрыванием
             float lo = 0;
             float hi = dist;
             for (int i = 0; i < 10 && hi - lo > Epsilon; i++) {
                 float mid = 0.5f * (lo + hi);
-                if (XY.SqrDistance(ao + v.WithLength(mid), bo) < r2) {
+                if (XY.SqrDistance(a.Center + v.WithLength(mid), b.Center) < r2) {
                     lo = mid;
                 } else {
                     hi = mid;
                 }
             }
             var offset = v.WithLength(lo);
-            return new NCollision(offset, ao - bo + offset, a, b);
+            return new NCollision(offset, a.Center - b.Center + offset, a, b);
         }
 
 
-        public static NCollision FlyInto (CircleCollider c, BoxCollider b, XY v) {
-            float top = b.Top;
-            float left = b.Left;
-            float right = b.Right;
-            float bottom = b.Bottom;
-
-            XY cCenter = c.Center;
-            float cx = c.Center.X;
-            float cy = c.Center.Y;
-            
+        public static NCollision FlyInto (Circle c, Box b, XY v) {
             // сначала стороны, потом углы, потом численными методами доделать
             float min = 1;
             if (v.X > 0) {
-                float d = Geom.RayToVertical(cx, left, v.X);
-                float y = cy + v.Y * d;
-                if (d >= 0 && d < min && y >= bottom && y <= top) min = d;
+                float d = Geom.RayToVertical(c.Center.X, b.Left, v.X);
+                float y = c.Center.Y + v.Y * d;
+                if (d >= 0 && d < min && y >= b.Bottom && y <= b.Top) min = d;
             }
             if (v.X < 0) {
-                float d = Geom.RayToVertical(cx, right, v.X);
-                float y = cy + v.Y * d;
-                if (d >= 0 && d < min && y >= bottom && y <= top) min = d;
+                float d = Geom.RayToVertical(c.Center.X, b.Right, v.X);
+                float y = c.Center.Y + v.Y * d;
+                if (d >= 0 && d < min && y >= b.Bottom && y <= b.Top) min = d;
             }
             if (v.Y > 0) {
-                float d = Geom.RayToHorizontal(cy, bottom, v.Y);
-                float x = cx + v.X * d;
-                if (d >= 0 && d < min && x >= left && x <= right) min = d;
+                float d = Geom.RayToHorizontal(c.Center.Y, b.Bottom, v.Y);
+                float x = c.Center.X + v.X * d;
+                if (d >= 0 && d < min && x >= b.Left && x <= b.Right) min = d;
             }
             if (v.Y < 0) {
-                float d = Geom.RayToHorizontal(cy, top, v.Y);
-                float x = cx + v.X * d;
-                if (d >= 0 && d < min && x >= left && x <= right) min = d;
+                float d = Geom.RayToHorizontal(c.Center.Y, b.Top, v.Y);
+                float x = c.Center.X + v.X * d;
+                if (d >= 0 && d < min && x >= b.Left && x <= b.Right) min = d;
             }
             // если нет столкновений то min будет 1
             float l = v.Length;
             float minDist = min * l;
             if (v.X > 0 || v.Y > 0) {
-                float dist = Geom.RayToCircle(cCenter, v, new XY(left, bottom), c.Radius);
+                float dist = Geom.RayToCircle(c.Center, v, new XY(b.Left, b.Bottom), c.Radius);
                 if (dist >= 0 && dist < minDist) minDist = dist;
             }
             if (v.X < 0 || v.Y > 0) {
-                float dist = Geom.RayToCircle(cCenter, v, new XY(right, bottom), c.Radius);
+                float dist = Geom.RayToCircle(c.Center, v, new XY(b.Right, b.Bottom), c.Radius);
                 if (dist >= 0 && dist < minDist) minDist = dist;
             }
             if (v.X < 0 || v.Y < 0) {
-                float dist = Geom.RayToCircle(cCenter, v, new XY(right, top), c.Radius);
+                float dist = Geom.RayToCircle(c.Center, v, new XY(b.Right, b.Top), c.Radius);
                 if (dist >= 0 && dist < minDist) minDist = dist;
             }
             if (v.X > 0 || v.Y < 0) {
-                float dist = Geom.RayToCircle(cCenter, v, new XY(left, top), c.Radius);
+                float dist = Geom.RayToCircle(c.Center, v, new XY(b.Left, b.Top), c.Radius);
                 if (dist >= 0 && dist < minDist) minDist = dist;
             }
 
 //            XY offset = v.WithLength(minDist);
             if (minDist == l) {
+                XY newPosition = c.Center + v;
+                // todo: clamp to rect then calc position
                 if (TODO) return new NCollision(v, XY.NaN, null, null);
             } else {
+                XY newPosition = c.Center + v.WithLength(minDist);
+                // todo: clamp to rect then calc position
                 if (TODO) return TODO;
             }
             
@@ -166,16 +159,16 @@ namespace Geometry {
             }
 
             XY offset = v.WithLength(lo);
-            XY newPosition = cCenter + offset;
+            XY newPosition = c.Center + offset;
             
             // будет (0, 0) если точка лежит внутри прямоугольника, но численные методы должны это исключить
-            XY closestPoint = new XY(Mathf.Clamp(newPosition.X, left, right), Mathf.Clamp(newPosition.Y, bottom, top));
+            XY closestPoint = new XY(Mathf.Clamp(newPosition.X, b.Left, b.Right), Mathf.Clamp(newPosition.Y, b.Bottom, b.Top));
             
             return new NCollision(offset, newPosition - closestPoint, c, b);
         }
 
 
-        public static NCollision FlyInto (BoxCollider a, BoxCollider b, XY v) {
+        public static NCollision FlyInto (Box a, Box b, XY v) {
             // float hw = 0.5f * (a.Right - a.Left + b.Right - b.Left);
             // float hh = 0.5f * (a.Top - a.Bottom + b.Top - b.Bottom);
             // float dx = 0.5f * (b.Left - a.Left + b.Right - a.Right);

@@ -1,9 +1,15 @@
-﻿namespace Geometry {
+﻿namespace Geometry
+{
+    public struct Box
+    {
+        public float Left, Right, Top, Bottom;
 
-    public struct Box {
-
-        
-
+        public Box(float left, float right, float top, float bottom)
+        {
+            Top = top;
+            Left = left;
+            Right = right;
+            Bottom = bottom;
+        }
     }
-
 }
