@@ -21,13 +21,7 @@ namespace Geometry {
 
         public static bool Overlap (Circle c, Box b) {
             //* switch algorithm
-            float closestX = Mathf.Clamp(c.Center.X, b.Left, b.Right);
-            float closestY = Mathf.Clamp(c.Center.Y, b.Bottom, b.Top);
-
-            float dx = c.Center.X - closestX;
-            float dy = c.Center.Y - closestY;
-
-            return dx * dx + dy * dy < c.Radius * c.Radius;
+            return Geom.SqrDistance(c.Center, b) < c.Radius * c.Radius;
             /*/
             float halfW = 0.5f * (b.Right - b.Left);
             float halfH = 0.5f * (b.Top - b.Bottom);
@@ -136,14 +130,11 @@ namespace Geometry {
             }
 
 //            XY offset = v.WithLength(minDist);
+            float r2 = c.Radius * c.Radius;
             if (minDist == l) {
-                XY newPosition = c.Center + v;
-                // todo: clamp to rect then calc position
-                if (TODO) return new NCollision(v, XY.NaN, null, null);
+                if (Geom.SqrDistance(c.Center + v, b) >= r2) return new NCollision(v, XY.NaN, null, null);
             } else {
-                XY newPosition = c.Center + v.WithLength(minDist);
-                // todo: clamp to rect then calc position
-                if (TODO) return TODO;
+                if (Geom.SqrDistance(c.Center + v.WithLength(minDist), b) >= r2) return TODO;
             }
             
             // todo: численные методы

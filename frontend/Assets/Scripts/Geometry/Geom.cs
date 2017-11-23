@@ -61,6 +61,16 @@ namespace Geometry {
                 : (belowSecondDiagonal ? XY.Left : XY.Up);
         }
 
+
+        public static float SqrDistance(XY point, Box box) {
+            return XY.SqrDistance(point, point.Clamped(box));
+        }
+
+
+        public static float Distance(XY point, Box box) {
+            return Mathf.Sqrt(SqrDistance(point, box));
+        }
+
     }
 
 }

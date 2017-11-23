@@ -266,6 +266,18 @@ namespace Geometry {
             );
         }
 
+        public void Clamp(Box box) {
+            X = Mathf.Clamp(X, box.Left, box.Right);
+            Y = Mathf.Clamp(Y, box.Bottom, box.Top);
+        }
+
+        public XY Clamped(Box box) {
+            return new XY(
+                Mathf.Clamp(X, box.Left, box.Right),
+                Mathf.Clamp(Y, box.Bottom, box.Top)
+            );
+        }
+
 
         public override string ToString () {
             return string.Format("({0:F1}, {1:F1})", X, Y);
@@ -285,7 +297,6 @@ namespace Geometry {
         public override int GetHashCode () {
             return X.GetHashCode() ^ Y.GetHashCode() << 2;
         }
-
     }
 
 }
