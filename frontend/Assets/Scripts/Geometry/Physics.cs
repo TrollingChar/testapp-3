@@ -20,23 +20,7 @@ namespace Geometry {
 
 
         public static bool Overlap (Circle c, Box b) {
-            //* switch algorithm
             return Geom.SqrDistance(c.Center, b) < c.Radius * c.Radius;
-            /*/
-            float halfW = 0.5f * (b.Right - b.Left);
-            float halfH = 0.5f * (b.Top - b.Bottom);
-
-            float distX = Mathf.Abs(c.Center.X - b.Left - halfW);
-            float distY = Mathf.Abs(c.Center.Y - b.Bottom - halfH);
-
-            float r = c.Radius;
-            if (distX >= halfW + r || distY >= halfH + r) return false;
-            if (distX < halfW || distY < halfH) return true;
-
-            distX -= halfW;
-            distY -= halfH;
-            return distX * distX + distY * distY < r * r;
-            //*/
         }
 
 
@@ -87,7 +71,7 @@ namespace Geometry {
 
 
         public static NCollision FlyInto (Circle c, Box b, XY v) {
-            // сначала стороны, потом углы, потом численными методами доделать
+            // вычисляем значение
             float min = 1;
             if (v.X > 0) {
                 float d = Geom.RayToVertical(c.Center.X, b.Left, v.X);
@@ -129,17 +113,28 @@ namespace Geometry {
                 if (dist >= 0 && dist < minDist) minDist = dist;
             }
 
-//            XY offset = v.WithLength(minDist);
+            XY offset;
+            XY newPosition;
+            XY clampedPoint;
+            
+            // проверяем перекрывание
             float r2 = c.Radius * c.Radius;
             if (minDist == l) {
                 if (Geom.SqrDistance(c.Center + v, b) >= r2) return new NCollision(v, XY.NaN, null, null);
             } else {
-                if (Geom.SqrDistance(c.Center + v.WithLength(minDist), b) >= r2) {
-                    // todo use clamp
-                    return TODO;
+                offset = v.WithLength(minDist);
+                newPosition = c.Center + offset;
+                clampedPoint = newPosition.Clamped(b);
+                if (newPosition == clampedPoint) {
+                    return new NCollision(offset, Geom.BoxQuarter(newPosition, b.Left, b.Right, b.Bottom, b.Top), c, b);
+                }
+                if (XY.SqrDistance(newPosition, clampedPoint) >= r2) {
+                    // todo: what if there will be (0, 0)?
+                    return new NCollision(offset, newPosition - clampedPoint, c, b);
                 }
             }
             
+            // численные методы
             float lo = 0;
             float hi = minDist;
             for (int i = 0; i < 10 && hi - lo > Epsilon; i++) {
@@ -151,14 +146,18 @@ namespace Geometry {
                 }
             }
 
-            XY offset = v.WithLength(lo);
-            XY newPosition = c.Center + offset;
-            
-            // будет (0, 0) если точка лежит внутри прямоугольника, но численные методы должны это исключить
-            // todo use clamp
-            XY closestPoint = new XY(Mathf.Clamp(newPosition.X, b.Left, b.Right), Mathf.Clamp(newPosition.Y, b.Bottom, b.Top));
-            
-            return new NCollision(offset, newPosition - closestPoint, c, b);
+            // вывод результата
+            offset = v.WithLength(lo);
+            newPosition = c.Center + offset;
+            clampedPoint = newPosition.Clamped(b);
+            return new NCollision(
+                offset,
+                newPosition == clampedPoint
+                    ? Geom.BoxQuarter(newPosition, b.Left, b.Right, b.Bottom, b.Top)
+                    : newPosition - clampedPoint,
+                c,
+                b
+            );
         }
 
 
