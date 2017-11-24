@@ -95,7 +95,6 @@ namespace Battle.Physics {
 
         public Collision CastRay (XY beg, XY v, out float dist, float width = 0) {
             XY bp, ep, normal = XY.Zero, end = beg + v;
-            Primitive pr = null;
 
             dist = 1;
 
@@ -127,10 +126,8 @@ namespace Battle.Physics {
                         v *= d;
                         if (v.X < 0) {
                             normal = XY.Right;
-                            pr = VerticalEdgePrimitive.Right(++x);
                         } else {
                             normal = XY.Left;
-                            pr = VerticalEdgePrimitive.Left(x);
                         }
                         break;
                     }
@@ -162,10 +159,8 @@ namespace Battle.Physics {
                         v *= d;
                         if (v.Y < 0) {
                             normal = XY.Up;
-                            pr = HorizontalEdgePrimitive.Up(++y);
                         } else {
                             normal = XY.Down;
-                            pr = HorizontalEdgePrimitive.Down(y);
                         }
                         break;
                     }
@@ -193,7 +188,6 @@ namespace Battle.Physics {
                         if (dd >= d) continue;
                         d = dd;
                         normal = bp + v * d - pt;
-                        pr = CirclePrimitive.New(pt);
                     }
                 }
                 v *= d;
@@ -201,7 +195,7 @@ namespace Battle.Physics {
             }
 
             return dist < 1
-                ? new Collision(v, normal, null, null, CirclePrimitive.New(beg, width), pr)
+                ? new Collision(v, normal, null, null)
                 : null;
         }
 
@@ -243,16 +237,12 @@ namespace Battle.Physics {
             // проверили вершины прямоугольника, теперь осталось проверить стороны
             float dd = 1;
             var normal = XY.Zero;
-            Primitive pr1 = null, pr2 = null;
 
             if (v.X != 0) {
                 float xx = v.X < 0 ? left : right;
                 var a = new XY(xx, bottom);
                 var b = new XY(xx, top);
                 var n = v.X < 0 ? XY.Right : XY.Left;
-                Primitive current = v.X < 0
-                    ? VerticalEdgePrimitive.Left(xx)
-                    : VerticalEdgePrimitive.Right(xx);
 
                 var aabb = new AABBF(
                     xx + Mathf.Min(0, v.X),
@@ -269,8 +259,6 @@ namespace Battle.Physics {
                         if (yy <= bottom || yy >= top || d >= dd) continue;
                         dd = d;
                         normal = n;
-                        pr1 = current;
-                        pr2 = CirclePrimitive.New(pt);
                     }
                 }
             }
@@ -280,9 +268,6 @@ namespace Battle.Physics {
                 var a = new XY(left, yy);
                 var b = new XY(right, yy);
                 var n = v.Y < 0 ? XY.Up : XY.Down;
-                Primitive current = v.Y < 0
-                    ? HorizontalEdgePrimitive.Down(yy)
-                    : HorizontalEdgePrimitive.Up(yy);
 
                 var aabb = new AABBF(
                     Mathf.Min(a.X, b.X) + Mathf.Min(0, v.X),
@@ -299,15 +284,13 @@ namespace Battle.Physics {
                         if (xx <= left || xx >= right || d >= dd) continue;
                         dd = d;
                         normal = n;
-                        pr1 = current;
-                        pr2 = CirclePrimitive.New(pt);
                     }
                 }
             }
-            dist *= dd;
+            // dist *= dd;
             v *= dd;
 
-            return dd < 1 ? new Collision(v, normal, null, null, pr1, pr2) : min;
+            return dd < 1 ? new Collision(v, normal, null, null) : min;
         }
 
 

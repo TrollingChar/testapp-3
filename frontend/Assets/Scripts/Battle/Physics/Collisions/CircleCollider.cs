@@ -50,9 +50,7 @@ namespace Battle.Physics.Collisions {
                     velocity * mv,
                     Center + velocity * mv - c.Center,
                     this,
-                    c,
-                    CirclePrimitive.New(Center, Radius),
-                    CirclePrimitive.New(c.Center, c.Radius)
+                    c
                 ) : null;
         }
 
@@ -79,9 +77,7 @@ namespace Battle.Physics.Collisions {
                         velocity * d,
                         XY.Right,
                         this,
-                        c,
-                        CirclePrimitive.New(center, Radius),
-                        VerticalEdgePrimitive.Right(right)
+                        c
                     );
                 }
             }
@@ -95,9 +91,7 @@ namespace Battle.Physics.Collisions {
                         velocity * d,
                         XY.Left,
                         this,
-                        c,
-                        CirclePrimitive.New(center, Radius),
-                        VerticalEdgePrimitive.Left(left)
+                        c
                     );
                 }
             }
@@ -111,9 +105,7 @@ namespace Battle.Physics.Collisions {
                         velocity * d,
                         XY.Up,
                         this,
-                        c,
-                        CirclePrimitive.New(center, Radius),
-                        HorizontalEdgePrimitive.Up(top)
+                        c
                     );
                 }
             }
@@ -127,9 +119,7 @@ namespace Battle.Physics.Collisions {
                         velocity * d,
                         XY.Down,
                         this,
-                        c,
-                        CirclePrimitive.New(center, Radius),
-                        HorizontalEdgePrimitive.Down(bottom)
+                        c
                     );
                 }
             }
@@ -142,9 +132,7 @@ namespace Battle.Physics.Collisions {
                         velocity * d,
                         Center + velocity * d - new XY(right, top),
                         this,
-                        c,
-                        CirclePrimitive.New(Center, Radius),
-                        CirclePrimitive.New(new XY(right, top))
+                        c
                     );
                 }
             }
@@ -157,9 +145,7 @@ namespace Battle.Physics.Collisions {
                         velocity * d,
                         Center + velocity * d - new XY(left, top),
                         this,
-                        c,
-                        CirclePrimitive.New(Center, Radius),
-                        CirclePrimitive.New(new XY(left, top))
+                        c
                     );
                 }
             }
@@ -172,9 +158,7 @@ namespace Battle.Physics.Collisions {
                         velocity * d,
                         Center + velocity * d - new XY(left, bottom),
                         this,
-                        c,
-                        CirclePrimitive.New(Center, Radius),
-                        CirclePrimitive.New(new XY(left, bottom))
+                        c
                     );
                 }
             }
@@ -187,9 +171,7 @@ namespace Battle.Physics.Collisions {
                         velocity * d,
                         Center + velocity * d - new XY(right, bottom),
                         this,
-                        c,
-                        CirclePrimitive.New(Center, Radius),
-                        CirclePrimitive.New(new XY(right, bottom))
+                        c
                     );
                 }
             }

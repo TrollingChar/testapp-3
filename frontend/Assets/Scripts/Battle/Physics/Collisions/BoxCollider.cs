@@ -82,9 +82,7 @@ namespace Battle.Physics.Collisions {
                         velocity * d,
                         XY.Right,
                         this,
-                        c,
-                        VerticalEdgePrimitive.Left(left),
-                        VerticalEdgePrimitive.Right(cright)
+                        c
                     );
                 }
             }
@@ -98,9 +96,7 @@ namespace Battle.Physics.Collisions {
                         velocity * d,
                         XY.Left,
                         this,
-                        c,
-                        VerticalEdgePrimitive.Right(right),
-                        VerticalEdgePrimitive.Left(cleft)
+                        c
                     );
                 }
             }
@@ -114,9 +110,7 @@ namespace Battle.Physics.Collisions {
                         velocity * d,
                         XY.Up,
                         this,
-                        c,
-                        HorizontalEdgePrimitive.Down(bottom),
-                        HorizontalEdgePrimitive.Up(ctop)
+                        c
                     );
                 }
             }
@@ -130,9 +124,7 @@ namespace Battle.Physics.Collisions {
                         velocity * d,
                         XY.Down,
                         this,
-                        c,
-                        HorizontalEdgePrimitive.Up(top),
-                        HorizontalEdgePrimitive.Down(cbottom)
+                        c
                     );
                 }
             }
