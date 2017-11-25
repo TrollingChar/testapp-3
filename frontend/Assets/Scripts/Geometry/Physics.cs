@@ -34,7 +34,7 @@
         */
 
 
-        public static Collision FlyInto (Circle a, Circle b, XY v) {
+        public static OffsetNormal FlyInto (Circle a, Circle b, XY v) {
             // вычисляем значение
             float dist = Geom.RayToCircle(a.Center, v, b.Center, a.Radius + b.Radius);
 
@@ -42,11 +42,11 @@
             r2 *= r2;
             if (float.IsNaN(dist) || dist < 0 || dist * dist >= v.SqrLength) {
                 // нет коллизии, проверить перекрывание
-                if (XY.SqrDistance(a.Center + v, b.Center) < r2) return new Collision(v, XY.NaN, null, null);
+                if (XY.SqrDistance(a.Center + v, b.Center) < r2) return new OffsetNormal(v, XY.NaN);
                 dist = v.Length;
             }
             // есть коллизия, проверить перекрывание
-            else if (XY.SqrDistance(a.Center + v.WithLength(dist), b.Center) < r2) return new Collision(v, XY.NaN, null, null);
+            else if (XY.SqrDistance(a.Center + v.WithLength(dist), b.Center) < r2) return new OffsetNormal(v, XY.NaN);
 
             // численными методами делаем чтобы не было ошибки с перекрыванием
             float lo = 0;
@@ -60,11 +60,11 @@
                 }
             }
             var offset = v.WithLength(lo);
-            return new Collision(offset, a.Center - b.Center + offset, a, b);
+            return new OffsetNormal(offset, a.Center - b.Center + offset);
         }
 
 
-        public static Collision FlyInto (Circle c, Box b, XY v) {
+        public static OffsetNormal FlyInto (Circle c, Box b, XY v) {
             // вычисляем значение
             float min = 1;
             if (v.X > 0) {
@@ -114,17 +114,16 @@
             // проверяем перекрывание
             float r2 = c.Radius * c.Radius;
             if (minDist == l) {
-                if (Geom.SqrDistance(c.Center + v, b) >= r2) return new Collision(v, XY.NaN, null, null);
+                if (Geom.SqrDistance(c.Center + v, b) >= r2) return new OffsetNormal(v, XY.NaN);
             } else {
                 offset = v.WithLength(minDist);
                 newPosition = c.Center + offset;
                 clampedPoint = newPosition.Clamped(b);
                 if (newPosition == clampedPoint) {
-                    return new Collision(offset, Geom.BoxQuarter(newPosition, b.Left, b.Right, b.Bottom, b.Top), c, b);
+                    return new OffsetNormal(offset, Geom.BoxQuarter(newPosition, b.Left, b.Right, b.Bottom, b.Top));
                 }
                 if (XY.SqrDistance(newPosition, clampedPoint) >= r2) {
-                    // todo: what if there will be (0, 0)?
-                    return new Collision(offset, newPosition - clampedPoint, c, b);
+                    return new OffsetNormal(offset, newPosition - clampedPoint);
                 }
             }
             
@@ -144,18 +143,16 @@
             offset = v.WithLength(lo);
             newPosition = c.Center + offset;
             clampedPoint = newPosition.Clamped(b);
-            return new Collision(
+            return new OffsetNormal(
                 offset,
                 newPosition == clampedPoint
                     ? Geom.BoxQuarter(newPosition, b.Left, b.Right, b.Bottom, b.Top)
-                    : newPosition - clampedPoint,
-                c,
-                b
+                    : newPosition - clampedPoint
             );
         }
 
 
-        public static Collision FlyInto (Box a, Box b, XY v) {
+        public static OffsetNormal FlyInto (Box a, Box b, XY v) {
             // float hw = 0.5f * (a.Right - a.Left + b.Right - b.Left);
             // float hh = 0.5f * (a.Top - a.Bottom + b.Top - b.Bottom);
             // float dx = 0.5f * (b.Left - a.Left + b.Right - a.Right);
@@ -216,7 +213,7 @@
                 }
             }
             
-            return new Collision(v * lo, Geom.BoxQuarter(offset, left, right, bottom, top), a, b);
+            return new OffsetNormal(v * lo, Geom.BoxQuarter(offset, left, right, bottom, top));
         }
     }
 }
