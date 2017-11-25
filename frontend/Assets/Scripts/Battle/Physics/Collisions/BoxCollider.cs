@@ -12,16 +12,11 @@ namespace Battle.Physics.Collisions {
         private readonly float _topOffset;
 
 
-        public BoxCollider (
-            float left,
-            float right,
-            float bottom,
-            float top
-        ) {
+        public BoxCollider (float left, float right, float bottom, float top) {
+            _topOffset = top;
             _leftOffset = left;
             _rightOffset = right;
             _bottomOffset = bottom;
-            _topOffset = top;
         }
 
 
@@ -29,22 +24,27 @@ namespace Battle.Physics.Collisions {
             get { return _leftOffset + Object.Position.X; }
         }
 
+        
         public float Right {
             get { return _rightOffset + Object.Position.X; }
         }
 
+        
         public float Bottom {
             get { return _bottomOffset + Object.Position.Y; }
         }
 
+        
         public float Top {
             get { return _topOffset + Object.Position.Y; }
         }
 
+        
         public Box Box {
             get { return new Box(Left, Right, Top, Bottom); }
         }
 
+        
         public override AABBF AABB {
             get { return new AABBF(Left, Right, Bottom, Top); }
         }
@@ -58,85 +58,18 @@ namespace Battle.Physics.Collisions {
 
 
         public override Collision FlyInto (CircleCollider c, XY v) {
-//            return -c.FlyInto(this, -v);
+            var on = Geometry.Physics.FlyInto(c.Circle, Box, -v);
+            return on.IsEmpty
+                ? new Collision(v, XY.NaN, null, null)
+                : new Collision(-on.Offset, -on.Normal, this, c);
         }
 
 
         public override Collision FlyInto (BoxCollider c, XY v) {
-            /*
-            float
-                left = Left,
-                right = Right,
-                bottom = Bottom,
-                top = Top,
-                cleft = c.Left,
-                cright = c.Right,
-                cbottom = c.Bottom,
-                ctop = c.Top;
-
-            float minDist = 1;
-            Collision result = null;
-
-            float d;
-            if (v.X < 0) {
-                d = Geom_.CastRayToVertical(new XY(left, bottom), v, cright);
-                // спроецировать на прямую сразу две точки
-                float topY = top + v.Y * d;
-                float bottomY = bottom + v.Y * d;
-                if (d < minDist && topY < cbottom && bottomY > ctop) {
-                    minDist = d;
-                    result = new Collision(
-                        v * d,
-                        XY.Right,
-                        this,
-                        c
-                    );
-                }
-            }
-            if (v.X > 0) {
-                d = Geom_.CastRayToVertical(new XY(right, top), v, cleft);
-                float topY = top + v.Y * d;
-                float bottomY = bottom + v.Y * d;
-                if (d < minDist && topY < cbottom && bottomY > ctop) {
-                    minDist = d;
-                    result = new Collision(
-                        v * d,
-                        XY.Left,
-                        this,
-                        c
-                    );
-                }
-            }
-            if (v.Y < 0) {
-                d = Geom_.CastRayToHorizontal(new XY(left, bottom), v, ctop);
-                float leftX = left + v.X * d;
-                float rightX = right + v.X * d;
-                if (d < minDist && rightX < cleft && leftX > cright) {
-                    minDist = d;
-                    result = new Collision(
-                        v * d,
-                        XY.Up,
-                        this,
-                        c
-                    );
-                }
-            }
-            if (v.Y > 0) {
-                d = Geom_.CastRayToVertical(new XY(right, top), v, cbottom);
-                float leftX = left + v.X * d;
-                float rightX = right + v.X * d;
-                if (d < minDist && rightX < cleft && leftX > cright) {
-                    minDist = d;
-                    result = new Collision(
-                        v * d,
-                        XY.Down,
-                        this,
-                        c
-                    );
-                }
-            }
-            return result;
-            */
+            var on = Geometry.Physics.FlyInto(Box, c.Box, v);
+            return on.IsEmpty
+                ? new Collision(v, XY.NaN, null, null)
+                : new Collision(on.Offset, on.Normal, this, c);
         }
 
 
@@ -153,15 +86,12 @@ namespace Battle.Physics.Collisions {
 
 
         public override bool Overlaps (CircleCollider c) {
-//            return Geom_.AreOverlapping(c.Center, c.Radius, Left, Right, Bottom, Top);
+            return Geometry.Physics.Overlap(c.Circle, Box);
         }
 
 
         public override bool Overlaps (BoxCollider c) {
-//            return Left < c.Right
-//                && Right > c.Left
-//                && Bottom < c.Top
-//                && Top > c.Bottom;
+            return Geometry.Physics.Overlap(Box, c.Box);
         }
 
 

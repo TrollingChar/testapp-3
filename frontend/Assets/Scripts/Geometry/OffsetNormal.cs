@@ -11,6 +11,11 @@
             Normal = normal;
         }
 
+
+        public bool IsEmpty {
+            get { return Normal.IsNaN; }
+        }
+
     }
 
 }
