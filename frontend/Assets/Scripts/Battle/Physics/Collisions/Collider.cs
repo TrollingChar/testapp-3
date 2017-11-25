@@ -76,10 +76,10 @@ namespace Battle.Physics.Collisions {
         }
 
 
-        public abstract Collision FlyInto (Collider c, XY velocity);
-        public abstract Collision FlyInto (CircleCollider c, XY velocity);
-        public abstract Collision FlyInto (BoxCollider c, XY velocity);
-        public abstract Collision FlyInto (Land land, XY velocity);
+        public abstract Collision FlyInto (Collider c, XY v);
+        public abstract Collision FlyInto (CircleCollider c, XY v);
+        public abstract Collision FlyInto (BoxCollider c, XY v);
+        public abstract Collision FlyInto (Land land, XY v);
 
         public abstract bool Overlaps (Collider c);
         public abstract bool Overlaps (CircleCollider c);
