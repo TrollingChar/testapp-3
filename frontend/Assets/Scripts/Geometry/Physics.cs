@@ -40,7 +40,7 @@ namespace Geometry {
         */
 
 
-        public static NCollision FlyInto (Circle a, Circle b, XY v) {
+        public static Collision FlyInto (Circle a, Circle b, XY v) {
             // вычисляем значение
             float dist = Geom.RayToCircle(a.Center, v, b.Center, a.Radius + b.Radius);
 
@@ -48,11 +48,11 @@ namespace Geometry {
             r2 *= r2;
             if (float.IsNaN(dist) || dist < 0 || dist * dist >= v.SqrLength) {
                 // нет коллизии, проверить перекрывание
-                if (XY.SqrDistance(a.Center + v, b.Center) < r2) return new NCollision(v, XY.NaN, null, null);
+                if (XY.SqrDistance(a.Center + v, b.Center) < r2) return new Collision(v, XY.NaN, null, null);
                 dist = v.Length;
             }
             // есть коллизия, проверить перекрывание
-            else if (XY.SqrDistance(a.Center + v.WithLength(dist), b.Center) < r2) return new NCollision(v, XY.NaN, null, null);
+            else if (XY.SqrDistance(a.Center + v.WithLength(dist), b.Center) < r2) return new Collision(v, XY.NaN, null, null);
 
             // численными методами делаем чтобы не было ошибки с перекрыванием
             float lo = 0;
@@ -66,11 +66,11 @@ namespace Geometry {
                 }
             }
             var offset = v.WithLength(lo);
-            return new NCollision(offset, a.Center - b.Center + offset, a, b);
+            return new Collision(offset, a.Center - b.Center + offset, a, b);
         }
 
 
-        public static NCollision FlyInto (Circle c, Box b, XY v) {
+        public static Collision FlyInto (Circle c, Box b, XY v) {
             // вычисляем значение
             float min = 1;
             if (v.X > 0) {
@@ -120,17 +120,17 @@ namespace Geometry {
             // проверяем перекрывание
             float r2 = c.Radius * c.Radius;
             if (minDist == l) {
-                if (Geom.SqrDistance(c.Center + v, b) >= r2) return new NCollision(v, XY.NaN, null, null);
+                if (Geom.SqrDistance(c.Center + v, b) >= r2) return new Collision(v, XY.NaN, null, null);
             } else {
                 offset = v.WithLength(minDist);
                 newPosition = c.Center + offset;
                 clampedPoint = newPosition.Clamped(b);
                 if (newPosition == clampedPoint) {
-                    return new NCollision(offset, Geom.BoxQuarter(newPosition, b.Left, b.Right, b.Bottom, b.Top), c, b);
+                    return new Collision(offset, Geom.BoxQuarter(newPosition, b.Left, b.Right, b.Bottom, b.Top), c, b);
                 }
                 if (XY.SqrDistance(newPosition, clampedPoint) >= r2) {
                     // todo: what if there will be (0, 0)?
-                    return new NCollision(offset, newPosition - clampedPoint, c, b);
+                    return new Collision(offset, newPosition - clampedPoint, c, b);
                 }
             }
             
@@ -150,7 +150,7 @@ namespace Geometry {
             offset = v.WithLength(lo);
             newPosition = c.Center + offset;
             clampedPoint = newPosition.Clamped(b);
-            return new NCollision(
+            return new Collision(
                 offset,
                 newPosition == clampedPoint
                     ? Geom.BoxQuarter(newPosition, b.Left, b.Right, b.Bottom, b.Top)
@@ -161,7 +161,7 @@ namespace Geometry {
         }
 
 
-        public static NCollision FlyInto (Box a, Box b, XY v) {
+        public static Collision FlyInto (Box a, Box b, XY v) {
             // float hw = 0.5f * (a.Right - a.Left + b.Right - b.Left);
             // float hh = 0.5f * (a.Top - a.Bottom + b.Top - b.Bottom);
             // float dx = 0.5f * (b.Left - a.Left + b.Right - a.Right);
@@ -201,8 +201,8 @@ namespace Geometry {
                 offset.Y + a.Bottom < b.Top) {
                 // если нет перекрывания
                 return min == 1
-                    ? new NCollision(offset, XY.NaN, null, null)
-                    : new NCollision(offset, Geom.BoxQuarter(offset, left, right, bottom, top), a, b);
+                    ? new Collision(offset, XY.NaN, null, null)
+                    : new Collision(offset, Geom.BoxQuarter(offset, left, right, bottom, top), a, b);
             }
 
             // включаем численные методы
@@ -222,7 +222,7 @@ namespace Geometry {
                 }
             }
             
-            return new NCollision(v * lo, Geom.BoxQuarter(offset, left, right, bottom, top), a, b);
+            return new Collision(v * lo, Geom.BoxQuarter(offset, left, right, bottom, top), a, b);
         }
     }
 }

@@ -15,7 +15,7 @@ using Geometry;
 using UnityEngine;
 using Utils.Random;
 using Collider = Battle.Physics.Collisions.Collider;
-using Collision = Battle.Physics.Collisions.Collision;
+using Collision = Geometry.Collision;
 using Object = Battle.Objects.Object;
 using Ray = Battle.Objects.Ray;
 

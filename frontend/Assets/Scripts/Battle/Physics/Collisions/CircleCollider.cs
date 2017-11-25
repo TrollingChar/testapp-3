@@ -2,6 +2,7 @@
 using Geometry;
 using UnityEditor;
 using UnityEngine;
+using Collision = Geometry.Collision;
 
 
 namespace Battle.Physics.Collisions {

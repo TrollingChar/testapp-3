@@ -4,7 +4,8 @@ using Geometry;
 
 namespace Battle.Physics.Collisions {
 
-    public class Collision : IEquatable<Collision>, IComparable<Collision> {
+    [Obsolete]
+    public class OldCollision : IEquatable<OldCollision>, IComparable<OldCollision> {
 
         /*
         public override bool Equals(object obj)
@@ -37,7 +38,7 @@ namespace Battle.Physics.Collisions {
         public XY Offset, Normal;
 
 
-        public Collision (XY offset, XY normal, Collider c1, Collider c2) {
+        public OldCollision (XY offset, XY normal, Collider c1, Collider c2) {
             Offset = offset;
             Normal = normal;
             Collider1 = c1;
@@ -45,12 +46,12 @@ namespace Battle.Physics.Collisions {
         }
 
 
-        public int CompareTo (Collision other) {
+        public int CompareTo (OldCollision other) {
             return ReferenceEquals(other, null) ? 1 : Offset.SqrLength.CompareTo(other.Offset.SqrLength);
         }
 
 
-        public bool Equals (Collision other) {
+        public bool Equals (OldCollision other) {
             return !ReferenceEquals(other, null)
                 && other.Offset == Offset
                 && other.Normal == Normal
@@ -59,8 +60,8 @@ namespace Battle.Physics.Collisions {
         }
 
 
-        public static Collision operator - (Collision c) {
-            return ReferenceEquals(c, null) ? null : new Collision(
+        public static OldCollision operator - (OldCollision c) {
+            return ReferenceEquals(c, null) ? null : new OldCollision(
                 -c.Offset,
                 -c.Normal,
                 c.Collider2,
@@ -69,36 +70,36 @@ namespace Battle.Physics.Collisions {
         }
 
 
-        public static bool operator == (Collision a, Collision b) {
+        public static bool operator == (OldCollision a, OldCollision b) {
             return ReferenceEquals(a, null)
                  ? ReferenceEquals(b, null)
                  : a.Equals(b);
         }
 
 
-        public static bool operator != (Collision a, Collision b) {
+        public static bool operator != (OldCollision a, OldCollision b) {
             return !(a == b);
         }
 
 
-        public static bool operator < (Collision a, Collision b) {
+        public static bool operator < (OldCollision a, OldCollision b) {
             if (ReferenceEquals(a, null)) return false;
             if (ReferenceEquals(b, null)) return true;
             return a.Offset.SqrLength < b.Offset.SqrLength;
         }
 
 
-        public static bool operator > (Collision a, Collision b) {
+        public static bool operator > (OldCollision a, OldCollision b) {
             return b < a;
         }
 
 
-        public static bool operator <= (Collision a, Collision b) {
+        public static bool operator <= (OldCollision a, OldCollision b) {
             return !(b < a);
         }
 
 
-        public static bool operator >= (Collision a, Collision b) {
+        public static bool operator >= (OldCollision a, OldCollision b) {
             return !(a < b);
         }
 

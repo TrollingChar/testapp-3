@@ -3,7 +3,7 @@ using UnityEngine;
 using Collider = Battle.Physics.Collisions.Collider;
 
 namespace Geometry {
-    public struct NCollision : IComparable<NCollision> {
+    public struct Collision : IComparable<Collision> {
 
         public readonly XY Offset;
         public readonly XY Normal;
@@ -11,7 +11,7 @@ namespace Geometry {
         public readonly Collider C2;
 
 
-        public NCollision (XY offset, XY normal, Collider c1, Collider c2) {
+        public Collision (XY offset, XY normal, Collider c1, Collider c2) {
             Offset = offset;
             Normal = normal;
             C1 = c1;
@@ -19,12 +19,12 @@ namespace Geometry {
         }
 
 
-        public static NCollision operator - (NCollision c) {
-            return new NCollision(-c.Offset, -c.Normal, c.C2, c.C1);
+        public static Collision operator - (Collision c) {
+            return new Collision(-c.Offset, -c.Normal, c.C2, c.C1);
         }
 
         
-        public int CompareTo(NCollision other) {
+        public int CompareTo(Collision other) {
             float f = Offset.SqrLength - other.Offset.SqrLength;
             return f < 0 ? -1 : f > 0 ? 1 : 0; // Math.Sign casts to double
         }

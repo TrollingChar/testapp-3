@@ -9,7 +9,7 @@ using DataTransfer.Data;
 using Geometry;
 using UnityEngine;
 using Collider = Battle.Physics.Collisions.Collider;
-using Collision = Battle.Physics.Collisions.Collision;
+using Collision = Geometry.Collision;
 
 
 namespace Battle.Objects {

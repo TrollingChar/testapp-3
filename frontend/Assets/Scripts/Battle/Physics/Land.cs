@@ -4,7 +4,7 @@ using Battle.Generation;
 using Battle.Physics.Collisions;
 using Geometry;
 using UnityEngine;
-using Collision = Battle.Physics.Collisions.Collision;
+using Collision = Geometry.Collision;
 
 
 namespace Battle.Physics {
