@@ -50,7 +50,7 @@ namespace Battle.Weapons.WeaponTypes.Firearms {
         protected override void OnShoot () {
             var direction = TurnData.XY - Object.Position;
             var collision = The.World.CastRay(Object.Position, direction);
-            if (collision == null) return;
+            if (collision.IsEmpty) return;
             if (collision.Collider2 == null) {
                 The.World.DestroyTerrain(Object.Position + collision.Offset, 5f);
             } else {

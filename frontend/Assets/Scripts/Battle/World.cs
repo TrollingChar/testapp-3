@@ -98,11 +98,11 @@ namespace Battle {
                 if (o.Velocity.Length * o.Movement <= 0) continue;
 
                 var c = o.NextCollision(o.Movement);
-                var o2 = c == null || c.Collider2 == null
+                var o2 = c.IsEmpty || c.Collider2 == null
                     ? null
                     : c.Collider2.Object;
 
-                if (c == null) {
+                if (c.IsEmpty) {
                     // no collision
                     o.Position += o.Movement * o.Velocity;// * (1 - Precision);
                     o.Movement = 0;
@@ -199,13 +199,13 @@ namespace Battle {
 
             direction.Length = 10000; // todo: handle infinite length of the ray
 
-            Collision result = null;
+            var result = Collision.Infinity;
 
             Collision temp;
 
-            foreach (var o in _objects.Where(o => o.Colliders.TrueForAll(c => !PhysicsCore.Overlap(c, point))))
+            foreach (var o in _objects.Where(o => o.Colliders.TrueForAll(c => c.Overlaps(point))))
             foreach (var c in o.Colliders) {
-                temp = PhysicsCore.FlyInto(point, c, direction);
+                temp = point.FlyInto(c, direction);
                 if (temp < result) result = temp;
             }
 
@@ -222,14 +222,14 @@ namespace Battle {
 
             var result = new List<Collision>();
 
-            foreach (var o in _objects.Where(o => o.Colliders.TrueForAll(c => !PhysicsCore.Overlap(c, point)))) {
+            foreach (var o in _objects.Where(o => o.Colliders.TrueForAll(c => !c.Overlaps(point)))) {
                 // no more than one collision per object
-                Collision min = null;
+                var min = Collision.Infinity;
                 foreach (var c in o.Colliders) {
-                    var temp = PhysicsCore.FlyInto(point, c, direction);
+                    var temp = point.FlyInto(c, direction);
                     if (temp < min) min = temp;
                 }
-                if (min != null) result.Add(min);
+                if (!min.IsEmpty) result.Add(min);
             }
             // do not cast to land because ultrawave weapons penetrate terrain
             return result;
@@ -268,7 +268,7 @@ namespace Battle {
                 ) {
                     var rayOrigin = new XY(x + 0.5f, y + 1f) * LandTile.Size;
                     var collision = new Ray(rayOrigin, new CircleCollider(XY.Zero, Worm.HeadRadius)).Cast(rayDirection);
-                    if (collision != null) result.Add(rayOrigin + new XY(0, Worm.BodyHeight));
+                    if (!collision.IsEmpty) result.Add(rayOrigin + new XY(0, Worm.BodyHeight));
                 }
             }
             return result;

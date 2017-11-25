@@ -195,14 +195,14 @@ namespace Battle.Physics {
 
             return dist < 1
                 ? new Collision(v, normal, null, null)
-                : null;
+                : new Collision(end - beg, XY.NaN, null, null);
         }
 
 
         public Collision CastRectRay (float left, float right, float bottom, float top, XY v) {
             List<XY> points;
             float dist = 1;
-            Collision min = null;
+            var min = new Collision(v, XY.NaN, null, null);
 
             if (v.X < 0) {
                 points = new List<XY> {new XY(left, top), new XY(left, bottom)};
@@ -220,7 +220,7 @@ namespace Battle.Physics {
                 } else if (v.Y > 0) {
                     points = new List<XY> {new XY(left, top), new XY(right, top)};
                 } else {
-                    return null;
+                    return min;
                 }
             }
 

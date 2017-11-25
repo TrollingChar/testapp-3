@@ -43,7 +43,7 @@ namespace Battle.Weapons.WeaponTypes.Firearms {
         protected override void OnShoot () {
             var direction = TurnData.XY - Object.Position;
             var collision = The.World.CastRay(Object.Position, direction);
-            if (collision == null) return;
+            if (collision.IsEmpty) return;
             // todo: refactor explosives
             var world = The.World;
             var blastXY = Object.Position + collision.Offset;

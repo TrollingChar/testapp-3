@@ -3,7 +3,6 @@ using System.Linq;
 using Battle.Objects.CollisionHandlers;
 using Battle.Objects.Controllers;
 using Battle.Objects.Explosives;
-using Battle.Physics.Collisions;
 using Core;
 using DataTransfer.Data;
 using Geometry;
@@ -118,14 +117,15 @@ namespace Battle.Objects {
         public Collision NextCollision (float movementLeft) {
             var v = Velocity * movementLeft;
             var cObj = CollideWithObjects(v);
-            if (cObj != null) v = cObj.Offset;
+            // if (cObj != null)
+            v = cObj.Offset;
             var cLand = CollideWithLand(v);
-            return cLand ?? cObj;
+            return cLand.IsEmpty ? cObj : cLand;
         }
 
 
         private Collision CollideWithObjects (XY v) {
-            Collision min = null;
+            var min = new Collision(v, XY.NaN, null, null);
             foreach (var c in Colliders) {
                 var obstacles = new HashSet<Collider>(
                     c.FindObstacles(_world, v)
@@ -133,7 +133,7 @@ namespace Battle.Objects {
                         .Where(o => !Excluded.Contains(o.Object))
                 );
                 foreach (var o in obstacles) {
-                    var temp = PhysicsCore.FlyInto(c, o, v);
+                    var temp = c.FlyInto(o, v);
                     if (temp < min) min = temp;
                 }
                 obstacles.Clear();
@@ -148,7 +148,7 @@ namespace Battle.Objects {
 
 
         private Collision CollideWithLand (XY v) {
-            Collision min = null;
+            var min = new Collision(v, XY.NaN, null, null);
             foreach (var c in Colliders) {
                 var temp = c.FlyInto(_world.Land, v);
                 if (temp < min) min = temp;

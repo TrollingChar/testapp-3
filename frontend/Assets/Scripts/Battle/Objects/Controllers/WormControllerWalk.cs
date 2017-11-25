@@ -27,7 +27,7 @@ namespace Battle.Objects.Controllers {
                     .Cast(new XY(0f, -Worm.MaxDescend));
 
             // will fall?
-            if (collision == null) {
+            if (collision.IsEmpty) {
                 Object.Controller = new WormControllerJump();
                 return;
             }
@@ -67,7 +67,7 @@ namespace Battle.Objects.Controllers {
                     xOffset + (td.D ? World.Precision : -World.Precision),
                     0f
                 );
-                if (new Ray(rayOrigin, new CircleCollider(XY.Zero, Worm.HeadRadius)).Cast(rayDirection) != null) {
+                if (!new Ray(rayOrigin, new CircleCollider(XY.Zero, Worm.HeadRadius)).Cast(rayDirection).IsEmpty) {
                     xOffset = 0f;
                 }
             }
@@ -78,10 +78,10 @@ namespace Battle.Objects.Controllers {
                 var rayDirection = new XY(0f, -Worm.MaxClimb - Worm.MaxDescend);
                 var ray = new Ray(rayOrigin, new CircleCollider(XY.Zero, Worm.HeadRadius));
                 var coll = ray.Cast(rayDirection);
-                bool fall = coll == null;
+                bool fall = coll.IsEmpty;
                 float yOffset = fall ? rayDirection.Y : coll.Offset.Y;
                 rayDirection = new XY(0f, Worm.BodyHeight + yOffset);
-                if (rayDirection.Y <= 0 || ray.Cast(rayDirection) == null) {
+                if (rayDirection.Y <= 0 || ray.Cast(rayDirection).IsEmpty) {
                     // move the worm
                     if (fall) {
                         Object.Position += new XY(xOffset, 0f);
