@@ -1,5 +1,4 @@
-﻿using Battle.Physics.Collisions;
-using Geometry;
+﻿using Geometry;
 
 
 namespace Battle.Objects.CollisionHandlers {

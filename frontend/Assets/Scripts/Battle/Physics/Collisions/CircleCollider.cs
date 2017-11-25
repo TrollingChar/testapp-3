@@ -1,7 +1,5 @@
 ﻿using System;
 using Geometry;
-using UnityEditor;
-using UnityEngine;
 using Collision = Geometry.Collision;
 
 

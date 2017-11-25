@@ -1,5 +1,4 @@
 using System;
-using UnityEngine;
 using Collider = Battle.Physics.Collisions.Collider;
 
 namespace Geometry {
@@ -7,20 +6,20 @@ namespace Geometry {
 
         public readonly XY Offset;
         public readonly XY Normal;
-        public readonly Collider C1;
-        public readonly Collider C2;
+        public readonly Collider Collider1;
+        public readonly Collider Collider2;
 
 
         public Collision (XY offset, XY normal, Collider c1, Collider c2) {
             Offset = offset;
             Normal = normal;
-            C1 = c1;
-            C2 = c2;
+            Collider1 = c1;
+            Collider2 = c2;
         }
 
 
         public static Collision operator - (Collision c) {
-            return new Collision(-c.Offset, -c.Normal, c.C2, c.C1);
+            return new Collision(-c.Offset, -c.Normal, c.Collider2, c.Collider1);
         }
 
         

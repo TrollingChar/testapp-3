@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Battle.Generation;
 using Battle.Physics.Collisions;
 using Geometry;

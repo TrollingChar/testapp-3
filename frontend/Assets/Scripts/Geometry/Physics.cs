@@ -1,10 +1,4 @@
-﻿using System;
-using Battle.Physics.Collisions;
-using UnityEngine;
-using BoxCollider = Battle.Physics.Collisions.BoxCollider;
-
-
-namespace Geometry {
+﻿namespace Geometry {
 
     // all of these must obey the 3 laws!
     public static class Physics {

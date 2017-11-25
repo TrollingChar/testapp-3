@@ -1,7 +1,5 @@
 ﻿using System.IO;
 using Attributes;
-using Battle.Camera;
-using Battle.State;
 using Core;
 using Geometry;
 using UnityEngine;

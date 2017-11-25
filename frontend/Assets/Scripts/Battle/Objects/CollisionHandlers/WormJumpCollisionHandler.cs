@@ -1,6 +1,4 @@
 ﻿using Battle.Objects.Controllers;
-using Battle.Physics.Collisions;
-using UnityEngine;
 using Collision = Geometry.Collision;
 
 
