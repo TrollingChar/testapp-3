@@ -39,7 +39,8 @@ namespace Battle.State {
 
         public void Update () {
             if (Frozen) return;
-            // Time -= 20; // todo
+            if (The.GameStateController.CurrentState == GameState.Turn) return; // todo remove
+            Time -= 20;
             if (HasElapsed) OnTimerElapsed.Send();
         }
 

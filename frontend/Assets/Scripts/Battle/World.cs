@@ -4,6 +4,7 @@ using System.Linq;
 using Battle.Arsenals;
 using Battle.Generation;
 using Battle.Objects;
+using Battle.Objects.Projectiles;
 using Battle.Physics;
 using Battle.Physics.Collisions;
 using Battle.Teams;
@@ -48,8 +49,12 @@ namespace Battle {
 
         public void Update (TurnData td) {
 //            if (_state.Timer % 500 == 0 && td != null && td.MB) {
-            // ???
+            
 //            }
+
+            if (Time % 100 == 0 && td != null && td.MB) {
+                Spawn(new Grenade(5), td.XY, new XY(0, 3 + 3 * RNG.Float()).Rotated(RNG.Float() - RNG.Float()));
+            }
 
             for (var node = _objects.First; node != null; node = node.Next) {
                 node.Value.Update(td);

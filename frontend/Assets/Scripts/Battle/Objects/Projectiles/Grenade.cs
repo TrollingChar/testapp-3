@@ -21,6 +21,11 @@ namespace Battle.Objects.Projectiles {
         }
 
 
+        protected override bool PassableFor (Object o) {
+            return this == o;
+        }
+
+
         public override void OnAdd () {
             var transform = GameObject.transform;
             var assets = The.BattleAssets;
@@ -33,7 +38,7 @@ namespace Battle.Objects.Projectiles {
 
             UnityEngine.Object.Instantiate(assets.Grenade, transform, false);
             AddCollider(new CircleCollider(XY.Zero, 5f));
-            Explosive = new Explosive25();
+//            Explosive = new Explosive25();
             Controller = new GrenadeController(_timer * 1000, timerText);
             CollisionHandler = new CollisionHandler();
         }
