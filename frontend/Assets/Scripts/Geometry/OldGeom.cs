@@ -3,7 +3,7 @@
 
 namespace Geometry {
 
-    public static class Geom {
+    public static class OldGeom {
 
         public static XY Bounce (XY velocity, XY normal, float tangentialBounce, float normalBounce) {
             var tangent = normal.Rotated90CW();
