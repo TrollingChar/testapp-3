@@ -9,7 +9,7 @@ namespace Battle.Objects.Controllers {
 
     public class WormControllerWalk : Controller {
 
-        private readonly ActiveWormWrapper _activeWorm = The.ActiveWormWrapper;
+        private readonly ActiveWormWrapper _activeWorm = The.ActiveWorm;
 
 
         public override void OnAdd () {

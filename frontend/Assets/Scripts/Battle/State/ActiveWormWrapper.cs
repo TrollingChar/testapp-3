@@ -10,7 +10,7 @@ namespace Battle.State {
 
 
         public ActiveWormWrapper () {
-            The.ActiveWormWrapper = this;
+            The.ActiveWorm = this;
         }
 
 

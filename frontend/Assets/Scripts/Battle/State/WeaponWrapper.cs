@@ -7,7 +7,7 @@ namespace Battle.State {
 
     public class WeaponWrapper {
 
-        private readonly ActiveWormWrapper _activeWorm = The.ActiveWormWrapper;
+        private readonly ActiveWormWrapper _activeWorm = The.ActiveWorm;
         private bool _locked;
         private Weapon _weapon; // todo: should use property?
 
