@@ -39,7 +39,7 @@ namespace Battle.State {
 
         public void Update () {
             if (Frozen) return;
-            Time -= 20;
+            // Time -= 20; // todo
             if (HasElapsed) OnTimerElapsed.Send();
         }
 
