@@ -3,6 +3,7 @@ using System.Xml.Linq;
 using Battle.Physics.Collisions;
 using Geometry;
 using UnityEngine;
+using Primitive = Geometry.Primitive;
 
 
 namespace Battle.Physics {
@@ -11,17 +12,17 @@ namespace Battle.Physics {
 
         public void ApproxCollision (Circle c, XY v) {
             var v0 = v;
-            var normal = XY.NaN;
-            if (v.X > 0) RayToTheRight(c.Center, ref v, c.Radius, ref normal);
-            if (v.X < 0) RayToTheLeft(c.Center, ref v, c.Radius, ref normal);
-            if (v.Y > 0) RayToTheTop(c.Center, ref v, c.Radius, ref normal);
-            if (v.Y < 0) RayToTheBottom(c.Center, ref v, c.Radius, ref normal);
-            if (c.Radius > 0) RayToVertices(c.Center, ref v, c.Radius, ref normal);
+            var primitive = Primitive.None;
+            if (v.X > 0) RayToTheRight(c.Center, ref v, c.Radius, ref primitive);
+            if (v.X < 0) RayToTheLeft(c.Center, ref v, c.Radius, ref primitive);
+            if (v.Y > 0) RayToTheTop(c.Center, ref v, c.Radius, ref primitive);
+            if (v.Y < 0) RayToTheBottom(c.Center, ref v, c.Radius, ref primitive);
+            if (c.Radius > 0) RayToVertices(c.Center, ref v, c.Radius, ref primitive);
             // todo вместо вектора нормали вернуть примитив, численными методами досчитать смещение
         }
 
 
-        private void RayToTheRight (XY o, ref XY v, float w, ref XY normal) {
+        private void RayToTheRight (XY o, ref XY v, float w, ref Primitive normal) {
             var startXY = new XY(o.X + w, o.Y);
             var endXY = startXY + v;
 
@@ -38,7 +39,7 @@ namespace Battle.Physics {
         }
 
 
-        private void RayToTheLeft (XY o, ref XY v, float w, ref XY normal) {
+        private void RayToTheLeft (XY o, ref XY v, float w, ref Primitive normal) {
             var startXY = new XY(o.X - w, o.Y);
             var endXY = startXY + v;
 
@@ -55,7 +56,7 @@ namespace Battle.Physics {
         }
 
 
-        private void RayToTheTop (XY o, ref XY v, float w, ref XY normal) {
+        private void RayToTheTop (XY o, ref XY v, float w, ref Primitive normal) {
             var startXY = new XY(o.X, o.Y + w);
             var endXY = startXY + v;
 
@@ -72,7 +73,7 @@ namespace Battle.Physics {
         }
 
 
-        private void RayToTheBottom (XY o, ref XY v, float w, ref XY normal) {
+        private void RayToTheBottom (XY o, ref XY v, float w, ref Primitive normal) {
             var startXY = new XY(o.X, o.Y - w);
             var endXY = startXY + v;
 
@@ -89,7 +90,7 @@ namespace Battle.Physics {
         }
 
 
-        private void RayToVertices (XY o, ref XY v, float r, ref XY normal) {
+        private void RayToVertices (XY o, ref XY v, float r, ref Primitive normal) {
             float d2 = v.SqrLength;
             XY nearestXY = o;
 
