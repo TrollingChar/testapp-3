@@ -9,7 +9,7 @@ using Collision = Battle.Physics.Collisions.Collision;
 
 namespace Battle.Physics {
 
-    public class Land {
+    public partial class Land {
 
         private byte[,] _array;
 
