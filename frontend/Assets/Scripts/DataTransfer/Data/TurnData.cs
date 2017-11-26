@@ -51,7 +51,7 @@ namespace DataTransfer.Data {
                 S = Input.GetKey(KeyCode.S),
                 D = Input.GetKey(KeyCode.D),
                 MB = Input.GetMouseButton(0), // LMB
-                XY = The.CameraWrapper.WorldMousePosition,
+                XY = The.Camera.WorldMousePosition,
                 Weapon = (byte) The.WeaponWrapper.PreparedId,
                 NumKey = numKey
             };

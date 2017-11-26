@@ -29,7 +29,7 @@ namespace Core {
         public static WeaponWrapper WeaponWrapper;
         public static TeamManager TeamManager;
         public static ArsenalPanel ArsenalPanel;
-        public static CameraWrapper CameraWrapper;
+        public static CameraWrapper Camera;
 
     }
 

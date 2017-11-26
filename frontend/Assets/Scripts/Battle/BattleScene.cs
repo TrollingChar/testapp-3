@@ -50,7 +50,7 @@ namespace Battle {
             RNG.Init(_initData.Seed);
 
             Connection = The.Connection;
-            The.CameraWrapper = Camera = GetComponentInChildren<CameraWrapper>();
+            The.Camera = Camera = GetComponentInChildren<CameraWrapper>();
             The.ArsenalPanel = ArsenalPanel = GetComponentInChildren<ArsenalPanel>();
 
             StartLandGen();
