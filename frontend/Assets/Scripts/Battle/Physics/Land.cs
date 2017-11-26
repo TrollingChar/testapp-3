@@ -201,7 +201,7 @@ namespace Battle.Physics {
             }
 
             return dist < 1
-                ? new Collision(v, normal, null, null, CirclePrimitive.New(beg, width), pr)
+                ? new Collision(v, normal, null, null)
                 : null;
         }
 
@@ -307,7 +307,7 @@ namespace Battle.Physics {
             dist *= dd;
             v *= dd;
 
-            return dd < 1 ? new Collision(v, normal, null, null, pr1, pr2) : min;
+            return dd < 1 ? new Collision(v, normal, null, null) : min;
         }
 
 

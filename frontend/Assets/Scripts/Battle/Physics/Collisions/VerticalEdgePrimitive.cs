@@ -1,8 +1,10 @@
-﻿using Geometry;
+﻿using System;
+using Geometry;
 
 
 namespace Battle.Physics.Collisions {
 
+    [Obsolete]
     public class VerticalEdgePrimitive : Primitive {
 
         // todo: use object pool for primitives

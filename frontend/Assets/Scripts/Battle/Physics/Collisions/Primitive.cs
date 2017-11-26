@@ -1,8 +1,10 @@
-﻿using Geometry;
+﻿using System;
+using Geometry;
 
 
 namespace Battle.Physics.Collisions {
 
+    [Obsolete]
     public abstract class Primitive {
 
         public virtual float Locate (Primitive other, XY offset) {

@@ -35,23 +35,13 @@ namespace Battle.Physics.Collisions {
         public Collider Collider1, Collider2;
 
         public XY Offset, Normal;
-        public Primitive Primitive1, Primitive2;
 
 
-        public Collision (
-            XY offset,
-            XY normal,
-            Collider c1,
-            Collider c2,
-            Primitive p1,
-            Primitive p2
-        ) {
+        public Collision (XY offset, XY normal, Collider c1, Collider c2) {
             Offset = offset;
             Normal = normal;
             Collider1 = c1;
             Collider2 = c2;
-            Primitive1 = p1;
-            Primitive2 = p2;
         }
 
 
@@ -74,9 +64,7 @@ namespace Battle.Physics.Collisions {
                 -c.Offset,
                 -c.Normal,
                 c.Collider2,
-                c.Collider1,
-                c.Primitive2,
-                c.Primitive1
+                c.Collider1
             );
         }
 

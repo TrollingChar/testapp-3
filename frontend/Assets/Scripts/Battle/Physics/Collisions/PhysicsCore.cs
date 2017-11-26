@@ -1,13 +1,13 @@
-﻿using Battle.Objects;
+﻿using System;
+using Battle.Objects;
 using Geometry;
 using UnityEngine;
 
 
 namespace Battle.Physics.Collisions {
 
+    [Obsolete]
     public static class PhysicsCore {
-
-        // todo: ensure that colliders methods are not calles outside of here
 
 
         public static bool Overlap (Collider a, Collider b) {
