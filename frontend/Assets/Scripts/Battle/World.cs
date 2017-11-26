@@ -204,7 +204,7 @@ namespace Battle {
                 if (temp < result) result = temp;
             }
 
-            temp = Land.CastRay(origin, direction, width);
+            temp = null;//Land.CastRay(origin, direction, width);
             return temp < result ? temp : result;
         }
 

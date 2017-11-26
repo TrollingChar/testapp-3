@@ -180,9 +180,10 @@ namespace Battle.Physics.Collisions {
 
 
         public override Collision FlyInto (Land land, XY velocity) {
-            var result = land.CastRay(Center, velocity, Radius);
-            if (result != null) result.Collider1 = this;
-            return result;
+//            var result = land.CastRay(Center, velocity, Radius);
+//            if (result != null) result.Collider1 = this;
+//            return result;
+            throw new NotImplementedException();
         }
 
 

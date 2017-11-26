@@ -87,12 +87,12 @@ namespace Battle.Physics {
         }
 
 
-        public Collision CastRay (XY beg, XY v, float width = 0) {
-            float _;
-            return CastRay(beg, v, out _, width);
-        }
+//        public Collision CastRay (XY beg, XY v, float width = 0) {
+//            float _;
+//            return CastRay(beg, v, out _, width);
+//        }
 
-
+        /*
         public Collision CastRay (XY beg, XY v, out float dist, float width = 0) {
             XY bp, ep, normal = XY.Zero, end = beg + v;
             Primitive pr = null;
@@ -203,9 +203,9 @@ namespace Battle.Physics {
             return dist < 1
                 ? new Collision(v, normal, null, null)
                 : null;
-        }
+        }*/
 
-
+/*
         public Collision CastRectRay (float left, float right, float bottom, float top, XY v) {
             List<XY> points;
             float dist = 1;
@@ -309,7 +309,7 @@ namespace Battle.Physics {
 
             return dd < 1 ? new Collision(v, normal, null, null) : min;
         }
-
+*/
 
         public void DestroyTerrain (XY center, float radius) {
             float sqrRadius = radius * radius;

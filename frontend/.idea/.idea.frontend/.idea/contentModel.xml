@@ -243,6 +243,7 @@
             <e p="Scenes.cs" t="Include" />
             <e p="SceneSwitcher.cs" t="Include" />
             <e p="Serialization.cs" t="Include" />
+            <e p="Settings.cs" t="Include" />
             <e p="The.cs" t="Include" />
             <e p="UI" t="Include">
               <e p="CustomPanelController.cs" t="Include" />
