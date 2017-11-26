@@ -13,16 +13,16 @@ namespace Battle.Physics {
         public void ApproxCollision (Circle c, XY v) {
             var v0 = v;
             var primitive = Primitive.None;
-            if (v.X > 0) RayToTheRight(c.Center, ref v, c.Radius, ref primitive);
-            if (v.X < 0) RayToTheLeft(c.Center, ref v, c.Radius, ref primitive);
-            if (v.Y > 0) RayToTheTop(c.Center, ref v, c.Radius, ref primitive);
-            if (v.Y < 0) RayToTheBottom(c.Center, ref v, c.Radius, ref primitive);
-            if (c.Radius > 0) RayToVertices(c.Center, ref v, c.Radius, ref primitive);
-            // todo вместо вектора нормали вернуть примитив, численными методами досчитать смещение
+            if (v.X > 0)      RayToTheRight (c.Center, ref v, c.Radius, ref primitive);
+            if (v.X < 0)      RayToTheLeft  (c.Center, ref v, c.Radius, ref primitive);
+            if (v.Y > 0)      RayToTheTop   (c.Center, ref v, c.Radius, ref primitive);
+            if (v.Y < 0)      RayToTheBottom(c.Center, ref v, c.Radius, ref primitive);
+            if (c.Radius > 0) RayToVertices (c.Center, ref v, c.Radius, ref primitive);
+            
         }
 
 
-        private void RayToTheRight (XY o, ref XY v, float w, ref Primitive normal) {
+        private void RayToTheRight (XY o, ref XY v, float w, ref Primitive primitive) {
             var startXY = new XY(o.X + w, o.Y);
             var endXY = startXY + v;
 
@@ -33,30 +33,30 @@ namespace Battle.Physics {
                 int y = Mathf.FloorToInt(startXY.Y + d * v.Y);
                 if (this[x, y] == 0) continue;
                 v *= d;
-                normal = XY.Left;
+                primitive = Primitive.Left(x);
                 return;
             }
         }
 
 
-        private void RayToTheLeft (XY o, ref XY v, float w, ref Primitive normal) {
+        private void RayToTheLeft (XY o, ref XY v, float w, ref Primitive primitive) {
             var startXY = new XY(o.X - w, o.Y);
             var endXY = startXY + v;
 
             int startX = Mathf.Clamp(Mathf.FloorToInt(startXY.X) - 1, 0, Width);
             int endX = Mathf.Clamp(Mathf.FloorToInt(endXY.X), 0, Width);
             for (int x = startX; x >= endX; x--) {
-                float d = Geom.RayTo1D(startXY.X, v.X, x);
+                float d = Geom.RayTo1D(startXY.X, v.X, x + 1);
                 int y = Mathf.FloorToInt(startXY.Y + d * v.Y);
                 if (this[x, y] == 0) continue;
                 v *= d;
-                normal = XY.Right;
+                primitive = Primitive.Right(x + 1);
                 return;
             }
         }
 
 
-        private void RayToTheTop (XY o, ref XY v, float w, ref Primitive normal) {
+        private void RayToTheTop (XY o, ref XY v, float w, ref Primitive primitive) {
             var startXY = new XY(o.X, o.Y + w);
             var endXY = startXY + v;
 
@@ -67,30 +67,30 @@ namespace Battle.Physics {
                 int x = Mathf.FloorToInt(startXY.X + d * v.X);
                 if (this[x, y] == 0) continue;
                 v *= d;
-                normal = XY.Down;
+                primitive = Primitive.Bottom(y);
                 return;
             }
         }
 
 
-        private void RayToTheBottom (XY o, ref XY v, float w, ref Primitive normal) {
+        private void RayToTheBottom (XY o, ref XY v, float w, ref Primitive primitive) {
             var startXY = new XY(o.X, o.Y - w);
             var endXY = startXY + v;
 
             int startY = Mathf.Clamp(Mathf.FloorToInt(startXY.Y) - 1, 0, Height);
             int endY = Mathf.Clamp(Mathf.FloorToInt(endXY.Y), 0, Height);
             for (int y = startY; y >= endY; y--) {
-                float d = Geom.RayTo1D(startXY.Y, v.Y, y);
+                float d = Geom.RayTo1D(startXY.Y, v.Y, y + 1);
                 int x = Mathf.FloorToInt(startXY.X + d * v.X);
                 if (this[x, y] == 0) continue;
                 v *= d;
-                normal = XY.Up;
+                primitive = Primitive.Top(y + 1);
                 return;
             }
         }
 
 
-        private void RayToVertices (XY o, ref XY v, float r, ref Primitive normal) {
+        private void RayToVertices (XY o, ref XY v, float r, ref Primitive primitive) {
             float d2 = v.SqrLength;
             XY nearestXY = o;
 
@@ -112,7 +112,7 @@ namespace Battle.Physics {
             }
             if (nearestXY == o) return;
             
-            normal = o - nearestXY;
+            primitive = Primitive.Circle(o - nearestXY);
             v.Length = Mathf.Sqrt(d2);
         }
 

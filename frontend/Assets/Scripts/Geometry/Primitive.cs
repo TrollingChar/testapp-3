@@ -28,6 +28,11 @@ namespace Geometry {
         }
 
 
+        public static Primitive Circle (XY xy, float r = 0) {
+            return new Primitive(PType.Circle, xy.X, xy.Y, r);
+        }
+
+
         public static Primitive Left (float x) {
             return new Primitive(PType.Left, x, float.NaN, float.NaN);
         }
