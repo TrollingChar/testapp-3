@@ -238,6 +238,9 @@
             </e>
             <e p="World.cs" t="Include" />
           </e>
+          <e p="Collisions" t="Include">
+            <e p="NewCollision.cs" t="Include" />
+          </e>
           <e p="Core" t="Include">
             <e p="Context.cs" t="Include" />
             <e p="PlayerInfo.cs" t="Include" />
@@ -287,6 +290,7 @@
             <e p="Circle.cs" t="Include" />
             <e p="Geom.cs" t="Include" />
             <e p="OldGeom.cs" t="Include" />
+            <e p="Primitive.cs" t="Include" />
             <e p="TileXY.cs" t="Include" />
             <e p="XY.cs" t="Include" />
           </e>

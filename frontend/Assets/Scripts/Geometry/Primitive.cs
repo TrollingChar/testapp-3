@@ -1,7 +1,4 @@
-﻿using System.Diagnostics.Tracing;
-
-
-namespace Geometry {
+﻿namespace Geometry {
 
     public struct Primitive {
 
@@ -13,8 +10,8 @@ namespace Geometry {
         public float X;
         public float Y;
         public float R;
-        
-        
+
+
         private Primitive (PType type, float x, float y, float r) {
             Type = type;
             X = x;
@@ -23,8 +20,18 @@ namespace Geometry {
         }
 
 
+        public bool IsEmpty {
+            get { return Type == PType.None; }
+        }
+
+
         public static Primitive Circle (float x, float y, float r = 0) {
             return new Primitive(PType.Circle, x, y, r);
+        }
+
+
+        public static Primitive Circle (Circle c) {
+            return new Primitive(PType.Circle, c.Center.X, c.Center.Y, c.Radius);
         }
 
 

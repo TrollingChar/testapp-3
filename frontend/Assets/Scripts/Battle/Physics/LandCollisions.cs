@@ -1,6 +1,5 @@
-﻿using System;
-using System.Xml.Linq;
-using Battle.Physics.Collisions;
+﻿using Battle.Physics.Collisions;
+using Collisions;
 using Geometry;
 using UnityEngine;
 using Primitive = Geometry.Primitive;
@@ -10,15 +9,14 @@ namespace Battle.Physics {
 
     public partial class Land {
 
-        public void ApproxCollision (Circle c, XY v) {
-            var v0 = v;
+        public NewCollision ApproxCollision (Circle c, XY v) {
             var primitive = Primitive.None;
             if (v.X > 0)      RayToTheRight (c.Center, ref v, c.Radius, ref primitive);
             if (v.X < 0)      RayToTheLeft  (c.Center, ref v, c.Radius, ref primitive);
             if (v.Y > 0)      RayToTheTop   (c.Center, ref v, c.Radius, ref primitive);
             if (v.Y < 0)      RayToTheBottom(c.Center, ref v, c.Radius, ref primitive);
             if (c.Radius > 0) RayToVertices (c.Center, ref v, c.Radius, ref primitive);
-            
+            return primitive.IsEmpty ? null : new NewCollision(v, Primitive.Circle(c), primitive);
         }
 
 

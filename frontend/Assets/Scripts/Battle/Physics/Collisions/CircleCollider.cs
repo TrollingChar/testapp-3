@@ -23,6 +23,9 @@ namespace Battle.Physics.Collisions {
 
 
         public float Radius { get; private set; }
+        public Circle Circle {
+            get {return new Circle(Center, Radius);}
+        }
 
 
         public override AABBF AABB {
@@ -183,7 +186,10 @@ namespace Battle.Physics.Collisions {
 //            var result = land.CastRay(Center, velocity, Radius);
 //            if (result != null) result.Collider1 = this;
 //            return result;
-            throw new NotImplementedException();
+//            throw new NotImplementedException();
+            var collision = land.ApproxCollision(Circle, velocity);
+            if (collision != null) collision.C1 = this;
+            return collision;
         }
 
 
