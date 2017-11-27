@@ -43,19 +43,21 @@ namespace Battle.Physics.Collisions {
 
 
         public override NewCollision FlyInto (Collider c, XY velocity) {
-            return velocity == XY.Zero ? null : -c.FlyInto(this, -velocity);
+//            return velocity == XY.Zero ? null : -c.FlyInto(this, -velocity);
+            return null;
         }
 
 
         public override NewCollision FlyInto (CircleCollider c, XY velocity) {
-            float mv = OldGeom.CastRayToCircle(Center, velocity, c.Center, Radius + c.Radius);
-            return mv < 1
-                ? new Collision(
-                    velocity * mv,
-                    Center + velocity * mv - c.Center,
-                    this,
-                    c
-                ) : null;
+//            float mv = OldGeom.CastRayToCircle(Center, velocity, c.Center, Radius + c.Radius);
+//            return mv < 1
+//                ? new Collision(
+//                    velocity * mv,
+//                    Center + velocity * mv - c.Center,
+//                    this,
+//                    c
+//                ) : null;
+            return null;
         }
 
 
@@ -179,7 +181,7 @@ namespace Battle.Physics.Collisions {
                     );
                 }
             }
-            return result;
+            return null;
         }
 
 

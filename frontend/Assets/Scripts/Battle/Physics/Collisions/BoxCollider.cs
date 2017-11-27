@@ -48,12 +48,14 @@ namespace Battle.Physics.Collisions {
 
 
         public override NewCollision FlyInto (Collider c, XY velocity) {
-            return velocity == XY.Zero ? null : -c.FlyInto(this, -velocity);
+            return null;
+//            return velocity == XY.Zero ? null : -c.FlyInto(this, -velocity);
         }
 
 
         public override NewCollision FlyInto (CircleCollider c, XY velocity) {
-            return -c.FlyInto(this, -velocity);
+            return null;
+//            return -c.FlyInto(this, -velocity);
         }
 
 
@@ -129,7 +131,7 @@ namespace Battle.Physics.Collisions {
                     );
                 }
             }
-            return result;
+            return null;
         }
 
 
