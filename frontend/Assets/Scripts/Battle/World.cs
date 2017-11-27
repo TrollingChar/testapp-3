@@ -189,6 +189,8 @@ namespace Battle {
 
 
         public Collision CastRay (XY origin, XY direction, float width = 0) {
+            return null;
+            /*
             var point = new CircleCollider(origin, width);
             point.Object = new NullObject();
 
@@ -205,11 +207,13 @@ namespace Battle {
             }
 
             temp = null;//Land.CastRay(origin, direction, width);
-            return temp < result ? temp : result;
+            return temp < result ? temp : result;*/
         }
 
 
         public List<Collision> CastUltraRay (XY origin, XY direction, float width = 0) {
+            return new List<Collision>();
+            /*
             var point = new CircleCollider(origin, width);
             point.Object = new NullObject();
 
@@ -227,7 +231,7 @@ namespace Battle {
                 if (min != null) result.Add(min);
             }
             // do not cast to land because ultrawave weapons penetrate terrain
-            return result;
+            return result;*/
         }
 
 

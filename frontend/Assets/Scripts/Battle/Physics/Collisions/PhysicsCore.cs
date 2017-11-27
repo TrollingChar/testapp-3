@@ -9,7 +9,7 @@ namespace Battle.Physics.Collisions {
     [Obsolete]
     public static class PhysicsCore {
 
-
+/*
         public static bool Overlap (Collider a, Collider b) {
             bool ab = a.Overlaps(b);
             bool ba = b.Overlaps(a);
@@ -74,7 +74,7 @@ namespace Battle.Physics.Collisions {
             a.Object.Position = before;
             return ab;
         }
-
+*/
     }
 
 }

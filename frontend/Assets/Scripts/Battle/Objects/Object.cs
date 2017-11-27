@@ -133,8 +133,8 @@ namespace Battle.Objects {
                         .Where(o => !Excluded.Contains(o.Object))
                 );
                 foreach (var o in obstacles) {
-                    var temp = PhysicsCore.FlyInto(c, o, v);
-                    if (temp < min) min = temp;
+//                    var temp = PhysicsCore.FlyInto(c, o, v);
+//                    if (temp < min) min = temp;
                 }
                 obstacles.Clear();
             }
