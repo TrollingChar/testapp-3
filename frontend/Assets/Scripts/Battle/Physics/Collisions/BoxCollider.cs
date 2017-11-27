@@ -1,4 +1,5 @@
 ﻿using System;
+using Collisions;
 using Geometry;
 
 
@@ -46,17 +47,17 @@ namespace Battle.Physics.Collisions {
         }
 
 
-        public override Collision FlyInto (Collider c, XY velocity) {
+        public override NewCollision FlyInto (Collider c, XY velocity) {
             return velocity == XY.Zero ? null : -c.FlyInto(this, -velocity);
         }
 
 
-        public override Collision FlyInto (CircleCollider c, XY velocity) {
+        public override NewCollision FlyInto (CircleCollider c, XY velocity) {
             return -c.FlyInto(this, -velocity);
         }
 
 
-        public override Collision FlyInto (BoxCollider c, XY velocity) {
+        public override NewCollision FlyInto (BoxCollider c, XY velocity) {
             float
                 left = Left,
                 right = Right,
@@ -132,7 +133,7 @@ namespace Battle.Physics.Collisions {
         }
 
 
-        public override Collision FlyInto (Land land, XY velocity) {
+        public override NewCollision FlyInto (Land land, XY velocity) {
 //            var result = land.CastRectRay(Left, Right, Bottom, Top, velocity);
 //            if (result != null) result.Collider1 = this;
 //            return result;

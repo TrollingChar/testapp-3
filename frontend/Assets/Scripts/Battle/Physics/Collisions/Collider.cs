@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Battle.Objects;
+using Collisions;
 using Core;
 using Geometry;
 
@@ -76,10 +77,10 @@ namespace Battle.Physics.Collisions {
         }
 
 
-        public abstract Collision FlyInto (Collider c, XY velocity);
-        public abstract Collision FlyInto (CircleCollider c, XY velocity);
-        public abstract Collision FlyInto (BoxCollider c, XY velocity);
-        public abstract Collision FlyInto (Land land, XY velocity);
+        public abstract NewCollision FlyInto (Collider c, XY velocity);
+        public abstract NewCollision FlyInto (CircleCollider c, XY velocity);
+        public abstract NewCollision FlyInto (BoxCollider c, XY velocity);
+        public abstract NewCollision FlyInto (Land land, XY velocity);
 
         public abstract bool Overlaps (Collider c);
         public abstract bool Overlaps (CircleCollider c);

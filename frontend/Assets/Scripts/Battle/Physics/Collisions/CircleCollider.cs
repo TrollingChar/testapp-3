@@ -1,4 +1,5 @@
 ﻿using System;
+using Collisions;
 using Geometry;
 using UnityEditor;
 using UnityEngine;
@@ -41,12 +42,12 @@ namespace Battle.Physics.Collisions {
         }
 
 
-        public override Collision FlyInto (Collider c, XY velocity) {
+        public override NewCollision FlyInto (Collider c, XY velocity) {
             return velocity == XY.Zero ? null : -c.FlyInto(this, -velocity);
         }
 
 
-        public override Collision FlyInto (CircleCollider c, XY velocity) {
+        public override NewCollision FlyInto (CircleCollider c, XY velocity) {
             float mv = OldGeom.CastRayToCircle(Center, velocity, c.Center, Radius + c.Radius);
             return mv < 1
                 ? new Collision(
@@ -58,7 +59,7 @@ namespace Battle.Physics.Collisions {
         }
 
 
-        public override Collision FlyInto (BoxCollider c, XY velocity) {
+        public override NewCollision FlyInto (BoxCollider c, XY velocity) {
             float
                 left = c.Left,
                 right = c.Right,
@@ -182,11 +183,7 @@ namespace Battle.Physics.Collisions {
         }
 
 
-        public override Collision FlyInto (Land land, XY velocity) {
-//            var result = land.CastRay(Center, velocity, Radius);
-//            if (result != null) result.Collider1 = this;
-//            return result;
-//            throw new NotImplementedException();
+        public override NewCollision FlyInto (Land land, XY velocity) {
             var collision = land.ApproxCollision(Circle, velocity);
             if (collision != null) collision.C1 = this;
             return collision;
