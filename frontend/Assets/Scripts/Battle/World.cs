@@ -52,8 +52,8 @@ namespace Battle {
             
 //            }
 
-            if (Time % 100 == 0 && td != null && td.MB) {
-                Spawn(new Grenade(5), td.XY, new XY(0, 3 + 3 * RNG.Float()).Rotated(RNG.Float() - RNG.Float()));
+            if (Time % 200 == 0 && td != null && td.MB) {
+                Spawn(new Grenade(10), td.XY, new XY(0, 3 + 3 * RNG.Float()).Rotated(RNG.Float() - RNG.Float()));
             }
 
             for (var node = _objects.First; node != null; node = node.Next) {
@@ -89,21 +89,52 @@ namespace Battle {
             for (var node = _objects.First; node != null; node = node.Next) {
                 var o = node.Value;
 
-                if (o.Velocity.Length * o.Movement <= Precision) continue;
+                // слишком низкая скорость
+                if (o.Velocity.Length * o.Movement <= Settings.PhysicsPrecision) continue;
 
-                var c = o.NextCollision(o.Movement);
+                var collision = o.NextCollision(o.Movement);
+                if (collision != null) collision.ImprovePrecision();
+                var o2 = collision == null || collision.Collider2 == null ? null : collision.Collider2.Object;
+
+                if (collision == null) {
+                    // нет коллизии
+                    o.Position += (o.Movement * o.Velocity).WithLengthReduced(Settings.PhysicsPrecision);
+                    o.Movement = 0;
+                }
+                else if (collision.IsLandCollision) {
+//                    Debug.Log("");
+//                    Debug.Log(o.Velocity.ToString());
+                    o.Position += collision.Offset.WithLengthReduced(Settings.PhysicsPrecision);
+                    o.Movement -= Mathf.Sqrt(collision.Offset.SqrLength / o.Velocity.SqrLength);
+                    var collider1 = collision.Collider1;
+                    o.Velocity = Geom.Bounce(
+                        o.Velocity,
+                        collision.Normal,
+                        Mathf.Sqrt(collider1.TangentialBounce * Land.TangentialBounce),
+                        Mathf.Sqrt(collider1.NormalBounce * Land.NormalBounce)
+                    );
+                    o.OnCollision(collision);
+//                    Debug.Log(o.Velocity.ToString());
+//                    Debug.Log("");
+                }
+                else {
+                    Debug.LogError("should not reach there");
+                }
+                
+                if (o.Position.Y < WaterLevel) o.Remove();
+                /*
                 var o2 = c == null || c.Collider2 == null
                     ? null
                     : c.Collider2.Object;
 
                 if (c == null) {
                     // no collision
-                    o.Position += o.Movement * (1 - Precision) * o.Velocity;
+                    o.Position += o.Movement * (1 - Settings.PhysicsPrecision) * o.Velocity;
                     o.Movement = 0;
 
                 } else if (c.Collider2 == null) {
                     // collided with land
-                    o.Position += c.Offset.WithLengthReduced(Precision);
+                    o.Position += c.Offset.WithLengthReduced(Settings.PhysicsPrecision);
                     o.Movement -= Mathf.Sqrt(c.Offset.SqrLength / o.Velocity.SqrLength);
                     o.Velocity = OldGeom.Bounce(
                         o.Velocity,
@@ -116,7 +147,7 @@ namespace Battle {
                 } else if (i > iter - 3 || o.SuperMass < o2.SuperMass) {
                     // force hard collision as if second object was land
                     // as long as magic number equals to 3, the eternal balance in the world will remain
-                    o.Position += c.Offset.WithLengthReduced(Precision);
+                    o.Position += c.Offset.WithLengthReduced(Settings.PhysicsPrecision);
                     o.Movement -= Mathf.Sqrt(c.Offset.SqrLength / o.Velocity.SqrLength);
                     bool o2wcc = o2.WillCauseCollision(-c);
                     if (o2wcc) {
@@ -132,7 +163,7 @@ namespace Battle {
 
                 } else if (o2.SuperMass < o.SuperMass) {
                     // treat first object as it has infinite mass
-                    o.Position += c.Offset.WithLengthReduced(Precision);
+                    o.Position += c.Offset.WithLengthReduced(Settings.PhysicsPrecision);
                     o.Movement -= Mathf.Sqrt(c.Offset.SqrLength / o.Velocity.SqrLength);
                     bool o2wcc = o2.WillCauseCollision(-c);
                     if (o2wcc) {
@@ -147,7 +178,7 @@ namespace Battle {
                     o2.OnCollision(-c);
 
                 } else {
-                    o.Position += c.Offset.WithLengthReduced(Precision);
+                    o.Position += c.Offset.WithLengthReduced(Settings.PhysicsPrecision);
                     o.Movement -= Mathf.Sqrt(c.Offset.SqrLength / o.Velocity.SqrLength);
 
                     // найти скалярное произведение нормали столкновения и скорости второго объекта
@@ -155,7 +186,7 @@ namespace Battle {
                     float temp = XY.Dot(c.Normal, c.Collider2.Object.Velocity);
                     if (
                         temp >= 0
-                        || c.Collider2.Object.Movement * c.Collider2.Object.Velocity.Length <= Precision
+                        || c.Collider2.Object.Movement * c.Collider2.Object.Velocity.Length <= Settings.PhysicsPrecision
                     ) {
                         // collision
                         bool owcc = o.WillCauseCollision(c);
@@ -177,7 +208,7 @@ namespace Battle {
                         o2.OnCollision(-c);
                     }
                 }
-                if (o.Position.Y < WaterLevel) o.Remove();
+                if (o.Position.Y < WaterLevel) o.Remove();*/
             }
 
             // handle stuck objects:

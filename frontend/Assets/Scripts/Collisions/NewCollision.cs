@@ -1,6 +1,7 @@
 ﻿using System;
-using Battle.Physics.Collisions;
 using Geometry;
+using UnityEngine;
+using Collider = Battle.Physics.Collisions.Collider;
 using Primitive = Geometry.Primitive;
 
 
@@ -32,16 +33,18 @@ namespace Collisions {
 
 
         public void ImprovePrecision () {
-            throw new NotImplementedException();
+            PrimitiveUtils.GetOffsetNormal(Primitive1, Primitive2, ref Offset, out Normal);
         }
 
         
         public int CompareTo(NewCollision other) {
             return other == null ? -1 : Offset.SqrLength.CompareTo(other.Offset.SqrLength);
         }
-        
-        
-        // null > everything
+
+
+        public bool IsLandCollision {
+            get { return Collider2 == null; }
+        }
 
 
         public static NewCollision operator - (NewCollision c) {

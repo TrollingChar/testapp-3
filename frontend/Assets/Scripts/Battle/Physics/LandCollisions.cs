@@ -110,7 +110,7 @@ namespace Battle.Physics {
             }
             if (nearestXY == o) return;
             
-            primitive = Primitive.Circle(o - nearestXY);
+            primitive = Primitive.Circle(nearestXY);
             v.Length = Mathf.Sqrt(d2);
         }
 

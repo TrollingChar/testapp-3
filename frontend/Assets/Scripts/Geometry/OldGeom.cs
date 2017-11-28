@@ -1,8 +1,10 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 
 namespace Geometry {
 
+    [Obsolete]
     public static class OldGeom {
 
         public static XY Bounce (XY velocity, XY normal, float tangentialBounce, float normalBounce) {
