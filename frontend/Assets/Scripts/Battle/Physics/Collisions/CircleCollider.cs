@@ -187,7 +187,7 @@ namespace Battle.Physics.Collisions {
 
         public override NewCollision FlyInto (Land land, XY velocity) {
             var collision = land.ApproxCollision(Circle, velocity);
-            if (collision != null) collision.C1 = this;
+            if (collision != null) collision.Collider1 = this;
             return collision;
         }
 

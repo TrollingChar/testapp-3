@@ -34,7 +34,7 @@ namespace Battle.Objects {
             Velocity = direction;
             var collision = NextCollision(1f);
             if (removeColliders) RemoveColliders();
-            return collision;
+            return null; //collision;
         }
 
     }
