@@ -194,12 +194,12 @@ namespace Battle.Objects {
         }
 
 
-        public bool WillCauseCollision (Collision c) {
+        public bool WillCauseCollision (NewCollision c) {
             return CollisionHandler == null || CollisionHandler.WillCauseCollision(c);
         }
 
 
-        public void OnCollision (Collision c) {
+        public void OnCollision (NewCollision c) {
             if (CollisionHandler != null) CollisionHandler.OnCollision(c);
         }
 

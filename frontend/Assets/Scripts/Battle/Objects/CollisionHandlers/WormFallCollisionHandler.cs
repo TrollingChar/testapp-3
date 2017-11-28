@@ -1,12 +1,13 @@
 ﻿using Battle.Objects.Controllers;
 using Battle.Physics.Collisions;
+using Collisions;
 
 
 namespace Battle.Objects.CollisionHandlers {
 
     public class WormFallCollisionHandler : CollisionHandler {
 
-        public override bool WillCauseCollision(Collision c)
+        public override bool WillCauseCollision(NewCollision c)
         {
             return Object.Velocity.SqrLength < 1f || !(
                 c.Collider2 != null
@@ -15,7 +16,7 @@ namespace Battle.Objects.CollisionHandlers {
         }
 
 
-        public override void OnCollision (Collision c) {
+        public override void OnCollision (NewCollision c) {
             if (c.Collider2 == null) return;
             var worm = c.Collider2.Object as Worm;
             if (worm == null) return;
