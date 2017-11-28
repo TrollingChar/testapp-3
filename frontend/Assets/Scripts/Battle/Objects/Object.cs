@@ -4,6 +4,7 @@ using Battle.Objects.CollisionHandlers;
 using Battle.Objects.Controllers;
 using Battle.Objects.Explosives;
 using Battle.Physics.Collisions;
+using Collisions;
 using Core;
 using DataTransfer.Data;
 using Geometry;
@@ -147,11 +148,11 @@ namespace Battle.Objects {
         }
 
 
-        private Collision CollideWithLand (XY v) {
-            Collision min = null;
+        private NewCollision CollideWithLand (XY v) {
+            NewCollision min = null;
             foreach (var c in Colliders) {
-//                var temp = c.FlyInto(_world.Land, v);
-//                if (temp < min) min = temp;
+                var temp = c.FlyInto(_world.Land, v);
+                if (temp < min) min = temp;
             }
             return min;
         }
