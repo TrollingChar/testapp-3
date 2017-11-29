@@ -118,24 +118,24 @@ namespace Battle.Objects {
 
         public NewCollision NextCollision (float movementLeft) {
             var v = Velocity * movementLeft;
-//            var cObj = CollideWithObjects(v);
-//            if (cObj != null) v = cObj.Offset;
+            var cObj = CollideWithObjects(v);
+            if (cObj != null) v = cObj.Offset;
             var cLand = CollideWithLand(v);
-            return cLand;// ?? cObj;
+            return cLand ?? cObj;
         }
 
 
-        private Collision CollideWithObjects (XY v) {
-            Collision min = null;
+        private NewCollision CollideWithObjects (XY v) {
+            NewCollision min = null;
             foreach (var c in Colliders) {
                 var obstacles = new HashSet<Collider>(
-                    c.FindObstacles(_world, v)
+                    c.FindObstacles(v)
                         .Where(o => !o.Object.PassableFor(this))
                         .Where(o => !Excluded.Contains(o.Object))
                 );
                 foreach (var o in obstacles) {
-//                    var temp = PhysicsCore.FlyInto(c, o, v);
-//                    if (temp < min) min = temp;
+                    var temp = c.FlyInto(o, v);
+                    if (temp < min) min = temp;
                 }
                 obstacles.Clear();
             }
@@ -160,7 +160,7 @@ namespace Battle.Objects {
 
         public void ExcludeObjects () {
             foreach (var collider in Colliders)
-            foreach (var obstacle in collider.FindOverlapping(_world)) {
+            foreach (var obstacle in collider.FindOverlapping()) {
                 Excluded.Add(obstacle.Object);
             }
         }

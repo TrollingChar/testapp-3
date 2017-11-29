@@ -43,8 +43,7 @@ namespace Battle.Physics.Collisions {
 
 
         public override NewCollision FlyInto (Collider c, XY velocity) {
-//            return velocity == XY.Zero ? null : -c.FlyInto(this, -velocity);
-            return null;
+            return velocity == XY.Zero ? null : -c.FlyInto(this, -velocity);
         }
 
 
@@ -54,18 +53,12 @@ namespace Battle.Physics.Collisions {
             if (float.IsNaN(dist) || dist < 0 || dist * dist >= velocity.SqrLength) return null;
             return new NewCollision(
                 velocity.WithLength(dist),
+                XY.NaN,
+                this,
+                c,
                 Geometry.Primitive.Circle(Circle),
                 Geometry.Primitive.Circle(c.Circle)
             );
-//            float mv = OldGeom.CastRayToCircle(Center, velocity, c.Center, Radius + c.Radius);
-//            return mv < 1
-//                ? new Collision(
-//                    velocity * mv,
-//                    Center + velocity * mv - c.Center,
-//                    this,
-//                    c
-//                ) : null;
-            return null;
         }
 
 

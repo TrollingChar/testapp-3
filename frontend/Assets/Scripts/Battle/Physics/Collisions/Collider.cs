@@ -48,22 +48,19 @@ namespace Battle.Physics.Collisions {
         }
 
 
-        public HashSet<Collider> FindObstacles (World world, XY v) {
+        public HashSet<Collider> FindObstacles (XY v) {
             var box = AABB.Expanded(v).ToTiles(Tile.Size);
             var result = new HashSet<Collider>();
 
             for (int x = box.Left; x < box.Right; x++)
             for (int y = box.Bottom; y < box.Top; y++) {
-                foreach (var c in _world.Tiles[x, y].Colliders) {
-                    result.Add(c);
-                }
+                foreach (var c in _world.Tiles[x, y].Colliders) result.Add(c);
             }
-
             return result;
         }
 
 
-        public HashSet<Collider> FindOverlapping (World world) {
+        public HashSet<Collider> FindOverlapping () {
             var box = AABB.ToTiles(Tile.Size);
             var result = new HashSet<Collider>();
 

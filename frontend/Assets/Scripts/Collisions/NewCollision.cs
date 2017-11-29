@@ -48,7 +48,22 @@ namespace Collisions {
 
 
         public static NewCollision operator - (NewCollision c) {
-            return new NewCollision(-c.Offset, -c.Normal, c.Collider2, c.Collider1, c.Primitive2, c.Primitive1);
+            return c == null ? null
+                : new NewCollision(-c.Offset, -c.Normal, c.Collider2, c.Collider1, c.Primitive2, c.Primitive1);
+        }
+
+
+        public NewCollision Inverse () {
+            // возможно буду использовать этот метод чтобы не нагружать GC
+            Offset = -Offset;
+            Normal = -Normal;
+            var c = Collider1;
+            Collider1 = Collider2;
+            Collider2 = c;
+            var p = Primitive1;
+            Primitive1 = Primitive2;
+            Primitive2 = p;
+            return this;
         }
 
 
