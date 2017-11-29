@@ -204,7 +204,8 @@ namespace Battle.Physics.Collisions {
 
 
         public override bool Overlaps (BoxCollider c) {
-            return OldGeom.AreOverlapping(Center, Radius, c.Left, c.Right, c.Bottom, c.Top);
+            XY o = Center;
+            return XY.SqrDistance(o, o.Clamped(c.Box)) < Radius * Radius;
         }
 
 

@@ -254,6 +254,20 @@ namespace Geometry {
         }
 
 
+        public void Clamp(Box b) {
+            X = Mathf.Clamp(X, b.Left, b.Right);
+            Y = Mathf.Clamp(Y, b.Bottom, b.Top);
+        }
+
+
+        public XY Clamped(Box b) {
+            return new XY(
+                Mathf.Clamp(X, b.Left, b.Right),
+                Mathf.Clamp(Y, b.Bottom, b.Top)
+            );
+        }
+
+
         public static XY Lerp (XY pos0, XY pos1, float t) {
             return new XY(
                 pos0.X + (pos1.X - pos0.X) * t,

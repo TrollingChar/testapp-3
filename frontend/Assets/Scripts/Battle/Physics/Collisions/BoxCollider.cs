@@ -13,16 +13,11 @@ namespace Battle.Physics.Collisions {
         private readonly float _topOffset;
 
 
-        public BoxCollider (
-            float left,
-            float right,
-            float bottom,
-            float top
-        ) {
+        public BoxCollider(float left, float right, float bottom, float top) {
+            _topOffset = top;
             _leftOffset = left;
             _rightOffset = right;
             _bottomOffset = bottom;
-            _topOffset = top;
         }
 
 
@@ -30,108 +25,44 @@ namespace Battle.Physics.Collisions {
             get { return _leftOffset + Object.Position.X; }
         }
 
+        
         public float Right {
             get { return _rightOffset + Object.Position.X; }
         }
 
+        
         public float Bottom {
             get { return _bottomOffset + Object.Position.Y; }
         }
 
+        
         public float Top {
             get { return _topOffset + Object.Position.Y; }
         }
 
+        
+        public Box Box {
+            get {return new Box(Left, Right, Bottom, Top);}
+        }
+
+        
         public override AABBF AABB {
             get { return new AABBF(Left, Right, Bottom, Top); }
         }
 
 
         public override NewCollision FlyInto (Collider c, XY velocity) {
-            return null;
-//            return velocity == XY.Zero ? null : -c.FlyInto(this, -velocity);
+            throw new NotImplementedException();
         }
 
 
         public override NewCollision FlyInto (CircleCollider c, XY velocity) {
-            return null;
-//            return -c.FlyInto(this, -velocity);
+            throw new NotImplementedException();
         }
 
 
         public override NewCollision FlyInto (BoxCollider c, XY velocity) {
-            float
-                left = Left,
-                right = Right,
-                bottom = Bottom,
-                top = Top,
-                cleft = c.Left,
-                cright = c.Right,
-                cbottom = c.Bottom,
-                ctop = c.Top;
-
-            float minDist = 1;
-            Collision result = null;
-
-            float d;
-            if (velocity.X < 0) {
-                d = OldGeom.CastRayToVertical(new XY(left, bottom), velocity, cright);
-                // спроецировать на прямую сразу две точки
-                float topY = top + velocity.Y * d;
-                float bottomY = bottom + velocity.Y * d;
-                if (d < minDist && topY < cbottom && bottomY > ctop) {
-                    minDist = d;
-                    result = new Collision(
-                        velocity * d,
-                        XY.Right,
-                        this,
-                        c
-                    );
-                }
-            }
-            if (velocity.X > 0) {
-                d = OldGeom.CastRayToVertical(new XY(right, top), velocity, cleft);
-                float topY = top + velocity.Y * d;
-                float bottomY = bottom + velocity.Y * d;
-                if (d < minDist && topY < cbottom && bottomY > ctop) {
-                    minDist = d;
-                    result = new Collision(
-                        velocity * d,
-                        XY.Left,
-                        this,
-                        c
-                    );
-                }
-            }
-            if (velocity.Y < 0) {
-                d = OldGeom.CastRayToHorizontal(new XY(left, bottom), velocity, ctop);
-                float leftX = left + velocity.X * d;
-                float rightX = right + velocity.X * d;
-                if (d < minDist && rightX < cleft && leftX > cright) {
-                    minDist = d;
-                    result = new Collision(
-                        velocity * d,
-                        XY.Up,
-                        this,
-                        c
-                    );
-                }
-            }
-            if (velocity.Y > 0) {
-                d = OldGeom.CastRayToVertical(new XY(right, top), velocity, cbottom);
-                float leftX = left + velocity.X * d;
-                float rightX = right + velocity.X * d;
-                if (d < minDist && rightX < cleft && leftX > cright) {
-                    minDist = d;
-                    result = new Collision(
-                        velocity * d,
-                        XY.Down,
-                        this,
-                        c
-                    );
-                }
-            }
-            return null;
+            throw new NotImplementedException();
         }
 
 
@@ -148,8 +79,10 @@ namespace Battle.Physics.Collisions {
         }
 
 
-        public override bool Overlaps (CircleCollider c) {
-            return OldGeom.AreOverlapping(c.Center, c.Radius, Left, Right, Bottom, Top);
+        public override bool Overlaps (CircleCollider c)
+        {
+            XY o = c.Center;
+            return XY.SqrDistance(o, o.Clamped(Box)) < c.Radius * c.Radius;
         }
 
 
