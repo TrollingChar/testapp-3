@@ -11,16 +11,67 @@ namespace Battle.Physics {
 
         public NewCollision ApproxCollision (Circle c, XY v) {
             var primitive = Primitive.None;
-            if (v.X > 0)      RayToTheRight (c.Center, ref v, c.Radius, ref primitive);
-            if (v.X < 0)      RayToTheLeft  (c.Center, ref v, c.Radius, ref primitive);
-            if (v.Y > 0)      RayToTheTop   (c.Center, ref v, c.Radius, ref primitive);
-            if (v.Y < 0)      RayToTheBottom(c.Center, ref v, c.Radius, ref primitive);
-            if (c.Radius > 0) RayToVertices (c.Center, ref v, c.Radius, ref primitive);
-            return primitive.IsEmpty ? null : new NewCollision(v, Primitive.Circle(c), primitive);
+            bool collided = false;
+            if (v.X > 0)      collided |= RayToTheRight (c.Center, ref v, c.Radius, ref primitive);
+            if (v.X < 0)      collided |= RayToTheLeft  (c.Center, ref v, c.Radius, ref primitive);
+            if (v.Y > 0)      collided |= RayToTheTop   (c.Center, ref v, c.Radius, ref primitive);
+            if (v.Y < 0)      collided |= RayToTheBottom(c.Center, ref v, c.Radius, ref primitive);
+            if (c.Radius > 0) collided |= RayToVertices (c.Center, ref v, c.Radius, ref primitive);
+            return collided ? null : new NewCollision(v, Primitive.Circle(c), primitive);
         }
 
 
-        private void RayToTheRight (XY o, ref XY v, float w, ref Primitive primitive) {
+        public NewCollision ApproxCollision (Box b, XY v) {
+            var boxPrimitive = Primitive.None;
+            var landPrimitive = Primitive.None;
+            bool collided = false;
+            // сначала надо разобраться с вершинами прямоугольника летящими в землю
+            
+            if (v.X > 0 || v.Y > 0) {
+                var corner = new XY(b.Right, b.Top);
+                if (RayToTheRight(corner, ref v, 0, ref landPrimitive) |
+                    RayToTheTop  (corner, ref v, 0, ref landPrimitive)) {
+                    collided = true;
+                    boxPrimitive = Primitive.Circle(corner);
+                }
+            }
+            if (v.X > 0 || v.Y < 0) {
+                var corner = new XY(b.Right, b.Bottom);
+                if (RayToTheRight (corner, ref v, 0, ref landPrimitive) |
+                    RayToTheBottom(corner, ref v, 0, ref landPrimitive)) {
+                    collided = true;
+                    boxPrimitive = Primitive.Circle(corner);
+                }
+            }
+            if (v.X < 0 || v.Y < 0) {
+                var corner = new XY(b.Left, b.Bottom);
+                if (RayToTheLeft  (corner, ref v, 0, ref landPrimitive) |
+                    RayToTheBottom(corner, ref v, 0, ref landPrimitive)) {
+                    collided = true;
+                    boxPrimitive = Primitive.Circle(corner);
+                }
+            }
+            if (v.X < 0 || v.Y > 0) {
+                var corner = new XY(b.Left, b.Top);
+                if (RayToTheLeft(corner, ref v, 0, ref landPrimitive) |
+                    RayToTheTop (corner, ref v, 0, ref landPrimitive)) {
+                    collided = true;
+                    boxPrimitive = Primitive.Circle(corner);
+                }
+            }
+            
+            // потом с сторонами прямоугольника и вершинами земли
+            if (v.X > 0) {
+                
+            }; // vertices to right side
+            if (v.X < 0) ; // vertices to left side
+            if (v.Y < 0) ; // vertices to bottom side
+            if (v.Y > 0) ; // vertices to top side
+            return boxPrimitive.IsEmpty ? null : new NewCollision(v, boxPrimitive, landPrimitive);
+        }
+
+
+        private bool RayToTheRight (XY o, ref XY v, float w, ref Primitive primitive) {
             var startXY = new XY(o.X + w, o.Y);
             var endXY = startXY + v;
 
@@ -32,12 +83,13 @@ namespace Battle.Physics {
                 if (this[x, y] == 0) continue;
                 v *= d;
                 primitive = Primitive.Left(x);
-                return;
+                return true;
             }
+            return false;
         }
 
 
-        private void RayToTheLeft (XY o, ref XY v, float w, ref Primitive primitive) {
+        private bool RayToTheLeft (XY o, ref XY v, float w, ref Primitive primitive) {
             var startXY = new XY(o.X - w, o.Y);
             var endXY = startXY + v;
 
@@ -49,12 +101,13 @@ namespace Battle.Physics {
                 if (this[x, y] == 0) continue;
                 v *= d;
                 primitive = Primitive.Right(x + 1);
-                return;
+                return true;
             }
+            return false;
         }
 
 
-        private void RayToTheTop (XY o, ref XY v, float w, ref Primitive primitive) {
+        private bool RayToTheTop (XY o, ref XY v, float w, ref Primitive primitive) {
             var startXY = new XY(o.X, o.Y + w);
             var endXY = startXY + v;
 
@@ -66,12 +119,13 @@ namespace Battle.Physics {
                 if (this[x, y] == 0) continue;
                 v *= d;
                 primitive = Primitive.Bottom(y);
-                return;
+                return true;
             }
+            return false;
         }
 
 
-        private void RayToTheBottom (XY o, ref XY v, float w, ref Primitive primitive) {
+        private bool RayToTheBottom (XY o, ref XY v, float w, ref Primitive primitive) {
             var startXY = new XY(o.X, o.Y - w);
             var endXY = startXY + v;
 
@@ -83,12 +137,13 @@ namespace Battle.Physics {
                 if (this[x, y] == 0) continue;
                 v *= d;
                 primitive = Primitive.Top(y + 1);
-                return;
+                return true;
             }
+            return false;
         }
 
 
-        private void RayToVertices (XY o, ref XY v, float r, ref Primitive primitive) {
+        private bool RayToVertices (XY o, ref XY v, float r, ref Primitive primitive) {
             float d2 = v.SqrLength;
             XY nearestXY = o;
 
@@ -108,10 +163,12 @@ namespace Battle.Physics {
                     nearestXY = pt;
                 }
             }
-            if (nearestXY == o) return;
+            if (nearestXY == o) return false;
             
             primitive = Primitive.Circle(nearestXY);
             v.Length = Mathf.Sqrt(d2);
+
+            return true;
         }
 
     }

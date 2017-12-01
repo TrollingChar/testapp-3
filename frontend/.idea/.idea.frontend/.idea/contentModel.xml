@@ -287,6 +287,7 @@
           </e>
           <e p="Geometry" t="Include">
             <e p="Angles.cs" t="Include" />
+            <e p="Box.cs" t="Include" />
             <e p="Circle.cs" t="Include" />
             <e p="Geom.cs" t="Include" />
             <e p="OldGeom.cs" t="Include" />

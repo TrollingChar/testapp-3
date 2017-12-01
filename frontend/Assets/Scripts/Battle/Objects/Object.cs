@@ -118,10 +118,10 @@ namespace Battle.Objects {
 
         public NewCollision NextCollision (float movementLeft) {
             var v = Velocity * movementLeft;
-            var cObj = CollideWithObjects(v);
-            if (cObj != null) v = cObj.Offset;
+//            var cObj = CollideWithObjects(v);
+//            if (cObj != null) v = cObj.Offset;
             var cLand = CollideWithLand(v);
-            return cLand ?? cObj;
+            return cLand;// ?? cObj;
         }
 
 
