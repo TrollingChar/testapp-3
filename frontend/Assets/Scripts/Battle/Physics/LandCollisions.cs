@@ -1,4 +1,5 @@
-﻿using Battle.Physics.Collisions;
+﻿using System.Linq;
+using Battle.Physics.Collisions;
 using Collisions;
 using Geometry;
 using UnityEngine;
@@ -62,8 +63,36 @@ namespace Battle.Physics {
             
             // потом с сторонами прямоугольника и вершинами земли
             if (v.X > 0) {
+                var aabb = new AABBF(
+                    b.Right,
+                    b.Right + v.X,
+                    Mathf.Min(0, v.X) + b.Bottom,
+                    Mathf.Max(0, v.X) + b.Top
+                ).ToTiles(LandTile.Size);
                 
+                float d2 = v.SqrLength;
+                XY nearestXY = XY.NaN;
+                
+                for (int x = aabb.Left; x < aabb.Right; x++)
+                for (int y = aabb.Bottom; y < aabb.Top; y++) {
+                    foreach (var pt in Tiles[x, y].Vertices) {
+                        if (pt.X < b.Right || pt.X >= b.Right + v.X) continue;
+                        float dist = Geom.RayTo1D(b.Right, v.X, pt.X);
+
+                        float yy = pt.X - v.Y * dist;
+                        if (yy < b.Bottom || yy > b.Top) continue;
+                        
+                        d2 = dist * dist;
+                        nearestXY = pt;
+                    }
+                }
+                if (nearestXY.IsNaN) return false; // no collision
+            
+                boxPrimitive  = Primitive.Right(b.Right);
+                landPrimitive = Primitive.Circle(nearestXY);
+                v.Length = Mathf.Sqrt(d2);
             }; // vertices to right side
+            
             if (v.X < 0) ; // vertices to left side
             if (v.Y < 0) ; // vertices to bottom side
             if (v.Y > 0) ; // vertices to top side
@@ -145,7 +174,7 @@ namespace Battle.Physics {
 
         private bool RayToVertices (XY o, ref XY v, float r, ref Primitive primitive) {
             float d2 = v.SqrLength;
-            XY nearestXY = o;
+            XY nearestXY = XY.NaN;
 
             var aabb = new AABBF(
                 Mathf.Min(o.X, o.X + v.X) - r,
@@ -163,7 +192,7 @@ namespace Battle.Physics {
                     nearestXY = pt;
                 }
             }
-            if (nearestXY == o) return false;
+            if (nearestXY.IsNaN) return false;
             
             primitive = Primitive.Circle(nearestXY);
             v.Length = Mathf.Sqrt(d2);
