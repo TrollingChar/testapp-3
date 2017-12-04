@@ -12,7 +12,6 @@ namespace Battle.Objects.GameObjects {
             "Травокур",
             "Эскобар",
             "Гуф",
-            "Лирой Дженкинс",
             "Чувак",
             "Сыч",
             "Анон",
@@ -39,7 +38,7 @@ namespace Battle.Objects.GameObjects {
             "Вупсень",
             "Царь Носок",
             "Пудж",
-            "Единая Россия"
+            "Гук"
         };
 
 

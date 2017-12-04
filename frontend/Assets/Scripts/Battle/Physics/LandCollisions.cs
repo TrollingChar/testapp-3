@@ -12,13 +12,22 @@ namespace Battle.Physics {
 
         public NewCollision ApproxCollision (Circle c, XY v) {
             var primitive = Primitive.None;
-            bool collided = false;
-            if (v.X > 0)      collided |= RayToTheRight (c.Center, ref v, c.Radius, ref primitive);
-            if (v.X < 0)      collided |= RayToTheLeft  (c.Center, ref v, c.Radius, ref primitive);
-            if (v.Y > 0)      collided |= RayToTheTop   (c.Center, ref v, c.Radius, ref primitive);
-            if (v.Y < 0)      collided |= RayToTheBottom(c.Center, ref v, c.Radius, ref primitive);
-            if (c.Radius > 0) collided |= RayToVertices (c.Center, ref v, c.Radius, ref primitive);
-            return collided ? null : new NewCollision(v, Primitive.Circle(c), primitive);
+
+            bool collided
+                = (v.X > 0      && RayToTheRight (c.Center, ref v, c.Radius, ref primitive))
+                | (v.X < 0      && RayToTheLeft  (c.Center, ref v, c.Radius, ref primitive))
+                | (v.Y > 0      && RayToTheTop   (c.Center, ref v, c.Radius, ref primitive))
+                | (v.Y < 0      && RayToTheBottom(c.Center, ref v, c.Radius, ref primitive))
+                | (c.Radius > 0 && RayToVertices (c.Center, ref v, c.Radius, ref primitive));
+            
+//            bool collided = false;
+//            if (v.X > 0)      collided |= RayToTheRight (c.Center, ref v, c.Radius, ref primitive);
+//            if (v.X < 0)      collided |= RayToTheLeft  (c.Center, ref v, c.Radius, ref primitive);
+//            if (v.Y > 0)      collided |= RayToTheTop   (c.Center, ref v, c.Radius, ref primitive);
+//            if (v.Y < 0)      collided |= RayToTheBottom(c.Center, ref v, c.Radius, ref primitive);
+//            if (c.Radius > 0) collided |= RayToVertices (c.Center, ref v, c.Radius, ref primitive);
+            
+            return collided ? new NewCollision(v, Primitive.Circle(c), primitive) : null;
         }
 
 
@@ -26,8 +35,8 @@ namespace Battle.Physics {
             var boxPrimitive = Primitive.None;
             var landPrimitive = Primitive.None;
             bool collided = false;
-            // сначала надо разобраться с вершинами прямоугольника летящими в землю
-            
+
+            // вершины
             if (v.X > 0 || v.Y > 0) {
                 var corner = new XY(b.Right, b.Top);
                 if (RayToTheRight(corner, ref v, 0, ref landPrimitive) |
@@ -62,41 +71,23 @@ namespace Battle.Physics {
             }
             
             // потом с сторонами прямоугольника и вершинами земли
-            if (v.X > 0) {
-                var aabb = new AABBF(
-                    b.Right,
-                    b.Right + v.X,
-                    Mathf.Min(0, v.X) + b.Bottom,
-                    Mathf.Max(0, v.X) + b.Top
-                ).ToTiles(LandTile.Size);
-                
-                float d2 = v.SqrLength;
-                XY nearestXY = XY.NaN;
-                
-                for (int x = aabb.Left; x < aabb.Right; x++)
-                for (int y = aabb.Bottom; y < aabb.Top; y++) {
-                    foreach (var pt in Tiles[x, y].Vertices) {
-                        if (pt.X < b.Right || pt.X >= b.Right + v.X) continue;
-                        float dist = Geom.RayTo1D(b.Right, v.X, pt.X);
-
-                        float yy = pt.X - v.Y * dist;
-                        if (yy < b.Bottom || yy > b.Top) continue;
-                        
-                        d2 = dist * dist;
-                        nearestXY = pt;
-                    }
-                }
-                if (nearestXY.IsNaN) return false; // no collision
-            
-                boxPrimitive  = Primitive.Right(b.Right);
-                landPrimitive = Primitive.Circle(nearestXY);
-                v.Length = Mathf.Sqrt(d2);
-            }; // vertices to right side
-            
-            if (v.X < 0) ; // vertices to left side
-            if (v.Y < 0) ; // vertices to bottom side
-            if (v.Y > 0) ; // vertices to top side
-            return boxPrimitive.IsEmpty ? null : new NewCollision(v, boxPrimitive, landPrimitive);
+            if (v.X > 0 && RightSideToVertices(b, ref v, ref landPrimitive)) {
+                collided = true;
+                boxPrimitive = Primitive.Right(b.Right);
+            }
+            if (v.X < 0 && LeftSideToVertices(b, ref v, ref landPrimitive)) {
+                collided = true;
+                boxPrimitive = Primitive.Left(b.Left);
+            }
+            if (v.Y > 0 && TopSideToVertices(b, ref v, ref landPrimitive)) {
+                collided = true;
+                boxPrimitive = Primitive.Top(b.Top);
+            }
+            if (v.Y < 0 && BottomSideToVertices(b, ref v, ref landPrimitive)) {
+                collided = true;
+                boxPrimitive = Primitive.Bottom(b.Bottom);
+            }
+            return collided ? new NewCollision(v, boxPrimitive, landPrimitive) : null;
         }
 
 
@@ -194,6 +185,138 @@ namespace Battle.Physics {
             }
             if (nearestXY.IsNaN) return false;
             
+            primitive = Primitive.Circle(nearestXY);
+            v.Length = Mathf.Sqrt(d2);
+
+            return true;
+        }
+
+
+        private bool RightSideToVertices (Box b, ref XY v, ref Primitive primitive) {
+            var aabb = new AABBF(
+                b.Right,
+                b.Right + v.X,
+                Mathf.Min(0, v.Y) + b.Bottom,
+                Mathf.Max(0, v.Y) + b.Top
+            ).ToTiles(LandTile.Size);
+            
+            float d2 = v.SqrLength;
+            XY nearestXY = XY.NaN;
+            
+            for (int ix = aabb.Left; ix < aabb.Right; ix++)
+            for (int iy = aabb.Bottom; iy < aabb.Top; iy++) {
+                foreach (var pt in Tiles[ix, iy].Vertices) {
+                    if (pt.X < b.Right || pt.X >= b.Right + v.X) continue;
+                    float dist = Geom.RayTo1D(b.Right, v.X, pt.X);
+
+                    float y = pt.X - v.Y * dist;
+                    if (y < b.Bottom || y > b.Top) continue;
+                    
+                    d2 = dist * dist;
+                    nearestXY = pt;
+                }
+            }
+            if (nearestXY.IsNaN) return false;
+
+            primitive = Primitive.Circle(nearestXY);
+            v.Length = Mathf.Sqrt(d2);
+            
+            return true;
+        }
+        
+        
+        private bool LeftSideToVertices (Box b, ref XY v, ref Primitive primitive) {
+            var aabb = new AABBF(
+                b.Left + v.X,
+                b.Left,
+                Mathf.Min(0, v.Y) + b.Bottom,
+                Mathf.Max(0, v.Y) + b.Top
+            ).ToTiles(LandTile.Size);
+            
+            float d2 = v.SqrLength;
+            XY nearestXY = XY.NaN;
+            
+            for (int ix = aabb.Left; ix < aabb.Right; ix++)
+            for (int iy = aabb.Bottom; iy < aabb.Top; iy++) {
+                foreach (var pt in Tiles[ix, iy].Vertices) {
+                    if (pt.X <= b.Left + v.X || pt.X > b.Left) continue;
+                    float dist = Geom.RayTo1D(b.Left, v.X, pt.X);
+
+                    float y = pt.X - v.Y * dist;
+                    if (y < b.Bottom || y > b.Top) continue;
+                    
+                    d2 = dist * dist;
+                    nearestXY = pt;
+                }
+            }
+            if (nearestXY.IsNaN) return false;
+
+            primitive = Primitive.Circle(nearestXY);
+            v.Length = Mathf.Sqrt(d2);
+            
+            return true;
+        }
+
+
+        private bool TopSideToVertices (Box b, ref XY v, ref Primitive primitive) {
+            var aabb = new AABBF(
+                Mathf.Min(0, v.X) + b.Left,
+                Mathf.Max(0, v.X) + b.Right,
+                b.Bottom,
+                b.Bottom + v.Y
+            ).ToTiles(LandTile.Size);
+
+            float d2 = v.SqrLength;
+            XY nearestXY = XY.NaN;
+
+            for (int ix = aabb.Left; ix < aabb.Right; ix++)
+            for (int iy = aabb.Bottom; iy < aabb.Top; iy++) {
+                foreach (var pt in Tiles[ix, iy].Vertices) {
+                    if (pt.Y < b.Top || pt.Y >= b.Top + v.Y) continue;
+                    float dist = Geom.RayTo1D(b.Top, v.Y, pt.Y);
+
+                    float x = pt.Y - v.X * dist;
+                    if (x < b.Left || x > b.Right) continue;
+
+                    d2 = dist * dist;
+                    nearestXY = pt;
+                }
+            }
+            if (nearestXY.IsNaN) return false;
+
+            primitive = Primitive.Circle(nearestXY);
+            v.Length = Mathf.Sqrt(d2);
+
+            return true;
+        }
+
+
+        private bool BottomSideToVertices (Box b, ref XY v, ref Primitive primitive) {
+            var aabb = new AABBF(
+                Mathf.Min(0, v.X) + b.Left,
+                Mathf.Max(0, v.X) + b.Right,
+                b.Bottom + v.Y,
+                b.Bottom
+            ).ToTiles(LandTile.Size);
+            
+            float d2 = v.SqrLength;
+            XY nearestXY = XY.NaN;
+            
+            for (int ix = aabb.Left; ix < aabb.Right; ix++)
+            for (int iy = aabb.Bottom; iy < aabb.Top; iy++) {
+                foreach (var pt in Tiles[ix, iy].Vertices) {
+                    if (pt.Y <= b.Bottom + v.Y || pt.Y > b.Bottom) continue;
+                    float dist = Geom.RayTo1D(b.Bottom, v.Y, pt.Y);
+
+                    float x = pt.Y - v.X * dist;
+                    if (x < b.Left || x > b.Right) continue;
+
+                    d2 = dist * dist;
+                    nearestXY = pt;
+                }
+            }
+            if (nearestXY.IsNaN) return false;
+
             primitive = Primitive.Circle(nearestXY);
             v.Length = Mathf.Sqrt(d2);
 

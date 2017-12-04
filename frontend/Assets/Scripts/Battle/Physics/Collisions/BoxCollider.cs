@@ -67,10 +67,9 @@ namespace Battle.Physics.Collisions {
 
 
         public override NewCollision FlyInto (Land land, XY velocity) {
-//            var result = land.CastRectRay(Left, Right, Bottom, Top, velocity);
-//            if (result != null) result.Collider1 = this;
-//            return result;
-            throw new NotImplementedException();
+            var collision = land.ApproxCollision(Box, velocity);
+            if (collision != null) collision.Collider1 = this;
+            return collision;
         }
 
 
