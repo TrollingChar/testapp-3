@@ -21,6 +21,11 @@ namespace Battle.Objects.Projectiles {
         }
 
 
+        protected override bool PassableFor (Object o) {
+            return this == o;
+        }
+
+
         public override void OnAdd () {
             var transform = GameObject.transform;
             var assets = The.BattleAssets;

@@ -1,6 +1,7 @@
 ﻿using System;
 using Collisions;
 using Geometry;
+using UnityEngine;
 
 
 namespace Battle.Physics.Collisions {
@@ -52,7 +53,7 @@ namespace Battle.Physics.Collisions {
 
 
         public override NewCollision FlyInto (Collider c, XY velocity) {
-            throw new NotImplementedException();
+            return velocity == XY.Zero ? null : -c.FlyInto(this, -velocity);
         }
 
 
@@ -62,7 +63,54 @@ namespace Battle.Physics.Collisions {
 
 
         public override NewCollision FlyInto (BoxCollider c, XY velocity) {
-            throw new NotImplementedException();
+
+            bool collided = false;
+            var box = Box;
+            var cBox = c.Box;
+            var p1 = Geometry.Primitive.None;
+            var p2 = Geometry.Primitive.None;
+
+            if (box.Right <= cBox.Left && box.Right + velocity.X > cBox.Left) { // vx > 0
+                float dist = Geom.RayTo1D(box.Right, velocity.X, cBox.Left);
+                float dy = velocity.Y * dist;
+                if (box.Bottom + dy < cBox.Top && box.Top + dy > cBox.Bottom) {
+                    collided = true;
+                    velocity *= dist;
+                    p1 = Geometry.Primitive.Right(box.Right);
+                    p2 = Geometry.Primitive.Left(cBox.Left);
+                }
+            }
+            if (box.Left >= cBox.Right && box.Left + velocity.X < cBox.Right) { // vx < 0
+                float dist = Geom.RayTo1D(box.Left, velocity.X, cBox.Right);
+                float dy = velocity.Y * dist;
+                if (box.Bottom + dy < cBox.Top && box.Top + dy > cBox.Bottom) {
+                    collided = true;
+                    velocity *= dist;
+                    p1 = Geometry.Primitive.Left(box.Left);
+                    p2 = Geometry.Primitive.Right(cBox.Right);
+                }
+            }
+            if (box.Top <= cBox.Bottom && box.Top + velocity.Y > cBox.Bottom) { // vy > 0
+                float dist = Geom.RayTo1D(box.Top, velocity.Y, cBox.Bottom);
+                float dx = velocity.X * dist;
+                if (box.Left + dx < cBox.Right && box.Right + dx > cBox.Left) {
+                    collided = true;
+                    velocity *= dist;
+                    p1 = Geometry.Primitive.Top(box.Top);
+                    p2 = Geometry.Primitive.Bottom(cBox.Bottom);
+                }
+            }
+            if (box.Bottom >= cBox.Top && box.Bottom + velocity.Y < cBox.Top) { // vy < 0
+                float dist = Geom.RayTo1D(box.Bottom, velocity.Y, cBox.Top);
+                float dx = velocity.X * dist;
+                if (box.Left + dx < cBox.Right && box.Right + dx > cBox.Left) {
+                    collided = true;
+                    velocity *= dist;
+                    p1 = Geometry.Primitive.Bottom(box.Bottom);
+                    p2 = Geometry.Primitive.Top(cBox.Top);
+                }
+            }
+            return collided ? new NewCollision(velocity, XY.NaN, this, c, p1, p2) : null;
         }
 
 
