@@ -43,7 +43,7 @@ namespace Battle.Physics.Collisions {
 
         
         public Box Box {
-            get {return new Box(Left, Right, Bottom, Top);}
+            get { return new Box(Left, Right, Bottom, Top); }
         }
 
         
@@ -58,12 +58,11 @@ namespace Battle.Physics.Collisions {
 
 
         public override NewCollision FlyInto (CircleCollider c, XY velocity) {
-            throw new NotImplementedException();
+            return -c.FlyInto(this, -velocity);
         }
 
 
         public override NewCollision FlyInto (BoxCollider c, XY velocity) {
-
             bool collided = false;
             var box = Box;
             var cBox = c.Box;

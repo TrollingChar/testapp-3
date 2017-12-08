@@ -47,6 +47,15 @@ namespace Battle.Physics.Collisions {
         }
 
 
+        private bool CollideWithPoint (Circle c, ref XY v, XY point, ref Geometry.Primitive primitive) {
+            float dist = Geom.RayToCircle(c.Center, v, point, c.Radius);
+            if (float.IsNaN(dist) || dist < 0 || dist * dist >= v.SqrLength) return false;
+            v.Length = dist;
+            primitive = Geometry.Primitive.Circle(point);
+            return true;
+        }
+
+
         public override NewCollision FlyInto (CircleCollider c, XY velocity) {
             float dist = Geom.RayToCircle(Center, velocity, c.Center, Radius + c.Radius);
             if (float.IsNaN(dist) || dist < 0 || dist * dist >= velocity.SqrLength) return null;
@@ -62,126 +71,74 @@ namespace Battle.Physics.Collisions {
 
 
         public override NewCollision FlyInto (BoxCollider c, XY velocity) {
-            float
-                left = c.Left,
-                right = c.Right,
-                bottom = c.Bottom,
-                top = c.Top;
+            var circle = Circle;
+            var box = c.Box;
 
-            float minDist = 1;
-            Collision result = null;
+            bool collided = false;
+            var primitive = Geometry.Primitive.None;
 
-            var center = Center;
-            float d;
-            // check right side
-            if (velocity.X < 0) {
-                d = OldGeom.CastRayToVertical(center, velocity, right + Radius);
-                float y = center.Y + velocity.Y * d;
-                if (d < minDist && bottom <= y && y <= top) {
-                    minDist = d;
-                    result = new Collision(
-                        velocity * d,
-                        XY.Right,
-                        this,
-                        c
-                    );
+            XY point;
+            
+            point = new XY(circle.Center.X + circle.Radius, circle.Center.Y);
+            if (point.X <= box.Left && point.X + velocity.X > box.Left) {
+                float dist = Geom.RayTo1D(point.X, velocity.X, box.Left);
+                float y = point.Y + dist * velocity.Y;
+                if (box.Bottom <= y && y <= box.Top) {
+                    collided = true;
+                    velocity *= dist;
+                    primitive = Geometry.Primitive.Left(box.Left);
                 }
             }
-            // check left side
-            if (velocity.X > 0) {
-                d = OldGeom.CastRayToVertical(center, velocity, left - Radius);
-                float y = center.Y + velocity.Y * d;
-                if (d < minDist && bottom <= y && y <= top) {
-                    minDist = d;
-                    result = new Collision(
-                        velocity * d,
-                        XY.Left,
-                        this,
-                        c
-                    );
+            
+            point = new XY(circle.Center.X - circle.Radius, circle.Center.Y);
+            if (point.X >= box.Right && point.X + velocity.X < box.Right) {
+                float dist = Geom.RayTo1D(point.X, velocity.X, box.Right);
+                float y = point.Y + dist * velocity.Y;
+                if (box.Bottom <= y && y <= box.Top) {
+                    collided = true;
+                    velocity *= dist;
+                    primitive = Geometry.Primitive.Right(box.Right);
                 }
             }
-            // check top side
-            if (velocity.Y < 0) {
-                d = OldGeom.CastRayToHorizontal(center, velocity, top + Radius);
-                float x = center.X + velocity.X * d;
-                if (d < minDist && left <= x && x <= right) {
-                    minDist = d;
-                    result = new Collision(
-                        velocity * d,
-                        XY.Up,
-                        this,
-                        c
-                    );
+            
+            point = new XY(circle.Center.X, circle.Center.Y - circle.Radius);
+            if (point.Y >= box.Top && point.Y + velocity.Y < box.Top) {
+                float dist = Geom.RayTo1D(point.Y, velocity.Y, box.Top);
+                float x = point.X + dist * velocity.X;
+                if (box.Left <= x && x <= box.Right) {
+                    collided = true;
+                    velocity *= dist;
+                    primitive = Geometry.Primitive.Top(box.Top);
                 }
             }
-            // check bottom side
-            if (velocity.Y > 0) {
-                d = OldGeom.CastRayToHorizontal(center, velocity, bottom - Radius);
-                float x = center.X + velocity.X * d;
-                if (d < minDist && left <= x && x <= right) {
-                    minDist = d;
-                    result = new Collision(
-                        velocity * d,
-                        XY.Down,
-                        this,
-                        c
-                    );
+            
+            point = new XY(circle.Center.X, circle.Center.Y + circle.Radius);
+            if (point.Y <= box.Bottom && point.Y + velocity.Y > box.Bottom) {
+                float dist = Geom.RayTo1D(point.Y, velocity.Y, box.Bottom);
+                float x = point.X + dist * velocity.X;
+                if (box.Left <= x && x <= box.Right) {
+                    collided = true;
+                    velocity *= dist;
+                    primitive = Geometry.Primitive.Bottom(box.Bottom);
                 }
             }
-            // check upright corner
-            if (velocity.X < 0 || velocity.Y < 0) {
-                d = OldGeom.CastRayToCircle(center, velocity, new XY(right, top), Radius);
-                if (d < minDist) {
-                    minDist = d;
-                    result = new Collision(
-                        velocity * d,
-                        Center + velocity * d - new XY(right, top),
-                        this,
-                        c
-                    );
-                }
-            }
-            // check upleft corner
-            if (velocity.X > 0 || velocity.Y < 0) {
-                d = OldGeom.CastRayToCircle(center, velocity, new XY(left, top), Radius);
-                if (d < minDist) {
-                    minDist = d;
-                    result = new Collision(
-                        velocity * d,
-                        Center + velocity * d - new XY(left, top),
-                        this,
-                        c
-                    );
-                }
-            }
-            // check downleft corner
+
             if (velocity.X > 0 || velocity.Y > 0) {
-                d = OldGeom.CastRayToCircle(center, velocity, new XY(left, bottom), Radius);
-                if (d < minDist) {
-                    minDist = d;
-                    result = new Collision(
-                        velocity * d,
-                        Center + velocity * d - new XY(left, bottom),
-                        this,
-                        c
-                    );
-                }
+                collided |= CollideWithPoint(circle, ref velocity, new XY(box.Left, box.Bottom), ref primitive);
             }
-            // check downright corner
+            if (velocity.X > 0 || velocity.Y < 0) {
+                collided |= CollideWithPoint(circle, ref velocity, new XY(box.Left, box.Top), ref primitive);
+            }
+            if (velocity.X < 0 || velocity.Y < 0) {
+                collided |= CollideWithPoint(circle, ref velocity, new XY(box.Right, box.Top), ref primitive);
+            }
             if (velocity.X < 0 || velocity.Y > 0) {
-                d = OldGeom.CastRayToCircle(center, velocity, new XY(right, bottom), Radius);
-                if (d < minDist) {
-                    minDist = d;
-                    result = new Collision(
-                        velocity * d,
-                        Center + velocity * d - new XY(right, bottom),
-                        this,
-                        c
-                    );
-                }
+                collided |= CollideWithPoint(circle, ref velocity, new XY(box.Right, box.Bottom), ref primitive);
             }
-            return null;
+
+            return collided 
+                ? new NewCollision(velocity, XY.NaN, this, c, Geometry.Primitive.Circle(circle), primitive)
+                : null;
         }
 
 

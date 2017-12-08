@@ -20,13 +20,6 @@ namespace Battle.Physics {
                 | (v.Y < 0      && RayToTheBottom(c.Center, ref v, c.Radius, ref primitive))
                 | (c.Radius > 0 && RayToVertices (c.Center, ref v, c.Radius, ref primitive));
             
-//            bool collided = false;
-//            if (v.X > 0)      collided |= RayToTheRight (c.Center, ref v, c.Radius, ref primitive);
-//            if (v.X < 0)      collided |= RayToTheLeft  (c.Center, ref v, c.Radius, ref primitive);
-//            if (v.Y > 0)      collided |= RayToTheTop   (c.Center, ref v, c.Radius, ref primitive);
-//            if (v.Y < 0)      collided |= RayToTheBottom(c.Center, ref v, c.Radius, ref primitive);
-//            if (c.Radius > 0) collided |= RayToVertices (c.Center, ref v, c.Radius, ref primitive);
-            
             return collided ? new NewCollision(v, Primitive.Circle(c), primitive) : null;
         }
 
