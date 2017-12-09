@@ -49,13 +49,16 @@ namespace Battle {
 
 
         public void Update (TurnData td) {
-//            if (_state.Timer % 500 == 0 && td != null && td.MB) {
+            if (Time % 500 == 0 && td != null && td.MB) {
             
-//            }
-
-            if (Time % 200 == 0 && td != null && td.MB) {
-                Spawn(new Limonka(10), td.XY, new XY(0, 3 + 3 * RNG.Float()).Rotated(RNG.Float() - RNG.Float()));
             }
+
+//            if (Time % 400 == 0 && td != null && td.MB) {
+//                Spawn(new Limonka(10), td.XY, new XY(0, 3 + 3 * RNG.Float()).Rotated(RNG.Float() - RNG.Float()));
+//            }
+//            if (Time % 400 == 200 && td != null && td.MB) {
+//                Spawn(new Grenade(10), td.XY, new XY(0, 3 + 3 * RNG.Float()).Rotated(RNG.Float() - RNG.Float()));
+//            }
 
             for (var node = _objects.First; node != null; node = node.Next) {
                 node.Value.Update(td);
