@@ -67,7 +67,8 @@ namespace Battle {
                                 {0, 1, 0, 1, 0}
                             }
                         )
-                    ).SwitchDimensions()
+                    )
+                    .SwitchDimensions()
                     .Expand(7)
                     .Cellular(0x01e801d0, 20)
                     .Cellular(0x01f001e0)
@@ -105,7 +106,7 @@ namespace Battle {
             ActiveWorm = new ActiveWormWrapper();
             Weapon = new WeaponWrapper();
             Camera.LookAt(new Vector2(1000, 1000), true);
-            // Teams = World.SpawnTeams(_initData.Players, 10); // todo
+            Teams = World.SpawnTeams(_initData.Players, 10);
 
             NewTurnCmd.OnReceived.Subscribe(PrepareTurn);
             TurnDataSCmd.OnReceived.Subscribe(TurnDataHandler);
@@ -122,7 +123,7 @@ namespace Battle {
                 Work(null);
                 return;
             }
-            // if (!Teams.IsMyTurn) return; // todo
+            if (!Teams.IsMyTurn) return;
 
             // gather input and update world
             var td = TurnData.FromInput();
@@ -164,15 +165,15 @@ namespace Battle {
 
 
         private void PrepareTurn (NewTurnCmd cmd) {
-            // Teams.SetActive(cmd.Player); // todo
+            Teams.SetActive(cmd.Player);
             State.ChangeState();
         }
 
 
         public void NewTurn () {
-            // ActiveWorm.Worm = Teams.NextWorm(); // todo
+            ActiveWorm.Worm = Teams.NextWorm();
             ActiveWorm.CanMove = true;
-            // Camera.LookAt(ActiveWorm.Worm.Position); // todo
+            Camera.LookAt(ActiveWorm.Worm.Position);
             Weapon.Reset();
             Timer.Time = 30000;
         }

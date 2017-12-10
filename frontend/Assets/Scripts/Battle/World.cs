@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Battle.Arsenals;
@@ -244,6 +243,7 @@ namespace Battle {
             var rayDirection = new XY(0, Worm.HeadRadius - LandTile.Size * 1.5f);
             for (int x = 0; x < Land.Width / LandTile.Size; x++)
             for (int y = 0; y < Land.Height / LandTile.Size; y++) {
+                Debug.Log(Land.Tiles[x, y].Land);
                 // valid:
                 // . . .
                 // . x .
@@ -270,7 +270,10 @@ namespace Battle {
 
         public TeamManager SpawnTeams (List<int> players, int wormsInTeam) {
             // find valid spawns
-            var spawnPoints = RNG.PickSome(GetSpawnPoints(), players.Count * wormsInTeam);
+            var spawnPoints = GetSpawnPoints();
+//            Debug.Log(spawnPoints.Count);
+            spawnPoints = RNG.PickSome(spawnPoints, players.Count * wormsInTeam);
+//            Debug.Log(spawnPoints.Count);
 
             // teams colors
             var teamColors = TeamColors.Colors.Take(players.Count).ToList();

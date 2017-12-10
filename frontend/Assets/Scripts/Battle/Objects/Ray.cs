@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Battle.Physics.Collisions;
+using Collisions;
 using Geometry;
 
 
@@ -30,11 +31,11 @@ namespace Battle.Objects {
         }
 
 
-        public Collision Cast (XY direction, bool removeColliders = true) {
+        public NewCollision Cast (XY direction, bool removeColliders = true) {
             Velocity = direction;
             var collision = NextCollision(1f);
             if (removeColliders) RemoveColliders();
-            return null; //collision;
+            return collision;
         }
 
     }

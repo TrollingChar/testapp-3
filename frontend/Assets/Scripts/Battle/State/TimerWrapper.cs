@@ -32,14 +32,13 @@ namespace Battle.State {
 
 
         public void Wait (int milliseconds) {
-            //if (_battle.State.Is(GameState.Turn)) return;
+//            if (_battle.State.Is(GameState.Turn)) return;
             if (Time < milliseconds) Time = milliseconds;
         }
 
 
         public void Update () {
             if (Frozen) return;
-            if (The.GameStateController.CurrentState == GameState.Turn) return; // todo remove
             Time -= 20;
             if (HasElapsed) OnTimerElapsed.Send();
         }
