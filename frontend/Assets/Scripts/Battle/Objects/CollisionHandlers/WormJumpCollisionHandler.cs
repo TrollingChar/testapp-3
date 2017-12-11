@@ -10,8 +10,9 @@ namespace Battle.Objects.CollisionHandlers {
 
         public override bool WillCauseCollision (NewCollision c) {
             // wtf
-            return c.Collider1 != ((Worm) Object).Tail
-                && !(c.Collider2 != null && c.Collider2.Object.Controller is WormControllerWalk);
+            var worm = (Worm) Object;
+            if (c.Collider1 == worm.Tail) return false; // todo: check normal
+            return c.Collider2 == null || !(c.Collider2.Object.Controller is WormControllerWalk);
         }
 
 
@@ -21,9 +22,8 @@ namespace Battle.Objects.CollisionHandlers {
 //                Debug.LogWarning("1");
 //                return;
 //            }
-            if (c.Collider1 == ((Worm) Object).Tail) {
-                Object.Controller = new WormControllerWalk();
-            }
+            var worm = (Worm) Object;
+            if (c.Collider1 == worm.Tail) Object.Controller = new WormControllerWalk(); // todo: same
         }
 
     }

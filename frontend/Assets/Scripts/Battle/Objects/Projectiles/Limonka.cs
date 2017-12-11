@@ -21,9 +21,9 @@ namespace Battle.Objects.Projectiles {
         }
 
 
-        protected override bool PassableFor (Object o) {
-            return this == o;
-        }
+//        protected override bool PassableFor (Object o) {
+//            return this == o;
+//        }
 
 
         public override void OnAdd () {
@@ -40,7 +40,7 @@ namespace Battle.Objects.Projectiles {
             
             AddCollider(new BoxCollider(-5, 5, -5, 5));
 //            AddCollider(new CircleCollider(XY.Zero, 5f));
-            //Explosive = new ClusterSpawner();
+            Explosive = new ClusterSpawner();
             Controller = new GrenadeController(_timer * 1000, timerText);
             CollisionHandler = new CollisionHandler();
         }

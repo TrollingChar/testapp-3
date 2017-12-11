@@ -17,11 +17,13 @@ namespace Battle.Objects.Controllers {
         }
 
 
+        // todo: подумать где нужно заменить Precision на 0
         protected override void DoUpdate (TurnData td) {
             var worm = (Worm) Object;
 
-            //if (td != null) worm.LookAt(td.XY);
-
+//            if (td != null) worm.LookAt(td.XY);
+            worm.Name = "walk";
+            
             var collision =
                 new Ray(worm.Tail.Center, new CircleCollider(XY.Zero, Worm.HeadRadius))
                     .Cast(new XY(0f, -Worm.MaxDescend));

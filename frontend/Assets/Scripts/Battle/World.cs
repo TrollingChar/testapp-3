@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Battle.Arsenals;
@@ -48,9 +49,37 @@ namespace Battle {
 
 
         public void Update (TurnData td) {
-            if (Time % 500 == 0 && td != null && td.MB) {
+
+            string s = "";
+            var mouseXY = The.Camera.WorldMousePosition;
+
+            var x = Mathf.FloorToInt(mouseXY.X);
+            var y = Mathf.FloorToInt(mouseXY.Y);
+            s += "pixel: (" + x + ", " + y + ") " + (Land[x, y] == 0 ? "empty" : "solid") + "\n\n";
             
+            var landTileX = Mathf.FloorToInt(mouseXY.X / LandTile.Size);
+            var landTileY = Mathf.FloorToInt(mouseXY.Y / LandTile.Size);
+            s +=
+                "land tile: (" + landTileX + ", " + landTileY + ")\n" +
+                "land amount: " + Land.Tiles[landTileX, landTileY].Land + "\n" +
+                "vertices count: " + Land.Tiles[landTileX, landTileY].Vertices.Count + "\n" +
+                "\n";
+            
+            var tileX = Mathf.FloorToInt(mouseXY.X / Tile.Size);
+            var tileY = Mathf.FloorToInt(mouseXY.Y / Tile.Size);
+            s += "colliders:";
+            if (Tiles[tileX, tileY].Colliders.Count == 0) {
+                s += " none";
             }
+            else {
+                foreach (var collider in Tiles[tileX, tileY].Colliders) s += "\n" + collider;
+            }
+            
+            The.BattleScene.ShowHint(s);
+            
+//            if (Time % 500 == 0 && td != null && td.MB) {
+            
+//            }
 
 //            if (Time % 400 == 0 && td != null && td.MB) {
 //                Spawn(new Limonka(10), td.XY, new XY(0, 3 + 3 * RNG.Float()).Rotated(RNG.Float() - RNG.Float()));
@@ -243,7 +272,6 @@ namespace Battle {
             var rayDirection = new XY(0, Worm.HeadRadius - LandTile.Size * 1.5f);
             for (int x = 0; x < Land.Width / LandTile.Size; x++)
             for (int y = 0; y < Land.Height / LandTile.Size; y++) {
-                Debug.Log(Land.Tiles[x, y].Land);
                 // valid:
                 // . . .
                 // . x .

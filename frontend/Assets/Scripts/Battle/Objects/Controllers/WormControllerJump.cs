@@ -12,6 +12,7 @@ namespace Battle.Objects.Controllers {
 
 
         protected override void DoUpdate (TurnData td) {
+            ((Worm) Object).Name = "jump";
             base.DoUpdate(td);
             Wait();
         }

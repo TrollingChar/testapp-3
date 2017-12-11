@@ -202,7 +202,7 @@ namespace Battle.Physics {
                     if (pt.X < b.Right || pt.X >= b.Right + v.X) continue;
                     float dist = Geom.RayTo1D(b.Right, v.X, pt.X);
 
-                    float y = pt.X - v.Y * dist;
+                    float y = pt.Y - v.Y * dist;
                     if (y < b.Bottom || y > b.Top) continue;
                     
                     d2 = dist * dist;
@@ -235,7 +235,7 @@ namespace Battle.Physics {
                     if (pt.X <= b.Left + v.X || pt.X > b.Left) continue;
                     float dist = Geom.RayTo1D(b.Left, v.X, pt.X);
 
-                    float y = pt.X - v.Y * dist;
+                    float y = pt.Y - v.Y * dist;
                     if (y < b.Bottom || y > b.Top) continue;
                     
                     d2 = dist * dist;
@@ -268,8 +268,8 @@ namespace Battle.Physics {
                     if (pt.Y < b.Top || pt.Y >= b.Top + v.Y) continue;
                     float dist = Geom.RayTo1D(b.Top, v.Y, pt.Y);
 
-                    float x = pt.Y - v.X * dist;
-                    if (x < b.Left || x > b.Right) continue;
+                    float x = pt.X - v.X * dist;
+                    if (x <= b.Left || x >= b.Right) continue;
 
                     d2 = dist * dist;
                     nearestXY = pt;
@@ -301,8 +301,8 @@ namespace Battle.Physics {
                     if (pt.Y <= b.Bottom + v.Y || pt.Y > b.Bottom) continue;
                     float dist = Geom.RayTo1D(b.Bottom, v.Y, pt.Y);
 
-                    float x = pt.Y - v.X * dist;
-                    if (x < b.Left || x > b.Right) continue;
+                    float x = pt.X - v.X * dist;
+                    if (x <= b.Left || x >= b.Right) continue;
 
                     d2 = dist * dist;
                     nearestXY = pt;
