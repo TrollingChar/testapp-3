@@ -51,17 +51,17 @@ namespace Battle.Physics.Collisions {
         }
 
 
-        public override NewCollision FlyInto (Collider c, XY velocity) {
+        public override Collision FlyInto (Collider c, XY velocity) {
             return velocity == XY.Zero ? null : -c.FlyInto(this, -velocity);
         }
 
 
-        public override NewCollision FlyInto (CircleCollider c, XY velocity) {
+        public override Collision FlyInto (CircleCollider c, XY velocity) {
             return -c.FlyInto(this, -velocity);
         }
 
 
-        public override NewCollision FlyInto (BoxCollider c, XY velocity) {
+        public override Collision FlyInto (BoxCollider c, XY velocity) {
             bool collided = false;
             var box = Box;
             var cBox = c.Box;
@@ -112,11 +112,11 @@ namespace Battle.Physics.Collisions {
                     p2 = Primitive.Top(cBox.Top);
                 }
             }
-            return collided ? new NewCollision(velocity, XY.NaN, this, c, p1, p2) : null;
+            return collided ? new Collision(velocity, XY.NaN, this, c, p1, p2) : null;
         }
 
 
-        public override NewCollision FlyInto (Land land, XY velocity) {
+        public override Collision FlyInto (Land land, XY velocity) {
             var collision = land.ApproxCollision(Box, velocity);
             if (collision != null) collision.Collider1 = this;
             return collision;

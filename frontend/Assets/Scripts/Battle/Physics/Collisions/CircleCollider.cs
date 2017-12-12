@@ -41,7 +41,7 @@ namespace Battle.Physics.Collisions {
         }
 
 
-        public override NewCollision FlyInto (Collider c, XY velocity) {
+        public override Collision FlyInto (Collider c, XY velocity) {
             return velocity == XY.Zero ? null : -c.FlyInto(this, -velocity);
         }
 
@@ -55,10 +55,10 @@ namespace Battle.Physics.Collisions {
         }
 
 
-        public override NewCollision FlyInto (CircleCollider c, XY velocity) {
+        public override Collision FlyInto (CircleCollider c, XY velocity) {
             float dist = Geom.RayToCircle(Center, velocity, c.Center, Radius + c.Radius);
             if (float.IsNaN(dist) || dist < 0 || dist * dist >= velocity.SqrLength) return null;
-            return new NewCollision(
+            return new Collision(
                 velocity.WithLength(dist),
                 XY.NaN,
                 this,
@@ -69,7 +69,7 @@ namespace Battle.Physics.Collisions {
         }
 
 
-        public override NewCollision FlyInto (BoxCollider c, XY velocity) {
+        public override Collision FlyInto (BoxCollider c, XY velocity) {
             var circle = Circle;
             var box = c.Box;
 
@@ -136,12 +136,12 @@ namespace Battle.Physics.Collisions {
             }
 
             return collided
-                ? new NewCollision(velocity, XY.NaN, this, c, Primitive.Circle(circle), primitive)
+                ? new Collision(velocity, XY.NaN, this, c, Primitive.Circle(circle), primitive)
                 : null;
         }
 
 
-        public override NewCollision FlyInto (Land land, XY velocity) {
+        public override Collision FlyInto (Land land, XY velocity) {
             var collision = land.ApproxCollision(Circle, velocity);
             if (collision != null) collision.Collider1 = this;
             return collision;

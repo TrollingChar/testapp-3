@@ -9,6 +9,7 @@ using DataTransfer.Data;
 using Geometry;
 using UnityEngine;
 using Collider = Battle.Physics.Collisions.Collider;
+using Collision = Collisions.Collision;
 
 
 namespace Battle.Objects {
@@ -114,7 +115,7 @@ namespace Battle.Objects {
         }
 
 
-        public NewCollision NextCollision (float movementLeft) {
+        public Collision NextCollision (float movementLeft) {
             var v = Velocity * movementLeft;
             var cObj = CollideWithObjects(v);
             if (cObj != null) v = cObj.Offset;
@@ -123,8 +124,8 @@ namespace Battle.Objects {
         }
 
 
-        private NewCollision CollideWithObjects (XY v) {
-            NewCollision min = null;
+        private Collision CollideWithObjects (XY v) {
+            Collision min = null;
             foreach (var c in Colliders) {
                 var obstacles = new HashSet<Collider>(
                     c.FindObstacles(v)
@@ -146,8 +147,8 @@ namespace Battle.Objects {
         }
 
 
-        private NewCollision CollideWithLand (XY v) {
-            NewCollision min = null;
+        private Collision CollideWithLand (XY v) {
+            Collision min = null;
             foreach (var c in Colliders) {
                 var temp = c.FlyInto(_world.Land, v);
                 if (temp < min) min = temp;
@@ -192,12 +193,12 @@ namespace Battle.Objects {
         }
 
 
-        public bool WillCauseCollision (NewCollision c) {
+        public bool WillCauseCollision (Collision c) {
             return CollisionHandler == null || CollisionHandler.WillCauseCollision(c);
         }
 
 
-        public void OnCollision (NewCollision c) {
+        public void OnCollision (Collision c) {
             if (CollisionHandler != null) CollisionHandler.OnCollision(c);
         }
 

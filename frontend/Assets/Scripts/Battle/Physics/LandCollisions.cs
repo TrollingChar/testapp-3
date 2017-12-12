@@ -2,13 +2,14 @@
 using Collisions;
 using Geometry;
 using UnityEngine;
+using Collision = Collisions.Collision;
 
 
 namespace Battle.Physics {
 
     public partial class Land {
 
-        public NewCollision ApproxCollision (Circle c, XY v) {
+        public Collision ApproxCollision (Circle c, XY v) {
             var primitive = Primitive.None;
 
             bool collided
@@ -18,11 +19,11 @@ namespace Battle.Physics {
                 | (v.Y < 0      && RayToTheBottom(c.Center, ref v, c.Radius, ref primitive))
                 | (c.Radius > 0 && RayToVertices (c.Center, ref v, c.Radius, ref primitive));
             
-            return collided ? new NewCollision(v, Primitive.Circle(c), primitive) : null;
+            return collided ? new Collision(v, Primitive.Circle(c), primitive) : null;
         }
 
 
-        public NewCollision ApproxCollision (Box b, XY v) {
+        public Collision ApproxCollision (Box b, XY v) {
             var boxPrimitive = Primitive.None;
             var landPrimitive = Primitive.None;
             bool collided = false;
@@ -78,7 +79,7 @@ namespace Battle.Physics {
                 collided = true;
                 boxPrimitive = Primitive.Bottom(b.Bottom);
             }
-            return collided ? new NewCollision(v, boxPrimitive, landPrimitive) : null;
+            return collided ? new Collision(v, boxPrimitive, landPrimitive) : null;
         }
 
 

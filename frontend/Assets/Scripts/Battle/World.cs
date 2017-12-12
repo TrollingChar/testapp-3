@@ -14,6 +14,7 @@ using DataTransfer.Data;
 using Geometry;
 using UnityEngine;
 using Utils.Random;
+using Collision = Collisions.Collision;
 using Object = Battle.Objects.Object;
 using Ray = Battle.Objects.Ray;
 
@@ -210,7 +211,7 @@ namespace Battle {
         }
 
 
-        public NewCollision CastRay (XY origin, XY direction, float width = 0) {
+        public Collision CastRay (XY origin, XY direction, float width = 0) {
             return null;
             /*
             var point = new CircleCollider(origin, width);
@@ -233,8 +234,8 @@ namespace Battle {
         }
 
 
-        public List<NewCollision> CastUltraRay (XY origin, XY direction, float width = 0) {
-            return new List<NewCollision>();
+        public List<Collision> CastUltraRay (XY origin, XY direction, float width = 0) {
+            return new List<Collision>();
             /*
             var point = new CircleCollider(origin, width);
             point.Object = new NullObject();

@@ -31,7 +31,7 @@ namespace Battle.Objects {
         }
 
 
-        public NewCollision Cast (XY direction, bool removeColliders = true) {
+        public Collision Cast (XY direction, bool removeColliders = true) {
             Velocity = direction;
             var collision = NextCollision(1f);
             if (removeColliders) RemoveColliders();

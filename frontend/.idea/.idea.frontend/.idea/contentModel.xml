@@ -234,7 +234,7 @@
             <e p="World.cs" t="Include" />
           </e>
           <e p="Collisions" t="Include">
-            <e p="NewCollision.cs" t="Include" />
+            <e p="Collision.cs" t="Include" />
           </e>
           <e p="Core" t="Include">
             <e p="Context.cs" t="Include" />
