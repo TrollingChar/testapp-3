@@ -3,14 +3,12 @@ using System.Linq;
 using Battle.Objects.CollisionHandlers;
 using Battle.Objects.Controllers;
 using Battle.Objects.Explosives;
-using Battle.Physics.Collisions;
 using Collisions;
 using Core;
 using DataTransfer.Data;
 using Geometry;
 using UnityEngine;
 using Collider = Battle.Physics.Collisions.Collider;
-using Collision = Battle.Physics.Collisions.Collision;
 
 
 namespace Battle.Objects {

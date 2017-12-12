@@ -1,8 +1,6 @@
-﻿using Battle.Objects.Projectiles;
-using Battle.State;
+﻿using Battle.State;
 using Core;
 using DataTransfer.Data;
-using UnityEngine;
 
 
 namespace Battle.Objects.Controllers {

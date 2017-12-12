@@ -1,9 +1,7 @@
-﻿using System.Linq;
-using Battle.Physics.Collisions;
+﻿using Battle.Physics.Collisions;
 using Collisions;
 using Geometry;
 using UnityEngine;
-using Primitive = Geometry.Primitive;
 
 
 namespace Battle.Physics {

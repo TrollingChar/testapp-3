@@ -1,11 +1,9 @@
 ﻿using System;
-using Assets;
 using Attributes;
 using Battle.Objects.Projectiles;
 using Battle.Weapons.Crosshairs;
-using Geometry;
-using UnityEngine;
 using Core;
+using UnityEngine;
 
 
 namespace Battle.Weapons.WeaponTypes.Launched {

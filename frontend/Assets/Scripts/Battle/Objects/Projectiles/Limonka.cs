@@ -6,7 +6,6 @@ using Core;
 using Geometry;
 using UnityEngine;
 using UnityEngine.UI;
-using BoxCollider = Battle.Physics.Collisions.BoxCollider;
 
 
 namespace Battle.Objects.Projectiles {

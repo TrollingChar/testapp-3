@@ -1,7 +1,4 @@
 ﻿using System;
-using Battle.Objects;
-using Geometry;
-using UnityEngine;
 
 
 namespace Battle.Physics.Collisions {

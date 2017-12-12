@@ -1,10 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Battle.Generation;
+﻿using Battle.Generation;
 using Battle.Physics.Collisions;
 using Geometry;
 using UnityEngine;
-using Collision = Battle.Physics.Collisions.Collision;
 
 
 namespace Battle.Physics {

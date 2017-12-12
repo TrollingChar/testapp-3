@@ -1,5 +1,4 @@
-﻿using Assets;
-using Battle.Objects.CollisionHandlers;
+﻿using Battle.Objects.CollisionHandlers;
 using Battle.Objects.Controllers;
 using Battle.Objects.Explosives;
 using Battle.Physics.Collisions;

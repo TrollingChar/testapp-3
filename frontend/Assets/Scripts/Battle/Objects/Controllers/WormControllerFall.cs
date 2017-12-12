@@ -1,7 +1,6 @@
 ﻿using Battle.Objects.CollisionHandlers;
 using Core;
 using DataTransfer.Data;
-using UnityEngine;
 
 
 namespace Battle.Objects.Controllers {

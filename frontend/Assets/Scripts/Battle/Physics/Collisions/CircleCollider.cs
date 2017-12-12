@@ -1,8 +1,6 @@
 ﻿using System;
 using Collisions;
 using Geometry;
-using UnityEditor;
-using UnityEngine;
 
 
 namespace Battle.Physics.Collisions {
@@ -48,11 +46,11 @@ namespace Battle.Physics.Collisions {
         }
 
 
-        private bool CollideWithPoint (Circle c, ref XY v, XY point, ref Geometry.Primitive primitive) {
+        private bool CollideWithPoint (Circle c, ref XY v, XY point, ref Primitive primitive) {
             float dist = Geom.RayToCircle(c.Center, v, point, c.Radius);
             if (float.IsNaN(dist) || dist < 0 || dist * dist >= v.SqrLength) return false;
             v.Length = dist;
-            primitive = Geometry.Primitive.Circle(point);
+            primitive = Primitive.Circle(point);
             return true;
         }
 
@@ -65,8 +63,8 @@ namespace Battle.Physics.Collisions {
                 XY.NaN,
                 this,
                 c,
-                Geometry.Primitive.Circle(Circle),
-                Geometry.Primitive.Circle(c.Circle)
+                Primitive.Circle(Circle),
+                Primitive.Circle(c.Circle)
             );
         }
 
@@ -76,7 +74,7 @@ namespace Battle.Physics.Collisions {
             var box = c.Box;
 
             bool collided = false;
-            var primitive = Geometry.Primitive.None;
+            var primitive = Primitive.None;
 
             XY point;
 
@@ -87,7 +85,7 @@ namespace Battle.Physics.Collisions {
                 if (box.Bottom <= y && y <= box.Top) {
                     collided = true;
                     velocity *= dist;
-                    primitive = Geometry.Primitive.Left(box.Left);
+                    primitive = Primitive.Left(box.Left);
                 }
             }
 
@@ -98,7 +96,7 @@ namespace Battle.Physics.Collisions {
                 if (box.Bottom <= y && y <= box.Top) {
                     collided = true;
                     velocity *= dist;
-                    primitive = Geometry.Primitive.Right(box.Right);
+                    primitive = Primitive.Right(box.Right);
                 }
             }
 
@@ -109,7 +107,7 @@ namespace Battle.Physics.Collisions {
                 if (box.Left <= x && x <= box.Right) {
                     collided = true;
                     velocity *= dist;
-                    primitive = Geometry.Primitive.Top(box.Top);
+                    primitive = Primitive.Top(box.Top);
                 }
             }
 
@@ -120,7 +118,7 @@ namespace Battle.Physics.Collisions {
                 if (box.Left <= x && x <= box.Right) {
                     collided = true;
                     velocity *= dist;
-                    primitive = Geometry.Primitive.Bottom(box.Bottom);
+                    primitive = Primitive.Bottom(box.Bottom);
                 }
             }
 
@@ -138,7 +136,7 @@ namespace Battle.Physics.Collisions {
             }
 
             return collided
-                ? new NewCollision(velocity, XY.NaN, this, c, Geometry.Primitive.Circle(circle), primitive)
+                ? new NewCollision(velocity, XY.NaN, this, c, Primitive.Circle(circle), primitive)
                 : null;
         }
 

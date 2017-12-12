@@ -1,7 +1,6 @@
 ﻿using Attributes;
 using Battle.Weapons.Crosshairs;
 using Core;
-using UnityEngine;
 
 
 namespace Battle.Weapons.WeaponTypes.Firearms {

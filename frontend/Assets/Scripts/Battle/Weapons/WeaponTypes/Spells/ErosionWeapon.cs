@@ -1,5 +1,4 @@
-﻿using Assets;
-using Attributes;
+﻿using Attributes;
 using Battle.Weapons.Crosshairs;
 using Core;
 

@@ -106,7 +106,6 @@
                 <e p="BoxCollider.cs" t="Include" />
                 <e p="CircleCollider.cs" t="Include" />
                 <e p="Collider.cs" t="Include" />
-                <e p="Collision.cs" t="Include" />
                 <e p="PhysicsCore.cs" t="Include" />
               </e>
               <e p="Land.cs" t="Include" />

@@ -5,17 +5,15 @@ using System.Linq;
 using Battle.Arsenals;
 using Battle.Generation;
 using Battle.Objects;
-using Battle.Objects.Projectiles;
 using Battle.Physics;
 using Battle.Physics.Collisions;
 using Battle.Teams;
+using Collisions;
 using Core;
 using DataTransfer.Data;
 using Geometry;
 using UnityEngine;
 using Utils.Random;
-using Collider = Battle.Physics.Collisions.Collider;
-using Collision = Battle.Physics.Collisions.Collision;
 using Object = Battle.Objects.Object;
 using Ray = Battle.Objects.Ray;
 
@@ -212,7 +210,7 @@ namespace Battle {
         }
 
 
-        public Collision CastRay (XY origin, XY direction, float width = 0) {
+        public NewCollision CastRay (XY origin, XY direction, float width = 0) {
             return null;
             /*
             var point = new CircleCollider(origin, width);
@@ -235,8 +233,8 @@ namespace Battle {
         }
 
 
-        public List<Collision> CastUltraRay (XY origin, XY direction, float width = 0) {
-            return new List<Collision>();
+        public List<NewCollision> CastUltraRay (XY origin, XY direction, float width = 0) {
+            return new List<NewCollision>();
             /*
             var point = new CircleCollider(origin, width);
             point.Object = new NullObject();

@@ -1,6 +1,6 @@
 ﻿using System;
-using UnityEngine;
 using Core;
+using UnityEngine;
 
 
 namespace Battle.State {

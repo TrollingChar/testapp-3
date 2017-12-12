@@ -1,8 +1,6 @@
 ﻿using System;
+using Battle.Physics.Collisions;
 using Geometry;
-using UnityEngine;
-using Collider = Battle.Physics.Collisions.Collider;
-using Primitive = Geometry.Primitive;
 
 
 namespace Collisions {

@@ -1,9 +1,4 @@
-﻿using Battle.Objects.Controllers;
-using UnityEngine;
-using Collision = Battle.Physics.Collisions.Collision;
-
-
-namespace Battle.Objects.CollisionHandlers {
+﻿namespace Battle.Objects.CollisionHandlers {
 
     public class WormStandCollisionHandler : CollisionHandler {
 
