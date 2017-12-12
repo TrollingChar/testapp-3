@@ -24,8 +24,9 @@ namespace Battle.Physics.Collisions {
 
 
         public float Radius { get; private set; }
+
         public Circle Circle {
-            get {return new Circle(Center, Radius);}
+            get { return new Circle(Center, Radius); }
         }
 
 
@@ -78,7 +79,7 @@ namespace Battle.Physics.Collisions {
             var primitive = Geometry.Primitive.None;
 
             XY point;
-            
+
             point = new XY(circle.Center.X + circle.Radius, circle.Center.Y);
             if (point.X <= box.Left && point.X + velocity.X > box.Left) {
                 float dist = Geom.RayTo1D(point.X, velocity.X, box.Left);
@@ -89,7 +90,7 @@ namespace Battle.Physics.Collisions {
                     primitive = Geometry.Primitive.Left(box.Left);
                 }
             }
-            
+
             point = new XY(circle.Center.X - circle.Radius, circle.Center.Y);
             if (point.X >= box.Right && point.X + velocity.X < box.Right) {
                 float dist = Geom.RayTo1D(point.X, velocity.X, box.Right);
@@ -100,7 +101,7 @@ namespace Battle.Physics.Collisions {
                     primitive = Geometry.Primitive.Right(box.Right);
                 }
             }
-            
+
             point = new XY(circle.Center.X, circle.Center.Y - circle.Radius);
             if (point.Y >= box.Top && point.Y + velocity.Y < box.Top) {
                 float dist = Geom.RayTo1D(point.Y, velocity.Y, box.Top);
@@ -111,7 +112,7 @@ namespace Battle.Physics.Collisions {
                     primitive = Geometry.Primitive.Top(box.Top);
                 }
             }
-            
+
             point = new XY(circle.Center.X, circle.Center.Y + circle.Radius);
             if (point.Y <= box.Bottom && point.Y + velocity.Y > box.Bottom) {
                 float dist = Geom.RayTo1D(point.Y, velocity.Y, box.Bottom);
@@ -136,7 +137,7 @@ namespace Battle.Physics.Collisions {
                 collided |= CollideWithPoint(circle, ref velocity, new XY(box.Right, box.Bottom), ref primitive);
             }
 
-            return collided 
+            return collided
                 ? new NewCollision(velocity, XY.NaN, this, c, Geometry.Primitive.Circle(circle), primitive)
                 : null;
         }
@@ -161,7 +162,7 @@ namespace Battle.Physics.Collisions {
 
 
         public override bool Overlaps (BoxCollider c) {
-            XY o = Center;
+            var o = Center;
             return XY.SqrDistance(o, o.Clamped(c.Box)) < Radius * Radius;
         }
 

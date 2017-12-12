@@ -10,15 +10,18 @@ namespace Geometry {
                 if (Mathf.Abs(Mathf.DeltaAngle(angle, 0)) < 90) {
                     isRight = true;
                     angle = Mathf.LerpAngle(0, angle, lerpCoeff);
-                } else {
+                }
+                else {
                     isRight = false;
                     angle = Mathf.LerpAngle(0, angle - 180, lerpCoeff);
                 }
-            } else {
+            }
+            else {
                 if (Mathf.Abs(Mathf.DeltaAngle(angle, 180)) < 90) {
                     isRight = true;
                     angle = Mathf.LerpAngle(0, -angle - 180, lerpCoeff);
-                } else {
+                }
+                else {
                     isRight = false;
                     angle = Mathf.LerpAngle(0, -angle, lerpCoeff);
                 }

@@ -50,7 +50,7 @@ namespace Battle {
 
         public void Update (TurnData td) {
 //            if (Time % 500 == 0 && td != null && td.MB) {
-            
+
 //            }
 //            if (Time % 400 == 0 && td != null && td.MB) {
 //                Spawn(new Limonka(10), td.XY, new XY(0, 3 + 3 * RNG.Float()).Rotated(RNG.Float() - RNG.Float()));
@@ -71,7 +71,8 @@ namespace Battle {
                     var next = node.Next;
                     _objects.Remove(node);
                     node = next;
-                } else {
+                }
+                else {
                     node = node.Next;
                 }
             }
@@ -84,20 +85,20 @@ namespace Battle {
             string s = "";
             var mouseXY = The.Camera.WorldMousePosition;
 
-            var x = Mathf.FloorToInt(mouseXY.X);
-            var y = Mathf.FloorToInt(mouseXY.Y);
+            int x = Mathf.FloorToInt(mouseXY.X);
+            int y = Mathf.FloorToInt(mouseXY.Y);
             s += "pixel: (" + x + ", " + y + ") " + (Land[x, y] == 0 ? "empty" : "solid") + "\n\n";
 
-            var landTileX = Mathf.FloorToInt(mouseXY.X / LandTile.Size);
-            var landTileY = Mathf.FloorToInt(mouseXY.Y / LandTile.Size);
+            int landTileX = Mathf.FloorToInt(mouseXY.X / LandTile.Size);
+            int landTileY = Mathf.FloorToInt(mouseXY.Y / LandTile.Size);
             s +=
                 "land tile: (" + landTileX + ", " + landTileY + ")\n" +
                 "land amount: " + Land.Tiles[landTileX, landTileY].Land + "\n" +
                 "vertices count: " + Land.Tiles[landTileX, landTileY].Vertices.Count + "\n" +
                 "\n";
 
-            var tileX = Mathf.FloorToInt(mouseXY.X / Tile.Size);
-            var tileY = Mathf.FloorToInt(mouseXY.Y / Tile.Size);
+            int tileX = Mathf.FloorToInt(mouseXY.X / Tile.Size);
+            int tileY = Mathf.FloorToInt(mouseXY.Y / Tile.Size);
             s += "colliders:";
             if (Tiles[tileX, tileY].Colliders.Count == 0) {
                 s += " none";
@@ -153,7 +154,7 @@ namespace Battle {
                     o.Movement -= Mathf.Sqrt(collision.Offset.SqrLength / o.Velocity.SqrLength);
 
                     var invCollision = -collision;
-                    
+
                     if (o2.WillCauseCollision(invCollision)) {
                         var c1 = collision.Collider1;
                         var c2 = collision.Collider2;
@@ -164,7 +165,7 @@ namespace Battle {
                             Mathf.Sqrt(c1.NormalBounce * c2.NormalBounce)
                         );
                     }
-                    
+
                     o.OnCollision(collision);
                     o2.OnCollision(invCollision);
                 }
@@ -172,7 +173,7 @@ namespace Battle {
                     // обычное столкновение объектов с одинаковым порядком массы
                     o.Position += collision.Offset.WithLengthReduced(Settings.PhysicsPrecision);
                     o.Movement -= Mathf.Sqrt(collision.Offset.SqrLength / o.Velocity.SqrLength);
-                    
+
                     // мешает ли второй объект движению первого, если нет то пусть сначала сдвинется он
                     if (XY.Dot(collision.Normal, o2.Velocity) > 0 ||
                         o2.Movement * o2.Velocity.Length <= Settings.PhysicsPrecision
@@ -194,12 +195,12 @@ namespace Battle {
                             if (o2wcc) o.Velocity = velocity + Geom.Bounce(v1, collision.Normal, tangBounce, normBounce);
                             if (owcc) o2.Velocity = velocity + Geom.Bounce(v2, collision.Normal, tangBounce, normBounce);
                         }
-                        
+
                         o.OnCollision(collision);
                         o2.OnCollision(invCollision);
                     }
                 }
-                
+
                 if (o.Position.Y < WaterLevel) o.Remove();
             }
 

@@ -64,7 +64,8 @@ namespace Battle.Weapons {
                 if (!Removable) LockArsenal();
                 GameTimer.Frozen = true;
                 if (ConstPower || ++Power >= 50) BeginAttack();
-            } else {
+            }
+            else {
                 _ready = true;
                 // if we released button while holding grenade, throw it
                 if (Power > 0) BeginAttack();

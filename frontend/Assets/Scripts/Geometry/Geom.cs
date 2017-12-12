@@ -22,14 +22,14 @@ namespace Geometry {
 
             return Mathf.Sqrt(oc.SqrLength - h2) - Mathf.Sqrt(r * r - h2);
         }
-        
-        
+
+
         public static XY Bounce (XY velocity, XY normal, float tangentialBounce, float normalBounce) {
             var tangent = normal.Rotated90CW();
             var convertedVelocity = ConvertToBasis(velocity, tangent, normal);
-            
+
             return tangent * tangentialBounce * convertedVelocity.X
-                 - normal  * normalBounce     * convertedVelocity.Y;
+                - normal * normalBounce * convertedVelocity.Y;
         }
 
 

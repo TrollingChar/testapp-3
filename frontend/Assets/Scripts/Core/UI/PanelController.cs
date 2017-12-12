@@ -23,7 +23,8 @@ namespace Core.UI {
                 if (CurrOpenness >= FullOpenness) return;
                 ++CurrOpenness;
                 UpdatePosition();
-            } else {
+            }
+            else {
                 if (CurrOpenness <= 0) return;
                 --CurrOpenness;
                 UpdatePosition();

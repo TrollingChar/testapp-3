@@ -23,7 +23,7 @@ namespace Battle.Objects.Controllers {
 
 //            if (td != null) worm.LookAt(td.XY);
 //            worm.Name = "walk";
-            
+
             var collision = new Ray(worm.Tail.Center, new CircleCollider(XY.Zero, Worm.HeadRadius))
                 .Cast(new XY(0f, -Worm.MaxDescend));
 
@@ -51,7 +51,8 @@ namespace Battle.Objects.Controllers {
                 if (td.S) {
                     Object.Velocity = new XY(0f, Worm.HighJumpSpeed);
                     if (td.A ^ td.D) Object.Velocity.Rotate(td.A ? Worm.HighJumpAngle : -Worm.HighJumpAngle);
-                } else {
+                }
+                else {
                     Object.Velocity =
                         new XY(0f, Worm.JumpSpeed).Rotated(worm.FacesRight ? -Worm.JumpAngle : Worm.JumpAngle);
                 }
@@ -87,7 +88,8 @@ namespace Battle.Objects.Controllers {
                     if (fall) {
                         Object.Position += new XY(xOffset, 0f);
                         Object.Controller = new WormControllerJump();
-                    } else if (World.Precision < -yOffset) {
+                    }
+                    else if (World.Precision < -yOffset) {
                         Object.Position += new XY(xOffset, Worm.MaxClimb + yOffset + World.Precision);
                     } // else: cliff too high, cannot climb
                     return;

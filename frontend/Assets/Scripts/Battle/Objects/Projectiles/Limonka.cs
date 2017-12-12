@@ -37,7 +37,7 @@ namespace Battle.Objects.Projectiles {
             var timerText = UnityEngine.Object.Instantiate(assets.Text, canvas.transform, false).GetComponent<Text>();
 
             UnityEngine.Object.Instantiate(assets.Limonka, transform, false);
-            
+
 //            AddCollider(new BoxCollider(-5, 5, -5, 5));
             AddCollider(new CircleCollider(XY.Zero, 5f));
             Explosive = new ClusterSpawner();

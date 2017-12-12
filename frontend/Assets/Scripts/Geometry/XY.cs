@@ -95,9 +95,8 @@ namespace Geometry {
                     l = value / l;
                     X *= l;
                     Y *= l;
-                } else {
-                    Y = l;
                 }
+                else Y = l;
             }
         }
 
@@ -254,13 +253,13 @@ namespace Geometry {
         }
 
 
-        public void Clamp(Box b) {
+        public void Clamp (Box b) {
             X = Mathf.Clamp(X, b.Left, b.Right);
             Y = Mathf.Clamp(Y, b.Bottom, b.Top);
         }
 
 
-        public XY Clamped(Box b) {
+        public XY Clamped (Box b) {
             return new XY(
                 Mathf.Clamp(X, b.Left, b.Right),
                 Mathf.Clamp(Y, b.Bottom, b.Top)

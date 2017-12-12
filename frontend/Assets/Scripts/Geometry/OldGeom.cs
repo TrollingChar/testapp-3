@@ -64,12 +64,12 @@ namespace Geometry {
             float boxBottom,
             float boxTop
         ) {
-            XY closestPoint = new XY(
+            var closestPoint = new XY(
                 Mathf.Clamp(circleCenter.X, boxLeft, boxRight),
                 Mathf.Clamp(circleCenter.Y, boxBottom, boxTop)
             );
             return XY.SqrDistance(circleCenter, closestPoint) < circleRadius * circleRadius;
-            
+
             // если окружность полностью внутри прямоугольника
             if (circleCenter.X > boxLeft && circleCenter.X < boxRight &&
                 circleCenter.Y > boxBottom && circleCenter.Y < boxTop) {

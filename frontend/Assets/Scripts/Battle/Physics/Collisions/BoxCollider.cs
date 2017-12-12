@@ -14,7 +14,7 @@ namespace Battle.Physics.Collisions {
         private readonly float _topOffset;
 
 
-        public BoxCollider(float left, float right, float bottom, float top) {
+        public BoxCollider (float left, float right, float bottom, float top) {
             _topOffset = top;
             _leftOffset = left;
             _rightOffset = right;
@@ -26,27 +26,27 @@ namespace Battle.Physics.Collisions {
             get { return _leftOffset + Object.Position.X; }
         }
 
-        
+
         public float Right {
             get { return _rightOffset + Object.Position.X; }
         }
 
-        
+
         public float Bottom {
             get { return _bottomOffset + Object.Position.Y; }
         }
 
-        
+
         public float Top {
             get { return _topOffset + Object.Position.Y; }
         }
 
-        
+
         public Box Box {
             get { return new Box(Left, Right, Bottom, Top); }
         }
 
-        
+
         public override AABBF AABB {
             get { return new AABBF(Left, Right, Bottom, Top); }
         }
@@ -69,7 +69,8 @@ namespace Battle.Physics.Collisions {
             var p1 = Geometry.Primitive.None;
             var p2 = Geometry.Primitive.None;
 
-            if (box.Right <= cBox.Left && box.Right + velocity.X > cBox.Left) { // vx > 0
+            if (box.Right <= cBox.Left && box.Right + velocity.X > cBox.Left) {
+                // vx > 0
                 float dist = Geom.RayTo1D(box.Right, velocity.X, cBox.Left);
                 float dy = velocity.Y * dist;
                 if (box.Bottom + dy < cBox.Top && box.Top + dy > cBox.Bottom) {
@@ -79,7 +80,8 @@ namespace Battle.Physics.Collisions {
                     p2 = Geometry.Primitive.Left(cBox.Left);
                 }
             }
-            if (box.Left >= cBox.Right && box.Left + velocity.X < cBox.Right) { // vx < 0
+            if (box.Left >= cBox.Right && box.Left + velocity.X < cBox.Right) {
+                // vx < 0
                 float dist = Geom.RayTo1D(box.Left, velocity.X, cBox.Right);
                 float dy = velocity.Y * dist;
                 if (box.Bottom + dy < cBox.Top && box.Top + dy > cBox.Bottom) {
@@ -89,7 +91,8 @@ namespace Battle.Physics.Collisions {
                     p2 = Geometry.Primitive.Right(cBox.Right);
                 }
             }
-            if (box.Top <= cBox.Bottom && box.Top + velocity.Y > cBox.Bottom) { // vy > 0
+            if (box.Top <= cBox.Bottom && box.Top + velocity.Y > cBox.Bottom) {
+                // vy > 0
                 float dist = Geom.RayTo1D(box.Top, velocity.Y, cBox.Bottom);
                 float dx = velocity.X * dist;
                 if (box.Left + dx < cBox.Right && box.Right + dx > cBox.Left) {
@@ -99,7 +102,8 @@ namespace Battle.Physics.Collisions {
                     p2 = Geometry.Primitive.Bottom(cBox.Bottom);
                 }
             }
-            if (box.Bottom >= cBox.Top && box.Bottom + velocity.Y < cBox.Top) { // vy < 0
+            if (box.Bottom >= cBox.Top && box.Bottom + velocity.Y < cBox.Top) {
+                // vy < 0
                 float dist = Geom.RayTo1D(box.Bottom, velocity.Y, cBox.Top);
                 float dx = velocity.X * dist;
                 if (box.Left + dx < cBox.Right && box.Right + dx > cBox.Left) {
@@ -125,9 +129,8 @@ namespace Battle.Physics.Collisions {
         }
 
 
-        public override bool Overlaps (CircleCollider c)
-        {
-            XY o = c.Center;
+        public override bool Overlaps (CircleCollider c) {
+            var o = c.Center;
             return XY.SqrDistance(o, o.Clamped(Box)) < c.Radius * c.Radius;
         }
 

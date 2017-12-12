@@ -48,7 +48,8 @@ namespace Battle.Weapons.WeaponTypes.Firearms {
             if (collision.Collider2 == null) {
                 // todo: CREATE terrain in shape of arrow
                 The.World.DestroyTerrain(Object.Position + collision.Offset, 5f);
-            } else {
+            }
+            else {
                 var target = collision.Collider2.Object;
                 target.GetDamage(2);
                 target.ReceiveBlastWave(direction.WithLength(3f));

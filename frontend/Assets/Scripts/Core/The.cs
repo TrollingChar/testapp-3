@@ -11,17 +11,17 @@ using Net;
 namespace Core {
 
     public static class The {
-        
+
         public static SceneSwitcher SceneSwitcher;
         public static Connection Connection;
         public static PlayerInfo PlayerInfo;
 
         public static BattleAssets BattleAssets;
         public static WeaponIcons WeaponIcons;
-        
+
         public static MenuScene MenuScene;
         public static BattleScene BattleScene;
-        
+
         public static World World;
         public static TimerWrapper TimerWrapper;
         public static ActiveWormWrapper ActiveWorm;

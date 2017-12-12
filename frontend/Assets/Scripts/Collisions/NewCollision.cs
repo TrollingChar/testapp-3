@@ -36,8 +36,8 @@ namespace Collisions {
             PrimitiveUtils.GetOffsetNormal(Primitive1, Primitive2, ref Offset, out Normal);
         }
 
-        
-        public int CompareTo(NewCollision other) {
+
+        public int CompareTo (NewCollision other) {
             return other == null ? -1 : Offset.SqrLength.CompareTo(other.Offset.SqrLength);
         }
 
@@ -93,6 +93,7 @@ namespace Collisions {
             if (b == null) return false;
             return a.Offset.SqrLength >= b.Offset.SqrLength;
         }
+
     }
 
 }
