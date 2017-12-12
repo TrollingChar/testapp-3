@@ -1,5 +1,5 @@
 ﻿using Battle.Generation;
-using Battle.Physics.Collisions;
+using Collisions;
 using Geometry;
 using UnityEngine;
 

@@ -8,7 +8,7 @@ using Core;
 using DataTransfer.Data;
 using Geometry;
 using UnityEngine;
-using Collider = Battle.Physics.Collisions.Collider;
+using Collider = Collisions.Collider;
 using Collision = Collisions.Collision;
 
 

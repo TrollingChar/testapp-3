@@ -1,7 +1,7 @@
 ﻿using Battle.Objects.CollisionHandlers;
 using Battle.Objects.Controllers;
 using Battle.Objects.Explosives;
-using Battle.Physics.Collisions;
+using Collisions;
 using Core;
 using Geometry;
 using UnityEngine;

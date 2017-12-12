@@ -1,5 +1,5 @@
-﻿using Battle.Physics.Collisions;
-using Battle.State;
+﻿using Battle.State;
+using Collisions;
 using Core;
 using DataTransfer.Data;
 using Geometry;

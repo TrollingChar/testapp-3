@@ -6,7 +6,6 @@ using Battle.Arsenals;
 using Battle.Generation;
 using Battle.Objects;
 using Battle.Physics;
-using Battle.Physics.Collisions;
 using Battle.Teams;
 using Collisions;
 using Core;

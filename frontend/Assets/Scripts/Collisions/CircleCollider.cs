@@ -1,9 +1,9 @@
 ﻿using System;
-using Collisions;
+using Battle.Physics;
 using Geometry;
 
 
-namespace Battle.Physics.Collisions {
+namespace Collisions {
 
     public class CircleCollider : Collider {
 

@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Battle.Physics.Collisions;
+using Collisions;
 
 
 namespace Battle.Physics {

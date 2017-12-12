@@ -2,7 +2,7 @@
 using UnityEngine;
 
 
-namespace Battle.Physics.Collisions {
+namespace Collisions {
 
     public struct AABBF {
 

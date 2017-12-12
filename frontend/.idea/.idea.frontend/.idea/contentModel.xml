@@ -101,13 +101,6 @@
               <e p="Worm.cs" t="Include" />
             </e>
             <e p="Physics" t="Include">
-              <e p="Collisions" t="Include">
-                <e p="AABB.cs" t="Include" />
-                <e p="BoxCollider.cs" t="Include" />
-                <e p="CircleCollider.cs" t="Include" />
-                <e p="Collider.cs" t="Include" />
-                <e p="PhysicsCore.cs" t="Include" />
-              </e>
               <e p="Land.cs" t="Include" />
               <e p="LandCollisions.cs" t="Include" />
               <e p="LandRenderer.cs" t="Include" />
@@ -234,6 +227,10 @@
             <e p="World.cs" t="Include" />
           </e>
           <e p="Collisions" t="Include">
+            <e p="AABB.cs" t="Include" />
+            <e p="BoxCollider.cs" t="Include" />
+            <e p="CircleCollider.cs" t="Include" />
+            <e p="Collider.cs" t="Include" />
             <e p="Collision.cs" t="Include" />
           </e>
           <e p="Core" t="Include">

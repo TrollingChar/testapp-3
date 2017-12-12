@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
+using Battle;
 using Battle.Objects;
-using Collisions;
+using Battle.Physics;
 using Core;
 using Geometry;
 
 
-namespace Battle.Physics.Collisions {
+namespace Collisions {
 
     public abstract class Collider : Component {
 

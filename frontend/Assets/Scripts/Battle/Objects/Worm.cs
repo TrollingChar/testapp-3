@@ -1,14 +1,14 @@
 ﻿using Battle.Objects.Controllers;
 using Battle.Objects.GameObjects;
-using Battle.Physics.Collisions;
 using Battle.Teams;
 using Battle.Weapons;
+using Collisions;
 using Core;
 using Geometry;
 using UnityEngine;
 using UnityEngine.UI;
 using Utils.Random;
-using BoxCollider = Battle.Physics.Collisions.BoxCollider;
+using BoxCollider = Collisions.BoxCollider;
 using UnObject = UnityEngine.Object;
 
 
