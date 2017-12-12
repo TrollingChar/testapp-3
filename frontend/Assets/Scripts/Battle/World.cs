@@ -24,7 +24,7 @@ namespace Battle {
 
     public class World {
 
-        public const float Precision = 0.1f;
+        [Obsolete] public const float Precision = 0.1f;
         private readonly LinkedList<Object> _objects;
 
         public float Gravity;
@@ -49,38 +49,9 @@ namespace Battle {
 
 
         public void Update (TurnData td) {
-
-            string s = "";
-            var mouseXY = The.Camera.WorldMousePosition;
-
-            var x = Mathf.FloorToInt(mouseXY.X);
-            var y = Mathf.FloorToInt(mouseXY.Y);
-            s += "pixel: (" + x + ", " + y + ") " + (Land[x, y] == 0 ? "empty" : "solid") + "\n\n";
-            
-            var landTileX = Mathf.FloorToInt(mouseXY.X / LandTile.Size);
-            var landTileY = Mathf.FloorToInt(mouseXY.Y / LandTile.Size);
-            s +=
-                "land tile: (" + landTileX + ", " + landTileY + ")\n" +
-                "land amount: " + Land.Tiles[landTileX, landTileY].Land + "\n" +
-                "vertices count: " + Land.Tiles[landTileX, landTileY].Vertices.Count + "\n" +
-                "\n";
-            
-            var tileX = Mathf.FloorToInt(mouseXY.X / Tile.Size);
-            var tileY = Mathf.FloorToInt(mouseXY.Y / Tile.Size);
-            s += "colliders:";
-            if (Tiles[tileX, tileY].Colliders.Count == 0) {
-                s += " none";
-            }
-            else {
-                foreach (var collider in Tiles[tileX, tileY].Colliders) s += "\n" + collider;
-            }
-            
-            The.BattleScene.ShowHint(s);
-            
 //            if (Time % 500 == 0 && td != null && td.MB) {
             
 //            }
-
 //            if (Time % 400 == 0 && td != null && td.MB) {
 //                Spawn(new Limonka(10), td.XY, new XY(0, 3 + 3 * RNG.Float()).Rotated(RNG.Float() - RNG.Float()));
 //            }
@@ -106,6 +77,36 @@ namespace Battle {
             }
 
             Time += 20;
+        }
+
+
+        private void ShowDebugInfo () {
+            string s = "";
+            var mouseXY = The.Camera.WorldMousePosition;
+
+            var x = Mathf.FloorToInt(mouseXY.X);
+            var y = Mathf.FloorToInt(mouseXY.Y);
+            s += "pixel: (" + x + ", " + y + ") " + (Land[x, y] == 0 ? "empty" : "solid") + "\n\n";
+
+            var landTileX = Mathf.FloorToInt(mouseXY.X / LandTile.Size);
+            var landTileY = Mathf.FloorToInt(mouseXY.Y / LandTile.Size);
+            s +=
+                "land tile: (" + landTileX + ", " + landTileY + ")\n" +
+                "land amount: " + Land.Tiles[landTileX, landTileY].Land + "\n" +
+                "vertices count: " + Land.Tiles[landTileX, landTileY].Vertices.Count + "\n" +
+                "\n";
+
+            var tileX = Mathf.FloorToInt(mouseXY.X / Tile.Size);
+            var tileY = Mathf.FloorToInt(mouseXY.Y / Tile.Size);
+            s += "colliders:";
+            if (Tiles[tileX, tileY].Colliders.Count == 0) {
+                s += " none";
+            }
+            else {
+                foreach (var collider in Tiles[tileX, tileY].Colliders) s += "\n" + collider;
+            }
+
+            The.BattleScene.ShowHint(s);
         }
 
 

@@ -38,8 +38,8 @@ namespace Battle.Objects.Projectiles {
 
             UnityEngine.Object.Instantiate(assets.Limonka, transform, false);
             
-            AddCollider(new BoxCollider(-5, 5, -5, 5));
-//            AddCollider(new CircleCollider(XY.Zero, 5f));
+//            AddCollider(new BoxCollider(-5, 5, -5, 5));
+            AddCollider(new CircleCollider(XY.Zero, 5f));
             Explosive = new ClusterSpawner();
             Controller = new GrenadeController(_timer * 1000, timerText);
             CollisionHandler = new CollisionHandler();

@@ -10,20 +10,13 @@ namespace Battle.Objects.CollisionHandlers {
 
         public override bool WillCauseCollision (NewCollision c) {
             // wtf
-            var worm = (Worm) Object;
-            if (c.Collider1 == worm.Tail) return false; // todo: check normal
+            if (Mathf.Abs(c.Normal.Rotated90CW().Angle) <= 1.5f) return false;
             return c.Collider2 == null || !(c.Collider2.Object.Controller is WormControllerWalk);
         }
 
 
         public override void OnCollision (NewCollision c) {
-//            if (c.Collider2 != null && c.Collider2.Object.Controller is WormControllerFall) {
-//                Object.Controller = new WormControllerFall();
-//                Debug.LogWarning("1");
-//                return;
-//            }
-            var worm = (Worm) Object;
-            if (c.Collider1 == worm.Tail) Object.Controller = new WormControllerWalk(); // todo: same
+            if (Mathf.Abs(c.Normal.Rotated90CW().Angle) <= 1.5f) Object.Controller = new WormControllerWalk();
         }
 
     }
