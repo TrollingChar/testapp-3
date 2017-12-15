@@ -98,6 +98,8 @@ namespace Battle.Objects {
 
 
         public void Remove () {
+            OnRemove();
+            
             Node.Value = _null;
             RemoveColliders();
             CollisionHandler = null;
@@ -222,6 +224,8 @@ namespace Battle.Objects {
         public virtual void ReceiveBlastWave (XY impulse) {
             Velocity += impulse;
         }
+        
+        public virtual void OnRemove() {}
 
     }
 

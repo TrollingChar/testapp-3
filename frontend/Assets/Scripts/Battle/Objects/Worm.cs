@@ -76,8 +76,8 @@ namespace Battle.Objects {
         public int HP {
             get { return _hp; }
             set {
-                _hp = value;
-                if (_hpField != null) _hpField.text = value.ToString();
+                _hp = value < 0 ? 0 : value;
+                if (_hpField != null) _hpField.text = _hp.ToString();
             }
         }
 
@@ -170,6 +170,9 @@ namespace Battle.Objects {
 
         public override void GetDamage (int damage) {
             HP -= damage;
+            if (!The.ActiveWorm.Is(this)) return;
+            The.ActiveWorm.Set(null);
+            The.TimerWrapper.Time = 0;
         }
 
 
@@ -189,6 +192,14 @@ namespace Battle.Objects {
 
         public void LandThere () {
             Controller = new WormControllerJump();
+        }
+
+
+        public override void OnRemove () {
+            HP = 0;
+            if (!The.ActiveWorm.Is(this)) return;
+            The.ActiveWorm.Set(null);
+            The.TimerWrapper.Time = 0;
         }
 
     }

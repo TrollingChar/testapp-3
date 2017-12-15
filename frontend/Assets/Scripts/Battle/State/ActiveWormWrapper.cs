@@ -34,7 +34,7 @@ namespace Battle.State {
 
 
         public void Set (Worm worm) {
-            _worm = worm;
+            Worm = worm;
         }
 
     }

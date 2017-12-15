@@ -211,31 +211,26 @@ namespace Battle {
 
 
         public Collision CastRay (XY origin, XY direction, float width = 0) {
-            return null;
-            /*
             var point = new CircleCollider(origin, width);
             point.Object = new NullObject();
 
             direction.Length = 10000; // todo: handle infinite length of the ray
 
             Collision result = null;
-
             Collision temp;
 
-            foreach (var o in _objects.Where(o => o.Colliders.TrueForAll(c => !PhysicsCore.Overlap(c, point))))
+            foreach (var o in _objects.Where(o => o.Colliders.TrueForAll(c => !c.Overlaps(point))))
             foreach (var c in o.Colliders) {
-                temp = PhysicsCore.FlyInto(point, c, direction);
+                temp = point.FlyInto(c, direction);
                 if (temp < result) result = temp;
             }
 
-            temp = null;//Land.CastRay(origin, direction, width);
-            return temp < result ? temp : result;*/
+            temp = Land.ApproxCollision(new Circle(origin, width), direction);
+            return temp < result ? temp : result;
         }
 
 
         public List<Collision> CastUltraRay (XY origin, XY direction, float width = 0) {
-            return new List<Collision>();
-            /*
             var point = new CircleCollider(origin, width);
             point.Object = new NullObject();
 
@@ -243,17 +238,17 @@ namespace Battle {
 
             var result = new List<Collision>();
 
-            foreach (var o in _objects.Where(o => o.Colliders.TrueForAll(c => !PhysicsCore.Overlap(c, point)))) {
-                // no more than one collision per object
+            foreach (var o in _objects.Where(o => o.Colliders.TrueForAll(c => !c.Overlaps(point)))) {
+                // не больше одной коллизии на объект
                 Collision min = null;
                 foreach (var c in o.Colliders) {
-                    var temp = PhysicsCore.FlyInto(point, c, direction);
+                    var temp = point.FlyInto(c, direction);
                     if (temp < min) min = temp;
                 }
                 if (min != null) result.Add(min);
             }
-            // do not cast to land because ultrawave weapons penetrate terrain
-            return result;*/
+            // ультраволны проходят землю насквозь поэтому не кастим к ней
+            return result;
         }
 
 
@@ -348,6 +343,16 @@ namespace Battle {
                 float currentImpulse = impulse * (1f - Mathf.Sqrt(sqrDistance / sqrRadius));
                 o.ReceiveBlastWave((o.Position - center).WithLength(currentImpulse));
             }
+        }
+
+
+        public bool Remove0HpWorms () {
+            var worms = _objects
+                .OfType<Worm>()
+                .Where(w => w.HP <= 0)
+                .ToList();
+            foreach (var worm in worms) worm.Remove();
+            return worms.Count > 0;
         }
 
     }

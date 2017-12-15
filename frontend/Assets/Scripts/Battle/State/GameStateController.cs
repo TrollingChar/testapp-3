@@ -65,7 +65,6 @@ namespace Battle.State {
                         break;
                     case GameState.Remove0Hp:
                         _battle.Remove0Hp();
-//                    Remove0Hp();
                         NextState = timer.HasElapsed ? GameState.BeforeTurn : GameState.Remove0Hp; // special case
                         break;
                     default: throw new ArgumentOutOfRangeException();

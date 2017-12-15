@@ -6,6 +6,7 @@ using Geometry;
 
 namespace Battle.Objects {
 
+    [Obsolete]
     public class Ray : Object {
 
         public Ray (XY position) : this(position, new CircleCollider(XY.Zero, 0)) {}

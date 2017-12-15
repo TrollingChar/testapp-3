@@ -200,7 +200,7 @@ namespace Battle.Physics {
             return dist < 1
                 ? new Collision(v, normal, null, null)
                 : null;
-        }*/
+        }
 
 /*
         public Collision CastRectRay (float left, float right, float bottom, float top, XY v) {

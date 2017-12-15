@@ -107,7 +107,6 @@
               <e p="LandRendererTile.cs" t="Include" />
               <e p="LandTile.cs" t="Include" />
               <e p="LandTiles.cs" t="Include" />
-              <e p="laws-of-collisions.txt" t="Include" />
               <e p="Tile.cs" t="Include" />
               <e p="Tiles.cs" t="Include" />
             </e>

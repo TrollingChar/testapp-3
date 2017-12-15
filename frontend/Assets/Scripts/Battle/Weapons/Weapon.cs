@@ -106,7 +106,7 @@ namespace Battle.Weapons {
         }
 
 
-        protected void InitRetreat (int milliseconds) {
+        public void InitRetreat (int milliseconds) {
             _weaponWrapper.LockAndUnequip();
             GameTimer.Time = milliseconds;
             GameTimer.Frozen = false;

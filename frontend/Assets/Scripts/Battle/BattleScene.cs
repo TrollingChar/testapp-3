@@ -192,7 +192,7 @@ namespace Battle {
 
 
         public void Remove0Hp () {
-            // remove worms with 0 hp
+            if (World.Remove0HpWorms()) Timer.Wait(500);
         }
 
     }
