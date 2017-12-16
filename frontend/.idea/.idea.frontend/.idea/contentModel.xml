@@ -20,7 +20,6 @@
               <e p="Unity3DRider.cs" t="Include" />
             </e>
           </e>
-          <e p="WebSocket.cs" t="Include" />
         </e>
         <e p="Scripts" t="Include">
           <e p="Assets" t="Include">
@@ -48,10 +47,6 @@
               <e p="CameraWrapper.cs" t="Include" />
               <e p="MouseBasedCameraController.cs" t="Include" />
               <e p="ObjectBoundCameraController.cs" t="Include" />
-            </e>
-            <e p="Generation" t="Include">
-              <e p="EstimatedLandGen.cs" t="Include" />
-              <e p="LandGen.cs" t="Include" />
             </e>
             <e p="Objects" t="Include">
               <e p="CollisionHandlers" t="Include">
@@ -100,16 +95,6 @@
               <e p="Ray.cs" t="Include" />
               <e p="Worm.cs" t="Include" />
             </e>
-            <e p="Physics" t="Include">
-              <e p="Land.cs" t="Include" />
-              <e p="LandCollisions.cs" t="Include" />
-              <e p="LandRenderer.cs" t="Include" />
-              <e p="LandRendererTile.cs" t="Include" />
-              <e p="LandTile.cs" t="Include" />
-              <e p="LandTiles.cs" t="Include" />
-              <e p="Tile.cs" t="Include" />
-              <e p="Tiles.cs" t="Include" />
-            </e>
             <e p="State" t="Include">
               <e p="ActiveWormWrapper.cs" t="Include" />
               <e p="GameState.cs" t="Include" />
@@ -121,6 +106,20 @@
               <e p="Team.cs" t="Include" />
               <e p="TeamColors.cs" t="Include" />
               <e p="TeamManager.cs" t="Include" />
+            </e>
+            <e p="Terrain" t="Include">
+              <e p="Generation" t="Include">
+                <e p="EstimatedLandGen.cs" t="Include" />
+                <e p="LandGen.cs" t="Include" />
+              </e>
+              <e p="Land.cs" t="Include" />
+              <e p="LandCollisions.cs" t="Include" />
+              <e p="LandRenderer.cs" t="Include" />
+              <e p="LandRendererTile.cs" t="Include" />
+              <e p="LandTile.cs" t="Include" />
+              <e p="LandTiles.cs" t="Include" />
+              <e p="Tile.cs" t="Include" />
+              <e p="Tiles.cs" t="Include" />
             </e>
             <e p="UI" t="Include">
               <e p="ArsenalPanel.cs" t="Include" />

@@ -25,7 +25,7 @@ namespace Core {
         public static World World;
         public static TimerWrapper TimerWrapper;
         public static ActiveWormWrapper ActiveWorm;
-        public static GameStateController GameStateController;
+        public static GameStateController GameState;
         public static WeaponWrapper WeaponWrapper;
         public static TeamManager TeamManager;
         public static ArsenalPanel ArsenalPanel;

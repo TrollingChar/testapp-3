@@ -170,9 +170,19 @@ namespace Battle.Objects {
 
         public override void GetDamage (int damage) {
             HP -= damage;
-            if (!The.ActiveWorm.Is(this)) return;
-            The.ActiveWorm.Set(null);
-            The.TimerWrapper.Time = 0;
+            OnDamage();
+        }
+
+
+        private void OnDamage () {
+            var activeWorm = The.ActiveWorm;
+            if (!activeWorm.Is(this)) return;
+            if (Weapon != null) {
+                Weapon.InitRetreat(0);
+                Weapon.Unequip();
+            }
+            activeWorm.Set(null);
+            Weapon = null;
         }
 
 
@@ -197,9 +207,7 @@ namespace Battle.Objects {
 
         public override void OnRemove () {
             HP = 0;
-            if (!The.ActiveWorm.Is(this)) return;
-            The.ActiveWorm.Set(null);
-            The.TimerWrapper.Time = 0;
+            OnDamage();
         }
 
     }

@@ -11,6 +11,7 @@ namespace Battle.Objects.Controllers {
 
         protected override void DoUpdate (TurnData td) {
             Object.Velocity.Y += _gravity;
+            Wait();
         }
 
     }

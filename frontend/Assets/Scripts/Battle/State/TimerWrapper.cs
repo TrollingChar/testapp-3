@@ -32,7 +32,7 @@ namespace Battle.State {
 
 
         public void Wait (int milliseconds) {
-//            if (_battle.State.Is(GameState.Turn)) return;
+            if (The.GameState.CurrentState == GameState.Turn) return;
             if (Time < milliseconds) Time = milliseconds;
         }
 

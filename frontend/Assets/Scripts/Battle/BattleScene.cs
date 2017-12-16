@@ -144,7 +144,7 @@ namespace Battle {
             NewTurnCmd.OnReceived.Unsubscribe(PrepareTurn);
             TurnDataSCmd.OnReceived.Unsubscribe(TurnDataHandler);
             The.World = null;
-            The.GameStateController = null;
+            The.GameState = null;
         }
 
 

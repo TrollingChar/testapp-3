@@ -13,7 +13,7 @@ namespace Battle.State {
 
 
         public GameStateController () {
-            The.GameStateController = this;
+            The.GameState = this;
 
             _battle = The.BattleScene;
 
@@ -30,7 +30,7 @@ namespace Battle.State {
             private set {
                 _currentState = value;
                 Debug.Log(value.ToString());
-//                _battle.ShowHint(value.ToString());
+                _battle.ShowHint(value.ToString());
             }
         }
 
