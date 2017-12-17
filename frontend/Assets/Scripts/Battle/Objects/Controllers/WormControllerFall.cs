@@ -7,7 +7,7 @@ namespace Battle.Objects.Controllers {
 
     public class WormControllerFall : StandardController {
 
-        private int _control;
+        private Time _control;
 
 
         public override void OnAdd () {
@@ -20,16 +20,13 @@ namespace Battle.Objects.Controllers {
 //            ((Worm) Object).Name = "fall";
             Wait();
 
-            if (Object.Velocity.SqrLength < 1) _control += 20;
-            if (The.World.Time % 1000 == 0) {
-                // 50 ticks
-                var worm = (Worm) Object;
-                if (_control >= 900 && worm.CanLandThere) {
-                    worm.LandThere();
-                }
-                _control = 0;
-            }
-
+            if (Object.Velocity.SqrLength < 1) _control.Ticks++;
+            
+            if (The.World.Time.Ticks % Time.TPS != 0) return;
+            
+            var worm = (Worm) Object;
+            if (_control.Seconds >= 0.9f && worm.CanLandThere) worm.LandThere();
+            _control.Ticks = 0;
         }
 
     }

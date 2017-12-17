@@ -16,6 +16,7 @@ using Utils.Random;
 using Collision = Collisions.Collision;
 using Object = Battle.Objects.Object;
 using Ray = Battle.Objects.Ray;
+using Time = Core.Time;
 
 
 namespace Battle {
@@ -29,7 +30,7 @@ namespace Battle {
         public Land Land;
         public Tiles Tiles;
         public float WaterLevel;
-        public long Time;
+        public Time Time; // world-bound time
 
 
         // todo: wrap it in worldgen params
@@ -39,7 +40,6 @@ namespace Battle {
             Gravity = -0.5f;
             WaterLevel = 0;
             Tiles = new Tiles();
-            Time = 0;
 
             Land = new Land(gen, renderer, The.BattleAssets.LandTexture);
             _objects = new LinkedList<Object>();
@@ -75,7 +75,7 @@ namespace Battle {
                 }
             }
 
-            Time += 20;
+            Time.Ticks++;
         }
 
 

@@ -3,17 +3,18 @@ using Battle.Objects.Explosives;
 using Core;
 using UnityEngine;
 using UnityEngine.UI;
+using Time = Core.Time;
 
 
 namespace Battle.Objects.Projectiles {
 
     public class PhantomGrenade : Object {
 
-        private readonly int _timer;
+        private readonly int _seconds;
 
 
-        public PhantomGrenade (int timer) {
-            _timer = timer;
+        public PhantomGrenade (int seconds) {
+            _seconds = seconds;
         }
 
 
@@ -29,7 +30,7 @@ namespace Battle.Objects.Projectiles {
 
             UnityEngine.Object.Instantiate(assets.PhantomGrenade, transform, false);
             Explosive = new Explosive25();
-            Controller = new GrenadeController(_timer * 1000, timerText);
+            Controller = new GrenadeController(new Time {Seconds = _seconds}, timerText);
             // no colliders, no collision handler
         }
 

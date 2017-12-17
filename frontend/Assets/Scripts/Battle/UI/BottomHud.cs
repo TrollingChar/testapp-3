@@ -3,6 +3,7 @@ using Core;
 using Core.UI;
 using UnityEngine;
 using UnityEngine.UI;
+using Time = Core.Time;
 
 
 namespace Battle.UI {
@@ -32,9 +33,8 @@ namespace Battle.UI {
         }
 
 
-        private void UpdateTime (int time) {
-            string turnTime = ((time + 999) / 1000).ToString();
-//            string turnTime = (time / 1000f).ToString();
+        private void UpdateTime (Time t) {
+            string turnTime = t.ToString();
             if (_turnTime == turnTime) return;
             _turnTime = turnTime;
             UpdateTimer();

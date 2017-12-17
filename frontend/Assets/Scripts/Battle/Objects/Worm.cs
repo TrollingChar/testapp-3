@@ -10,6 +10,7 @@ using UnityEngine.UI;
 using Utils.Random;
 using BoxCollider = Collisions.BoxCollider;
 using UnObject = UnityEngine.Object;
+using Time = Core.Time; 
 
 
 namespace Battle.Objects {
@@ -178,7 +179,7 @@ namespace Battle.Objects {
             var activeWorm = The.ActiveWorm;
             if (!activeWorm.Is(this)) return;
             if (Weapon != null) {
-                Weapon.InitRetreat(0);
+                Weapon.InitRetreat(new Time());
                 Weapon.Unequip();
             }
             activeWorm.Set(null);

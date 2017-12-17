@@ -4,12 +4,12 @@ using Core;
 
 namespace Battle.State {
 
-    public class ActiveWormWrapper {
+    public class ActiveWorm {
 
         private Worm _worm;
 
 
-        public ActiveWormWrapper () {
+        public ActiveWorm () {
             The.ActiveWorm = this;
         }
 

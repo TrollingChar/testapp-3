@@ -37,7 +37,7 @@ namespace Battle.State {
 
         public void ChangeState () {
             var timer = _battle.Timer;
-            timer.Time = 0;
+            timer.Ticks = 0;
             do {
                 switch (CurrentState = NextState++) {
                     case GameState.BeforeTurn:

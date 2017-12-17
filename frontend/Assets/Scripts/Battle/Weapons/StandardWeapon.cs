@@ -2,21 +2,22 @@
 using DataTransfer.Data;
 using Geometry;
 using UnityEngine;
+using Time = Core.Time;
 
 
 namespace Battle.Weapons {
 
     public abstract class StandardWeapon : Weapon {
 
-        private int _attackCooldown;
-        private int _shotCooldown;
+        private Time _attackCooldown;
+        private Time _shotCooldown;
         protected int ShotsLeft { get; private set; }
         protected bool Fires { get; private set; }
         protected int Power { get; private set; }
         private bool _ready; // used when weapon requires click
 
-        protected int AttackCooldown = 25;
-        protected int ShotCooldown = 5;
+        protected Time AttackCooldown = new Time {Ticks = 25};
+        protected Time ShotCooldown = new Time {Ticks = 5};
         protected bool ConstPower = true; // if false, will require to hold the button
         protected int Attacks = 1; // blaster has 2
         protected bool Removable = false; // if false, locks arsenal when used
@@ -36,7 +37,7 @@ namespace Battle.Weapons {
 
 
         protected virtual void OnLastAttack () {
-            if (!Removable) InitRetreat(3000);
+            if (!Removable) InitRetreat(new Time {Seconds = 3});
         }
 
 
@@ -52,18 +53,18 @@ namespace Battle.Weapons {
             if (td.NumKey > 0) OnNumberPress(td.NumKey);
 
             if (Fires) {
-                if (--_shotCooldown <= 0) Shoot();
+                if (--_shotCooldown.Ticks <= 0) Shoot();
                 goto end;
             }
 
-            if (--_attackCooldown > 0) goto end;
+            if (--_attackCooldown.Ticks > 0) goto end;
 
             GameTimer.Frozen = false;
             if (td.MB) {
                 if (RequiresClick && !_ready) goto end;
                 if (!Removable) LockArsenal();
                 GameTimer.Frozen = true;
-                if (ConstPower || ++Power >= 50) BeginAttack();
+                if (ConstPower || ++Power >= Time.TPS) BeginAttack();
             }
             else {
                 _ready = true;
@@ -115,7 +116,7 @@ namespace Battle.Weapons {
             if (xy == XY.Zero) xy = XY.Up;
             crosshair.Angle = xy.Angle;
             crosshair.RingVisible = Power > 0;
-            crosshair.RingPosition = Power / 50f;
+            crosshair.RingPosition = (float) Power / Time.TPS; // todo Power01
         }
 
 

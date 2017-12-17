@@ -23,7 +23,6 @@ namespace Battle.Weapons.WeaponTypes.Firearms {
 
         protected override void OnEquip () {
             Shots = 30;
-            ShotCooldown = 3;
 
             var battleAssets = The.BattleAssets;
 

@@ -1,6 +1,6 @@
 ﻿using DataTransfer.Data;
-using UnityEngine;
 using UnityEngine.UI;
+using Time = Core.Time;
 
 
 namespace Battle.Objects.Controllers {
@@ -10,15 +10,15 @@ namespace Battle.Objects.Controllers {
         public Text TimerText { get; private set; }
 
 
-        public GrenadeController (int timer, Text timerText) {
+        public GrenadeController (Time t, Text timerText) {
             TimerText = timerText;
-            Timer = timer;
+            Timer = t;
         }
 
 
         protected override void DoUpdate (TurnData td) {
             base.DoUpdate(td);
-            if (TimerText != null) TimerText.text = Mathf.CeilToInt(Timer / 1000f).ToString();
+            if (TimerText != null) TimerText.text = Timer.ToString();
             Wait();
         }
 

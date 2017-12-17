@@ -14,6 +14,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Utils.Messenger;
 using Utils.Random;
+using Time = Core.Time;
 
 
 namespace Battle {
@@ -37,7 +38,7 @@ namespace Battle {
         public GameStateController State { get; private set; }
         public WeaponWrapper Weapon { get; private set; }
         public TimerWrapper Timer { get; private set; }
-        public ActiveWormWrapper ActiveWorm { get; private set; }
+        public ActiveWorm ActiveWorm { get; private set; }
         public TeamManager Teams { get; private set; }
         public World World { get; private set; }
         public ArsenalPanel ArsenalPanel { get; private set; }
@@ -103,7 +104,7 @@ namespace Battle {
             State = new GameStateController();
             Timer = new TimerWrapper();
             World = new World(gen, _landRenderer);
-            ActiveWorm = new ActiveWormWrapper();
+            ActiveWorm = new ActiveWorm();
             Weapon = new WeaponWrapper();
             Camera.LookAt(new Vector2(1000, 1000), true);
             Teams = World.SpawnTeams(_initData.Players, 10);
@@ -112,7 +113,7 @@ namespace Battle {
             TurnDataSCmd.OnReceived.Subscribe(TurnDataHandler);
 
             OnBattleLoaded.Send();
-            Timer.Time = 500;
+            Timer.Seconds = 0.5f;
         }
 
 
@@ -175,14 +176,14 @@ namespace Battle {
             ActiveWorm.CanMove = true;
             Camera.LookAt(ActiveWorm.Worm.Position);
             Weapon.Reset();
-            Timer.Time = 30000;
+            Timer.Seconds = 30;
         }
 
 
         public void EndTurn () {
             ActiveWorm.CanMove = false;
             Weapon.LockAndUnequip();
-            Timer.Wait(500);
+            Timer.Wait(new Time {Seconds = 0.5f});
         }
 
 
@@ -192,7 +193,7 @@ namespace Battle {
 
 
         public void Remove0Hp () {
-            if (World.Remove0HpWorms()) Timer.Wait(500);
+            if (World.Remove0HpWorms()) Timer.Wait(new Time {Seconds = 0.5f});
         }
 
     }

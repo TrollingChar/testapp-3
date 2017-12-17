@@ -8,6 +8,7 @@ using Core;
 using DataTransfer.Data;
 using UnityEngine;
 using Component = Battle.Objects.Component;
+using Time = Core.Time;
 
 
 namespace Battle.Weapons {
@@ -106,9 +107,9 @@ namespace Battle.Weapons {
         }
 
 
-        public void InitRetreat (int milliseconds) {
+        public void InitRetreat (Time t) {
             _weaponWrapper.LockAndUnequip();
-            GameTimer.Time = milliseconds;
+            GameTimer.Time = t;
             GameTimer.Frozen = false;
         }
 

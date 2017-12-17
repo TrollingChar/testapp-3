@@ -8,16 +8,11 @@ namespace Battle.Objects.Controllers {
     public class Controller : Component {
 
         private readonly TimerWrapper _gameTimer = The.TimerWrapper;
-        private int _timer = 20000;
-
-        public int Timer {
-            get { return _timer; }
-            set { _timer = value; }
-        }
+        public Time Timer = new Time {Seconds = 20};
 
 
         public void Update (TurnData td) {
-            if (Timer > 0 & (Timer -= 20) <= 0) {
+            if (--Timer.Ticks == 0) {
                 DoUpdate(td);
                 OnTimer();
             } else {
@@ -32,8 +27,13 @@ namespace Battle.Objects.Controllers {
         public virtual void OnTimer () {}
 
 
-        protected void Wait (int milliseconds = 500) {
-            _gameTimer.Wait(milliseconds);
+        protected void Wait () {
+            _gameTimer.Wait(new Time {Seconds = 0.5f});
+        }
+
+
+        protected void Wait (Time t) {
+            _gameTimer.Wait(t);
         }
 
     }

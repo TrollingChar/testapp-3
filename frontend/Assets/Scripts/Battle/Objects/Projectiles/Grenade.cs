@@ -6,17 +6,18 @@ using Core;
 using Geometry;
 using UnityEngine;
 using UnityEngine.UI;
+using Time = Core.Time;
 
 
 namespace Battle.Objects.Projectiles {
 
     public class Grenade : Object {
 
-        private readonly int _timer;
+        private readonly int _seconds;
 
 
-        public Grenade (int timer) {
-            _timer = timer;
+        public Grenade (int seconds) {
+            _seconds = seconds;
         }
 
 
@@ -33,7 +34,7 @@ namespace Battle.Objects.Projectiles {
             UnityEngine.Object.Instantiate(assets.Grenade, transform, false);
             AddCollider(new CircleCollider(XY.Zero, 5f));
             Explosive = new Explosive25();
-            Controller = new GrenadeController(_timer * 1000, timerText);
+            Controller = new GrenadeController(new Time {Seconds = _seconds}, timerText);
             CollisionHandler = new CollisionHandler();
         }
 

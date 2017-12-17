@@ -4,6 +4,7 @@ using Battle.Objects.Projectiles;
 using Battle.Weapons.Crosshairs;
 using Core;
 using UnityEngine;
+using Time = Core.Time;
 
 
 namespace Battle.Weapons.WeaponTypes.Launched {
@@ -28,7 +29,7 @@ namespace Battle.Weapons.WeaponTypes.Launched {
             ConstPower = false;
             Shots = Math.Min(5, GetAmmo());
             Shots = 5;
-            ShotCooldown = 10;
+            ShotCooldown.Seconds = 0.2f;
 
             var battleAssets = The.BattleAssets;
 
@@ -55,7 +56,7 @@ namespace Battle.Weapons.WeaponTypes.Launched {
             Object.Spawn(
                 new MultiLauncherShell(),
                 Object.Position,
-                (TurnData.XY - Object.Position).WithLength(Power * 0.6f)
+                (TurnData.XY - Object.Position).WithLength(Power * 30f / Time.TPS)
             );
         }
 

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+// ReSharper disable AssignmentInConditionalExpression
 
 
 namespace Battle.Water {
