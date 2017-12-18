@@ -34,14 +34,14 @@ namespace Battle {
         [SerializeField] private LandRenderer _landRenderer;
 
         public Connection Connection { get; private set; }
-        public CameraWrapper Camera { get; private set; }
-        public GameStateController State { get; private set; }
-        public WeaponWrapper Weapon { get; private set; }
-        public TimerWrapper Timer { get; private set; }
-        public ActiveWorm ActiveWorm { get; private set; }
-        public TeamManager Teams { get; private set; }
-        public World World { get; private set; }
-        public ArsenalPanel ArsenalPanel { get; private set; }
+        public CameraWrapper Camera { get; private set; }      // камера и ее плавное движение
+        public World World { get; private set; }               // земля, объекты и т.д.
+        public TimerWrapper Timer { get; private set; }        // таймер и флаг заморозки
+        public GameStateController State { get; private set; } // состояние игры, текущая фаза и т.д.
+        public TeamManager Teams { get; private set; }         // команды
+        public ActiveWorm ActiveWorm { get; private set; }     // активный червяк, флаг заморозки движения
+        public WeaponWrapper Weapon { get; private set; }      // выбранное оружие, флаг блокировки
+        public ArsenalPanel ArsenalPanel { get; private set; } // панель арсенала
 
 
         private void Awake () {
@@ -180,7 +180,22 @@ namespace Battle {
         }
 
 
+        public void SelectWeapon (int id) {
+            
+        }
+
+
+        public void InitRetreat (Time t) {
+            
+        }
+
+
         public void EndTurn () {
+            
+        }
+
+
+        public void TurnEnded () {
             ActiveWorm.CanMove = false;
             Weapon.LockAndUnequip();
             Timer.Wait(new Time {Seconds = 0.5f});

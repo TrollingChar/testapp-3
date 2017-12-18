@@ -56,7 +56,7 @@ namespace Battle.State {
 //                    StartTurn();
                         return;
                     case GameState.EndingTurn:
-                        _battle.EndTurn();
+                        _battle.TurnEnded();
 //                    FreezeWorm();
                         break;
                     case GameState.AfterTurn:
