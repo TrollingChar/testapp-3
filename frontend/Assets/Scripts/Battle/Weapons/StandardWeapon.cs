@@ -29,10 +29,14 @@ namespace Battle.Weapons {
 
 
 //        protected virtual void OnFirstAttack () {}
+        
+        
         protected virtual void OnBeginAttack () {}
 
 
         protected virtual void OnShoot () {}
+        
+        
         protected virtual void OnEndAttack () {}
 
 
@@ -101,6 +105,7 @@ namespace Battle.Weapons {
         private void EndAttack () {
             Fires = false;
             Power = 0;
+            GameTimer.Frozen = false;
             OnEndAttack();
             if (Attacks <= 0) {
                 OnLastAttack();

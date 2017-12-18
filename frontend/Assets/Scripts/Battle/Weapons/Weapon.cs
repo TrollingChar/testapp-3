@@ -71,7 +71,7 @@ namespace Battle.Weapons {
 
 
         public override void OnRemove () {
-            UnityEngine.Object.Destroy(GameObject);
+            if (Equipped) Unequip();
         }
 
 
@@ -79,6 +79,7 @@ namespace Battle.Weapons {
             if (!Equipped) return;
             Equipped = false;
             OnUnequip();
+            UnityEngine.Object.Destroy(GameObject);
             ((Worm) Object).Weapon = null;
         }
 
@@ -108,6 +109,9 @@ namespace Battle.Weapons {
 
 
         public void InitRetreat (Time t) {
+           The.BattleScene.InitRetreat(t);
+            
+            return;
             _weaponWrapper.LockAndUnequip();
             GameTimer.Time = t;
             GameTimer.Frozen = false;

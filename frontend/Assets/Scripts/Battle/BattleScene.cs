@@ -175,29 +175,54 @@ namespace Battle {
             ActiveWorm.Worm = Teams.NextWorm();
             ActiveWorm.CanMove = true;
             Camera.LookAt(ActiveWorm.Worm.Position);
-            Weapon.Reset();
+            Weapon.Unlock();
             Timer.Seconds = 30;
         }
 
 
-        public void SelectWeapon (int id) {
-            
+        public void PrepareWeapon (byte id) {
+            if (Teams.IsMyTurn) {
+                TurnData.PrepareWeapon(id);
+            }
+            // move to turn data
+
+            // prepWeapId = id;
+            // prepFlag = yes;
+            // -- turndata will use it
+        }
+
+
+        public void SelectWeapon (byte id) {
+            // move to weapon wrapper
+
+            Weapon.Select(id);
+        }
+
+
+        public void LockWeaponSelect () {
+            // weapLocked = yes;
+            Weapon.Lock();
         }
 
 
         public void InitRetreat (Time t) {
-            
+            Timer.Frozen = false;
+            Timer.Time = t;
+            Weapon.LockAndUnequip();
         }
 
 
         public void EndTurn () {
-            
+            Timer.Frozen = false;
+            Timer.Ticks = 0;
+            Weapon.LockAndUnequip();
+            ActiveWorm.Set(null);
         }
 
 
         public void TurnEnded () {
-            ActiveWorm.CanMove = false;
             Weapon.LockAndUnequip();
+            ActiveWorm.Set(null);
             Timer.Wait(new Time {Seconds = 0.5f});
         }
 

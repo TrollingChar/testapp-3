@@ -1,6 +1,7 @@
 ﻿using Battle.Weapons;
 using Core;
 using DataTransfer.Data;
+using UnityEngine;
 
 
 namespace Battle.State {
@@ -17,25 +18,25 @@ namespace Battle.State {
         }
 
 
-        public int PreparedId { get; set; }
+//        public int PreparedId { get; set; }
 
 
         public void Update (TurnData td) {
-            if (!_locked && PreparedId != 0) Select(PreparedId);
-            PreparedId = 0;
+            if (!_locked && td != null && td.Weapon != 0) Select(td.Weapon);
             if (_weapon != null) _weapon.Update(td);
         }
 
 
-        private void Select (int weaponId) {
+        public void Select (int weaponId) {
             _activeWorm.Worm.Weapon = _weapon = Serialization<Weapon>.GetNewInstanceByCode(weaponId);
 //            _weapon.Equip(_activeWorm.Worm);
         }
 
 
-        public void Reset () {
-            PreparedId = 0;
-            _weapon = null;
+        public void Unlock () {
+            TurnData.PrepareNoWeapon();
+//            PreparedId = 0;
+            _activeWorm.Worm.Weapon = _weapon = null;
             _locked = false;
         }
 
@@ -46,6 +47,7 @@ namespace Battle.State {
 
 
         public void LockAndUnequip () {
+            if (_activeWorm.Worm != null) _activeWorm.Worm.Weapon = null;
             _weapon = null;
             _locked = true;
         }

@@ -29,6 +29,11 @@ namespace Core.UI {
         protected virtual void Deactivate () {}
 
 
+        public bool IsOpen {
+            get { return _panelController.Open; }
+        }
+
+
         public void Show (bool instantly = false) {
             _panelController.Show(instantly);
         }

@@ -28,15 +28,15 @@ namespace Core.UI {
 
 
         public void OnClick () {
-            var teamManager = The.TeamManager;
-            var weaponWrapper = The.WeaponWrapper;
+//            var teamManager = The.TeamManager;
+//            var weaponWrapper = The.WeaponWrapper;
             // if my turn
             // if arsenal not locked
             // if have that weapon
             // EQUIP
-            if (!teamManager.IsMyTurn) return;
+//            if (!teamManager.IsMyTurn) return;
 
-            weaponWrapper.PreparedId = _id;
+            _battleScene.PrepareWeapon((byte) _id);
             _battleScene.ArsenalPanel.Hide();
         }
 

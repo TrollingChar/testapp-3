@@ -1,5 +1,6 @@
 ﻿using Battle.Objects.Controllers;
 using Battle.Objects.GameObjects;
+using Battle.State;
 using Battle.Teams;
 using Battle.Weapons;
 using Collisions;
@@ -171,19 +172,7 @@ namespace Battle.Objects {
 
         public override void GetDamage (int damage) {
             HP -= damage;
-            OnDamage();
-        }
-
-
-        private void OnDamage () {
-            var activeWorm = The.ActiveWorm;
-            if (!activeWorm.Is(this)) return;
-            if (Weapon != null) {
-                Weapon.InitRetreat(new Time());
-                Weapon.Unequip();
-            }
-            activeWorm.Set(null);
-            Weapon = null;
+            if (The.ActiveWorm.Is(this)) The.BattleScene.EndTurn();
         }
 
 
@@ -208,7 +197,7 @@ namespace Battle.Objects {
 
         public override void OnRemove () {
             HP = 0;
-            OnDamage();
+            if (The.ActiveWorm.Is(this)) The.BattleScene.EndTurn();
         }
 
     }
