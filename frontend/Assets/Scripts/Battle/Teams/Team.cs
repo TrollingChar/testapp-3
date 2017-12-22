@@ -10,7 +10,7 @@ namespace Battle.Teams {
 
         private readonly LinkedList<Worm> _worms;
         private Worm _activeWorm;
-        private int _wormsAlive;
+        public int WormsAlive;
 
 
         public Team (int player, Color color, Arsenal arsenal) {
@@ -29,6 +29,7 @@ namespace Battle.Teams {
 
 
         public void AddWorm (Worm worm) {
+            if (worm.HP > 0) WormsAlive++;
             worm.Team = this;
             _worms.AddLast(worm); // if going to add them at mid-fight, refactor
             worm.OnAddToTeam(this);

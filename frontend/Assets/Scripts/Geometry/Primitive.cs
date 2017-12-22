@@ -1,4 +1,7 @@
-﻿namespace Geometry {
+﻿using System;
+
+
+namespace Geometry {
 
     public struct Primitive {
 
@@ -57,6 +60,11 @@
 
         public static Primitive Bottom (float y) {
             return new Primitive(PType.Bottom, float.NaN, y, float.NaN);
+        }
+
+
+        public override string ToString () {
+            return string.Format("[ {0} : {1:R}, {2:R}, {3:R} ]", Type, X, Y, R);
         }
 
     }

@@ -42,6 +42,7 @@ namespace Battle {
         public ActiveWorm ActiveWorm { get; private set; }     // активный червяк, флаг заморозки движения
         public WeaponWrapper Weapon { get; private set; }      // выбранное оружие, флаг блокировки
         public ArsenalPanel ArsenalPanel { get; private set; } // панель арсенала
+        [SerializeField] private EndGameMenu EndGameMenu;
 
 
         private void Awake () {
@@ -107,7 +108,7 @@ namespace Battle {
             ActiveWorm = new ActiveWorm();
             Weapon = new WeaponWrapper();
             Camera.LookAt(new Vector2(1000, 1000), true);
-            Teams = World.SpawnTeams(_initData.Players, 10);
+            Teams = World.SpawnTeams(_initData.Players, 20);
 
             NewTurnCmd.OnReceived.Subscribe(PrepareTurn);
             TurnDataSCmd.OnReceived.Subscribe(TurnDataHandler);
@@ -161,7 +162,8 @@ namespace Battle {
 
 
         public void Synchronize () {
-            Connection.Send(new TurnEndedCmd(true));
+            Debug.Log(Teams.MyTeam.WormsAlive);
+            Connection.Send(new TurnEndedCmd(Teams.MyTeam.WormsAlive > 0));
         }
 
 

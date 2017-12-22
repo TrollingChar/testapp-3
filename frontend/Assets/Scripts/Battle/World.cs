@@ -126,6 +126,7 @@ namespace Battle {
 
                 var collision = o.NextCollision(o.Movement);
                 if (collision != null) collision.ImprovePrecision();
+                
                 var o2 = collision == null || collision.Collider2 == null ? null : collision.Collider2.Object;
 
                 if (collision == null) {

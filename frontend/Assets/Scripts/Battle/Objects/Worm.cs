@@ -78,6 +78,10 @@ namespace Battle.Objects {
         public int HP {
             get { return _hp; }
             set {
+                if (Team != null) {
+                    if (_hp <= 0) Team.WormsAlive++;
+                    if (value <= 0) Team.WormsAlive--;
+                }
                 _hp = value < 0 ? 0 : value;
                 if (_hpField != null) _hpField.text = _hp.ToString();
             }

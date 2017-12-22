@@ -91,6 +91,19 @@ namespace Collisions {
             return a.Offset.SqrLength >= b.Offset.SqrLength;
         }
 
+
+        public override string ToString () {
+            return
+                "[ collision\n" +
+                "  [ offset = " + Offset.ToString("R") + " ]\n" +
+                "  [ normal = " + Normal.ToString("R") + " ]\n" +
+                "  [ collider 1 = " + (Collider1 == null ? "null" : Collider1.ToString()) + " ]\n" +
+                "  [ collider 2 = " + (Collider2 == null ? "null" : Collider2.ToString()) + " ]\n" +
+                "  [ primitive 1 = " + Primitive1 + " ]\n" +
+                "  [ primitive 2 = " + Primitive2 + " ]\n" +
+                "]";
+        }
+
     }
 
 }

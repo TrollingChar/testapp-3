@@ -124,6 +124,7 @@
             <e p="UI" t="Include">
               <e p="ArsenalPanel.cs" t="Include" />
               <e p="BottomHud.cs" t="Include" />
+              <e p="EndGameMenu.cs" t="Include" />
               <e p="HintArea.cs" t="Include" />
             </e>
             <e p="Water" t="Include">
@@ -233,6 +234,7 @@
           </e>
           <e p="Core" t="Include">
             <e p="Context.cs" t="Include" />
+            <e p="Log.cs" t="Include" />
             <e p="PlayerInfo.cs" t="Include" />
             <e p="Scenes.cs" t="Include" />
             <e p="SceneSwitcher.cs" t="Include" />
@@ -321,7 +323,9 @@
       <e p="Library" t="ExcludeRecursive" />
       <e p="obj" t="ExcludeRecursive" />
       <e p="packages" t="ExcludeRecursive" />
-      <e p="Temp\bin" t="ExcludeRecursive" />
+      <e p="Temp" t="ExcludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+      </e>
     </e>
   </component>
   <component name="RiderRiderContentModelStore">

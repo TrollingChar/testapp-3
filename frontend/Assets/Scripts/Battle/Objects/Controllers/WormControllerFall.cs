@@ -17,7 +17,7 @@ namespace Battle.Objects.Controllers {
 
         protected override void DoUpdate (TurnData td) {
             base.DoUpdate(td);
-//            ((Worm) Object).Name = "fall";
+            ((Worm) Object).Name = "fall";
             Wait();
 
             if (Object.Velocity.SqrLength < 1) _control.Ticks++;

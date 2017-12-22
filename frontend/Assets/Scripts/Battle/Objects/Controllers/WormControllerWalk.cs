@@ -22,7 +22,7 @@ namespace Battle.Objects.Controllers {
             var worm = (Worm) Object;
 
 //            if (td != null) worm.LookAt(td.XY);
-//            worm.Name = "walk";
+            worm.Name = "walk";
 
             var collision = new Ray(worm.Tail.Center, new CircleCollider(XY.Zero, Worm.HeadRadius))
                 .Cast(new XY(0f, -Worm.MaxDescend));

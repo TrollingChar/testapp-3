@@ -19,7 +19,7 @@ namespace Geometry {
             // квадрат расстояния от центра окружности до луча
             float h2 = XY.Cross(oc, v);
             h2 *= h2 / v.SqrLength;
-
+            if (h2 >= r * r) return float.NaN;
             return Mathf.Sqrt(oc.SqrLength - h2) - Mathf.Sqrt(r * r - h2);
         }
 
@@ -29,7 +29,7 @@ namespace Geometry {
             var convertedVelocity = ConvertToBasis(velocity, tangent, normal);
 
             return tangent * tangentialBounce * convertedVelocity.X
-                - normal * normalBounce * convertedVelocity.Y;
+                 - normal * normalBounce * convertedVelocity.Y;
         }
 
 

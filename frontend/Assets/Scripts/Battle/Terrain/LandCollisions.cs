@@ -30,8 +30,8 @@ namespace Battle.Physics {
             // вершины
             if (v.X > 0 || v.Y > 0) {
                 var corner = new XY(b.Right, b.Top);
-                if (RayToTheRight(corner, ref v, 0, ref landPrimitive) |
-                    RayToTheTop  (corner, ref v, 0, ref landPrimitive)) {
+                if (RayToTheRight(corner, ref v, 0, ref landPrimitive, true) |
+                    RayToTheTop  (corner, ref v, 0, ref landPrimitive, true)) {
                     collided = true;
                     boxPrimitive = Primitive.Circle(corner);
                 }
@@ -39,7 +39,7 @@ namespace Battle.Physics {
             if (v.X > 0 || v.Y < 0) {
                 var corner = new XY(b.Right, b.Bottom);
                 if (RayToTheRight (corner, ref v, 0, ref landPrimitive) |
-                    RayToTheBottom(corner, ref v, 0, ref landPrimitive)) {
+                    RayToTheBottom(corner, ref v, 0, ref landPrimitive, true)) {
                     collided = true;
                     boxPrimitive = Primitive.Circle(corner);
                 }
@@ -54,7 +54,7 @@ namespace Battle.Physics {
             }
             if (v.X < 0 || v.Y > 0) {
                 var corner = new XY(b.Left, b.Top);
-                if (RayToTheLeft(corner, ref v, 0, ref landPrimitive) |
+                if (RayToTheLeft(corner, ref v, 0, ref landPrimitive, true) |
                     RayToTheTop (corner, ref v, 0, ref landPrimitive)) {
                     collided = true;
                     boxPrimitive = Primitive.Circle(corner);
@@ -82,7 +82,7 @@ namespace Battle.Physics {
         }
 
 
-        private bool RayToTheRight (XY o, ref XY v, float w, ref Primitive primitive) {
+        private bool RayToTheRight (XY o, ref XY v, float w, ref Primitive primitive, bool ceil = false) {
             var startXY = new XY(o.X + w, o.Y);
             var endXY = startXY + v;
 
@@ -90,7 +90,7 @@ namespace Battle.Physics {
             int endX = Mathf.Clamp(Mathf.CeilToInt(endXY.X), 0, Width);
             for (int x = startX; x < endX; x++) {
                 float d = Geom.RayTo1D(startXY.X, v.X, x);
-                int y = Mathf.FloorToInt(startXY.Y + d * v.Y);
+                int y = ceil ? Mathf.CeilToInt(startXY.Y + d * v.Y) - 1 : Mathf.FloorToInt(startXY.Y + d * v.Y);
                 if (this[x, y] == 0) continue;
                 v *= d;
                 primitive = Primitive.Left(x);
@@ -100,7 +100,7 @@ namespace Battle.Physics {
         }
 
 
-        private bool RayToTheLeft (XY o, ref XY v, float w, ref Primitive primitive) {
+        private bool RayToTheLeft (XY o, ref XY v, float w, ref Primitive primitive, bool ceil = false) {
             var startXY = new XY(o.X - w, o.Y);
             var endXY = startXY + v;
 
@@ -108,7 +108,7 @@ namespace Battle.Physics {
             int endX = Mathf.Clamp(Mathf.FloorToInt(endXY.X), 0, Width);
             for (int x = startX; x >= endX; x--) {
                 float d = Geom.RayTo1D(startXY.X, v.X, x + 1);
-                int y = Mathf.FloorToInt(startXY.Y + d * v.Y);
+                int y = ceil ? Mathf.CeilToInt(startXY.Y + d * v.Y) - 1 : Mathf.FloorToInt(startXY.Y + d * v.Y);
                 if (this[x, y] == 0) continue;
                 v *= d;
                 primitive = Primitive.Right(x + 1);
@@ -118,7 +118,7 @@ namespace Battle.Physics {
         }
 
 
-        private bool RayToTheTop (XY o, ref XY v, float w, ref Primitive primitive) {
+        private bool RayToTheTop (XY o, ref XY v, float w, ref Primitive primitive, bool ceil = false) {
             var startXY = new XY(o.X, o.Y + w);
             var endXY = startXY + v;
 
@@ -126,7 +126,7 @@ namespace Battle.Physics {
             int endY = Mathf.Clamp(Mathf.CeilToInt(endXY.Y), 0, Height);
             for (int y = startY; y < endY; y++) {
                 float d = Geom.RayTo1D(startXY.Y, v.Y, y);
-                int x = Mathf.FloorToInt(startXY.X + d * v.X);
+                int x = ceil ? Mathf.CeilToInt(startXY.X + d * v.X) - 1 : Mathf.FloorToInt(startXY.X + d * v.X);
                 if (this[x, y] == 0) continue;
                 v *= d;
                 primitive = Primitive.Bottom(y);
@@ -136,7 +136,7 @@ namespace Battle.Physics {
         }
 
 
-        private bool RayToTheBottom (XY o, ref XY v, float w, ref Primitive primitive) {
+        private bool RayToTheBottom (XY o, ref XY v, float w, ref Primitive primitive, bool ceil = false) {
             var startXY = new XY(o.X, o.Y - w);
             var endXY = startXY + v;
 
@@ -144,7 +144,7 @@ namespace Battle.Physics {
             int endY = Mathf.Clamp(Mathf.FloorToInt(endXY.Y), 0, Height);
             for (int y = startY; y >= endY; y--) {
                 float d = Geom.RayTo1D(startXY.Y, v.Y, y + 1);
-                int x = Mathf.FloorToInt(startXY.X + d * v.X);
+                int x = ceil ? Mathf.CeilToInt(startXY.X + d * v.X) - 1 : Mathf.FloorToInt(startXY.X + d * v.X);
                 if (this[x, y] == 0) continue;
                 v *= d;
                 primitive = Primitive.Top(y + 1);

@@ -12,11 +12,11 @@ namespace Menu.UI {
     public class LobbyMenu : Panel {
 
         [SerializeField] private Button _cancelButton;
+        [SerializeField] private Text _text;
 
         private Connection _connection;
         private MenuScene _menuScene;
 
-        [SerializeField] private Text _text;
 
 
         protected override void Activate () {

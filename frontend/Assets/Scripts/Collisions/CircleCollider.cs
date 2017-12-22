@@ -171,7 +171,7 @@ namespace Collisions {
 
 
         public override string ToString () {
-            return "Circle: center:" + Center.ToString("R") + ", radius:" + Radius.ToString("R");
+            return "[ circle [ center = " + Center.ToString("R") + " ] [ radius = " + Radius.ToString("R") + " ] ]";
         }
 
     }
