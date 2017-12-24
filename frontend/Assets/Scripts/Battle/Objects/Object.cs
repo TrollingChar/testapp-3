@@ -20,11 +20,11 @@ namespace Battle.Objects {
 
         private readonly World _world = The.World;
 
-
         private CollisionHandler _collisionHandler;
         private Controller _controller;
         private Explosive _explosive;
         public List<Collider> Colliders;
+        
         public HashSet<Object> Excluded;
 
         public float Mass;

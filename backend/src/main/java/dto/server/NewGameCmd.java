@@ -24,7 +24,7 @@ public class NewGameCmd extends ServerCommand {
     @Override
     public void writeMembers (ByteBuf byteBuf) {
         byteBuf
-            .writeInt(0x23d18203)
+            .writeInt(seed)//0x23d18203)
             .writeByte(players.size());
 
         for (Player player : players) byteBuf.writeInt(player.id);

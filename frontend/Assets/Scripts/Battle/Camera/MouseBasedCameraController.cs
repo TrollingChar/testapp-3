@@ -18,7 +18,8 @@ namespace Battle.Camera {
 
         public override void Update () {
             Camera.LookAt(
-                _origin + Camera.Camera.ScreenToWorldPoint(_click)
+                _origin
+                + Camera.Camera.ScreenToWorldPoint(_click)
                 - Camera.Camera.ScreenToWorldPoint(Input.mousePosition)
             );
             if (Input.GetMouseButtonUp(MouseButtons.Right)
