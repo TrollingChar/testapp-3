@@ -16,10 +16,13 @@ public class Root {
         try {
             DTO.init();
             Lobbies.init();
-            new Server(8080).run();
+            String portStr = System.getenv("PORT");
+            System.out.println("$PORT: " + portStr);
+            int port = portStr == null ? 7675 : Integer.valueOf(portStr);
+            new Server(port).run();
         }
         catch (Exception e) {
-            System.err.println("!! FATAL !!");;
+            System.err.println("!! FATAL !!");
             e.printStackTrace();
         }
     }
