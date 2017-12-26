@@ -69,7 +69,8 @@ namespace Net {
                 _socket.Close();
                 Debug.Log("TRYING TO OPEN SECOND CONNECTION");
             }
-            _socket = new WebSocket(new Uri("ws://localhost:7675/websocket"));
+//            _socket = new WebSocket(new Uri("ws://localhost:7675/websocket"));
+            _socket = new WebSocket(new Uri("ws://worms-3.herokuapp.com/websocket"));
             yield return StartCoroutine(_socket.Connect());
 
             StartCoroutine(SendPing());
@@ -88,7 +89,7 @@ namespace Net {
 
         private IEnumerator SendPing () {
             while (_socket != null) {
-                yield return new WaitForSecondsRealtime(60);
+                yield return new WaitForSecondsRealtime(20);
                 _socket.Send(new byte[0]);
             }
         }
