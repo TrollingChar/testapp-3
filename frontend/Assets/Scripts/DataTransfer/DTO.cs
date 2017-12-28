@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using Attributes;
+using Core;
 using UnityEngine;
 
 
@@ -22,7 +23,8 @@ namespace DataTransfer {
             Debug.Log("scanning DTO...");
 
             var baseType = typeof(DTO);
-            foreach (var type in Assembly.GetExecutingAssembly().GetTypes()) {
+//            foreach (var type in Assembly.GetExecutingAssembly().GetTypes()) {
+            foreach (var type in Assembly.Load(Settings.AssemblyName).GetTypes()) {
                 if (!type.IsSubclassOf(baseType) && !type.GetInterfaces().Contains(baseType)) continue;
 
                 var attribute = (DTOAttribute) type.GetCustomAttributes(true).FirstOrDefault(a => a is DTOAttribute);

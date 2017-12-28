@@ -17,7 +17,8 @@ namespace Core {
 
         public static void ScanAssembly<TAttribute> () where TAttribute : IdAttribute {
             var baseType = typeof(TSerializable);
-            foreach (var type in Assembly.GetExecutingAssembly().GetTypes()) {
+//            foreach (var type in Assembly.GetExecutingAssembly().GetTypes()) {
+            foreach (var type in Assembly.Load(Settings.AssemblyName).GetTypes()) {
                 if (type.IsSubclassOf(baseType) || type.GetInterfaces().Contains(baseType)) {
                     AddCommand<TAttribute>(type);
                 }
