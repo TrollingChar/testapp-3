@@ -8,11 +8,9 @@ namespace DataTransfer.Client {
     public class AuthRequestCmd : ClientCommand {
 
         public int Id { get; private set; }
-        public string Ip { get; private set; }
 
 
-        public AuthRequestCmd (string ip, int id) {
-            Ip = ip;
+        public AuthRequestCmd (int id) {
             Id = id;
         }
 
