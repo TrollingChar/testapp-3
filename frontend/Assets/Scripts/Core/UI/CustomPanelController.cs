@@ -22,7 +22,7 @@ namespace Core.UI {
                 FullOpenness = _timeToOpen;
                 _initialized = true;
             }
-            var rt = (RectTransform) Canvas.transform;
+            var rt = (RectTransform) transform;
             float relativeOpenness = (float) CurrOpenness / FullOpenness;
             rt.anchorMin = relativeOpenness * (_openAnchorMin - _closedAnchorMin) + _closedAnchorMin;
             rt.anchorMax = relativeOpenness * (_openAnchorMax - _closedAnchorMax) + _closedAnchorMax;

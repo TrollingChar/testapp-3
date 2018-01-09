@@ -5,8 +5,6 @@ namespace Core.UI {
 
     public abstract class PanelController : MonoBehaviour {
 
-        [SerializeField] protected Canvas Canvas;
-
         protected int CurrOpenness;
         protected int FullOpenness = 15;
 
