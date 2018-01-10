@@ -91,6 +91,34 @@ namespace Battle.UI {
             AddWeapon(OverhealWeapon.Descriptor);
             AddWeapon(SkipTurnWeapon.Descriptor);
             AddWeapon(SurrenderWeapon.Descriptor);
+
+            ApplyLayout();
+        }
+
+
+        private void ApplyLayout () {
+            int childCount = transform.childCount;
+
+            int w = (childCount + 6) / 7;
+            int h = w > 1 ? 7 : childCount;
+            float xOffset = (1 - w) * 60;
+            float yOffset = (h - 1) * 50;
+
+            for (int i = 0; i < childCount; i++) {
+                var rt = (RectTransform) transform.GetChild(i);
+
+                rt.pivot =
+                rt.anchorMin =
+                rt.anchorMax =
+                rt.localScale = new Vector2(0.5f, 0.5f);
+
+                foreach (RectTransform child in rt) child.localScale *= 2;
+
+                rt.anchoredPosition = new Vector2(
+                    xOffset + i / 7 * 120,
+                    yOffset - i % 7 * 100
+                );
+            }
         }
 
 
