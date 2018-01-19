@@ -1,9 +1,9 @@
 ﻿using System;
 using Battle.Camera;
-using Battle.Generation;
-using Battle.Physics;
 using Battle.State;
 using Battle.Teams;
+using Battle.Terrain;
+using Battle.Terrain.Generation;
 using Battle.UI;
 using Core;
 using DataTransfer.Client;

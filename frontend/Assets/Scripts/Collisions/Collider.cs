@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Battle;
 using Battle.Objects;
-using Battle.Physics;
+using Battle.Terrain;
 using Core;
 using Geometry;
 

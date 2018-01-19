@@ -4,7 +4,7 @@ using Geometry;
 using UnityEngine;
 
 
-namespace Battle.Physics {
+namespace Battle.Terrain {
 
     public class LandRenderer : MonoBehaviour {
 

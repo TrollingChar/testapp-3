@@ -4,7 +4,7 @@ using UnityEngine;
 using Utils.Messenger;
 
 
-namespace Battle.Generation {
+namespace Battle.Terrain.Generation {
 
     public class EstimatedLandGen {
 

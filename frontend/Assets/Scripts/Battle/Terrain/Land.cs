@@ -1,10 +1,10 @@
-﻿using Battle.Generation;
+﻿using Battle.Terrain.Generation;
 using Collisions;
 using Geometry;
 using UnityEngine;
 
 
-namespace Battle.Physics {
+namespace Battle.Terrain {
 
     public partial class Land {
 

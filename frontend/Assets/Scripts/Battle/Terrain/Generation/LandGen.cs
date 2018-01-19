@@ -1,7 +1,7 @@
 using Utils.Random;
 
 
-namespace Battle.Generation {
+namespace Battle.Terrain.Generation {
 
     public class LandGen {
 

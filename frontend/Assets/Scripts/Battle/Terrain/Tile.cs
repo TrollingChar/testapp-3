@@ -2,7 +2,7 @@
 using Collisions;
 
 
-namespace Battle.Physics {
+namespace Battle.Terrain {
 
     public class Tile {
 

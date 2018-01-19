@@ -2,7 +2,7 @@
 using Geometry;
 
 
-namespace Battle.Physics {
+namespace Battle.Terrain {
 
     public class LandTile {
 

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 
-namespace Battle.Physics {
+namespace Battle.Terrain {
 
     public class LandRendererTile {
 

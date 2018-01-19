@@ -4,7 +4,7 @@ using UnityEngine;
 using Collision = Collisions.Collision;
 
 
-namespace Battle.Physics {
+namespace Battle.Terrain {
 
     public partial class Land {
 
