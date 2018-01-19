@@ -1,17 +1,17 @@
 fileFormatVersion: 2
-guid: f6f01bd5085cc80448297f12f48b5d8e
-timeCreated: 1501523819
+guid: b718f4ee9ffcc684e97af2d7eec01300
+timeCreated: 1501523808
 licenseType: Pro
 TrueTypeFontImporter:
   serializedVersion: 4
   fontSize: 16
-  forceTextureCase: -2
+  forceTextureCase: -1
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: a_ConceptoTitulNrFy
+  fontName: AA Clobberin Time Smooth
   fontNames:
-  - a_ConceptoTitulNrFy
+  - AA Clobberin Time Smooth
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0

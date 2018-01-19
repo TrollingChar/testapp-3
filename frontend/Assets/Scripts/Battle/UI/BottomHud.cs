@@ -49,14 +49,14 @@ namespace Battle.UI {
 
 
         private void UpdateTimer () {
-            _time.text =
-                _turnTime == ""
-                    ? _gameTime == ""
-                        ? ""
-                        : "<size=90>" + _gameTime + "</size>"
-                    : _gameTime == ""
-                        ? "<size=120>" + _turnTime + "</size>"
-                        : "<size=120>" + _turnTime + "</size>\n<size=60>" + _gameTime + "</size>";
+            _time.text = _turnTime;
+//                _turnTime == ""
+//                    ? _gameTime == ""
+//                        ? ""
+//                        : "<size=90>" + _gameTime + "</size>"
+//                    : _gameTime == ""
+//                        ? "<size=120>" + _turnTime + "</size>"
+//                        : "<size=120>" + _turnTime + "</size>\n<size=60>" + _gameTime + "</size>";
         }
 
     }

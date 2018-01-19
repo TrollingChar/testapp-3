@@ -15,6 +15,7 @@ namespace Core {
 
         private void Awake () {
             DontDestroyOnLoad(this);
+            Application.targetFrameRate = 60;
 
             DTO.Init();
             Serialization<Weapon>.ScanAssembly<WeaponAttribute>();

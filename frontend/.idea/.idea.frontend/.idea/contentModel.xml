@@ -244,7 +244,6 @@
             <e p="Time.cs" t="Include" />
             <e p="UI" t="Include">
               <e p="CustomPanelController.cs" t="Include" />
-              <e p="ManualGridLayout.cs" t="Include" />
               <e p="Panel.cs" t="Include" />
               <e p="PanelController.cs" t="Include" />
               <e p="StandardPanelController.cs" t="Include" />

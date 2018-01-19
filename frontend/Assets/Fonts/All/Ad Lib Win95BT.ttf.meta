@@ -1,17 +1,17 @@
 fileFormatVersion: 2
-guid: 807e5622bd0b1b04a95b35249dcbc182
-timeCreated: 1489927521
+guid: 8b72eca5f7a596442845c0774f670ce2
+timeCreated: 1501523814
 licenseType: Pro
 TrueTypeFontImporter:
   serializedVersion: 4
   fontSize: 16
-  forceTextureCase: -2
+  forceTextureCase: -1
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: Jura
+  fontName: AdLib Win95BT
   fontNames:
-  - Jura
+  - AdLib Win95BT
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0

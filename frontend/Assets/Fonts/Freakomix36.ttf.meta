@@ -1,17 +1,17 @@
 fileFormatVersion: 2
-guid: 8b72eca5f7a596442845c0774f670ce2
-timeCreated: 1501523814
+guid: aea524bc2301c874a8f9e7899c275fad
+timeCreated: 1515757242
 licenseType: Pro
 TrueTypeFontImporter:
   serializedVersion: 4
-  fontSize: 16
-  forceTextureCase: -2
+  fontSize: 36
+  forceTextureCase: -1
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: AdLib Win95BT
+  fontName: Freakomix by Avdo
   fontNames:
-  - AdLib Win95BT
+  - Freakomix by Avdo
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
