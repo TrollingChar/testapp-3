@@ -2,13 +2,14 @@
 using Collisions;
 using Geometry;
 using UnityEngine;
+using Utils;
 
 
 namespace Battle.Terrain {
 
     public partial class Land {
 
-        private byte[,] _array;
+        private BitMatrix _array;
 
         //private Texture2D _tex;
         private LandRenderer _landRenderer;
@@ -34,12 +35,8 @@ namespace Battle.Terrain {
         public int HeightInTiles { get; private set; }
 
 
-        public byte this [int x, int y] {
-            get {
-                return x < 0 || y < 0 || x >= Width || y >= Height
-                    ? (byte) 0
-                    : _array[x, y];
-            }
+        public bool this [int x, int y] {
+            get { return x >= 0 && y >= 0 && x < Width && y < Height && _array[x, y]; }
             // set { array[x, y] = value == 0 ? 0 : 1; }
         }
 
@@ -47,12 +44,9 @@ namespace Battle.Terrain {
         private void InitArray (LandGen gen) {
             _array = gen.Array;
 
-            Width = _array.GetLength(0);
-            Height = _array.GetLength(1);
+            Width = _array.Width;
+            Height = _array.Height;
         }
-
-
-        private void InitTexture (Texture2D landTexture, SpriteRenderer renderer) {}
 
 
         private void InitTexture (LandRenderer landRenderer, Texture2D landTexture) {
@@ -60,7 +54,7 @@ namespace Battle.Terrain {
 //            _tex = new Texture2D(Width, Height);
             for (int x = 0; x < Width; ++x)
             for (int y = 0; y < Height; ++y) {
-                _landRenderer.SetPixel(x, y, _array[x, y] == 0 ? Color.clear : landTexture.GetPixel(x & 0xff, y & 0xff));
+                _landRenderer.SetPixel(x, y, _array[x, y] ? landTexture.GetPixel(x & 0xff, y & 0xff) : Color.clear);
             }
             _landRenderer.Apply();
             //renderer.sprite = Sprite.Create(_tex, new Rect(0, 0, Width, Height), new Vector2(0, 0), 1f);
@@ -101,7 +95,7 @@ namespace Battle.Terrain {
             for (int x = left; x < right; x++)
             for (int y = bottom; y < top; y++) {
                 if (XY.SqrDistance(center, new XY(x, y)) > sqrRadius) continue;
-                _array[x, y] = 0;
+                _array[x, y] = false;
 //                int arrayIndex = (x - left) + (y - bottom) * (right - left);
 //                pixels[arrayIndex] = Random.ColorHSV();
                 _landRenderer.SetPixel(x, y, Color.clear);

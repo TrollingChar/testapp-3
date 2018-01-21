@@ -91,7 +91,7 @@ namespace Battle.Terrain {
             for (int x = startX; x < endX; x++) {
                 float d = Geom.RayTo1D(startXY.X, v.X, x);
                 int y = ceil ? Mathf.CeilToInt(startXY.Y + d * v.Y) - 1 : Mathf.FloorToInt(startXY.Y + d * v.Y);
-                if (this[x, y] == 0) continue;
+                if (!this[x, y]) continue;
                 v *= d;
                 primitive = Primitive.Left(x);
                 return true;
@@ -109,7 +109,7 @@ namespace Battle.Terrain {
             for (int x = startX; x >= endX; x--) {
                 float d = Geom.RayTo1D(startXY.X, v.X, x + 1);
                 int y = ceil ? Mathf.CeilToInt(startXY.Y + d * v.Y) - 1 : Mathf.FloorToInt(startXY.Y + d * v.Y);
-                if (this[x, y] == 0) continue;
+                if (!this[x, y]) continue;
                 v *= d;
                 primitive = Primitive.Right(x + 1);
                 return true;
@@ -127,7 +127,7 @@ namespace Battle.Terrain {
             for (int y = startY; y < endY; y++) {
                 float d = Geom.RayTo1D(startXY.Y, v.Y, y);
                 int x = ceil ? Mathf.CeilToInt(startXY.X + d * v.X) - 1 : Mathf.FloorToInt(startXY.X + d * v.X);
-                if (this[x, y] == 0) continue;
+                if (!this[x, y]) continue;
                 v *= d;
                 primitive = Primitive.Bottom(y);
                 return true;
@@ -145,7 +145,7 @@ namespace Battle.Terrain {
             for (int y = startY; y >= endY; y--) {
                 float d = Geom.RayTo1D(startXY.Y, v.Y, y + 1);
                 int x = ceil ? Mathf.CeilToInt(startXY.X + d * v.X) - 1 : Mathf.FloorToInt(startXY.X + d * v.X);
-                if (this[x, y] == 0) continue;
+                if (!this[x, y]) continue;
                 v *= d;
                 primitive = Primitive.Top(y + 1);
                 return true;

@@ -27,8 +27,8 @@ namespace Battle.Terrain.Generation {
 
         public EstimatedLandGen (LandGen landGen) {
             _landGen = landGen;
-            _width = landGen.Array.GetLength(0);
-            _height = landGen.Array.GetLength(1);
+            _width = landGen.Array.Width;
+            _height = landGen.Array.Height;
 
             OnProgress = new Messenger<float>();
             OnComplete = new Messenger<LandGen>();
@@ -92,7 +92,7 @@ namespace Battle.Terrain.Generation {
             yield return null;
             for (int i = 0; i < iterations; i++) {
                 _landGen = _landGen.Expand();
-                Done += _landGen.Array.GetLength(0) * _landGen.Array.GetLength(1) * ExpandEstimation;
+                Done += _landGen.Array.Width * _landGen.Array.Height * ExpandEstimation;
 
                 yield return null;
             }
@@ -103,7 +103,7 @@ namespace Battle.Terrain.Generation {
             yield return null;
             for (int i = 0; i < iterations; i++) {
                 _landGen = _landGen.Cellular(rules, 1);
-                Done += _landGen.Array.GetLength(0) * _landGen.Array.GetLength(1) * CellularEstimation;
+                Done += _landGen.Array.Width * _landGen.Array.Height * CellularEstimation;
 
                 yield return null;
             }
@@ -113,7 +113,7 @@ namespace Battle.Terrain.Generation {
         private IEnumerator DoRescale (int w, int h) {
             yield return null;
             _landGen = _landGen.Rescale(w, h);
-            Done += _landGen.Array.GetLength(0) * _landGen.Array.GetLength(1) * RescaleEstimation;
+            Done += _landGen.Array.Width * _landGen.Array.Height * RescaleEstimation;
 
             yield return null;
         }
@@ -122,7 +122,7 @@ namespace Battle.Terrain.Generation {
         private IEnumerator DoSwitchDimensions () {
             yield return null;
             _landGen = _landGen.SwitchDimensions();
-            Done += _landGen.Array.GetLength(0) * _landGen.Array.GetLength(1) * RotateEstimation;
+            Done += _landGen.Array.Width * _landGen.Array.Height * RotateEstimation;
 
             yield return null;
         }

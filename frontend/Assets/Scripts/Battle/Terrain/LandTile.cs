@@ -47,7 +47,7 @@ namespace Battle.Terrain {
             Land = 0;
             for (int ix = _x * Size, xx = ix + Size; ix < xx; ix++)
             for (int iy = _y * Size, yy = iy + Size; iy < yy; iy++) {
-                Land += land[ix, iy];
+                if (land[ix, iy]) Land++;
             }
         }
 
@@ -56,12 +56,12 @@ namespace Battle.Terrain {
             Vertices.Clear();
             for (int ix = _x * Size, xx = ix + Size; ix <= xx; ix++)
             for (int iy = _y * Size, yy = iy + Size; iy <= yy; iy++) {
-                int temp
-                    = land[ix - 1, iy]
-                    + land[ix - 1, iy - 1]
-                    + land[ix, iy - 1]
-                    + land[ix, iy];
-                if (temp == 1) Vertices.Add(new XY(ix, iy));
+                byte corners = 0;
+                if (land[ix - 1, iy]) corners++;
+                if (land[ix - 1, iy - 1]) corners++;
+                if (land[ix, iy - 1]) corners++;
+                if (land[ix, iy]) corners++;
+                if (corners == 1) Vertices.Add(new XY(ix, iy));
             }
         }
 

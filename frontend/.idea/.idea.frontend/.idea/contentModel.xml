@@ -307,6 +307,7 @@
             </e>
           </e>
           <e p="Utils" t="Include">
+            <e p="BitMatrix.cs" t="Include" />
             <e p="Messenger" t="Include">
               <e p="Messenger.cs" t="Include" />
             </e>

@@ -85,7 +85,7 @@ namespace Battle {
 
             int x = Mathf.FloorToInt(mouseXY.X);
             int y = Mathf.FloorToInt(mouseXY.Y);
-            s += "pixel: (" + x + ", " + y + ") " + (Land[x, y] == 0 ? "empty" : "solid") + "\n\n";
+            s += "pixel: (" + x + ", " + y + ") " + (Land[x, y] ? "solid" : "empty") + "\n\n";
 
             int landTileX = Mathf.FloorToInt(mouseXY.X / LandTile.Size);
             int landTileY = Mathf.FloorToInt(mouseXY.Y / LandTile.Size);

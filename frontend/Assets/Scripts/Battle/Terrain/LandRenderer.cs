@@ -8,14 +8,7 @@ namespace Battle.Terrain {
 
     public class LandRenderer : MonoBehaviour {
 
-//        private readonly Transform _parent;
         private Dictionary<TileXY, LandRendererTile> _tiles = new Dictionary<TileXY, LandRendererTile>();
-
-
-//        public LandRenderer (Transform parent) {
-//            _parent = parent;
-//            _tiles;
-//        }
 
 
         private LandRendererTile this [int x, int y] {
@@ -30,13 +23,18 @@ namespace Battle.Terrain {
 
 
         public void SetPixel (int x, int y, Color color) {
+//return;
             this[x / LandRendererTile.Size, y / LandRendererTile.Size].SetPixel
                 (x % LandRendererTile.Size, y % LandRendererTile.Size, color);
         }
 
 
         public void Apply () {
-            _tiles = _tiles.Where(kvp => !kvp.Value.IsEmpty).ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+//return;
+            _tiles = _tiles
+                .Where(kvp => !kvp.Value.IsEmpty)
+                .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+            
             foreach (var tile in _tiles) tile.Value.Apply();
         }
 
