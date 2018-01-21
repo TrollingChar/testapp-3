@@ -34,7 +34,14 @@ namespace Battle.Terrain {
                 var renderer = _gameObject.GetComponent<SpriteRenderer>();
                 _tex = new Texture2D(Size, Size, TextureFormat.RGBA32, false);
                 _tex.wrapMode = TextureWrapMode.Clamp;
-                renderer.sprite = Sprite.Create(_tex, new Rect(0, 0, Size, Size), new Vector2(0, 0), 1f);
+                renderer.sprite = Sprite.Create(
+                    _tex,
+                    new Rect(0, 0, Size, Size),
+                    new Vector2(0, 0),
+                    1f,
+                    0,
+                    SpriteMeshType.FullRect
+                );
                 _tex.SetPixels(new Color[Size * Size]);
             }
             _tex.SetPixel(x, y, color);
