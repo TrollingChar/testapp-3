@@ -1,6 +1,6 @@
-﻿using Battle.Objects.Controllers;
+﻿using System;
+using Battle.Objects.Controllers;
 using Battle.Objects.GameObjects;
-using Battle.State;
 using Battle.Teams;
 using Battle.Weapons;
 using Collisions;
@@ -11,7 +11,6 @@ using UnityEngine.UI;
 using Utils.Random;
 using BoxCollider = Collisions.BoxCollider;
 using UnObject = UnityEngine.Object;
-using Time = Core.Time; 
 
 
 namespace Battle.Objects {
@@ -36,6 +35,8 @@ namespace Battle.Objects {
         private Color _color;
         private bool _facesRight;
         private int _hp;
+//        private int _hpot; // over time
+        private int _poison;
         private string _name;
 
         private WormGO _wormGO;
@@ -59,6 +60,7 @@ namespace Battle.Objects {
         public CircleCollider Head { get; private set; }
         public CircleCollider Tail { get; private set; }
 
+        
         public bool FacesRight {
             get { return _facesRight; }
             set {
@@ -75,6 +77,7 @@ namespace Battle.Objects {
             }
         }
 
+        
         public int HP {
             get { return _hp; }
             set {
@@ -83,10 +86,28 @@ namespace Battle.Objects {
                     if (value <= 0) Team.WormsAlive--;
                 }
                 _hp = value < 0 ? 0 : value;
-                if (_hpField != null) _hpField.text = _hp.ToString();
+                UpdateHpText();
             }
         }
 
+        
+        public int Poison {
+            get { return _poison; }
+            set {
+                _poison = value;
+                UpdateHpText();
+            }
+        }
+
+
+        private void UpdateHpText () {
+            if (_hpField == null) return;
+            string text = HP.ToString();
+            if (_poison > 0) text += " (-" + Poison + ")";
+            _hpField.text = text;
+        }
+
+        
         public string Name {
             get { return _name; }
             set {
@@ -95,6 +116,7 @@ namespace Battle.Objects {
             }
         }
 
+        
         public Color Color {
             get { return _color; }
             set {
@@ -175,8 +197,43 @@ namespace Battle.Objects {
 
 
         public override void GetDamage (int damage) {
+            if (damage <= 0) {
+                Debug.LogWarning("damage <= 0");
+                return;
+            }
             HP -= damage;
             if (The.ActiveWorm.Is(this)) The.BattleScene.EndTurn();
+        }
+
+
+        public override void AddPoison (int dpr, bool additive) {
+            if (dpr <= 0) {
+                Debug.LogWarning("poison <= 0");
+                return;
+            }
+            if (additive) {
+                Poison += dpr;
+            } else if (Poison < dpr) {
+                Poison = dpr;
+            }
+        }
+
+
+        public override void CurePoison (int dpr) {
+            if (dpr <= 0) {
+                Debug.LogWarning("cure poison <= 0");
+                return;
+            }
+            if (Poison > dpr) {
+                Poison -= dpr;
+            } else {
+                Poison = 0;
+            }
+        }
+
+
+        public override void CureAllPoison () {
+            Poison = 0;
         }
 
 

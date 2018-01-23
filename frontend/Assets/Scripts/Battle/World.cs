@@ -356,6 +356,16 @@ namespace Battle {
             return worms.Count > 0;
         }
 
+
+        public bool AfterTurn () {
+            var worms = _objects
+                .OfType<Worm>()
+                .Where(w => w.Poison > 0)
+                .ToList();
+            foreach (var worm in worms) worm.HP -= worm.Poison;
+            return worms.Count > 0;
+        }
+
     }
 
 }

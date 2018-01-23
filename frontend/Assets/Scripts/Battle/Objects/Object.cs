@@ -219,6 +219,9 @@ namespace Battle.Objects {
 
 
         public virtual void GetDamage (int damage) {}
+        public virtual void AddPoison (int dpr, bool additive) {}
+        public virtual void CurePoison (int dpr) {}
+        public virtual void CureAllPoison () {}
 
 
         public virtual void ReceiveBlastWave (XY impulse) {

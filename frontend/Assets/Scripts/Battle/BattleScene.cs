@@ -231,6 +231,7 @@ namespace Battle {
 
         public void AfterTurn () {
             // poison damage
+            if (World.AfterTurn()) Timer.Wait(new Time {Seconds = 0.5f});
         }
 
 
