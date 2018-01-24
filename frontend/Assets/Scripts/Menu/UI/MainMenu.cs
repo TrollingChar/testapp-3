@@ -35,7 +35,8 @@ namespace Menu.UI {
 
 
         private void OnClickedDonate () {
-            MenuScene.ShowDonateMenu();
+//            MenuScene.ShowDonateMenu();
+            _donateButton.GetComponentInChildren<Text>().text = "эта кнопка не работает, нажми играть";
         }
 
     }

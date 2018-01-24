@@ -23,7 +23,7 @@ namespace Core {
             Connection = gameObject.AddComponent<Connection>();
             Switcher = new SceneSwitcher();
 
-            Switcher.Load(Scenes.Menu);
+            Switcher.Load(Scenes.Menu, false); // dont bypass connection menu
         }
 
     }

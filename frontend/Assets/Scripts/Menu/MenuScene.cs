@@ -16,7 +16,14 @@ namespace Menu {
 
         private void Awake () {
             The.MenuScene = this;
-            AuthSuccessCmd.OnReceived.Subscribe(OnAuthSuccess);
+            bool bypassConnection = (bool) The.SceneSwitcher.Data[0];
+            if (bypassConnection) {
+                _connectionMenu.Hide(true);
+                _mainMenu.Show();
+            }
+            else {
+                AuthSuccessCmd.OnReceived.Subscribe(OnAuthSuccess);
+            }
         }
 
 

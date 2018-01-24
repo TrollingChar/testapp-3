@@ -16,11 +16,18 @@ namespace Battle.UI {
 
         protected override void Activate () {
             GameEndedCmd.OnReceived.Subscribe(OnGameEnded);
+            _okButton.onClick.AddListener(OnClickedOk);
+        }
+
+
+        private void OnClickedOk () {
+            The.SceneSwitcher.Load(Scenes.Menu, true); // bypass connection menu
         }
 
 
         protected override void Deactivate () {
             GameEndedCmd.OnReceived.Unsubscribe(OnGameEnded);
+            _okButton.onClick.RemoveListener(OnClickedOk);
         }
 
 
