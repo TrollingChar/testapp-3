@@ -72,7 +72,6 @@ public class Game extends Room {
 
 
     public void processEndTurn (Player player, EndTurnData data) {
-        etdMap.put(player, data);
         if (!data.alive) {
             queue.remove(player);
         }
