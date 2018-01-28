@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 // ReSharper disable AssignmentInConditionalExpression
 
 
@@ -43,15 +44,15 @@ namespace Battle.Water {
             spriteRenderer.sortingOrder = layer;
             var material = spriteRenderer.material;
             material.SetFloat("_Offset", phase);
-            material.SetFloat("_Wind", 0.03f);
+//            material.SetFloat("_Wind", 0.03f);
         }
 
 
         private void Awake () {
-            bool b = false;
             int layer = 0;
-            foreach (float y in _backWavesOffsets) MakeWaves(_backWavesPrefab, y, (b = !b) ? 0 : 0.5f, ++layer);
-            foreach (float y in _frontWavesOffsets) MakeWaves(_frontWavesPrefab, y, (b = !b) ? 0 : 0.5f, ++layer);
+            float f = (Mathf.Sqrt(5) - 1) * 0.5f;
+            foreach (float y in  _backWavesOffsets) MakeWaves( _backWavesPrefab, y, layer * f, ++layer);
+            foreach (float y in _frontWavesOffsets) MakeWaves(_frontWavesPrefab, y, layer * f, ++layer);
         }
 
     }
@@ -66,7 +67,7 @@ namespace Battle.Water {
         private void Awake () {
             var material = GetComponent<SpriteRenderer>().material;
 //            material.SetFloat("_Waves", 100);
-            material.SetFloat("_Wind", 0.1f);
+//            material.SetFloat("_Wind", 0.1f);
         }
 
     }
