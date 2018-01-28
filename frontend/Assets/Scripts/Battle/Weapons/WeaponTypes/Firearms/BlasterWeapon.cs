@@ -1,6 +1,7 @@
 ﻿using Attributes;
 using Battle.Weapons.Crosshairs;
 using Core;
+using UnityEngine;
 
 
 namespace Battle.Weapons.WeaponTypes.Firearms {
@@ -9,6 +10,7 @@ namespace Battle.Weapons.WeaponTypes.Firearms {
     public class BlasterWeapon : StandardWeapon {
 
         private LineCrosshair _crosshair;
+        private GameObject _sprite;
 
         public static WeaponDescriptor Descriptor {
             get {
@@ -31,7 +33,12 @@ namespace Battle.Weapons.WeaponTypes.Firearms {
                 false
             ).GetComponent<LineCrosshair>();
 
-            // todo: sprite
+
+            _sprite = UnityEngine.Object.Instantiate(
+                battleAssets.BlasterWeapon,
+                GameObject.transform,
+                false
+            );
         }
 
 
@@ -55,7 +62,7 @@ namespace Battle.Weapons.WeaponTypes.Firearms {
 
         protected override void OnUpdate () {
             UpdateLineCrosshair(_crosshair);
-//            UpdateAimedWeapon(_sprite);
+            UpdateAimedWeapon(_sprite);
         }
 
     }
