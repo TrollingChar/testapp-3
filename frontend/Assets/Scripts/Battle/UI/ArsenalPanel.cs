@@ -1,4 +1,7 @@
-﻿using Battle.Weapons;
+﻿using System;
+using System.Collections.Generic;
+using Battle.Arsenals;
+using Battle.Weapons;
 using Battle.Weapons.WeaponTypes.Airstrikes;
 using Battle.Weapons.WeaponTypes.CloseCombat;
 using Battle.Weapons.WeaponTypes.Firearms;
@@ -10,16 +13,20 @@ using Battle.Weapons.WeaponTypes.Spells;
 using Battle.Weapons.WeaponTypes.Thrown;
 using Core.UI;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 namespace Battle.UI {
 
     public class ArsenalPanel : Panel {
 
-        [SerializeField] private GameObject _weaponButton;
-
+        [SerializeField] private GameObject _weaponButtonPrefab;
+        private Dictionary<int, WeaponButton> _buttons;
+        
 
         private void Start () {
+            _buttons = new Dictionary<int, WeaponButton>();
+            
             AddWeapon(BazookaWeapon.Descriptor);
             AddWeapon(PlasmagunWeapon.Descriptor);
             AddWeapon(HomingMissileWeapon.Descriptor);
@@ -128,19 +135,37 @@ namespace Battle.UI {
 
 
         private void AddWeapon (WeaponDescriptor descriptor) {
-            var button = Instantiate(_weaponButton, gameObject.transform, false);
+            var button = Instantiate(_weaponButtonPrefab, gameObject.transform, false);
             var component = button.GetComponent<WeaponButton>();
             component.Configure(descriptor);
             button.transform.SetAsLastSibling();
+            _buttons.Add(component.WeaponId, component);
         }
 
 
         private void AddEmpty (int count = 1) {
             for (int i = 0; i < count; i++) {
-                var button = Instantiate(_weaponButton, gameObject.transform, false);
+                var button = Instantiate(_weaponButtonPrefab, gameObject.transform, false);
                 button.transform.SetAsLastSibling();
-//                button.GetComponent<Button>().interactable = false;
+                button.GetComponent<Button>().interactable = false;
             }
+        }
+
+
+        public void Bind (Arsenal arsenal) {
+            arsenal.OnAmmoChanged.Subscribe(ChangeAmmo);
+            foreach (int id in _buttons.Keys) ChangeAmmo(id, arsenal.GetAmmo(id));
+        }
+
+
+        public void Unbind (Arsenal arsenal) {
+            foreach (int id in _buttons.Keys) ChangeAmmo(id, 0);
+            arsenal.OnAmmoChanged.Unsubscribe(ChangeAmmo);
+        }
+
+
+        private void ChangeAmmo (int weapon, int ammo) {
+            _buttons[weapon].SetAmmo(ammo);
         }
 
     }

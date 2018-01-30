@@ -8,12 +8,17 @@ namespace Core.UI {
 
     public class WeaponButton : MonoBehaviour {
 
-        [SerializeField] private int _id;
+        [SerializeField] private int _weaponId;
         [SerializeField] private string _name;
         [SerializeField] private Text _text;
         private GameObject _image;
 
         private readonly BattleScene _battleScene = The.BattleScene;
+
+        public int WeaponId {
+            get { return _weaponId; }
+            private set { _weaponId = value; }
+        }
 
 
         public void Configure (WeaponDescriptor descriptor) {
@@ -21,7 +26,7 @@ namespace Core.UI {
             _image.name = "Icon";
             _image.transform.SetAsFirstSibling();
 
-            _id = descriptor.Id;
+            WeaponId = descriptor.Id;
 
             SetAmmo(1);
         }
@@ -36,7 +41,7 @@ namespace Core.UI {
             // EQUIP
 //            if (!teamManager.IsMyTurn) return;
 
-            _battleScene.PrepareWeapon((byte) _id);
+            _battleScene.PrepareWeapon((byte) WeaponId);
             _battleScene.ArsenalPanel.Hide();
         }
 
