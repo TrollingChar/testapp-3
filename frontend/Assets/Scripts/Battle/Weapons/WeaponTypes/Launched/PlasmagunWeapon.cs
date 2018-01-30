@@ -44,6 +44,7 @@ namespace Battle.Weapons.WeaponTypes.Launched {
 
 
         protected override void OnShoot () {
+            UseAmmo();
             Object.Spawn(
                 new PlasmaBall(),
                 Object.Position,

@@ -28,7 +28,7 @@ namespace Battle.Weapons.WeaponTypes.Launched {
         protected override void OnEquip () {
             ConstPower = false;
             Shots = Math.Min(5, GetAmmo());
-            Shots = 5;
+//            Shots = 5;
             ShotCooldown.Seconds = 0.2f;
 
             var battleAssets = The.BattleAssets;
@@ -53,6 +53,7 @@ namespace Battle.Weapons.WeaponTypes.Launched {
 
 
         protected override void OnShoot () {
+            UseAmmo();
             Object.Spawn(
                 new MultiLauncherShell(),
                 Object.Position,

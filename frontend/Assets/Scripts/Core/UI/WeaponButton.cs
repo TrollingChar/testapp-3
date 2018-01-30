@@ -12,12 +12,18 @@ namespace Core.UI {
         [SerializeField] private string _name;
         [SerializeField] private Text _text;
         private GameObject _image;
+        private Button _button;
 
         private readonly BattleScene _battleScene = The.BattleScene;
 
         public int WeaponId {
             get { return _weaponId; }
             private set { _weaponId = value; }
+        }
+
+
+        private void Awake () {
+            _button = GetComponent<Button>();
         }
 
 
@@ -48,6 +54,7 @@ namespace Core.UI {
 
         public void SetAmmo (int ammo) {
             _image.SetActive(ammo != 0);
+            _button.interactable = ammo != 0;
             _text.text = ammo > 0 ? ammo.ToString() : "";
         }
 

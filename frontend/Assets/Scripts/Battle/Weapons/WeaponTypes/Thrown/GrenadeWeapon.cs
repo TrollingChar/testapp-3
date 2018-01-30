@@ -49,6 +49,7 @@ namespace Battle.Weapons.WeaponTypes.Thrown {
 
 
         protected override void OnShoot () {
+            UseAmmo();
             Object.Spawn(
                 new Grenade(_timer),
                 Object.Position,
