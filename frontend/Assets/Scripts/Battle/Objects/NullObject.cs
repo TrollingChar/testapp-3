@@ -1,5 +1,14 @@
-﻿namespace Battle.Objects {
+﻿using UnityEngine;
 
-    internal class NullObject : Object {}
+
+namespace Battle.Objects {
+
+    internal class NullObject : Object {
+
+        public override void OnRemove () {
+            Debug.LogError("attempt to remove null object");
+        }
+
+    }
 
 }

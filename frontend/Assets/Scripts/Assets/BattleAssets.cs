@@ -35,6 +35,8 @@ namespace Assets {
         public GameObject CrossbowWeapon;
         public GameObject UltraRifleWeapon;
         public GameObject GsomRaycasterWeapon;
+        public GameObject LandmineWeapon;
+        public GameObject DynamiteWeapon;
         [Space]
         public GameObject BazookaShell;
         public GameObject PlasmaBall;
@@ -43,6 +45,8 @@ namespace Assets {
         public GameObject Limonka;
         public GameObject LimonkaCluster;
         public GameObject PhantomGrenade;
+        public GameObject Landmine;
+        public GameObject Dynamite;
 
         private void Awake () {
             The.BattleAssets = this;

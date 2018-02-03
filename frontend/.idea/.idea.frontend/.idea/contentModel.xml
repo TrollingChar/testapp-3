@@ -34,6 +34,7 @@
           </e>
           <e p="Battle" t="Include">
             <e p="Arsenals" t="Include">
+              <e p="AlphaArsenal.cs" t="Include" />
               <e p="Arsenal.cs" t="Include" />
               <e p="DarkSideArsenal.cs" t="Include" />
               <e p="FullArsenal.cs" t="Include" />
@@ -52,6 +53,7 @@
               <e p="CollisionHandlers" t="Include">
                 <e p="CollisionHandler.cs" t="Include" />
                 <e p="DetonatorCollisionHandler.cs" t="Include" />
+                <e p="DynamiteCollisionHandler.cs" t="Include" />
                 <e p="WormFallCollisionHandler.cs" t="Include" />
                 <e p="WormJumpCollisionHandler.cs" t="Include" />
                 <e p="WormStandCollisionHandler.cs" t="Include" />
@@ -85,6 +87,7 @@
               <e p="Object.cs" t="Include" />
               <e p="Projectiles" t="Include">
                 <e p="BazookaShell.cs" t="Include" />
+                <e p="Dynamite.cs" t="Include" />
                 <e p="Grenade.cs" t="Include" />
                 <e p="Limonka.cs" t="Include" />
                 <e p="LimonkaCluster.cs" t="Include" />

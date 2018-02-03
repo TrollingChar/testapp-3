@@ -306,7 +306,7 @@ namespace Battle {
             int currentSpawn = 0;
             var teams = new Dictionary<int, Team>();
             for (int pl = 0; pl < players.Count; pl++) {
-                var team = new Team(players[pl], teamColors[pl], new StandardArsenal());
+                var team = new Team(players[pl], teamColors[pl], new AlphaArsenal());
                 for (int w = 0; w < wormsInTeam; w++) {
                     var worm = new Worm();
                     Spawn(worm, spawnPoints[currentSpawn++]);
