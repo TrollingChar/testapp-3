@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Geometry;
+using UnityEngine;
 
 
 namespace Battle.Objects {
@@ -8,6 +9,9 @@ namespace Battle.Objects {
         public override void OnRemove () {
             Debug.LogError("attempt to remove null object");
         }
+
+
+        public override void ReceiveBlastWave (XY impulse) {}
 
     }
 
