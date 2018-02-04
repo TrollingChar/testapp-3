@@ -18,7 +18,7 @@ namespace Battle.Objects.Controllers {
 
         protected override void DoUpdate (TurnData td) {
             base.DoUpdate(td);
-            if (TimerText != null) TimerText.text = Timer.ToString();
+            if (TimerText != null) TimerText.text = Timer.ToString(5);
             Wait();
         }
 

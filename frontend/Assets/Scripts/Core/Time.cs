@@ -20,6 +20,12 @@ namespace Core {
         }
 
 
+        public string ToString (int maxSecondsDisplayed) {
+            int seconds = Mathf.CeilToInt(Seconds);
+            return seconds > maxSecondsDisplayed ? "" : seconds.ToString();
+        }
+
+
         public static bool operator == (Time a, Time b) {
             return a.Ticks == b.Ticks;
         }

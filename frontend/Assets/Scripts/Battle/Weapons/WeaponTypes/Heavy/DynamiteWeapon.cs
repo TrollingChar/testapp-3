@@ -1,7 +1,7 @@
-﻿using Assets;
-using Attributes;
+﻿using Attributes;
 using Battle.Objects.Projectiles;
 using Core;
+using Geometry;
 using UnityEngine;
 
 
@@ -33,12 +33,19 @@ namespace Battle.Weapons.WeaponTypes.Heavy {
 
         protected override void OnShoot () {
             UseAmmo();
-            Object.Spawn(new Dynamite(), Object.Position);
+            float dx = TurnData.XY.X - Object.Position.X;
+            Object.Spawn(new Dynamite(), Object.Position, new XY(dx < 0 ? -1 : 1, 3));
         }
 
 
         protected override void OnUpdate () {
-//            UpdateAimedWeapon(_sprite);
+            float dx = TurnData.XY.X - Object.Position.X;
+            The.BattleScene.ShowHint(dx.ToString());
+            var tr = _sprite.transform;
+            if (!(dx < 0 ^ tr.localScale.x < 0)) return;
+            var scale = tr.localScale;
+            scale.x = -tr.localScale.x;
+            tr.localScale = scale;
         }
 
     }

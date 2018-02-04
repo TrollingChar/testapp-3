@@ -22,7 +22,7 @@ namespace Battle.Objects.Projectiles {
             var timerText = UnityEngine.Object.Instantiate(assets.Text, canvas.transform, false).GetComponent<Text>();
 
             UnityEngine.Object.Instantiate(assets.Dynamite, transform, false);
-            AddCollider(new BoxCollider(-2, 2, -4, 4));
+            AddCollider(new BoxCollider(-4, 4, -6, 6));
             Explosive = new Explosive40();
             Controller = new GrenadeController(new Time {Seconds = 6}, timerText);
             CollisionHandler = new DynamiteCollisionHandler();

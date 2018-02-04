@@ -20,11 +20,11 @@ namespace Battle.Arsenals {
             SetAmmo(WeaponId.Blaster, 8);
             SetAmmo(WeaponId.Pistol, inf);
             SetAmmo(WeaponId.PoisonArrow, 8);
-            SetAmmo(WeaponId.UltraRifle, 2);
+            SetAmmo(WeaponId.UltraRifle, 4);
             SetAmmo(WeaponId.GsomRaycaster, 1);
 
-            SetAmmo(WeaponId.Landmine, 2);
-            SetAmmo(WeaponId.Dynamite, 2);
+            SetAmmo(WeaponId.Landmine, inf);
+            SetAmmo(WeaponId.Dynamite, 4);
             
             SetAmmo(WeaponId.Jumper, 8);
 
