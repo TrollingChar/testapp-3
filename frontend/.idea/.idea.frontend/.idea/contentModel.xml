@@ -89,6 +89,7 @@
                 <e p="BazookaShell.cs" t="Include" />
                 <e p="Dynamite.cs" t="Include" />
                 <e p="Grenade.cs" t="Include" />
+                <e p="Landmine.cs" t="Include" />
                 <e p="Limonka.cs" t="Include" />
                 <e p="LimonkaCluster.cs" t="Include" />
                 <e p="MultiLauncherShell.cs" t="Include" />

@@ -40,7 +40,6 @@ namespace Battle.Weapons.WeaponTypes.Heavy {
 
         protected override void OnUpdate () {
             float dx = TurnData.XY.X - Object.Position.X;
-            The.BattleScene.ShowHint(dx.ToString());
             var tr = _sprite.transform;
             if (!(dx < 0 ^ tr.localScale.x < 0)) return;
             var scale = tr.localScale;
