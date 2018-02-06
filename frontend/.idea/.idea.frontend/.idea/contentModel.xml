@@ -52,16 +52,18 @@
             <e p="Objects" t="Include">
               <e p="CollisionHandlers" t="Include">
                 <e p="CollisionHandler.cs" t="Include" />
-                <e p="DetonatorCollisionHandler.cs" t="Include" />
-                <e p="DynamiteCollisionHandler.cs" t="Include" />
-                <e p="WormFallCollisionHandler.cs" t="Include" />
-                <e p="WormJumpCollisionHandler.cs" t="Include" />
-                <e p="WormStandCollisionHandler.cs" t="Include" />
+                <e p="DetonatorCH.cs" t="Include" />
+                <e p="DynamiteCH.cs" t="Include" />
+                <e p="LandmineCH.cs" t="Include" />
+                <e p="WormFallCH.cs" t="Include" />
+                <e p="WormJumpCH.cs" t="Include" />
+                <e p="WormStandCH.cs" t="Include" />
               </e>
               <e p="Component.cs" t="Include" />
               <e p="Controllers" t="Include">
                 <e p="Controller.cs" t="Include" />
                 <e p="GrenadeController.cs" t="Include" />
+                <e p="LandmineController.cs" t="Include" />
                 <e p="ShellController.cs" t="Include" />
                 <e p="StandardController.cs" t="Include" />
                 <e p="todo.txt" t="Include" />
