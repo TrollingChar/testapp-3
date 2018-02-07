@@ -366,6 +366,19 @@ namespace Battle {
             return worms.Count > 0;
         }
 
+
+        public Worm WormNearestTo (XY xy) {
+            float min2 = float.NaN;
+            Worm nearest = null;
+            foreach (var worm in _objects.OfType<Worm>()) {
+                float d2 = XY.SqrDistance(xy, worm.Position);
+                if (nearest != null && min2 < d2) continue;
+                min2 = d2;
+                nearest = worm;
+            }
+            return nearest;
+        }
+
     }
 
 }

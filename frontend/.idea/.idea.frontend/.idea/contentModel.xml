@@ -55,15 +55,16 @@
                 <e p="DetonatorCH.cs" t="Include" />
                 <e p="DynamiteCH.cs" t="Include" />
                 <e p="LandmineCH.cs" t="Include" />
+                <e p="LandmineStickCH.cs" t="Include" />
                 <e p="WormFallCH.cs" t="Include" />
                 <e p="WormJumpCH.cs" t="Include" />
-                <e p="WormStandCH.cs" t="Include" />
               </e>
               <e p="Component.cs" t="Include" />
               <e p="Controllers" t="Include">
                 <e p="Controller.cs" t="Include" />
                 <e p="GrenadeController.cs" t="Include" />
                 <e p="LandmineController.cs" t="Include" />
+                <e p="LandmineControllerStuck.cs" t="Include" />
                 <e p="ShellController.cs" t="Include" />
                 <e p="StandardController.cs" t="Include" />
                 <e p="todo.txt" t="Include" />

@@ -6,11 +6,8 @@ namespace Battle.Objects.Controllers {
 
     public class StandardController : Controller {
 
-        private readonly float _gravity = The.World.Gravity;
-
-
         protected override void DoUpdate (TurnData td) {
-            Object.Velocity.Y += _gravity;
+            Object.Velocity.Y += The.World.Gravity;
             Wait();
         }
 

@@ -182,14 +182,14 @@ namespace Battle.Objects {
         }
 
 
-        protected void AddCollider (Collider c) {
+        public void AddCollider (Collider c) {
             c.Object = this;
             Colliders.Add(c);
             c.UpdatePosition();
         }
 
 
-        protected void RemoveCollider (Collider c) {
+        public void RemoveCollider (Collider c) {
             c.FreeTiles();
             Colliders.Remove(c);
         }

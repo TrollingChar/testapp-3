@@ -1,6 +1,6 @@
 ﻿namespace Battle.Objects.CollisionHandlers {
 
-    public class LandmineCH {
+    public class LandmineCH : CollisionHandler {
 
         
 

@@ -14,6 +14,9 @@ namespace Battle.Objects.Projectiles {
 
     public class Landmine : Object {
 
+        public const float Radius = 5f;
+        public const float StickCheckRadius = 6f;
+
         public override void OnAdd () {var transform = GameObject.transform;
             var assets = The.BattleAssets;
 
@@ -24,12 +27,17 @@ namespace Battle.Objects.Projectiles {
             var timerText = UnityEngine.Object.Instantiate(assets.Text, canvas.transform, false).GetComponent<Text>();
 
             UnityEngine.Object.Instantiate(assets.Landmine, transform, false);
-            AddCollider(new CircleCollider(XY.Zero, 5f));
+            AddCollider(new CircleCollider(XY.Zero, Radius));
             Explosive = new Explosive25();
-            Controller = new LandmineController();
-            CollisionHandler = new LandmineCH();
-//            Controller = new GrenadeController(new Time {Seconds = 6}, timerText);
-//            CollisionHandler = new DynamiteCollisionHandler();
+            Controller = new LandmineController(timerText);
+            CollisionHandler = new LandmineStickCH();
+        }
+
+
+        public override void ReceiveBlastWave (XY impulse) {
+            var controller = (LandmineController) Controller;
+            controller.Stuck = false;
+            base.ReceiveBlastWave(impulse);
         }
 
     }

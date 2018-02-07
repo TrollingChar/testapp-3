@@ -34,7 +34,7 @@ namespace Battle.Weapons.WeaponTypes.Heavy {
         protected override void OnShoot () {
             UseAmmo();
             float dx = TurnData.XY.X - Object.Position.X;
-            Object.Spawn(new Dynamite(), Object.Position, new XY(dx < 0 ? -1 : 1, 3));
+            Object.Spawn(new Dynamite(), Object.Position, Object.Velocity + new XY(dx < 0 ? -1 : 1, 3));
         }
 
 
