@@ -17,7 +17,8 @@ namespace Battle.Objects.Projectiles {
         public const float Radius = 5f;
         public const float StickCheckRadius = 6f;
 
-        public override void OnAdd () {var transform = GameObject.transform;
+        public override void OnAdd () {
+            var transform = GameObject.transform;
             var assets = The.BattleAssets;
 
             var canvas = UnityEngine.Object.Instantiate(assets.TopCanvas, transform, false);

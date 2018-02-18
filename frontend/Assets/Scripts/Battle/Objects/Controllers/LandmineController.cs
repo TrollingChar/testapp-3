@@ -8,6 +8,7 @@ using DataTransfer.Data;
 using Geometry;
 using UnityEngine;
 using UnityEngine.UI;
+using Time = Core.Time;
 
 
 namespace Battle.Objects.Controllers {
@@ -19,6 +20,7 @@ namespace Battle.Objects.Controllers {
         private bool _activated;
         private readonly World _world;
         private bool _stuck;
+        private Time _control;
 
 
         public bool Activated {
@@ -33,7 +35,7 @@ namespace Battle.Objects.Controllers {
             get { return _stuck; }
             set {
                 _stuck = value;
-//                if (!value) Object.CollisionHandler = new CollisionHandler();
+                if (!value) Object.CollisionHandler = new CollisionHandler();
             }
         }
 
@@ -46,6 +48,7 @@ namespace Battle.Objects.Controllers {
 
 
         protected override void DoUpdate (TurnData td) {
+            // if stuck and is in open space, unstuck and fall
             if (Stuck) {
                 var collider = new CircleCollider(XY.Zero, Landmine.StickCheckRadius);
                 Object.AddCollider(collider);
@@ -74,10 +77,19 @@ namespace Battle.Objects.Controllers {
                 // do nothing
                 Object.RemoveCollider(collider);
             }
+            
             if (!Stuck) {
                 Object.Velocity.Y += _world.Gravity;
                 Wait();
+                
+                if (Object.Velocity.SqrLength < 1) _control.Ticks++;
+                if (The.World.Time.Ticks % Time.TPS == 0) {
+                    if (_control.Seconds >= 0.9f) Object.CollisionHandler = new LandmineStickCH();
+                    _control.Ticks = 0;
+                }
             }
+            
+            // timer
             if (Timer.Ticks >= 0) {
                 Wait();
             } else if (CheckWormsPresence(40)) {
