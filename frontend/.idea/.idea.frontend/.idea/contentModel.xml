@@ -300,7 +300,9 @@
             <e p="MenuScene.cs" t="Include" />
             <e p="UI" t="Include">
               <e p="ConnectionMenu.cs" t="Include" />
+              <e p="DonateMenu.cs" t="Include" />
               <e p="GameModeMenu.cs" t="Include" />
+              <e p="HelpMenu.cs" t="Include" />
               <e p="LobbyMenu.cs" t="Include" />
               <e p="MainMenu.cs" t="Include" />
             </e>

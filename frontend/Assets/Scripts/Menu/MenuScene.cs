@@ -12,6 +12,8 @@ namespace Menu {
         [SerializeField] private GameModeMenu _gameModeMenu;
         [SerializeField] private LobbyMenu _lobbyMenu;
         [SerializeField] private MainMenu _mainMenu;
+        [SerializeField] private MainMenu _helpMenu;
+        [SerializeField] private MainMenu _donateMenu;
 
 
         private void Awake () {
@@ -45,8 +47,15 @@ namespace Menu {
         }
 
 
+        public void ShowHelpMenu () {
+            _mainMenu.Hide();
+            _helpMenu.Show();
+        }
+
+
         public void ShowDonateMenu () {
-            Debug.LogError("DonateMenu not implemented");
+            _mainMenu.Hide();
+            _donateMenu.Show();
         }
 
 
