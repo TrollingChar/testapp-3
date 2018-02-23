@@ -108,22 +108,19 @@ namespace Battle.UI {
 
             int w = (childCount + 6) / 7;
             int h = w > 1 ? 7 : childCount;
-            float xOffset = (1 - w) * 60;
-            float yOffset = (h - 1) * 50;
+            float xOffset = (1 - w) * 55;
+            float yOffset = (h - 1) * 55;
 
             for (int i = 0; i < childCount; i++) {
                 var rt = (RectTransform) transform.GetChild(i);
 
                 rt.pivot =
                 rt.anchorMin =
-                rt.anchorMax =
-                rt.localScale = new Vector2(0.5f, 0.5f);
-
-                foreach (RectTransform child in rt) child.localScale *= 2;
+                rt.anchorMax = new Vector2(0.5f, 0.5f);
 
                 rt.anchoredPosition = new Vector2(
-                    xOffset + i / 7 * 120,
-                    yOffset - i % 7 * 100
+                    xOffset + i / 7 * 110,
+                    yOffset - i % 7 * 110
                 );
             }
         }

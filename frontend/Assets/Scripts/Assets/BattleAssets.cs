@@ -25,6 +25,7 @@ namespace Assets {
         public GameObject BazookaWeapon;
         public GameObject PlasmagunWeapon;
         public GameObject MultiLauncherWeapon;
+        public GameObject MinegunWeapon;
         public GameObject GrenadeWeapon;
         public GameObject LimonkaWeapon;
         public GameObject PhantomGrenadeWeapon;

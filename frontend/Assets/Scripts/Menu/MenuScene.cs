@@ -12,8 +12,8 @@ namespace Menu {
         [SerializeField] private GameModeMenu _gameModeMenu;
         [SerializeField] private LobbyMenu _lobbyMenu;
         [SerializeField] private MainMenu _mainMenu;
-        [SerializeField] private MainMenu _helpMenu;
-        [SerializeField] private MainMenu _donateMenu;
+        [SerializeField] private HelpMenu _helpMenu;
+        [SerializeField] private DonateMenu _donateMenu;
 
 
         private void Awake () {
@@ -70,6 +70,8 @@ namespace Menu {
             _connectionMenu.Hide();
             _gameModeMenu.Hide();
             _lobbyMenu.Hide();
+            _helpMenu.Hide();
+            _donateMenu.Hide();
 
             _mainMenu.Show();
         }

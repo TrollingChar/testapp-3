@@ -15,6 +15,7 @@ namespace Menu.UI {
         
         protected override void Activate () {
             MenuScene = The.MenuScene;
+            _backButton.onClick.AddListener(OnBackClicked);
         }
 
 

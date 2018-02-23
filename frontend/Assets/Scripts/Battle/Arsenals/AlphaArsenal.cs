@@ -10,7 +10,8 @@ namespace Battle.Arsenals {
 
             SetAmmo(WeaponId.Bazooka, inf);
             SetAmmo(WeaponId.Plasmagun, inf);
-            SetAmmo(WeaponId.MultiLauncher, 8);
+            SetAmmo(WeaponId.MultiLauncher, 24);
+            SetAmmo(WeaponId.Minegun, 8);
 
             SetAmmo(WeaponId.Grenade, inf);
             SetAmmo(WeaponId.Limonka, inf);

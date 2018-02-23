@@ -4,6 +4,8 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Battle.Arsenals;
 using Battle.Objects;
+using Battle.Objects.Controllers;
+using Battle.Objects.Projectiles;
 using Battle.Teams;
 using Battle.Terrain;
 using Battle.Terrain.Generation;
@@ -318,6 +320,21 @@ namespace Battle {
         }
 
 
+        public void SpawnMines (int count) {
+            // todo optimize
+            var spawnPoints = GetSpawnPoints().Where(
+                xy => {
+                    float sqrDist;
+                    WormNearestTo(xy, out sqrDist);
+                    return sqrDist > 2 * LandmineController.ActivationRadius
+                                       * LandmineController.ActivationRadius;
+                }
+            ).ToList();
+            spawnPoints = RNG.PickSome(spawnPoints, count);
+            foreach (var point in spawnPoints) Spawn(new Landmine(), point);
+        }
+
+
         public void DealDamage (int damage, XY center, float radius) {
             float sqrRadius = radius * radius;
             foreach (var o in _objects) {
@@ -367,13 +384,13 @@ namespace Battle {
         }
 
 
-        public Worm WormNearestTo (XY xy) {
-            float min2 = float.NaN;
+        public Worm WormNearestTo (XY xy, out float sqrDist) {
+            sqrDist = float.NaN;
             Worm nearest = null;
             foreach (var worm in _objects.OfType<Worm>()) {
                 float d2 = XY.SqrDistance(xy, worm.Position);
-                if (nearest != null && min2 < d2) continue;
-                min2 = d2;
+                if (nearest != null && sqrDist < d2) continue;
+                sqrDist = d2;
                 nearest = worm;
             }
             return nearest;

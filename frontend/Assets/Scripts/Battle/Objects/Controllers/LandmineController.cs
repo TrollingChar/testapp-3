@@ -15,6 +15,8 @@ namespace Battle.Objects.Controllers {
 
     public class LandmineController : StandardController {
 
+        public const int ActivationRadius = 40;
+
         public Text TimerText { get; private set; }
 
         private bool _activated;
@@ -92,7 +94,7 @@ namespace Battle.Objects.Controllers {
             // timer
             if (Timer.Ticks >= 0) {
                 Wait();
-            } else if (CheckWormsPresence(40)) {
+            } else if (CheckWormsPresence(ActivationRadius)) {
                 Activated = true;
                 Wait();
             }
@@ -106,7 +108,9 @@ namespace Battle.Objects.Controllers {
 
 
         private bool CheckWormsPresence (float radius) {
-            return XY.SqrDistance(Object.Position, _world.WormNearestTo(Object.Position).Position) <= radius * radius;
+            float sqrDist;
+            _world.WormNearestTo(Object.Position, out sqrDist);
+            return sqrDist <= radius * radius;
         }
 
     }
