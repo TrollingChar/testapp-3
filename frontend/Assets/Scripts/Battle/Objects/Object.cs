@@ -16,16 +16,17 @@ namespace Battle.Objects {
 
     public abstract class Object {
 
-        private static readonly NullObject _null = new NullObject();
+        private static readonly NullObject Null = new NullObject();
 
         private readonly World _world = The.World;
 
         private CollisionHandler _collisionHandler;
         private Controller _controller;
         private Explosive _explosive;
-        public List<Collider> Colliders;
+        private Timer _timer;
+        public readonly List<Collider> Colliders;
         
-        public HashSet<Object> Excluded;
+        public readonly HashSet<Object> Excluded;
 
         public float Mass;
         public int SuperMass;
@@ -71,6 +72,11 @@ namespace Battle.Objects {
             set { SwapComponent(ref _collisionHandler, value); }
         }
 
+        public Timer Timer {
+            get { return _timer; }
+            set { SwapComponent(ref _timer, value); }
+        }
+
 
         public void Update (TurnData td) {
             if (Controller != null) Controller.Update(td);
@@ -100,7 +106,7 @@ namespace Battle.Objects {
         public void Remove () {
             OnRemove();
             
-            Node.Value = _null;
+            Node.Value = Null;
             RemoveColliders();
             CollisionHandler = null;
             Explosive = null;
