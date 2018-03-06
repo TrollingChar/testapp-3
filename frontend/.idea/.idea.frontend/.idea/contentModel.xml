@@ -62,15 +62,22 @@
               <e p="Component.cs" t="Include" />
               <e p="Controllers" t="Include">
                 <e p="Controller.cs" t="Include" />
+                <e p="DisappearingController.cs" t="Include" />
                 <e p="GrenadeController.cs" t="Include" />
                 <e p="LandmineController.cs" t="Include" />
                 <e p="LandmineControllerStuck.cs" t="Include" />
                 <e p="ShellController.cs" t="Include" />
+                <e p="SmokeController.cs" t="Include" />
                 <e p="StandardController.cs" t="Include" />
                 <e p="todo.txt" t="Include" />
                 <e p="WormControllerFall.cs" t="Include" />
                 <e p="WormControllerJump.cs" t="Include" />
                 <e p="WormControllerWalk.cs" t="Include" />
+              </e>
+              <e p="Effects" t="Include">
+                <e p="Effect.cs" t="Include" />
+                <e p="Flash.cs" t="Include" />
+                <e p="Smoke.cs" t="Include" />
               </e>
               <e p="Explosives" t="Include">
                 <e p="ClusterSpawner.cs" t="Include" />

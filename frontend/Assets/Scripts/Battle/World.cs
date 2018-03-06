@@ -5,6 +5,7 @@ using System.Linq;
 using Battle.Arsenals;
 using Battle.Objects;
 using Battle.Objects.Controllers;
+using Battle.Objects.Effects;
 using Battle.Objects.Projectiles;
 using Battle.Teams;
 using Battle.Terrain;
@@ -364,12 +365,28 @@ namespace Battle {
         }
 
 
+        public void MakeSmoke (XY center, float radius) {
+            for (int i = 0; i < radius; i += 1) {//radius * radius; i += 50) {
+                float v = 1 - RNG.Float() * RNG.Float() * RNG.Float();
+                Spawn(
+                    new Smoke(RNG.Float() * (50 + radius) / 2),
+                    center,
+                    XY.FromPolar(
+                        v * radius * 2 / SmokeController.InvLerpCoeff,
+                        RNG.Float() * 2 * Mathf.PI
+                    ) // см. SmokeController
+                );
+            }
+            Spawn(new Flash(radius * 2), center);
+        }
+
+
         public bool Remove0HpWorms () {
             var worms = _objects
                 .OfType<Worm>()
                 .Where(w => w.HP <= 0)
                 .ToList();
-            foreach (var worm in worms) worm.Remove();
+            foreach (var worm in worms) worm.Detonate();
             return worms.Count > 0;
         }
 

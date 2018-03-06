@@ -11,7 +11,13 @@ namespace Battle.Objects.Controllers {
         protected override void DoUpdate (TurnData td) {
             Object.GameObject.transform.localEulerAngles = new Vector3(0, 0, Object.Velocity.Angle * Mathf.Rad2Deg);
             base.DoUpdate(td);
+            MakeSmoke();
             Wait();
+        }
+
+
+        protected virtual void MakeSmoke () {
+            
         }
 
     }

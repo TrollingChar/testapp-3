@@ -11,6 +11,7 @@ namespace Battle.Weapons.WeaponTypes.Firearms {
 
         private LineCrosshair _crosshair;
         private GameObject _sprite;
+        private Animator _animator;
 
         public static WeaponDescriptor Descriptor {
             get {
@@ -39,6 +40,8 @@ namespace Battle.Weapons.WeaponTypes.Firearms {
                 GameObject.transform,
                 false
             );
+
+            _animator = _sprite.GetComponent<Animator>();
         }
 
 
@@ -48,6 +51,7 @@ namespace Battle.Weapons.WeaponTypes.Firearms {
 
 
         protected override void OnShoot () {
+            _animator.SetTrigger("Shoot");
             var direction = TurnData.XY - Object.Position;
             var collision = The.World.CastRay(Object.Position, direction);
             if (collision == null) return;

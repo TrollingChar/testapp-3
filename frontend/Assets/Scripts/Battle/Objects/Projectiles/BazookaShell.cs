@@ -14,10 +14,13 @@ namespace Battle.Objects.Projectiles {
             UnityEngine.Object.Instantiate(The.BattleAssets.BazookaShell, GameObject.transform, false);
             AddCollider(new CircleCollider(XY.Zero, 5f));
             Explosive = new Explosive25();
-            Controller = new ShellController();
+            Controller = new BazookaShellController();
             CollisionHandler = new DetonatorCollisionHandler();
         }
 
     }
+
+
+    public class BazookaShellController : ShellController {}
 
 }

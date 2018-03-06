@@ -1,5 +1,6 @@
 ﻿using System;
 using Battle.Objects.Controllers;
+using Battle.Objects.Explosives;
 using Battle.Objects.GameObjects;
 using Battle.Teams;
 using Battle.Weapons;
@@ -152,6 +153,7 @@ namespace Battle.Objects {
             AddCollider(new BoxCollider(-HeadRadius, HeadRadius, BodyHeight * -0.5f, BodyHeight * 0.5f));
 
             Controller = new WormControllerJump();
+            Explosive = new Explosive15();
         }
 
 

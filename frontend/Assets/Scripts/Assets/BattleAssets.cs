@@ -48,6 +48,9 @@ namespace Assets {
         public GameObject PhantomGrenade;
         public GameObject Landmine;
         public GameObject Dynamite;
+        [Space]
+        public GameObject Smoke;
+        public GameObject Flash;
 
         private void Awake () {
             The.BattleAssets = this;

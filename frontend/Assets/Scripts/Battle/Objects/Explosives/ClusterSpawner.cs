@@ -1,4 +1,6 @@
-﻿using Battle.Objects.Projectiles;
+﻿using Battle.Objects.Effects;
+using Battle.Objects.Projectiles;
+using Core;
 using Geometry;
 using Utils.Random;
 
@@ -12,7 +14,9 @@ namespace Battle.Objects.Explosives {
                 var cluster = new LimonkaCluster();
                 var velocity = XY.FromPolar(8 + RNG.Float() * 8, (RNG.Float() - RNG.Float()) * 0.5f).Rotated90CCW();
                 Object.Spawn(cluster, Object.Position, velocity);
+//                Object.Spawn(new Explosion(20f), Object.Position);
             }
+            The.World.MakeSmoke(Object.Position, 20f);
         }
 
     }

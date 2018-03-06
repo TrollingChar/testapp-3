@@ -16,8 +16,8 @@ namespace Battle.Weapons {
         protected int Power { get; private set; }
         private bool _ready; // used when weapon requires click
 
-        protected Time AttackCooldown = new Time {Ticks = 25};
-        protected Time ShotCooldown = new Time {Ticks = 5};
+        protected Time AttackCooldown = new Time {Seconds = 0.5f};
+        protected Time ShotCooldown = new Time {Seconds = 0.1f};
         protected bool ConstPower = true; // if false, will require to hold the button
         protected int Attacks = 1; // blaster has 2
         protected bool Removable = false; // if false, locks arsenal when used
