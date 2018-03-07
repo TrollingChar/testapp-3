@@ -1,10 +1,12 @@
-﻿using DataTransfer.Data;
+﻿using System;
+using DataTransfer.Data;
 using UnityEngine.UI;
 using Time = Core.Time;
 
 
 namespace Battle.Objects.Controllers {
 
+    [Obsolete]
     public class GrenadeController : StandardController {
 
         public Text TimerText { get; private set; }

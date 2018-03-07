@@ -5,22 +5,27 @@ namespace Battle.Objects.Timers {
 
     public abstract class Timer : Component {
 
-        private Time _time;
+        protected Time Time;
 
 
-        public Timer (Time time) {
-            _time = time;
+        protected Timer (Time time) {
+            Time = time;
         }
-        
+
 
         public void Update () {
-            if (--_time.Ticks > 0) return;
+            if (--Time.Ticks > 0) {
+                OnTick();
+                return;
+            }
+            OnTick();
             Object.Timer = null;
             OnExpire();
         }
 
 
         protected abstract void OnExpire ();
+        protected virtual void OnTick () {}
 
     }
 
