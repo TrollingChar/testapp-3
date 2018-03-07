@@ -1,7 +1,7 @@
 ﻿using Core;
 
 
-namespace Battle.Objects {
+namespace Battle.Objects.Timers {
 
     public abstract class Timer : Component {
 
@@ -14,7 +14,9 @@ namespace Battle.Objects {
         
 
         public void Update () {
-            if (--_time.Ticks <= 0) OnExpire();
+            if (--_time.Ticks > 0) return;
+            Object.Timer = null;
+            OnExpire();
         }
 
 

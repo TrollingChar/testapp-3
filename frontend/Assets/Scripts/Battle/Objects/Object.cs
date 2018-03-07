@@ -3,6 +3,7 @@ using System.Linq;
 using Battle.Objects.CollisionHandlers;
 using Battle.Objects.Controllers;
 using Battle.Objects.Explosives;
+using Battle.Objects.Timers;
 using Collisions;
 using Core;
 using DataTransfer.Data;
@@ -80,6 +81,7 @@ namespace Battle.Objects {
 
         public void Update (TurnData td) {
             if (Controller != null) Controller.Update(td);
+            if (Timer != null) Timer.Update();
         }
 
 
