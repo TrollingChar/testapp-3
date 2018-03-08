@@ -35,7 +35,7 @@ namespace Battle.Objects.Controllers {
             }
             var mine = (Landmine) Object;
             if (Object.Timer == null && mine.CheckWormsPresence(Landmine.ActivationRadius)) {
-                Object.Timer = new DetonationTimer(new Time{Seconds = 2});
+                Object.Timer = new LandmineDetonationTimer(new Time{Seconds = 2});
                 Wait();
             }
         }

@@ -38,7 +38,7 @@ namespace Battle.Objects.Controllers {
 
 
         protected override void DoUpdate (TurnData td) {
-            Object.Velocity = XY.Lerp(Object.Velocity, new XY(0, 0.5f), 1 / InvLerpCoeff);
+            Object.Velocity = XY.Lerp(Object.Velocity, new XY(5, 0.5f), 1 / InvLerpCoeff);
             Size -= 1f;
         }
 

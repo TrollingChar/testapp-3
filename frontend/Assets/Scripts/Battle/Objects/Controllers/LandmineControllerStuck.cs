@@ -27,8 +27,8 @@ namespace Battle.Objects.Controllers {
             for (int x = tiles.Left; x < tiles.Right; x++)
             for (int y = tiles.Bottom; y < tiles.Top; y++) {
                 foreach (var c in _world.Tiles[x, y].Colliders) {
-                    if (collider.Object == Object) continue;
-                    if (collider.Overlaps(c)) goto found;
+                    if (c.Object == Object) continue;
+                    if (c.Overlaps(collider)) goto found;
                 }
             }
             const float rr = Landmine.StickCheckRadius * Landmine.StickCheckRadius;
@@ -40,14 +40,14 @@ namespace Battle.Objects.Controllers {
                 }
             }
             Object.Controller = new LandmineController();
-            Object.CollisionHandler = new LandmineCH();
+//            Object.CollisionHandler = new CollisionHandler();
             found:
             // do nothing
             Object.RemoveCollider(collider);
 
             var mine = (Landmine) Object;
             if (Object.Timer == null && mine.CheckWormsPresence(Landmine.ActivationRadius)) {
-                Object.Timer = new DetonationTimer(new Time {Seconds = 2});
+                Object.Timer = new LandmineDetonationTimer(new Time{Seconds = 2});
                 Wait();
             }
         }

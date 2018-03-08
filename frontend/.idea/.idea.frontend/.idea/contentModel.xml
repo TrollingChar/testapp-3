@@ -54,7 +54,6 @@
                 <e p="CollisionHandler.cs" t="Include" />
                 <e p="DetonatorCH.cs" t="Include" />
                 <e p="DynamiteCH.cs" t="Include" />
-                <e p="LandmineCH.cs" t="Include" />
                 <e p="LandmineStickCH.cs" t="Include" />
                 <e p="WormFallCH.cs" t="Include" />
                 <e p="WormJumpCH.cs" t="Include" />
