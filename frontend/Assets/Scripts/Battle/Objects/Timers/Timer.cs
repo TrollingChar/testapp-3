@@ -3,12 +3,12 @@
 
 namespace Battle.Objects.Timers {
 
-    public abstract class Timer : Component {
+    public class Timer : Component {
 
         protected Time Time;
 
 
-        protected Timer (Time time) {
+        public Timer (Time time) {
             Time = time;
         }
 
@@ -19,12 +19,15 @@ namespace Battle.Objects.Timers {
                 return;
             }
             OnTick();
-            Object.Timer = null;
             OnExpire();
         }
 
 
-        protected abstract void OnExpire ();
+        protected virtual void OnExpire () {
+            Object.Timer = null;
+        }
+
+
         protected virtual void OnTick () {}
 
     }

@@ -19,7 +19,7 @@ namespace Battle.Objects {
 
         private static readonly NullObject Null = new NullObject();
 
-        private readonly World _world = The.World;
+        protected readonly World World = The.World;
 
         private CollisionHandler _collisionHandler;
         private Controller _controller;
@@ -160,7 +160,7 @@ namespace Battle.Objects {
         private Collision CollideWithLand (XY v) {
             Collision min = null;
             foreach (var c in Colliders) {
-                var temp = c.FlyInto(_world.Land, v);
+                var temp = c.FlyInto(World.Land, v);
                 if (temp < min) min = temp;
             }
             return min;

@@ -35,7 +35,9 @@ namespace Battle.Objects.Projectiles {
             UnityEngine.Object.Instantiate(assets.Grenade, transform, false);
             AddCollider(new CircleCollider(XY.Zero, 5f));
             Explosive = new Explosive25();
-            Controller = new StandardController();
+            Controller = new StandardController {
+                MagnetCoeff = 1,
+            };
             Timer = new DetonationTimer(new Time {Seconds = _seconds}, timerText);
             CollisionHandler = new CollisionHandler();
         }

@@ -16,6 +16,7 @@ namespace Battle.Objects.Projectiles {
             AddCollider(new CircleCollider(XY.Zero, 5f));
             Explosive = new Explosive25();
             Controller = new StandardController {
+                MagnetCoeff = 1,
                 SmokeSize = 20,
                 OrientationFlag = true
             };

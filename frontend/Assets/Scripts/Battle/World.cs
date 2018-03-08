@@ -327,8 +327,7 @@ namespace Battle {
                 xy => {
                     float sqrDist;
                     WormNearestTo(xy, out sqrDist);
-                    return sqrDist > 2 * LandmineController.ActivationRadius
-                                       * LandmineController.ActivationRadius;
+                    return sqrDist > 2 * Landmine.ActivationRadius * Landmine.ActivationRadius;
                 }
             ).ToList();
             spawnPoints = RNG.PickSome(spawnPoints, count);

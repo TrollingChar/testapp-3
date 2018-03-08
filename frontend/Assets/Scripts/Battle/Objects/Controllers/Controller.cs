@@ -1,4 +1,5 @@
-﻿using Battle.State;
+﻿using System;
+using Battle.State;
 using Core;
 using DataTransfer.Data;
 
@@ -8,7 +9,7 @@ namespace Battle.Objects.Controllers {
     public class Controller : Component {
 
         private readonly TimerWrapper _gameTimer = The.TimerWrapper;
-        public Time Timer = new Time {Seconds = 20};
+        [Obsolete] public Time Timer = new Time {Seconds = 20};
 
 
         public void Update (TurnData td) {

@@ -107,6 +107,7 @@
               <e p="Ray.cs" t="Include" />
               <e p="Timers" t="Include">
                 <e p="DetonationTimer.cs" t="Include" />
+                <e p="LandmineDetonationTimer.cs" t="Include" />
                 <e p="LandmineInitialTimer.cs" t="Include" />
                 <e p="Timer.cs" t="Include" />
               </e>

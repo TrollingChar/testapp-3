@@ -1,13 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Battle.Objects.CollisionHandlers;
 using Battle.Objects.Projectiles;
+using Battle.Objects.Timers;
 using Battle.Terrain;
 using Collisions;
 using Core;
 using DataTransfer.Data;
 using Geometry;
 using UnityEngine;
-using UnityEngine.UI;
 using Time = Core.Time;
 
 
@@ -15,40 +16,31 @@ namespace Battle.Objects.Controllers {
 
     public class LandmineController : StandardController {
 
-        public const int ActivationRadius = 40;
 
-        public Text TimerText { get; private set; }
-
-        private bool _activated;
-        private readonly World _world;
-        private bool _stuck;
+        private readonly World _world = The.World;
         private Time _control;
 
 
-        public bool Activated {
-            get { return _activated; }
-            set {
-                _activated = value;
-                Timer.Seconds = 2;
+        public LandmineController () {
+            WaitFlag = true;
+        }
+
+
+        protected override void DoUpdate (TurnData td) {
+            base.DoUpdate(td);
+            if (Object.Velocity.SqrLength < 1) _control.Ticks++;
+            if (_world.Time.Ticks % Time.TPS == 0) {
+                if (_control.Seconds >= 0.9f) Object.CollisionHandler = new LandmineStickCH();
+                _control.Ticks = 0;
+            }
+            var mine = (Landmine) Object;
+            if (Object.Timer == null && mine.CheckWormsPresence(Landmine.ActivationRadius)) {
+                Object.Timer = new DetonationTimer(new Time{Seconds = 2});
+                Wait();
             }
         }
 
-        public bool Stuck {
-            get { return _stuck; }
-            set {
-                _stuck = value;
-                if (!value) Object.CollisionHandler = new CollisionHandler();
-            }
-        }
-
-
-        public LandmineController (Text timerText) {
-            _world = The.World;
-            TimerText = timerText;
-            Timer.Seconds = 2;
-        }
-
-
+/*
         protected override void DoUpdate (TurnData td) {
             // if stuck and is in open space, unstuck and fall
             if (Stuck) {
@@ -100,18 +92,7 @@ namespace Battle.Objects.Controllers {
             }
             if (TimerText != null) TimerText.text = Activated ? Timer.ToString() : "";
         }
-
-
-        public override void OnTimer () {
-            if (Activated) Object.Detonate();
-        }
-
-
-        private bool CheckWormsPresence (float radius) {
-            float sqrDist;
-            _world.WormNearestTo(Object.Position, out sqrDist);
-            return sqrDist <= radius * radius;
-        }
+*/
 
     }
 
