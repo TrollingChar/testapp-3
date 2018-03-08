@@ -63,10 +63,8 @@
               <e p="Controllers" t="Include">
                 <e p="Controller.cs" t="Include" />
                 <e p="DisappearingController.cs" t="Include" />
-                <e p="GrenadeController.cs" t="Include" />
                 <e p="LandmineController.cs" t="Include" />
                 <e p="LandmineControllerStuck.cs" t="Include" />
-                <e p="ShellController.cs" t="Include" />
                 <e p="SmokeController.cs" t="Include" />
                 <e p="StandardController.cs" t="Include" />
                 <e p="todo.txt" t="Include" />

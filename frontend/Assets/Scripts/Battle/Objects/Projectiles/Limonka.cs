@@ -1,6 +1,7 @@
 ﻿using Battle.Objects.CollisionHandlers;
 using Battle.Objects.Controllers;
 using Battle.Objects.Explosives;
+using Battle.Objects.Timers;
 using Collisions;
 using Core;
 using Geometry;
@@ -33,10 +34,10 @@ namespace Battle.Objects.Projectiles {
 
             UnityEngine.Object.Instantiate(assets.Limonka, transform, false);
 
-//            AddCollider(new BoxCollider(-5, 5, -5, 5));
             AddCollider(new CircleCollider(XY.Zero, 5f));
             Explosive = new ClusterSpawner();
-            Controller = new GrenadeController(new Time {Seconds = _seconds}, timerText);
+            Controller = new StandardController();
+            Timer = new DetonationTimer(new Time {Seconds = _seconds}, timerText);
             CollisionHandler = new CollisionHandler();
         }
 

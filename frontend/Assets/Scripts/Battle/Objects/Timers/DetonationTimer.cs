@@ -1,4 +1,5 @@
-﻿using Core;
+﻿using Battle.State;
+using Core;
 using UnityEngine.UI;
 
 
@@ -6,6 +7,7 @@ namespace Battle.Objects.Timers {
 
     public class DetonationTimer : Timer {
 
+        private readonly TimerWrapper _gameTimer = The.TimerWrapper;
         private readonly Text _text;
         private readonly int _limit;
         
@@ -22,6 +24,7 @@ namespace Battle.Objects.Timers {
 
 
         protected override void OnTick () {
+            _gameTimer.Wait();
             if (_text == null) return;
             _text.text = _limit == 0 ? Time.ToString() : Time.ToString(_limit);
         }
