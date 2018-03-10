@@ -43,7 +43,6 @@ namespace Battle.Objects.Controllers {
 
 
         protected override void DoUpdate (TurnData td) {
-            Mathf.LerpAngle()
             Object.Velocity += (_target - Object.Position).WithLength(1f);
             base.DoUpdate(td);
         }
