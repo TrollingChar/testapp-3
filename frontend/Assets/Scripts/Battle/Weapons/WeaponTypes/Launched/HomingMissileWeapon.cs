@@ -12,7 +12,7 @@ namespace Battle.Weapons.WeaponTypes.Launched {
     [Weapon(WeaponId.HomingMissile)]
     public class HomingMissileWeapon : StandardWeapon {
 
-        private PointCrosshair _pointCH;
+        private GameObject _pointCH;
         private LineCrosshair _lineCH;
         private GameObject _sprite;
 
@@ -53,12 +53,7 @@ namespace Battle.Weapons.WeaponTypes.Launched {
                 false
             ).GetComponent<LineCrosshair>();
             
-//            _pointCH =
-//            UnityEngine.Object.Instantiate(
-//                battleAssets.PointCrosshair,
-//                GameObject.transform,
-//                false
-//            );//.GetComponent<PointCrosshair>();
+            _pointCH = UnityEngine.Object.Instantiate(battleAssets.PointCrosshair);
 
             _sprite = UnityEngine.Object.Instantiate(
                 battleAssets.BazookaWeapon,
@@ -87,9 +82,17 @@ namespace Battle.Weapons.WeaponTypes.Launched {
 
 
         protected override void OnUpdate () {
-//            if (_target.IsNaN) UpdatePointCrosshair(_pointCH);
+            if (_target.IsNaN) { //UpdatePointCrosshair(_pointCH);
+                _pointCH.transform.localPosition = new Vector3(TurnData.XY.X, TurnData.XY.Y);
+            }
             UpdateLineCrosshair(_lineCH);
             UpdateAimedWeapon(_sprite);
+        }
+
+
+        protected override void OnUnequip () {
+            // прицел не входит в его gameobject, удалять отдельно
+            UnityEngine.Object.Destroy(_pointCH);
         }
 
     }

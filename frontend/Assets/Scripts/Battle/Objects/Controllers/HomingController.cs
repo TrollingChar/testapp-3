@@ -43,8 +43,8 @@ namespace Battle.Objects.Controllers {
 
 
         protected override void DoUpdate (TurnData td) {
-            var requiredSpeed = (_target - Object.Position).WithLength(25f);
-            var acceleration = (requiredSpeed - Object.Velocity).WithLengthClamped(0.75f);
+            var requiredSpeed = (_target - Object.Position).WithLength(20f);
+            var acceleration = (requiredSpeed - Object.Velocity).WithLengthClamped(0.5f);
             Object.Velocity += acceleration;
             base.DoUpdate(td);
         }
