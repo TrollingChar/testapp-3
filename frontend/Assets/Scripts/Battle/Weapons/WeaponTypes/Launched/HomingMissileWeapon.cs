@@ -56,7 +56,7 @@ namespace Battle.Weapons.WeaponTypes.Launched {
             _pointCH = UnityEngine.Object.Instantiate(battleAssets.PointCrosshair);
 
             _sprite = UnityEngine.Object.Instantiate(
-                battleAssets.BazookaWeapon,
+                battleAssets.HomingMissileWeapon,
                 GameObject.transform,
                 false
             );

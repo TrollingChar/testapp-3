@@ -20,7 +20,7 @@ namespace Battle.Objects.Projectiles {
 
         
         public override void OnAdd () {
-            UnityEngine.Object.Instantiate(The.BattleAssets.BazookaShell, GameObject.transform, false);
+            UnityEngine.Object.Instantiate(The.BattleAssets.HomingMissile, GameObject.transform, false);
             AddCollider(new CircleCollider(XY.Zero, 5f));
             Explosive = new Explosive25();
             Controller = new StandardController {
@@ -28,8 +28,10 @@ namespace Battle.Objects.Projectiles {
                 OrientationFlag = true,
                 WaitFlag = true
             };
-//            Timer = new DetonationTimer(new Time{Seconds = 20}); todo
-            Timer = new CallbackTimer(new Time{Seconds = 0.5f}, () => Controller = new HomingController(_target));
+            Timer = new CallbackTimer(
+                new Time{Seconds = 0.5f},
+                () => Controller = new HomingController(_target)
+            );
             CollisionHandler = new DetonatorCollisionHandler();
         }
 

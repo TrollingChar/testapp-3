@@ -37,11 +37,6 @@ namespace Battle.Objects.Controllers {
         }
 
 
-        public override void OnRemove () {
-            base.OnRemove();
-        }
-
-
         protected override void DoUpdate (TurnData td) {
             var requiredSpeed = (_target - Object.Position).WithLength(20f);
             var acceleration = (requiredSpeed - Object.Velocity).WithLengthClamped(0.5f);
