@@ -87,7 +87,6 @@
                 <e p="Explosive40.cs" t="Include" />
               </e>
               <e p="GameObjects" t="Include">
-                <e p="GrenadeGO.cs" t="Include" />
                 <e p="WormGO.cs" t="Include" />
                 <e p="WormsNames.cs" t="Include" />
               </e>

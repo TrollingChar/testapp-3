@@ -1,4 +1,6 @@
-﻿using Battle.Objects.Timers;
+﻿using Battle.Objects.Projectiles;
+using Battle.Objects.Timers;
+using Core;
 using DataTransfer.Data;
 using Geometry;
 using UnityEngine;
@@ -42,6 +44,12 @@ namespace Battle.Objects.Controllers {
             var acceleration = (requiredSpeed - Object.Velocity).WithLengthClamped(0.5f);
             Object.Velocity += acceleration;
             base.DoUpdate(td);
+        }
+
+
+        public override void OnRemove () {
+            var hm = (HomingMissile) Object;
+            hm.RemovePointer();
         }
 
     }
