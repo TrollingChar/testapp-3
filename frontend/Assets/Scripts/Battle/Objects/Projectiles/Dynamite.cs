@@ -1,6 +1,7 @@
 ﻿using Battle.Objects.CollisionHandlers;
 using Battle.Objects.Controllers;
 using Battle.Objects.Explosives;
+using Battle.Objects.Timers;
 using Core;
 using UnityEngine;
 using UnityEngine.UI;
@@ -24,7 +25,8 @@ namespace Battle.Objects.Projectiles {
             UnityEngine.Object.Instantiate(assets.Dynamite, transform, false);
             AddCollider(new BoxCollider(-4, 4, -6, 6));
             Explosive = new Explosive40();
-            Controller = new GrenadeController(new Time {Seconds = 6}, timerText);
+            Controller = new StandardController();
+            Timer = new DetonationTimer(new Time {Seconds = 6}, timerText);
             CollisionHandler = new DynamiteCollisionHandler();
         }
 

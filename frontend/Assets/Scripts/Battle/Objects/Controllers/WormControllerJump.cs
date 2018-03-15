@@ -6,6 +6,11 @@ namespace Battle.Objects.Controllers {
 
     public class WormControllerJump : StandardController {
 
+        public WormControllerJump () {
+            WaitFlag = true;
+        }
+        
+        
         public override void OnAdd () {
             Object.CollisionHandler = new WormJumpCollisionHandler();
         }
@@ -14,7 +19,6 @@ namespace Battle.Objects.Controllers {
         protected override void DoUpdate (TurnData td) {
             ((Worm) Object).Name = "jump";
             base.DoUpdate(td);
-            Wait();
         }
 
 

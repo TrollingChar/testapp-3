@@ -1,8 +1,10 @@
-﻿using Core;
+﻿using System;
+using Core;
 
 
 namespace Battle.Objects.Controllers {
 
+    [Obsolete]
     public class DisappearingController : Controller {
 
         public DisappearingController (Time t) {

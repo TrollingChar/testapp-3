@@ -11,6 +11,7 @@ namespace Battle.Arsenals {
             SetAmmo(WeaponId.Bazooka, inf);
             SetAmmo(WeaponId.Plasmagun, inf);
             SetAmmo(WeaponId.MultiLauncher, 24);
+            SetAmmo(WeaponId.HomingMissile, 8);
             SetAmmo(WeaponId.Minegun, 8);
 
             SetAmmo(WeaponId.Grenade, inf);

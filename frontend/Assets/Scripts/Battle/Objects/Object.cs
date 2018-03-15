@@ -3,6 +3,7 @@ using System.Linq;
 using Battle.Objects.CollisionHandlers;
 using Battle.Objects.Controllers;
 using Battle.Objects.Explosives;
+using Battle.Objects.Timers;
 using Collisions;
 using Core;
 using DataTransfer.Data;
@@ -16,16 +17,17 @@ namespace Battle.Objects {
 
     public abstract class Object {
 
-        private static readonly NullObject _null = new NullObject();
+        private static readonly NullObject Null = new NullObject();
 
-        private readonly World _world = The.World;
+        protected readonly World World = The.World;
 
         private CollisionHandler _collisionHandler;
         private Controller _controller;
         private Explosive _explosive;
-        public List<Collider> Colliders;
+        private Timer _timer;
+        public readonly List<Collider> Colliders;
         
-        public HashSet<Object> Excluded;
+        public readonly HashSet<Object> Excluded;
 
         public float Mass;
         public int SuperMass;
@@ -71,9 +73,15 @@ namespace Battle.Objects {
             set { SwapComponent(ref _collisionHandler, value); }
         }
 
+        public Timer Timer {
+            get { return _timer; }
+            set { SwapComponent(ref _timer, value); }
+        }
+
 
         public void Update (TurnData td) {
             if (Controller != null) Controller.Update(td);
+            if (Timer != null) Timer.Update();
         }
 
 
@@ -100,7 +108,7 @@ namespace Battle.Objects {
         public void Remove () {
             OnRemove();
             
-            Node.Value = _null;
+            Node.Value = Null;
             RemoveColliders();
             CollisionHandler = null;
             Explosive = null;
@@ -152,7 +160,7 @@ namespace Battle.Objects {
         private Collision CollideWithLand (XY v) {
             Collision min = null;
             foreach (var c in Colliders) {
-                var temp = c.FlyInto(_world.Land, v);
+                var temp = c.FlyInto(World.Land, v);
                 if (temp < min) min = temp;
             }
             return min;

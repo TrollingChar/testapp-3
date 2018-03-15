@@ -1,5 +1,6 @@
 using Battle.Objects.Controllers;
 using Battle.Objects.Explosives;
+using Battle.Objects.Timers;
 using Core;
 using UnityEngine;
 using UnityEngine.UI;
@@ -30,7 +31,8 @@ namespace Battle.Objects.Projectiles {
 
             UnityEngine.Object.Instantiate(assets.PhantomGrenade, transform, false);
             Explosive = new Explosive25();
-            Controller = new GrenadeController(new Time {Seconds = _seconds}, timerText);
+            Controller = new StandardController();
+            Timer = new DetonationTimer(new Time {Seconds = _seconds}, timerText);
             // no colliders, no collision handler
         }
 

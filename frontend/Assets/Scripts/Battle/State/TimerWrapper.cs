@@ -47,6 +47,13 @@ namespace Battle.State {
         }
 
 
+        public void Wait () {
+            if (The.GameState.CurrentState != GameState.Turn && Time.Seconds < 0.5f) {
+                Time = new Time {Seconds = 0.5f};
+            }
+        }
+
+
         public void Wait (Time t) {
             if (The.GameState.CurrentState != GameState.Turn && Time < t) {
                 Time = t;

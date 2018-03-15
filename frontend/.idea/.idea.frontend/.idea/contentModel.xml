@@ -54,7 +54,6 @@
                 <e p="CollisionHandler.cs" t="Include" />
                 <e p="DetonatorCH.cs" t="Include" />
                 <e p="DynamiteCH.cs" t="Include" />
-                <e p="LandmineCH.cs" t="Include" />
                 <e p="LandmineStickCH.cs" t="Include" />
                 <e p="WormFallCH.cs" t="Include" />
                 <e p="WormJumpCH.cs" t="Include" />
@@ -63,10 +62,9 @@
               <e p="Controllers" t="Include">
                 <e p="Controller.cs" t="Include" />
                 <e p="DisappearingController.cs" t="Include" />
-                <e p="GrenadeController.cs" t="Include" />
+                <e p="HomingController.cs" t="Include" />
                 <e p="LandmineController.cs" t="Include" />
                 <e p="LandmineControllerStuck.cs" t="Include" />
-                <e p="ShellController.cs" t="Include" />
                 <e p="SmokeController.cs" t="Include" />
                 <e p="StandardController.cs" t="Include" />
                 <e p="todo.txt" t="Include" />
@@ -99,6 +97,7 @@
                 <e p="BazookaShell.cs" t="Include" />
                 <e p="Dynamite.cs" t="Include" />
                 <e p="Grenade.cs" t="Include" />
+                <e p="HomingMissile.cs" t="Include" />
                 <e p="Landmine.cs" t="Include" />
                 <e p="Limonka.cs" t="Include" />
                 <e p="LimonkaCluster.cs" t="Include" />
@@ -107,6 +106,13 @@
                 <e p="PlasmaBall.cs" t="Include" />
               </e>
               <e p="Ray.cs" t="Include" />
+              <e p="Timers" t="Include">
+                <e p="CallbackTimer.cs" t="Include" />
+                <e p="DetonationTimer.cs" t="Include" />
+                <e p="LandmineDetonationTimer.cs" t="Include" />
+                <e p="LandmineInitialTimer.cs" t="Include" />
+                <e p="Timer.cs" t="Include" />
+              </e>
               <e p="Worm.cs" t="Include" />
             </e>
             <e p="State" t="Include">

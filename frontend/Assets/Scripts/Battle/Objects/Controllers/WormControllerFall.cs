@@ -10,6 +10,11 @@ namespace Battle.Objects.Controllers {
         private Time _control;
 
 
+        public WormControllerFall () {
+            WaitFlag = true;
+        }
+        
+
         public override void OnAdd () {
             Object.CollisionHandler = new WormFallCollisionHandler();
         }
@@ -19,7 +24,7 @@ namespace Battle.Objects.Controllers {
             base.DoUpdate(td);
             var worm = (Worm) Object;
             worm.Name = "fall";
-            Wait();
+//            Wait();
 
             if (Object.Velocity.SqrLength < 1) _control.Ticks++;
             

@@ -138,6 +138,11 @@ namespace Battle.Weapons {
             sprite.transform.localEulerAngles = new Vector3(0, 0, angle + (deltaTooBig ? 180 : 0));
         }
 
+
+        protected void UpdatePointCrosshair (PointCrosshair pointCH) {
+//            pointCH
+        }
+
     }
 
 }

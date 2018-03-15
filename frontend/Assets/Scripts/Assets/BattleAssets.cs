@@ -24,6 +24,7 @@ namespace Assets {
         [Space]
         public GameObject BazookaWeapon;
         public GameObject PlasmagunWeapon;
+        public GameObject HomingMissileWeapon;
         public GameObject MultiLauncherWeapon;
         public GameObject MinegunWeapon;
         public GameObject GrenadeWeapon;
@@ -41,6 +42,7 @@ namespace Assets {
         [Space]
         public GameObject BazookaShell;
         public GameObject PlasmaBall;
+        public GameObject HomingMissile;
         public GameObject MultiLauncherShell;
         public GameObject Grenade;
         public GameObject Limonka;
