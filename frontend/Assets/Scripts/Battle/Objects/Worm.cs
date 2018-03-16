@@ -1,5 +1,6 @@
 ﻿using System;
 using Battle.Objects.Controllers;
+using Battle.Objects.Effects;
 using Battle.Objects.Explosives;
 using Battle.Objects.GameObjects;
 using Battle.Teams;
@@ -11,7 +12,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using Utils.Random;
 using BoxCollider = Collisions.BoxCollider;
-using UnObject = UnityEngine.Object;
 
 
 namespace Battle.Objects {
@@ -161,16 +161,17 @@ namespace Battle.Objects {
             var assets = The.BattleAssets;
             var transform = GameObject.transform;
 
-            _canvas = UnObject.Instantiate(assets.TopCanvas, transform, false);
+            _canvas = UnityEngine.Object.Instantiate(assets.TopCanvas, transform, false);
             _canvas.transform.localPosition += new Vector3(0, 20, 0);
             _canvas.transform.localScale = new Vector3(0.7f, 0.7f, 1f);
+            _canvas.GetComponent<Canvas>().sortingLayerName = "Text";
 
-            _nameField = UnObject.Instantiate(assets.Text, _canvas.transform, false).GetComponent<Text>();
-            _hpField = UnObject.Instantiate(assets.Text, _canvas.transform, false).GetComponent<Text>();
+            _nameField = UnityEngine.Object.Instantiate(assets.Text, _canvas.transform, false).GetComponent<Text>();
+            _hpField = UnityEngine.Object.Instantiate(assets.Text, _canvas.transform, false).GetComponent<Text>();
 
-            _arrow = UnObject.Instantiate(assets.Arrow, transform, false).GetComponentInChildren<SpriteRenderer>();
+            _arrow = UnityEngine.Object.Instantiate(assets.Arrow, transform, false).GetComponentInChildren<SpriteRenderer>();
 
-            var obj = UnObject.Instantiate(assets.Worm, transform, false);
+            var obj = UnityEngine.Object.Instantiate(assets.Worm, transform, false);
             _wormGO = obj.GetComponent<WormGO>();
             _wormGO.OnAdd(this);
 
@@ -205,6 +206,12 @@ namespace Battle.Objects {
             }
             HP -= damage;
             if (The.ActiveWorm.Is(this)) The.BattleScene.EndTurn();
+            
+            Spawn(
+                new Label(damage.ToString(), _color),
+                Position,
+                Velocity + XY.FromPolar(6 + RNG.Float() * 6, (RNG.Float() - RNG.Float()) * 0.5f).Rotated90CCW()
+            );
         }
 
 

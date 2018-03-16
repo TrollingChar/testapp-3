@@ -337,12 +337,13 @@ namespace Battle {
 
         public void DealDamage (int damage, XY center, float radius) {
             float sqrRadius = radius * radius;
-            foreach (var o in _objects) {
-                float sqrDistance = XY.SqrDistance(center, o.Position);
+            for (var node = _objects.First; node != null; node = node.Next) {
+                var obj = node.Value;
+                float sqrDistance = XY.SqrDistance(center, obj.Position);
                 if (sqrDistance >= sqrRadius) continue;
 
                 int currentDamage = Mathf.CeilToInt(damage * (1f - Mathf.Sqrt(sqrDistance / sqrRadius)));
-                o.GetDamage(currentDamage);
+                obj.GetDamage(currentDamage);
             }
         }
 
@@ -354,12 +355,13 @@ namespace Battle {
 
         public void SendBlastWave (float impulse, XY center, float radius) {
             float sqrRadius = radius * radius;
-            foreach (var o in _objects) {
-                float sqrDistance = XY.SqrDistance(center, o.Position);
+            for (var node = _objects.First; node != null; node = node.Next) {
+                var obj = node.Value;
+                float sqrDistance = XY.SqrDistance(center, obj.Position);
                 if (sqrDistance >= sqrRadius) continue;
 
                 float currentImpulse = impulse * (1f - Mathf.Sqrt(sqrDistance / sqrRadius));
-                o.ReceiveBlastWave((o.Position - center).WithLength(currentImpulse));
+                obj.ReceiveBlastWave((obj.Position - center).WithLength(currentImpulse));
             }
         }
 
@@ -395,7 +397,7 @@ namespace Battle {
                 .OfType<Worm>()
                 .Where(w => w.Poison > 0)
                 .ToList();
-            foreach (var worm in worms) worm.HP -= worm.Poison;
+            foreach (var worm in worms) worm.GetDamage(worm.Poison);
             return worms.Count > 0;
         }
 

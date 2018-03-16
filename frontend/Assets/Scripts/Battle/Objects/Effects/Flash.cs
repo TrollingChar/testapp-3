@@ -1,4 +1,5 @@
 ﻿using Battle.Objects.Controllers;
+using Battle.Objects.Timers;
 using Core;
 using UnityEngine;
 using Time = Core.Time;
@@ -20,7 +21,8 @@ namespace Battle.Objects.Effects {
             var ob = UnityEngine.Object.Instantiate(The.BattleAssets.Flash, GameObject.transform, false);
             ob.transform.localScale = new Vector3(_size, _size, 1);
             ob.GetComponentInChildren<SpriteRenderer>().color = new Color(1f, 1f, 0.5f);
-            Controller = new DisappearingController(new Time{Seconds = 0.1f});
+            Timer = new DetonationTimer(new Time{Seconds = 0.1f});
+//            Controller = new DisappearingController();
         }
 
     }
