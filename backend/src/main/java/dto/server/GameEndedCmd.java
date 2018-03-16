@@ -19,7 +19,7 @@ public class GameEndedCmd extends ServerCommand {
     @Override
     public void writeMembers (ByteBuf byteBuf) {
         byteBuf.writeByte(result);
-        if (result == VICTORY) byteBuf.writeByte(playerId);
+        if (result == VICTORY) byteBuf.writeInt(playerId);
     }
 
 

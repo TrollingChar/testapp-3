@@ -164,7 +164,7 @@ namespace Battle.Objects {
             _canvas = UnityEngine.Object.Instantiate(assets.TopCanvas, transform, false);
             _canvas.transform.localPosition += new Vector3(0, 20, 0);
             _canvas.transform.localScale = new Vector3(0.7f, 0.7f, 1f);
-            _canvas.GetComponent<Canvas>().sortingLayerName = "Text";
+            _canvas.GetComponent<Canvas>().sortingLayerName = "TextBack";
 
             _nameField = UnityEngine.Object.Instantiate(assets.Text, _canvas.transform, false).GetComponent<Text>();
             _hpField = UnityEngine.Object.Instantiate(assets.Text, _canvas.transform, false).GetComponent<Text>();
@@ -207,10 +207,12 @@ namespace Battle.Objects {
             HP -= damage;
             if (The.ActiveWorm.Is(this)) The.BattleScene.EndTurn();
             
+            float effectTime = 0.75f + 0.75f * damage / (damage + 40f); 
             Spawn(
-                new Label(damage.ToString(), _color),
+                new Label(damage.ToString(), _color, effectTime),
                 Position,
-                Velocity + XY.FromPolar(6 + RNG.Float() * 6, (RNG.Float() - RNG.Float()) * 0.5f).Rotated90CCW()
+//                Velocity +
+                XY.FromPolar(6 + RNG.Float() * 6, (RNG.Float() - RNG.Float()) * 0.5f).Rotated90CCW()
             );
         }
 

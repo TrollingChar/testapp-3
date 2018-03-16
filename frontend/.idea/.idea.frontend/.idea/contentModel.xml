@@ -63,6 +63,7 @@
                 <e p="Controller.cs" t="Include" />
                 <e p="DisappearingController.cs" t="Include" />
                 <e p="HomingController.cs" t="Include" />
+                <e p="LabelController.cs" t="Include" />
                 <e p="LandmineController.cs" t="Include" />
                 <e p="LandmineControllerStuck.cs" t="Include" />
                 <e p="SmokeController.cs" t="Include" />
