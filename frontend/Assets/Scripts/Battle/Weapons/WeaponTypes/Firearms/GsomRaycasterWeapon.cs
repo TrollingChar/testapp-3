@@ -48,7 +48,7 @@ namespace Battle.Weapons.WeaponTypes.Firearms {
             // todo: make green blasts, annihilate everything, heal allies...
             var world = The.World;
             var blastXY = Object.Position + collision.Offset;
-            world.DealDamage(9999, blastXY, 160f);
+            world.DealDamage(9999, blastXY, 160f, 160f);
             world.DestroyTerrain(blastXY, 130f);
             world.SendBlastWave(16f, blastXY, 160f);
         }

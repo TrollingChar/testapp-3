@@ -50,16 +50,6 @@ namespace Battle {
 
 
         public void Update (TurnData td) {
-//            if (Time % 500 == 0 && td != null && td.MB) {
-
-//            }
-//            if (Time % 400 == 0 && td != null && td.MB) {
-//                Spawn(new Limonka(10), td.XY, new XY(0, 3 + 3 * RNG.Float()).Rotated(RNG.Float() - RNG.Float()));
-//            }
-//            if (Time % 400 == 200 && td != null && td.MB) {
-//                Spawn(new Grenade(10), td.XY, new XY(0, 3 + 3 * RNG.Float()).Rotated(RNG.Float() - RNG.Float()));
-//            }
-
             for (var node = _objects.First; node != null; node = node.Next) {
                 node.Value.Update(td);
             }
@@ -335,15 +325,16 @@ namespace Battle {
         }
 
 
-        public void DealDamage (int damage, XY center, float radius) {
-            float sqrRadius = radius * radius;
+        public void DealDamage (int damage, XY center, float radius, float maxDamageRadius) {
             for (var node = _objects.First; node != null; node = node.Next) {
                 var obj = node.Value;
-                float sqrDistance = XY.SqrDistance(center, obj.Position);
-                if (sqrDistance >= sqrRadius) continue;
-
-                int currentDamage = Mathf.CeilToInt(damage * (1f - Mathf.Sqrt(sqrDistance / sqrRadius)));
-                obj.GetDamage(currentDamage);
+                float dist = XY.Distance(center, obj.Position);
+                if (dist >= radius) continue;
+                obj.GetDamage(
+                    dist > maxDamageRadius
+                    ? Mathf.CeilToInt(damage * Mathf.InverseLerp(radius, maxDamageRadius, dist))
+                    : damage
+                );
             }
         }
 

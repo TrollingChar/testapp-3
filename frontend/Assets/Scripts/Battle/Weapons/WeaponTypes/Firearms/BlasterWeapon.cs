@@ -57,7 +57,7 @@ namespace Battle.Weapons.WeaponTypes.Firearms {
             
             var world = The.World;
             var blastXY = Object.Position + collision.Offset;
-            world.DealDamage(15, blastXY, 60f);
+            world.DealDamage(15, blastXY, 60f, 15f);
             world.DestroyTerrain(blastXY, 30f);
             world.SendBlastWave(6f, blastXY, 60f);
 //            Object.Spawn(new Explosion(10f), Object.Position + direction.WithLength(20f));
