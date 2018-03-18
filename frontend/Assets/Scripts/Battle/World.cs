@@ -30,6 +30,7 @@ namespace Battle {
         private readonly LinkedList<Object> _objects;
 
         public float Gravity;
+        public float Wind;
         public Land Land;
         public Tiles Tiles;
         public float WaterLevel;

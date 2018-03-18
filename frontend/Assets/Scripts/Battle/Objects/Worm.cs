@@ -207,12 +207,12 @@ namespace Battle.Objects {
             HP -= damage;
             if (The.ActiveWorm.Is(this)) The.BattleScene.EndTurn();
             
-            float effectTime = 0.75f + 0.75f * damage / (damage + 40f); 
+            float effectTime = 1f + 1f * damage / (damage + 40f); 
             Spawn(
                 new Label(damage.ToString(), _color, effectTime),
                 Position,
 //                Velocity +
-                XY.FromPolar(6 + RNG.Float() * 6, (RNG.Float() - RNG.Float()) * 0.5f).Rotated90CCW()
+                XY.FromPolar(4 + RNG.Float() * 4, (RNG.Float() - RNG.Float()) * 0.5f).Rotated90CCW()
             );
         }
 

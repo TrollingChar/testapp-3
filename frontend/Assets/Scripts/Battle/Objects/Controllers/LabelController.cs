@@ -35,7 +35,7 @@ namespace Battle.Objects.Controllers {
 
 
         protected override void DoUpdate (TurnData td) {
-            Object.Velocity.Y -= 0.5f;
+            Object.Velocity.Y -= 0.25f;
             Time -= 1f / Core.Time.TPS;
         }
 
