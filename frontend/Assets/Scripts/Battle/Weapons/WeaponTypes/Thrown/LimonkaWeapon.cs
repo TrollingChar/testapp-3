@@ -3,6 +3,7 @@ using Battle.Objects.Projectiles;
 using Battle.Weapons.Crosshairs;
 using Core;
 using UnityEngine;
+using Time = Core.Time;
 
 
 namespace Battle.Weapons.WeaponTypes.Thrown {
@@ -53,7 +54,7 @@ namespace Battle.Weapons.WeaponTypes.Thrown {
             Object.Spawn(
                 new Limonka(_timer),
                 Object.Position,
-                (TurnData.XY - Object.Position).WithLength(Power * 0.6f)
+                (TurnData.XY - Object.Position).WithLength(Power * Balance.BaseShotSpeed / Time.TPS)
             );
         }
 

@@ -1,4 +1,5 @@
-﻿using DataTransfer.Data;
+﻿using Core;
+using DataTransfer.Data;
 using Geometry;
 using UnityEngine;
 
@@ -11,6 +12,7 @@ namespace Battle.Objects.Controllers {
         // если 0.1 то 10*v
         // если 0.05 то 20*v
         public const float InvLerpCoeff = 10;
+        private readonly World _world = The.World;
         private float _size;
 
 
@@ -38,7 +40,7 @@ namespace Battle.Objects.Controllers {
 
 
         protected override void DoUpdate (TurnData td) {
-            Object.Velocity = XY.Lerp(Object.Velocity, new XY(5, 0.5f), 1 / InvLerpCoeff);
+            Object.Velocity = XY.Lerp(Object.Velocity, new XY(_world.Wind, 0.5f), 1 / InvLerpCoeff);
             Size -= 1f;
         }
 

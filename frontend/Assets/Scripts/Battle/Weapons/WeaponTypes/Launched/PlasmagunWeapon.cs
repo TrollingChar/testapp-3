@@ -48,7 +48,7 @@ namespace Battle.Weapons.WeaponTypes.Launched {
             Object.Spawn(
                 new PlasmaBall(),
                 Object.Position,
-                (TurnData.XY - Object.Position).WithLength(Power * 30f / Time.TPS)
+                (TurnData.XY - Object.Position).WithLength(Power * Balance.BaseShotSpeed / Time.TPS)
             );
         }
 

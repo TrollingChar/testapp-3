@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 // ReSharper disable AssignmentInConditionalExpression
 
@@ -7,8 +8,6 @@ namespace Battle.Water {
 
     public class WaterGO : MonoBehaviour {
 
-        private float _wind;
-
         [SerializeField] private GameObject _staticWaterPrefab;
         [SerializeField] private GameObject _frontWavesPrefab;
         [SerializeField] private GameObject _backWavesPrefab;
@@ -16,35 +15,32 @@ namespace Battle.Water {
         [SerializeField] private float[] _backWavesOffsets;
         [SerializeField] private float[] _frontWavesOffsets;
 
-        private SpriteRenderer _waves;
+        private float _wind;
+        private readonly List<WavesGO> _waves = new List<WavesGO>();
 
-        // ширина спрайта воды
-        public int Width { get; set; }
 
-        // сила ветра по оси X
-        public float Wind {
-            get { return _wind; }
-            set {
-                if (_wind == value) return;
-                _wind = value;
-                // if (_waves != null) _waves.scaleY `set to` 0;
-                // _waves = Instantiate(_wavesPrefab);
-                // _waves.size = 0; 
-                // _waves.scaleY `set to` 1;
-            }
+        public void SetWind (float wind) {
+            if (_wind == wind) return;
+            _wind = wind;
+            if (_waves == null) return;
+            foreach (var wave in _waves) wave.Wind = wind;
         }
 
 
         private void MakeWaves (GameObject prefab, float yOffset, float phase, int layer) {
             var waves = Instantiate(prefab, transform);
+            
             var position = waves.transform.localPosition;
             position.y = yOffset;
             waves.transform.position = position;
+            
             var spriteRenderer = waves.GetComponent<SpriteRenderer>();
             spriteRenderer.sortingOrder = layer;
+            
             var material = spriteRenderer.material;
             material.SetFloat("_Offset", phase);
-//            material.SetFloat("_Wind", 0.03f);
+
+            _waves.Add(waves.AddComponent<WavesGO>());
         }
 
 
@@ -60,14 +56,33 @@ namespace Battle.Water {
 
     public class WavesGO : MonoBehaviour {
 
-        // навешивается на каждый спрайт с волнами
-        // на первое время пусть пока будет постоянная ширина спрайта, высота волны и скорость ветра
+        private float _wind;
+        private float _initialWaves;
+        private float _initialSpeed;
+        private float _initialScale;
+        private Material _material;
 
 
         private void Awake () {
-            var material = GetComponent<SpriteRenderer>().material;
-//            material.SetFloat("_Waves", 100);
-//            material.SetFloat("_Wind", 0.1f);
+            _material = GetComponent<SpriteRenderer>().material;
+            // считаем что ветер 10
+            _wind = 10;
+            _initialScale = transform.localScale.y * 0.1f;
+            _initialWaves = _material.GetFloat("_Waves") * 10f;
+            _initialSpeed = _material.GetFloat("_Wind");
+        }
+        
+        
+        public float Wind {
+            get { return _wind; }
+            set {
+                _wind = value;
+                var scale = transform.localScale;
+                scale.y = Mathf.Abs(Wind) * _initialScale;
+                transform.localScale = scale;
+                _material.SetFloat("_Wind", Wind < 0 ? -_initialSpeed : _initialSpeed);
+                _material.SetFloat("_Waves", _initialWaves / Mathf.Abs(Wind));
+            }
         }
 
     }

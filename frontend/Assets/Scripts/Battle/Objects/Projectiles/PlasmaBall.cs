@@ -16,7 +16,7 @@ namespace Battle.Objects.Projectiles {
             AddCollider(new CircleCollider(XY.Zero, 5f));
             Explosive = new Explosive25();
             Controller = new StandardController {
-                WindCoeff = 1,
+                WindCoeff = 0.1f,
                 MagnetCoeff = 1
             };
             Timer = new DetonationTimer(new Time{Seconds = 20});

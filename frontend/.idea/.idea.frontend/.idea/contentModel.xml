@@ -41,6 +41,7 @@
               <e p="LightSideArsenal.cs" t="Include" />
               <e p="StandardArsenal.cs" t="Include" />
             </e>
+            <e p="Balance.cs" t="Include" />
             <e p="BattleScene.cs" t="Include" />
             <e p="Camera" t="Include">
               <e p="AutomaticCameraController.cs" t="Include" />

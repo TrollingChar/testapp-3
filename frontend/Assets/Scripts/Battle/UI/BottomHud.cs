@@ -1,4 +1,5 @@
-﻿using Battle.State;
+﻿using System;
+using Battle.State;
 using Core;
 using Core.UI;
 using UnityEngine;
@@ -10,26 +11,25 @@ namespace Battle.UI {
 
     public class BottomHud : Panel {
 
-        private BattleScene _battleScene;
+        private GameStateController _state;
 
         private string _gameTime = "";
+        private string _turnTime = "";
 
         [SerializeField] private Text _middleText;
-
-        private GameStateController _state;
         [SerializeField] private Text _time;
-        private string _turnTime = "";
+        [SerializeField] private Text _wind;
 
 
         private void Awake () {
-            _battleScene = The.BattleScene;
-            _battleScene.OnBattleLoaded.Subscribe(OnBattleLoaded);
+            The.BattleScene.OnBattleLoaded.Subscribe(OnBattleLoaded);
         }
 
 
         private void OnBattleLoaded () {
-            _battleScene.OnBattleLoaded.Unsubscribe(OnBattleLoaded);
-            _battleScene.Timer.OnTimerUpdated.Subscribe(UpdateTime);
+            The.BattleScene.OnBattleLoaded.Unsubscribe(OnBattleLoaded);
+            The.BattleScene.Timer.OnTimerUpdated.Subscribe(UpdateTime);
+            The.World.OnWindChange.Subscribe(UpdateWind);
         }
 
 
@@ -57,6 +57,13 @@ namespace Battle.UI {
 //                    : _gameTime == ""
 //                        ? "<size=120>" + _turnTime + "</size>"
 //                        : "<size=120>" + _turnTime + "</size>\n<size=60>" + _gameTime + "</size>";
+        }
+
+
+        private void UpdateWind (float wind) {
+            if      (wind < 0) _wind.text = string.Format("<- {0:F1}", -wind);
+            else if (wind > 0) _wind.text = string.Format("{0:F1} ->",  wind);
+            else               _wind.text = "0.0";
         }
 
     }

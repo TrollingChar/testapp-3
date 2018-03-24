@@ -15,6 +15,7 @@ using Core;
 using DataTransfer.Data;
 using Geometry;
 using UnityEngine;
+using Utils.Messenger;
 using Utils.Random;
 using Collision = Collisions.Collision;
 using Object = Battle.Objects.Object;
@@ -28,18 +29,27 @@ namespace Battle {
 
         [Obsolete] public const float Precision = 0.1f;
         private readonly LinkedList<Object> _objects;
-
+        
+        private float _wind;
         public float Gravity;
-        public float Wind;
         public Land Land;
         public Tiles Tiles;
         public float WaterLevel;
         public Time Time; // world-bound time
 
+        public readonly Messenger<float> OnWindChange;
+        
+
+        public float Wind {
+            get { return _wind; }
+            set { OnWindChange.Send(_wind = value); }
+        }
+
 
         // todo: wrap it in worldgen params
         public World (LandGen gen, LandRenderer renderer) {
             The.World = this;
+            OnWindChange = new Messenger<float>();
 
             Gravity = -0.5f;
             WaterLevel = 0;

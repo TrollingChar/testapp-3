@@ -23,7 +23,7 @@ namespace Battle.Objects.Controllers {
 
         
         protected override void DoUpdate (TurnData td) {
-//            Object.Velocity.X += The.World.Wind * WindCoeff;
+            Object.Velocity.X += The.World.Wind * WindCoeff;
             Object.Velocity.Y += The.World.Gravity * GravityCoeff;
             if (WaitFlag) {
                 Wait();
@@ -35,7 +35,7 @@ namespace Battle.Objects.Controllers {
                 Object.Spawn(
                     new Smoke((RNG.Float() + 0.5f) * SmokeSize),
                     Object.Position,
-                    Object.Velocity.WithLength(-10)
+                    Object.Velocity.WithLength(-10f)
                 );
             }
         }

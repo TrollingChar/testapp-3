@@ -5,6 +5,7 @@ using Battle.Teams;
 using Battle.Terrain;
 using Battle.Terrain.Generation;
 using Battle.UI;
+using Battle.Water;
 using Core;
 using DataTransfer.Client;
 using DataTransfer.Data;
@@ -23,15 +24,16 @@ namespace Battle {
 
         public readonly Messenger OnBattleLoaded = new Messenger();
 
-        [SerializeField] private Text _hint;
-
         private GameInitData _initData;
         private bool _initialized;
 
-        // temp fields
+        // temp field
         private EstimatedLandGen _landGen;
 
+        [SerializeField] private Text _hint;
         [SerializeField] private LandRenderer _landRenderer;
+        [SerializeField] private WaterGO _water;
+        [SerializeField] private EndGameMenu _endGameMenu;
 
         public Connection Connection { get; private set; }
         public CameraWrapper Camera { get; private set; }      // камера и ее плавное движение
@@ -42,8 +44,7 @@ namespace Battle {
         public ActiveWorm ActiveWorm { get; private set; }     // активный червяк, флаг заморозки движения
         public WeaponWrapper Weapon { get; private set; }      // выбранное оружие, флаг блокировки
         public ArsenalPanel ArsenalPanel { get; private set; } // панель арсенала
-        [SerializeField] private EndGameMenu EndGameMenu;
-
+        
 
         private void Awake () {
             The.BattleScene = this;
@@ -105,6 +106,7 @@ namespace Battle {
             State = new GameStateController();
             Timer = new TimerWrapper();
             World = new World(gen, _landRenderer);
+            World.OnWindChange.Subscribe(_water.SetWind);
             ActiveWorm = new ActiveWorm();
             Weapon = new WeaponWrapper();
             Camera.LookAt(new Vector2(1000, 1000), true);
@@ -145,6 +147,7 @@ namespace Battle {
 
 
         private void OnDestroy () {
+            World.OnWindChange.Unsubscribe(_water.SetWind);
             NewTurnCmd.OnReceived.Unsubscribe(PrepareTurn);
             TurnDataSCmd.OnReceived.Unsubscribe(TurnDataHandler);
             The.World = null;
@@ -160,6 +163,8 @@ namespace Battle {
 
         public void BeforeTurn () {
             // drop crates
+            World.Wind = RNG.Float() * 20f - 10f;
+            Timer.Wait();
         }
 
 
@@ -227,18 +232,18 @@ namespace Battle {
         public void TurnEnded () {
             Weapon.LockAndUnequip();
             ActiveWorm.Set(null);
-            Timer.Wait(new Time {Seconds = 0.5f});
+            Timer.Wait();
         }
 
 
         public void AfterTurn () {
             // poison damage
-            if (World.AfterTurn()) Timer.Wait(new Time {Seconds = 0.5f});
+            if (World.AfterTurn()) Timer.Wait();
         }
 
 
         public void Remove0Hp () {
-            if (World.Remove0HpWorms()) Timer.Wait(new Time {Seconds = 0.5f});
+            if (World.Remove0HpWorms()) Timer.Wait();
         }
 
     }
