@@ -14,6 +14,9 @@ namespace Battle.Weapons {
         protected int ShotsLeft { get; private set; }
         protected bool Fires { get; private set; }
         protected int Power { get; private set; }
+        protected float Power01 {
+            get { return Power / (1.5f * Time.TPS); }
+        }
         private bool _ready; // used when weapon requires click
 
         protected Time AttackCooldown = new Time {Seconds = 0.5f};
@@ -68,7 +71,7 @@ namespace Battle.Weapons {
                 if (RequiresClick && !_ready) goto end;
                 if (!Removable) LockArsenal();
                 GameTimer.Frozen = true;
-                if (ConstPower || ++Power >= Time.TPS) BeginAttack();
+                if (ConstPower || ++Power >= 1.5f * Time.TPS) BeginAttack();
             }
             else {
                 _ready = true;
@@ -121,7 +124,7 @@ namespace Battle.Weapons {
             if (xy == XY.Zero) xy = XY.Up;
             crosshair.Angle = xy.Angle;
             crosshair.RingVisible = Power > 0;
-            crosshair.RingPosition = (float) Power / Time.TPS; // todo Power01
+            crosshair.RingPosition = Power01;
         }
 
 

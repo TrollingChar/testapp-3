@@ -51,6 +51,11 @@ namespace Battle.Objects.Projectiles {
             return sqrDist <= radius * radius;
         }
 
+
+        protected override bool PassableFor (Object o) {
+            return this == o;
+        }
+
     }
 
 }

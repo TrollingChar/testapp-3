@@ -60,7 +60,7 @@ namespace Battle.Weapons.WeaponTypes.Firearms {
             }
             else {
                 var target = collision.Collider2.Object;
-                target.GetDamage(2);
+                target.TakeDamage(2);
                 target.ReceiveBlastWave(direction.WithLength(3f));
             }
         }

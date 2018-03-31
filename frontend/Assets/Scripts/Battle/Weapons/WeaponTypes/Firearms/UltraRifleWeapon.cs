@@ -57,7 +57,7 @@ namespace Battle.Weapons.WeaponTypes.Firearms {
             var direction = (TurnData.XY - Object.Position).Rotated(0.05f * (RNG.Float() - RNG.Float()));
             var collisions = The.World.CastUltraRay(Object.Position, direction);
             foreach (var c in collisions) {
-                c.Collider2.Object.GetDamage(1);
+                c.Collider2.Object.TakeDamage(1);
             }
         }
 

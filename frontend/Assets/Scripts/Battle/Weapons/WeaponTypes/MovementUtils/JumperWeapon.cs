@@ -42,7 +42,7 @@ namespace Battle.Weapons.WeaponTypes.MovementUtils {
             UseAmmo();
             Object.Controller = new WormControllerJump();
             Object.Velocity =
-                (TurnData.XY - Object.Position).WithLength(Power * Balance.BaseShotSpeed * 0.5f / Time.TPS);
+                (TurnData.XY - Object.Position).WithLength(Power01 * Balance.BaseJumperSpeed);
         }
 
     }

@@ -54,7 +54,7 @@ namespace Battle.Weapons.WeaponTypes.Thrown {
             Object.Spawn(
                 new PhantomGrenade(_timer),
                 Object.Position,
-                (TurnData.XY - Object.Position).WithLength(Power * Balance.BaseShotSpeed / Time.TPS)
+                (TurnData.XY - Object.Position).WithLength(Power01 * Balance.BaseShotSpeed)
             );
         }
 

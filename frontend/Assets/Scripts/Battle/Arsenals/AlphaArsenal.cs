@@ -8,27 +8,30 @@ namespace Battle.Arsenals {
         public AlphaArsenal () {
             const int inf = -1;
 
-            SetAmmo(WeaponId.Bazooka, inf);
+            SetAmmo(WeaponId.Bazooka, 6);
             SetAmmo(WeaponId.Plasmagun, inf);
-            SetAmmo(WeaponId.MultiLauncher, 24);
-            SetAmmo(WeaponId.HomingMissile, 8);
-            SetAmmo(WeaponId.Minegun, 8);
+            SetAmmo(WeaponId.MultiLauncher, 12);
+            SetAmmo(WeaponId.HomingMissile, 1);
+            SetAmmo(WeaponId.Minegun, 2);
 
             SetAmmo(WeaponId.Grenade, inf);
             SetAmmo(WeaponId.Limonka, inf);
-            SetAmmo(WeaponId.PhantomGrenade, 8);
+            SetAmmo(WeaponId.PhantomGrenade, 4);
 
             SetAmmo(WeaponId.MachineGun, inf);
-            SetAmmo(WeaponId.Blaster, 8);
+            SetAmmo(WeaponId.Blaster, 6);
             SetAmmo(WeaponId.Pistol, inf);
-            SetAmmo(WeaponId.PoisonArrow, 8);
-            SetAmmo(WeaponId.UltraRifle, 4);
+            SetAmmo(WeaponId.PoisonArrow, 3);
+            SetAmmo(WeaponId.UltraRifle, 2);
             SetAmmo(WeaponId.GsomRaycaster, 1);
+            
+            SetAmmo(WeaponId.Axe, 2);
+            SetAmmo(WeaponId.Hammer, 1);
 
             SetAmmo(WeaponId.Landmine, inf);
-            SetAmmo(WeaponId.Dynamite, 4);
+            SetAmmo(WeaponId.Dynamite, 1);
             
-            SetAmmo(WeaponId.Jumper, 8);
+            SetAmmo(WeaponId.Jumper, 4);
 
             // todo: they must be present in ALL arsenals, init them in base class
             SetAmmo(WeaponId.SkipTurn, inf);

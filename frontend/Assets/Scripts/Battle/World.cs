@@ -28,7 +28,7 @@ namespace Battle {
     public class World {
 
         [Obsolete] public const float Precision = 0.1f;
-        private readonly LinkedList<Object> _objects;
+        public readonly LinkedList<Object> Objects;
         
         private float _wind;
         public float Gravity;
@@ -56,22 +56,22 @@ namespace Battle {
             Tiles = new Tiles();
 
             Land = new Land(gen, renderer, The.BattleAssets.LandTexture);
-            _objects = new LinkedList<Object>();
+            Objects = new LinkedList<Object>();
         }
 
 
         public void Update (TurnData td) {
-            for (var node = _objects.First; node != null; node = node.Next) {
+            for (var node = Objects.First; node != null; node = node.Next) {
                 node.Value.Update(td);
             }
 
             PhysicsTick(td);
 
             // clear all NullObjects WITHOUT INVALIDATING THEIR NODES!
-            for (var node = _objects.First; node != null;) {
+            for (var node = Objects.First; node != null;) {
                 if (node.Value is NullObject) {
                     var next = node.Next;
-                    _objects.Remove(node);
+                    Objects.Remove(node);
                     node = next;
                 }
                 else {
@@ -115,14 +115,14 @@ namespace Battle {
 
         [SuppressMessage("ReSharper", "InconsistentNaming")]
         private void PhysicsTick (TurnData td) {
-            foreach (var o in _objects) {
+            foreach (var o in Objects) {
                 o.Movement = 1;
                 o.Excluded.Clear();
                 o.ExcludeObjects();
             }
 
             for (int i = 0, iter = 5; i < iter; i++)
-            for (var node = _objects.First; node != null; node = node.Next) {
+            for (var node = Objects.First; node != null; node = node.Next) {
                 var o = node.Value;
 
                 // слишком низкая скорость
@@ -208,23 +208,23 @@ namespace Battle {
             }
 
             // уменьшить скорость объектов, не потративших очки движения, так как они застряли
-            foreach (var o in _objects) {
+            foreach (var o in Objects) {
                 o.UpdateGameObjectPosition();
                 o.Velocity *= 1 - o.Movement;
             }
         }
 
 
-        public Collision CastRay (XY origin, XY direction, float width = 0) {
+        public Collision CastRay (XY origin, XY direction, float width = 0, float length = 10000) {
             var point = new CircleCollider(origin, width);
             point.Object = new NullObject();
 
-            direction.Length = 10000; // todo: handle infinite length of the ray
+            direction.Length = length; // todo: handle infinite length of the ray
 
             Collision result = null;
             Collision temp;
 
-            foreach (var o in _objects.Where(o => o.Colliders.TrueForAll(c => !c.Overlaps(point))))
+            foreach (var o in Objects.Where(o => o.Colliders.TrueForAll(c => !c.Overlaps(point))))
             foreach (var c in o.Colliders) {
                 temp = point.FlyInto(c, direction);
                 if (temp < result) result = temp;
@@ -235,15 +235,15 @@ namespace Battle {
         }
 
 
-        public List<Collision> CastUltraRay (XY origin, XY direction, float width = 0) {
+        public List<Collision> CastUltraRay (XY origin, XY direction, float width = 0, float length = 10000) {
             var point = new CircleCollider(origin, width);
             point.Object = new NullObject();
 
-            direction.Length = 10000; // todo: handle infinite length of the ray
+            direction.Length = length; // todo: handle infinite length of the ray
 
             var result = new List<Collision>();
 
-            foreach (var o in _objects.Where(o => o.Colliders.TrueForAll(c => !c.Overlaps(point)))) {
+            foreach (var o in Objects.Where(o => o.Colliders.TrueForAll(c => !c.Overlaps(point)))) {
                 // не больше одной коллизии на объект
                 Collision min = null;
                 foreach (var c in o.Colliders) {
@@ -258,7 +258,7 @@ namespace Battle {
 
 
         public void Spawn (Object o, XY position, XY velocity = default(XY)) {
-            o.Node = _objects.AddLast(o);
+            o.Node = Objects.AddLast(o);
             o.Position = position;
             o.Velocity = velocity;
             o.GameObject = new GameObject(o.GetType().ToString());
@@ -337,11 +337,11 @@ namespace Battle {
 
 
         public void DealDamage (int damage, XY center, float radius, float maxDamageRadius) {
-            for (var node = _objects.First; node != null; node = node.Next) {
+            for (var node = Objects.First; node != null; node = node.Next) {
                 var obj = node.Value;
                 float dist = XY.Distance(center, obj.Position);
                 if (dist >= radius) continue;
-                obj.GetDamage(
+                obj.TakeDamage(
                     dist > maxDamageRadius
                     ? Mathf.CeilToInt(damage * Mathf.InverseLerp(radius, maxDamageRadius, dist))
                     : damage
@@ -357,7 +357,7 @@ namespace Battle {
 
         public void SendBlastWave (float impulse, XY center, float radius) {
             float sqrRadius = radius * radius;
-            for (var node = _objects.First; node != null; node = node.Next) {
+            for (var node = Objects.First; node != null; node = node.Next) {
                 var obj = node.Value;
                 float sqrDistance = XY.SqrDistance(center, obj.Position);
                 if (sqrDistance >= sqrRadius) continue;
@@ -385,7 +385,7 @@ namespace Battle {
 
 
         public bool Remove0HpWorms () {
-            var worms = _objects
+            var worms = Objects
                 .OfType<Worm>()
                 .Where(w => w.HP <= 0)
                 .ToList();
@@ -395,11 +395,11 @@ namespace Battle {
 
 
         public bool AfterTurn () {
-            var worms = _objects
+            var worms = Objects
                 .OfType<Worm>()
                 .Where(w => w.Poison > 0)
                 .ToList();
-            foreach (var worm in worms) worm.GetDamage(worm.Poison);
+            foreach (var worm in worms) worm.TakeDamage(worm.Poison);
             return worms.Count > 0;
         }
 
@@ -407,7 +407,7 @@ namespace Battle {
         public Worm WormNearestTo (XY xy, out float sqrDist) {
             sqrDist = float.NaN;
             Worm nearest = null;
-            foreach (var worm in _objects.OfType<Worm>()) {
+            foreach (var worm in Objects.OfType<Worm>()) {
                 float d2 = XY.SqrDistance(xy, worm.Position);
                 if (nearest != null && sqrDist < d2) continue;
                 sqrDist = d2;

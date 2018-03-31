@@ -199,7 +199,7 @@ namespace Battle.Objects {
         }
 
 
-        public override void GetDamage (int damage) {
+        public override void TakeDamage (int damage) {
             if (damage <= 0) {
                 Debug.LogWarning("damage <= 0");
                 return;

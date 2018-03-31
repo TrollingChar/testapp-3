@@ -110,7 +110,8 @@ namespace Battle {
             ActiveWorm = new ActiveWorm();
             Weapon = new WeaponWrapper();
             Camera.LookAt(new Vector2(1000, 1000), true);
-            Teams = World.SpawnTeams(_initData.Players, 5);
+            Teams = World.SpawnTeams(_initData.Players, Math.Min(10, Mathf.CeilToInt(20f / _initData.Players.Count)));
+            // 10, 10, 7, 5, 4, 4, 3...
             World.SpawnMines(20);
             ArsenalPanel.Bind(Teams.MyTeam.Arsenal);
 
@@ -163,7 +164,7 @@ namespace Battle {
 
         public void BeforeTurn () {
             // drop crates
-            World.Wind = RNG.Float() * 20f - 10f;
+            World.Wind = RNG.Float() * 10f - 5f;
             Timer.Wait();
         }
 

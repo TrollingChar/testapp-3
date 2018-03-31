@@ -47,7 +47,7 @@ namespace Battle.Weapons.WeaponTypes.Launched {
             Object.Spawn(
                 new Landmine(),
                 Object.Position,
-                (TurnData.XY - Object.Position).WithLength(Power * Balance.BaseShotSpeed / Time.TPS)
+                (TurnData.XY - Object.Position).WithLength(Power01 * Balance.BaseShotSpeed)
             );
         }
 
