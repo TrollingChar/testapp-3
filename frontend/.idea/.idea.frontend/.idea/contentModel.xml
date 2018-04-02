@@ -94,6 +94,7 @@
                 <e p="WormGO.cs" t="Include" />
                 <e p="WormsNames.cs" t="Include" />
               </e>
+              <e p="MeleeTester.cs" t="Include" />
               <e p="NullObject.cs" t="Include" />
               <e p="Object.cs" t="Include" />
               <e p="Projectiles" t="Include">

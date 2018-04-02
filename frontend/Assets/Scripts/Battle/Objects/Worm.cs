@@ -217,6 +217,11 @@ namespace Battle.Objects {
         }
 
 
+        public override void TakeAxeDamage (float factor, int min, int max) {
+            TakeDamage(Mathf.Clamp(Mathf.CeilToInt(HP * factor), min, max));
+        }
+
+
         public override void AddPoison (int dpr, bool additive) {
             if (dpr <= 0) {
                 Debug.LogWarning("poison <= 0");

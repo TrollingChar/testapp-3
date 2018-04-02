@@ -232,6 +232,16 @@ namespace Battle.Objects {
         public virtual void CureAllPoison () {}
 
 
+        public virtual void TakeAxeDamage (float factor, int min, int max) { // factor 0.5 - half, 1.0 - all hp
+            TakeDamage(min);
+        }
+
+
+        public virtual void TakeGsomDamage () {
+            TakeDamage(9999);
+        }
+
+
         public virtual void ReceiveBlastWave (XY impulse) {
             Velocity += impulse;
         }

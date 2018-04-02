@@ -15,6 +15,7 @@ namespace Assets {
         public Texture2D LandTexture;
         [Space]
         public GameObject LineCrosshair;
+        public GameObject MeleeCrosshair;
         public GameObject PointCrosshair;
         [Space]
         public GameObject Worm;
@@ -37,6 +38,8 @@ namespace Assets {
         public GameObject CrossbowWeapon;
         public GameObject UltraRifleWeapon;
         public GameObject GsomRaycasterWeapon;
+        public GameObject AxeWeapon;
+        public GameObject HammerWeapon;
         public GameObject LandmineWeapon;
         public GameObject DynamiteWeapon;
         [Space]

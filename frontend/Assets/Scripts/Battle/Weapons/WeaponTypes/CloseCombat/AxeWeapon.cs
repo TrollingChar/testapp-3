@@ -1,5 +1,6 @@
 ﻿using Attributes;
 using Battle.Objects;
+using Battle.Weapons.Crosshairs;
 using Core;
 using Geometry;
 using UnityEngine;
@@ -10,6 +11,9 @@ namespace Battle.Weapons.WeaponTypes.CloseCombat {
     [Weapon(WeaponId.Axe)]
     public class AxeWeapon : StandardWeapon {
 
+        private GameObject _sprite;
+        private LineCrosshair _crosshair;
+        
         public static WeaponDescriptor Descriptor {
             get {
                 return new WeaponDescriptor(
@@ -20,19 +24,40 @@ namespace Battle.Weapons.WeaponTypes.CloseCombat {
         }
 
 
+        protected override void OnEquip () {
+            var battleAssets = The.BattleAssets;
+
+            _crosshair = UnityEngine.Object.Instantiate(
+                battleAssets.MeleeCrosshair,
+                GameObject.transform,
+                false
+            ).GetComponent<LineCrosshair>();
+            
+            _sprite = UnityEngine.Object.Instantiate(
+                battleAssets.AxeWeapon,
+                GameObject.transform,
+                false
+            );
+        }
+
+
         protected override void OnShoot () {
             UseAmmo();
-            var direction = TurnData.XY - Object.Position;
-            var objects = The.World.CastUltraRay(Object.Position, direction, Worm.HeadRadius * 0.9f, 30f)
-                .ConvertAll(c => c.Collider2.Object);
+            var direction = (TurnData.XY - Object.Position).Normalized();
 
+            var objects = The.World.CastMelee(Object.Position, direction * 30f);
+            
             foreach (var o in objects) {
-                o.ReceiveBlastWave(direction.WithLength(3f));
-                var w = o as Worm;
-                // todo: можно сделать TakeAxeDamage(0.5, 10, 50) наверное
-                if (w == null) o.TakeDamage(10);
-                else           w.TakeDamage(Mathf.Clamp(Mathf.CeilToInt(w.HP * 0.5f), 10, 60));
+                if (o == Object) continue;
+                o.ReceiveBlastWave(direction * 3f);
+                o.TakeAxeDamage(0.5f, 10, 60);
             }
+        }
+
+
+        protected override void OnUpdate () {
+            UpdateLineCrosshair(_crosshair);
+            UpdateAimedWeapon(_sprite);
         }
 
     }

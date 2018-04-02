@@ -257,6 +257,15 @@ namespace Battle {
         }
 
 
+        public IEnumerable<Object> CastMelee (XY origin, XY direction) {
+            var tester = new MeleeTester();
+            Spawn(tester, origin, direction);
+            var result = tester.Test();
+            tester.Remove();
+            return result;
+        }
+
+
         public void Spawn (Object o, XY position, XY velocity = default(XY)) {
             o.Node = Objects.AddLast(o);
             o.Position = position;

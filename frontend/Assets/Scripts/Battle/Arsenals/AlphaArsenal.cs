@@ -26,7 +26,7 @@ namespace Battle.Arsenals {
             SetAmmo(WeaponId.GsomRaycaster, 1);
             
             SetAmmo(WeaponId.Axe, 2);
-            SetAmmo(WeaponId.Hammer, 1);
+            SetAmmo(WeaponId.Hammer, 2);
 
             SetAmmo(WeaponId.Landmine, inf);
             SetAmmo(WeaponId.Dynamite, 1);
