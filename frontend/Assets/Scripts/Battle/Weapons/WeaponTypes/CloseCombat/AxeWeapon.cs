@@ -49,7 +49,7 @@ namespace Battle.Weapons.WeaponTypes.CloseCombat {
             
             foreach (var o in objects) {
                 if (o == Object) continue;
-                o.ReceiveBlastWave(direction * 3f);
+                o.ReceiveBlastWave(direction * 3f + new XY(0f, 2f));
                 o.TakeAxeDamage(0.5f, 10, 60);
             }
         }

@@ -38,6 +38,7 @@ namespace Assets {
         public GameObject CrossbowWeapon;
         public GameObject UltraRifleWeapon;
         public GameObject GsomRaycasterWeapon;
+        public GameObject FingerWeapon;
         public GameObject AxeWeapon;
         public GameObject HammerWeapon;
         public GameObject LandmineWeapon;

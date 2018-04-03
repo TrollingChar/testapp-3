@@ -25,6 +25,8 @@ namespace Battle.Arsenals {
             SetAmmo(WeaponId.UltraRifle, 2);
             SetAmmo(WeaponId.GsomRaycaster, 1);
             
+            SetAmmo(WeaponId.FirePunch, inf);
+            SetAmmo(WeaponId.Finger, inf);
             SetAmmo(WeaponId.Axe, 2);
             SetAmmo(WeaponId.Hammer, 2);
 
