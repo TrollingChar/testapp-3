@@ -38,6 +38,7 @@ namespace Battle.Arsenals {
             SetAmmo(WeaponId.Jumper, 6);
             
             SetAmmo(WeaponId.Medikit, 2);
+            SetAmmo(WeaponId.Overheal, 1);
 
             // todo: they must be present in ALL arsenals, init them in base class
             SetAmmo(WeaponId.SkipTurn, inf);

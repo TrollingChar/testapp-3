@@ -104,17 +104,9 @@ namespace Battle.Objects.Crates {
             
             _crates = new CrateLootTable(
                 new Loot(() => _weaponCrates.GetLoot()(), 20),
-                new Loot(() => _healthCrates.GetLoot()(), 10)//,
-//                new Loot(() => null, 70)
+                new Loot(() => _healthCrates.GetLoot()(), 10),
+                new Loot(() => null, 70)
             );
-
-
-            string s = "";
-            for (int i = 0; i < 100; i++, s += "\n") {
-                var crate = GenCrate();
-                s += crate.Text;
-            }
-            Debug.Log(s);
         }
         
 

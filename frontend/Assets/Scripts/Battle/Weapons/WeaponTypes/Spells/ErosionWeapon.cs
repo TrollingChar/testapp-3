@@ -24,11 +24,7 @@ namespace Battle.Weapons.WeaponTypes.Spells {
 
 
         protected override void OnEquip () {
-            _crosshair = UnityEngine.Object.Instantiate(
-                The.BattleAssets.PointCrosshair,
-                GameObject.transform,
-                false
-            );
+            _crosshair = UnityEngine.Object.Instantiate(The.BattleAssets.PointCrosshair);
 
             // todo: magic scroll or something
 //            _sprite = UnityEngine.Object.Instantiate(
@@ -42,6 +38,16 @@ namespace Battle.Weapons.WeaponTypes.Spells {
         protected override void OnShoot () {
             UseAmmo();
             The.World.DestroyTerrain(TurnData.XY, 50f);
+        }
+
+
+        protected override void OnUpdate () {
+            _crosshair.transform.localPosition = new Vector3(TurnData.XY.X, TurnData.XY.Y);
+        }
+
+
+        protected override void OnUnequip () {
+            UnityEngine.Object.Destroy(_crosshair);
         }
 
     }
