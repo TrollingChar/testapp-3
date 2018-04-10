@@ -14,7 +14,8 @@ namespace Battle.Weapons.WeaponTypes.Firearms {
             get {
                 return new WeaponDescriptor(
                     WeaponId.GsomRaycaster,
-                    The.WeaponIcons.GsomRaycaster
+                    The.WeaponIcons.GsomRaycaster,
+                    "пыщ-лучемет"
                 );
             }
         }

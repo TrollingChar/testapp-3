@@ -53,6 +53,7 @@
             <e p="Objects" t="Include">
               <e p="CollisionHandlers" t="Include">
                 <e p="CollisionHandler.cs" t="Include" />
+                <e p="CrateCH.cs" t="Include" />
                 <e p="DetonatorCH.cs" t="Include" />
                 <e p="DynamiteCH.cs" t="Include" />
                 <e p="LandmineStickCH.cs" t="Include" />
@@ -62,6 +63,8 @@
               <e p="Component.cs" t="Include" />
               <e p="Controllers" t="Include">
                 <e p="Controller.cs" t="Include" />
+                <e p="CrateControllerFall.cs" t="Include" />
+                <e p="CrateControllerStand.cs" t="Include" />
                 <e p="DisappearingController.cs" t="Include" />
                 <e p="HomingController.cs" t="Include" />
                 <e p="LabelController.cs" t="Include" />
@@ -74,6 +77,12 @@
                 <e p="WormControllerFirePunch.cs" t="Include" />
                 <e p="WormControllerJump.cs" t="Include" />
                 <e p="WormControllerWalk.cs" t="Include" />
+              </e>
+              <e p="Crates" t="Include">
+                <e p="Crate.cs" t="Include" />
+                <e p="CrateFactory.cs" t="Include" />
+                <e p="HealthCrate.cs" t="Include" />
+                <e p="WeaponCrate.cs" t="Include" />
               </e>
               <e p="Effects" t="Include">
                 <e p="Effect.cs" t="Include" />
@@ -333,6 +342,9 @@
             </e>
           </e>
           <e p="Utils" t="Include">
+            <e p="LootTable" t="Include">
+              <e p="LootTable.cs" t="Include" />
+            </e>
             <e p="Messenger" t="Include">
               <e p="Messenger.cs" t="Include" />
             </e>
@@ -341,6 +353,9 @@
             <e p="Random" t="Include">
               <e p="MT19937.cs" t="Include" />
               <e p="RNG.cs" t="Include" />
+            </e>
+            <e p="Tuple" t="Include">
+              <e p="Tuple.cs" t="Include" />
             </e>
           </e>
         </e>

@@ -11,7 +11,8 @@ namespace Battle.Weapons.WeaponTypes.Airstrikes {
             get {
                 return new WeaponDescriptor(
                     WeaponId.Napalm,
-                    The.WeaponIcons.Napalm
+                    The.WeaponIcons.Napalm,
+                    "удар напалмом"
                 );
             }
         }

@@ -11,7 +11,8 @@ namespace Battle.Weapons.WeaponTypes.OtherUtils {
             get {
                 return new WeaponDescriptor(
                     WeaponId.Girder,
-                    The.WeaponIcons.Girder
+                    The.WeaponIcons.Girder,
+                    "балка"
                 );
             }
         }

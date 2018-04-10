@@ -18,7 +18,8 @@ namespace Battle.Weapons.WeaponTypes.Launched {
             get {
                 return new WeaponDescriptor(
                     WeaponId.Minegun,
-                    The.WeaponIcons.Minegun
+                    The.WeaponIcons.Minegun,
+                    "миномет"
                 );
             }
         }

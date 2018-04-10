@@ -19,7 +19,8 @@ namespace Battle.Weapons.WeaponTypes.Thrown {
             get {
                 return new WeaponDescriptor(
                     WeaponId.PhantomGrenade,
-                    The.WeaponIcons.PhantomGrenade
+                    The.WeaponIcons.PhantomGrenade,
+                    "призрачная граната"
                 );
             }
         }

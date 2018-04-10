@@ -11,7 +11,8 @@ namespace Battle.Weapons.WeaponTypes.MovementUtils {
             get {
                 return new WeaponDescriptor(
                     WeaponId.Jetpack,
-                    The.WeaponIcons.Jetpack
+                    The.WeaponIcons.Jetpack,
+                    "ракетный ранец"
                 );
             }
         }

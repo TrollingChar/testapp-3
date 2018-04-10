@@ -11,7 +11,8 @@ namespace Battle.Weapons.WeaponTypes.Heavy {
             get {
                 return new WeaponDescriptor(
                     WeaponId.Frog,
-                    The.WeaponIcons.Frog
+                    The.WeaponIcons.Frog,
+                    "лягушка"
                 );
             }
         }

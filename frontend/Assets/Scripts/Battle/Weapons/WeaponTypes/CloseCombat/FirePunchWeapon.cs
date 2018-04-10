@@ -11,7 +11,8 @@ namespace Battle.Weapons.WeaponTypes.CloseCombat {
             get {
                 return new WeaponDescriptor(
                     WeaponId.FirePunch,
-                    The.WeaponIcons.FirePunch
+                    The.WeaponIcons.FirePunch,
+                    "огненный удар"
                 );
             }
         }

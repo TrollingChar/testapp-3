@@ -11,7 +11,8 @@ namespace Battle.Weapons.WeaponTypes.Thrown {
             get {
                 return new WeaponDescriptor(
                     WeaponId.Molotov,
-                    The.WeaponIcons.Molotov
+                    The.WeaponIcons.Molotov,
+                    "коктейль Молотова"
                 );
             }
         }

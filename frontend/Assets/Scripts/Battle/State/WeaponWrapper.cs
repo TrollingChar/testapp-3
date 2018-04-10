@@ -28,7 +28,7 @@ namespace Battle.State {
 
 
         public void Select (int weaponId) {
-            _activeWorm.Worm.Weapon = _weapon = Serialization<Weapon>.GetNewInstanceByCode(weaponId);
+            _activeWorm.Worm.Weapon = _weapon = Weapon.ById(weaponId);// Serialization<Weapon>.GetNewInstanceByCode(weaponId);
 //            _weapon.Equip(_activeWorm.Worm);
         }
 

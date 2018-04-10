@@ -13,7 +13,8 @@ namespace Battle.Weapons.WeaponTypes.MovementUtils {
             get {
                 return new WeaponDescriptor(
                     WeaponId.WormSelect,
-                    The.WeaponIcons.WormSelect
+                    The.WeaponIcons.WormSelect,
+                    "переход хода"
                 );
             }
         }

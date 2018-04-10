@@ -18,7 +18,8 @@ namespace Battle.Weapons.WeaponTypes.CloseCombat {
             get {
                 return new WeaponDescriptor(
                     WeaponId.Axe,
-                    The.WeaponIcons.Axe
+                    The.WeaponIcons.Axe,
+                    "топор"
                 );
             }
         }

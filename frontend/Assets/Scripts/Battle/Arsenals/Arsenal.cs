@@ -47,7 +47,14 @@ namespace Battle.Arsenals {
 
 
         public void AddAmmo (int id, int ammo) {
-            this[id] += ammo;
+            if (this[id] < 0) return; // infinite ammo
+            if (ammo < 0) this[id] = -1;
+            else          this[id] += ammo;
+        }
+
+
+        public void AddAmmo (WeaponId id, int ammo) {
+            AddAmmo((int) id, ammo);
         }
 
 

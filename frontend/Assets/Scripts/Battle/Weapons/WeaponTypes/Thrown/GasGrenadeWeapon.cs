@@ -11,7 +11,8 @@ namespace Battle.Weapons.WeaponTypes.Thrown {
             get {
                 return new WeaponDescriptor(
                     WeaponId.GasGrenade,
-                    The.WeaponIcons.GasGrenade
+                    The.WeaponIcons.GasGrenade,
+                    "газовая граната"
                 );
             }
         }

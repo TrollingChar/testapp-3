@@ -11,7 +11,8 @@ namespace Battle.Weapons.WeaponTypes.Airstrikes {
             get {
                 return new WeaponDescriptor(
                     WeaponId.MineStrike,
-                    The.WeaponIcons.MineStrike
+                    The.WeaponIcons.MineStrike,
+                    "сброс мин"
                 );
             }
         }

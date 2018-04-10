@@ -11,7 +11,8 @@ namespace Battle.Weapons.WeaponTypes.CloseCombat {
             get {
                 return new WeaponDescriptor(
                     WeaponId.Flamethrower,
-                    The.WeaponIcons.Flamethrower
+                    The.WeaponIcons.Flamethrower,
+                    "огнемет"
                 );
             }
         }

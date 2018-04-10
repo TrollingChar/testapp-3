@@ -17,7 +17,8 @@ namespace Battle.Weapons.WeaponTypes.Firearms {
             get {
                 return new WeaponDescriptor(
                     WeaponId.Blaster,
-                    The.WeaponIcons.Blaster
+                    The.WeaponIcons.Blaster,
+                    "бластер"
                 );
             }
         }

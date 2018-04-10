@@ -18,7 +18,8 @@ namespace Battle.Weapons.WeaponTypes.Launched {
             get {
                 return new WeaponDescriptor(
                     WeaponId.Plasmagun,
-                    The.WeaponIcons.Plasmagun
+                    The.WeaponIcons.Plasmagun,
+                    "плазма"
                 );
             }
         }

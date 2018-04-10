@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Reflection;
 using Attributes;
 using Battle.Arsenals;
 using Battle.Objects;
@@ -115,6 +116,34 @@ namespace Battle.Weapons {
             _weaponWrapper.LockAndUnequip();
             GameTimer.Time = t;
             GameTimer.Frozen = false;
+        }
+
+
+        public static Weapon ById (WeaponId id) {
+            return ById((byte) id);
+        }
+
+
+        public static Weapon ById (int id) {
+            return ById((byte) id);
+        }
+
+
+        public static Weapon ById (byte id) {
+            return Serialization<Weapon>.GetNewInstanceByCode(id);
+        }
+
+
+        public static WeaponDescriptor DescriptorById (WeaponId id) {
+            return DescriptorById((byte) id);
+        }
+
+
+        public static WeaponDescriptor DescriptorById (byte id) {
+            return (WeaponDescriptor) Serialization<Weapon>.GetTypeByCode(id).GetProperty(
+                "Descriptor",
+                BindingFlags.Static | BindingFlags.Public
+            ).GetValue(null, null);
         }
 
     }

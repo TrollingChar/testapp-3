@@ -17,7 +17,8 @@ namespace Battle.Weapons.WeaponTypes.CloseCombat {
             get {
                 return new WeaponDescriptor(
                     WeaponId.Finger,
-                    The.WeaponIcons.Finger
+                    The.WeaponIcons.Finger,
+                    "толчок"
                 );
             }
         }

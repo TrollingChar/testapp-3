@@ -11,7 +11,8 @@ namespace Battle.Weapons.WeaponTypes.Heavy {
             get {
                 return new WeaponDescriptor(
                     WeaponId.Turret,
-                    The.WeaponIcons.Turret
+                    The.WeaponIcons.Turret,
+                    "турель"
                 );
             }
         }

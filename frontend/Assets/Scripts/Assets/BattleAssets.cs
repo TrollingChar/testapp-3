@@ -20,8 +20,9 @@ namespace Assets {
         [Space]
         public GameObject Worm;
         public GameObject Arrow;
-//        public GameObject NameField;
-//        public GameObject HPField;
+        [Space]
+        public GameObject WoodenCrate;
+        public GameObject HealthCrate;
         [Space]
         public GameObject BazookaWeapon;
         public GameObject PlasmagunWeapon;

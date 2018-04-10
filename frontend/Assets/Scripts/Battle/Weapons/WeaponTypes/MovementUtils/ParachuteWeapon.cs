@@ -11,7 +11,8 @@ namespace Battle.Weapons.WeaponTypes.MovementUtils {
             get {
                 return new WeaponDescriptor(
                     WeaponId.Parachute,
-                    The.WeaponIcons.Parachute
+                    The.WeaponIcons.Parachute,
+                    "парашют"
                 );
             }
         }

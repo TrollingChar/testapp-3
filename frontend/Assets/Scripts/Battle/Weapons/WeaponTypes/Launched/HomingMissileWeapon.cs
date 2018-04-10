@@ -38,7 +38,8 @@ namespace Battle.Weapons.WeaponTypes.Launched {
             get {
                 return new WeaponDescriptor(
                     WeaponId.HomingMissile,
-                    The.WeaponIcons.HomingMissile
+                    The.WeaponIcons.HomingMissile,
+                    "самонаводящаяся ракета"
                 );
             }
         }

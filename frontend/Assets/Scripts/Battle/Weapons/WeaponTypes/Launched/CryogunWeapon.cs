@@ -11,7 +11,8 @@ namespace Battle.Weapons.WeaponTypes.Launched {
             get {
                 return new WeaponDescriptor(
                     WeaponId.Cryogun,
-                    The.WeaponIcons.Cryogun
+                    The.WeaponIcons.Cryogun,
+                    "криопушка"
                 );
             }
         }

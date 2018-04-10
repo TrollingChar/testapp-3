@@ -19,7 +19,8 @@ namespace Battle.Weapons.WeaponTypes.Thrown {
             get {
                 return new WeaponDescriptor(
                     WeaponId.Grenade,
-                    The.WeaponIcons.Grenade
+                    The.WeaponIcons.Grenade,
+                    "граната"
                 );
             }
         }

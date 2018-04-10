@@ -11,7 +11,8 @@ namespace Battle.Weapons.WeaponTypes.Heavy {
             get {
                 return new WeaponDescriptor(
                     WeaponId.Superfrog,
-                    The.WeaponIcons.Superfrog
+                    The.WeaponIcons.Superfrog,
+                    "суперлягушка"
                 );
             }
         }

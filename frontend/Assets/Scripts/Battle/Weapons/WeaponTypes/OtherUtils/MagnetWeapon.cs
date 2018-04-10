@@ -11,7 +11,8 @@ namespace Battle.Weapons.WeaponTypes.OtherUtils {
             get {
                 return new WeaponDescriptor(
                     WeaponId.Magnet,
-                    The.WeaponIcons.Magnet
+                    The.WeaponIcons.Magnet,
+                    "магнит"
                 );
             }
         }

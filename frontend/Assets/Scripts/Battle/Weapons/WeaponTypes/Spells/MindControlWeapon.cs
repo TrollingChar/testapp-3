@@ -11,7 +11,8 @@ namespace Battle.Weapons.WeaponTypes.Spells {
             get {
                 return new WeaponDescriptor(
                     WeaponId.MindControl,
-                    The.WeaponIcons.MindControl
+                    The.WeaponIcons.MindControl,
+                    "гипноз"
                 );
             }
         }

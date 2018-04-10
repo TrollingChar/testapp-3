@@ -17,18 +17,18 @@ namespace Battle.Objects.Projectiles {
             var assets = The.BattleAssets;
 
             var canvas = UnityEngine.Object.Instantiate(assets.TopCanvas, transform, false);
-            canvas.transform.localPosition += new Vector3(0, 5, 0);
+            canvas.transform.localPosition += new Vector3(0f, 5f, 0f);
             canvas.transform.localScale = new Vector3(0.7f, 0.7f, 1f);
 //            canvas.GetComponent<Canvas>().sortingLayerName = "TextFront";
 
             var timerText = UnityEngine.Object.Instantiate(assets.Text, canvas.transform, false).GetComponent<Text>();
 
             UnityEngine.Object.Instantiate(assets.Dynamite, transform, false);
-            AddCollider(new BoxCollider(-4, 4, -6, 6));
+            AddCollider(new BoxCollider(-4f, 4f, -6f, 6f));
             Explosive = new Explosive40();
             Controller = new StandardController();
-            Timer = new DetonationTimer(new Time {Seconds = 6}, timerText);
-            CollisionHandler = new DynamiteCollisionHandler();
+            Timer = new DetonationTimer(new Time {Seconds = 6f}, timerText);
+            CollisionHandler = new DynamiteCH();
         }
 
     }

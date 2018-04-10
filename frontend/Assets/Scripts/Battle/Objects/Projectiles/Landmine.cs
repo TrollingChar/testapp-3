@@ -19,15 +19,10 @@ namespace Battle.Objects.Projectiles {
         public const float StickCheckRadius = 7f;
         public const int ActivationRadius = 40;
 
+        
         public override void OnAdd () {
             var transform = GameObject.transform;
             var assets = The.BattleAssets;
-
-//            var canvas = UnityEngine.Object.Instantiate(assets.TopCanvas, transform, false);
-//            canvas.transform.localPosition += new Vector3(0, 5, 0);
-//            canvas.transform.localScale = new Vector3(0.7f, 0.7f, 1f);
-
-//            var timerText = UnityEngine.Object.Instantiate(assets.Text, canvas.transform, false).GetComponent<Text>();
 
             UnityEngine.Object.Instantiate(assets.Landmine, transform, false);
             AddCollider(new CircleCollider(XY.Zero, Radius));

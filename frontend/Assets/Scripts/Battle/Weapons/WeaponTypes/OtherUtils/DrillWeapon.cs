@@ -11,7 +11,8 @@ namespace Battle.Weapons.WeaponTypes.OtherUtils {
             get {
                 return new WeaponDescriptor(
                     WeaponId.Drill,
-                    The.WeaponIcons.Drill
+                    The.WeaponIcons.Drill,
+                    "бур"
                 );
             }
         }

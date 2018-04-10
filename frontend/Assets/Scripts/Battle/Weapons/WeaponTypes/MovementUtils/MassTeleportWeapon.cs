@@ -11,7 +11,8 @@ namespace Battle.Weapons.WeaponTypes.MovementUtils {
             get {
                 return new WeaponDescriptor(
                     WeaponId.MassTeleport,
-                    The.WeaponIcons.MassTeleport
+                    The.WeaponIcons.MassTeleport,
+                    "общий телепорт"
                 );
             }
         }

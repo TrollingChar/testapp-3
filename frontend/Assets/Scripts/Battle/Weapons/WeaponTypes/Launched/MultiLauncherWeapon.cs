@@ -19,7 +19,8 @@ namespace Battle.Weapons.WeaponTypes.Launched {
             get {
                 return new WeaponDescriptor(
                     WeaponId.MultiLauncher,
-                    The.WeaponIcons.MultiLauncher
+                    The.WeaponIcons.MultiLauncher,
+                    "мини-ракеты"
                 );
             }
         }

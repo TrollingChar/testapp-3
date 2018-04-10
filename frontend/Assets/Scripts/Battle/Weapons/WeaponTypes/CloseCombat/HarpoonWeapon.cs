@@ -11,7 +11,8 @@ namespace Battle.Weapons.WeaponTypes.CloseCombat {
             get {
                 return new WeaponDescriptor(
                     WeaponId.Harpoon,
-                    The.WeaponIcons.Harpoon
+                    The.WeaponIcons.Harpoon,
+                    "гарпун"
                 );
             }
         }

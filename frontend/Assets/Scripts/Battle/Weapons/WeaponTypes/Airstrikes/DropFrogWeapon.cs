@@ -11,7 +11,8 @@ namespace Battle.Weapons.WeaponTypes.Airstrikes {
             get {
                 return new WeaponDescriptor(
                     WeaponId.DropFrog,
-                    The.WeaponIcons.DropFrog
+                    The.WeaponIcons.DropFrog,
+                    "удар лягушкой"
                 );
             }
         }

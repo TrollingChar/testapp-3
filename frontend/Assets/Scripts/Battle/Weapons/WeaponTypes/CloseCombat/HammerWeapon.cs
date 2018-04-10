@@ -18,7 +18,8 @@ namespace Battle.Weapons.WeaponTypes.CloseCombat {
             get {
                 return new WeaponDescriptor(
                     WeaponId.Hammer,
-                    The.WeaponIcons.Hammer
+                    The.WeaponIcons.Hammer,
+                    "молот"
                 );
             }
         }

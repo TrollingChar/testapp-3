@@ -11,7 +11,8 @@ namespace Battle.Weapons.WeaponTypes.Spells {
             get {
                 return new WeaponDescriptor(
                     WeaponId.Flood,
-                    The.WeaponIcons.Flood
+                    The.WeaponIcons.Flood,
+                    "наводнение"
                 );
             }
         }

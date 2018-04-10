@@ -11,7 +11,8 @@ namespace Battle.Weapons.WeaponTypes.OtherUtils {
             get {
                 return new WeaponDescriptor(
                     WeaponId.SkipTurn,
-                    The.WeaponIcons.SkipTurn
+                    The.WeaponIcons.SkipTurn,
+                    "пропуск хода"
                 );
             }
         }

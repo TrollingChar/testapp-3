@@ -11,7 +11,8 @@ namespace Battle.Weapons.WeaponTypes.Spells {
             get {
                 return new WeaponDescriptor(
                     WeaponId.PoisonCloud,
-                    The.WeaponIcons.PoisonCloud
+                    The.WeaponIcons.PoisonCloud,
+                    "ядовитое облако"
                 );
             }
         }

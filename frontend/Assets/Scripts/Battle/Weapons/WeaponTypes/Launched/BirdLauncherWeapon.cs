@@ -11,7 +11,8 @@ namespace Battle.Weapons.WeaponTypes.Launched {
             get {
                 return new WeaponDescriptor(
                     WeaponId.BirdLauncher,
-                    The.WeaponIcons.BirdLauncher
+                    The.WeaponIcons.BirdLauncher,
+                    "злая птица"
                 );
             }
         }

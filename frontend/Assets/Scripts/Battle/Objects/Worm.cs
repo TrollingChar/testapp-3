@@ -1,8 +1,9 @@
-﻿using System;
-using Battle.Objects.Controllers;
+﻿using Battle.Objects.Controllers;
+using Battle.Objects.Crates;
 using Battle.Objects.Effects;
 using Battle.Objects.Explosives;
 using Battle.Objects.GameObjects;
+using Battle.State;
 using Battle.Teams;
 using Battle.Weapons;
 using Collisions;
@@ -189,7 +190,8 @@ namespace Battle.Objects {
 
 
         protected override bool PassableFor (Object o) {
-            return this == o;
+            return this == o
+                || o is Crate && The.ActiveWorm.Is(this) && The.GameState.CurrentState == GameState.Turn;
         }
 
 
@@ -211,7 +213,22 @@ namespace Battle.Objects {
             Spawn(
                 new Label(damage.ToString(), _color, effectTime),
                 Position,
-//                Velocity +
+                XY.FromPolar(4 + RNG.Float() * 4, (RNG.Float() - RNG.Float()) * 0.5f).Rotated90CCW()
+            );
+        }
+
+
+        public override void TakeHealing (int healing) {
+            if (healing <= 0) {
+                Debug.LogWarning("healing <= 0");
+                return;
+            }
+            HP += healing;
+            
+            float effectTime = 1f + 1f * healing / (healing + 40f); 
+            Spawn(
+                new Label("+" + healing, _color, effectTime),
+                Position,
                 XY.FromPolar(4 + RNG.Float() * 4, (RNG.Float() - RNG.Float()) * 0.5f).Rotated90CCW()
             );
         }
@@ -256,19 +273,6 @@ namespace Battle.Objects {
         public override void ReceiveBlastWave (XY impulse) {
             Controller = new WormControllerFall();
             base.ReceiveBlastWave(impulse);
-        }
-
-
-        public bool CanLandThere {
-            get {
-                /*throw new NotImplementedException();*/
-                return true;
-            }
-        }
-
-
-        public void LandThere () {
-            Controller = new WormControllerJump();
         }
 
 

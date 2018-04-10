@@ -20,13 +20,13 @@ namespace Core {
 //            foreach (var type in Assembly.GetExecutingAssembly().GetTypes()) {
             foreach (var type in Assembly.Load(Settings.AssemblyName).GetTypes()) {
                 if (type.IsSubclassOf(baseType) || type.GetInterfaces().Contains(baseType)) {
-                    AddCommand<TAttribute>(type);
+                    AddType<TAttribute>(type);
                 }
             }
         }
 
 
-        private static void AddCommand<TAttribute> (Type type) where TAttribute : IdAttribute {
+        private static void AddType<TAttribute> (Type type) where TAttribute : IdAttribute {
             var attribute = (TAttribute) type.GetCustomAttributes(true).FirstOrDefault(a => a is TAttribute);
             if (attribute == null) return;
 
@@ -51,6 +51,16 @@ namespace Core {
 
         public static byte GetCodeByType (Type type) {
             return _codeByType[type];
+        }
+
+
+        public static Type GetTypeByCode (byte code) {
+            return _typeByCode[code];
+        }
+
+
+        public static Type GetTypeByCode (int code) {
+            return _typeByCode[(byte) code];
         }
 
     }

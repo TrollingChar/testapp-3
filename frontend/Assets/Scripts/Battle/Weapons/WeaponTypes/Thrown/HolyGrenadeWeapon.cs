@@ -11,7 +11,8 @@ namespace Battle.Weapons.WeaponTypes.Thrown {
             get {
                 return new WeaponDescriptor(
                     WeaponId.HolyGrenade,
-                    The.WeaponIcons.HolyGrenade
+                    The.WeaponIcons.HolyGrenade,
+                    "святая граната"
                 );
             }
         }

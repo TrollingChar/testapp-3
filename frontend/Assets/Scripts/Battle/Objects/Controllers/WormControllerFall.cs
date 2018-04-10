@@ -29,8 +29,8 @@ namespace Battle.Objects.Controllers {
             if (Object.Velocity.SqrLength < 1) _control.Ticks++;
             
             if (The.World.Time.Ticks % Time.TPS != 0) return;
-            
-            if (_control.Seconds >= 0.9f && worm.CanLandThere) worm.LandThere();
+
+            if (_control.Seconds >= 0.9f) worm.Controller = new WormControllerJump();
             _control.Ticks = 0;
         }
 

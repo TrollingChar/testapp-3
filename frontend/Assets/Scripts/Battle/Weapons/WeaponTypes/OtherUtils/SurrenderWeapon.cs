@@ -11,7 +11,8 @@ namespace Battle.Weapons.WeaponTypes.OtherUtils {
             get {
                 return new WeaponDescriptor(
                     WeaponId.Surrender,
-                    The.WeaponIcons.Surrender
+                    The.WeaponIcons.Surrender,
+                    "капитуляция"
                 );
             }
         }

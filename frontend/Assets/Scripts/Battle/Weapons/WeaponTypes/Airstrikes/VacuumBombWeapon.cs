@@ -11,7 +11,8 @@ namespace Battle.Weapons.WeaponTypes.Airstrikes {
             get {
                 return new WeaponDescriptor(
                     WeaponId.VacuumBomb,
-                    The.WeaponIcons.VacuumBomb
+                    The.WeaponIcons.VacuumBomb,
+                    "вакуумная бомба"
                 );
             }
         }

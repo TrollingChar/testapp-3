@@ -19,7 +19,8 @@ namespace Battle.Weapons.WeaponTypes.Firearms {
             get {
                 return new WeaponDescriptor(
                     WeaponId.UltraRifle,
-                    The.WeaponIcons.UltraRifle
+                    The.WeaponIcons.UltraRifle,
+                    "ультравинтовка"
                 );
             }
         }

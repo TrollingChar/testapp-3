@@ -1,5 +1,7 @@
 ﻿using System;
 using Battle.Camera;
+using Battle.Objects;
+using Battle.Objects.Crates;
 using Battle.State;
 using Battle.Teams;
 using Battle.Terrain;
@@ -10,6 +12,7 @@ using Core;
 using DataTransfer.Client;
 using DataTransfer.Data;
 using DataTransfer.Server;
+using Geometry;
 using Net;
 using UnityEngine;
 using UnityEngine.UI;
@@ -44,6 +47,7 @@ namespace Battle {
         public ActiveWorm ActiveWorm { get; private set; }     // активный червяк, флаг заморозки движения
         public WeaponWrapper Weapon { get; private set; }      // выбранное оружие, флаг блокировки
         public ArsenalPanel ArsenalPanel { get; private set; } // панель арсенала
+        public CrateFactory CrateFactory { get; private set; } // генератор ящиков
         
 
         private void Awake () {
@@ -114,6 +118,7 @@ namespace Battle {
             // 10, 10, 7, 5, 4, 4, 3...
             World.SpawnMines(20);
             ArsenalPanel.Bind(Teams.MyTeam.Arsenal);
+            CrateFactory = new CrateFactory();
 
             NewTurnCmd.OnReceived.Subscribe(PrepareTurn);
             TurnDataSCmd.OnReceived.Subscribe(TurnDataHandler);
@@ -164,6 +169,12 @@ namespace Battle {
 
         public void BeforeTurn () {
             // drop crates
+            var crate = CrateFactory.GenCrate();
+            if (crate != null) {
+                var xy = new XY(RNG.Float() * 2000f, 1500f);
+                World.Spawn(crate, xy);
+            }
+
             World.Wind = RNG.Float() * 10f - 5f;
             Timer.Wait();
         }

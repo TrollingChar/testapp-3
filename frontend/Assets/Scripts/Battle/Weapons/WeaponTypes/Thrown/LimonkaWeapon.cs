@@ -19,7 +19,8 @@ namespace Battle.Weapons.WeaponTypes.Thrown {
             get {
                 return new WeaponDescriptor(
                     WeaponId.Limonka,
-                    The.WeaponIcons.Limonka
+                    The.WeaponIcons.Limonka,
+                    "лимонка"
                 );
             }
         }

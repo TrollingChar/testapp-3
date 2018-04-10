@@ -11,7 +11,8 @@ namespace Battle.Weapons.WeaponTypes.CloseCombat {
             get {
                 return new WeaponDescriptor(
                     WeaponId.ExplosivePunch,
-                    The.WeaponIcons.ExplosivePunch
+                    The.WeaponIcons.ExplosivePunch,
+                    "взрывной удар"
                 );
             }
         }

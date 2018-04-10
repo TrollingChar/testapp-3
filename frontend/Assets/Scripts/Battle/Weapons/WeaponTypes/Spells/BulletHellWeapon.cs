@@ -11,7 +11,8 @@ namespace Battle.Weapons.WeaponTypes.Spells {
             get {
                 return new WeaponDescriptor(
                     WeaponId.BulletHell,
-                    The.WeaponIcons.BulletHell
+                    The.WeaponIcons.BulletHell,
+                    "свинцовый дождь"
                 );
             }
         }

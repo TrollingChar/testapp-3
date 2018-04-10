@@ -16,9 +16,19 @@ namespace Battle.Objects.CollisionHandlers {
 
         public override void OnCollision (Collision c) {
             if (c.Collider2 == null) return;
-            var worm = c.Collider2.Object as Worm;
-            if (worm == null) return;
-            if (worm.Controller is WormControllerWalk) worm.Controller = new WormControllerFall();
+            var o = c.Collider2.Object;
+//            var worm = c.Collider2.Object as Worm;
+//            if (worm == null) return;
+//            if (worm.Controller is WormControllerWalk) worm.Controller = new WormControllerFall();
+            if (o.Controller is WormControllerWalk ||
+                o.Controller is WormControllerJump) {
+                o.Controller = new WormControllerFall();
+            }
+            else if (o.Controller is LandmineControllerStuck) {
+                // todo refactor?
+                o.Controller = new LandmineController();
+                o.CollisionHandler = new CollisionHandler();
+            }
         }
 
     }

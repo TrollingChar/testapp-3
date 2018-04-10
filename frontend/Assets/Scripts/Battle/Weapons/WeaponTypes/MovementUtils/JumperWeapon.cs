@@ -15,14 +15,15 @@ namespace Battle.Weapons.WeaponTypes.MovementUtils {
             get {
                 return new WeaponDescriptor(
                     WeaponId.Jumper,
-                    The.WeaponIcons.Jumper
+                    The.WeaponIcons.Jumper,
+                    "прыгалка"
                 );
             }
         }
 
 
         protected override void OnEquip () {
-            Removable = true; // todo handle ammo
+            Removable = true;
             ConstPower = false;
 
             _crosshair = UnityEngine.Object.Instantiate(

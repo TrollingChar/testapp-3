@@ -1,6 +1,7 @@
 ﻿using Assets;
 using Battle;
 using Battle.Camera;
+using Battle.Objects.Crates;
 using Battle.State;
 using Battle.Teams;
 using Battle.UI;
@@ -30,6 +31,7 @@ namespace Core {
         public static TeamManager TeamManager;
         public static ArsenalPanel ArsenalPanel;
         public static CameraWrapper Camera;
+        public static CrateFactory CrateFactory;
 
     }
 

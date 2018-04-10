@@ -16,7 +16,8 @@ namespace Battle.Weapons.WeaponTypes.Heavy {
             get {
                 return new WeaponDescriptor(
                     WeaponId.Dynamite,
-                    The.WeaponIcons.Dynamite
+                    The.WeaponIcons.Dynamite,
+                    "динамит"
                 );
             }
         }

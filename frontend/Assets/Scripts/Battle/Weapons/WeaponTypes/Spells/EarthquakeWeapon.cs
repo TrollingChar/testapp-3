@@ -11,7 +11,8 @@ namespace Battle.Weapons.WeaponTypes.Spells {
             get {
                 return new WeaponDescriptor(
                     WeaponId.Earthquake,
-                    The.WeaponIcons.Earthquake
+                    The.WeaponIcons.Earthquake,
+                    "землетрясение"
                 );
             }
         }

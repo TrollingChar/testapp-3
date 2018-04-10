@@ -11,7 +11,8 @@ namespace Battle.Weapons.WeaponTypes.MovementUtils {
             get {
                 return new WeaponDescriptor(
                     WeaponId.Teleport,
-                    The.WeaponIcons.Teleport
+                    The.WeaponIcons.Teleport,
+                    "телепорт"
                 );
             }
         }

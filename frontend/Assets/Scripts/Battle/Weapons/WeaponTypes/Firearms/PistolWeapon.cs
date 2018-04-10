@@ -17,7 +17,8 @@ namespace Battle.Weapons.WeaponTypes.Firearms {
             get {
                 return new WeaponDescriptor(
                     WeaponId.Pistol,
-                    The.WeaponIcons.Pistol
+                    The.WeaponIcons.Pistol,
+                    "пистолет"
                 );
             }
         }

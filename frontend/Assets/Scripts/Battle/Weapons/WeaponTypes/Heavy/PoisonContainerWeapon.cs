@@ -11,7 +11,8 @@ namespace Battle.Weapons.WeaponTypes.Heavy {
             get {
                 return new WeaponDescriptor(
                     WeaponId.PoisonContainer,
-                    The.WeaponIcons.PoisonContainer
+                    The.WeaponIcons.PoisonContainer,
+                    "контейнер с ядом"
                 );
             }
         }

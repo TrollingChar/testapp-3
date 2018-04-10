@@ -11,7 +11,8 @@ namespace Battle.Weapons.WeaponTypes.Heavy {
             get {
                 return new WeaponDescriptor(
                     WeaponId.Mole,
-                    The.WeaponIcons.Mole
+                    The.WeaponIcons.Mole,
+                    "крот"
                 );
             }
         }

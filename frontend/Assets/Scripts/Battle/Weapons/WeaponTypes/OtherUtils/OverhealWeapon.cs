@@ -11,7 +11,8 @@ namespace Battle.Weapons.WeaponTypes.OtherUtils {
             get {
                 return new WeaponDescriptor(
                     WeaponId.Overheal,
-                    The.WeaponIcons.Overheal
+                    The.WeaponIcons.Overheal,
+                    "общее исцеление"
                 );
             }
         }

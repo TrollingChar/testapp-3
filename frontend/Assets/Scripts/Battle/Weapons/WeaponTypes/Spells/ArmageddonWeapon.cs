@@ -11,7 +11,8 @@ namespace Battle.Weapons.WeaponTypes.Spells {
             get {
                 return new WeaponDescriptor(
                     WeaponId.Armageddon,
-                    The.WeaponIcons.Armageddon
+                    The.WeaponIcons.Armageddon,
+                    "армагеддон"
                 );
             }
         }

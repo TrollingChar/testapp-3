@@ -11,7 +11,8 @@ namespace Battle.Weapons.WeaponTypes.Airstrikes {
             get {
                 return new WeaponDescriptor(
                     WeaponId.Nuke,
-                    The.WeaponIcons.Nuke
+                    The.WeaponIcons.Nuke,
+                    "ядерная ракета"
                 );
             }
         }

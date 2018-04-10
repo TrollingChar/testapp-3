@@ -40,6 +40,8 @@ namespace Battle.Objects {
         private XY _position;
         public XY Velocity;
 
+        public bool Immobile;
+
 
         protected Object (float mass = 60f, int superMass = 0) {
             Mass = mass;
@@ -227,6 +229,7 @@ namespace Battle.Objects {
 
 
         public virtual void TakeDamage (int damage) {}
+        public virtual void TakeHealing (int healing) {}
         public virtual void AddPoison (int dpr, bool additive) {}
         public virtual void CurePoison (int dpr) {}
         public virtual void CureAllPoison () {}

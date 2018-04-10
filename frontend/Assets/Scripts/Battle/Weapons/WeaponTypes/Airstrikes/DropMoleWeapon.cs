@@ -11,7 +11,8 @@ namespace Battle.Weapons.WeaponTypes.Airstrikes {
             get {
                 return new WeaponDescriptor(
                     WeaponId.DropMole,
-                    The.WeaponIcons.DropMole
+                    The.WeaponIcons.DropMole,
+                    "удар кротами"
                 );
             }
         }

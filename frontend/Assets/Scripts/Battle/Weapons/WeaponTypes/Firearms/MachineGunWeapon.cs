@@ -18,7 +18,8 @@ namespace Battle.Weapons.WeaponTypes.Firearms {
             get {
                 return new WeaponDescriptor(
                     WeaponId.MachineGun,
-                    The.WeaponIcons.MachineGun
+                    The.WeaponIcons.MachineGun,
+                    "автомат"
                 );
             }
         }

@@ -28,7 +28,7 @@ namespace Battle.State {
         }
 
 
-        public bool Is (Worm worm) {
+        public bool Is (Object worm) {
             return worm == _worm;
         }
 

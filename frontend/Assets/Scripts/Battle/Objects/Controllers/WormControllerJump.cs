@@ -12,7 +12,7 @@ namespace Battle.Objects.Controllers {
         
         
         public override void OnAdd () {
-            Object.CollisionHandler = new WormJumpCollisionHandler();
+            Object.CollisionHandler = new WormJumpCH();
         }
 
 

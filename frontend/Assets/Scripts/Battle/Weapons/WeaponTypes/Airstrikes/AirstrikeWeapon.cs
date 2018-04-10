@@ -11,7 +11,8 @@ namespace Battle.Weapons.WeaponTypes.Airstrikes {
             get {
                 return new WeaponDescriptor(
                     WeaponId.Airstrike,
-                    The.WeaponIcons.Airstrike
+                    The.WeaponIcons.Airstrike,
+                    "бомбардировка"
                 );
             }
         }

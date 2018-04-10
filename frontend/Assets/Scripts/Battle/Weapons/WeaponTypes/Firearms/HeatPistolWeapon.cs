@@ -14,7 +14,8 @@ namespace Battle.Weapons.WeaponTypes.Firearms {
             get {
                 return new WeaponDescriptor(
                     WeaponId.HeatPistol,
-                    The.WeaponIcons.HeatPistol
+                    The.WeaponIcons.HeatPistol,
+                    "тепловой пистолет"
                 );
             }
         }

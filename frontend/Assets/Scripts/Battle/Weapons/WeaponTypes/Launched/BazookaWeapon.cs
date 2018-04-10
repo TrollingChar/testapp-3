@@ -18,7 +18,8 @@ namespace Battle.Weapons.WeaponTypes.Launched {
             get {
                 return new WeaponDescriptor(
                     WeaponId.Bazooka,
-                    The.WeaponIcons.Bazooka
+                    The.WeaponIcons.Bazooka,
+                    "базука"
                 );
             }
         }

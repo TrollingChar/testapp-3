@@ -14,6 +14,12 @@ namespace Battle.Objects.Controllers {
 
         public override void OnAdd () {
             Object.Velocity = XY.Zero;
+            Object.Immobile = true;
+        }
+
+
+        public override void OnRemove () {
+            Object.Immobile = false;
         }
 
 
@@ -24,7 +30,7 @@ namespace Battle.Objects.Controllers {
 //            if (td != null) worm.LookAt(td.XY);
             worm.Name = "walk";
 
-            var collision = new Ray(worm.Tail.Center, new CircleCollider(XY.Zero, Worm.HeadRadius))
+            var collision = new Ray(worm.Tail.Center, new CircleCollider(XY.Zero, Worm.HeadRadius)) {Object = Object}
                 .Cast(new XY(0f, -Worm.MaxDescend));
 
             // will fall?
@@ -69,7 +75,7 @@ namespace Battle.Objects.Controllers {
                     xOffset + (td.D ? World.Precision : -World.Precision),
                     0f
                 );
-                if (new Ray(rayOrigin, new CircleCollider(XY.Zero, Worm.HeadRadius)).Cast(rayDirection) != null) {
+                if (new Ray(rayOrigin, new CircleCollider(XY.Zero, Worm.HeadRadius)){Object = Object}.Cast(rayDirection) != null) {
                     xOffset = 0f;
                 }
             }
@@ -78,7 +84,7 @@ namespace Battle.Objects.Controllers {
             if (xOffset != 0f) {
                 var rayOrigin = worm.Tail.Center + new XY(xOffset, Worm.MaxClimb);
                 var rayDirection = new XY(0f, -Worm.MaxClimb - Worm.MaxDescend);
-                var ray = new Ray(rayOrigin, new CircleCollider(XY.Zero, Worm.HeadRadius));
+                var ray = new Ray(rayOrigin, new CircleCollider(XY.Zero, Worm.HeadRadius)){Object = Object};
                 var coll = ray.Cast(rayDirection);
                 bool fall = coll == null;
                 float yOffset = fall ? rayDirection.Y : coll.Offset.Y;

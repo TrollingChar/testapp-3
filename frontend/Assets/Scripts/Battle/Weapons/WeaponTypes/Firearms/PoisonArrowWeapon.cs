@@ -16,7 +16,8 @@ namespace Battle.Weapons.WeaponTypes.Firearms {
             get {
                 return new WeaponDescriptor(
                     WeaponId.PoisonArrow,
-                    The.WeaponIcons.PoisonArrow
+                    The.WeaponIcons.PoisonArrow,
+                    "арбалет"
                 );
             }
         }
@@ -56,8 +57,8 @@ namespace Battle.Weapons.WeaponTypes.Firearms {
             }
             else {
                 var target = collision.Collider2.Object;
-                target.TakeDamage(2);
-                target.AddPoison(2, true);
+                target.TakeDamage(3);
+                target.AddPoison(3, true);
                 target.ReceiveBlastWave(direction.WithLength(3f));
             }
 

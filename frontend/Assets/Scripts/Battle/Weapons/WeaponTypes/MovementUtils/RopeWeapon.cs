@@ -11,7 +11,8 @@ namespace Battle.Weapons.WeaponTypes.MovementUtils {
             get {
                 return new WeaponDescriptor(
                     WeaponId.Rope,
-                    The.WeaponIcons.Rope
+                    The.WeaponIcons.Rope,
+                    "веревка"
                 );
             }
         }

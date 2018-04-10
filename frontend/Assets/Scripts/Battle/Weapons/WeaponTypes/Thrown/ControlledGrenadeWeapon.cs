@@ -11,7 +11,8 @@ namespace Battle.Weapons.WeaponTypes.Thrown {
             get {
                 return new WeaponDescriptor(
                     WeaponId.ControlledGrenade,
-                    The.WeaponIcons.ControlledGrenade
+                    The.WeaponIcons.ControlledGrenade,
+                    "граната с дистанционным взрывателем"
                 );
             }
         }
