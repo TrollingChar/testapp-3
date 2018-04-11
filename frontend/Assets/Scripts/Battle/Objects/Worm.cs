@@ -209,27 +209,27 @@ namespace Battle.Objects {
             HP -= damage;
             if (The.ActiveWorm.Is(this)) The.BattleScene.EndTurn();
             
-            float effectTime = 1f + 1f * damage / (damage + 40f); 
+            float effectTime = 0.75f + 0.75f * damage / (damage + 40f); 
             Spawn(
-                new Label(damage.ToString(), _color, effectTime),
+                new Label(damage.ToString(), _color, 1.2f, new LabelControllerFall(effectTime)),
                 Position,
                 XY.FromPolar(4 + RNG.Float() * 4, (RNG.Float() - RNG.Float()) * 0.5f).Rotated90CCW()
             );
         }
 
 
-        public override void TakeHealing (int healing) {
+        public override void TakeHealing (int healing, bool showLabel = true) {
             if (healing <= 0) {
                 Debug.LogWarning("healing <= 0");
                 return;
             }
             HP += healing;
-            
-            float effectTime = 1f + 1f * healing / (healing + 40f); 
+            if (!showLabel) return;
+            float effectTime = 0.75f + 0.75f * healing / (healing + 40f); 
             Spawn(
-                new Label("+" + healing, _color, effectTime),
+                new Label("+" + healing, _color, 1.2f, new LabelControllerRise(effectTime)),
                 Position,
-                XY.FromPolar(4 + RNG.Float() * 4, (RNG.Float() - RNG.Float()) * 0.5f).Rotated90CCW()
+                XY.FromPolar(7 + RNG.Float() * 7, (RNG.Float() - RNG.Float()) * 0.5f).Rotated90CCW()
             );
         }
 

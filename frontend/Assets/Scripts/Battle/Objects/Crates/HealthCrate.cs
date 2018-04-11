@@ -21,7 +21,7 @@ namespace Battle.Objects.Crates {
 
 
         protected override void OnPickup (Worm worm) {
-            worm.TakeHealing(_hp);
+            worm.TakeHealing(_hp, false);
         }
 
     }

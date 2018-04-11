@@ -67,7 +67,8 @@
                 <e p="CrateControllerStand.cs" t="Include" />
                 <e p="DisappearingController.cs" t="Include" />
                 <e p="HomingController.cs" t="Include" />
-                <e p="LabelController.cs" t="Include" />
+                <e p="LabelControllerFall.cs" t="Include" />
+                <e p="LabelControllerRise.cs" t="Include" />
                 <e p="LandmineController.cs" t="Include" />
                 <e p="LandmineControllerStuck.cs" t="Include" />
                 <e p="SmokeController.cs" t="Include" />

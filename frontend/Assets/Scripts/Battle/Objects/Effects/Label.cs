@@ -1,4 +1,5 @@
-﻿using Battle.Objects.Controllers;
+﻿using System;
+using Battle.Objects.Controllers;
 using Core;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,25 +11,40 @@ namespace Battle.Objects.Effects {
 
         private readonly string _text;
         private readonly Color _color;
-        private readonly float _effectTime;
+        private float _size;
+        private Controller _ctrl;
 
 
+        [Obsolete]
         public Label (string text, Color color, float effectTime) {
             _text = text;
             _color = color;
-            _effectTime = effectTime;
+//            _effectTime = effectTime;
+        }
+
+
+        public Label (
+            string text,
+            Color color,
+            float size,
+            Controller ctrl
+        ) {
+            _text = text;
+            _color = color;
+            _size = size;
+            _ctrl = ctrl;
         }
 
 
         public override void OnAdd () {
             var assets = The.BattleAssets;
             var canvas = UnityEngine.Object.Instantiate(assets.CenterCanvas, GameObject.transform, false);
-            canvas.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
+            canvas.transform.localScale = new Vector3(_size, _size, 1f);
 //            canvas.GetComponent<Canvas>().sortingLayerName = "TextFront";
             var text = UnityEngine.Object.Instantiate(assets.Text, canvas.transform, false).GetComponent<Text>();
             text.text = _text;
             text.color = _color;
-            Controller = new LabelController(_effectTime);
+            Controller = _ctrl;//new LabelControllerFall(_effectTime);
         }
 
     }

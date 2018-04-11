@@ -1,16 +1,15 @@
-﻿using Core;
-using DataTransfer.Data;
+﻿using DataTransfer.Data;
 using UnityEngine;
 
 
 namespace Battle.Objects.Controllers {
 
-    public class LabelController : Controller {
+    public class LabelControllerFall : Controller {
 
         private float _time;
 
 
-        public LabelController (float time = 1f) {
+        public LabelControllerFall (float time = 1f) {
             _time = time;
         }
 
@@ -35,7 +34,7 @@ namespace Battle.Objects.Controllers {
 
 
         protected override void DoUpdate (TurnData td) {
-            Object.Velocity.Y -= 0.25f;
+            Object.Velocity.Y -= 0.33f;
             Time -= 1f / Core.Time.TPS;
         }
 

@@ -3,9 +3,10 @@ using Battle.Objects.Controllers;
 using Battle.Objects.Effects;
 using Battle.Objects.Explosives;
 using Battle.State;
-using Collisions;
 using Core;
 using Geometry;
+using UnityEngine;
+using BoxCollider = Collisions.BoxCollider;
 
 
 namespace Battle.Objects.Crates {
@@ -49,7 +50,7 @@ namespace Battle.Objects.Crates {
             if (_collected) return;
             _collected = true;
             Remove();
-            Spawn(new Label(Text, worm.Color, 3f), Position, new XY(0f, 5f));
+            Spawn(new Label(Text, Color.white, 1f, new LabelControllerRise()), Position, new XY(0f, 10f));
             OnPickup(worm);
         }
 

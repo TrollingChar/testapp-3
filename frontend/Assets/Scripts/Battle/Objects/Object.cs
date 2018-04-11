@@ -229,7 +229,7 @@ namespace Battle.Objects {
 
 
         public virtual void TakeDamage (int damage) {}
-        public virtual void TakeHealing (int healing) {}
+        public virtual void TakeHealing (int healing, bool showLabel = true) {}
         public virtual void AddPoison (int dpr, bool additive) {}
         public virtual void CurePoison (int dpr) {}
         public virtual void CureAllPoison () {}
