@@ -49,7 +49,7 @@ namespace Battle.Weapons.WeaponTypes.Launched {
 
 
         protected override void OnNumberPress (int n) {
-            Attacks = Math.Min(n, GetAmmo());
+            Shots = Math.Min(n, GetAmmo());
         }
 
 

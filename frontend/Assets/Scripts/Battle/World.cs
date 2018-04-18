@@ -39,6 +39,10 @@ namespace Battle {
 
         public readonly Messenger<float> OnWindChange;
         
+        
+        public int Width  { get { return Land.Width; } }
+        public int Height { get { return Land.Height; } }
+        
 
         public float Wind {
             get { return _wind; }

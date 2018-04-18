@@ -33,7 +33,7 @@ namespace Battle.Arsenals {
             SetAmmo(WeaponId.Landmine, inf);
             SetAmmo(WeaponId.Dynamite, 1);
             
-            SetAmmo(WeaponId.Erosion, inf);
+            SetAmmo(WeaponId.Erosion, 1);
             
             SetAmmo(WeaponId.Jumper, 6);
             

@@ -15,8 +15,8 @@ namespace Battle.Objects.Crates {
             _ammo = ammo;
             var desc = Weapon.DescriptorById(id);
             Text = desc.Name;
-            if      (ammo > 1) Text += " x " + ammo;
-            else if (ammo < 0) Text += " (беск.)";
+            if (ammo < 0) Text += " (беск.)";
+            else          Text += " x " + ammo;
         }
 
 

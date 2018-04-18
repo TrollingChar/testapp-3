@@ -24,9 +24,8 @@ namespace Battle.Objects.Crates {
 
         public CrateFactory () {
             _healthCrates = new CrateLootTable(
-                new Loot(() => new HealthCrate(15), 60),
-                new Loot(() => new HealthCrate(25), 20),
-                new Loot(() => new HealthCrate(40), 20)
+                new Loot(() => new HealthCrate(15), 80),
+                new Loot(() => new HealthCrate(30), 20)
             );
             
             const int inf = -1; 

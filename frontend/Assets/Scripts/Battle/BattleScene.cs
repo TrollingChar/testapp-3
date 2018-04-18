@@ -113,7 +113,7 @@ namespace Battle {
             World.OnWindChange.Subscribe(_water.SetWind);
             ActiveWorm = new ActiveWorm();
             Weapon = new WeaponWrapper();
-            Camera.LookAt(new Vector2(1000, 1000), true);
+            Camera.LookAt(new Vector2(World.Width * 0.5f, World.Height * 0.75f), true);
             Teams = World.SpawnTeams(_initData.Players, Math.Min(10, Mathf.CeilToInt(20f / _initData.Players.Count)));
             // 10, 10, 7, 5, 4, 4, 3...
             World.SpawnMines(20);
@@ -171,7 +171,7 @@ namespace Battle {
             // drop crates
             var crate = CrateFactory.GenCrate();
             if (crate != null) {
-                var xy = new XY(RNG.Float() * 2000f, 1500f);
+                var xy = new XY(RNG.Float() * World.Width, World.Height + 500);
                 World.Spawn(crate, xy);
             }
 

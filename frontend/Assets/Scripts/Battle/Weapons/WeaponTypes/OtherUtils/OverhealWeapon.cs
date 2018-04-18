@@ -26,7 +26,7 @@ namespace Battle.Weapons.WeaponTypes.OtherUtils {
             for (var node = objects.First; node != null; node = node.Next) {
                 var obj = node.Value;
                 obj.CureAllPoison();
-                obj.TakeHealing(40);
+                obj.TakeHealing(30);
             }
         }
 
