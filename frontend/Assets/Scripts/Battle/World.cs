@@ -418,7 +418,6 @@ namespace Battle {
                     )
                 );
             }
-            Spawn(new Flash(radius * 2), center);
         }
 
 

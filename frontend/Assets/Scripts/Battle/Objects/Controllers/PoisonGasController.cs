@@ -43,6 +43,7 @@ namespace Battle.Objects.Controllers {
                 r = RadiusPer1Dmg * _time.Ticks / TimePer1Dmg.Ticks;
                 Object.GameObject.transform.localScale = new Vector3(r, r, 1);
             }
+            Wait();
         }
 
     }
