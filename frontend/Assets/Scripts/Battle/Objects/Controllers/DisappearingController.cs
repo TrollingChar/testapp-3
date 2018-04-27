@@ -13,7 +13,7 @@ namespace Battle.Objects.Controllers {
 
 
         public override void OnTimer () {
-            Object.Remove();
+            Object.Despawn();
         }
 
     }

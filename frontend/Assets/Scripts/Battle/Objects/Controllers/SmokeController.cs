@@ -31,7 +31,7 @@ namespace Battle.Objects.Controllers {
             set {
                 _size = value;
                 if (value <= 0) {
-                    Object.Remove();
+                    Object.Despawn();
                     return;
                 }
                 Object.GameObject.transform.localScale = new Vector3(value, value, 1);

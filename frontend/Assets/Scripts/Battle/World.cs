@@ -208,7 +208,7 @@ namespace Battle {
                     }
                 }
 
-                if (o.Position.Y < WaterLevel) o.Remove();
+                if (o.Position.Y < WaterLevel) o.Despawn();
             }
 
             // уменьшить скорость объектов, не потративших очки движения, так как они застряли
@@ -265,7 +265,7 @@ namespace Battle {
             var tester = new MeleeTester();
             Spawn(tester, origin, direction);
             var result = tester.Test();
-            tester.Remove();
+            tester.Despawn();
             return result;
         }
 
@@ -275,7 +275,7 @@ namespace Battle {
             o.Position = position;
             o.Velocity = velocity;
             o.GameObject = new GameObject(o.GetType().ToString());
-            o.OnAdd();
+            o.OnSpawn();
             o.UpdateGameObjectPosition();
         }
 
@@ -363,6 +363,15 @@ namespace Battle {
         }
 
 
+        public void DealPoisonDamage (int damage, XY center, float radius) {
+            for (var node = Objects.First; node != null; node = node.Next) {
+                var obj = node.Value;
+                float dist = XY.Distance(center, obj.Position);
+                if (dist < radius) obj.AddPoison(damage, false);
+            }
+        }
+
+
         public void DestroyTerrain (XY center, float radius) {
             Land.DestroyTerrain(center, radius);
         }
@@ -391,6 +400,22 @@ namespace Battle {
                         v * radius * 2 / SmokeController.InvLerpCoeff,
                         RNG.Float() * 2 * Mathf.PI
                     ) // см. SmokeController
+                );
+            }
+            Spawn(new Flash(radius * 2), center);
+        }
+
+
+        public void MakePoisonSmoke (int damage, XY center, float radius) {
+            for (int i = 0; i < radius*2; i += 1) {//radius * radius; i += 50) {
+                float v = 1 - RNG.Float() * RNG.Float() * RNG.Float();
+                Spawn(
+                    new PoisonGas(RNG.Float() * damage), 
+                    center,
+                    XY.FromPolar(
+                        v * radius * 2 / PoisonGasController.InvLerpCoeff,
+                        RNG.Float() * 2 * Mathf.PI
+                    )
                 );
             }
             Spawn(new Flash(radius * 2), center);

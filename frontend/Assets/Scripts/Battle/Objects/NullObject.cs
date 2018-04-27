@@ -6,7 +6,7 @@ namespace Battle.Objects {
 
     internal class NullObject : Object {
 
-        public override void OnRemove () {
+        public override void OnDespawn () {
             Debug.LogError("attempt to remove null object");
         }
 

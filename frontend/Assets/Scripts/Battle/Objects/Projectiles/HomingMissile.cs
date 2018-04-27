@@ -22,7 +22,7 @@ namespace Battle.Objects.Projectiles {
         }
 
         
-        public override void OnAdd () {
+        public override void OnSpawn () {
             var assets = The.BattleAssets;
             UnityEngine.Object.Instantiate(assets.HomingMissile, GameObject.transform, false);
             _pointer = UnityEngine.Object.Instantiate(
@@ -52,7 +52,7 @@ namespace Battle.Objects.Projectiles {
         }
 
 
-        public override void OnRemove () {
+        public override void OnDespawn () {
             RemovePointer();
         }
 

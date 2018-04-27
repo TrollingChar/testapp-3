@@ -36,7 +36,7 @@ namespace Battle.Objects.Effects {
         }
 
 
-        public override void OnAdd () {
+        public override void OnSpawn () {
             var assets = The.BattleAssets;
             var canvas = UnityEngine.Object.Instantiate(assets.CenterCanvas, GameObject.transform, false);
             canvas.transform.localScale = new Vector3(_size, _size, 1f);

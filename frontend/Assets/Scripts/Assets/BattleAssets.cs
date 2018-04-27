@@ -57,6 +57,7 @@ namespace Assets {
         public GameObject Dynamite;
         [Space]
         public GameObject Smoke;
+        public GameObject PoisonGas;
         public GameObject Flash;
 
         private void Awake () {

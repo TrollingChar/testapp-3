@@ -17,7 +17,7 @@ namespace Battle.Objects.Effects {
         }
 
 
-        public override void OnAdd () {
+        public override void OnSpawn () {
             var ob = UnityEngine.Object.Instantiate(The.BattleAssets.Flash, GameObject.transform, false);
             ob.transform.localScale = new Vector3(_size, _size, 1);
             ob.GetComponentInChildren<SpriteRenderer>().color = new Color(1f, 1f, 0.5f);

@@ -14,8 +14,8 @@ namespace Battle.Objects.Crates {
         }
         
         
-        public override void OnAdd () {
-            base.OnAdd();
+        public override void OnSpawn () {
+            base.OnSpawn();
             UnityEngine.Object.Instantiate(The.BattleAssets.HealthCrate, GameObject.transform, false);
         }
 

@@ -19,7 +19,7 @@ namespace Battle.Objects.Projectiles {
         }
 
 
-        public override void OnAdd () {
+        public override void OnSpawn () {
             var transform = GameObject.transform;
             var assets = The.BattleAssets;
 

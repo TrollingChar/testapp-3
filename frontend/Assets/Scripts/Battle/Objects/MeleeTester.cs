@@ -8,7 +8,7 @@ namespace Battle.Objects {
 
     public class MeleeTester : Object {
 
-        public override void OnAdd () {
+        public override void OnSpawn () {
             float headRadius = Worm.HeadRadius * 0.9f;
             float bodyHeight = Worm.BodyHeight;
 

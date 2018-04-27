@@ -26,7 +26,7 @@ namespace Battle.Objects.Controllers {
             set {
                 _time = value;
                 if (value <= 0) {
-                    Object.Remove();
+                    Object.Despawn();
                     return;
                 }
                 float size = Mathf.Min(value, 0.25f);

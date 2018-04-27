@@ -3,7 +3,7 @@
     public abstract class Explosive : Component {
 
         public void Detonate () {
-            Object.Remove();
+            Object.Despawn();
             OnDetonate();
         }
 

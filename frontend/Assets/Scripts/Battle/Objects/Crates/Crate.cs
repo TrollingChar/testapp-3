@@ -23,7 +23,7 @@ namespace Battle.Objects.Crates {
         public Crate () : base (60, 2) {}
         
 
-        public override void OnAdd () {
+        public override void OnSpawn () {
             _state = The.GameState;
             _activeWorm = The.ActiveWorm;
             AddCollider(new BoxCollider(Size * -0.5f, Size * 0.5f, Size * -0.5f, Size * 0.5f));
@@ -49,7 +49,7 @@ namespace Battle.Objects.Crates {
         public void CollectBy (Worm worm) {
             if (_collected) return;
             _collected = true;
-            Remove();
+            Despawn();
             Spawn(new Label(Text, Color.white, 1f, new LabelControllerRise()), Position, new XY(0f, 10f));
             OnPickup(worm);
         }

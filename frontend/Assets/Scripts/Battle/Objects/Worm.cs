@@ -144,7 +144,7 @@ namespace Battle.Objects {
         }
 
 
-        public override void OnAdd () {
+        public override void OnSpawn () {
             InitGraphics();
 
             Name = "Кек";
@@ -276,7 +276,7 @@ namespace Battle.Objects {
         }
 
 
-        public override void OnRemove () {
+        public override void OnDespawn () {
             HP = 0;
             if (The.ActiveWorm.Is(this)) The.BattleScene.EndTurn();
         }

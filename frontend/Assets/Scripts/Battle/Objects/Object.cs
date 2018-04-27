@@ -87,7 +87,7 @@ namespace Battle.Objects {
         }
 
 
-        public virtual void OnAdd () {
+        public virtual void OnSpawn () {
             // ... = UnityEngine.Object.Instantiate(..., GameObject.transform);
             // AddCollider(...
             // Explosive = ...
@@ -102,13 +102,13 @@ namespace Battle.Objects {
             o.Position = position;
             o.Velocity = velocity;
             o.GameObject = new GameObject(o.GetType().ToString());
-            o.OnAdd();
+            o.OnSpawn();
             o.UpdateGameObjectPosition();
         }
 
 
-        public void Remove () {
-            OnRemove();
+        public void Despawn () {
+            OnDespawn();
             
             Node.Value = Null;
             RemoveColliders();
@@ -185,7 +185,7 @@ namespace Battle.Objects {
 
         public void Detonate () {
             if (Explosive == null) {
-                Remove();
+                Despawn();
             } else {
                 Explosive.Detonate();
             }
@@ -249,7 +249,7 @@ namespace Battle.Objects {
             Velocity += impulse;
         }
         
-        public virtual void OnRemove() {}
+        public virtual void OnDespawn() {}
 
     }
 

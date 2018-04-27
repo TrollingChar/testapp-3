@@ -13,7 +13,7 @@ namespace Battle.Objects.Projectiles {
 
     public class Dynamite : Object {
 
-        public override void OnAdd () {var transform = GameObject.transform;
+        public override void OnSpawn () {var transform = GameObject.transform;
             var assets = The.BattleAssets;
 
             var canvas = UnityEngine.Object.Instantiate(assets.TopCanvas, transform, false);

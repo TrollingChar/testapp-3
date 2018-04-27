@@ -28,7 +28,7 @@ namespace Battle.Objects {
         }
 
 
-        public sealed override void OnAdd () {
+        public sealed override void OnSpawn () {
             throw new InvalidOperationException("Attempt to add a ray to the world!");
         }
 

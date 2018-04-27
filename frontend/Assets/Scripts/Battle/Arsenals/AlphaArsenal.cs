@@ -16,6 +16,7 @@ namespace Battle.Arsenals {
 
             SetAmmo(WeaponId.Grenade, inf);
             SetAmmo(WeaponId.Limonka, 3);
+            SetAmmo(WeaponId.GasGrenade, inf);
             SetAmmo(WeaponId.PhantomGrenade, 3);
 
             SetAmmo(WeaponId.MachineGun, inf);

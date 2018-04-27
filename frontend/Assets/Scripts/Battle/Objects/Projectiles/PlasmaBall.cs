@@ -11,7 +11,7 @@ namespace Battle.Objects.Projectiles {
 
     public class PlasmaBall : Object {
 
-        public override void OnAdd () {
+        public override void OnSpawn () {
             UnityEngine.Object.Instantiate(The.BattleAssets.PlasmaBall, GameObject.transform, false);
             AddCollider(new CircleCollider(XY.Zero, 5f));
             Explosive = new Explosive25();

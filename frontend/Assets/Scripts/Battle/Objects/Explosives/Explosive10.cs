@@ -12,7 +12,7 @@ namespace Battle.Objects.Explosives {
             world.DestroyTerrain(Object.Position, 20f);
             world.SendBlastWave(5f, Object.Position, 40f);
 //            Object.Spawn(new Explosion(20f), Object.Position);
-            The.World.MakeSmoke(Object.Position, 20f);
+            world.MakeSmoke(Object.Position, 20f);
         }
 
     }
