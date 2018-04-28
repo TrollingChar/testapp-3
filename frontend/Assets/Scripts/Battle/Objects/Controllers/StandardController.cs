@@ -4,6 +4,7 @@ using Core;
 using DataTransfer.Data;
 using Geometry;
 using UnityEngine;
+using Utils.Danmaku;
 using Utils.Random;
 
 
@@ -41,21 +42,15 @@ namespace Battle.Objects.Controllers {
                 );
             }
             if (GasFlag) {
-                const float radius = 30f;
+                const float radius = 60f;
                 for (int i = 0; i < 2; i++) {
-                    float v = 1 - RNG.Float() * RNG.Float() * RNG.Float();
                     Object.Spawn(
                         new PoisonGas(RNG.Float() * 3),
-                        //                    new Smoke(RNG.Float() * 40), 
                         Object.Position,
-                        XY.Polar(
-                            v * radius * 2 / PoisonGasController.InvLerpCoeff,
-                            RNG.Float() * 2 * Mathf.PI
-                        )
+                        Danmaku.CloudParticle(radius / PoisonGasController.InvLerpCoeff)
                     );
                 }
-                
-                // todo: дубликат кода да и вообще все что касается рандомного спавна вынести куда-то в одно место
+                // todo: дымный след сделать по-другому а не так как щас, хотя тут хз
             }
         }
 
