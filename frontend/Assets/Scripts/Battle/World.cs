@@ -15,6 +15,7 @@ using Core;
 using DataTransfer.Data;
 using Geometry;
 using UnityEngine;
+using Utils.Danmaku;
 using Utils.Messenger;
 using Utils.Random;
 using Collision = Collisions.Collision;
@@ -391,18 +392,18 @@ namespace Battle {
 
 
         public void MakeSmoke (XY center, float radius) {
-            for (int i = 0; i < radius; i += 1) {//radius * radius; i += 50) {
-                float v = 1 - RNG.Float() * RNG.Float() * RNG.Float();
-                Spawn(
-                    new Smoke(RNG.Float() * (50 + radius) / 2),
-                    center,
-                    XY.FromPolar(
-                        v * radius * 2 / SmokeController.InvLerpCoeff,
-                        RNG.Float() * 2 * Mathf.PI
-                    ) // см. SmokeController
-                );
+            MakeSmoke(center, radius, radius * 0.25f, (int) (radius * 0.5f), radius * 0.5f);
+        }
+        
+        
+//        public void 
+
+
+        public void MakeSmoke (XY center, float radius, float size, int count, float flashSize) {
+            foreach (var v in Danmaku.Cloud(radius / SmokeController.InvLerpCoeff, count)) {
+                Spawn(new Smoke(RNG.Float() * (25 + size)), center, v);
             }
-            Spawn(new Flash(radius * 2), center);
+            Spawn(new Flash(flashSize), center);
         }
 
 
@@ -412,7 +413,7 @@ namespace Battle {
                 Spawn(
                     new PoisonGas(RNG.Float() * damage), 
                     center,
-                    XY.FromPolar(
+                    XY.Polar(
                         v * radius * 2 / PoisonGasController.InvLerpCoeff,
                         RNG.Float() * 2 * Mathf.PI
                     )

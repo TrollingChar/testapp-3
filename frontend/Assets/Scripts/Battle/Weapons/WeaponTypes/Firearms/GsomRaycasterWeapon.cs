@@ -46,7 +46,7 @@ namespace Battle.Weapons.WeaponTypes.Firearms {
             var direction = TurnData.XY - Object.Position;
             var collision = The.World.CastRay(Object.Position, direction);
             if (collision == null) return;
-            // todo: make green blasts, annihilate everything, heal allies...
+            // todo: make green blasts, annihilate everything, heal allies, collect crates...
             var world = The.World;
             var blastXY = Object.Position + collision.Offset;
             world.DealDamage(9999, blastXY, 160f, 160f);

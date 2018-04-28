@@ -63,7 +63,7 @@ namespace Battle.Weapons.WeaponTypes.Firearms {
             world.SendBlastWave(6f, blastXY, 60f);
 //            Object.Spawn(new Explosion(10f), Object.Position + direction.WithLength(20f));
 //            Object.Spawn(new Explosion(30f), Object.Position + collision.Offset);
-            The.World.MakeSmoke(Object.Position + collision.Offset, 30f);
+            The.World.MakeSmoke(Object.Position + collision.Offset, 60f);
 
             if (GetAmmo() == 0) Attacks = 0;
         }

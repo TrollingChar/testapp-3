@@ -347,6 +347,9 @@
             </e>
           </e>
           <e p="Utils" t="Include">
+            <e p="Danmaku" t="Include">
+              <e p="Danmaku.cs" t="Include" />
+            </e>
             <e p="LootTable" t="Include">
               <e p="LootTable.cs" t="Include" />
             </e>

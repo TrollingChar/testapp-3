@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
 
 namespace Utils.Random {
@@ -48,9 +49,19 @@ namespace Utils.Random {
         }
 
 
-        public static double Double () {
-            return _rng.NextDouble();
+        public static float SignedFloat () {
+            return Float() - 0.5f;
         }
+
+
+        public static float Angle () {
+            return Float() * 2f * Mathf.PI;
+        }
+
+
+//        public static double Double () {
+//            return _rng.NextDouble();
+//        }
 
 
 /*

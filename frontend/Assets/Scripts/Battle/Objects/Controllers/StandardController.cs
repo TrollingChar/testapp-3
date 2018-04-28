@@ -48,7 +48,7 @@ namespace Battle.Objects.Controllers {
                         new PoisonGas(RNG.Float() * 3),
                         //                    new Smoke(RNG.Float() * 40), 
                         Object.Position,
-                        XY.FromPolar(
+                        XY.Polar(
                             v * radius * 2 / PoisonGasController.InvLerpCoeff,
                             RNG.Float() * 2 * Mathf.PI
                         )

@@ -11,8 +11,7 @@ namespace Battle.Objects.Explosives {
             world.DealDamage(15, Object.Position, 60f, 20f);
             world.DestroyTerrain(Object.Position, 30f);
             world.SendBlastWave(7.5f, Object.Position, 60f);
-//            Object.Spawn(new Explosion(30f), Object.Position);
-            world.MakeSmoke(Object.Position, 30f);
+            world.MakeSmoke(Object.Position, 60f);
         }
 
     }

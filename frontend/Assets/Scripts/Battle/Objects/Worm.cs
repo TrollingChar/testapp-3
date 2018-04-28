@@ -213,7 +213,7 @@ namespace Battle.Objects {
             Spawn(
                 new Label(damage.ToString(), _color, 1.2f, new LabelControllerFall(effectTime)),
                 Position,
-                XY.FromPolar(4 + RNG.Float() * 4, (RNG.Float() - RNG.Float()) * 0.5f).Rotated90CCW()
+                XY.Polar(4 + RNG.Float() * 4, (RNG.Float() - RNG.Float()) * 0.5f).Rotated90CCW()
             );
         }
 
@@ -229,7 +229,7 @@ namespace Battle.Objects {
             Spawn(
                 new Label("+" + healing, _color, 1.2f, new LabelControllerRise(effectTime)),
                 Position,
-                XY.FromPolar(7 + RNG.Float() * 7, (RNG.Float() - RNG.Float()) * 0.5f).Rotated90CCW()
+                XY.Polar(7 + RNG.Float() * 7, (RNG.Float() - RNG.Float()) * 0.5f).Rotated90CCW()
             );
         }
 

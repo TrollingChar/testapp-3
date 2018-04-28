@@ -181,7 +181,7 @@ namespace Geometry {
         }
 
 
-        public static XY FromPolar (float length, float angle) {
+        public static XY Polar (float length, float angle) {
             return new XY(Mathf.Cos(angle) * length, Mathf.Sin(angle) * length);
         }
 
