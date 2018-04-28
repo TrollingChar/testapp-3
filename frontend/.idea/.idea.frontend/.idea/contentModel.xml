@@ -74,7 +74,6 @@
                 <e p="PoisonGasController.cs" t="Include" />
                 <e p="SmokeController.cs" t="Include" />
                 <e p="StandardController.cs" t="Include" />
-                <e p="todo.txt" t="Include" />
                 <e p="WormControllerFall.cs" t="Include" />
                 <e p="WormControllerFirePunch.cs" t="Include" />
                 <e p="WormControllerJump.cs" t="Include" />

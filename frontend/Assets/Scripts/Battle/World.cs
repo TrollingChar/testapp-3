@@ -394,31 +394,31 @@ namespace Battle {
         public void MakeSmoke (XY center, float radius) {
             MakeSmoke(center, radius, radius * 0.25f, (int) (radius * 0.5f), radius * 0.5f);
         }
-        
-        
-//        public void 
+
+
+        public void Spawn (Func<Object> generator, XY center, IEnumerable<XY> velocities) {
+            foreach (var v in velocities) {
+                Spawn(generator(), center, v);
+            }
+        }
 
 
         public void MakeSmoke (XY center, float radius, float size, int count, float flashSize) {
-            foreach (var v in Danmaku.Cloud(radius / SmokeController.InvLerpCoeff, count)) {
-                Spawn(new Smoke(RNG.Float() * (25 + size)), center, v);
-            }
+            Spawn(
+                () => new Smoke(RNG.Float() * (25 + size)),
+                center,
+                Danmaku.Cloud(radius / SmokeController.InvLerpCoeff, count)
+            );
             Spawn(new Flash(flashSize), center);
         }
 
 
-        public void MakePoisonSmoke (int damage, XY center, float radius) {
-            for (int i = 0; i < radius*2; i += 1) {//radius * radius; i += 50) {
-                float v = 1 - RNG.Float() * RNG.Float() * RNG.Float();
-                Spawn(
-                    new PoisonGas(RNG.Float() * damage), 
-                    center,
-                    XY.Polar(
-                        v * radius * 2 / PoisonGasController.InvLerpCoeff,
-                        RNG.Float() * 2 * Mathf.PI
-                    )
-                );
-            }
+        public void MakePoisonGas (int damage, XY center, float radius) {
+            Spawn(
+                () => new PoisonGas(RNG.Float() * damage), 
+                center,
+                Danmaku.Cloud(radius / PoisonGasController.InvLerpCoeff, (int) (radius * 0.5f))
+            );
         }
 
 
