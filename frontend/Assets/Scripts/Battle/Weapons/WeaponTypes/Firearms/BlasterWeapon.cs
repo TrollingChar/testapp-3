@@ -1,7 +1,9 @@
 ﻿using Attributes;
 using Battle.Objects.Effects;
+using Battle.Objects.Explosives;
 using Battle.Weapons.Crosshairs;
 using Core;
+using Geometry;
 using UnityEngine;
 
 
@@ -52,19 +54,9 @@ namespace Battle.Weapons.WeaponTypes.Firearms {
         protected override void OnShoot () {
             var direction = TurnData.XY - Object.Position;
             var collision = The.World.CastRay(Object.Position, direction);
-            if (collision == null) return;
-            
-            // todo: refactor explosives
-            
-            var world = The.World;
-            var blastXY = Object.Position + collision.Offset;
-            world.DealDamage(15, blastXY, 60f, 15f);
-            world.DestroyTerrain(blastXY, 30f);
-            world.SendBlastWave(6f, blastXY, 60f);
-//            Object.Spawn(new Explosion(10f), Object.Position + direction.WithLength(20f));
-//            Object.Spawn(new Explosion(30f), Object.Position + collision.Offset);
-            The.World.MakeSmoke(Object.Position + collision.Offset, 60f);
-
+            if (collision != null) {
+                new Explosive15().Detonate(Object.Position + collision.Offset);
+            }
             if (GetAmmo() == 0) Attacks = 0;
         }
 

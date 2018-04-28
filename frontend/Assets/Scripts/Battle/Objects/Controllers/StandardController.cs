@@ -1,4 +1,5 @@
-﻿using Battle.Objects.Effects;
+﻿using System;
+using Battle.Objects.Effects;
 using Battle.Objects.Projectiles;
 using Core;
 using DataTransfer.Data;
@@ -11,17 +12,9 @@ using Utils.Random;
 namespace Battle.Objects.Controllers {
 
     public class StandardController : Controller {
-        
-        /* todo:
-         * gravity affection
-         * wind affection
-         * magnet affection
-         * wait flag
-         * rotation
-         * smoke trail
-        **/
-        
-        public float GravityCoeff = 1, WindCoeff, MagnetCoeff, SmokeSize;
+
+        [Obsolete] public float MagnetCoeff; // todo: move this to object itself
+        public float GravityCoeff = 1, WindCoeff, SmokeSize;
         public bool WaitFlag, OrientationFlag, GasFlag;
 
         

@@ -184,8 +184,6 @@ namespace Battle.Objects {
 
         public virtual void OnAddToTeam (Team team) {
             Color = team.Color;
-            // todo remove temp code
-//            Color = RNG.Pick(TeamColors.Colors);
         }
 
 

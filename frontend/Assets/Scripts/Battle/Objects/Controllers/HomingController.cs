@@ -18,7 +18,7 @@ namespace Battle.Objects.Controllers {
             _target = target;
             GravityCoeff = 0;
             WaitFlag = true;
-            MagnetCoeff = 1; // todo: move this to object itself
+            MagnetCoeff = 1;
             SmokeSize = 20;
             OrientationFlag = true;
         }
