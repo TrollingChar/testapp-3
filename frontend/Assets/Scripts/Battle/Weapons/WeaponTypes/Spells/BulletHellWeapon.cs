@@ -1,5 +1,8 @@
 ﻿using Attributes;
+using Battle.Objects;
+using Battle.Objects.Timers;
 using Core;
+using Geometry;
 
 
 namespace Battle.Weapons.WeaponTypes.Spells {
@@ -19,7 +22,9 @@ namespace Battle.Weapons.WeaponTypes.Spells {
 
 
         protected override void OnShoot () {
-//            The.World.Spawn();
+            var effector = new Effector();
+            The.World.Spawn(effector, XY.Zero);
+            effector.Timer = new BulletHellTimer();
         }
 
     }

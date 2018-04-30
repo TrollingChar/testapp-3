@@ -65,7 +65,6 @@
                 <e p="Controller.cs" t="Include" />
                 <e p="CrateControllerFall.cs" t="Include" />
                 <e p="CrateControllerStand.cs" t="Include" />
-                <e p="DisappearingController.cs" t="Include" />
                 <e p="HomingController.cs" t="Include" />
                 <e p="LabelControllerFall.cs" t="Include" />
                 <e p="LabelControllerRise.cs" t="Include" />
@@ -85,6 +84,7 @@
                 <e p="HealthCrate.cs" t="Include" />
                 <e p="WeaponCrate.cs" t="Include" />
               </e>
+              <e p="Effector.cs" t="Include" />
               <e p="Effects" t="Include">
                 <e p="Effect.cs" t="Include" />
                 <e p="Flash.cs" t="Include" />
@@ -124,6 +124,7 @@
               </e>
               <e p="Ray.cs" t="Include" />
               <e p="Timers" t="Include">
+                <e p="BulletHellTimer.cs" t="Include" />
                 <e p="CallbackTimer.cs" t="Include" />
                 <e p="DetonationTimer.cs" t="Include" />
                 <e p="LandmineDetonationTimer.cs" t="Include" />

@@ -9,23 +9,14 @@ namespace Battle.Objects.Controllers {
     public class Controller : Component {
 
         private readonly TimerWrapper _gameTimer = The.TimerWrapper;
-        [Obsolete] public Time Timer = new Time {Seconds = 20};
 
 
         public void Update (TurnData td) {
-            if (--Timer.Ticks == 0) {
-                DoUpdate(td);
-                OnTimer();
-            } else {
-                DoUpdate(td);
-            }
+            DoUpdate(td);
         }
 
 
         protected virtual void DoUpdate (TurnData td) {}
-
-
-        public virtual void OnTimer () {}
 
 
         protected void Wait () {
