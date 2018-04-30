@@ -56,7 +56,7 @@ namespace Battle {
             The.World = this;
             OnWindChange = new Messenger<float>();
 
-            Gravity = -0.5f;
+            Gravity = -Balance.Gravity;
             WaterLevel = 0;
             Tiles = new Tiles();
 

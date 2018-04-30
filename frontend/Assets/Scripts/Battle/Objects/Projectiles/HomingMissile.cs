@@ -30,7 +30,7 @@ namespace Battle.Objects.Projectiles {
                 new Vector3(_target.X, _target.Y, 0),
                 Quaternion.identity
             );
-            AddCollider(new CircleCollider(XY.Zero, 5f));
+            AddCollider(new CircleCollider(XY.Zero, 2f));
             Explosive = new Explosive25();
             Controller = new StandardController {
                 MagnetCoeff = 1,

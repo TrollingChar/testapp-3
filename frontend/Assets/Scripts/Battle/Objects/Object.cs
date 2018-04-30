@@ -196,7 +196,11 @@ namespace Battle.Objects {
             c.Object = this;
             Colliders.Add(c);
             c.UpdatePosition();
+            OnColliderAdded(c);
         }
+
+
+        protected virtual void OnColliderAdded (Collider c) {}
 
 
         public void RemoveCollider (Collider c) {

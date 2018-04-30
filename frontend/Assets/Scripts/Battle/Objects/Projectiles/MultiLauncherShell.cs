@@ -13,7 +13,7 @@ namespace Battle.Objects.Projectiles {
 
         public override void OnSpawn () {
             UnityEngine.Object.Instantiate(The.BattleAssets.MultiLauncherShell, GameObject.transform, false);
-            AddCollider(new CircleCollider(XY.Zero, 5f));
+            AddCollider(new CircleCollider(XY.Zero, 2f));
             Explosive = new Explosive15();
             Controller = new StandardController {
                 MagnetCoeff = 1,

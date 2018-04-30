@@ -1,4 +1,5 @@
-﻿using Battle.Objects.Controllers;
+﻿using System;
+using Battle.Objects.Controllers;
 using Battle.Objects.Crates;
 using Battle.Objects.Effects;
 using Battle.Objects.Explosives;
@@ -14,6 +15,7 @@ using UnityEngine.UI;
 using Utils.Danmaku;
 using Utils.Random;
 using BoxCollider = Collisions.BoxCollider;
+using Collider = Collisions.Collider;
 
 
 namespace Battle.Objects {
@@ -278,6 +280,12 @@ namespace Battle.Objects {
         public override void OnDespawn () {
             HP = 0;
             if (The.ActiveWorm.Is(this)) The.BattleScene.EndTurn();
+        }
+
+
+        protected override void OnColliderAdded (Collider c) {
+            c.NormalBounce = 0.1f;
+            c.TangentialBounce = 0.75f;
         }
 
     }
