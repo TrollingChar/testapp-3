@@ -13,6 +13,9 @@ namespace Battle.Objects {
 
         public override void ReceiveBlastWave (XY impulse) {}
 
+
+        public override bool WillSink { get { return false; } }
+
     }
 
 }

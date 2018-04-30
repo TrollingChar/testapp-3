@@ -209,7 +209,7 @@ namespace Battle {
                     }
                 }
 
-                if (o.Position.Y < WaterLevel) o.Despawn();
+                if (o.WillSink && o.Position.Y < WaterLevel) o.Despawn();
             }
 
             // уменьшить скорость объектов, не потративших очки движения, так как они застряли

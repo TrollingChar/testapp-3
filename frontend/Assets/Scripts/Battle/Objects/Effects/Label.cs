@@ -1,5 +1,4 @@
-﻿using System;
-using Battle.Objects.Controllers;
+﻿using Battle.Objects.Controllers;
 using Core;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,14 +12,6 @@ namespace Battle.Objects.Effects {
         private readonly Color _color;
         private float _size;
         private Controller _ctrl;
-
-
-        [Obsolete]
-        public Label (string text, Color color, float effectTime) {
-            _text = text;
-            _color = color;
-//            _effectTime = effectTime;
-        }
 
 
         public Label (
@@ -44,8 +35,11 @@ namespace Battle.Objects.Effects {
             var text = UnityEngine.Object.Instantiate(assets.Text, canvas.transform, false).GetComponent<Text>();
             text.text = _text;
             text.color = _color;
-            Controller = _ctrl;//new LabelControllerFall(_effectTime);
+            Controller = _ctrl;
         }
+
+
+        public override bool WillSink { get { return false; } }
 
     }
 

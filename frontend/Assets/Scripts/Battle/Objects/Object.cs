@@ -255,6 +255,9 @@ namespace Battle.Objects {
         
         public virtual void OnDespawn() {}
 
+
+        public virtual bool WillSink { get { return true; } }
+
     }
 
 }
