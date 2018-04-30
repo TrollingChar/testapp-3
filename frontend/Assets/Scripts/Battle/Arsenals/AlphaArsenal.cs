@@ -35,6 +35,9 @@ namespace Battle.Arsenals {
             SetAmmo(WeaponId.Dynamite, 1);
             
             SetAmmo(WeaponId.Erosion, 1);
+            SetAmmo(WeaponId.PoisonCloud, inf);
+            SetAmmo(WeaponId.BulletHell, inf);
+            SetAmmo(WeaponId.Armageddon, inf);
             
             SetAmmo(WeaponId.Jumper, 6);
             

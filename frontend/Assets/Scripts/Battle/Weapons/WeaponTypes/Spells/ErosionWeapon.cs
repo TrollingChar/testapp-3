@@ -25,13 +25,6 @@ namespace Battle.Weapons.WeaponTypes.Spells {
 
         protected override void OnEquip () {
             _crosshair = UnityEngine.Object.Instantiate(The.BattleAssets.PointCrosshair);
-
-            // todo: magic scroll or something
-//            _sprite = UnityEngine.Object.Instantiate(
-//                The<BattleAssets>.Get().GrenadeWeapon,
-//                GameObject.transform,
-//                false
-//            );
         }
 
 

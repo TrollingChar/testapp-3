@@ -64,7 +64,7 @@ namespace Utils.Danmaku {
         }
 
 
-        private static XY ShotgunBullet (XY dir, float cone, float minCoeff, float maxCoeff) {
+        public static XY ShotgunBullet (XY dir, float cone, float minCoeff, float maxCoeff) {
             dir.Rotate(cone * RNG.SignedFloat());
             return dir * Mathf.Lerp(minCoeff, maxCoeff, RNG.Float());
         }

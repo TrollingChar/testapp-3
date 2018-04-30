@@ -378,15 +378,18 @@ namespace Battle {
         }
 
 
-        public void SendBlastWave (float impulse, XY center, float radius) {
+        public void SendBlastWave (float impulse, XY center, float radius, float offsetY = 0f) {
+            // длина вектора считается по center
+            // направление по center + offset
             float sqrRadius = radius * radius;
+            var waveCenter = center + new XY(0, offsetY);
             for (var node = Objects.First; node != null; node = node.Next) {
                 var obj = node.Value;
                 float sqrDistance = XY.SqrDistance(center, obj.Position);
                 if (sqrDistance >= sqrRadius) continue;
 
                 float currentImpulse = impulse * (1f - Mathf.Sqrt(sqrDistance / sqrRadius));
-                obj.ReceiveBlastWave((obj.Position - center).WithLength(currentImpulse));
+                obj.ReceiveBlastWave((obj.Position - waveCenter).WithLength(currentImpulse));
             }
         }
 

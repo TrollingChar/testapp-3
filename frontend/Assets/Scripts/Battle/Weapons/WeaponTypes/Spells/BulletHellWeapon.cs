@@ -17,7 +17,10 @@ namespace Battle.Weapons.WeaponTypes.Spells {
             }
         }
 
-        protected override void OnShoot () {}
+
+        protected override void OnShoot () {
+            The.World.Spawn();
+        }
 
     }
 

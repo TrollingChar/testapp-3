@@ -1,9 +1,7 @@
-﻿using Battle.Objects.Effects;
-using Battle.Objects.Projectiles;
+﻿using Battle.Objects.Projectiles;
 using Core;
 using Geometry;
 using Utils.Danmaku;
-using Utils.Random;
 
 
 namespace Battle.Objects.Explosives {

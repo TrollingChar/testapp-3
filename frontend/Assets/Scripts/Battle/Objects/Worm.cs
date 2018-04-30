@@ -11,6 +11,7 @@ using Core;
 using Geometry;
 using UnityEngine;
 using UnityEngine.UI;
+using Utils.Danmaku;
 using Utils.Random;
 using BoxCollider = Collisions.BoxCollider;
 
@@ -207,11 +208,11 @@ namespace Battle.Objects {
             HP -= damage;
             if (The.ActiveWorm.Is(this)) The.BattleScene.EndTurn();
             
-            float effectTime = 0.75f + 0.75f * damage / (damage + 40f); 
+            float effectTime = 0.75f + 0.75f * damage / (damage + 40f);
             Spawn(
                 new Label(damage.ToString(), _color, 1.2f, new LabelControllerFall(effectTime)),
                 Position,
-                XY.Polar(4 + RNG.Float() * 4, (RNG.Float() - RNG.Float()) * 0.5f).Rotated90CCW()
+                Danmaku.ShotgunBullet(XY.Up, 1f, 4, 8)
             );
         }
 
@@ -223,11 +224,11 @@ namespace Battle.Objects {
             }
             HP += healing;
             if (!showLabel) return;
-            float effectTime = 0.75f + 0.75f * healing / (healing + 40f); 
+            float effectTime = 0.75f + 0.75f * healing / (healing + 40f);
             Spawn(
                 new Label("+" + healing, _color, 1.2f, new LabelControllerRise(effectTime)),
                 Position,
-                XY.Polar(7 + RNG.Float() * 7, (RNG.Float() - RNG.Float()) * 0.5f).Rotated90CCW()
+                Danmaku.ShotgunBullet(XY.Up, 0.75f, 8, 12)
             );
         }
 
