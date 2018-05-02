@@ -100,6 +100,7 @@
                 <e p="Explosive25.cs" t="Include" />
                 <e p="Explosive40.cs" t="Include" />
                 <e p="ExplosivePoison.cs" t="Include" />
+                <e p="MeteorExplosive.cs" t="Include" />
               </e>
               <e p="GameObjects" t="Include">
                 <e p="WormGO.cs" t="Include" />
@@ -117,6 +118,7 @@
                 <e p="Landmine.cs" t="Include" />
                 <e p="Limonka.cs" t="Include" />
                 <e p="LimonkaCluster.cs" t="Include" />
+                <e p="Meteor.cs" t="Include" />
                 <e p="MultiLauncherShell.cs" t="Include" />
                 <e p="PhantomGrenade.cs" t="Include" />
                 <e p="PlasmaBall.cs" t="Include" />
@@ -124,6 +126,7 @@
               </e>
               <e p="Ray.cs" t="Include" />
               <e p="Timers" t="Include">
+                <e p="ArmageddonTimer.cs" t="Include" />
                 <e p="BulletHellTimer.cs" t="Include" />
                 <e p="CallbackTimer.cs" t="Include" />
                 <e p="DetonationTimer.cs" t="Include" />
@@ -347,6 +350,9 @@
             </e>
           </e>
           <e p="Utils" t="Include">
+            <e p="Ballistics" t="Include">
+              <e p="Ballistics.cs" t="Include" />
+            </e>
             <e p="Danmaku" t="Include">
               <e p="Danmaku.cs" t="Include" />
             </e>

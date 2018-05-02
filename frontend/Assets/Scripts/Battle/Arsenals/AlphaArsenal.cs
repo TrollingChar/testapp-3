@@ -15,7 +15,7 @@ namespace Battle.Arsenals {
             SetAmmo(WeaponId.Minegun, 3);
 
             SetAmmo(WeaponId.Grenade, inf);
-            SetAmmo(WeaponId.Limonka, inf);
+            SetAmmo(WeaponId.Limonka, 4);
             SetAmmo(WeaponId.GasGrenade, inf);
             SetAmmo(WeaponId.PhantomGrenade, 3);
 
@@ -26,7 +26,7 @@ namespace Battle.Arsenals {
             SetAmmo(WeaponId.UltraRifle, 2);
             SetAmmo(WeaponId.GsomRaycaster, 1); // !!!
             
-            SetAmmo(WeaponId.FirePunch, inf);
+//            SetAmmo(WeaponId.FirePunch, inf);
             SetAmmo(WeaponId.Finger, inf);
             SetAmmo(WeaponId.Axe, 2);
             SetAmmo(WeaponId.Hammer, 1);
@@ -36,8 +36,8 @@ namespace Battle.Arsenals {
             
             SetAmmo(WeaponId.Erosion, 1);
             SetAmmo(WeaponId.PoisonCloud, inf);
-            SetAmmo(WeaponId.BulletHell, inf);
-            SetAmmo(WeaponId.Armageddon, inf);
+            SetAmmo(WeaponId.BulletHell, 1);
+            SetAmmo(WeaponId.Armageddon, 1);
             
             SetAmmo(WeaponId.Jumper, 6);
             

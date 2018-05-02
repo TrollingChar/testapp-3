@@ -1,4 +1,5 @@
-﻿using Core;
+﻿using Battle.State;
+using Core;
 using Geometry;
 using UnityEngine;
 using Utils.Random;
@@ -10,6 +11,7 @@ namespace Battle.Objects.Timers {
     public class BulletHellTimer : Timer {
 
         private readonly World _world = The.World;
+        private readonly TimerWrapper _gameTimer = The.TimerWrapper;
 
         public BulletHellTimer () : base(new Time {Seconds = 5}) {}
 
@@ -20,7 +22,10 @@ namespace Battle.Objects.Timers {
 
 
         protected override void OnTick () {
+            _gameTimer.Wait();
             for (int i = 0; i < 10; i++) {
+//                var rayOrigin = new XY(RNG.Float() * (_world.Width + 2000f) - 1000f, _world.Height + 500f);
+//                var direction = XY.Down.Rotated(RNG.SignedFloat() * 1f);
                 var target = new XY(RNG.Float() * _world.Width, RNG.Float() * _world.Height);
                 var direction = XY.Polar(4000f, (RNG.Float() * 0.5f - 0.75f) * Mathf.PI);
                 var rayOrigin = target - direction;

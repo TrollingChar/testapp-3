@@ -54,7 +54,7 @@ namespace Battle.Objects.Crates {
                 new Loot(() => new WeaponCrate(WeaponId.UltraRifle,        2),   100),
                 new Loot(() => new WeaponCrate(WeaponId.GsomRaycaster,     1),   10),
                    
-//                new Loot(() => new WeaponCrate(WeaponId.FirePunch,         inf), 100),
+                new Loot(() => new WeaponCrate(WeaponId.FirePunch,         inf), 100),
                 new Loot(() => new WeaponCrate(WeaponId.ExplosivePunch,    inf), 100),
 //                new Loot(() => new WeaponCrate(WeaponId.Finger,            inf), 100),
                 new Loot(() => new WeaponCrate(WeaponId.Axe,               3),   100),
