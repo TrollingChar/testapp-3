@@ -44,6 +44,7 @@ namespace Assets {
         public GameObject HammerWeapon;
         public GameObject LandmineWeapon;
         public GameObject DynamiteWeapon;
+        public GameObject MedikitWeapon;
         [Space]
         public GameObject BazookaShell;
         public GameObject PlasmaBall;
@@ -61,6 +62,7 @@ namespace Assets {
         public GameObject PoisonGas;
         public GameObject Flash;
 
+        
         private void Awake () {
             The.BattleAssets = this;
         }

@@ -17,7 +17,7 @@ namespace Battle.Weapons.WeaponTypes.OtherUtils {
                 return new WeaponDescriptor(
                     WeaponId.Medikit,
                     The.WeaponIcons.Medikit,
-                    "лекарство"
+                    "лечилка"
                 );
             }
         }
@@ -32,11 +32,11 @@ namespace Battle.Weapons.WeaponTypes.OtherUtils {
                 false
             ).GetComponent<LineCrosshair>();
 
-//            _sprite = UnityEngine.Object.Instantiate(
-//                battleAssets.HammerWeapon,
-//                GameObject.transform,
-//                false
-//            );
+            _sprite = UnityEngine.Object.Instantiate(
+                battleAssets.MedikitWeapon,
+                GameObject.transform,
+                false
+            );
         }
 
 
@@ -56,7 +56,7 @@ namespace Battle.Weapons.WeaponTypes.OtherUtils {
 
         protected override void OnUpdate () {
             UpdateLineCrosshair(_crosshair);
-//            UpdateAimedWeapon(_sprite);
+            UpdateAimedWeapon(_sprite);
         }
 
     }
