@@ -22,6 +22,7 @@ namespace Battle.Weapons.WeaponTypes.Spells {
 
 
         protected override void OnShoot () {
+            UseAmmo();
             var effector = new Effector();
             The.World.Spawn(effector, XY.Zero);
             effector.Timer = new BulletHellTimer();

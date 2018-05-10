@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Reflection;
 using Attributes;
 using Battle.Arsenals;
@@ -51,15 +50,6 @@ namespace Battle.Weapons {
 //                _crossHair = value;
 //            }
 //        }
-
-
-        [Obsolete]
-        public void Equip (Worm worm) {
-//            Worm = worm;
-            _arsenal = worm.Team.Arsenal;
-            Equipped = true;
-            OnEquip();
-        }
 
 
         public override void OnAdd () {
