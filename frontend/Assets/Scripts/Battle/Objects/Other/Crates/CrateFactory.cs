@@ -1,13 +1,12 @@
 ﻿using System;
 using Battle.Weapons;
-using UnityEngine;
-using CrateLootTable = Utils.LootTable.LootTable<System.Func<Battle.Objects.Crates.Crate>>;
+using CrateLootTable = Utils.LootTable.LootTable<System.Func<Battle.Objects.Other.Crates.Crate>>;
 
 // ReSharper disable PrivateFieldCanBeConvertedToLocalVariable
 // todo: разобраться как сборщик мусора работает если объект остался только в делегате
 
 
-namespace Battle.Objects.Crates {
+namespace Battle.Objects.Other.Crates {
 
     public class CrateFactory {
         

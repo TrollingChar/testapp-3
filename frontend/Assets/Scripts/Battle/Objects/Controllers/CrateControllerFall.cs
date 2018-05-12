@@ -1,4 +1,4 @@
-﻿using Battle.Objects.Crates;
+﻿using Battle.Objects.Other.Crates;
 using Core;
 using DataTransfer.Data;
 

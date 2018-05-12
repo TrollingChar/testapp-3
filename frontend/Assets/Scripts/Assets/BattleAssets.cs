@@ -20,6 +20,7 @@ namespace Assets {
         [Space]
         public GameObject Worm;
         public GameObject Arrow;
+        public GameObject Airplane;
         [Space]
         public GameObject WoodenCrate;
         public GameObject HealthCrate;

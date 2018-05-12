@@ -62,6 +62,7 @@
               </e>
               <e p="Component.cs" t="Include" />
               <e p="Controllers" t="Include">
+                <e p="AirplaneController.cs" t="Include" />
                 <e p="Controller.cs" t="Include" />
                 <e p="CrateControllerFall.cs" t="Include" />
                 <e p="CrateControllerStand.cs" t="Include" />
@@ -77,12 +78,6 @@
                 <e p="WormControllerFirePunch.cs" t="Include" />
                 <e p="WormControllerJump.cs" t="Include" />
                 <e p="WormControllerWalk.cs" t="Include" />
-              </e>
-              <e p="Crates" t="Include">
-                <e p="Crate.cs" t="Include" />
-                <e p="CrateFactory.cs" t="Include" />
-                <e p="HealthCrate.cs" t="Include" />
-                <e p="WeaponCrate.cs" t="Include" />
               </e>
               <e p="Effector.cs" t="Include" />
               <e p="Effects" t="Include">
@@ -109,6 +104,15 @@
               <e p="MeleeTester.cs" t="Include" />
               <e p="NullObject.cs" t="Include" />
               <e p="Object.cs" t="Include" />
+              <e p="Other" t="Include">
+                <e p="Airplane.cs" t="Include" />
+                <e p="Crates" t="Include">
+                  <e p="Crate.cs" t="Include" />
+                  <e p="CrateFactory.cs" t="Include" />
+                  <e p="HealthCrate.cs" t="Include" />
+                  <e p="WeaponCrate.cs" t="Include" />
+                </e>
+              </e>
               <e p="Projectiles" t="Include">
                 <e p="BazookaShell.cs" t="Include" />
                 <e p="Dynamite.cs" t="Include" />
@@ -126,6 +130,7 @@
               </e>
               <e p="Ray.cs" t="Include" />
               <e p="Timers" t="Include">
+                <e p="AirstrikeTimer.cs" t="Include" />
                 <e p="ArmageddonTimer.cs" t="Include" />
                 <e p="BulletHellTimer.cs" t="Include" />
                 <e p="CallbackTimer.cs" t="Include" />
@@ -172,6 +177,7 @@
               <e p="WaterGO.cs" t="Include" />
             </e>
             <e p="Weapons" t="Include">
+              <e p="AbstractAirstrikeWeapon.cs" t="Include" />
               <e p="Crosshairs" t="Include">
                 <e p="LineCrosshair.cs" t="Include" />
                 <e p="PointCrosshair.cs" t="Include" />
@@ -355,6 +361,9 @@
             </e>
             <e p="Danmaku" t="Include">
               <e p="Danmaku.cs" t="Include" />
+            </e>
+            <e p="Direction" t="Include">
+              <e p="Direction.cs" t="Include" />
             </e>
             <e p="LootTable" t="Include">
               <e p="LootTable.cs" t="Include" />

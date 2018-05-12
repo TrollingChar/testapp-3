@@ -9,7 +9,7 @@ using UnityEngine;
 using BoxCollider = Collisions.BoxCollider;
 
 
-namespace Battle.Objects.Crates {
+namespace Battle.Objects.Other.Crates {
 
     public class Crate : Object {
 

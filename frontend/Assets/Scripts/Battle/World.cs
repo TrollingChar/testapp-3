@@ -6,6 +6,7 @@ using Battle.Arsenals;
 using Battle.Objects;
 using Battle.Objects.Controllers;
 using Battle.Objects.Effects;
+using Battle.Objects.Other;
 using Battle.Objects.Projectiles;
 using Battle.Teams;
 using Battle.Terrain;
@@ -16,6 +17,7 @@ using DataTransfer.Data;
 using Geometry;
 using UnityEngine;
 using Utils.Danmaku;
+using Utils.Direction;
 using Utils.Messenger;
 using Utils.Random;
 using Collision = Collisions.Collision;
@@ -422,6 +424,29 @@ namespace Battle {
                 center,
                 Danmaku.Cloud(radius / PoisonGasController.InvLerpCoeff, (int) (radius * 0.5f))
             );
+        }
+
+
+        public void LaunchAirstrike (Func<Object> generator, XY target, bool leftToRight, int bombs = 1) {
+            const float vx = 5f;
+            float h = Height + Balance.AirplaneExtraHeight;
+            float dy = target.Y - h;
+            float t = Mathf.Sqrt(2 * dy / Gravity);
+            float dx = vx * t;
+            if (leftToRight) {
+                Spawn(
+                    new Airplane(generator, bombs, vx),
+                    new XY(target.X - dx - Time.TPS * Balance.AirplaneSpeed, h), // см. AirstrikeTimer
+                    new XY(Balance.AirplaneSpeed, 0f)
+                );
+            }
+            else {
+                Spawn(
+                    new Airplane(generator, bombs, -vx),
+                    new XY(target.X + dx + Time.TPS * Balance.AirplaneSpeed, h),
+                    new XY(-Balance.AirplaneSpeed, 0f)
+                );
+            }
         }
 
 

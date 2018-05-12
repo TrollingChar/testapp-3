@@ -1,7 +1,7 @@
 ﻿using Assets;
 using Battle;
 using Battle.Camera;
-using Battle.Objects.Crates;
+using Battle.Objects.Other.Crates;
 using Battle.State;
 using Battle.Teams;
 using Battle.UI;

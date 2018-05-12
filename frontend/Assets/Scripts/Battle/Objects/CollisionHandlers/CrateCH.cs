@@ -1,4 +1,4 @@
-﻿using Battle.Objects.Crates;
+﻿using Battle.Objects.Other.Crates;
 using Battle.State;
 using Core;
 using UnityEngine;

@@ -1,9 +1,9 @@
 ﻿using System;
 using Battle.Objects.Controllers;
-using Battle.Objects.Crates;
 using Battle.Objects.Effects;
 using Battle.Objects.Explosives;
 using Battle.Objects.GameObjects;
+using Battle.Objects.Other.Crates;
 using Battle.State;
 using Battle.Teams;
 using Battle.Weapons;

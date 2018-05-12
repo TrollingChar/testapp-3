@@ -2,7 +2,7 @@
 using Core;
 
 
-namespace Battle.Objects.Crates {
+namespace Battle.Objects.Other.Crates {
 
     public class WeaponCrate : Crate {
 
