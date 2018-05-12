@@ -35,6 +35,8 @@ namespace Battle.Arsenals {
             SetAmmo(WeaponId.Dynamite, 1);
             
             SetAmmo(WeaponId.Airstrike, inf);
+            SetAmmo(WeaponId.MineStrike, inf);
+            SetAmmo(WeaponId.VacuumBomb, inf);
             
             SetAmmo(WeaponId.Erosion, 1);
             SetAmmo(WeaponId.PoisonCloud, 1);

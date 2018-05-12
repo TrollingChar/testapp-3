@@ -26,7 +26,7 @@ namespace Battle.Weapons.WeaponTypes.Airstrikes {
         protected override void OnShoot () {
             UseAmmo();
             The.World.LaunchAirstrike(
-                () => new MultiLauncherShell(),
+                () => new Bomb(),
                 Target,
                 Direction == PointCrosshair.Direction.Right,
                 7

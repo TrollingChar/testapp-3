@@ -95,6 +95,7 @@
                 <e p="Explosive25.cs" t="Include" />
                 <e p="Explosive40.cs" t="Include" />
                 <e p="ExplosivePoison.cs" t="Include" />
+                <e p="Implosive40.cs" t="Include" />
                 <e p="MeteorExplosive.cs" t="Include" />
               </e>
               <e p="GameObjects" t="Include">
@@ -115,6 +116,7 @@
               </e>
               <e p="Projectiles" t="Include">
                 <e p="BazookaShell.cs" t="Include" />
+                <e p="Bomb.cs" t="Include" />
                 <e p="Dynamite.cs" t="Include" />
                 <e p="GasGrenade.cs" t="Include" />
                 <e p="Grenade.cs" t="Include" />
@@ -127,6 +129,7 @@
                 <e p="PhantomGrenade.cs" t="Include" />
                 <e p="PlasmaBall.cs" t="Include" />
                 <e p="PoisonGas.cs" t="Include" />
+                <e p="VacuumBomb.cs" t="Include" />
               </e>
               <e p="Ray.cs" t="Include" />
               <e p="Timers" t="Include">

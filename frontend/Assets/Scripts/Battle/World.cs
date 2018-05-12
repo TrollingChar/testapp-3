@@ -401,29 +401,18 @@ namespace Battle {
         }
 
 
-        public void Spawn (Func<Object> generator, XY center, IEnumerable<XY> velocities) {
-            foreach (var v in velocities) {
-                Spawn(generator(), center, v);
-            }
-        }
-
-
         public void MakeSmoke (XY center, float radius, float size, int count, float flashSize) {
-            Spawn(
-                () => new Smoke(RNG.Float() * (25 + size)),
-                center,
-                Danmaku.Cloud(radius / SmokeController.InvLerpCoeff, count)
-            );
+            foreach (var v in Danmaku.Cloud(radius / SmokeController.InvLerpCoeff, count)) {
+                Spawn(new Smoke(RNG.Float() * (25f + size)), center, v);
+            }
             Spawn(new Flash(flashSize), center);
         }
 
 
         public void MakePoisonGas (int damage, XY center, float radius) {
-            Spawn(
-                () => new PoisonGas(RNG.Float() * damage), 
-                center,
-                Danmaku.Cloud(radius / PoisonGasController.InvLerpCoeff, (int) (radius * 0.5f))
-            );
+            foreach (var v in Danmaku.Cloud(radius / SmokeController.InvLerpCoeff, (int) (radius * 0.5f))) {
+                Spawn(new PoisonGas(RNG.Float() * damage), center, v);
+            }
         }
 
 

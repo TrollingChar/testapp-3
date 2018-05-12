@@ -57,6 +57,8 @@ namespace Assets {
         public GameObject PhantomGrenade;
         public GameObject Landmine;
         public GameObject Dynamite;
+        public GameObject Bomb;
+        public GameObject VacuumBomb;
         public GameObject Meteor;
         [Space]
         public GameObject Smoke;
