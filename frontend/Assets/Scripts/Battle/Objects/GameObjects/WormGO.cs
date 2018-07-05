@@ -1,8 +1,10 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 
 namespace Battle.Objects.GameObjects {
 
+    [Obsolete]
     public class WormGO : MonoBehaviour {
 
         [SerializeField] private SpriteRenderer _headRenderer;

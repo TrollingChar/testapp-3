@@ -1,5 +1,4 @@
-﻿using System;
-using Battle.Objects.Controllers;
+﻿using Battle.Objects.Controllers;
 using Battle.Objects.Effects;
 using Battle.Objects.Explosives;
 using Battle.Objects.GameObjects;
@@ -44,7 +43,7 @@ namespace Battle.Objects {
         private int _poison;
         private string _name;
 
-        private WormGO _wormGO;
+        private NewWormGO _newWormGO;
         private SpriteRenderer _arrow;
         private Text _nameField;
         private Text _hpField;
@@ -70,7 +69,7 @@ namespace Battle.Objects {
             get { return _facesRight; }
             set {
                 _facesRight = value;
-                if (_wormGO != null) _wormGO.FacesRight = _facesRight;
+                if (_newWormGO != null) _newWormGO.FacesRight = _facesRight;
             }
         }
 
@@ -78,7 +77,7 @@ namespace Battle.Objects {
             get { return !_facesRight; }
             set {
                 _facesRight = !value;
-                if (_wormGO != null) _wormGO.FacesRight = _facesRight;
+                if (_newWormGO != null) _newWormGO.FacesRight = _facesRight;
             }
         }
 
@@ -176,8 +175,8 @@ namespace Battle.Objects {
             _arrow = UnityEngine.Object.Instantiate(assets.Arrow, transform, false).GetComponentInChildren<SpriteRenderer>();
 
             var obj = UnityEngine.Object.Instantiate(assets.Worm, transform, false);
-            _wormGO = obj.GetComponent<WormGO>();
-            _wormGO.OnAdd(this);
+            _newWormGO = obj.GetComponent<NewWormGO>();
+            _newWormGO.OnAdd(this);
 
             HP = HP;
             Name = Name;
@@ -196,10 +195,10 @@ namespace Battle.Objects {
         }
 
 
-        public void LookAt (XY target) {
-            if (_wormGO == null) return;
-            _wormGO.Look(Mathf.Rad2Deg * XY.DirectionAngle(Head.Center, target));
-        }
+//        public void LookAt (XY target) {
+//            if (_wormGO == null) return;
+//            _wormGO.Look(Mathf.Rad2Deg * XY.DirectionAngle(Head.Center, target));
+//        }
 
 
         public override void TakeDamage (int damage) {
