@@ -203,12 +203,20 @@
                 <e p="HarpoonWeapon.cs" t="Include" />
               </e>
               <e p="Firearms" t="Include">
+                <e p="BlasterWeapon.cs" t="Include" />
+                <e p="BlasterWeapon.cs.meta" t="Include" />
                 <e p="GsomRaycasterWeapon.cs" t="Include" />
+                <e p="GsomRaycasterWeapon.cs.meta" t="Include" />
                 <e p="HeatPistolWeapon.cs" t="Include" />
+                <e p="HeatPistolWeapon.cs.meta" t="Include" />
                 <e p="MachineGunWeapon.cs" t="Include" />
+                <e p="MachineGunWeapon.cs.meta" t="Include" />
                 <e p="PistolWeapon.cs" t="Include" />
+                <e p="PistolWeapon.cs.meta" t="Include" />
                 <e p="PoisonArrowWeapon.cs" t="Include" />
+                <e p="PoisonArrowWeapon.cs.meta" t="Include" />
                 <e p="UltraRifleWeapon.cs" t="Include" />
+                <e p="UltraRifleWeapon.cs.meta" t="Include" />
               </e>
               <e p="Heavy" t="Include">
                 <e p="DynamiteWeapon.cs" t="Include" />

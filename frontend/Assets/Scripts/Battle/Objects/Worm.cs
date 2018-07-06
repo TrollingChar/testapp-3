@@ -161,25 +161,25 @@ namespace Battle.Objects {
 
 
         private void InitGraphics () {
-            var assets = The.BattleAssets;
+            var assets    = The.BattleAssets;
             var transform = GameObject.transform;
 
-            _canvas = UnityEngine.Object.Instantiate(assets.TopCanvas, transform, false);
-            _canvas.transform.localPosition += new Vector3(0, 20, 0);
-            _canvas.transform.localScale = new Vector3(0.7f, 0.7f, 1f);
-            _canvas.GetComponent<Canvas>().sortingLayerName = "TextBack";
+            _canvas = UnityEngine.Object.Instantiate (assets.TopCanvas, transform, false);
+            _canvas.transform.localPosition += new Vector3 (0,    20,   0);
+            _canvas.transform.localScale    =  new Vector3 (0.7f, 0.7f, 1f);
+            _canvas.GetComponent <Canvas> ().sortingLayerName = "TextBack";
 
-            _nameField = UnityEngine.Object.Instantiate(assets.Text, _canvas.transform, false).GetComponent<Text>();
-            _hpField = UnityEngine.Object.Instantiate(assets.Text, _canvas.transform, false).GetComponent<Text>();
+            _nameField = UnityEngine.Object.Instantiate (assets.Text, _canvas.transform, false).GetComponent <Text> ();
+            _hpField   = UnityEngine.Object.Instantiate (assets.Text, _canvas.transform, false).GetComponent <Text> ();
 
-            _arrow = UnityEngine.Object.Instantiate(assets.Arrow, transform, false).GetComponentInChildren<SpriteRenderer>();
+            _arrow = UnityEngine.Object.Instantiate (assets.Arrow, transform, false).
+            GetComponentInChildren <SpriteRenderer> ();
 
-            var obj = UnityEngine.Object.Instantiate(assets.Worm, transform, false);
-            _newWormGO = obj.GetComponent<NewWormGO>();
-            _newWormGO.OnAdd(this);
+            _newWormGO = UnityEngine.Object.Instantiate (assets.Worm, transform, false).GetComponent <NewWormGO> ();
+            _newWormGO.OnAdd (this);
 
-            HP = HP;
-            Name = Name;
+            HP           = HP;
+            Name         = Name;
             ArrowVisible = false;
         }
 
