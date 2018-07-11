@@ -33,12 +33,12 @@ namespace Battle.Weapons.WeaponTypes.MovementUtils {
                 false
             ).GetComponent<LineCrosshair>();
             
-            ((Worm) Object)._newWormGO.UnlockHead ();
+            ((Worm) Object).NewWormGO.UnlockHead ();
         }
 
 
         protected override void OnUnequip () {
-            ((Worm) Object)._newWormGO.LockHead ();
+            ((Worm) Object).NewWormGO.LockHead ();
         }
 
 

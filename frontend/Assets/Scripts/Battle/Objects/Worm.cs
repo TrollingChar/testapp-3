@@ -42,7 +42,7 @@ namespace Battle.Objects {
         private int _poison;
         private string _name;
 
-        public NewWormGO _newWormGO;
+        public NewWormGO NewWormGO;
         private SpriteRenderer _arrow;
         private Text _nameField;
         private Text _hpField;
@@ -68,7 +68,7 @@ namespace Battle.Objects {
             get { return _facesRight; }
             set {
                 _facesRight = value;
-                if (_newWormGO != null) _newWormGO.FacesRight = _facesRight;
+                if (NewWormGO != null) NewWormGO.FacesRight = _facesRight;
             }
         }
 
@@ -76,14 +76,14 @@ namespace Battle.Objects {
             get { return !_facesRight; }
             set {
                 _facesRight = !value;
-                if (_newWormGO != null) _newWormGO.FacesRight = _facesRight;
+                if (NewWormGO != null) NewWormGO.FacesRight = _facesRight;
             }
         }
 
 
         public void LookAt (XY target) {
             float angle = XY.DirectionAngle (Position, target);
-            _newWormGO.SetHeadAngle (angle);
+            NewWormGO.SetHeadAngle (angle);
         }
 
         
@@ -180,8 +180,8 @@ namespace Battle.Objects {
             _arrow = UnityEngine.Object.Instantiate (assets.Arrow, transform, false).
             GetComponentInChildren <SpriteRenderer> ();
 
-            _newWormGO = UnityEngine.Object.Instantiate (assets.Worm, transform, false).GetComponent <NewWormGO> ();
-            _newWormGO.OnAdd (this);
+            NewWormGO = UnityEngine.Object.Instantiate (assets.Worm, transform, false).GetComponent <NewWormGO> ();
+            NewWormGO.OnAdd (this);
 
             HP           = HP;
             Name         = Name;

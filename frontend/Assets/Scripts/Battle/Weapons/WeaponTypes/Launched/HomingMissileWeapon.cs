@@ -64,7 +64,7 @@ namespace Battle.Weapons.WeaponTypes.Launched {
             );
             
             ResetTarget();
-            ((Worm) Object)._newWormGO.UnlockHead ();
+            ((Worm) Object).NewWormGO.UnlockHead ();
         }
 
 
@@ -97,7 +97,7 @@ namespace Battle.Weapons.WeaponTypes.Launched {
         protected override void OnUnequip () {
             // прицел не входит в его gameobject, удалять отдельно
             UnityEngine.Object.Destroy(_pointCH);
-            ((Worm) Object)._newWormGO.LockHead ();
+            ((Worm) Object).NewWormGO.LockHead ();
         }
 
     }
