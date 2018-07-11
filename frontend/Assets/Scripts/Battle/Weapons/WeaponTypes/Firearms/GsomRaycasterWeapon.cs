@@ -1,4 +1,5 @@
 ﻿using Attributes;
+using Battle.Objects;
 using Battle.Weapons.Crosshairs;
 using Core;
 
@@ -34,6 +35,13 @@ namespace Battle.Weapons.WeaponTypes.Firearms {
             ).GetComponent<LineCrosshair>();
 
             // todo: sprite
+            
+            ((Worm) Object)._newWormGO.UnlockHead ();
+        }
+
+
+        protected override void OnUnequip () {
+            ((Worm) Object)._newWormGO.LockHead ();
         }
 
 
@@ -58,6 +66,7 @@ namespace Battle.Weapons.WeaponTypes.Firearms {
         protected override void OnUpdate () {
             UpdateLineCrosshair(_crosshair);
 //            UpdateAimedWeapon(_sprite);
+            ((Worm) Object).LookAt (TurnData.XY);
         }
 
     }

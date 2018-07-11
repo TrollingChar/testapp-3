@@ -39,11 +39,10 @@ namespace Battle.Objects {
         private Color _color;
         private bool _facesRight;
         private int _hp;
-//        private int _hpot; // over time
         private int _poison;
         private string _name;
 
-        private NewWormGO _newWormGO;
+        public NewWormGO _newWormGO;
         private SpriteRenderer _arrow;
         private Text _nameField;
         private Text _hpField;
@@ -79,6 +78,12 @@ namespace Battle.Objects {
                 _facesRight = !value;
                 if (_newWormGO != null) _newWormGO.FacesRight = _facesRight;
             }
+        }
+
+
+        public void LookAt (XY target) {
+            float angle = XY.DirectionAngle (Position, target);
+            _newWormGO.SetHeadAngle (angle);
         }
 
         
@@ -144,7 +149,7 @@ namespace Battle.Objects {
             get { return _weapon; }
             set { SwapComponent(ref _weapon, value); }
         }
-
+        
 
         public override void OnSpawn () {
             InitGraphics();

@@ -39,6 +39,13 @@ namespace Battle.Weapons.WeaponTypes.CloseCombat {
                 GameObject.transform,
                 false
             );
+            
+            ((Worm) Object)._newWormGO.UnlockHead ();
+        }
+
+
+        protected override void OnUnequip () {
+            ((Worm) Object)._newWormGO.LockHead ();
         }
 
 
@@ -59,6 +66,7 @@ namespace Battle.Weapons.WeaponTypes.CloseCombat {
         protected override void OnUpdate () {
             UpdateLineCrosshair(_crosshair);
             UpdateAimedWeapon(_sprite);
+            ((Worm) Object).LookAt (TurnData.XY);
         }
 
     }

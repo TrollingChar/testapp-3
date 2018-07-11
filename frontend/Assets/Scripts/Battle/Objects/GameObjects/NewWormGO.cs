@@ -14,7 +14,7 @@ namespace Battle.Objects.GameObjects {
         private Animator _animator;
         
         private bool _headLocked; // если true то червяк смотрит прямо перед собой
-        
+        private bool _headLockedInternal;
         
         // итак, чо ваще
         // наверно стоит выделить состояния червяка
@@ -134,9 +134,20 @@ namespace Battle.Objects.GameObjects {
         }
 
 
-        public void SetHeadAngle (float radians, bool forceUnlock) {
-            if (forceUnlock) UnlockHead ();
-            if (_headLocked) return;
+        private void LockHeadInternal () {
+            _headLockedInternal = true;
+            _headTransform.rotation = Quaternion.identity;
+            _headTransform.localScale = Vector3.one;
+        }
+
+
+        private void UnlockHeadInternal () {
+            _headLockedInternal = false;
+        }
+
+
+        public void SetHeadAngle (float radians) {
+            if (_headLocked || _headLockedInternal) return;
 
             bool looksForward = _headTransform.localScale.x > 0;
 
@@ -146,7 +157,8 @@ namespace Battle.Objects.GameObjects {
 
             // теперь у нас угол относительно положения червяка когда голова смотрит вправо
 
-            if (Mathf.Abs (radians) * Mathf.Rad2Deg > 100) {
+//            if (Mathf.Abs (radians) * Mathf.Rad2Deg > 100) {
+            if (Mathf.Abs (radians) * 2 > Mathf.PI) {
                 // надо повернуть голову значит
                 _headTransform.localScale = new Vector3 (-_headTransform.localScale.x, 1, 1);
                 looksForward = !looksForward;
@@ -154,13 +166,12 @@ namespace Battle.Objects.GameObjects {
             }
 
             // 100 должно перейти в 90
-            float sin = Mathf.Sin (radians * 0.9f);
+//            float sin = Mathf.Sin (radians * 0.9f);
+            
+            float sin = Mathf.Sin (radians);
 
             float degrees = sin * 45;
-            if (FacesRight ^ looksForward) {
-                degrees = -degrees;
-            }
-            _headTransform.rotation = Quaternion.Euler (0, 0, degrees);
+            _headTransform.rotation = Quaternion.Euler (0, 0, FacesRight ^ looksForward ? -degrees : degrees);
         }
 
 

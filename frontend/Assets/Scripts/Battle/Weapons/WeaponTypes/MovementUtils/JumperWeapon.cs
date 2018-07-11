@@ -1,4 +1,5 @@
 ﻿using Attributes;
+using Battle.Objects;
 using Battle.Objects.Controllers;
 using Battle.Weapons.Crosshairs;
 using Core;
@@ -31,11 +32,19 @@ namespace Battle.Weapons.WeaponTypes.MovementUtils {
                 GameObject.transform,
                 false
             ).GetComponent<LineCrosshair>();
+            
+            ((Worm) Object)._newWormGO.UnlockHead ();
+        }
+
+
+        protected override void OnUnequip () {
+            ((Worm) Object)._newWormGO.LockHead ();
         }
 
 
         protected override void OnUpdate () {
             UpdateLineCrosshair(_crosshair);
+            ((Worm) Object).LookAt (TurnData.XY);
         }
 
 

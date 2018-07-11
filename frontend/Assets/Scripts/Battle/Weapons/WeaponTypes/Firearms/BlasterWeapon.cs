@@ -1,4 +1,5 @@
 ﻿using Attributes;
+using Battle.Objects;
 using Battle.Objects.Effects;
 using Battle.Objects.Explosives;
 using Battle.Weapons.Crosshairs;
@@ -43,6 +44,13 @@ namespace Battle.Weapons.WeaponTypes.Firearms {
                 GameObject.transform,
                 false
             );
+            
+            ((Worm) Object)._newWormGO.UnlockHead ();
+        }
+
+
+        protected override void OnUnequip () {
+            ((Worm) Object)._newWormGO.LockHead ();
         }
 
 
@@ -64,6 +72,7 @@ namespace Battle.Weapons.WeaponTypes.Firearms {
         protected override void OnUpdate () {
             UpdateLineCrosshair(_crosshair);
             UpdateAimedWeapon(_sprite);
+            ((Worm) Object).LookAt (TurnData.XY);
         }
 
     }
