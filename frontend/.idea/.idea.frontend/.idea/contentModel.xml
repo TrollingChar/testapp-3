@@ -55,22 +55,22 @@
             </e>
             <e p="Component.cs" t="Include" />
             <e p="Controllers" t="Include">
-              <e p="AirplaneController.cs" t="Include" />
+              <e p="AirplaneCtrl.cs" t="Include" />
               <e p="Controller.cs" t="Include" />
-              <e p="CrateControllerFall.cs" t="Include" />
-              <e p="CrateControllerStand.cs" t="Include" />
-              <e p="HomingController.cs" t="Include" />
-              <e p="LabelControllerFall.cs" t="Include" />
-              <e p="LabelControllerRise.cs" t="Include" />
-              <e p="LandmineController.cs" t="Include" />
-              <e p="LandmineControllerStuck.cs" t="Include" />
-              <e p="PoisonGasController.cs" t="Include" />
-              <e p="SmokeController.cs" t="Include" />
-              <e p="StandardController.cs" t="Include" />
-              <e p="WormControllerFall.cs" t="Include" />
-              <e p="WormControllerFirePunch.cs" t="Include" />
-              <e p="WormControllerJump.cs" t="Include" />
-              <e p="WormControllerWalk.cs" t="Include" />
+              <e p="CrateFallCtrl.cs" t="Include" />
+              <e p="CrateStandCtrl.cs" t="Include" />
+              <e p="HomingCtrl.cs" t="Include" />
+              <e p="LabelFallCtrl.cs" t="Include" />
+              <e p="LabelRiseCtrl.cs" t="Include" />
+              <e p="LandmineCtrl.cs" t="Include" />
+              <e p="LandmineStuckCtrl.cs" t="Include" />
+              <e p="PoisonGasCtrl.cs" t="Include" />
+              <e p="SmokeCtrl.cs" t="Include" />
+              <e p="StandardCtrl.cs" t="Include" />
+              <e p="WormFallCtrl.cs" t="Include" />
+              <e p="WormFirePunchCtrl.cs" t="Include" />
+              <e p="WormJumpCtrl.cs" t="Include" />
+              <e p="WormWalkCtrl.cs" t="Include" />
             </e>
             <e p="Effector.cs" t="Include" />
             <e p="Effects" t="Include">

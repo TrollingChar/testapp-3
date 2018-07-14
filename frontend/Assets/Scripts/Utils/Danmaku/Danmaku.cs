@@ -32,7 +32,7 @@ namespace Utils.Danmaku {
         }
 
 
-        public static XY[] Scatter (XY dir, float cone, int bullets) {
+        public static XY[] Spray (XY dir, float cone, int bullets) {
             if (bullets <= 1) return new[] {dir};
 
             var arr = new XY[bullets];
