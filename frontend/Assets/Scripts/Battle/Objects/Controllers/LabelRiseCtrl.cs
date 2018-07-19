@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Battle.Objects.Controllers {
 
-    public class LabelControllerRise : Controller {
+    public class LabelRiseCtrl : Controller {
         
         // если тут 0.5 то расстояние будет 2*v
         // если 0.1 то 10*v
@@ -16,7 +16,7 @@ namespace Battle.Objects.Controllers {
         private float _time;
 
 
-        public LabelControllerRise (float time = 1.5f) {
+        public LabelRiseCtrl (float time = 1.5f) {
             _time = time;
         }
 

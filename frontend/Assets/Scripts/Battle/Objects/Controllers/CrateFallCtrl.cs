@@ -5,7 +5,7 @@ using DataTransfer.Data;
 
 namespace Battle.Objects.Controllers {
 
-    public class CrateControllerFall : StandardController {
+    public class CrateFallCtrl : StandardCtrl {
 
         private Time _control;
         private Crate _crate;
@@ -16,7 +16,7 @@ namespace Battle.Objects.Controllers {
         }
 
 
-        public CrateControllerFall () {
+        public CrateFallCtrl () {
             WaitFlag = true;
         }
 
@@ -27,7 +27,7 @@ namespace Battle.Objects.Controllers {
             if (Object.Velocity.SqrLength < 1) _control.Ticks++;
 
             if (The.World.Time.Ticks % Time.TPS == 0) {
-                if (_control.Seconds >= 0.9f) Object.Controller = new CrateControllerStand();
+                if (_control.Seconds >= 0.9f) Object.Controller = new CrateStandCtrl();
                 _control.Ticks = 0;
             }
 

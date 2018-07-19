@@ -5,7 +5,7 @@ using Geometry;
 
 namespace Battle.Objects.Controllers {
 
-    public class CrateControllerStand : Controller {
+    public class CrateStandCtrl : Controller {
 
         private Crate _crate;
 
@@ -25,7 +25,7 @@ namespace Battle.Objects.Controllers {
         protected override void DoUpdate (TurnData td) {
             Object.Velocity = XY.Down;
             Object.ExcludeObjects();
-            if (Object.NextCollision(1f) == null) Object.Controller = new CrateControllerFall();
+            if (Object.NextCollision(1f) == null) Object.Controller = new CrateFallCtrl();
             Object.Velocity = XY.Zero;
             
             _crate.CheckIfCollected();

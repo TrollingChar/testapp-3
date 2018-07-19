@@ -23,7 +23,7 @@ namespace Battle.Objects.Other {
 
 
         public override void OnSpawn () {
-            Controller = new AirplaneController();
+            Controller = new AirplaneCtrl();
             Timer = new AirstrikeTimer(_generator, _bombs, _vx);
             UnityEngine.Object.Instantiate(The.BattleAssets.Airplane, GameObject.transform, false)
                 .GetComponentInChildren<SpriteRenderer>()

@@ -32,7 +32,7 @@ namespace Battle.Objects.Projectiles {
 
             UnityEngine.Object.Instantiate(assets.PhantomGrenade, transform, false);
             Explosive = new Explosive25();
-            Controller = new StandardController();
+            Controller = new StandardCtrl();
             Timer = new DetonationTimer(new Time {Seconds = _seconds}, timerText);
             // no colliders, no collision handler
         }

@@ -16,7 +16,7 @@ namespace Battle.Objects.Controllers {
                 new Time {Seconds = 0.3f},
                 () => { Object.Controller = new WormWalkCtrl (); }
             );
-//            ((Worm) Object).NewWormGO.Land ();
+            ((Worm) Object).NewWormGO.Land ();
         }
 
 

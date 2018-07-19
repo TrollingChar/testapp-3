@@ -7,7 +7,7 @@ using Time = Core.Time;
 
 namespace Battle.Objects.Controllers {
 
-    public class PoisonGasController : Controller {
+    public class PoisonGasCtrl : Controller {
 
         public const float InvLerpCoeff = 10;
         private readonly World _world = The.World;
@@ -17,7 +17,7 @@ namespace Battle.Objects.Controllers {
         private const float RadiusPer1Dmg = 15f;
 
 
-        public PoisonGasController (float damage) {
+        public PoisonGasCtrl (float damage) {
             _time.Ticks = Mathf.CeilToInt(damage * TimePer1Dmg.Ticks);
         }
 

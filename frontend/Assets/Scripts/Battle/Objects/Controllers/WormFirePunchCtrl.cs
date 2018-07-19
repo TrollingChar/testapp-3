@@ -1,6 +1,6 @@
 ﻿namespace Battle.Objects.Controllers {
 
-    public class WormControllerFirePunch {
+    public class WormFirePunchCtrl {
 
         
 

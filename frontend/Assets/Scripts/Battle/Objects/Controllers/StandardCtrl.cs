@@ -11,7 +11,7 @@ using Utils.Random;
 
 namespace Battle.Objects.Controllers {
 
-    public class StandardController : Controller {
+    public class StandardCtrl : Controller {
 
         [Obsolete] public float MagnetCoeff; // todo: move this to object itself
         public float GravityCoeff = 1, WindCoeff, SmokeSize;
@@ -40,7 +40,7 @@ namespace Battle.Objects.Controllers {
                     Object.Spawn(
                         new PoisonGas(RNG.Float() * 3),
                         Object.Position,
-                        Danmaku.CloudParticle(radius / PoisonGasController.InvLerpCoeff)
+                        Danmaku.CloudParticle(radius / PoisonGasCtrl.InvLerpCoeff)
                     );
                 }
                 // todo: дымный след сделать по-другому а не так как щас, хотя тут хз

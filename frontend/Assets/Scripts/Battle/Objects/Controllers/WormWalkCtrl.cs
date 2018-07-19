@@ -55,15 +55,15 @@ namespace Battle.Objects.Controllers {
 
             // jump
             if (td.S || td.W) {
+                XY vj;
                 if (td.S) {
-                    Object.Velocity = new XY(0f, Worm.HighJumpSpeed);
-                    if (td.A ^ td.D) Object.Velocity.Rotate(td.A ? Worm.HighJumpAngle : -Worm.HighJumpAngle);
+                    vj = new XY(0f, Worm.HighJumpSpeed);
+                    if (td.A ^ td.D) vj.Rotate(td.A ? Worm.HighJumpAngle : -Worm.HighJumpAngle);
                 }
                 else {
-                    Object.Velocity =
-                        new XY(0f, Worm.JumpSpeed).Rotated(worm.FacesRight ? -Worm.JumpAngle : Worm.JumpAngle);
+                    vj = new XY(0f, Worm.JumpSpeed).Rotated(worm.FacesRight ? -Worm.JumpAngle : Worm.JumpAngle);
                 }
-                Object.Controller = new WormJumpCtrl();
+                Object.Controller = new WormBeforeJumpCtrl(vj);
                 return;
             }
 

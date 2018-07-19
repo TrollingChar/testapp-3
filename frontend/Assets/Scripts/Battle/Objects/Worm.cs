@@ -216,7 +216,7 @@ namespace Battle.Objects {
             
             float effectTime = 0.75f + 0.75f * damage / (damage + 40f);
             Spawn(
-                new Label(damage.ToString(), _color, 1.2f, new LabelControllerFall(effectTime)),
+                new Label(damage.ToString(), _color, 1.2f, new LabelFallCtrl(effectTime)),
                 Position,
                 Danmaku.ShotgunBullet(XY.Up, 1f, 4, 8)
             );
@@ -232,7 +232,7 @@ namespace Battle.Objects {
             if (!showLabel) return;
             float effectTime = 0.75f + 0.75f * healing / (healing + 40f);
             Spawn(
-                new Label("+" + healing, _color, 1.2f, new LabelControllerRise(effectTime)),
+                new Label("+" + healing, _color, 1.2f, new LabelRiseCtrl(effectTime)),
                 Position,
                 Danmaku.ShotgunBullet(XY.Up, 0.75f, 8, 12)
             );
@@ -276,7 +276,7 @@ namespace Battle.Objects {
 
 
         public override void ReceiveBlastWave (XY impulse) {
-            Controller = new WormControllerFall();
+            Controller = new WormFallCtrl();
             base.ReceiveBlastWave(impulse);
         }
 

@@ -37,7 +37,7 @@ namespace Battle.Objects.Projectiles {
 
             AddCollider(new CircleCollider(XY.Zero, 5f));
             Explosive = new ClusterSpawner();
-            Controller = new StandardController();
+            Controller = new StandardCtrl();
             Timer = new DetonationTimer(new Time {Seconds = _seconds}, timerText);
             CollisionHandler = new CollisionHandler();
         }

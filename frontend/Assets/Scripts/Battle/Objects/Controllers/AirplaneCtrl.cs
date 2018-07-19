@@ -4,12 +4,7 @@ using DataTransfer.Data;
 
 namespace Battle.Objects.Controllers {
 
-    public class AirplaneController : Controller {
-
-
-        public AirplaneController () {
-        }
-
+    public class AirplaneCtrl : Controller {
 
         protected override void DoUpdate (TurnData td) {
             

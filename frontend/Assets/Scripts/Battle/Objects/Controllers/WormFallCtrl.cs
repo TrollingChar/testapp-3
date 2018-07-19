@@ -5,12 +5,12 @@ using DataTransfer.Data;
 
 namespace Battle.Objects.Controllers {
 
-    public class WormControllerFall : StandardController {
+    public class WormFallCtrl : StandardCtrl {
 
         private Time _control;
 
 
-        public WormControllerFall () {
+        public WormFallCtrl () {
             WaitFlag = true;
         }
         

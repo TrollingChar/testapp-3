@@ -4,7 +4,7 @@ using DataTransfer.Data;
 
 namespace Battle.Objects.Controllers {
 
-    public class WormJumpCtrl : StandardController {
+    public class WormJumpCtrl : StandardCtrl {
 
         private Worm _worm;
 

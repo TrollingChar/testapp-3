@@ -16,7 +16,7 @@ namespace Battle.Objects.Explosives {
             world.DestroyTerrain(xy, 100f);
             world.SendBlastWave(-20f, xy, 200f, 50f);
             foreach (var v in Danmaku.Cloud(150f, 30)) {
-                world.Spawn(new Smoke(RNG.Float() * 55f), xy + v, v.WithLength(-100f / SmokeController.InvLerpCoeff));
+                world.Spawn(new Smoke(RNG.Float() * 55f), xy + v, v.WithLength(-100f / SmokeCtrl.InvLerpCoeff));
             }
             world.Spawn(new Flash(100f), xy);
             

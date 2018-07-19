@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace Battle.Objects.Controllers {
 
-    public class LabelControllerFall : Controller {
+    public class LabelFallCtrl : Controller {
 
         private float _time;
 
 
-        public LabelControllerFall (float time = 1f) {
+        public LabelFallCtrl (float time = 1f) {
             _time = time;
         }
 

@@ -26,7 +26,7 @@ namespace Battle.Objects.Controllers {
                     Object.Controller = new WormJumpCtrl ();
                 }
             );
-//            ((Worm) Object).NewWormGO.PrepareJump ();
+            ((Worm) Object).NewWormGO.PrepareJump ();
         }
 
 

@@ -15,7 +15,7 @@ namespace Battle.Objects.Projectiles {
             UnityEngine.Object.Instantiate(The.BattleAssets.LimonkaCluster, GameObject.transform, false);
             AddCollider(new CircleCollider(XY.Zero, 2f));
             Explosive = new Explosive10Wide();
-            Controller = new StandardController {
+            Controller = new StandardCtrl {
 //                SmokeSize = 10
             };
             Timer = new DetonationTimer(new Time{Seconds = 20});

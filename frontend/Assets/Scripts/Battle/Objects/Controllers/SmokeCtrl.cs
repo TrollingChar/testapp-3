@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Battle.Objects.Controllers {
 
-    public class SmokeController : Controller {
+    public class SmokeCtrl : Controller {
 
         // если тут 0.5 то расстояние будет 2*v
         // если 0.1 то 10*v
@@ -16,7 +16,7 @@ namespace Battle.Objects.Controllers {
         private float _size;
 
 
-        public SmokeController (float size) {
+        public SmokeCtrl (float size) {
             _size = size;
         }
 

@@ -12,7 +12,7 @@ using Time = Core.Time;
 
 namespace Battle.Objects.Controllers {
 
-    public class LandmineControllerStuck : Controller {
+    public class LandmineStuckCtrl : Controller {
 
         private readonly World _world = The.World;
 
@@ -49,7 +49,7 @@ namespace Battle.Objects.Controllers {
                     goto found;
                 }
             }
-            Object.Controller = new LandmineController();
+            Object.Controller = new LandmineCtrl();
 //            Object.CollisionHandler = new CollisionHandler();
             found:
             // do nothing

@@ -27,14 +27,14 @@ namespace Battle.Objects.Projectiles {
             UnityEngine.Object.Instantiate(assets.Landmine, transform, false);
             AddCollider(new CircleCollider(XY.Zero, Radius));
             Explosive = new Explosive25();
-            Controller = new LandmineController();
+            Controller = new LandmineCtrl();
             Timer = new LandmineInitialTimer();
             CollisionHandler = new LandmineStickCH();
         }
 
 
         public override void ReceiveBlastWave (XY impulse) {
-            Controller = new LandmineController();
+            Controller = new LandmineCtrl();
             CollisionHandler = new CollisionHandler();
             base.ReceiveBlastWave(impulse);
         }

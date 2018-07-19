@@ -14,14 +14,14 @@ using Time = Core.Time;
 
 namespace Battle.Objects.Controllers {
 
-    public class LandmineController : StandardController {
+    public class LandmineCtrl : StandardCtrl {
 
 
         private readonly World _world = The.World;
         private Time _control;
 
 
-        public LandmineController () {
+        public LandmineCtrl () {
             WaitFlag = true;
         }
 

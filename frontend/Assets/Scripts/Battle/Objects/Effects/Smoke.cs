@@ -16,7 +16,7 @@ namespace Battle.Objects.Effects {
 
         public override void OnSpawn () {
             UnityEngine.Object.Instantiate(The.BattleAssets.Smoke, GameObject.transform, false);
-            Controller = new SmokeController(_size);
+            Controller = new SmokeCtrl(_size);
         }
 
     }

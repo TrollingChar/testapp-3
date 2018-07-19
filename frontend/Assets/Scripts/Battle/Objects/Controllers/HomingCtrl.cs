@@ -9,12 +9,12 @@ using Time = Core.Time;
 
 namespace Battle.Objects.Controllers {
 
-    public class HomingController : StandardController {
+    public class HomingCtrl : StandardCtrl {
 
         private readonly XY _target;
 
 
-        public HomingController (XY target) {
+        public HomingCtrl (XY target) {
             _target = target;
             GravityCoeff = 0;
             WaitFlag = true;
@@ -28,7 +28,7 @@ namespace Battle.Objects.Controllers {
             Object.Timer = new CallbackTimer(
                 new Time{Seconds = 5},
                 () => {
-                    Object.Controller = new StandardController {
+                    Object.Controller = new StandardCtrl {
                         MagnetCoeff = 1,
                         SmokeSize = 20,
                         OrientationFlag = true
