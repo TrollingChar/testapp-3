@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Battle.Arsenals;
 using Battle.Weapons;
 using Battle.Weapons.WeaponTypes.Airstrikes;

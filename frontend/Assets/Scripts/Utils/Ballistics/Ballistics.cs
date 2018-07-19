@@ -1,9 +1,4 @@
-﻿using System;
-using Geometry;
-using UnityEngine;
-
-
-namespace Utils.Ballistics {
+﻿namespace Utils.Ballistics {
 
     public static class Ballistics {
 

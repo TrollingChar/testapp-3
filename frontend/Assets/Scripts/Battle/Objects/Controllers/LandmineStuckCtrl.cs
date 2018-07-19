@@ -1,5 +1,4 @@
-﻿using Battle.Objects.CollisionHandlers;
-using Battle.Objects.Projectiles;
+﻿using Battle.Objects.Projectiles;
 using Battle.Objects.Timers;
 using Battle.Terrain;
 using Collisions;

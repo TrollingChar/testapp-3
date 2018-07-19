@@ -5,10 +5,6 @@ using Battle.Objects.Timers;
 using Collisions;
 using Core;
 using Geometry;
-using UnityEngine;
-using UnityEngine.UI;
-using BoxCollider = Collisions.BoxCollider;
-using Time = Core.Time;
 
 
 namespace Battle.Objects.Projectiles {

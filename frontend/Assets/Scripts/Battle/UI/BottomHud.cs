@@ -1,5 +1,4 @@
-﻿using System;
-using Battle.State;
+﻿using Battle.State;
 using Core;
 using Core.UI;
 using UnityEngine;

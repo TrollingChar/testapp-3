@@ -1,7 +1,6 @@
 ﻿using Battle.Weapons;
 using Core;
 using DataTransfer.Data;
-using UnityEngine;
 
 
 namespace Battle.State {

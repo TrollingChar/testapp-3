@@ -17,7 +17,6 @@ using DataTransfer.Data;
 using Geometry;
 using UnityEngine;
 using Utils.Danmaku;
-using Utils.Direction;
 using Utils.Messenger;
 using Utils.Random;
 using Collision = Collisions.Collision;

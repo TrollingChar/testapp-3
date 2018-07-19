@@ -1,5 +1,4 @@
-﻿using System;
-using DataTransfer.Data;
+﻿using DataTransfer.Data;
 
 
 namespace Battle.Objects.Controllers {

@@ -1,6 +1,4 @@
-﻿using Assets;
-using Attributes;
-using Battle.Weapons.Crosshairs;
+﻿using Attributes;
 using Core;
 using UnityEngine;
 

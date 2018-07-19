@@ -2,9 +2,6 @@
 using Battle.Objects.Projectiles;
 using Battle.Weapons.Crosshairs;
 using Core;
-using Geometry;
-using UnityEngine;
-using Utils.Random;
 
 
 namespace Battle.Weapons.WeaponTypes.Airstrikes {

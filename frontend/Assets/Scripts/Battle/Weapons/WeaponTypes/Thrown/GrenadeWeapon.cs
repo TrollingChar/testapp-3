@@ -4,7 +4,6 @@ using Battle.Objects.Projectiles;
 using Battle.Weapons.Crosshairs;
 using Core;
 using UnityEngine;
-using Time = Core.Time;
 
 
 namespace Battle.Weapons.WeaponTypes.Thrown {

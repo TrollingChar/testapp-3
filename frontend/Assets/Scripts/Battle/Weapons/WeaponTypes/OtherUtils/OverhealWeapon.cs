@@ -1,7 +1,5 @@
 ﻿using Attributes;
 using Core;
-using Geometry;
-using UnityEngine;
 
 
 namespace Battle.Weapons.WeaponTypes.OtherUtils {
