@@ -30,7 +30,7 @@ namespace Battle.Objects.Controllers {
             
             if (The.World.Time.Ticks % Time.TPS != 0) return;
 
-            if (_control.Seconds >= 0.9f) worm.Controller = new WormControllerJump();
+            if (_control.Seconds >= 0.9f) worm.Controller = new WormJumpCtrl();
             _control.Ticks = 0;
         }
 

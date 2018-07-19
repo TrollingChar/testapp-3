@@ -67,6 +67,8 @@
               <e p="PoisonGasCtrl.cs" t="Include" />
               <e p="SmokeCtrl.cs" t="Include" />
               <e p="StandardCtrl.cs" t="Include" />
+              <e p="WormAfterJumpCtrl.cs" t="Include" />
+              <e p="WormBeforeJumpCtrl.cs" t="Include" />
               <e p="WormFallCtrl.cs" t="Include" />
               <e p="WormFirePunchCtrl.cs" t="Include" />
               <e p="WormJumpCtrl.cs" t="Include" />

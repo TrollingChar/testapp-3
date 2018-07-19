@@ -113,8 +113,10 @@ namespace Battle.Objects.GameObjects {
 
         // червяк просто стоит и все
         public void Stand () {
+            UnlockHeadInternal ();
             _animator.SetTrigger ("HeadStill");
             _animator.SetTrigger ("TailStill");
+            _tailTransform.gameObject.SetActive (true);
         }
 
 
@@ -177,19 +179,25 @@ namespace Battle.Objects.GameObjects {
 
         // перед прыжком
         public void PrepareJump () {
+            LockHeadInternal ();
             _animator.SetTrigger ("BeforeJump");
+            _tailTransform.gameObject.SetActive (true);
         }
 
 
         // сам прыжок
         public void Jump () {
+            LockHeadInternal ();
             _animator.SetTrigger ("Jump");
+            _tailTransform.gameObject.SetActive (false);
         }
 
 
         // когда приземлился после прыжка
         public void Land () {
+            LockHeadInternal ();
             _animator.SetTrigger ("AfterJump");
+            _tailTransform.gameObject.SetActive (true);
         }
 
 

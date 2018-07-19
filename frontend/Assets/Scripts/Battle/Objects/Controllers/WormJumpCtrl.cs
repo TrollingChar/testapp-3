@@ -4,20 +4,25 @@ using DataTransfer.Data;
 
 namespace Battle.Objects.Controllers {
 
-    public class WormControllerJump : StandardController {
+    public class WormJumpCtrl : StandardController {
 
-        public WormControllerJump () {
+        private Worm _worm;
+
+
+        public WormJumpCtrl () {
             WaitFlag = true;
         }
         
         
         public override void OnAdd () {
+            _worm = (Worm) Object;
             Object.CollisionHandler = new WormJumpCH();
+            _worm.NewWormGO.Jump ();
         }
 
 
         protected override void DoUpdate (TurnData td) {
-            ((Worm) Object).Name = "jump";
+            _worm.Name = "jump";
             base.DoUpdate(td);
         }
 

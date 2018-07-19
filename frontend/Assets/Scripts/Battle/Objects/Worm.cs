@@ -160,7 +160,7 @@ namespace Battle.Objects {
             AddCollider(Tail = new CircleCollider(new XY(0f, BodyHeight * -0.5f), HeadRadius));
             AddCollider(new BoxCollider(-HeadRadius, HeadRadius, BodyHeight * -0.5f, BodyHeight * 0.5f));
 
-            Controller = new WormControllerJump();
+            Controller = new WormJumpCtrl();
             Explosive = new Explosive15();
         }
 

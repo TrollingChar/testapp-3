@@ -7,7 +7,7 @@ using Geometry;
 
 namespace Battle.Objects.Controllers {
 
-    public class WormControllerWalk : Controller {
+    public class WormWalkCtrl : Controller {
 
         private readonly ActiveWorm _activeWorm = The.ActiveWorm;
 
@@ -15,6 +15,7 @@ namespace Battle.Objects.Controllers {
         public override void OnAdd () {
             Object.Velocity = XY.Zero;
             Object.Immobile = true;
+            ((Worm) Object).NewWormGO.Stand ();
         }
 
 
@@ -35,7 +36,7 @@ namespace Battle.Objects.Controllers {
 
             // will fall?
             if (collision == null) {
-                Object.Controller = new WormControllerJump();
+                Object.Controller = new WormJumpCtrl();
                 return;
             }
 
@@ -62,7 +63,7 @@ namespace Battle.Objects.Controllers {
                     Object.Velocity =
                         new XY(0f, Worm.JumpSpeed).Rotated(worm.FacesRight ? -Worm.JumpAngle : Worm.JumpAngle);
                 }
-                Object.Controller = new WormControllerJump();
+                Object.Controller = new WormJumpCtrl();
                 return;
             }
 
@@ -93,7 +94,7 @@ namespace Battle.Objects.Controllers {
                     // move the worm
                     if (fall) {
                         Object.Position += new XY(xOffset, 0f);
-                        Object.Controller = new WormControllerJump();
+                        Object.Controller = new WormJumpCtrl();
                     }
                     else if (World.Precision < -yOffset) {
                         Object.Position += new XY(xOffset, Worm.MaxClimb + yOffset + World.Precision);
