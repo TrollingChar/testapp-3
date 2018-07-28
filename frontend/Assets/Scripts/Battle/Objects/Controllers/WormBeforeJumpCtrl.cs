@@ -20,7 +20,7 @@ namespace Battle.Objects.Controllers {
         public override void OnAdd () {
             Object.Immobile = true;
             Object.Timer = new CallbackTimer (
-                new Time {Seconds = 0.3f},
+                new Time {Seconds = 0.2f},
                 () => {
                     Object.Velocity   = _v;
                     Object.Controller = new WormJumpCtrl ();

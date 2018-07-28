@@ -67,16 +67,21 @@ namespace Battle.Objects.Controllers {
                 return;
             }
 
+            worm.NewWormGO.SetWalking (td.A ^ td.D);
+            
             float xOffset = 0f;
             if (td.A ^ td.D) {
                 // try to walk
                 xOffset = td.D ? Worm.WalkSpeed : -Worm.WalkSpeed;
-                var rayOrigin = worm.Tail.Center + new XY(0f, Worm.MaxClimb);
-                var rayDirection = new XY(
+                var rayOrigin = worm.Tail.Center + new XY (0f, Worm.MaxClimb);
+                var rayDirection = new XY (
                     xOffset + (td.D ? World.Precision : -World.Precision),
                     0f
                 );
-                if (new Ray(rayOrigin, new CircleCollider(XY.Zero, Worm.HeadRadius)){Object = Object}.Cast(rayDirection) != null) {
+                if (
+                    new Ray (rayOrigin, new CircleCollider (XY.Zero, Worm.HeadRadius)) {Object = Object}.
+                    Cast (rayDirection) != null
+                ) {
                     xOffset = 0f;
                 }
             }

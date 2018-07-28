@@ -14,14 +14,17 @@ namespace Battle.Objects.GameObjects {
         
         private bool _headLocked; // если true то червяк смотрит прямо перед собой
         private bool _headLockedInternal;
-        
-        // итак, чо ваще
-        // наверно стоит выделить состояния червяка
-        // 1 бездействие - червяк стоит и смотрит вперед
-        // 2 смотрит в какую-то точку
-        // 3 готовится к прыжку
-        // 4 прыгает - тут хвост типа не видно, а спрайт головы идет с хвостом
-        // 5 после прыжка
+
+
+        private void ResetAllTriggers () {
+            _animator.ResetTrigger ("HeadStill");
+            _animator.ResetTrigger ("HeadIdle");
+            _animator.ResetTrigger ("TailStill");
+            _animator.ResetTrigger ("TailWalk");
+            _animator.ResetTrigger ("BeforeJump");
+            _animator.ResetTrigger ("Jump");
+            _animator.ResetTrigger ("AfterJump");
+        }
 
 
         private void Awake () {
@@ -56,6 +59,7 @@ namespace Battle.Objects.GameObjects {
 
 
         public void SetWalking (bool value) {
+            ResetAllTriggers ();
             _animator.SetTrigger (value ? "TailWalk" : "TailStill");
         }
 
@@ -113,6 +117,7 @@ namespace Battle.Objects.GameObjects {
         // червяк просто стоит и все
         public void Stand () {
             UnlockHeadInternal ();
+            ResetAllTriggers ();
             _animator.SetTrigger ("HeadStill");
             _animator.SetTrigger ("TailStill");
             _tailTransform.gameObject.SetActive (true);
@@ -179,6 +184,7 @@ namespace Battle.Objects.GameObjects {
         // перед прыжком
         public void PrepareJump () {
             LockHeadInternal ();
+            ResetAllTriggers ();
             _animator.SetTrigger ("BeforeJump");
             _tailTransform.gameObject.SetActive (true);
         }
@@ -187,6 +193,7 @@ namespace Battle.Objects.GameObjects {
         // сам прыжок
         public void Jump () {
             LockHeadInternal ();
+            ResetAllTriggers ();
             _animator.SetTrigger ("Jump");
             _tailTransform.gameObject.SetActive (false);
         }
@@ -195,6 +202,7 @@ namespace Battle.Objects.GameObjects {
         // когда приземлился после прыжка
         public void Land () {
             LockHeadInternal ();
+            ResetAllTriggers ();
             _animator.SetTrigger ("AfterJump");
             _tailTransform.gameObject.SetActive (true);
         }

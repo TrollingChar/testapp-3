@@ -26,7 +26,7 @@ namespace Battle.Objects {
         public const float HeadRadius = 8f;
         public const float BodyHeight = 8f;
 
-        public const float WalkSpeed = 1f;
+        public const float WalkSpeed = 0.5f;
         public const float JumpSpeed = 6f;
         public const float HighJumpSpeed = 9f;
         public const float JumpAngle = 0.5f;

@@ -13,7 +13,7 @@ namespace Battle.Objects.Controllers {
             Object.Velocity = XY.Zero;
             Object.Immobile = true;
             Object.Timer = new CallbackTimer (
-                new Time {Seconds = 0.3f},
+                new Time {Seconds = 0.2f},
                 () => { Object.Controller = new WormWalkCtrl (); }
             );
             ((Worm) Object).NewWormGO.Land ();
