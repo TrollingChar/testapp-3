@@ -17,6 +17,7 @@ namespace Battle.Objects.Controllers {
 
         public override void OnAdd () {
             Object.CollisionHandler = new WormFallCollisionHandler();
+            ((Worm) Object).NewWormGO.Fall ();
         }
 
 

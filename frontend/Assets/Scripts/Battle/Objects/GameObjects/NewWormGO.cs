@@ -6,9 +6,8 @@ namespace Battle.Objects.GameObjects {
 
     public class NewWormGO : MonoBehaviour {
 
-        [SerializeField] private UnityEngine.Camera _camera;
-        [SerializeField] private Transform          _headTransform;
-        [SerializeField] private Transform          _tailTransform;
+        [SerializeField] private Transform _headTransform;
+        [SerializeField] private Transform _tailTransform;
         
         private Animator _animator;
         
@@ -16,6 +15,7 @@ namespace Battle.Objects.GameObjects {
         private bool _headLockedInternal;
 
 
+        // сюда надо добавлять новые триггеры!
         private void ResetAllTriggers () {
             _animator.ResetTrigger ("HeadStill");
             _animator.ResetTrigger ("HeadIdle");
@@ -23,6 +23,15 @@ namespace Battle.Objects.GameObjects {
             _animator.ResetTrigger ("TailWalk");
             _animator.ResetTrigger ("BeforeJump");
             _animator.ResetTrigger ("Jump");
+            _animator.ResetTrigger ("AfterJump");
+            _animator.ResetTrigger ("Fall");
+        }
+
+
+        private void ResetTailTriggers () {
+            _animator.ResetTrigger ("TailStill");
+            _animator.ResetTrigger ("TailWalk");
+            _animator.ResetTrigger ("BeforeJump");
             _animator.ResetTrigger ("AfterJump");
         }
 
@@ -38,28 +47,8 @@ namespace Battle.Objects.GameObjects {
         }
 
 
-//        private void Update () {
-//            if (Input.GetKeyDown (KeyCode.LeftArrow)) FaceLeft ();
-//            if (Input.GetKeyDown (KeyCode.RightArrow)) FaceRight ();
-
-//            if (Input.GetKeyDown (KeyCode.S)) Stand ();
-            
-//            if (Input.GetKeyDown (KeyCode.L)) LockHead ();
-//            if (Input.GetKeyDown (KeyCode.U)) UnlockHead ();
-            
-//            if (Input.GetKeyDown (KeyCode.P)) PrepareJump ();
-//            if (Input.GetKeyDown (KeyCode.LeftBracket)) Jump ();
-//            if (Input.GetKeyDown (KeyCode.RightBracket)) Land ();
-            
-//            SetWalking (Input.GetKey (KeyCode.W));
-
-//            Vector2 point = _camera.ScreenToWorldPoint (Input.mousePosition);
-//            SetHeadAngle (Mathf.Atan2 (point.y, point.x), false);
-//        }
-
-
         public void SetWalking (bool value) {
-            ResetAllTriggers ();
+            ResetTailTriggers ();
             _animator.SetTrigger (value ? "TailWalk" : "TailStill");
         }
 
@@ -122,10 +111,6 @@ namespace Battle.Objects.GameObjects {
             _animator.SetTrigger ("TailStill");
             _tailTransform.gameObject.SetActive (true);
         }
-
-
-        // анимация бездействия
-        public void Idle1 () {}
 
 
         public void LockHead () {
@@ -210,13 +195,25 @@ namespace Battle.Objects.GameObjects {
 
         // после удара или когда сносит взрывом
         public void Fall () {
-            throw new NotImplementedException();
+            LockHeadInternal ();
+            ResetAllTriggers ();
+            _animator.SetTrigger ("Fall");
+            _tailTransform.gameObject.SetActive (false);
         }
 
 
         // встать после падения
         public void Recover () {
             throw new NotImplementedException();
+        }
+
+
+        private void Update () {
+            if (Input.GetKeyDown (KeyCode.B)) {
+                Debug.Log ("b");
+                Fall ();
+                SetWalking (false);
+            }
         }
 
     }

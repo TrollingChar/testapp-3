@@ -48,6 +48,7 @@ namespace Battle.Objects.Controllers {
                     collision.Offset.Y += World.Precision;
                 }
                 Object.Position += collision.Offset;
+                worm.NewWormGO.SetWalking (false);
                 return;
             }
 
