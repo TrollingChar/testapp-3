@@ -1,4 +1,5 @@
-﻿using Battle.Objects.Timers;
+﻿using System;
+using Battle.Objects.Timers;
 using Collisions;
 using Core;
 using DataTransfer.Data;
@@ -7,24 +8,24 @@ using Geometry;
 
 namespace Battle.Objects.Controllers {
 
-    public class WormAfterJumpCtrl : Controller {
+    public class WormDeathCtrl : Controller {
 
         public override void OnAdd () {
             Object.Velocity = XY.Zero;
             Object.Immobile = true;
             Object.Timer = new CallbackTimer (
                 new Time {Seconds = 0.2f},
-                () => { Object.Controller = new WormWalkCtrl (); }
+                () => { throw new NotImplementedException ("какой контроллер?"); }
             );
-            ((Worm) Object).NewWormGO.Land ();
+            ((Worm) Object).NewWormGO.Recover();
         }
 
 
         protected override void DoUpdate (TurnData td) {
             var worm = (Worm) Object;
 
-            worm.Name = "after jump";
-
+            worm.Name = "death";
+/* стоит ли оставлять вот это все?
             var collision =
             new Ray (worm.Tail.Center, new CircleCollider (XY.Zero, Worm.HeadRadius)) {Object = Object}.Cast (
                 new XY (0f, -Worm.MaxDescend)
@@ -35,7 +36,7 @@ namespace Battle.Objects.Controllers {
                 Object.Controller = new WormJumpCtrl ();
                 return;
             }
-
+*/
             Wait ();
         }
 

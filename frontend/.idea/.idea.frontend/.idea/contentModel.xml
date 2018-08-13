@@ -69,9 +69,11 @@
               <e p="StandardCtrl.cs" t="Include" />
               <e p="WormAfterJumpCtrl.cs" t="Include" />
               <e p="WormBeforeJumpCtrl.cs" t="Include" />
+              <e p="WormDeathCtrl.cs" t="Include" />
               <e p="WormFallCtrl.cs" t="Include" />
               <e p="WormFirePunchCtrl.cs" t="Include" />
               <e p="WormJumpCtrl.cs" t="Include" />
+              <e p="WormRecoverCtrl.cs" t="Include" />
               <e p="WormWalkCtrl.cs" t="Include" />
             </e>
             <e p="Effector.cs" t="Include" />
