@@ -14,8 +14,8 @@ namespace Battle.Objects.Controllers {
             Object.Velocity = XY.Zero;
             Object.Immobile = true;
             Object.Timer = new CallbackTimer (
-                new Time {Seconds = 0.2f},
-                () => { throw new NotImplementedException ("какой контроллер?"); }
+                new Time {Seconds = 0.5f},
+                () => { Object.Controller = new WormAfterJumpCtrl (); }
             );
             ((Worm) Object).NewWormGO.Recover();
         }

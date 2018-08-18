@@ -204,16 +204,27 @@ namespace Battle.Objects.GameObjects {
 
         // встать после падения
         public void Recover () {
-            throw new NotImplementedException();
+            LockHeadInternal ();
+            ResetAllTriggers ();
+            _animator.SetTrigger ("Recover");
+            _tailTransform.gameObject.SetActive (false);
         }
 
 
-        private void Update () {
-            if (Input.GetKeyDown (KeyCode.B)) {
-                Debug.Log ("b");
-                Fall ();
-                SetWalking (false);
-            }
+//        private void Update () {
+//            if (Input.GetKeyDown (KeyCode.B)) {
+//                Debug.Log ("b");
+//                Fall ();
+//                SetWalking (false);
+//            }
+//        }
+
+
+        public void Die () {
+            LockHeadInternal ();
+            ResetAllTriggers ();
+            _animator.SetTrigger ("Death");
+            _tailTransform.gameObject.SetActive (false);
         }
 
     }

@@ -443,7 +443,10 @@ namespace Battle {
                 .OfType<Worm>()
                 .Where(w => w.HP <= 0)
                 .ToList();
-            foreach (var worm in worms) worm.Detonate();
+            foreach (var worm in worms) {
+//                worm.Detonate();
+                worm.Controller = new WormDeathCtrl ();
+            }
             return worms.Count > 0;
         }
 

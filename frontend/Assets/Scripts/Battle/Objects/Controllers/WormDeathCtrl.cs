@@ -13,11 +13,8 @@ namespace Battle.Objects.Controllers {
         public override void OnAdd () {
             Object.Velocity = XY.Zero;
             Object.Immobile = true;
-            Object.Timer = new CallbackTimer (
-                new Time {Seconds = 0.2f},
-                () => { throw new NotImplementedException ("какой контроллер?"); }
-            );
-            ((Worm) Object).NewWormGO.Recover();
+            Object.Timer = new DetonationTimer (new Time {Seconds = 0.5f});
+            ((Worm) Object).NewWormGO.Die();
         }
 
 
