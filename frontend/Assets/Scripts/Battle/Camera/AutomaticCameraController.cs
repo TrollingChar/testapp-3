@@ -5,7 +5,7 @@ namespace Battle.Camera {
 
     public class AutomaticCameraController : CameraController {
 
-        public AutomaticCameraController (CameraWrapper camera) : base(camera) {}
+//        public AutomaticCameraController (CameraWrapper camera) : base(camera) {}
 
 
         public override void Update () {

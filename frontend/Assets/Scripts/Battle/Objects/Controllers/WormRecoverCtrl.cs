@@ -14,7 +14,7 @@ namespace Battle.Objects.Controllers {
             Object.Velocity = XY.Zero;
             Object.Immobile = true;
             Object.Timer = new CallbackTimer (
-                new Time {Seconds = 0.5f},
+                new Time {Seconds = 1},
                 () => { Object.Controller = new WormAfterJumpCtrl (); }
             );
             ((Worm) Object).NewWormGO.Recover();

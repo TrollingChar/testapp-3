@@ -1,9 +1,10 @@
 ﻿using System;
 using Battle.Objects.Timers;
 using Collisions;
-using Core;
 using DataTransfer.Data;
 using Geometry;
+using UnityEngine;
+using Time = Core.Time;
 
 
 namespace Battle.Objects.Controllers {
@@ -13,7 +14,7 @@ namespace Battle.Objects.Controllers {
         public override void OnAdd () {
             Object.Velocity = XY.Zero;
             Object.Immobile = true;
-            Object.Timer = new DetonationTimer (new Time {Seconds = 0.5f});
+            Object.Timer = new DetonationTimer (new Time {Seconds = 1.5f});
             ((Worm) Object).NewWormGO.Die();
         }
 
@@ -39,7 +40,7 @@ namespace Battle.Objects.Controllers {
 
 
         public override void OnRemove () {
-            Object.Timer = null;
+            Debug.LogError ("can't remove that controller!");
         }
 
     }
