@@ -51,7 +51,7 @@ namespace Battle.Weapons.WeaponTypes.Firearms {
 
 
         private void SetCamera () {
-            The.Camera.Controller = new ObjectBoundCameraController (Object, 1f);
+            The.Camera.Controller = new ObjectBoundCameraController (Object, 0.5f);
         }
 
 
