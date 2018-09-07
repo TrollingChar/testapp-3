@@ -213,6 +213,9 @@ namespace Battle.Objects {
         }
 
 
+        public virtual bool PushableFor (Object o) { return true; }
+
+
         public void OnCollision (Collision c) {
             if (CollisionHandler != null) CollisionHandler.OnCollision(c);
         }

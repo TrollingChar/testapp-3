@@ -27,7 +27,7 @@ using Time = Core.Time;
 
 namespace Battle {
 
-    public class World {
+    public partial class World {
 
         [Obsolete] public const float Precision = 0.1f;
         public readonly LinkedList<Object> Objects;
@@ -119,111 +119,9 @@ namespace Battle {
         }
 
 
-        [SuppressMessage("ReSharper", "InconsistentNaming")]
-        private void PhysicsTick (TurnData td) {
-            foreach (var o in Objects) {
-                o.Movement = 1;
-                o.Excluded.Clear();
-                o.ExcludeObjects();
-            }
-
-            for (int i = 0, iter = 5; i < iter; i++)
-            for (var node = Objects.First; node != null; node = node.Next) {
-                var o = node.Value;
-
-                // слишком низкая скорость
-                if (o.Velocity.Length * o.Movement <= Settings.PhysicsPrecision) continue;
-
-                var collision = o.NextCollision(o.Movement);
-                if (collision != null) collision.ImprovePrecision();
-                
-                var o2 = collision == null || collision.Collider2 == null ? null : collision.Collider2.Object;
-
-                if (collision == null) {
-                    // нет коллизии
-                    o.Position += (o.Movement * o.Velocity).WithLengthReduced(Settings.PhysicsPrecision);
-                    o.Movement = 0;
-                }
-                else if (collision.IsLandCollision) {
-                    o.Position += collision.Offset.WithLengthReduced(Settings.PhysicsPrecision);
-                    o.Movement -= Mathf.Sqrt(collision.Offset.SqrLength / o.Velocity.SqrLength);
-                    var collider1 = collision.Collider1;
-                    o.Velocity = Geom.Bounce(
-                        o.Velocity,
-                        collision.Normal,
-                        Mathf.Sqrt(collider1.TangentialBounce * Land.TangentialBounce),
-                        Mathf.Sqrt(collider1.NormalBounce * Land.NormalBounce)
-                    );
-                    o.OnCollision(collision);
-                }
-                else if (i >= iter - 2 || o.SuperMass < o2.SuperMass) {
-                    // если это последняя или предпоследняя итерация, все объекты считаются неподвижными как земля
-                    // или если порядок массы первого объекта слишком мал, то тогда то же самое
-                    o.Position += collision.Offset.WithLengthReduced(Settings.PhysicsPrecision);
-                    o.Movement -= Mathf.Sqrt(collision.Offset.SqrLength / o.Velocity.SqrLength);
-
-                    var invCollision = -collision;
-
-                    if (o2.WillCauseCollision(invCollision)) {
-                        var c1 = collision.Collider1;
-                        var c2 = collision.Collider2;
-                        o.Velocity = Geom.Bounce(
-                            o.Velocity,
-                            collision.Normal,
-                            Mathf.Sqrt(c1.TangentialBounce * c2.TangentialBounce),
-                            Mathf.Sqrt(c1.NormalBounce * c2.NormalBounce)
-                        );
-                    }
-
-                    o.OnCollision(collision);
-                    o2.OnCollision(invCollision);
-                }
-                else {
-                    // обычное столкновение объектов с одинаковым порядком массы
-                    o.Position += collision.Offset.WithLengthReduced(Settings.PhysicsPrecision);
-                    o.Movement -= Mathf.Sqrt(collision.Offset.SqrLength / o.Velocity.SqrLength);
-
-                    // мешает ли второй объект движению первого, если нет то пусть сначала сдвинется он
-                    if (XY.Dot(collision.Normal, o2.Velocity) > 0 ||
-                        o2.Movement * o2.Velocity.Length <= Settings.PhysicsPrecision
-                    ) {
-                        var invCollision = -collision;
-                        bool owcc = o.WillCauseCollision(collision);
-                        bool o2wcc = o2.WillCauseCollision(invCollision);
-
-                        if (owcc || o2wcc) {
-                            var velocity
-                                = (o.Mass * o.Velocity + o2.Mass * o2.Velocity)
-                                / (o.Mass + o2.Mass);
-                            var v1 = o.Velocity - velocity;
-                            var v2 = o2.Velocity - velocity;
-                            var c1 = collision.Collider1;
-                            var c2 = collision.Collider2;
-                            float tangBounce = Mathf.Sqrt(c1.TangentialBounce * c2.TangentialBounce);
-                            float normBounce = Mathf.Sqrt(c1.NormalBounce * c2.NormalBounce);
-                            if (o2wcc) o.Velocity = velocity + Geom.Bounce(v1, collision.Normal, tangBounce, normBounce);
-                            if (owcc) o2.Velocity = velocity + Geom.Bounce(v2, collision.Normal, tangBounce, normBounce);
-                        }
-
-                        o.OnCollision(collision);
-                        o2.OnCollision(invCollision);
-                    }
-                }
-
-                if (o.WillSink && o.Position.Y < WaterLevel) o.Despawn();
-            }
-
-            // уменьшить скорость объектов, не потративших очки движения, так как они застряли
-            foreach (var o in Objects) {
-                o.UpdateGameObjectPosition();
-                o.Velocity *= 1 - o.Movement;
-            }
-        }
-
 
         public Collision CastRay (XY origin, XY direction, float width = 0, float length = 10000) {
-            var point = new CircleCollider(origin, width);
-            point.Object = new NullObject();
+            var point = new CircleCollider (origin, width) {Object = new NullObject ()};
 
             direction.Length = length; // todo: handle infinite length of the ray
 
@@ -242,8 +140,7 @@ namespace Battle {
 
 
         public List<Collision> CastUltraRay (XY origin, XY direction, float width = 0, float length = 10000) {
-            var point = new CircleCollider(origin, width);
-            point.Object = new NullObject();
+            var point = new CircleCollider (origin, width) {Object = new NullObject ()};
 
             direction.Length = length; // todo: handle infinite length of the ray
 
@@ -282,7 +179,7 @@ namespace Battle {
         }
 
 
-        public List<XY> GetSpawnPoints () {
+        private List<XY> GetSpawnPoints () {
             var result = new List<XY>();
             var rayDirection = new XY(0, Worm.HeadRadius - LandTile.Size * 1.5f);
             for (int x = 0; x < Land.Width / LandTile.Size; x++)

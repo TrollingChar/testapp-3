@@ -1,5 +1,7 @@
 ﻿using System;
+using Core;
 using Geometry;
+using UnityEngine;
 
 
 namespace Collisions {
@@ -102,6 +104,78 @@ namespace Collisions {
                 "  [ primitive 1 = " + Primitive1 + " ]\n" +
                 "  [ primitive 2 = " + Primitive2 + " ]\n" +
                 "]";
+        }
+
+
+        public void DoMove () {
+            var o = Collider1.Object;
+            o.Position += Offset.WithLengthReduced (Settings.PhysicsPrecision);
+            o.Movement -= Mathf.Sqrt (Offset.SqrLength / o.Velocity.SqrLength);
+        }
+
+
+        public void DoBounceForce () {
+            var o = Collider1.Object;
+            o.Velocity = Geom.Bounce (
+                o.Velocity,
+                Normal,
+                Mathf.Sqrt (Collider1.TangentialBounce * Collider2.TangentialBounce),
+                Mathf.Sqrt (Collider1.NormalBounce     * Collider2.NormalBounce)
+            );
+            o.OnCollision (this);
+            Collider2.Object.OnCollision (-this);
+        }
+
+
+        public void DoBounce () {
+            var o1 = Collider1.Object;
+            var o2 = Collider2.Object;
+
+            if ( // movement is obscured
+                XY.Dot (Normal, o2.Velocity) > 0 ||
+                o2.Movement * o2.Velocity.Length <= Settings.PhysicsPrecision
+            ) {
+                if (o1.PushableFor (o2)) {
+                    if (o2.PushableFor (o1)) {
+                        var velocity
+                            = (o1.Mass * o1.Velocity + o2.Mass * o2.Velocity)
+                            / (o1.Mass + o2.Mass);
+                        var   v1              = o1.Velocity - velocity;
+                        var   v2              = o2.Velocity - velocity;
+                        float tangBounce      = Mathf.Sqrt(Collider1.TangentialBounce * Collider2.TangentialBounce);
+                        float normBounce      = Mathf.Sqrt(Collider1.NormalBounce     * Collider2.NormalBounce);
+                        o1.Velocity = velocity + Geom.Bounce(v1, Normal, tangBounce, normBounce);
+                        o2.Velocity = velocity + Geom.Bounce(v2, Normal, tangBounce, normBounce);
+                    }
+                    else { // o2 immobile
+                        float tangBounce = Mathf.Sqrt(Collider1.TangentialBounce * Collider2.TangentialBounce);
+                        float normBounce = Mathf.Sqrt(Collider1.NormalBounce     * Collider2.NormalBounce);
+                        o1.Velocity = o2.Velocity + Geom.Bounce (
+                            o1.Velocity - o2.Velocity,
+                            Normal,
+                            tangBounce,
+                            normBounce
+                        );
+                    }
+                }
+                else {
+                    if (o2.PushableFor (o1)) { // o1 immovable
+                        float tangBounce      = Mathf.Sqrt(Collider1.TangentialBounce * Collider2.TangentialBounce);
+                        float normBounce      = Mathf.Sqrt(Collider1.NormalBounce     * Collider2.NormalBounce);
+                        o2.Velocity = o1.Velocity + Geom.Bounce (
+                            o2.Velocity - o1.Velocity,
+                            Normal,
+                            tangBounce,
+                            normBounce
+                        );
+                    }
+                    else {
+                        // вот хз на самом деле что делать
+                    }
+                }
+            }
+            o1.OnCollision (this);
+            o2.OnCollision (-this);
         }
 
     }
