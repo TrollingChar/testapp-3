@@ -25,7 +25,6 @@ namespace Battle.Objects.Controllers {
             base.DoUpdate(td);
             var worm = (Worm) Object;
             worm.Name = "fall";
-//            Wait();
 
             if (Object.Velocity.SqrLength < 1) _control.Ticks++;
             
@@ -33,6 +32,11 @@ namespace Battle.Objects.Controllers {
 
             if (_control.Seconds >= 0.9f) worm.Controller = new WormRecoverCtrl();
             _control.Ticks = 0;
+        }
+
+
+        public override void OnRemove () {
+            Object.CollisionHandler = null;
         }
 
     }

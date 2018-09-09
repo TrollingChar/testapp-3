@@ -6,14 +6,6 @@ namespace Battle.Objects.CollisionHandlers {
 
     public class WormFallCollisionHandler : CollisionHandler {
 
-        public override bool WillCauseCollision (Collision c) {
-            return Object.Velocity.SqrLength < 1f || !(
-                c.Collider2 != null
-                && c.Collider2.Object.Controller is WormWalkCtrl
-            );
-        }
-
-
         public override void OnCollision (Collision c) {
             if (c.Collider2 == null) return;
             var o = c.Collider2.Object;

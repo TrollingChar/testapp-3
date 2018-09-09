@@ -21,8 +21,6 @@ namespace Battle.Objects {
 
     public class Worm : Object {
 
-//        [Inject] private AssetContainer _assets;
-
         public const float HeadRadius = 8f;
         public const float BodyHeight = 8f;
 
