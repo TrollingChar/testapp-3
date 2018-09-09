@@ -7,9 +7,9 @@ namespace Battle.Camera {
     public class CameraWrapper : MonoBehaviour {
 
         private int _size;
+        private CameraController _controller;
 
         [HideInInspector] public UnityEngine.Camera Camera;
-        [HideInInspector] public CameraController Controller;
         [HideInInspector] public Vector3 Target;
 
 
@@ -18,11 +18,28 @@ namespace Battle.Camera {
         }
 
 
+        public CameraController Controller {
+            get {
+                return _controller;
+            }
+            set {
+                if (_controller != null) {
+                    _controller.OnRemove ();
+                }
+                if (value != null) {
+                    value.Camera = this;
+                    value.OnAdd ();
+                }
+                _controller = value;
+            }
+        }
+
+
         private void Awake () {
             Camera = gameObject.GetComponent<UnityEngine.Camera>();
             Camera.orthographicSize = (_size = Screen.height) * 0.5f;
             Target = Camera.transform.position;
-            Controller = new CameraController(this);
+            Controller = new CameraController();
         }
 
 

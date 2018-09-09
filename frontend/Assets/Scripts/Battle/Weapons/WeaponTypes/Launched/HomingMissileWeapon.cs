@@ -1,10 +1,10 @@
 ﻿using Attributes;
+using Battle.Objects;
 using Battle.Objects.Projectiles;
 using Battle.Weapons.Crosshairs;
 using Core;
 using Geometry;
 using UnityEngine;
-using Time = Core.Time;
 
 
 namespace Battle.Weapons.WeaponTypes.Launched {
@@ -63,6 +63,7 @@ namespace Battle.Weapons.WeaponTypes.Launched {
             );
             
             ResetTarget();
+            ((Worm) Object).NewWormGO.UnlockHead ();
         }
 
 
@@ -88,12 +89,14 @@ namespace Battle.Weapons.WeaponTypes.Launched {
             }
             UpdateLineCrosshair(_lineCH);
             UpdateAimedWeapon(_sprite);
+            ((Worm) Object).LookAt (TurnData.XY);
         }
 
 
         protected override void OnUnequip () {
             // прицел не входит в его gameobject, удалять отдельно
             UnityEngine.Object.Destroy(_pointCH);
+            ((Worm) Object).NewWormGO.LockHead ();
         }
 
     }

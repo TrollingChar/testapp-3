@@ -17,7 +17,6 @@ using DataTransfer.Data;
 using Geometry;
 using UnityEngine;
 using Utils.Danmaku;
-using Utils.Direction;
 using Utils.Messenger;
 using Utils.Random;
 using Collision = Collisions.Collision;
@@ -402,7 +401,7 @@ namespace Battle {
 
 
         public void MakeSmoke (XY center, float radius, float size, int count, float flashSize) {
-            foreach (var v in Danmaku.Cloud(radius / SmokeController.InvLerpCoeff, count)) {
+            foreach (var v in Danmaku.Cloud(radius / SmokeCtrl.InvLerpCoeff, count)) {
                 Spawn(new Smoke(RNG.Float() * (25f + size)), center, v);
             }
             Spawn(new Flash(flashSize), center);
@@ -410,7 +409,7 @@ namespace Battle {
 
 
         public void MakePoisonGas (int damage, XY center, float radius) {
-            foreach (var v in Danmaku.Cloud(radius / SmokeController.InvLerpCoeff, (int) (radius * 0.5f))) {
+            foreach (var v in Danmaku.Cloud(radius / SmokeCtrl.InvLerpCoeff, (int) (radius * 0.5f))) {
                 Spawn(new PoisonGas(RNG.Float() * damage), center, v);
             }
         }
@@ -444,7 +443,10 @@ namespace Battle {
                 .OfType<Worm>()
                 .Where(w => w.HP <= 0)
                 .ToList();
-            foreach (var worm in worms) worm.Detonate();
+            foreach (var worm in worms) {
+//                worm.Detonate();
+                worm.Controller = new WormDeathCtrl ();
+            }
             return worms.Count > 0;
         }
 

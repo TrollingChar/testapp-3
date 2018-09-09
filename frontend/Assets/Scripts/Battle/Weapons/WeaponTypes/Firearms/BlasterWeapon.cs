@@ -1,9 +1,9 @@
 ﻿using Attributes;
-using Battle.Objects.Effects;
+using Battle.Camera;
+using Battle.Objects;
 using Battle.Objects.Explosives;
 using Battle.Weapons.Crosshairs;
 using Core;
-using Geometry;
 using UnityEngine;
 
 
@@ -43,6 +43,22 @@ namespace Battle.Weapons.WeaponTypes.Firearms {
                 GameObject.transform,
                 false
             );
+            
+            ((Worm) Object).NewWormGO.UnlockHead ();
+            
+            SetCamera ();
+        }
+
+
+        private void SetCamera () {
+            The.Camera.Controller = new ObjectBoundCameraController (Object, 0.5f);
+        }
+
+
+        protected override void OnUnequip () {
+            ((Worm) Object).NewWormGO.LockHead ();
+            
+            The.Camera.Controller = new CameraController ();
         }
 
 
@@ -64,6 +80,8 @@ namespace Battle.Weapons.WeaponTypes.Firearms {
         protected override void OnUpdate () {
             UpdateLineCrosshair(_crosshair);
             UpdateAimedWeapon(_sprite);
+            if (Input.anyKeyDown) SetCamera ();
+            ((Worm) Object).LookAt (TurnData.XY);
         }
 
     }

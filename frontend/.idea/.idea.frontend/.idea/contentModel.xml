@@ -1,398 +1,395 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\Users\Dima\.Rider2017.2\system\resharper-host\local\Transient\ReSharperHost\v10\SolutionCaches\_frontend.115213644.00" t="ExcludeRecursive" />
-    <e p="C:\Worms3\frontend" t="IncludeRecursive">
-      <e p="Assembly-CSharp-Editor-firstpass.csproj" t="IncludeRecursive" />
+    <e p="$USER_HOME$/.Rider2018.1/system/resharper-host/local/Transient/ReSharperHost/v12/SolutionCaches/_frontend.-121886153.00" t="ExcludeRecursive" />
+    <e p="$PROJECT_DIR$" t="IncludeRecursive">
       <e p="Assembly-CSharp-firstpass.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
-      <e p="Assets" t="Include">
-        <e p="Bundles" t="Include">
-          <e p="War" t="Include">
-            <e p="Water" t="Include">
-              <e p="WaterShader.shader" t="Include" />
-            </e>
-          </e>
-        </e>
-        <e p="Plugins" t="Include">
-          <e p="Editor" t="Include">
-            <e p="JetBrains" t="Include">
-              <e p="Unity3DRider.cs" t="Include" />
-            </e>
-          </e>
-          <e p="WebSocket.cs" t="Include" />
-        </e>
-        <e p="Scripts" t="Include">
-          <e p="Assets" t="Include">
-            <e p="BattleAssets.cs" t="Include" />
-            <e p="WeaponIcons.cs" t="Include" />
-          </e>
-          <e p="Attributes" t="Include">
-            <e p="DTOAttribute.cs" t="Include" />
-            <e p="IdAttribute.cs" t="Include" />
-            <e p="WeaponAttribute.cs" t="Include" />
-          </e>
-          <e p="Battle" t="Include">
-            <e p="Arsenals" t="Include">
-              <e p="AlphaArsenal.cs" t="Include" />
-              <e p="Arsenal.cs" t="Include" />
-              <e p="DarkSideArsenal.cs" t="Include" />
-              <e p="FullArsenal.cs" t="Include" />
-              <e p="LightSideArsenal.cs" t="Include" />
-              <e p="StandardArsenal.cs" t="Include" />
-            </e>
-            <e p="Balance.cs" t="Include" />
-            <e p="BattleScene.cs" t="Include" />
-            <e p="Camera" t="Include">
-              <e p="AutomaticCameraController.cs" t="Include" />
-              <e p="CameraController.cs" t="Include" />
-              <e p="CameraWrapper.cs" t="Include" />
-              <e p="MouseBasedCameraController.cs" t="Include" />
-              <e p="ObjectBoundCameraController.cs" t="Include" />
-            </e>
-            <e p="Objects" t="Include">
-              <e p="CollisionHandlers" t="Include">
-                <e p="CollisionHandler.cs" t="Include" />
-                <e p="CrateCH.cs" t="Include" />
-                <e p="DetonatorCH.cs" t="Include" />
-                <e p="DynamiteCH.cs" t="Include" />
-                <e p="LandmineStickCH.cs" t="Include" />
-                <e p="WormFallCH.cs" t="Include" />
-                <e p="WormJumpCH.cs" t="Include" />
-              </e>
-              <e p="Component.cs" t="Include" />
-              <e p="Controllers" t="Include">
-                <e p="AirplaneController.cs" t="Include" />
-                <e p="Controller.cs" t="Include" />
-                <e p="CrateControllerFall.cs" t="Include" />
-                <e p="CrateControllerStand.cs" t="Include" />
-                <e p="HomingController.cs" t="Include" />
-                <e p="LabelControllerFall.cs" t="Include" />
-                <e p="LabelControllerRise.cs" t="Include" />
-                <e p="LandmineController.cs" t="Include" />
-                <e p="LandmineControllerStuck.cs" t="Include" />
-                <e p="PoisonGasController.cs" t="Include" />
-                <e p="SmokeController.cs" t="Include" />
-                <e p="StandardController.cs" t="Include" />
-                <e p="WormControllerFall.cs" t="Include" />
-                <e p="WormControllerFirePunch.cs" t="Include" />
-                <e p="WormControllerJump.cs" t="Include" />
-                <e p="WormControllerWalk.cs" t="Include" />
-              </e>
-              <e p="Effector.cs" t="Include" />
-              <e p="Effects" t="Include">
-                <e p="Effect.cs" t="Include" />
-                <e p="Flash.cs" t="Include" />
-                <e p="Label.cs" t="Include" />
-                <e p="Smoke.cs" t="Include" />
-              </e>
-              <e p="Explosives" t="Include">
-                <e p="ClusterSpawner.cs" t="Include" />
-                <e p="Explosive.cs" t="Include" />
-                <e p="Explosive10.cs" t="Include" />
-                <e p="Explosive10Wide.cs" t="Include" />
-                <e p="Explosive15.cs" t="Include" />
-                <e p="Explosive25.cs" t="Include" />
-                <e p="Explosive40.cs" t="Include" />
-                <e p="ExplosivePoison.cs" t="Include" />
-                <e p="Implosive40.cs" t="Include" />
-                <e p="MeteorExplosive.cs" t="Include" />
-              </e>
-              <e p="GameObjects" t="Include">
-                <e p="WormGO.cs" t="Include" />
-                <e p="WormsNames.cs" t="Include" />
-              </e>
-              <e p="MeleeTester.cs" t="Include" />
-              <e p="NullObject.cs" t="Include" />
-              <e p="Object.cs" t="Include" />
-              <e p="Other" t="Include">
-                <e p="Airplane.cs" t="Include" />
-                <e p="Crates" t="Include">
-                  <e p="Crate.cs" t="Include" />
-                  <e p="CrateFactory.cs" t="Include" />
-                  <e p="HealthCrate.cs" t="Include" />
-                  <e p="WeaponCrate.cs" t="Include" />
-                </e>
-              </e>
-              <e p="Projectiles" t="Include">
-                <e p="BazookaShell.cs" t="Include" />
-                <e p="Bomb.cs" t="Include" />
-                <e p="Dynamite.cs" t="Include" />
-                <e p="GasGrenade.cs" t="Include" />
-                <e p="Grenade.cs" t="Include" />
-                <e p="HomingMissile.cs" t="Include" />
-                <e p="Landmine.cs" t="Include" />
-                <e p="Limonka.cs" t="Include" />
-                <e p="LimonkaCluster.cs" t="Include" />
-                <e p="Meteor.cs" t="Include" />
-                <e p="MultiLauncherShell.cs" t="Include" />
-                <e p="PhantomGrenade.cs" t="Include" />
-                <e p="PlasmaBall.cs" t="Include" />
-                <e p="PoisonGas.cs" t="Include" />
-                <e p="VacuumBomb.cs" t="Include" />
-              </e>
-              <e p="Ray.cs" t="Include" />
-              <e p="Timers" t="Include">
-                <e p="AirstrikeTimer.cs" t="Include" />
-                <e p="ArmageddonTimer.cs" t="Include" />
-                <e p="BulletHellTimer.cs" t="Include" />
-                <e p="CallbackTimer.cs" t="Include" />
-                <e p="DetonationTimer.cs" t="Include" />
-                <e p="LandmineDetonationTimer.cs" t="Include" />
-                <e p="LandmineInitialTimer.cs" t="Include" />
-                <e p="Timer.cs" t="Include" />
-              </e>
-              <e p="Worm.cs" t="Include" />
-            </e>
-            <e p="State" t="Include">
-              <e p="ActiveWorm.cs" t="Include" />
-              <e p="GameState.cs" t="Include" />
-              <e p="GameStateController.cs" t="Include" />
-              <e p="TimerWrapper.cs" t="Include" />
-              <e p="WeaponWrapper.cs" t="Include" />
-            </e>
-            <e p="Teams" t="Include">
-              <e p="Team.cs" t="Include" />
-              <e p="TeamColors.cs" t="Include" />
-              <e p="TeamManager.cs" t="Include" />
-            </e>
-            <e p="Terrain" t="Include">
-              <e p="Generation" t="Include">
-                <e p="EstimatedLandGen.cs" t="Include" />
-                <e p="LandGen.cs" t="Include" />
-              </e>
-              <e p="Land.cs" t="Include" />
-              <e p="LandCollisions.cs" t="Include" />
-              <e p="LandRenderer.cs" t="Include" />
-              <e p="LandRendererTile.cs" t="Include" />
-              <e p="LandTile.cs" t="Include" />
-              <e p="LandTiles.cs" t="Include" />
-              <e p="Tile.cs" t="Include" />
-              <e p="Tiles.cs" t="Include" />
-            </e>
-            <e p="UI" t="Include">
-              <e p="ArsenalPanel.cs" t="Include" />
-              <e p="BottomHud.cs" t="Include" />
-              <e p="EndGameMenu.cs" t="Include" />
-              <e p="HintArea.cs" t="Include" />
-            </e>
-            <e p="Water" t="Include">
-              <e p="WaterGO.cs" t="Include" />
-            </e>
-            <e p="Weapons" t="Include">
-              <e p="AbstractAirstrikeWeapon.cs" t="Include" />
-              <e p="Crosshairs" t="Include">
-                <e p="LineCrosshair.cs" t="Include" />
-                <e p="PointCrosshair.cs" t="Include" />
-              </e>
-              <e p="StandardWeapon.cs" t="Include" />
-              <e p="Weapon.cs" t="Include" />
-              <e p="WeaponDescriptor.cs" t="Include" />
-              <e p="WeaponId.cs" t="Include" />
-              <e p="WeaponTypes" t="Include">
-                <e p="Airstrikes" t="Include">
-                  <e p="AirstrikeWeapon.cs" t="Include" />
-                  <e p="DropFrogWeapon.cs" t="Include" />
-                  <e p="DropMoleWeapon.cs" t="Include" />
-                  <e p="MineStrikeWeapon.cs" t="Include" />
-                  <e p="NapalmWeapon.cs" t="Include" />
-                  <e p="NukeWeapon.cs" t="Include" />
-                  <e p="VacuumBombWeapon.cs" t="Include" />
-                </e>
-                <e p="CloseCombat" t="Include">
-                  <e p="AxeWeapon.cs" t="Include" />
-                  <e p="ExplosivePunchWeapon.cs" t="Include" />
-                  <e p="FingerWeapon.cs" t="Include" />
-                  <e p="FirePunchWeapon.cs" t="Include" />
-                  <e p="FlamerthrowerWeapon.cs" t="Include" />
-                  <e p="HammerWeapon.cs" t="Include" />
-                  <e p="HarpoonWeapon.cs" t="Include" />
-                </e>
-                <e p="Firearms" t="Include">
-                  <e p="BlasterWeapon.cs" t="Include" />
-                  <e p="GsomRaycasterWeapon.cs" t="Include" />
-                  <e p="HeatPistolWeapon.cs" t="Include" />
-                  <e p="MachineGunWeapon.cs" t="Include" />
-                  <e p="PistolWeapon.cs" t="Include" />
-                  <e p="PoisonArrowWeapon.cs" t="Include" />
-                  <e p="UltraRifleWeapon.cs" t="Include" />
-                </e>
-                <e p="Heavy" t="Include">
-                  <e p="DynamiteWeapon.cs" t="Include" />
-                  <e p="FrogWeapon.cs" t="Include" />
-                  <e p="LandmineWeapon.cs" t="Include" />
-                  <e p="MoleWeapon.cs" t="Include" />
-                  <e p="PoisonContainerWeapon.cs" t="Include" />
-                  <e p="SuperfrogWeapon.cs" t="Include" />
-                  <e p="TurretWeapon.cs" t="Include" />
-                </e>
-                <e p="Launched" t="Include">
-                  <e p="BazookaWeapon.cs" t="Include" />
-                  <e p="BirdLauncherWeapon.cs" t="Include" />
-                  <e p="CryogunWeapon.cs" t="Include" />
-                  <e p="HomingMissileWeapon.cs" t="Include" />
-                  <e p="MinegunWeapon.cs" t="Include" />
-                  <e p="MultiLauncherWeapon.cs" t="Include" />
-                  <e p="PlasmagunWeapon.cs" t="Include" />
-                </e>
-                <e p="MovementUtils" t="Include">
-                  <e p="JetpackWeapon.cs" t="Include" />
-                  <e p="JumperWeapon.cs" t="Include" />
-                  <e p="MassTeleportWeapon.cs" t="Include" />
-                  <e p="ParachuteWeapon.cs" t="Include" />
-                  <e p="RopeWeapon.cs" t="Include" />
-                  <e p="TeleportWeapon.cs" t="Include" />
-                  <e p="WormSelectWeapon.cs" t="Include" />
-                </e>
-                <e p="OtherUtils" t="Include">
-                  <e p="DrillWeapon.cs" t="Include" />
-                  <e p="GirderWeapon.cs" t="Include" />
-                  <e p="MagnetWeapon.cs" t="Include" />
-                  <e p="MedikitWeapon.cs" t="Include" />
-                  <e p="OverhealWeapon.cs" t="Include" />
-                  <e p="SkipTurnWeapon.cs" t="Include" />
-                  <e p="SurrenderWeapon.cs" t="Include" />
-                </e>
-                <e p="Spells" t="Include">
-                  <e p="ArmageddonWeapon.cs" t="Include" />
-                  <e p="BulletHellWeapon.cs" t="Include" />
-                  <e p="EarthquakeWeapon.cs" t="Include" />
-                  <e p="ErosionWeapon.cs" t="Include" />
-                  <e p="FloodWeapon.cs" t="Include" />
-                  <e p="MindControlWeapon.cs" t="Include" />
-                  <e p="PoisonCloudWeapon.cs" t="Include" />
-                </e>
-                <e p="Thrown" t="Include">
-                  <e p="ControlledGrenadeWeapon.cs" t="Include" />
-                  <e p="GasGrenadeWeapon.cs" t="Include" />
-                  <e p="GrenadeWeapon.cs" t="Include" />
-                  <e p="HolyGrenadeWeapon.cs" t="Include" />
-                  <e p="LimonkaWeapon.cs" t="Include" />
-                  <e p="MolotovWeapon.cs" t="Include" />
-                  <e p="PhantomGrenadeWeapon.cs" t="Include" />
-                </e>
-              </e>
-            </e>
-            <e p="World.cs" t="Include" />
-          </e>
-          <e p="Collisions" t="Include">
-            <e p="AABB.cs" t="Include" />
-            <e p="BoxCollider.cs" t="Include" />
-            <e p="CircleCollider.cs" t="Include" />
-            <e p="Collider.cs" t="Include" />
-            <e p="Collision.cs" t="Include" />
-          </e>
-          <e p="Core" t="Include">
-            <e p="Context.cs" t="Include" />
-            <e p="Log.cs" t="Include" />
-            <e p="PlayerInfo.cs" t="Include" />
-            <e p="Scenes.cs" t="Include" />
-            <e p="SceneSwitcher.cs" t="Include" />
-            <e p="Serialization.cs" t="Include" />
-            <e p="Settings.cs" t="Include" />
-            <e p="The.cs" t="Include" />
-            <e p="Time.cs" t="Include" />
-            <e p="UI" t="Include">
-              <e p="CustomPanelController.cs" t="Include" />
-              <e p="Panel.cs" t="Include" />
-              <e p="PanelController.cs" t="Include" />
-              <e p="StandardPanelController.cs" t="Include" />
-              <e p="WeaponButton.cs" t="Include" />
-            </e>
-          </e>
-          <e p="DataTransfer" t="Include">
-            <e p="Client" t="Include">
-              <e p="AuthRequestCmd.cs" t="Include" />
-              <e p="ClientCommand.cs" t="Include" />
-              <e p="JoinLobbyCmd.cs" t="Include" />
-              <e p="LeaveGameCmd.cs" t="Include" />
-              <e p="LeaveLobbyCmd.cs" t="Include" />
-              <e p="TurnDataCCmd.cs" t="Include" />
-              <e p="TurnEndedCmd.cs" t="Include" />
-            </e>
-            <e p="Data" t="Include">
-              <e p="GameInitData.cs" t="Include" />
-              <e p="TurnData.cs" t="Include" />
-            </e>
-            <e p="DTO.cs" t="Include" />
-            <e p="DTOCode.cs" t="Include" />
-            <e p="Server" t="Include">
-              <e p="AuthSuccessCmd.cs" t="Include" />
-              <e p="GameEndedCmd.cs" t="Include" />
-              <e p="LeftGameCmd.cs" t="Include" />
-              <e p="LeftLobbyCmd.cs" t="Include" />
-              <e p="LobbyStatusCmd.cs" t="Include" />
-              <e p="NewGameCmd.cs" t="Include" />
-              <e p="NewTurnCmd.cs" t="Include" />
-              <e p="ServerCommand.cs" t="Include" />
-              <e p="TurnDataSCmd.cs" t="Include" />
-            </e>
-          </e>
-          <e p="Geometry" t="Include">
-            <e p="Angles.cs" t="Include" />
-            <e p="Box.cs" t="Include" />
-            <e p="Circle.cs" t="Include" />
-            <e p="Geom.cs" t="Include" />
-            <e p="OldGeom.cs" t="Include" />
-            <e p="Primitive.cs" t="Include" />
-            <e p="PrimitiveUtils.cs" t="Include" />
-            <e p="TileXY.cs" t="Include" />
-            <e p="XY.cs" t="Include" />
-          </e>
-          <e p="Menu" t="Include">
-            <e p="MenuScene.cs" t="Include" />
-            <e p="UI" t="Include">
-              <e p="ConnectionMenu.cs" t="Include" />
-              <e p="DonateMenu.cs" t="Include" />
-              <e p="GameModeMenu.cs" t="Include" />
-              <e p="HelpMenu.cs" t="Include" />
-              <e p="LobbyMenu.cs" t="Include" />
-              <e p="MainMenu.cs" t="Include" />
-            </e>
-          </e>
-          <e p="Net" t="Include">
-            <e p="API.cs" t="Include" />
-            <e p="Connection.cs" t="Include" />
-            <e p="Utils" t="Include">
-              <e p="BigEndianBinaryReader.cs" t="Include" />
-              <e p="BigEndianBinaryWriter.cs" t="Include" />
-            </e>
-          </e>
-          <e p="Utils" t="Include">
-            <e p="Ballistics" t="Include">
-              <e p="Ballistics.cs" t="Include" />
-            </e>
-            <e p="Danmaku" t="Include">
-              <e p="Danmaku.cs" t="Include" />
-            </e>
-            <e p="Direction" t="Include">
-              <e p="Direction.cs" t="Include" />
-            </e>
-            <e p="LootTable" t="Include">
-              <e p="LootTable.cs" t="Include" />
-            </e>
-            <e p="Messenger" t="Include">
-              <e p="Messenger.cs" t="Include" />
-            </e>
-            <e p="MouseButtons.cs" t="Include" />
-            <e p="Pool.cs" t="Include" />
-            <e p="Random" t="Include">
-              <e p="MT19937.cs" t="Include" />
-              <e p="RNG.cs" t="Include" />
-            </e>
-            <e p="Tuple" t="Include">
-              <e p="Tuple.cs" t="Include" />
-            </e>
+      <e p="Assets/Bundles" t="Include">
+        <e p="War" t="Include">
+          <e p="Water" t="Include">
+            <e p="WaterShader.shader" t="Include" />
           </e>
         </e>
       </e>
-      <e p="frontend.sln" t="IncludeFlat" />
+      <e p="Assets/Plugins" t="Include">
+        <e p="WebSocket.cs" t="Include" />
+      </e>
+      <e p="Assets/Scripts" t="Include">
+        <e p="Assets" t="Include">
+          <e p="BattleAssets.cs" t="Include" />
+          <e p="WeaponIcons.cs" t="Include" />
+        </e>
+        <e p="Attributes" t="Include">
+          <e p="DTOAttribute.cs" t="Include" />
+          <e p="IdAttribute.cs" t="Include" />
+          <e p="WeaponAttribute.cs" t="Include" />
+        </e>
+        <e p="Battle" t="Include">
+          <e p="Arsenals" t="Include">
+            <e p="AlphaArsenal.cs" t="Include" />
+            <e p="Arsenal.cs" t="Include" />
+            <e p="DarkSideArsenal.cs" t="Include" />
+            <e p="FullArsenal.cs" t="Include" />
+            <e p="LightSideArsenal.cs" t="Include" />
+            <e p="StandardArsenal.cs" t="Include" />
+          </e>
+          <e p="Balance.cs" t="Include" />
+          <e p="BattleScene.cs" t="Include" />
+          <e p="Camera" t="Include">
+            <e p="AutomaticCameraController.cs" t="Include" />
+            <e p="CameraController.cs" t="Include" />
+            <e p="CameraWrapper.cs" t="Include" />
+            <e p="MouseBasedCameraController.cs" t="Include" />
+            <e p="ObjectBoundCameraController.cs" t="Include" />
+          </e>
+          <e p="Objects" t="Include">
+            <e p="CollisionHandlers" t="Include">
+              <e p="CollisionHandler.cs" t="Include" />
+              <e p="CrateCH.cs" t="Include" />
+              <e p="DetonatorCH.cs" t="Include" />
+              <e p="DynamiteCH.cs" t="Include" />
+              <e p="LandmineStickCH.cs" t="Include" />
+              <e p="WormFallCH.cs" t="Include" />
+              <e p="WormJumpCH.cs" t="Include" />
+            </e>
+            <e p="Component.cs" t="Include" />
+            <e p="Controllers" t="Include">
+              <e p="AirplaneCtrl.cs" t="Include" />
+              <e p="Controller.cs" t="Include" />
+              <e p="CrateFallCtrl.cs" t="Include" />
+              <e p="CrateStandCtrl.cs" t="Include" />
+              <e p="HomingCtrl.cs" t="Include" />
+              <e p="LabelFallCtrl.cs" t="Include" />
+              <e p="LabelRiseCtrl.cs" t="Include" />
+              <e p="LandmineCtrl.cs" t="Include" />
+              <e p="LandmineStuckCtrl.cs" t="Include" />
+              <e p="PoisonGasCtrl.cs" t="Include" />
+              <e p="SmokeCtrl.cs" t="Include" />
+              <e p="StandardCtrl.cs" t="Include" />
+              <e p="WormAfterJumpCtrl.cs" t="Include" />
+              <e p="WormBeforeJumpCtrl.cs" t="Include" />
+              <e p="WormDeathCtrl.cs" t="Include" />
+              <e p="WormFallCtrl.cs" t="Include" />
+              <e p="WormFirePunchCtrl.cs" t="Include" />
+              <e p="WormJumpCtrl.cs" t="Include" />
+              <e p="WormRecoverCtrl.cs" t="Include" />
+              <e p="WormWalkCtrl.cs" t="Include" />
+            </e>
+            <e p="Effector.cs" t="Include" />
+            <e p="Effects" t="Include">
+              <e p="Effect.cs" t="Include" />
+              <e p="Flash.cs" t="Include" />
+              <e p="Label.cs" t="Include" />
+              <e p="Smoke.cs" t="Include" />
+            </e>
+            <e p="Explosives" t="Include">
+              <e p="ClusterSpawner.cs" t="Include" />
+              <e p="Explosive.cs" t="Include" />
+              <e p="Explosive10.cs" t="Include" />
+              <e p="Explosive10Wide.cs" t="Include" />
+              <e p="Explosive15.cs" t="Include" />
+              <e p="Explosive25.cs" t="Include" />
+              <e p="Explosive40.cs" t="Include" />
+              <e p="ExplosivePoison.cs" t="Include" />
+              <e p="Implosive40.cs" t="Include" />
+              <e p="MeteorExplosive.cs" t="Include" />
+            </e>
+            <e p="GameObjects" t="Include">
+              <e p="NewWormGO.cs" t="Include" />
+              <e p="WormGO.cs" t="Include" />
+              <e p="WormsNames.cs" t="Include" />
+            </e>
+            <e p="MeleeTester.cs" t="Include" />
+            <e p="NullObject.cs" t="Include" />
+            <e p="Object.cs" t="Include" />
+            <e p="Other" t="Include">
+              <e p="Airplane.cs" t="Include" />
+              <e p="Crates" t="Include">
+                <e p="Crate.cs" t="Include" />
+                <e p="CrateFactory.cs" t="Include" />
+                <e p="HealthCrate.cs" t="Include" />
+                <e p="WeaponCrate.cs" t="Include" />
+              </e>
+            </e>
+            <e p="Projectiles" t="Include">
+              <e p="BazookaShell.cs" t="Include" />
+              <e p="Bomb.cs" t="Include" />
+              <e p="Dynamite.cs" t="Include" />
+              <e p="GasGrenade.cs" t="Include" />
+              <e p="Grenade.cs" t="Include" />
+              <e p="HomingMissile.cs" t="Include" />
+              <e p="Landmine.cs" t="Include" />
+              <e p="Limonka.cs" t="Include" />
+              <e p="LimonkaCluster.cs" t="Include" />
+              <e p="Meteor.cs" t="Include" />
+              <e p="MultiLauncherShell.cs" t="Include" />
+              <e p="PhantomGrenade.cs" t="Include" />
+              <e p="PlasmaBall.cs" t="Include" />
+              <e p="PoisonGas.cs" t="Include" />
+              <e p="VacuumBomb.cs" t="Include" />
+            </e>
+            <e p="Ray.cs" t="Include" />
+            <e p="Timers" t="Include">
+              <e p="AirstrikeTimer.cs" t="Include" />
+              <e p="ArmageddonTimer.cs" t="Include" />
+              <e p="BulletHellTimer.cs" t="Include" />
+              <e p="CallbackTimer.cs" t="Include" />
+              <e p="DetonationTimer.cs" t="Include" />
+              <e p="LandmineDetonationTimer.cs" t="Include" />
+              <e p="LandmineInitialTimer.cs" t="Include" />
+              <e p="Timer.cs" t="Include" />
+            </e>
+            <e p="Worm.cs" t="Include" />
+          </e>
+          <e p="State" t="Include">
+            <e p="ActiveWorm.cs" t="Include" />
+            <e p="GameState.cs" t="Include" />
+            <e p="GameStateController.cs" t="Include" />
+            <e p="TimerWrapper.cs" t="Include" />
+            <e p="WeaponWrapper.cs" t="Include" />
+          </e>
+          <e p="Teams" t="Include">
+            <e p="Team.cs" t="Include" />
+            <e p="TeamColors.cs" t="Include" />
+            <e p="TeamManager.cs" t="Include" />
+          </e>
+          <e p="Terrain" t="Include">
+            <e p="Generation" t="Include">
+              <e p="EstimatedLandGen.cs" t="Include" />
+              <e p="LandGen.cs" t="Include" />
+            </e>
+            <e p="Land.cs" t="Include" />
+            <e p="LandCollisions.cs" t="Include" />
+            <e p="LandRenderer.cs" t="Include" />
+            <e p="LandRendererTile.cs" t="Include" />
+            <e p="LandTile.cs" t="Include" />
+            <e p="LandTiles.cs" t="Include" />
+            <e p="Tile.cs" t="Include" />
+            <e p="Tiles.cs" t="Include" />
+          </e>
+          <e p="UI" t="Include">
+            <e p="ArsenalPanel.cs" t="Include" />
+            <e p="BottomHud.cs" t="Include" />
+            <e p="EndGameMenu.cs" t="Include" />
+            <e p="HintArea.cs" t="Include" />
+          </e>
+          <e p="Water" t="Include">
+            <e p="WaterGO.cs" t="Include" />
+          </e>
+          <e p="Weapons" t="Include">
+            <e p="AbstractAirstrikeWeapon.cs" t="Include" />
+            <e p="Crosshairs" t="Include">
+              <e p="LineCrosshair.cs" t="Include" />
+              <e p="PointCrosshair.cs" t="Include" />
+            </e>
+            <e p="StandardWeapon.cs" t="Include" />
+            <e p="Weapon.cs" t="Include" />
+            <e p="WeaponDescriptor.cs" t="Include" />
+            <e p="WeaponId.cs" t="Include" />
+            <e p="WeaponTypes" t="Include">
+              <e p="Airstrikes" t="Include">
+                <e p="AirstrikeWeapon.cs" t="Include" />
+                <e p="DropFrogWeapon.cs" t="Include" />
+                <e p="DropMoleWeapon.cs" t="Include" />
+                <e p="MineStrikeWeapon.cs" t="Include" />
+                <e p="NapalmWeapon.cs" t="Include" />
+                <e p="NukeWeapon.cs" t="Include" />
+                <e p="VacuumBombWeapon.cs" t="Include" />
+              </e>
+              <e p="CloseCombat" t="Include">
+                <e p="AxeWeapon.cs" t="Include" />
+                <e p="ExplosivePunchWeapon.cs" t="Include" />
+                <e p="FingerWeapon.cs" t="Include" />
+                <e p="FirePunchWeapon.cs" t="Include" />
+                <e p="FlamerthrowerWeapon.cs" t="Include" />
+                <e p="HammerWeapon.cs" t="Include" />
+                <e p="HarpoonWeapon.cs" t="Include" />
+              </e>
+              <e p="Firearms" t="Include">
+                <e p="BlasterWeapon.cs" t="Include" />
+                <e p="GsomRaycasterWeapon.cs" t="Include" />
+                <e p="HeatPistolWeapon.cs" t="Include" />
+                <e p="MachineGunWeapon.cs" t="Include" />
+                <e p="PistolWeapon.cs" t="Include" />
+                <e p="PoisonArrowWeapon.cs" t="Include" />
+                <e p="UltraRifleWeapon.cs" t="Include" />
+              </e>
+              <e p="Heavy" t="Include">
+                <e p="DynamiteWeapon.cs" t="Include" />
+                <e p="FrogWeapon.cs" t="Include" />
+                <e p="LandmineWeapon.cs" t="Include" />
+                <e p="MoleWeapon.cs" t="Include" />
+                <e p="PoisonContainerWeapon.cs" t="Include" />
+                <e p="SuperfrogWeapon.cs" t="Include" />
+                <e p="TurretWeapon.cs" t="Include" />
+              </e>
+              <e p="Launched" t="Include">
+                <e p="BazookaWeapon.cs" t="Include" />
+                <e p="BirdLauncherWeapon.cs" t="Include" />
+                <e p="CryogunWeapon.cs" t="Include" />
+                <e p="HomingMissileWeapon.cs" t="Include" />
+                <e p="MinegunWeapon.cs" t="Include" />
+                <e p="MultiLauncherWeapon.cs" t="Include" />
+                <e p="PlasmagunWeapon.cs" t="Include" />
+              </e>
+              <e p="MovementUtils" t="Include">
+                <e p="JetpackWeapon.cs" t="Include" />
+                <e p="JumperWeapon.cs" t="Include" />
+                <e p="MassTeleportWeapon.cs" t="Include" />
+                <e p="ParachuteWeapon.cs" t="Include" />
+                <e p="RopeWeapon.cs" t="Include" />
+                <e p="TeleportWeapon.cs" t="Include" />
+                <e p="WormSelectWeapon.cs" t="Include" />
+              </e>
+              <e p="OtherUtils" t="Include">
+                <e p="DrillWeapon.cs" t="Include" />
+                <e p="GirderWeapon.cs" t="Include" />
+                <e p="MagnetWeapon.cs" t="Include" />
+                <e p="MedikitWeapon.cs" t="Include" />
+                <e p="OverhealWeapon.cs" t="Include" />
+                <e p="SkipTurnWeapon.cs" t="Include" />
+                <e p="SurrenderWeapon.cs" t="Include" />
+              </e>
+              <e p="Spells" t="Include">
+                <e p="ArmageddonWeapon.cs" t="Include" />
+                <e p="BulletHellWeapon.cs" t="Include" />
+                <e p="EarthquakeWeapon.cs" t="Include" />
+                <e p="ErosionWeapon.cs" t="Include" />
+                <e p="FloodWeapon.cs" t="Include" />
+                <e p="MindControlWeapon.cs" t="Include" />
+                <e p="PoisonCloudWeapon.cs" t="Include" />
+              </e>
+              <e p="Thrown" t="Include">
+                <e p="ControlledGrenadeWeapon.cs" t="Include" />
+                <e p="GasGrenadeWeapon.cs" t="Include" />
+                <e p="GrenadeWeapon.cs" t="Include" />
+                <e p="HolyGrenadeWeapon.cs" t="Include" />
+                <e p="LimonkaWeapon.cs" t="Include" />
+                <e p="MolotovWeapon.cs" t="Include" />
+                <e p="PhantomGrenadeWeapon.cs" t="Include" />
+              </e>
+            </e>
+          </e>
+          <e p="World.cs" t="Include" />
+        </e>
+        <e p="Collisions" t="Include">
+          <e p="AABB.cs" t="Include" />
+          <e p="BoxCollider.cs" t="Include" />
+          <e p="CircleCollider.cs" t="Include" />
+          <e p="Collider.cs" t="Include" />
+          <e p="Collision.cs" t="Include" />
+        </e>
+        <e p="Core" t="Include">
+          <e p="Context.cs" t="Include" />
+          <e p="Log.cs" t="Include" />
+          <e p="PlayerInfo.cs" t="Include" />
+          <e p="SceneSwitcher.cs" t="Include" />
+          <e p="Scenes.cs" t="Include" />
+          <e p="Serialization.cs" t="Include" />
+          <e p="Settings.cs" t="Include" />
+          <e p="The.cs" t="Include" />
+          <e p="Time.cs" t="Include" />
+          <e p="UI" t="Include">
+            <e p="CustomPanelController.cs" t="Include" />
+            <e p="Panel.cs" t="Include" />
+            <e p="PanelController.cs" t="Include" />
+            <e p="StandardPanelController.cs" t="Include" />
+            <e p="WeaponButton.cs" t="Include" />
+          </e>
+        </e>
+        <e p="DataTransfer" t="Include">
+          <e p="Client" t="Include">
+            <e p="AuthRequestCmd.cs" t="Include" />
+            <e p="ClientCommand.cs" t="Include" />
+            <e p="JoinLobbyCmd.cs" t="Include" />
+            <e p="LeaveGameCmd.cs" t="Include" />
+            <e p="LeaveLobbyCmd.cs" t="Include" />
+            <e p="TurnDataCCmd.cs" t="Include" />
+            <e p="TurnEndedCmd.cs" t="Include" />
+          </e>
+          <e p="DTO.cs" t="Include" />
+          <e p="DTOCode.cs" t="Include" />
+          <e p="Data" t="Include">
+            <e p="GameInitData.cs" t="Include" />
+            <e p="TurnData.cs" t="Include" />
+          </e>
+          <e p="Server" t="Include">
+            <e p="AuthSuccessCmd.cs" t="Include" />
+            <e p="GameEndedCmd.cs" t="Include" />
+            <e p="LeftGameCmd.cs" t="Include" />
+            <e p="LeftLobbyCmd.cs" t="Include" />
+            <e p="LobbyStatusCmd.cs" t="Include" />
+            <e p="NewGameCmd.cs" t="Include" />
+            <e p="NewTurnCmd.cs" t="Include" />
+            <e p="ServerCommand.cs" t="Include" />
+            <e p="TurnDataSCmd.cs" t="Include" />
+          </e>
+        </e>
+        <e p="Geometry" t="Include">
+          <e p="Angles.cs" t="Include" />
+          <e p="Box.cs" t="Include" />
+          <e p="Circle.cs" t="Include" />
+          <e p="Geom.cs" t="Include" />
+          <e p="OldGeom.cs" t="Include" />
+          <e p="Primitive.cs" t="Include" />
+          <e p="PrimitiveUtils.cs" t="Include" />
+          <e p="TileXY.cs" t="Include" />
+          <e p="XY.cs" t="Include" />
+        </e>
+        <e p="Menu" t="Include">
+          <e p="MenuScene.cs" t="Include" />
+          <e p="UI" t="Include">
+            <e p="ConnectionMenu.cs" t="Include" />
+            <e p="DonateMenu.cs" t="Include" />
+            <e p="GameModeMenu.cs" t="Include" />
+            <e p="HelpMenu.cs" t="Include" />
+            <e p="LobbyMenu.cs" t="Include" />
+            <e p="MainMenu.cs" t="Include" />
+          </e>
+        </e>
+        <e p="Net" t="Include">
+          <e p="API.cs" t="Include" />
+          <e p="Connection.cs" t="Include" />
+          <e p="Utils" t="Include">
+            <e p="BigEndianBinaryReader.cs" t="Include" />
+            <e p="BigEndianBinaryWriter.cs" t="Include" />
+          </e>
+        </e>
+        <e p="Utils" t="Include">
+          <e p="Ballistics" t="Include">
+            <e p="Ballistics.cs" t="Include" />
+          </e>
+          <e p="Danmaku" t="Include">
+            <e p="Danmaku.cs" t="Include" />
+          </e>
+          <e p="Direction" t="Include">
+            <e p="Direction.cs" t="Include" />
+          </e>
+          <e p="LootTable" t="Include">
+            <e p="LootTable.cs" t="Include" />
+          </e>
+          <e p="Messenger" t="Include">
+            <e p="Messenger.cs" t="Include" />
+          </e>
+          <e p="MouseButtons.cs" t="Include" />
+          <e p="Pool.cs" t="Include" />
+          <e p="Random" t="Include">
+            <e p="MT19937.cs" t="Include" />
+            <e p="RNG.cs" t="Include" />
+          </e>
+          <e p="Tuple" t="Include">
+            <e p="Tuple.cs" t="Include" />
+          </e>
+        </e>
+      </e>
       <e p="Library" t="ExcludeRecursive" />
-      <e p="obj" t="ExcludeRecursive" />
-      <e p="packages" t="ExcludeRecursive" />
       <e p="Temp" t="ExcludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
       </e>
+      <e p="frontend.sln" t="IncludeFlat" />
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="packages" t="ExcludeRecursive" />
     </e>
   </component>
   <component name="RiderRiderContentModelStore">

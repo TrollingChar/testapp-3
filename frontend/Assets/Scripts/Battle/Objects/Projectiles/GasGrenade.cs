@@ -15,13 +15,13 @@ namespace Battle.Objects.Projectiles {
             UnityEngine.Object.Instantiate(The.BattleAssets.Grenade, GameObject.transform, false);
             AddCollider(new CircleCollider(XY.Zero, 5f));
             Explosive = new ExplosivePoison();
-            Controller = new StandardController {
+            Controller = new StandardCtrl {
                 MagnetCoeff = 1,
                 WaitFlag = true
             };
             Timer = new CallbackTimer(
                 new Time {Seconds = 0.5f}, () => {
-                    ((StandardController) Controller).GasFlag = true;
+                    ((StandardCtrl) Controller).GasFlag = true;
                     Timer = new DetonationTimer(new Time{Seconds = 5});
                 });
             CollisionHandler = new CollisionHandler();

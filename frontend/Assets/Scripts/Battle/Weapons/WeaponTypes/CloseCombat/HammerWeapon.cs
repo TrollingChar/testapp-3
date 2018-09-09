@@ -2,7 +2,6 @@
 using Battle.Objects;
 using Battle.Weapons.Crosshairs;
 using Core;
-using Geometry;
 using UnityEngine;
 
 
@@ -39,6 +38,13 @@ namespace Battle.Weapons.WeaponTypes.CloseCombat {
                 GameObject.transform,
                 false
             );
+            
+            ((Worm) Object).NewWormGO.UnlockHead ();
+        }
+
+
+        protected override void OnUnequip () {
+            ((Worm) Object).NewWormGO.LockHead ();
         }
 
 
@@ -59,6 +65,7 @@ namespace Battle.Weapons.WeaponTypes.CloseCombat {
         protected override void OnUpdate () {
             UpdateLineCrosshair(_crosshair);
             UpdateAimedWeapon(_sprite);
+            ((Worm) Object).LookAt (TurnData.XY);
         }
 
     }

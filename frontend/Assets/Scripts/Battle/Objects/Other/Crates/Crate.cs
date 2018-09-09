@@ -27,7 +27,7 @@ namespace Battle.Objects.Other.Crates {
             _state = The.GameState;
             _activeWorm = The.ActiveWorm;
             AddCollider(new BoxCollider(Size * -0.5f, Size * 0.5f, Size * -0.5f, Size * 0.5f));
-            Controller = new CrateControllerFall();
+            Controller = new CrateFallCtrl();
             CollisionHandler = new CrateCH();
             Explosive = new Explosive25();
         }
@@ -50,7 +50,7 @@ namespace Battle.Objects.Other.Crates {
             if (_collected) return;
             _collected = true;
             Despawn();
-            Spawn(new Label(Text, Color.white, 1f, new LabelControllerRise()), Position, new XY(0f, 10f));
+            Spawn(new Label(Text, Color.white, 1f, new LabelRiseCtrl()), Position, new XY(0f, 10f));
             OnPickup(worm);
         }
 
@@ -60,7 +60,7 @@ namespace Battle.Objects.Other.Crates {
 
 
         public override void ReceiveBlastWave (XY impulse) {
-            Controller = new CrateControllerFall();
+            Controller = new CrateFallCtrl();
             base.ReceiveBlastWave(impulse);
         }
 

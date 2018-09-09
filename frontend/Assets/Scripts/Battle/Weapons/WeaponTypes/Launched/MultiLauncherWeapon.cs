@@ -1,10 +1,10 @@
 ﻿using System;
 using Attributes;
+using Battle.Objects;
 using Battle.Objects.Projectiles;
 using Battle.Weapons.Crosshairs;
 using Core;
 using UnityEngine;
-using Time = Core.Time;
 
 
 namespace Battle.Weapons.WeaponTypes.Launched {
@@ -29,7 +29,6 @@ namespace Battle.Weapons.WeaponTypes.Launched {
         protected override void OnEquip () {
             ConstPower = false;
             Shots = Math.Min(5, GetAmmo());
-//            Shots = 5;
             ShotCooldown.Seconds = 0.2f;
 
             var battleAssets = The.BattleAssets;
@@ -45,6 +44,13 @@ namespace Battle.Weapons.WeaponTypes.Launched {
                 GameObject.transform,
                 false
             );
+            
+            ((Worm) Object).NewWormGO.UnlockHead ();
+        }
+
+
+        protected override void OnUnequip () {
+            ((Worm) Object).NewWormGO.LockHead ();
         }
 
 
@@ -66,6 +72,7 @@ namespace Battle.Weapons.WeaponTypes.Launched {
         protected override void OnUpdate () {
             UpdateLineCrosshair(_crosshair);
             UpdateAimedWeapon(_sprite);
+            ((Worm) Object).LookAt (TurnData.XY);
         }
 
     }

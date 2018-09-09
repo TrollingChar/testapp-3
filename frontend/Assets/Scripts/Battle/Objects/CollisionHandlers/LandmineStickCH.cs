@@ -9,7 +9,7 @@ namespace Battle.Objects.CollisionHandlers {
 
         public override void OnCollision (Collision c) {
             Object.Velocity = XY.Zero;
-            Object.Controller = new LandmineControllerStuck();
+            Object.Controller = new LandmineStuckCtrl();
         }
 
     }

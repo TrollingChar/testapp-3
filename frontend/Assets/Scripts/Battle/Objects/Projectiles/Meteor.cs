@@ -15,7 +15,7 @@ namespace Battle.Objects.Projectiles {
             UnityEngine.Object.Instantiate(The.BattleAssets.Meteor, GameObject.transform, false);
             AddCollider(new CircleCollider(XY.Zero, 20f));
             Explosive = new Explosive40();
-            Controller = new StandardController {
+            Controller = new StandardCtrl {
                 SmokeSize = 40,
                 OrientationFlag = true
             };

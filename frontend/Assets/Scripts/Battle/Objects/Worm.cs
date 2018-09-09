@@ -1,5 +1,4 @@
-﻿using System;
-using Battle.Objects.Controllers;
+﻿using Battle.Objects.Controllers;
 using Battle.Objects.Effects;
 using Battle.Objects.Explosives;
 using Battle.Objects.GameObjects;
@@ -27,7 +26,7 @@ namespace Battle.Objects {
         public const float HeadRadius = 8f;
         public const float BodyHeight = 8f;
 
-        public const float WalkSpeed = 1f;
+        public const float WalkSpeed = 0.5f;
         public const float JumpSpeed = 6f;
         public const float HighJumpSpeed = 9f;
         public const float JumpAngle = 0.5f;
@@ -40,11 +39,10 @@ namespace Battle.Objects {
         private Color _color;
         private bool _facesRight;
         private int _hp;
-//        private int _hpot; // over time
         private int _poison;
         private string _name;
 
-        private WormGO _wormGO;
+        public NewWormGO NewWormGO;
         private SpriteRenderer _arrow;
         private Text _nameField;
         private Text _hpField;
@@ -70,7 +68,7 @@ namespace Battle.Objects {
             get { return _facesRight; }
             set {
                 _facesRight = value;
-                if (_wormGO != null) _wormGO.FacesRight = _facesRight;
+                if (NewWormGO != null) NewWormGO.FacesRight = _facesRight;
             }
         }
 
@@ -78,8 +76,14 @@ namespace Battle.Objects {
             get { return !_facesRight; }
             set {
                 _facesRight = !value;
-                if (_wormGO != null) _wormGO.FacesRight = _facesRight;
+                if (NewWormGO != null) NewWormGO.FacesRight = _facesRight;
             }
+        }
+
+
+        public void LookAt (XY target) {
+            float angle = XY.DirectionAngle (Position, target);
+            NewWormGO.SetHeadAngle (angle);
         }
 
         
@@ -145,7 +149,7 @@ namespace Battle.Objects {
             get { return _weapon; }
             set { SwapComponent(ref _weapon, value); }
         }
-
+        
 
         public override void OnSpawn () {
             InitGraphics();
@@ -156,31 +160,31 @@ namespace Battle.Objects {
             AddCollider(Tail = new CircleCollider(new XY(0f, BodyHeight * -0.5f), HeadRadius));
             AddCollider(new BoxCollider(-HeadRadius, HeadRadius, BodyHeight * -0.5f, BodyHeight * 0.5f));
 
-            Controller = new WormControllerJump();
+            Controller = new WormJumpCtrl();
             Explosive = new Explosive15();
         }
 
 
         private void InitGraphics () {
-            var assets = The.BattleAssets;
+            var assets    = The.BattleAssets;
             var transform = GameObject.transform;
 
-            _canvas = UnityEngine.Object.Instantiate(assets.TopCanvas, transform, false);
-            _canvas.transform.localPosition += new Vector3(0, 20, 0);
-            _canvas.transform.localScale = new Vector3(0.7f, 0.7f, 1f);
-            _canvas.GetComponent<Canvas>().sortingLayerName = "TextBack";
+            _canvas = UnityEngine.Object.Instantiate (assets.TopCanvas, transform, false);
+            _canvas.transform.localPosition += new Vector3 (0,    20,   0);
+            _canvas.transform.localScale    =  new Vector3 (0.7f, 0.7f, 1f);
+            _canvas.GetComponent <Canvas> ().sortingLayerName = "TextBack";
 
-            _nameField = UnityEngine.Object.Instantiate(assets.Text, _canvas.transform, false).GetComponent<Text>();
-            _hpField = UnityEngine.Object.Instantiate(assets.Text, _canvas.transform, false).GetComponent<Text>();
+            _nameField = UnityEngine.Object.Instantiate (assets.Text, _canvas.transform, false).GetComponent <Text> ();
+            _hpField   = UnityEngine.Object.Instantiate (assets.Text, _canvas.transform, false).GetComponent <Text> ();
 
-            _arrow = UnityEngine.Object.Instantiate(assets.Arrow, transform, false).GetComponentInChildren<SpriteRenderer>();
+            _arrow = UnityEngine.Object.Instantiate (assets.Arrow, transform, false).
+            GetComponentInChildren <SpriteRenderer> ();
 
-            var obj = UnityEngine.Object.Instantiate(assets.Worm, transform, false);
-            _wormGO = obj.GetComponent<WormGO>();
-            _wormGO.OnAdd(this);
+            NewWormGO = UnityEngine.Object.Instantiate (assets.Worm, transform, false).GetComponent <NewWormGO> ();
+            NewWormGO.OnAdd (this);
 
-            HP = HP;
-            Name = Name;
+            HP           = HP;
+            Name         = Name;
             ArrowVisible = false;
         }
 
@@ -196,10 +200,10 @@ namespace Battle.Objects {
         }
 
 
-        public void LookAt (XY target) {
-            if (_wormGO == null) return;
-            _wormGO.Look(Mathf.Rad2Deg * XY.DirectionAngle(Head.Center, target));
-        }
+//        public void LookAt (XY target) {
+//            if (_wormGO == null) return;
+//            _wormGO.Look(Mathf.Rad2Deg * XY.DirectionAngle(Head.Center, target));
+//        }
 
 
         public override void TakeDamage (int damage) {
@@ -212,7 +216,7 @@ namespace Battle.Objects {
             
             float effectTime = 0.75f + 0.75f * damage / (damage + 40f);
             Spawn(
-                new Label(damage.ToString(), _color, 1.2f, new LabelControllerFall(effectTime)),
+                new Label(damage.ToString(), _color, 1.2f, new LabelFallCtrl(effectTime)),
                 Position,
                 Danmaku.ShotgunBullet(XY.Up, 1f, 4, 8)
             );
@@ -228,7 +232,7 @@ namespace Battle.Objects {
             if (!showLabel) return;
             float effectTime = 0.75f + 0.75f * healing / (healing + 40f);
             Spawn(
-                new Label("+" + healing, _color, 1.2f, new LabelControllerRise(effectTime)),
+                new Label("+" + healing, _color, 1.2f, new LabelRiseCtrl(effectTime)),
                 Position,
                 Danmaku.ShotgunBullet(XY.Up, 0.75f, 8, 12)
             );
@@ -272,7 +276,7 @@ namespace Battle.Objects {
 
 
         public override void ReceiveBlastWave (XY impulse) {
-            Controller = new WormControllerFall();
+            Controller = new WormFallCtrl();
             base.ReceiveBlastWave(impulse);
         }
 

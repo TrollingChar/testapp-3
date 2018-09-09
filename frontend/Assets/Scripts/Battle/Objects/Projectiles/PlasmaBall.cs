@@ -15,7 +15,7 @@ namespace Battle.Objects.Projectiles {
             UnityEngine.Object.Instantiate(The.BattleAssets.PlasmaBall, GameObject.transform, false);
             AddCollider(new CircleCollider(XY.Zero, 2f));
             Explosive = new Explosive25();
-            Controller = new StandardController {
+            Controller = new StandardCtrl {
                 WindCoeff = 0.1f,
                 MagnetCoeff = 1
             };

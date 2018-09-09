@@ -1,5 +1,4 @@
-﻿using Battle.Objects.Projectiles;
-using Battle.Weapons.Crosshairs;
+﻿using Battle.Weapons.Crosshairs;
 using Core;
 using Geometry;
 using UnityEngine;

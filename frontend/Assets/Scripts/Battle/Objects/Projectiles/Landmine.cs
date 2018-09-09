@@ -5,10 +5,6 @@ using Battle.Objects.Timers;
 using Collisions;
 using Core;
 using Geometry;
-using UnityEngine;
-using UnityEngine.UI;
-using BoxCollider = Collisions.BoxCollider;
-using Time = Core.Time;
 
 
 namespace Battle.Objects.Projectiles {
@@ -27,14 +23,14 @@ namespace Battle.Objects.Projectiles {
             UnityEngine.Object.Instantiate(assets.Landmine, transform, false);
             AddCollider(new CircleCollider(XY.Zero, Radius));
             Explosive = new Explosive25();
-            Controller = new LandmineController();
+            Controller = new LandmineCtrl();
             Timer = new LandmineInitialTimer();
             CollisionHandler = new LandmineStickCH();
         }
 
 
         public override void ReceiveBlastWave (XY impulse) {
-            Controller = new LandmineController();
+            Controller = new LandmineCtrl();
             CollisionHandler = new CollisionHandler();
             base.ReceiveBlastWave(impulse);
         }

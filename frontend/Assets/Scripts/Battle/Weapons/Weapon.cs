@@ -101,11 +101,6 @@ namespace Battle.Weapons {
 
         public void InitRetreat (Time t) {
            The.BattleScene.InitRetreat(t);
-            
-            return;
-            _weaponWrapper.LockAndUnequip();
-            GameTimer.Time = t;
-            GameTimer.Frozen = false;
         }
 
 

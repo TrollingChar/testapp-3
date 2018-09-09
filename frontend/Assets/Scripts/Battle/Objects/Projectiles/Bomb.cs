@@ -15,7 +15,7 @@ namespace Battle.Objects.Projectiles {
             UnityEngine.Object.Instantiate(The.BattleAssets.Bomb, GameObject.transform, false);
             AddCollider(new CircleCollider(XY.Zero, 2f));
             Explosive = new Explosive15();
-            Controller = new StandardController {
+            Controller = new StandardCtrl {
                 MagnetCoeff = 1,
                 SmokeSize = 10,
                 OrientationFlag = true

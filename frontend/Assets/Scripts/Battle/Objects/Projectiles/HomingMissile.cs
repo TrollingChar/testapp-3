@@ -32,14 +32,14 @@ namespace Battle.Objects.Projectiles {
             );
             AddCollider(new CircleCollider(XY.Zero, 2f));
             Explosive = new Explosive25();
-            Controller = new StandardController {
+            Controller = new StandardCtrl {
                 MagnetCoeff = 1,
                 OrientationFlag = true,
                 WaitFlag = true
             };
             Timer = new CallbackTimer(
                 new Time{Seconds = 0.5f},
-                () => Controller = new HomingController(_target)
+                () => Controller = new HomingCtrl(_target)
             );
             CollisionHandler = new DetonatorCollisionHandler();
         }

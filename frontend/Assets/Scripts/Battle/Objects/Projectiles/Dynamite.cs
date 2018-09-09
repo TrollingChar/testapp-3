@@ -26,7 +26,7 @@ namespace Battle.Objects.Projectiles {
             UnityEngine.Object.Instantiate(assets.Dynamite, transform, false);
             AddCollider(new BoxCollider(-4f, 4f, -6f, 6f));
             Explosive = new Explosive40();
-            Controller = new StandardController();
+            Controller = new StandardCtrl();
             Timer = new DetonationTimer(new Time {Seconds = 6f}, timerText);
             CollisionHandler = new DynamiteCH();
         }

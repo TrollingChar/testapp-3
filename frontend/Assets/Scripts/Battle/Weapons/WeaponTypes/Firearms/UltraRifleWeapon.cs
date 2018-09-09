@@ -1,4 +1,5 @@
 ﻿using Attributes;
+using Battle.Objects;
 using Battle.Weapons.Crosshairs;
 using Core;
 using UnityEngine;
@@ -45,6 +46,13 @@ namespace Battle.Weapons.WeaponTypes.Firearms {
             );
 
             _animator = _sprite.GetComponent<Animator>();
+            
+            ((Worm) Object).NewWormGO.UnlockHead ();
+        }
+
+
+        protected override void OnUnequip () {
+            ((Worm) Object).NewWormGO.LockHead ();
         }
 
 
@@ -66,6 +74,7 @@ namespace Battle.Weapons.WeaponTypes.Firearms {
         protected override void OnUpdate () {
             UpdateLineCrosshair(_crosshair);
             UpdateAimedWeapon(_sprite);
+            ((Worm) Object).LookAt (TurnData.XY);
         }
 
     }

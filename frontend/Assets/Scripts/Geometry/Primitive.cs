@@ -1,7 +1,4 @@
-﻿using System;
-
-
-namespace Geometry {
+﻿namespace Geometry {
 
     public struct Primitive {
 

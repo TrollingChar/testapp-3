@@ -79,7 +79,7 @@ namespace Battle.Weapons {
                 if (Power > 0) BeginAttack();
             }
             end:
-            OnUpdate();
+            if (Equipped) OnUpdate();
         }
 
 
