@@ -20,8 +20,7 @@ namespace Battle.Objects.CollisionHandlers {
 //            var worm = c.Collider2.Object as Worm;
 //            if (worm == null) return;
 //            if (worm.Controller is WormWalkCtrl) worm.Controller = new WormFallCtrl();
-            if (o.Controller is WormWalkCtrl ||
-                o.Controller is WormJumpCtrl) {
+            if (o is Worm) {
                 o.Controller = new WormFallCtrl();
             }
             else if (o.Controller is LandmineStuckCtrl) {

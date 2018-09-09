@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Battle.Objects.CollisionHandlers;
 using Battle.Objects.Controllers;
@@ -208,12 +209,13 @@ namespace Battle.Objects {
         }
 
 
+        [Obsolete]
         public bool WillCauseCollision (Collision c) {
             return CollisionHandler == null || CollisionHandler.WillCauseCollision(c);
         }
 
 
-        public virtual bool PushableFor (Object o) { return true; }
+        public virtual bool PushableFor (Object o) { return SuperMass <= o.SuperMass; }
 
 
         public void OnCollision (Collision c) {

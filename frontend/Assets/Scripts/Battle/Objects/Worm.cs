@@ -200,6 +200,14 @@ namespace Battle.Objects {
         }
 
 
+        public override bool PushableFor (Object o) {
+            return (
+                Controller is WormFallCtrl ||
+                Controller is WormJumpCtrl ||
+                o.Controller is WormFallCtrl
+            ) && base.PushableFor (o);
+        }
+
 //        public void LookAt (XY target) {
 //            if (_wormGO == null) return;
 //            _wormGO.Look(Mathf.Rad2Deg * XY.DirectionAngle(Head.Center, target));
