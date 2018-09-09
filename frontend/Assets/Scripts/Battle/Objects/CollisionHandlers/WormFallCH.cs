@@ -9,10 +9,8 @@ namespace Battle.Objects.CollisionHandlers {
         public override void OnCollision (Collision c) {
             if (c.Collider2 == null) return;
             var o = c.Collider2.Object;
-//            var worm = c.Collider2.Object as Worm;
-//            if (worm == null) return;
-//            if (worm.Controller is WormWalkCtrl) worm.Controller = new WormFallCtrl();
-            if (o is Worm) {
+            // todo worm collision handler
+            if (o is Worm && !(o.Controller is WormFallCtrl)) {
                 o.Controller = new WormFallCtrl();
             }
             else if (o.Controller is LandmineStuckCtrl) {
