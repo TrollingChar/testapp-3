@@ -39,6 +39,7 @@
           <e p="Camera" t="Include">
             <e p="AutomaticCameraController.cs" t="Include" />
             <e p="CameraController.cs" t="Include" />
+            <e p="CameraPriority.cs" t="Include" />
             <e p="CameraWrapper.cs" t="Include" />
             <e p="MouseBasedCameraController.cs" t="Include" />
             <e p="ObjectBoundCameraController.cs" t="Include" />

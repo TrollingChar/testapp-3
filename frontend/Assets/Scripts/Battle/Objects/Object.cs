@@ -41,6 +41,9 @@ namespace Battle.Objects {
         public XY Velocity;
 
         public bool Immobile;
+        
+        // 0 - не следить
+        public int CameraPriority;
 
 
         protected Object (float mass = 60f, int superMass = 0) {
