@@ -1,4 +1,7 @@
-﻿namespace Geometry {
+﻿using Battle.Objects;
+
+
+namespace Geometry {
 
     public struct Box {
 
@@ -13,6 +16,12 @@
             Left = left;
             Right = right;
             Bottom = bottom;
+        }
+
+
+        public bool Contains (XY p) {
+            // неравенство нестрогое так как в камере нужно именно такое, todo: универсальность
+            return p.X >= Left && p.X <= Right && p.Y >= Bottom && p.Y <= Top;
         }
 
     }

@@ -23,10 +23,11 @@ namespace Battle.Camera {
         }
 
 
+        // todo!! оптимизировать
         public override void Update () {
 
-            var target = Camera.Target;
-            var box = new Box (target.x - 400, target.x + 400, target.y - 200, target.y + 200);
+            var target = (XY) (Vector2) Camera.Target;
+            var box = new Box (target.X - 400, target.X + 400, target.Y - 200, target.Y + 200);
 
             var unmarked = The.World.Objects.
             Where   (o => o.CameraPriority > 0 && !_markedSet.Contains (o)).
@@ -57,7 +58,13 @@ namespace Battle.Camera {
                 }
             }
 
-            // todo: actually move camera, clear marks
+            // двигаем камеру
+            target.Clamp (new Box (box.Left + 400, box.Right - 400, box.Bottom + 200, box.Top - 200));
+            Camera.LookAt (target);
+
+            // очистка объектов, не попавших в камеру
+            _markedList.RemoveAll (o => !box.Contains (o.Position));
+            _markedSet = new HashSet <Object> (_markedList);
         }
 
 
