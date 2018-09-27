@@ -7,10 +7,12 @@ using Battle.Objects;
 using Battle.Objects.Controllers;
 using Battle.Objects.Effects;
 using Battle.Objects.Other;
+using Battle.Objects.Other.Crates;
 using Battle.Objects.Projectiles;
 using Battle.Teams;
 using Battle.Terrain;
 using Battle.Terrain.Generation;
+using Battle.Weapons;
 using Collisions;
 using Core;
 using DataTransfer.Data;
@@ -67,6 +69,11 @@ namespace Battle {
 
 
         public void Update (TurnData td) {
+
+//            if (td != null && td.MB && Time.Ticks % Core.Time.TPS == 0) {
+//                Spawn(new WeaponCrate(WeaponId.SkipTurn, 0), td.XY);
+//            }
+            
             for (var node = Objects.First; node != null; node = node.Next) {
                 node.Value.Update(td);
             }

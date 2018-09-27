@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Battle.Objects.CollisionHandlers;
 using Battle.Objects.Controllers;
@@ -209,12 +208,6 @@ namespace Battle.Objects {
         public void RemoveCollider (Collider c) {
             c.FreeTiles();
             Colliders.Remove(c);
-        }
-
-
-        [Obsolete]
-        public bool WillCauseCollision (Collision c) {
-            return CollisionHandler == null || CollisionHandler.WillCauseCollision(c);
         }
 
 

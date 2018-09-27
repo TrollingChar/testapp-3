@@ -47,6 +47,11 @@ namespace Battle.Objects.Projectiles {
             return this == o;
         }
 
+
+        public override bool PushableFor (Object o) {
+            return Controller is LandmineCtrl;
+        }
+
     }
 
 }

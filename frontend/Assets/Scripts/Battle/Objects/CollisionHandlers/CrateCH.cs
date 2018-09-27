@@ -8,11 +8,6 @@ namespace Battle.Objects.CollisionHandlers {
 
     public class CrateCH : CollisionHandler {
 
-        public override bool WillCauseCollision (Collision c) {
-            return !c.Collider2.Object.Immobile;
-        }
-
-
         public override void OnCollision (Collision c) {
             if (c.IsLandCollision) return;
             

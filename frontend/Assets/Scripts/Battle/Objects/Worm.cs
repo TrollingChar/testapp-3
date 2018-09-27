@@ -21,8 +21,6 @@ namespace Battle.Objects {
 
     public class Worm : Object {
 
-//        [Inject] private AssetContainer _assets;
-
         public const float HeadRadius = 8f;
         public const float BodyHeight = 8f;
 
@@ -207,11 +205,6 @@ namespace Battle.Objects {
                 o.Controller is WormFallCtrl
             ) && base.PushableFor (o);
         }
-
-//        public void LookAt (XY target) {
-//            if (_wormGO == null) return;
-//            _wormGO.Look(Mathf.Rad2Deg * XY.DirectionAngle(Head.Center, target));
-//        }
 
 
         public override void TakeDamage (int damage) {
