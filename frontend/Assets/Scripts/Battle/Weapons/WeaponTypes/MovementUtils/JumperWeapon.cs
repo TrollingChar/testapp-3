@@ -1,4 +1,5 @@
 ﻿using Attributes;
+using Battle.Camera;
 using Battle.Objects;
 using Battle.Objects.Controllers;
 using Battle.Weapons.Crosshairs;
@@ -34,6 +35,13 @@ namespace Battle.Weapons.WeaponTypes.MovementUtils {
             ).GetComponent<LineCrosshair>();
             
             ((Worm) Object).NewWormGO.UnlockHead ();
+            
+            SetCamera ();
+        }
+
+
+        private void SetCamera () {
+            The.Camera.Controller = new ObjectBoundCameraController (Object, 0.5f);
         }
 
 
