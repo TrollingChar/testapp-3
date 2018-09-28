@@ -41,7 +41,10 @@ namespace Battle.Camera {
             // сгруппировали объекты по приоритетам и расстояниям
 
             _markedSet.RemoveWhere (o => o.Priority <= 0);
-            _markedList = _markedList.Where (_markedSet.Contains).OrderBy (o => o.Priority).ToList ();
+            _markedList = _markedList.
+            Where (_markedSet.Contains).
+            OrderBy (o => o.Priority).
+            ToList ();
 
             box = new Box (
                 float.PositiveInfinity,
@@ -63,12 +66,16 @@ namespace Battle.Camera {
             }
 
             // двигаем камеру
-            target.Clamp (new Box (box.Left + 400, box.Right - 400, box.Bottom + 200, box.Top - 200));
+            target.X = Mathf.Clamp (target.X, box.Right - 400, box.Left   + 400);
+            target.Y = Mathf.Clamp (target.Y, box.Top   - 200, box.Bottom + 200);
             Camera.LookAt (target);
 
             // очистка объектов, не попавших в камеру
+            box = new Box (target.X - 400, target.X + 400, target.Y - 200, target.Y + 200);
             _markedList.RemoveAll (o => !box.Contains (o.Position));
             _markedSet = new HashSet <Object> (_markedList);
+            
+            Debug.Log (_markedList.Count);
         }
 
 
