@@ -42,7 +42,7 @@ namespace Battle.Objects {
         public bool Immobile;
         
         // 0 - не следить
-        public int CameraPriority;
+        public int Priority;
 
 
         protected Object (float mass = 60f, int superMass = 0) {

@@ -4,6 +4,7 @@ using System.Linq;
 using Core;
 using Geometry;
 using UnityEngine;
+using Utils;
 using Object = Battle.Objects.Object;
 
 
@@ -25,19 +26,22 @@ namespace Battle.Camera {
 
         // todo!! оптимизировать
         public override void Update () {
+            if (Input.GetMouseButtonDown(MouseButtons.Right) && !Input.GetMouseButtonUp(MouseButtons.Right)) {
+                Camera.Controller = new MouseBasedCameraController();
+            }
 
             var target = (XY) (Vector2) Camera.Target;
             var box = new Box (target.X - 400, target.X + 400, target.Y - 200, target.Y + 200);
 
             var unmarked = The.World.Objects.
-            Where   (o => o.CameraPriority > 0 && !_markedSet.Contains (o)).
-            OrderBy (o => o.CameraPriority).
+            Where   (o => o.Priority > 0 && !_markedSet.Contains (o)).
+            OrderBy (o => o.Priority).
             ThenBy  (o => Geom.Distance (box, o.Position)).
             ToList  ();
             // сгруппировали объекты по приоритетам и расстояниям
 
-            _markedSet.RemoveWhere (o => o.CameraPriority <= 0);
-            _markedList = _markedList.Where (_markedSet.Contains).OrderBy (o => o.CameraPriority).ToList ();
+            _markedSet.RemoveWhere (o => o.Priority <= 0);
+            _markedList = _markedList.Where (_markedSet.Contains).OrderBy (o => o.Priority).ToList ();
 
             box = new Box (
                 float.PositiveInfinity,
@@ -48,12 +52,12 @@ namespace Battle.Camera {
             
             int i = 0, j = 0, count = _markedList.Count;
             for (int pr = 4; pr > 0; pr--) {
-                for (; i < count && _markedList[i].CameraPriority == pr; i++) {
+                for (; i < count && _markedList[i].Priority == pr; i++) {
                     Add (_markedList[i], ref box);
                 }
-                for (; j < unmarked.Count && unmarked[j].CameraPriority == pr; j++) {
+                for (; j < unmarked.Count && unmarked[j].Priority == pr; j++) {
                     var o = unmarked[j];
-                    if (o.CameraPriority != pr) break;
+                    if (o.Priority != pr) break;
                     if (!_markedSet.Contains (o)) Add (o, ref box);
                 }
             }
@@ -92,7 +96,7 @@ namespace Battle.Camera {
                 coords[i] = new List <XY> ();
             }
             foreach (var o in The.World.Objects) {
-                int p = o.CameraPriority;
+                int p = o.Priority;
                 if (p != 0) coords[--p].Add (o.Position);
             }
 

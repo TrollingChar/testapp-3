@@ -1,4 +1,5 @@
-﻿using Battle.Objects.CollisionHandlers;
+﻿using Battle.Camera;
+using Battle.Objects.CollisionHandlers;
 using Battle.Objects.Controllers;
 using Battle.Objects.Explosives;
 using Battle.Objects.Timers;
@@ -20,6 +21,8 @@ namespace Battle.Objects.Projectiles {
             };
             Timer = new DetonationTimer(new Time{Seconds = 20});
             CollisionHandler = new DetonatorCollisionHandler();
+
+            Priority = CameraPriority.Medium;
         }
 
     }
