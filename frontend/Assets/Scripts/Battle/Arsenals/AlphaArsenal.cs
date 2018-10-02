@@ -10,7 +10,7 @@ namespace Battle.Arsenals {
 
             SetAmmo(WeaponId.Bazooka, 6);
             SetAmmo(WeaponId.Plasmagun, inf);
-            SetAmmo(WeaponId.MultiLauncher, 12);
+            SetAmmo(WeaponId.MultiLauncher, 4);
             SetAmmo(WeaponId.HomingMissile, 1);
             SetAmmo(WeaponId.Minegun, 3);
 
@@ -34,9 +34,9 @@ namespace Battle.Arsenals {
             SetAmmo(WeaponId.Landmine, inf);
             SetAmmo(WeaponId.Dynamite, 1);
             
-            SetAmmo(WeaponId.Airstrike, inf);
-            SetAmmo(WeaponId.MineStrike, inf);
-            SetAmmo(WeaponId.VacuumBomb, inf);
+            SetAmmo(WeaponId.Airstrike, 1);
+            SetAmmo(WeaponId.MineStrike, 1);
+            SetAmmo(WeaponId.VacuumBomb, 1);
             
             SetAmmo(WeaponId.Erosion, 1);
             SetAmmo(WeaponId.PoisonCloud, 1);
