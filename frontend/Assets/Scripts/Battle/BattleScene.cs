@@ -194,6 +194,7 @@ namespace Battle {
         public void NewTurn () {
             ActiveWorm.Worm = Teams.NextWorm();
             ActiveWorm.CanMove = true;
+            Camera.Controller = new CameraController ();
             Camera.LookAt(ActiveWorm.Worm.Position);
             Weapon.Unlock();
             Timer.Seconds = 30;

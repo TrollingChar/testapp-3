@@ -46,7 +46,12 @@ namespace Geometry {
 
 
         public static float Distance (Box b, XY p) {
-            return XY.Distance (p, p.Clamped (b));
+            return Mathf.Sqrt (SqrDistance (b, p));
+        }
+
+
+        public static float SqrDistance (Box b, XY p) {
+            return XY.SqrDistance (p, p.Clamped (b));
         }
 
     }

@@ -72,7 +72,7 @@ namespace Battle.Weapons.WeaponTypes.Thrown {
                 Object.Position,
                 (TurnData.XY - Object.Position).WithLength(Power01 * Balance.BaseShotSpeed)
             );
-            The.Camera.Controller = new AutomaticCameraController ();
+//            The.Camera.Controller = new AutomaticCameraController ();
         }
 
 
