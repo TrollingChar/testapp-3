@@ -62,7 +62,7 @@ namespace Battle.Weapons.WeaponTypes.Thrown {
 
         protected override void OnShoot () {
             UseAmmo();
-            Object.Spawn(
+            The.World.Spawn(
                 new GasGrenade(),
                 Object.Position,
                 (TurnData.XY - Object.Position).WithLength(Power01 * Balance.BaseShotSpeed)

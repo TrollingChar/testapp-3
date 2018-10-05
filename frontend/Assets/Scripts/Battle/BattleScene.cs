@@ -32,60 +32,61 @@ namespace Battle {
         // temp field
         private EstimatedLandGen _landGen;
 
-        [SerializeField] private Text _hint;
+        [SerializeField] private Text         _hint;
         [SerializeField] private LandRenderer _landRenderer;
-        [SerializeField] private WaterGO _water;
-        [SerializeField] private EndGameMenu _endGameMenu;
+        [SerializeField] private WaterGO      _water;
+        [SerializeField] private EndGameMenu  _endGameMenu;
 
-        public Connection Connection { get; private set; }
-        public CameraWrapper Camera { get; private set; }      // камера и ее плавное движение
-        public World World { get; private set; }               // земля, объекты и т.д.
-        public TimerWrapper Timer { get; private set; }        // таймер и флаг заморозки
-        public GameStateController State { get; private set; } // состояние игры, текущая фаза и т.д.
-        public TeamManager Teams { get; private set; }         // команды
-        public ActiveWorm ActiveWorm { get; private set; }     // активный червяк, флаг заморозки движения
-        public WeaponWrapper Weapon { get; private set; }      // выбранное оружие, флаг блокировки
-        public ArsenalPanel ArsenalPanel { get; private set; } // панель арсенала
-        public CrateFactory CrateFactory { get; private set; } // генератор ящиков
-        
+        public Connection          Connection   { get; private set; }
+        public CameraWrapper       Camera       { get; private set; } // камера и ее плавное движение
+        public World               World        { get; private set; } // земля, объекты и т.д.
+        public TimerWrapper        Timer        { get; private set; } // таймер и флаг заморозки
+        public GameStateController State        { get; private set; } // состояние игры, текущая фаза и т.д.
+        public TeamManager         Teams        { get; private set; } // команды
+        public ActiveWorm          ActiveWorm   { get; private set; } // активный червяк, флаг заморозки движения
+        public WeaponWrapper       Weapon       { get; private set; } // выбранное оружие, флаг блокировки
+        public ArsenalPanel        ArsenalPanel { get; private set; } // панель арсенала
+        public CrateFactory        CrateFactory { get; private set; } // генератор ящиков
+
 
         private void Awake () {
             The.BattleScene = this;
 
             _initData = (GameInitData) The.SceneSwitcher.Data[0];
-            RNG.Init(_initData.Seed);
+            RNG.Init (_initData.Seed);
 
-            Connection = The.Connection;
-            The.Camera = Camera = GetComponentInChildren<CameraWrapper>();
-            The.ArsenalPanel = ArsenalPanel = GetComponentInChildren<ArsenalPanel>();
+            Connection       = The.Connection;
+            The.Camera       = Camera       = GetComponentInChildren <CameraWrapper> ();
+            The.ArsenalPanel = ArsenalPanel = GetComponentInChildren <ArsenalPanel> ();
 
-            StartLandGen();
+            StartLandGen ();
         }
 
 
         private void StartLandGen () {
             _landGen =
-                new EstimatedLandGen(
-                        new LandGen(
-                            new byte[,] {
-                                {0, 0, 0, 0, 0},
-                                {0, 1, 1, 1, 0},
-                                {0, 1, 0, 1, 0}
-                            }
-                        )
-                    )
-                    .SwitchDimensions()
-                    .Expand(7)
-                    .Cellular(0x01e801d0, 20)
-                    .Cellular(0x01f001e0)
-                    .Expand()
-                    .Cellular(0x01e801d0, 20)
-                    .Cellular(0x01f001e0)
-                    .Rescale(2000, 1000)
-                    .Cellular(0x01f001e0);
-            _landGen.OnProgress.Subscribe(OnProgress);
-            _landGen.OnComplete.Subscribe(OnComplete); // maybe the world should handle this?
-            _landGen.Generate(this);
+            new EstimatedLandGen (
+                new LandGen (
+                    new byte[,] {
+                        {0, 0, 0, 0, 0},
+                        {0, 1, 1, 1, 0},
+                        {0, 1, 0, 1, 0}
+                    }
+                )
+            ).
+            SwitchDimensions ().
+            Expand (7).
+            Cellular (0x01e801d0, 20).
+            Cellular (0x01f001e0).
+            Expand ().
+            Cellular (0x01e801d0, 20).
+            Cellular (0x01f001e0).
+            Rescale (2000, 1000).
+            Cellular (0x01f001e0);
+            
+            _landGen.OnProgress.Subscribe (OnProgress);
+            _landGen.OnComplete.Subscribe (OnComplete); // maybe the world should handle this?
+            _landGen.Generate (this);
         }
 
 
@@ -102,27 +103,30 @@ namespace Battle {
         private void OnComplete (LandGen gen) {
             _initialized = true;
 
-            _landGen.OnProgress.Unsubscribe(OnProgress);
-            _landGen.OnComplete.Unsubscribe(OnComplete);
+            _landGen.OnProgress.Unsubscribe (OnProgress);
+            _landGen.OnComplete.Unsubscribe (OnComplete);
 
             // show ground, spawn worms
-            State = new GameStateController();
-            Timer = new TimerWrapper();
-            World = new World(gen, _landRenderer);
-            World.OnWindChange.Subscribe(_water.SetWind);
-            ActiveWorm = new ActiveWorm();
-            Weapon = new WeaponWrapper();
-            Camera.LookAt(new Vector2(World.Width * 0.5f, World.Height * 0.75f), true);
-            Teams = World.SpawnTeams(_initData.Players, Math.Min(10, Mathf.CeilToInt(20f / _initData.Players.Count)));
+            State              =  new GameStateController ();
+            Timer              =  new TimerWrapper ();
+            World              =  new World (gen, _landRenderer);
+            World.OnWindChange += _water.SetWind;
+            ActiveWorm         =  new ActiveWorm ();
+            Weapon             =  new WeaponWrapper ();
+            Camera.LookAt (new Vector2 (World.Width * 0.5f, World.Height * 0.75f), true);
+            Teams = World.SpawnTeams (
+                _initData.Players,
+                Math.Min (10, Mathf.CeilToInt (20f / _initData.Players.Count))
+            );
             // 10, 10, 7, 5, 4, 4, 3...
-            World.SpawnMines(20);
-            ArsenalPanel.Bind(Teams.MyTeam.Arsenal);
-            CrateFactory = new CrateFactory();
+            World.SpawnMines (20);
+            ArsenalPanel.Bind (Teams.MyTeam.Arsenal);
+            CrateFactory = new CrateFactory ();
 
-            NewTurnCmd.OnReceived.Subscribe(PrepareTurn);
-            TurnDataSCmd.OnReceived.Subscribe(TurnDataHandler);
+            NewTurnCmd.OnReceived.Subscribe (PrepareTurn);
+            TurnDataSCmd.OnReceived.Subscribe (TurnDataHandler);
 
-            OnBattleLoaded.Send();
+            OnBattleLoaded.Send ();
             Timer.Seconds = 0.5f;
         }
 
@@ -131,31 +135,31 @@ namespace Battle {
             if (!_initialized) return;
             if (State.CurrentState == GameState.Synchronizing) return;
             if (State.CurrentState != GameState.Turn) {
-                Work(null);
+                Work (null);
                 return;
             }
             if (!Teams.IsMyTurn) return;
 
             // gather input and update world
-            var td = TurnData.FromInput();
-            Connection.Send(new TurnDataCCmd(td));
-            Work(td);
+            var td = TurnData.FromInput ();
+            Connection.Send (new TurnDataCCmd (td));
+            Work (td);
         }
 
 
         private void Work (TurnData td) {
-            Weapon.Update(td);
-            World.Update(td);
-            Timer.Update();
-            if (Timer.HasElapsed) State.ChangeState();
+            Weapon.Update (td);
+            World.Update (td);
+            Timer.Update ();
+            if (Timer.HasElapsed) State.ChangeState ();
         }
 
 
         private void OnDestroy () {
-            World.OnWindChange.Unsubscribe(_water.SetWind);
-            NewTurnCmd.OnReceived.Unsubscribe(PrepareTurn);
-            TurnDataSCmd.OnReceived.Unsubscribe(TurnDataHandler);
-            The.World = null;
+            World.OnWindChange -= _water.SetWind;
+            NewTurnCmd.OnReceived.Unsubscribe (PrepareTurn);
+            TurnDataSCmd.OnReceived.Unsubscribe (TurnDataHandler);
+            The.World     = null;
             The.GameState = null;
         }
 
@@ -168,42 +172,42 @@ namespace Battle {
 
         public void BeforeTurn () {
             // drop crates
-            var crate = CrateFactory.GenCrate();
+            var crate = CrateFactory.GenCrate ();
             if (crate != null) {
-                var xy = new XY(RNG.Float() * World.Width, World.Height + 500);
-                World.Spawn(crate, xy);
+                var xy = new XY (RNG.Float () * World.Width, World.Height + 500);
+                World.Spawn (crate, xy);
             }
 
-            World.Wind = RNG.Float() * 10f - 5f;
-            Timer.Wait();
+            World.Wind = RNG.Float () * 10f - 5f;
+            Timer.Wait ();
         }
 
 
         public void Synchronize () {
-            Debug.Log(Teams.MyTeam.WormsAlive);
-            Connection.Send(new TurnEndedCmd(Teams.MyTeam.WormsAlive > 0));
+            Debug.Log (Teams.MyTeam.WormsAlive);
+            Connection.Send (new TurnEndedCmd (Teams.MyTeam.WormsAlive > 0));
         }
 
 
         private void PrepareTurn (NewTurnCmd cmd) {
-            Teams.SetActive(cmd.Player);
-            State.ChangeState();
+            Teams.SetActive (cmd.Player);
+            State.ChangeState ();
         }
 
 
         public void NewTurn () {
-            ActiveWorm.Worm = Teams.NextWorm();
+            ActiveWorm.Worm    = Teams.NextWorm ();
             ActiveWorm.CanMove = true;
-            Camera.Controller = new CameraController ();
-            Camera.LookAt(ActiveWorm.Worm.Position);
-            Weapon.Unlock();
+            Camera.Controller  = new CameraController ();
+            Camera.LookAt (ActiveWorm.Worm.Position);
+            Weapon.Unlock ();
             Timer.Seconds = 30;
         }
 
 
         public void PrepareWeapon (byte id) {
             if (Teams.IsMyTurn) {
-                TurnData.PrepareWeapon(id);
+                TurnData.PrepareWeapon (id);
             }
             // move to turn data
 
@@ -216,46 +220,46 @@ namespace Battle {
         public void SelectWeapon (byte id) {
             // move to weapon wrapper
 
-            Weapon.Select(id);
+            Weapon.Select (id);
         }
 
 
         public void LockWeaponSelect () {
             // weapLocked = yes;
-            Weapon.Lock();
+            Weapon.Lock ();
         }
 
 
         public void InitRetreat (Time t) {
             Timer.Frozen = false;
-            Timer.Time = t;
-            Weapon.LockAndUnequip();
+            Timer.Time   = t;
+            Weapon.LockAndUnequip ();
         }
 
 
         public void EndTurn () {
             Timer.Frozen = false;
-            Timer.Ticks = 0;
-            Weapon.LockAndUnequip();
-            ActiveWorm.Set(null);
+            Timer.Ticks  = 0;
+            Weapon.LockAndUnequip ();
+            ActiveWorm.Set (null);
         }
 
 
         public void TurnEnded () {
-            Weapon.LockAndUnequip();
-            ActiveWorm.Set(null);
-            Timer.Wait();
+            Weapon.LockAndUnequip ();
+            ActiveWorm.Set (null);
+            Timer.Wait ();
         }
 
 
         public void AfterTurn () {
             // poison damage
-            if (World.AfterTurn()) Timer.Wait();
+            if (World.AfterTurn ()) Timer.Wait ();
         }
 
 
         public void Remove0Hp () {
-            if (World.Remove0HpWorms()) Timer.Wait();
+            if (World.Remove0HpWorms ()) Timer.Wait ();
         }
 
     }

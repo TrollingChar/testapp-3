@@ -22,7 +22,7 @@ namespace Battle.Camera {
 //            _markedSet  = new HashSet <Object> ();
 //            _markedList = new List <Object> ();
         }
-
+/*
 
         // todo!! оптимизировать
         public override void Update () {
@@ -98,51 +98,7 @@ namespace Battle.Camera {
 //            if (!_markedSet.Add (o)) return;
 //            _markedList.Add (o);
 //        }
-
-
-/*
-            var coords = new List <XY>[5];
-            for (int i = 1; i < 5; i++) {
-                coords[i] = new List <XY> ();
-            }
-            foreach (var o in The.World.Objects) {
-                int p = o.Priority;
-                if (p != 0) coords[--p].Add (o.Position);
-            }
-
-            // вот кароч у нас есть камера
-            var camPosition = (XY) (Vector2) Camera.Target;
-            var box = new Box (
-                camPosition.X - 300,
-                camPosition.X + 300,
-                camPosition.Y - 200,
-                camPosition.Y + 200
-            );
-
-            // если камера не следит за объектами, найти ближайший с учетом приоритета
-            // если камера следила за объектом, то постараться не потерять его
-            // а для этого запомним все объекты, за которыми мы следим, и присвоим им дополнительные приоритеты
-            // таким образом, первый объект будет оставаться для камеры главным
-            // мы не крутим камеру специально, чтобы захватить дополнительные объекты
-            // возможно, когда-нибудь это стоит сделать
-
-            for (int i = 4; i > 0; i--) {
-                if (coords[i].Count == 0) continue;
-
-                float min     = XY.SqrDistance (coords[i][0], coords[i][0].Clamped (box));
-                var   nearest = coords[i][0];
-
-                for (int j = 1; j < coords[i].Count; j++) {
-                    var   p  = coords[i][j];
-                    float d2 = XY.SqrDistance (p, p.Clamped (box));
-                    if (d2 < min) {
-                        min     = d2;
-                        nearest = p;
-                    }
-                }
-            }
-        }*/
-
+*/
     }
 
 }

@@ -67,7 +67,7 @@ namespace Battle.Weapons.WeaponTypes.Thrown {
 
         protected override void OnShoot () {
             UseAmmo();
-            Object.Spawn(
+            The.World.Spawn(
                 new Limonka(_timer),
                 Object.Position,
                 (TurnData.XY - Object.Position).WithLength(Power01 * Balance.BaseShotSpeed)

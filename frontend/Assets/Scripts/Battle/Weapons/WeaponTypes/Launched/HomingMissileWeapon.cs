@@ -82,7 +82,7 @@ namespace Battle.Weapons.WeaponTypes.Launched {
             }
             else {
                 UseAmmo();
-                Object.Spawn(
+                The.World.Spawn(
                     new HomingMissile(_target),
                     Object.Position,
                     (TurnData.XY - Object.Position).WithLength(Power01 * Balance.BaseShotSpeed)

@@ -21,29 +21,29 @@ namespace Battle.UI {
 
 
         private void Awake () {
-            The.BattleScene.OnBattleLoaded.Subscribe(OnBattleLoaded);
+            The.BattleScene.OnBattleLoaded.Subscribe (OnBattleLoaded);
         }
 
 
         private void OnBattleLoaded () {
-            The.BattleScene.OnBattleLoaded.Unsubscribe(OnBattleLoaded);
-            The.BattleScene.Timer.OnTimerUpdated.Subscribe(UpdateTime);
-            The.World.OnWindChange.Subscribe(UpdateWind);
+            The.BattleScene.OnBattleLoaded.Unsubscribe (OnBattleLoaded);
+            The.BattleScene.Timer.OnTimerUpdated.Subscribe (UpdateTime);
+            The.World.OnWindChange += UpdateWind;
         }
 
 
         private void UpdateTime (Time t) {
-            string turnTime = t.ToString();
+            string turnTime = t.ToString ();
             if (_turnTime == turnTime) return;
             _turnTime = turnTime;
-            UpdateTimer();
+            UpdateTimer ();
         }
 
 
         public void SetGameTime (string gameTime) {
             if (_gameTime == gameTime) return;
             _gameTime = gameTime;
-            UpdateTimer();
+            UpdateTimer ();
         }
 
 
@@ -60,8 +60,8 @@ namespace Battle.UI {
 
 
         private void UpdateWind (float wind) {
-            if      (wind < 0) _wind.text = string.Format("<- {0:F1}", -wind);
-            else if (wind > 0) _wind.text = string.Format("{0:F1} ->",  wind);
+            if      (wind < 0) _wind.text = string.Format ("<- {0:F1}", -wind);
+            else if (wind > 0) _wind.text = string.Format ("{0:F1} ->",  wind);
             else               _wind.text = "0.0";
         }
 

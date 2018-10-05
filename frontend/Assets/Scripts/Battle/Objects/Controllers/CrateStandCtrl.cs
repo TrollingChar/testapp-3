@@ -12,14 +12,14 @@ namespace Battle.Objects.Controllers {
 
         public override void OnAdd () {
             Object.Velocity = XY.Zero;
-            Object.Immobile = true;
+//            Object.Immobile = true;
             _crate = (Crate) Object;
         }
 
 
-        public override void OnRemove () {
-            Object.Immobile = false;
-        }
+//        public override void OnRemove () {
+//            Object.Immobile = false;
+//        }
 
 
         protected override void DoUpdate (TurnData td) {

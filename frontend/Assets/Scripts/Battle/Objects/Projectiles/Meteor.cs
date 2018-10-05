@@ -12,18 +12,17 @@ namespace Battle.Objects.Projectiles {
     public class Meteor : Object {
 
         public override void OnSpawn () {
-            UnityEngine.Object.Instantiate(The.BattleAssets.Meteor, GameObject.transform, false);
-            AddCollider(new CircleCollider(XY.Zero, 20f));
-            Explosive = new Explosive40();
+            UnityEngine.Object.Instantiate (The.BattleAssets.Meteor, GameObject.transform, false);
+            AddCollider (new CircleCollider (XY.Zero, 20f));
+            Explosive = new Explosive40 ();
             Controller = new StandardCtrl {
-                SmokeSize = 40,
+                SmokeSize       = 40,
                 OrientationFlag = true
             };
-            Timer = new DetonationTimer(new Time{Seconds = 20});
-            CollisionHandler = new DetonatorCollisionHandler();
+            Timer            = new DetonationTimer (new Time {Seconds = 20});
+            CollisionHandler = new DetonatorCollisionHandler ();
         }
 
-        
 
     }
 

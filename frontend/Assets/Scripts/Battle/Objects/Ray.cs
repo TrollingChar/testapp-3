@@ -6,7 +6,7 @@ using Geometry;
 
 namespace Battle.Objects {
 
-    [Obsolete]
+    
     public class Ray : Object {
 
         public Object Object;

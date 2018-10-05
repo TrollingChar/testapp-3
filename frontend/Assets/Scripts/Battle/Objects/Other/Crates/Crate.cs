@@ -13,55 +13,57 @@ namespace Battle.Objects.Other.Crates {
 
     public class Crate : Object {
 
-        public const float Size = 30;
-        private bool _collected;
-        private GameStateController _state;
-        private ActiveWorm _activeWorm;
-        public string Text { get; protected set; }
+        public const float               Size = 30;
+        private      bool                _collected;
+        private      GameStateController _state;
+        private      ActiveWorm          _activeWorm;
+        public       string              Text { get; protected set; }
 
 
         public Crate () : base (60, 2) {}
-        
+
 
         public override void OnSpawn () {
-            _state = The.GameState;
-            _activeWorm = The.ActiveWorm;
-            AddCollider(new BoxCollider(Size * -0.5f, Size * 0.5f, Size * -0.5f, Size * 0.5f));
-            Controller = new CrateFallCtrl();
-            CollisionHandler = new CrateCH();
-            Explosive = new Explosive25();
+            _state           = The.GameState;
+            _activeWorm      = The.ActiveWorm;
+            AddCollider (new BoxCollider (Size * -0.5f, Size * 0.5f, Size * -0.5f, Size * 0.5f));
+            Controller       = new CrateFallCtrl ();
+            CollisionHandler = new CrateCH ();
+            Explosive        = new Explosive25 ();
         }
 
 
         protected override bool PassableFor (Object o) {
             if (this == o) return true;
+            
+            // для лучей надо проверить объект который пускает луч а не объект-луч
             var ray = o as Ray;
             if (ray != null) o = ray.Object;
-            return The.ActiveWorm.Is(o) && The.GameState.CurrentState == GameState.Turn;
+            
+            return The.ActiveWorm.Is (o) && The.GameState.CurrentState == GameState.Turn;
         }
 
 
         public override void TakeDamage (int damage) {
-            Detonate();
+            Detonate ();
         }
 
 
         public void CollectBy (Worm worm) {
             if (_collected) return;
             _collected = true;
-            Despawn();
-            Spawn(new Label(Text, Color.white, 1f, new LabelRiseCtrl()), Position, new XY(0f, 10f));
-            OnPickup(worm);
+            Despawn ();
+            The.World.Spawn (new Label (Text, Color.white, 1f, new LabelRiseCtrl ()), Position, new XY (0f, 10f));
+            OnPickup (worm);
         }
 
 
-        protected virtual void OnPickup (Worm worm) {
-        }
+        protected virtual void OnPickup (Worm worm) {}
 
 
         public override void ReceiveBlastWave (XY impulse) {
-            Controller = new CrateFallCtrl();
-            base.ReceiveBlastWave(impulse);
+            Controller = new CrateFallCtrl ();
+            base.ReceiveBlastWave (impulse);
         }
 
 
@@ -71,8 +73,8 @@ namespace Battle.Objects.Other.Crates {
             if (worm == null) return;
             foreach (var wormCollider in worm.Colliders)
             foreach (var crateCollider in Colliders) {
-                if (!wormCollider.Overlaps(crateCollider)) continue;
-                CollectBy(worm);
+                if (!wormCollider.Overlaps (crateCollider)) continue;
+                CollectBy (worm);
                 return;
             }
         }

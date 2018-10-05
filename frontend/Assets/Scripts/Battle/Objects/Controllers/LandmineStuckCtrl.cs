@@ -16,14 +16,14 @@ namespace Battle.Objects.Controllers {
         private readonly World _world = The.World;
 
 
-        public override void OnAdd () {
-            Object.Immobile = true;
-        }
+//        public override void OnAdd () {
+//            Object.Immobile = true;
+//        }
 
 
-        public override void OnRemove () {
-            Object.Immobile = false;
-        }
+//        public override void OnRemove () {
+//            Object.Immobile = false;
+//        }
 
 
         protected override void DoUpdate (TurnData td) {

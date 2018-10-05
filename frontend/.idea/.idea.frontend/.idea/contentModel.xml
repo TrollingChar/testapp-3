@@ -104,6 +104,7 @@
             <e p="MeleeTester.cs" t="Include" />
             <e p="NullObject.cs" t="Include" />
             <e p="Object.cs" t="Include" />
+            <e p="ObjectPhysics.cs" t="Include" />
             <e p="Other" t="Include">
               <e p="Airplane.cs" t="Include" />
               <e p="Crates" t="Include">

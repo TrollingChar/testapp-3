@@ -14,14 +14,14 @@ namespace Battle.Objects.Controllers {
 
         public override void OnAdd () {
             Object.Velocity = XY.Zero;
-            Object.Immobile = true;
+//            Object.Immobile = true;
             ((Worm) Object).NewWormGO.Stand ();
         }
 
 
-        public override void OnRemove () {
-            Object.Immobile = false;
-        }
+//        public override void OnRemove () {
+//            Object.Immobile = false;
+//        }
 
 
         // todo: подумать где нужно заменить Precision на 0

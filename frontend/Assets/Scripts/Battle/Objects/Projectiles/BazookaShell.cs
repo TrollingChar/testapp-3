@@ -12,16 +12,15 @@ namespace Battle.Objects.Projectiles {
     public class BazookaShell : Object {
 
         public override void OnSpawn () {
-            UnityEngine.Object.Instantiate(The.BattleAssets.BazookaShell, GameObject.transform, false);
-            AddCollider(new CircleCollider(XY.Zero, 2f));
-            Explosive = new Explosive25();
+            UnityEngine.Object.Instantiate (The.BattleAssets.BazookaShell, GameObject.transform, false);
+            AddCollider (new CircleCollider (XY.Zero, 2f));
+            Explosive = new Explosive25 ();
             Controller = new StandardCtrl {
-                MagnetCoeff = 1,
-                SmokeSize = 20,
+                SmokeSize       = 20,
                 OrientationFlag = true
             };
-            Timer = new DetonationTimer(new Time{Seconds = 20});
-            CollisionHandler = new DetonatorCollisionHandler();
+            Timer            = new DetonationTimer (new Time {Seconds = 20});
+            CollisionHandler = new DetonatorCollisionHandler ();
         }
 
     }

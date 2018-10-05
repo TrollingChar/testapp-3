@@ -69,7 +69,7 @@ namespace Battle.Weapons.WeaponTypes.Launched {
 
         protected override void OnShoot () {
             UseAmmo();
-            Object.Spawn(
+            The.World.Spawn(
                 new MultiLauncherShell(),
                 Object.Position,
                 (TurnData.XY - Object.Position).WithLength(Power01 * Balance.BaseShotSpeed)

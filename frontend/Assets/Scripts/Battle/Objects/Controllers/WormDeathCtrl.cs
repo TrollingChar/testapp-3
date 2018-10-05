@@ -13,7 +13,7 @@ namespace Battle.Objects.Controllers {
 
         public override void OnAdd () {
             Object.Velocity = XY.Zero;
-            Object.Immobile = true;
+//            Object.Immobile = true;
             Object.Timer = new DetonationTimer (new Time {Seconds = 1.5f});
             ((Worm) Object).NewWormGO.Die();
         }

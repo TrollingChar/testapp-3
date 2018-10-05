@@ -18,7 +18,7 @@ namespace Battle.Objects.Controllers {
 
 
         public override void OnAdd () {
-            Object.Immobile = true;
+//            Object.Immobile = true;
             Object.Timer = new CallbackTimer (
                 new Time {Seconds = 0.2f},
                 () => {
