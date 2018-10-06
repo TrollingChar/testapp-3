@@ -21,14 +21,14 @@ namespace Battle.UI {
 
 
         private void Awake () {
-            The.BattleScene.OnBattleLoaded.Subscribe (OnBattleLoaded);
+            The.BattleScene.OnBattleLoaded += OnBattleLoaded;
         }
 
 
         private void OnBattleLoaded () {
-            The.BattleScene.OnBattleLoaded.Unsubscribe (OnBattleLoaded);
-            The.BattleScene.Timer.OnTimerUpdated.Subscribe (UpdateTime);
-            The.World.OnWindChange += UpdateWind;
+            The.BattleScene.OnBattleLoaded       -= OnBattleLoaded;
+            The.BattleScene.Timer.OnTimerUpdated += UpdateTime;
+            The.World.OnWindChange               += UpdateWind;
         }
 
 

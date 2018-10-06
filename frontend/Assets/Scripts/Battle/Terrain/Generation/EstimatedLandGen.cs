@@ -1,38 +1,39 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Utils.Messenger;
+using Utils;
 
 
 namespace Battle.Terrain.Generation {
 
     public class EstimatedLandGen {
 
-        private const int ExpandEstimation = 5;
+        private const int ExpandEstimation   = 5;
         private const int CellularEstimation = 10;
-        private const int RescaleEstimation = 5;
-        private const int RotateEstimation = 5;
+        private const int RescaleEstimation  = 5;
+        private const int RotateEstimation   = 5;
 
-        private readonly Queue<IEnumerator> _instructions;
-        public readonly Messenger<LandGen> OnComplete;
+        private readonly Queue <IEnumerator> _instructions;
 
-        public readonly Messenger<float> OnProgress;
+        public event Action <float>   OnProgress;
+        public event Action <LandGen> OnComplete;
+
         private MonoBehaviour _coroutineKeeper;
 
+        private long _estimation;
         private long _done;
 
         private LandGen _landGen;
-        private int _width, _height;
+        private int     _width, _height;
 
 
         public EstimatedLandGen (LandGen landGen) {
             _landGen = landGen;
-            _width = landGen.Array.GetLength(0);
-            _height = landGen.Array.GetLength(1);
+            _width   = landGen.Array.GetLength (0);
+            _height  = landGen.Array.GetLength (1);
 
-            OnProgress = new Messenger<float>();
-            OnComplete = new Messenger<LandGen>();
-            _instructions = new Queue<IEnumerator>();
+            _instructions = new Queue <IEnumerator> ();
         }
 
 
@@ -40,50 +41,46 @@ namespace Battle.Terrain.Generation {
             get { return _done; }
             private set {
                 _done = value;
-                OnProgress.Send(100f * value / Estimation);
+                OnProgress._ (100f * value / _estimation);
             }
         }
-
-        public int LastProgress { get; private set; }
-
-        public long Estimation { get; private set; }
 
 
         public EstimatedLandGen Expand (int iterations = 1) {
             for (int i = 0; i < iterations; i++) {
-                _width *= 2;
+                _width  *= 2;
                 _height *= 2;
                 _width--;
                 _height--;
-                Estimation += _width * _height * ExpandEstimation;
+                _estimation += _width * _height * ExpandEstimation;
             }
-            _instructions.Enqueue(DoExpand(iterations));
+            _instructions.Enqueue (DoExpand (iterations));
             return this;
         }
 
 
         public EstimatedLandGen Cellular (uint rules, int iterations = 5) {
-            Estimation += _width * _height * CellularEstimation * iterations;
-            _instructions.Enqueue(DoCellular(rules, iterations));
+            _estimation += _width * _height * CellularEstimation * iterations;
+            _instructions.Enqueue (DoCellular (rules, iterations));
             return this;
         }
 
 
         public EstimatedLandGen Rescale (int w, int h) {
-            Estimation += w * h * RescaleEstimation;
-            _width = w;
-            _height = h;
-            _instructions.Enqueue(DoRescale(w, h));
+            _estimation += w * h * RescaleEstimation;
+            _width      =  w;
+            _height     =  h;
+            _instructions.Enqueue (DoRescale (w, h));
             return this;
         }
 
 
         public EstimatedLandGen SwitchDimensions () {
-            Estimation += _width * _height * RotateEstimation;
-            int t = _width;
-            _width = _height;
+            _estimation += _width * _height * RotateEstimation;
+            int t   = _width;
+            _width  = _height;
             _height = t;
-            _instructions.Enqueue(DoSwitchDimensions());
+            _instructions.Enqueue (DoSwitchDimensions ());
             return this;
         }
 
@@ -91,9 +88,8 @@ namespace Battle.Terrain.Generation {
         private IEnumerator DoExpand (int iterations) {
             yield return null;
             for (int i = 0; i < iterations; i++) {
-                _landGen = _landGen.Expand();
-                Done += _landGen.Array.GetLength(0) * _landGen.Array.GetLength(1) * ExpandEstimation;
-
+                _landGen =  _landGen.Expand ();
+                Done     += _landGen.Array.GetLength (0) * _landGen.Array.GetLength (1) * ExpandEstimation;
                 yield return null;
             }
         }
@@ -102,9 +98,8 @@ namespace Battle.Terrain.Generation {
         private IEnumerator DoCellular (uint rules, int iterations) {
             yield return null;
             for (int i = 0; i < iterations; i++) {
-                _landGen = _landGen.Cellular(rules, 1);
-                Done += _landGen.Array.GetLength(0) * _landGen.Array.GetLength(1) * CellularEstimation;
-
+                _landGen =  _landGen.Cellular (rules, 1);
+                Done     += _landGen.Array.GetLength (0) * _landGen.Array.GetLength (1) * CellularEstimation;
                 yield return null;
             }
         }
@@ -112,27 +107,25 @@ namespace Battle.Terrain.Generation {
 
         private IEnumerator DoRescale (int w, int h) {
             yield return null;
-            _landGen = _landGen.Rescale(w, h);
-            Done += _landGen.Array.GetLength(0) * _landGen.Array.GetLength(1) * RescaleEstimation;
-
+            _landGen =  _landGen.Rescale (w, h);
+            Done     += _landGen.Array.GetLength (0) * _landGen.Array.GetLength (1) * RescaleEstimation;
             yield return null;
         }
 
 
         private IEnumerator DoSwitchDimensions () {
             yield return null;
-            _landGen = _landGen.SwitchDimensions();
-            Done += _landGen.Array.GetLength(0) * _landGen.Array.GetLength(1) * RotateEstimation;
-
+            _landGen =  _landGen.SwitchDimensions ();
+            Done     += _landGen.Array.GetLength (0) * _landGen.Array.GetLength (1) * RotateEstimation;
             yield return null;
         }
 
 
-        public IEnumerator GenerationCoroutine () {
+        private IEnumerator GenerationCoroutine () {
             foreach (var instruction in _instructions) {
-                yield return _coroutineKeeper.StartCoroutine(instruction);
+                yield return _coroutineKeeper.StartCoroutine (instruction);
             }
-            OnComplete.Send(_landGen);
+            OnComplete._ (_landGen);
         }
 
 

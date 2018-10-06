@@ -18,8 +18,8 @@ using Core;
 using DataTransfer.Data;
 using Geometry;
 using UnityEngine;
+using Utils;
 using Utils.Danmaku;
-using Utils.Messenger;
 using Utils.Random;
 using Collision = Collisions.Collision;
 using Object = Battle.Objects.Object;
@@ -50,10 +50,7 @@ namespace Battle {
 
         public float Wind {
             get { return _wind; }
-            set {
-                _wind = value;
-                if (OnWindChange != null) OnWindChange (_wind = value);
-            }
+            set { OnWindChange._ (_wind = value); }
         }
 
 

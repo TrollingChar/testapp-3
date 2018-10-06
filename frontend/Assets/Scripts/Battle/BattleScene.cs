@@ -15,7 +15,7 @@ using Geometry;
 using Net;
 using UnityEngine;
 using UnityEngine.UI;
-using Utils.Messenger;
+using Utils;
 using Utils.Random;
 using Time = Core.Time;
 
@@ -24,7 +24,7 @@ namespace Battle {
 
     public class BattleScene : MonoBehaviour {
 
-        public readonly Messenger OnBattleLoaded = new Messenger();
+        public event Action OnBattleLoaded;
 
         private GameInitData _initData;
         private bool _initialized;
@@ -83,9 +83,9 @@ namespace Battle {
             Cellular (0x01f001e0).
             Rescale (2000, 1000).
             Cellular (0x01f001e0);
-            
-            _landGen.OnProgress.Subscribe (OnProgress);
-            _landGen.OnComplete.Subscribe (OnComplete); // maybe the world should handle this?
+
+            _landGen.OnProgress += OnProgress;
+            _landGen.OnComplete += OnComplete; // maybe the world should handle this?
             _landGen.Generate (this);
         }
 
@@ -103,8 +103,8 @@ namespace Battle {
         private void OnComplete (LandGen gen) {
             _initialized = true;
 
-            _landGen.OnProgress.Unsubscribe (OnProgress);
-            _landGen.OnComplete.Unsubscribe (OnComplete);
+            _landGen.OnProgress -= OnProgress;
+            _landGen.OnComplete -= OnComplete;
 
             // show ground, spawn worms
             State              =  new GameStateController ();
@@ -123,10 +123,10 @@ namespace Battle {
             ArsenalPanel.Bind (Teams.MyTeam.Arsenal);
             CrateFactory = new CrateFactory ();
 
-            NewTurnCmd.OnReceived.Subscribe (PrepareTurn);
-            TurnDataSCmd.OnReceived.Subscribe (TurnDataHandler);
+            NewTurnCmd.OnReceived   += PrepareTurn;
+            TurnDataSCmd.OnReceived += TurnDataHandler;
 
-            OnBattleLoaded.Send ();
+            OnBattleLoaded._ ();
             Timer.Seconds = 0.5f;
         }
 
@@ -156,11 +156,11 @@ namespace Battle {
 
 
         private void OnDestroy () {
-            World.OnWindChange -= _water.SetWind;
-            NewTurnCmd.OnReceived.Unsubscribe (PrepareTurn);
-            TurnDataSCmd.OnReceived.Unsubscribe (TurnDataHandler);
-            The.World     = null;
-            The.GameState = null;
+            World.OnWindChange      -= _water.SetWind;
+            NewTurnCmd.OnReceived   -= PrepareTurn;
+            TurnDataSCmd.OnReceived -= TurnDataHandler;
+            The.World               =  null;
+            The.GameState           =  null;
         }
 
 

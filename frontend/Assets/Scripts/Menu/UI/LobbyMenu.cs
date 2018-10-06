@@ -12,44 +12,43 @@ namespace Menu.UI {
     public class LobbyMenu : Panel {
 
         [SerializeField] private Button _cancelButton;
-        [SerializeField] private Text _text;
+        [SerializeField] private Text   _text;
 
         private Connection _connection;
-        private MenuScene _menuScene;
-
+        private MenuScene  _menuScene;
 
 
         protected override void Activate () {
             _connection = The.Connection;
-            _menuScene = The.MenuScene;
+            _menuScene  = The.MenuScene;
 
-            LobbyStatusCmd.OnReceived.Subscribe(OnLobbyStatusChanged);
-            LeftLobbyCmd.OnReceived.Subscribe(OnLeftLobby);
-            _cancelButton.onClick.AddListener(OnClickedCancel);
+            LobbyStatusCmd.OnReceived += OnLobbyStatusChanged;
+            LeftLobbyCmd.OnReceived   += OnLeftLobby;
+            _cancelButton.onClick.AddListener (OnClickedCancel);
         }
 
 
         private void OnLobbyStatusChanged (LobbyStatusCmd cmd) {
-            UpdateHubStatus(cmd.HubId, cmd.Players);
+            UpdateHubStatus (cmd.HubId, cmd.Players);
         }
 
 
         protected override void Deactivate () {
-            LobbyStatusCmd.OnReceived.Unsubscribe(OnLobbyStatusChanged);
-            LeftLobbyCmd.OnReceived.Unsubscribe(OnLeftLobby);
-            _cancelButton.onClick.RemoveListener(OnClickedCancel);
+            LobbyStatusCmd.OnReceived -= OnLobbyStatusChanged;
+            LeftLobbyCmd.OnReceived   -= OnLeftLobby;
+            _cancelButton.onClick.RemoveListener (OnClickedCancel);
         }
 
 
         private void OnClickedCancel () {
-            _connection.Send(new LeaveLobbyCmd());
+            _connection.Send (new LeaveLobbyCmd ());
             _text.text = "Выход из комнаты...";
         }
 
 
         public void JoinHub (byte lobbyId) {
             _text.text = "Вход в комнату " + lobbyId + "...";
-            _connection.Send(new JoinLobbyCmd(lobbyId));
+            _connection.Send (new JoinLobbyCmd (lobbyId));
         }
 
 
@@ -59,7 +58,7 @@ namespace Menu.UI {
 
 
         public void OnLeftLobby (LeftLobbyCmd cmd) {
-            _menuScene.ShowMainMenu();
+            _menuScene.ShowMainMenu ();
             _text.text = "Игра отменена";
         }
 

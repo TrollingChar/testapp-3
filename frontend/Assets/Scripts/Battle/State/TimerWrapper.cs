@@ -1,13 +1,15 @@
-﻿using Core;
-using Utils.Messenger;
+﻿using System;
+using Core;
+using Utils;
 
 
 namespace Battle.State {
 
     public class TimerWrapper {
 
-        public readonly Messenger OnTimerElapsed = new Messenger();
-        public readonly Messenger<Time> OnTimerUpdated = new Messenger<Time>();
+        public event Action        OnTimerElapsed;
+        public event Action <Time> OnTimerUpdated;
+
         public bool Frozen { get; set; }
 
         private Time _time;
@@ -20,27 +22,27 @@ namespace Battle.State {
 
         public Time Time {
             get { return _time; }
-            set {
-                _time = value;
-                OnTimerUpdated.Send(_time);
-            }
+            set { OnTimerUpdated._ (_time = value); }
         }
+
 
         public int Ticks {
             get { return _time.Ticks; }
             set {
                 _time.Ticks = value;
-                OnTimerUpdated.Send(_time);
+                OnTimerUpdated._ (_time);
             }
         }
+
 
         public float Seconds {
             get { return _time.Seconds; }
             set {
                 _time.Seconds = value;
-                OnTimerUpdated.Send(_time);
+                OnTimerUpdated._ (_time);
             }
         }
+
 
         public bool HasElapsed {
             get { return Time.Ticks <= 0; }
@@ -48,8 +50,8 @@ namespace Battle.State {
 
 
         public void Wait () {
-            if (The.GameState.CurrentState != GameState.Turn && Time.Seconds < 0.5f) {
-                Time = new Time {Seconds = 0.5f};
+            if (The.GameState.CurrentState != GameState.Turn && Seconds < 0.5f) {
+                Seconds = 0.5f;
             }
         }
 
@@ -64,7 +66,7 @@ namespace Battle.State {
         public void Update () {
             if (Frozen) return;
             Ticks--;
-            if (HasElapsed) OnTimerElapsed.Send();
+            if (HasElapsed) OnTimerElapsed._ ();
         }
 
     }

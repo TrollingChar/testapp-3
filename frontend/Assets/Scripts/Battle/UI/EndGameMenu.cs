@@ -14,7 +14,7 @@ namespace Battle.UI {
 
 
         protected override void Activate () {
-            GameEndedCmd.OnReceived.Subscribe(OnGameEnded);
+            GameEndedCmd.OnReceived += OnGameEnded;
             _okButton.onClick.AddListener(OnClickedOk);
         }
 
@@ -25,7 +25,7 @@ namespace Battle.UI {
 
 
         protected override void Deactivate () {
-            GameEndedCmd.OnReceived.Unsubscribe(OnGameEnded);
+            GameEndedCmd.OnReceived -= OnGameEnded;
             _okButton.onClick.RemoveListener(OnClickedOk);
         }
 
