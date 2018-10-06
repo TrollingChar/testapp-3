@@ -31,12 +31,6 @@ namespace Battle.Arsenals {
         }
 
 
-        [Obsolete]
-        public Weapon GetWeapon (int id) {
-            return null;
-        }
-
-
         public void UseAmmo (int id, int ammo = 1) {
             if (this[id] < 0) return; // infinite ammo
             if (this[id] < ammo) {

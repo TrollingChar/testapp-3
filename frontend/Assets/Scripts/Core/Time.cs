@@ -5,7 +5,7 @@ namespace Core {
 
     public struct Time {
 
-        public const int TPS = 50;
+        public const int TPS = 60;
 
         public int Ticks;
 

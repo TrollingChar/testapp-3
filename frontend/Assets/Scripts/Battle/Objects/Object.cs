@@ -113,12 +113,8 @@ namespace Battle.Objects {
 
 
         public void Detonate () {
-            if (Explosive == null) {
-                Despawn ();
-            }
-            else {
-                Explosive.Detonate ();
-            }
+            if (Explosive == null) Despawn ();
+            else                   Explosive.Detonate ();
         }
 
 

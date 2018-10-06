@@ -131,7 +131,7 @@ namespace Battle {
         }
 
 
-        private void FixedUpdate () {
+        private void Update () {
             if (!_initialized) return;
             if (State.CurrentState == GameState.Synchronizing) return;
             if (State.CurrentState != GameState.Turn) {
