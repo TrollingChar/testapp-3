@@ -298,6 +298,7 @@
             <e p="Panel.cs" t="Include" />
             <e p="PanelController.cs" t="Include" />
             <e p="StandardPanelController.cs" t="Include" />
+            <e p="VerticalLayout.cs" t="Include" />
             <e p="WeaponButton.cs" t="Include" />
           </e>
         </e>
@@ -361,27 +362,18 @@
         </e>
         <e p="Utils" t="Include">
           <e p="ActionExtension.cs" t="Include" />
-          <e p="Ballistics" t="Include">
-            <e p="Ballistics.cs" t="Include" />
-          </e>
-          <e p="Danmaku" t="Include">
-            <e p="Danmaku.cs" t="Include" />
-          </e>
-          <e p="Direction" t="Include">
-            <e p="Direction.cs" t="Include" />
-          </e>
-          <e p="LootTable" t="Include">
-            <e p="LootTable.cs" t="Include" />
-          </e>
+          <e p="Ballistics.cs" t="Include" />
+          <e p="CanvasCameraAutoSetter.cs" t="Include" />
+          <e p="Danmaku.cs" t="Include" />
+          <e p="Direction.cs" t="Include" />
+          <e p="LootTable.cs" t="Include" />
           <e p="MouseButtons.cs" t="Include" />
           <e p="Pool.cs" t="Include" />
           <e p="Random" t="Include">
             <e p="MT19937.cs" t="Include" />
             <e p="RNG.cs" t="Include" />
           </e>
-          <e p="Tuple" t="Include">
-            <e p="Tuple.cs" t="Include" />
-          </e>
+          <e p="Tuple.cs" t="Include" />
         </e>
       </e>
       <e p="Library" t="ExcludeRecursive" />

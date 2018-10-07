@@ -8,6 +8,7 @@ using Battle.Teams;
 using Battle.Weapons;
 using Collisions;
 using Core;
+using Core.UI;
 using Geometry;
 using UnityEngine;
 using UnityEngine.UI;
@@ -170,14 +171,14 @@ namespace Battle.Objects {
             var assets    = The.BattleAssets;
             var transform = GameObject.transform;
 
-            _canvas =
-            UnityEngine.Object.Instantiate (assets.TopCanvas, transform, false);
-            _canvas.transform.localPosition                   += new Vector3 (0,    20,   0);
+            _canvas = UnityEngine.Object.Instantiate (assets.TopCanvas, transform, false);
+            _canvas.transform.localPosition                   += new Vector3 (0,    30,   0);
             _canvas.transform.localScale                      =  new Vector3 (0.7f, 0.7f, 1f);
             _canvas.GetComponent <Canvas> ().sortingLayerName =  "TextBack";
 
             _nameField = UnityEngine.Object.Instantiate (assets.Text, _canvas.transform, false).GetComponent <Text> ();
             _hpField   = UnityEngine.Object.Instantiate (assets.Text, _canvas.transform, false).GetComponent <Text> ();
+            _canvas.GetComponent <VerticalLayout> ().ApplyLayout ();
 
             _arrow = UnityEngine.Object.Instantiate (assets.Arrow, transform, false).
             GetComponentInChildren <SpriteRenderer> ();
