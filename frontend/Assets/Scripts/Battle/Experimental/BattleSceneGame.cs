@@ -35,7 +35,7 @@ namespace Battle.Experimental {
         }
 
 
-        private void SyncUpdateWorld () {
+        public void SyncUpdateWorld () {
             if (MyTurn) {
                 var td = TurnData.FromInput ();
                 The.Connection.Send (new TurnDataCCmd (td));

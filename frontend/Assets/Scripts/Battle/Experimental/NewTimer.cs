@@ -13,6 +13,7 @@ namespace Battle.Experimental {
         public bool                Paused { get; set; }
         
         public bool Elapsed { get {throw new NotImplementedException();} }
+        public int Seconds { get; set; }
 
         public void Wait () { throw new NotImplementedException ();}
 
