@@ -101,7 +101,7 @@ namespace Battle {
                 foreach (var collider in Tiles[tileX, tileY].Colliders) s += "\n" + collider;
             }
 
-            The.BattleScene.ShowHint (s);
+//            The.BattleScene.ShowHint (s);
         }
 
 

@@ -44,6 +44,20 @@
             <e p="MouseBasedCameraController.cs" t="Include" />
             <e p="ObjectBoundCameraController.cs" t="Include" />
           </e>
+          <e p="Experimental" t="Include">
+            <e p="AfterTurnState.cs" t="Include" />
+            <e p="BattleSceneGame.cs" t="Include" />
+            <e p="BattleSceneGeneration.cs" t="Include" />
+            <e p="BattleSceneState.cs" t="Include" />
+            <e p="BattleSceneWeapons.cs" t="Include" />
+            <e p="BeforeTurnState.cs" t="Include" />
+            <e p="NewBattleScene.cs" t="Include" />
+            <e p="NewGameState.cs" t="Include" />
+            <e p="NewTeamManager.cs" t="Include" />
+            <e p="NewTimer.cs" t="Include" />
+            <e p="RemovalState.cs" t="Include" />
+            <e p="TurnState.cs" t="Include" />
+          </e>
           <e p="Objects" t="Include">
             <e p="CollisionHandlers" t="Include">
               <e p="CollisionHandler.cs" t="Include" />
@@ -285,7 +299,6 @@
         </e>
         <e p="Core" t="Include">
           <e p="Context.cs" t="Include" />
-          <e p="Log.cs" t="Include" />
           <e p="PlayerInfo.cs" t="Include" />
           <e p="SceneSwitcher.cs" t="Include" />
           <e p="Scenes.cs" t="Include" />

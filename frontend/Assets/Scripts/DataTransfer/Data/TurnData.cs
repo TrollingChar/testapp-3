@@ -51,7 +51,7 @@ namespace DataTransfer.Data {
                 A = Input.GetKey(KeyCode.A),
                 S = Input.GetKey(KeyCode.S),
                 D = Input.GetKey(KeyCode.D),
-                MB = !The.ArsenalPanel.IsOpen && Input.GetMouseButton(0), // LMB
+                MB = !The.Battle.ArsenalPanel.IsOpen && Input.GetMouseButton(0), // LMB
                 XY = The.Camera.WorldMousePosition,
                 Weapon = _prepWeapFlag ? _prepWeapon : (byte) 0,
                 NumKey = numKey

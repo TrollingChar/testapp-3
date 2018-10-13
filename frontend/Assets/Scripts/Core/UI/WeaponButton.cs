@@ -1,4 +1,5 @@
 ﻿using Battle;
+using Battle.Experimental;
 using Battle.Weapons;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,7 +15,7 @@ namespace Core.UI {
         private GameObject _image;
         private Button _button;
 
-        private readonly BattleScene _battleScene = The.BattleScene;
+        private readonly NewBattleScene _battle = The.Battle;
 
         public int WeaponId {
             get { return _weaponId; }
@@ -47,8 +48,8 @@ namespace Core.UI {
             // EQUIP
 //            if (!teamManager.IsMyTurn) return;
 
-            _battleScene.PrepareWeapon((byte) WeaponId);
-            _battleScene.ArsenalPanel.Hide();
+            _battle.PrepareWeapon((byte) WeaponId);
+            _battle.ArsenalPanel.Hide();
         }
 
 

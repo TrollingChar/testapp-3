@@ -1,4 +1,5 @@
-﻿using Battle.Objects.CollisionHandlers;
+﻿using Battle.Experimental;
+using Battle.Objects.CollisionHandlers;
 using Battle.Objects.Controllers;
 using Battle.Objects.Effects;
 using Battle.Objects.Explosives;
@@ -15,8 +16,8 @@ namespace Battle.Objects.Other.Crates {
 
         public const float               Size = 30;
         private      bool                _collected;
-        private      GameStateController _state;
-        private      ActiveWorm          _activeWorm;
+//        private      GameStateController _state;
+//        private      ActiveWorm          _activeWorm;
         public       string              Text { get; protected set; }
 
 
@@ -24,8 +25,8 @@ namespace Battle.Objects.Other.Crates {
 
 
         public override void OnSpawn () {
-            _state           = The.GameState;
-            _activeWorm      = The.ActiveWorm;
+//            _state           = The.GameState;
+//            _activeWorm      = The.ActiveWorm;
             AddCollider (new BoxCollider (Size * -0.5f, Size * 0.5f, Size * -0.5f, Size * 0.5f));
             Controller       = new CrateFallCtrl ();
             CollisionHandler = new CrateCH ();
@@ -40,7 +41,8 @@ namespace Battle.Objects.Other.Crates {
             var ray = o as Ray;
             if (ray != null) o = ray.Object;
             
-            return The.ActiveWorm.Is (o) && The.GameState.CurrentState == GameState.Turn;
+//            return The.ActiveWorm.Is (o) && The.GameState.CurrentState == GameState.Turn;
+            return o == The.Battle.ActiveWorm && The.Battle.State is TurnState;
         }
 
 
@@ -68,9 +70,10 @@ namespace Battle.Objects.Other.Crates {
 
 
         public void CheckIfCollected () {
-            if (_state.CurrentState != GameState.Turn) return;
-            var worm = _activeWorm.Worm;
+            if (!(The.Battle.State is TurnState)) return;
+            var worm = The.Battle.ActiveWorm;
             if (worm == null) return;
+            
             foreach (var wormCollider in worm.Colliders)
             foreach (var crateCollider in Colliders) {
                 if (!wormCollider.Overlaps (crateCollider)) continue;

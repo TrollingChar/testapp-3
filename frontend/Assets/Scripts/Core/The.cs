@@ -1,6 +1,7 @@
 ﻿using Assets;
 using Battle;
 using Battle.Camera;
+using Battle.Experimental;
 using Battle.Objects.Other.Crates;
 using Battle.State;
 using Battle.Teams;
@@ -21,17 +22,20 @@ namespace Core {
         public static WeaponIcons WeaponIcons;
 
         public static MenuScene MenuScene;
-        public static BattleScene BattleScene;
+//        public static BattleScene BattleScene;
 
         public static World World;
-        public static TimerWrapper TimerWrapper;
-        public static ActiveWorm ActiveWorm;
-        public static GameStateController GameState;
-        public static WeaponWrapper WeaponWrapper;
-        public static TeamManager TeamManager;
-        public static ArsenalPanel ArsenalPanel;
+//        public static TimerWrapper TimerWrapper;
+//        public static ActiveWorm ActiveWorm;
+//        public static GameStateController GameState;
+//        public static WeaponWrapper WeaponWrapper;
+//        public static TeamManager TeamManager;
+//        public static ArsenalPanel ArsenalPanel;
         public static CameraWrapper Camera;
-        public static CrateFactory CrateFactory;
+//        public static CrateFactory CrateFactory;
+        
+        
+        public static NewBattleScene Battle;
 
     }
 

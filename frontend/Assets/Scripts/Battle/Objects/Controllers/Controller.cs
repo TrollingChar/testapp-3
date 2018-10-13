@@ -1,4 +1,5 @@
-﻿using Battle.State;
+﻿using Battle.Experimental;
+using Battle.State;
 using Core;
 using DataTransfer.Data;
 
@@ -7,11 +8,11 @@ namespace Battle.Objects.Controllers {
 
     public class Controller : Component {
 
-        private readonly TimerWrapper _gameTimer = The.TimerWrapper;
+        private readonly NewTimer _timer = The.Battle.TweenTimer;
 
 
         public void Update (TurnData td) {
-            DoUpdate(td);
+            DoUpdate (td);
         }
 
 
@@ -19,12 +20,12 @@ namespace Battle.Objects.Controllers {
 
 
         protected void Wait () {
-            _gameTimer.Wait(new Time {Seconds = 0.5f});
+            _timer.Wait (new Time {Seconds = 0.5f});
         }
 
 
         protected void Wait (Time t) {
-            _gameTimer.Wait(t);
+            _timer.Wait (t);
         }
 
     }

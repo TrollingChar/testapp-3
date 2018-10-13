@@ -22,6 +22,7 @@ using Time = Core.Time;
 
 namespace Battle {
 
+    [Obsolete]
     public class BattleScene : MonoBehaviour {
 
         public event Action OnBattleLoaded;

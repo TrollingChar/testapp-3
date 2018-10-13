@@ -1,4 +1,5 @@
-﻿using Battle.Objects.Controllers;
+﻿using Battle.Experimental;
+using Battle.Objects.Controllers;
 using Battle.Objects.Effects;
 using Battle.Objects.Explosives;
 using Battle.Objects.GameObjects;
@@ -198,7 +199,8 @@ namespace Battle.Objects {
 
 
         protected override bool PassableFor (Object o) {
-            return this == o || o is Crate && The.ActiveWorm.Is (this) && The.GameState.CurrentState == GameState.Turn;
+            return this == o || o is Crate && this == The.Battle.ActiveWorm && The.Battle.State is TurnState;
+            //The.ActiveWorm.Is (this) && The.GameState.CurrentState == GameState.Turn;
         }
 
 
@@ -217,8 +219,12 @@ namespace Battle.Objects {
                 return;
             }
             HP -= damage;
-            if (The.ActiveWorm.Is (this)) The.BattleScene.EndTurn ();
+//            if (The.ActiveWorm.Is (this)) The.BattleScene.EndTurn ();
+            if (this == The.Battle.ActiveWorm) {
+                The.Battle.EndTurn ();
+            }
 
+            if (Controller is WormDeathCtrl) return;
             float effectTime = 0.75f + 0.75f * damage / (damage + 40f);
             The.World.Spawn (
                 new Label (damage.ToString (), _color, 1.2f, new LabelFallCtrl (effectTime)),
@@ -290,7 +296,7 @@ namespace Battle.Objects {
 
         protected override void OnDespawn () {
             HP = 0;
-            if (The.ActiveWorm.Is (this)) The.BattleScene.EndTurn ();
+            if (this == The.Battle.ActiveWorm) The.Battle.EndTurn ();
         }
 
 

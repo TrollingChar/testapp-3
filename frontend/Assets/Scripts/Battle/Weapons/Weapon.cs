@@ -2,8 +2,8 @@
 using System.Reflection;
 using Attributes;
 using Battle.Arsenals;
+using Battle.Experimental;
 using Battle.Objects;
-using Battle.State;
 using Core;
 using DataTransfer.Data;
 using UnityEngine;
@@ -17,18 +17,14 @@ namespace Battle.Weapons {
 
         private readonly int _id;
 
-        private readonly WeaponWrapper _weaponWrapper;
         private          Arsenal       _arsenal;
         protected        bool          Equipped;
-        protected        TimerWrapper  GameTimer;
 
         protected GameObject GameObject;
         public    TurnData   TurnData { get; private set; }
 
 
         protected Weapon () {
-            _weaponWrapper = The.WeaponWrapper;
-            GameTimer      = The.TimerWrapper;
             _id = ((WeaponAttribute) GetType ().GetCustomAttributes (true).First (a => a is WeaponAttribute)).Id;
         }
 
@@ -77,12 +73,13 @@ namespace Battle.Weapons {
 
 
         protected void LockArsenal () {
-            _weaponWrapper.Lock ();
+//            _weaponWrapper.Lock ();
+            The.Battle.LockArsenal ();
         }
 
 
         public void InitRetreat (Time t) {
-            The.BattleScene.InitRetreat (t);
+            The.Battle.InitRetreat (t);
         }
 
 
