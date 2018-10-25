@@ -48,7 +48,7 @@ namespace Core.UI {
             // EQUIP
 //            if (!teamManager.IsMyTurn) return;
 
-            _battle.PrepareWeapon((byte) WeaponId);
+            _battle.OnWeaponClicked (WeaponId);
             _battle.ArsenalPanel.Hide();
         }
 

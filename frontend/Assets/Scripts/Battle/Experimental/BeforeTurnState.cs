@@ -1,5 +1,4 @@
-﻿using Battle.Objects.Other.Crates;
-using Core;
+﻿using Core;
 using DataTransfer.Client;
 using Geometry;
 using Utils.Random;
@@ -11,8 +10,12 @@ namespace Battle.Experimental {
 
 
         public override void Init () {
-            The.Battle.Teams.Next ();
+            // todo: check draw
+            do {
+                The.Battle.Teams.NextTeam ();
+            } while (The.Battle.Teams.ActiveTeam.WormsAlive <= 0);
 
+            The.Battle.Synchronized = false;
             The.Connection.Send (new TurnEndedCmd (The.Battle.Teams.MyTeam.WormsAlive > 0));
 
             // todo extinguish flames

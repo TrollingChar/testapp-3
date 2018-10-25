@@ -13,7 +13,7 @@ namespace Battle.Objects.Other.Crates {
         public WeaponCrate (WeaponId id, int ammo = 1) {
             _weapon = id;
             _ammo = ammo;
-            var desc = Weapon.DescriptorById(id);
+            var desc = Weapon.DescriptorById (id);
             Text = desc.Name;
             if (ammo < 0) Text += " (беск.)";
             else          Text += " x " + ammo;
@@ -21,13 +21,13 @@ namespace Battle.Objects.Other.Crates {
 
 
         public override void OnSpawn () {
-            base.OnSpawn();
-            UnityEngine.Object.Instantiate(The.BattleAssets.WoodenCrate, GameObject.transform, false);
+            base.OnSpawn ();
+            UnityEngine.Object.Instantiate (The.BattleAssets.WoodenCrate, GameObject.transform, false);
         }
 
 
         protected override void OnPickup (Worm worm) {
-            worm.Team.Arsenal.AddAmmo(_weapon, _ammo);
+            worm.Team.Arsenal.AddAmmo (_weapon, _ammo);
         }
 
     }

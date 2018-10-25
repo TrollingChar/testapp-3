@@ -39,6 +39,11 @@ namespace DataTransfer.Data {
         }
 
 
+        public bool Empty {
+            get { return !(W || A || S || D || MB || NumKey != 0); }
+        }
+
+
         public static TurnData FromInput () {
             byte numKey = 0;
             if (Input.GetKey(KeyCode.Alpha1)) numKey = 1;

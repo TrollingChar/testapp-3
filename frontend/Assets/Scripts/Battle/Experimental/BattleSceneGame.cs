@@ -5,6 +5,8 @@ using Battle.Terrain.Generation;
 using Core;
 using DataTransfer.Client;
 using DataTransfer.Data;
+using UnityEngine;
+using Utils;
 
 
 namespace Battle.Experimental {
@@ -18,7 +20,14 @@ namespace Battle.Experimental {
 
         private void StartGame (LandGen landGen) {
             World = new World (landGen, GetComponentInChildren <LandRenderer> ());
+            var wormsPerTeam = new[] {10, 10, 10, 8, 7, 6, 5, 4};
+            World.SpawnTeams (Teams, wormsPerTeam[Teams.Teams.Count - 1]);
+            World.SpawnMines (15);
             _state = new AfterTurnState ();
+            TweenTimer.Wait ();
+            Debug.Log (TweenTimer.Ticks);
+            
+            OnGameStarted._ ();
         }
 
 
@@ -31,7 +40,8 @@ namespace Battle.Experimental {
 
 
         private void UpdateWorld (TurnData td) {
-            
+            World.Update (td);
+            UpdateTimers ();
         }
 
 
@@ -47,7 +57,9 @@ namespace Battle.Experimental {
         }
 
 
-        public bool MyTurn { get {throw new NotImplementedException();} }
+        public bool MyTurn {
+            get { return Teams.MyTeamActive; }
+        }
 
 
         private void UpdateTimers () {
@@ -55,6 +67,11 @@ namespace Battle.Experimental {
             TurnTimer.Update ();
             ControlTimer.Update ();
         }
+
+
+        public void OnWeaponClicked (int weaponId) { throw new NotImplementedException (); }
+
+        public event Action OnGameStarted;
 
     }
 

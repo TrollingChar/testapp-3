@@ -1,4 +1,5 @@
-﻿using Battle.Terrain.Generation;
+﻿using System;
+using Battle.Terrain.Generation;
 
 
 namespace Battle.Experimental {
@@ -36,7 +37,7 @@ namespace Battle.Experimental {
 
 
         private void OnProgress (float progress) {
-            _hint.text = "Прогресс генерации: " + (int) progress + "%";
+            Hint.text = "Прогресс генерации: " + (int) progress + "%";
         }
 
 
@@ -46,6 +47,7 @@ namespace Battle.Experimental {
 
             StartGame (landGen);
         }
+
 
     }
 

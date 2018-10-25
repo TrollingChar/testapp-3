@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Battle.Arsenals;
+using Battle.Experimental;
 using Battle.Objects;
 using Battle.Objects.Controllers;
 using Battle.Objects.Effects;
@@ -196,29 +197,21 @@ namespace Battle {
         }
 
 
-        public TeamManager SpawnTeams (List <int> players, int wormsInTeam) {
-            // find valid spawns
+        public void SpawnTeams (NewTeamManager teamManager, int wormsPerTeam) {
+//        public TeamManager SpawnTeams (List <int> players, int wormsInTeam) {
+            
             var spawnPoints = GetSpawnPoints ();
-//            Debug.Log(spawnPoints.Count);
-            spawnPoints = RNG.PickSome (spawnPoints, players.Count * wormsInTeam);
-//            Debug.Log(spawnPoints.Count);
-
-            // teams colors
-            var teamColors = TeamColors.Colors.Take (players.Count).ToList ();
+            spawnPoints = RNG.PickSome (spawnPoints, teamManager.Teams.Count * wormsPerTeam);
 
             // spawn worms
             int currentSpawn = 0;
-            var teams = new Dictionary <int, Team> ();
-            for (int pl = 0; pl < players.Count; pl++) {
-                var team = new Team (players[pl], teamColors[pl], new AlphaArsenal ());
-                for (int w = 0; w < wormsInTeam; w++) {
+            foreach (var team in teamManager.Teams) {
+                for (int i = 0; i < wormsPerTeam; i++) {
                     var worm = new Worm ();
                     Spawn (worm, spawnPoints[currentSpawn++]);
                     team.AddWorm (worm);
                 }
-                teams[players[pl]] = team;
             }
-            return new TeamManager (teams);
         }
 
 

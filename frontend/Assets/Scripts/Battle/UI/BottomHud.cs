@@ -10,8 +10,6 @@ namespace Battle.UI {
 
     public class BottomHud : Panel {
 
-        private GameStateController _state;
-
         private string _gameTime = "";
         private string _turnTime = "";
 
@@ -21,14 +19,14 @@ namespace Battle.UI {
 
 
         private void Awake () {
-            The.Battle.OnBattleLoaded += OnBattleLoaded;
+            The.Battle.OnGameStarted += OnGameStarted;
         }
 
 
-        private void OnBattleLoaded () {
-            The.Battle.OnBattleLoaded       -= OnBattleLoaded;
+        private void OnGameStarted () {
+            The.Battle.OnGameStarted       -= OnGameStarted;
             The.Battle.TurnTimer.OnChanged += UpdateTime;
-            The.World.OnWindChange               += UpdateWind;
+            The.World.OnWindChange         += UpdateWind;
         }
 
 

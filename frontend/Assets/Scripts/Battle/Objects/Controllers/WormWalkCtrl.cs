@@ -39,7 +39,7 @@ namespace Battle.Objects.Controllers {
             }
 
             // can move?
-            if (td == null || worm == The.Battle.ActiveWorm) {
+            if (td == null || worm != The.Battle.ActiveWorm) {
                 if (-collision.Offset.Y < World.Precision) {
                     collision.Offset.Y = 0;
                 } else {

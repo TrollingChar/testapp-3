@@ -5,6 +5,7 @@ using Battle.Objects.Other.Crates;
 using Battle.UI;
 using Core;
 using DataTransfer.Data;
+using DataTransfer.Server;
 using UnityEngine;
 using UnityEngine.UI;
 using Utils.Random;
@@ -15,9 +16,51 @@ namespace Battle.Experimental {
 
     public partial class NewBattleScene : MonoBehaviour {
 
-        private                  GameInitData _initData;
-        [SerializeField] private Text         _hint;
-        private                  bool         _initialized;
+        [SerializeField] public Text Hint;
+
+        private GameInitData _initData;
+        private Worm _activeWorm;
+
+
+        public ArsenalPanel  ArsenalPanel { get; private set; }
+
+
+        public Worm ActiveWorm {
+            get { return _activeWorm; }
+            set {
+                if (_activeWorm != null) _activeWorm.ArrowVisible = false;
+                _activeWorm = value;
+                if (value != null) value.ArrowVisible = true;
+            }
+        }
+
+
+        public CameraWrapper Camera       { get; private set; }
+
+        public NewTimer       TweenTimer   { get; set; }
+        public NewTimer       TurnTimer    { get; set; }
+        public NewTimer       ControlTimer { get; set; }
+        
+        public CrateFactory   CrateFactory { get; set; }
+        public NewTeamManager Teams        { get; set; }
+
+
+        public bool InputAvailable {
+            get {
+                if (MyTurn) {
+                    var td = TurnData.FromInput ();
+                    return !td.Empty;
+                }
+                if (_turnDataQueue.Count > 0) {
+                    var td = _turnDataQueue.Peek ();
+                    return !td.Empty;
+                }
+                return false;
+            }
+        }
+
+
+        public bool Synchronized   { get; set; }
 
 
         private void Awake () {
@@ -26,39 +69,53 @@ namespace Battle.Experimental {
             _initData = (GameInitData) The.SceneSwitcher.Data[0];
             RNG.Init (_initData.Seed);
 
-            The.Camera =
-            Camera = GetComponentInChildren <CameraWrapper> ();
+            The.Camera   =
+            Camera       = GetComponentInChildren <CameraWrapper> ();
             ArsenalPanel = GetComponentInChildren <ArsenalPanel> ();
+            CrateFactory = new CrateFactory ();
+            TurnTimer    = new NewTimer ();
+            TweenTimer   = new NewTimer ();
+            ControlTimer = new NewTimer ();
+            Teams        = new NewTeamManager (_initData.Players);
+            
+            NewTurnCmd.OnReceived += SetSyncFlag;
+            TurnDataSCmd.OnReceived += EnqueueTurnData;
 
             StartGeneration ();
         }
 
 
         public void Update () {
-            if (_initialized) {
-                UpdateGame ();
-            }
+            if (_state != null) UpdateGame ();
         }
 
 
-        public ArsenalPanel  ArsenalPanel { get; private set; }
-        public Worm          ActiveWorm   { get; set; }
-        public CameraWrapper Camera       { get; private set; }
-
-        public NewTimer TweenTimer   { get; set; }
-        public NewTimer TurnTimer    { get; set; }
-        public NewTimer ControlTimer { get; set; }
-        public CrateFactory CrateFactory { get; set; }
-        public NewTeamManager Teams { get; set; }
+        private void OnDestroy () {
+            NewTurnCmd.OnReceived -= SetSyncFlag;
+            TurnDataSCmd.OnReceived -= EnqueueTurnData;
+        }
 
 
-        public event Action OnBattleLoaded;
+        private void EnqueueTurnData (TurnDataSCmd cmd) {
+            _turnDataQueue.Enqueue (cmd.Data);
+        }
 
-        public void EndTurn () { throw new NotImplementedException (); }
 
+        private void SetSyncFlag (NewTurnCmd cmd) {
+            Synchronized = true;
+        }
+
+
+        public void EndTurn () {
+            ActiveWorm = null;
+            TurnTimer.Paused = false;
+            TurnTimer.Ticks =
+            ControlTimer.Ticks = 0;
+            // todo unequip weapon
+        }
+
+        
         public void InitRetreat (Time time) { throw new NotImplementedException (); }
-
-        public void LockArsenal () { throw new NotImplementedException (); }
 
     }
 

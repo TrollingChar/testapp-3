@@ -1,4 +1,7 @@
-﻿namespace Battle.Experimental {
+﻿using Core;
+
+
+namespace Battle.Experimental {
 
     public partial class NewBattleScene {
 
@@ -9,6 +12,7 @@
             get { return _state; }
             private set {
                 _state = value;
+                Hint.text = value.ToString ();
                 _state.Init ();
             }
         }

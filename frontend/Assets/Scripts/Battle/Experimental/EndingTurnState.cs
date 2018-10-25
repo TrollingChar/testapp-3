@@ -7,6 +7,7 @@ namespace Battle.Experimental {
 
         public override void Init () {
             The.Battle.ActiveWorm = null;
+            The.Battle.Teams.ActiveTeam.NextWorm ();
         }
 
 
