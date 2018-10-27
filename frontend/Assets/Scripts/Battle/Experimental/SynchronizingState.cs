@@ -5,11 +5,14 @@ namespace Battle.Experimental {
 
     public class SynchronizingState : NewGameState {
 
+        private readonly NewBattleScene _battle = The.Battle;
+
+        
         public override void Init () {}
 
 
         public override NewGameState Next () {
-            return The.Battle.Synchronized ? new ReadyState () : null;
+            return _battle.Synchronized ? new ReadyState () : null;
         }
 
 

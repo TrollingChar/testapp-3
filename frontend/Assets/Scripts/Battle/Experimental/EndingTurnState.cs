@@ -5,26 +5,25 @@ namespace Battle.Experimental {
 
     public class EndingTurnState : NewGameState {
 
+        private readonly NewBattleScene _battle = The.Battle;
+
+
         public override void Init () {
-            The.Battle.ActiveWorm = null;
-            The.Battle.Teams.ActiveTeam.NextWorm ();
+            _battle.ActiveWorm = null;
+            _battle.Teams.ActiveTeam.NextWorm ();
             
-            The.Battle.TweenTimer.Wait ();
+            _battle.TweenTimer.Wait ();
         }
 
 
         public override NewGameState Next () {
-            return The.Battle.TweenTimer.Elapsed ? new AfterTurnState () : null;
+            return _battle.TweenTimer.Elapsed ? new AfterTurnState () : null;
         }
 
 
         public override void Update () {
-            if (The.Battle.ControlTimer.Elapsed) {
-                The.Battle.UpdateWorld ();
-            }
-            else {
-                The.Battle.SyncUpdateWorld ();
-            }
+            if (_battle.ControlTimer.Elapsed) _battle.UpdateWorld ();
+            else                              _battle.SyncUpdateWorld ();
         }
 
     }

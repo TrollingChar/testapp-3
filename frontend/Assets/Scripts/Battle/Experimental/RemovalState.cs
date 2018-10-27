@@ -9,6 +9,7 @@ namespace Battle.Experimental {
     public class RemovalState : NewGameState {
 
         private NewGameState _state;
+        private readonly NewBattleScene _battle = The.Battle;
 
 
         public override void Init () {
@@ -18,23 +19,24 @@ namespace Battle.Experimental {
             var worms = The.World.Objects.OfType <Worm> ().Where (w => w.HP <= 0 && !w.Despawned).ToList ();
             if (worms.Count == 0) {
                 _state = new BeforeTurnState ();
-                return;
             }
-            foreach (var worm in worms) {
-                worm.Controller = new WormDeathCtrl ();
+            else {
+                foreach (var worm in worms) {
+                    worm.Controller = new WormDeathCtrl ();
+                }
+                _battle.TweenTimer.Wait ();
+                _state = this;
             }
-            The.Battle.TweenTimer.Wait ();
-            _state = this;
         }
 
 
         public override NewGameState Next () {
-            return The.Battle.TweenTimer.Elapsed ? _state : null;
+            return _battle.TweenTimer.Elapsed ? _state : null;
         }
 
 
         public override void Update () {
-            The.Battle.UpdateWorld ();
+            _battle.UpdateWorld ();
         }
 
     }

@@ -8,25 +8,29 @@ namespace Battle.Experimental {
 
     public class BeforeTurnState : NewGameState {
 
+        private readonly NewBattleScene _battle = The.Battle;
+
 
         public override void Init () {
-            The.Battle.Synchronized = false;
-            The.Connection.Send (new TurnEndedCmd (The.Battle.Teams.MyTeam.WormsAlive > 0));
+            _battle.Synchronized = false;
+            The.Connection.Send (new TurnEndedCmd (_battle.Teams.MyTeam.WormsAlive > 0));
             
-            for (int i = 0, count = The.Battle.Teams.Teams.Count; i < count; i++) {
-                The.Battle.Teams.NextTeam ();
+            for (int i = 0, count = _battle.Teams.Teams.Count; i < count; i++) {
+                _battle.Teams.NextTeam ();
                 // todo drop NUKES
-                if (The.Battle.Teams.ActiveTeam.WormsAlive > 0) {
-                    // todo extinguish flames
-        
-                    The.World.Wind = RNG.Float () * 10f - 5f;
+                if (_battle.Teams.ActiveTeam.WormsAlive > 0) {
+                    var world = _battle.World;
                     
-                    The.Battle.TweenTimer.Wait ();
+                    // todo extinguish flames
+
+                    world.Wind = RNG.Float () * 10f - 5f;
+                    
+                    _battle.TweenTimer.Wait ();
         
-                    var crate = The.Battle.CrateFactory.GenCrate ();
+                    var crate = _battle.CrateFactory.GenCrate ();
                     if (crate == null) return;
-                    var xy = new XY (RNG.Float () * The.World.Width, The.World.Height + 500);
-                    The.World.Spawn (crate, xy);
+                    var xy = new XY (RNG.Float () * world.Width, world.Height + 500);
+                    world.Spawn (crate, xy);
                     return;
                 }
             }
@@ -34,12 +38,12 @@ namespace Battle.Experimental {
 
 
         public override NewGameState Next () {
-            return The.Battle.TweenTimer.Elapsed ? new SynchronizingState () : null;
+            return _battle.TweenTimer.Elapsed ? new SynchronizingState () : null;
         }
 
 
         public override void Update () {
-            The.Battle.UpdateWorld ();
+            _battle.UpdateWorld ();
         }
 
     }
