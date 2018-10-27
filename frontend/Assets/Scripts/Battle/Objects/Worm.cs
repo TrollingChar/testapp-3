@@ -10,6 +10,7 @@ using Battle.Weapons;
 using Collisions;
 using Core;
 using Core.UI;
+using DataTransfer.Data;
 using Geometry;
 using UnityEngine;
 using UnityEngine.UI;
@@ -151,6 +152,11 @@ namespace Battle.Objects {
         public Weapon Weapon {
             get { return _weapon; }
             set { SwapComponent (ref _weapon, value); }
+        }
+
+
+        public void UpdateWeapon (TurnData td) {
+            if (Weapon != null) Weapon.Update (td);
         }
 
 

@@ -44,7 +44,7 @@ namespace DataTransfer.Data {
         }
 
 
-        public static TurnData FromInput () {
+        public static TurnData FromInput (bool preserveWeaponFlag) {
             byte numKey = 0;
             if (Input.GetKey(KeyCode.Alpha1)) numKey = 1;
             if (Input.GetKey(KeyCode.Alpha2)) numKey = 2;
@@ -61,7 +61,7 @@ namespace DataTransfer.Data {
                 Weapon = _prepWeapFlag ? _prepWeapon : (byte) 0,
                 NumKey = numKey
             };
-            _prepWeapFlag = false;
+            _prepWeapFlag &= preserveWeaponFlag;
             return td;
         }
 

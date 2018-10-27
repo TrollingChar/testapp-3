@@ -25,7 +25,8 @@ namespace Battle.Experimental {
             World.SpawnMines (15);
             _state = new AfterTurnState ();
             TweenTimer.Wait ();
-            Debug.Log (TweenTimer.Ticks);
+            ArsenalPanel.Bind (Teams.MyTeam.Arsenal);
+            LockArsenal ();
             
             OnGameStarted._ ();
         }
@@ -40,6 +41,7 @@ namespace Battle.Experimental {
 
 
         private void UpdateWorld (TurnData td) {
+            UpdateWeapon (td);
             World.Update (td);
             UpdateTimers ();
         }
@@ -47,7 +49,7 @@ namespace Battle.Experimental {
 
         public void SyncUpdateWorld () {
             if (MyTurn) {
-                var td = TurnData.FromInput ();
+                var td = TurnData.FromInput (false);
                 The.Connection.Send (new TurnDataCCmd (td));
                 UpdateWorld (td);
             }
@@ -68,8 +70,6 @@ namespace Battle.Experimental {
             ControlTimer.Update ();
         }
 
-
-        public void OnWeaponClicked (int weaponId) { throw new NotImplementedException (); }
 
         public event Action OnGameStarted;
 

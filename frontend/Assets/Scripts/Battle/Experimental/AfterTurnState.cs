@@ -8,6 +8,9 @@ namespace Battle.Experimental {
     public class AfterTurnState : NewGameState {
         
         public override void Init () {
+            //debug
+//            The.Battle.TweenTimer.Wait ();
+            
             var worms = The.World.Objects.OfType <Worm> ().Where (w => w.Poison > 0 && !w.Despawned).ToList ();
             if (worms.Count == 0) return;
             foreach (var worm in worms) {

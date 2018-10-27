@@ -28,7 +28,10 @@ namespace Battle.Experimental {
         public Worm ActiveWorm {
             get { return _activeWorm; }
             set {
-                if (_activeWorm != null) _activeWorm.ArrowVisible = false;
+                if (_activeWorm != null) {
+                    _activeWorm.ArrowVisible = false;
+                    _activeWorm.Weapon = null;
+                }
                 _activeWorm = value;
                 if (value != null) value.ArrowVisible = true;
             }
@@ -48,7 +51,7 @@ namespace Battle.Experimental {
         public bool InputAvailable {
             get {
                 if (MyTurn) {
-                    var td = TurnData.FromInput ();
+                    var td = TurnData.FromInput (true);
                     return !td.Empty;
                 }
                 if (_turnDataQueue.Count > 0) {
@@ -111,11 +114,16 @@ namespace Battle.Experimental {
             TurnTimer.Paused = false;
             TurnTimer.Ticks =
             ControlTimer.Ticks = 0;
-            // todo unequip weapon
+            LockArsenal ();
         }
 
-        
-        public void InitRetreat (Time time) { throw new NotImplementedException (); }
+
+        public void InitRetreat (Time time) {
+            if (ActiveWorm != null) ActiveWorm.Weapon = null;
+            TurnTimer.Paused = false;
+            TurnTimer.Time = time;
+            LockArsenal ();
+        }
 
     }
 

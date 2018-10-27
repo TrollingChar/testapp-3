@@ -12,6 +12,9 @@ namespace Battle.Experimental {
 
 
         public override void Init () {
+            // debug
+//            The.Battle.TweenTimer.Wait ();
+            
             var worms = The.World.Objects.OfType <Worm> ().Where (w => w.HP <= 0 && !w.Despawned).ToList ();
             if (worms.Count == 0) {
                 _state = new BeforeTurnState ();
@@ -20,6 +23,7 @@ namespace Battle.Experimental {
             foreach (var worm in worms) {
                 worm.Controller = new WormDeathCtrl ();
             }
+            The.Battle.TweenTimer.Wait ();
             _state = this;
         }
 

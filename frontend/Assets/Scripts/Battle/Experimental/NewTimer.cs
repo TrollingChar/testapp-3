@@ -48,7 +48,7 @@ namespace Battle.Experimental {
 
 
         public void Wait () {
-            Wait (new Time {Seconds = 0.5f});
+            Wait (new Time {Seconds = 1});
         }
 
 

@@ -10,23 +10,26 @@ namespace Battle.Experimental {
 
 
         public override void Init () {
-            // todo: check draw
-            do {
-                The.Battle.Teams.NextTeam ();
-            } while (The.Battle.Teams.ActiveTeam.WormsAlive <= 0);
-
             The.Battle.Synchronized = false;
             The.Connection.Send (new TurnEndedCmd (The.Battle.Teams.MyTeam.WormsAlive > 0));
-
-            // todo extinguish flames
-
-            The.World.Wind = RNG.Float () * 10f - 5f;
-
-            var crate = The.Battle.CrateFactory.GenCrate ();
-            if (crate == null) return;
-            var xy = new XY (RNG.Float () * The.World.Width, The.World.Height + 500);
-            The.World.Spawn (crate, xy);
-            The.Battle.TweenTimer.Wait ();
+            
+            for (int i = 0, count = The.Battle.Teams.Teams.Count; i < count; i++) {
+                The.Battle.Teams.NextTeam ();
+                // todo drop NUKES
+                if (The.Battle.Teams.ActiveTeam.WormsAlive > 0) {
+                    // todo extinguish flames
+        
+                    The.World.Wind = RNG.Float () * 10f - 5f;
+                    
+                    The.Battle.TweenTimer.Wait ();
+        
+                    var crate = The.Battle.CrateFactory.GenCrate ();
+                    if (crate == null) return;
+                    var xy = new XY (RNG.Float () * The.World.Width, The.World.Height + 500);
+                    The.World.Spawn (crate, xy);
+                    return;
+                }
+            }
         }
 
 
