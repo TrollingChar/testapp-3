@@ -15,7 +15,7 @@ namespace UI {
         private GameObject _image;
         private Button _button;
 
-        private readonly NewBattleScene _battle = The.Battle;
+        private readonly BattleScene _battle = The.Battle;
 
         public int WeaponId {
             get { return _weaponId; }

@@ -7,11 +7,12 @@ using DataTransfer.Client;
 using DataTransfer.Data;
 using UnityEngine;
 using Utils;
+using Time = Core.Time;
 
 
 namespace Battle.Experimental {
 
-    public partial class NewBattleScene {
+    public partial class BattleScene {
 
         // fill when command executes
         private Queue <TurnData> _turnDataQueue = new Queue <TurnData> ();
@@ -72,6 +73,23 @@ namespace Battle.Experimental {
 
 
         public event Action OnGameStarted;
+
+
+        public void EndTurn () {
+            ActiveWorm       = null;
+            TurnTimer.Paused = false;
+            TurnTimer.Ticks =
+            ControlTimer.Ticks = 0;
+            LockArsenal ();
+        }
+
+
+        public void InitRetreat (Time time) {
+            if (ActiveWorm != null) ActiveWorm.Weapon = null;
+            TurnTimer.Paused = false;
+            TurnTimer.Time   = time;
+            LockArsenal ();
+        }
 
     }
 

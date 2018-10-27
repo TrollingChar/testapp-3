@@ -5,7 +5,7 @@ using DataTransfer.Data;
 
 namespace Battle.Experimental {
 
-    public partial class NewBattleScene {
+    public partial class BattleScene {
 
         private bool ArsenalLocked { get; set; }
 

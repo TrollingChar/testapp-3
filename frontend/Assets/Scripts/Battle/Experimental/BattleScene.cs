@@ -14,7 +14,7 @@ using Time = Core.Time;
 
 namespace Battle.Experimental {
 
-    public partial class NewBattleScene : MonoBehaviour {
+    public partial class BattleScene : MonoBehaviour {
 
         [SerializeField] public Text Hint;
 
@@ -22,7 +22,6 @@ namespace Battle.Experimental {
         private Worm _activeWorm;
 
 
-        public ArsenalPanel  ArsenalPanel { get; private set; }
 
 
         public Worm ActiveWorm {
@@ -36,16 +35,16 @@ namespace Battle.Experimental {
                 if (value != null) value.ArrowVisible = true;
             }
         }
-
-
-        public CameraWrapper Camera       { get; private set; }
+        
+        public ArsenalPanel   ArsenalPanel { get; private set; }
+        public CameraWrapper  Camera       { get; private set; }
+        public CrateFactory   CrateFactory { get; set; }
+        public NewTeamManager Teams        { get; set; }
 
         public NewTimer       TweenTimer   { get; set; }
         public NewTimer       TurnTimer    { get; set; }
         public NewTimer       ControlTimer { get; set; }
         
-        public CrateFactory   CrateFactory { get; set; }
-        public NewTeamManager Teams        { get; set; }
 
 
         public bool InputAvailable {
@@ -108,22 +107,6 @@ namespace Battle.Experimental {
             Synchronized = true;
         }
 
-
-        public void EndTurn () {
-            ActiveWorm = null;
-            TurnTimer.Paused = false;
-            TurnTimer.Ticks =
-            ControlTimer.Ticks = 0;
-            LockArsenal ();
-        }
-
-
-        public void InitRetreat (Time time) {
-            if (ActiveWorm != null) ActiveWorm.Weapon = null;
-            TurnTimer.Paused = false;
-            TurnTimer.Time = time;
-            LockArsenal ();
-        }
 
     }
 

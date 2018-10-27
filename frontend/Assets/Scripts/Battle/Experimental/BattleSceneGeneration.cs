@@ -4,7 +4,7 @@ using Battle.Terrain.Generation;
 
 namespace Battle.Experimental {
 
-    public partial class NewBattleScene {
+    public partial class BattleScene {
 
         private EstimatedLandGen _landGen;
 

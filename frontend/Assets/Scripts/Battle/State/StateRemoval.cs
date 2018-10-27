@@ -9,7 +9,7 @@ namespace Battle.Experimental {
     public class RemovalState : NewGameState {
 
         private NewGameState _state;
-        private readonly NewBattleScene _battle = The.Battle;
+        private readonly BattleScene _battle = The.Battle;
 
 
         public override void Init () {

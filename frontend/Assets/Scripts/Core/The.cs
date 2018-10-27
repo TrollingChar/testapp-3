@@ -31,7 +31,7 @@ namespace Core {
 //        public static CrateFactory CrateFactory;
         
         
-        public static NewBattleScene Battle;
+        public static BattleScene Battle;
 
     }
 

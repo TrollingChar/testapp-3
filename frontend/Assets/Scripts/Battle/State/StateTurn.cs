@@ -5,7 +5,7 @@ namespace Battle.Experimental {
 
     public class TurnState : NewGameState {
 
-        private readonly NewBattleScene _battle = The.Battle;
+        private readonly BattleScene _battle = The.Battle;
 
 
         public override void Init () {

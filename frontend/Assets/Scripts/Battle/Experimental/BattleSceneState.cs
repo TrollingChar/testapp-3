@@ -3,7 +3,7 @@
 
 namespace Battle.Experimental {
 
-    public partial class NewBattleScene {
+    public partial class BattleScene {
 
         private NewGameState _state;
 
