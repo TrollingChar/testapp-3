@@ -1,12 +1,10 @@
-﻿using Battle.State;
-using Core;
-using Core.UI;
+﻿using Core;
 using UnityEngine;
 using UnityEngine.UI;
 using Time = Core.Time;
 
 
-namespace Battle.UI {
+namespace UI {
 
     public class BottomHud : Panel {
 
@@ -24,9 +22,15 @@ namespace Battle.UI {
 
 
         private void OnGameStarted () {
-            The.Battle.OnGameStarted       -= OnGameStarted;
-            The.Battle.TurnTimer.OnChanged += UpdateTime;
-            The.World.OnWindChange         += UpdateWind;
+            The.Battle.OnGameStarted            -= OnGameStarted;
+            The.Battle.TurnTimer.OnChanged      += UpdateTime;
+            The.Battle.TurnTimer.OnPauseChanged += OnPauseChanged;
+            The.World.OnWindChange              += UpdateWind;
+        }
+
+
+        private void OnPauseChanged (bool value) {
+            _time.color = value ? new Color (0.7f, 0.7f, 0.7f) : Color.white;
         }
 
 

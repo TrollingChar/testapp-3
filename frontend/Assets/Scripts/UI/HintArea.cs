@@ -1,9 +1,8 @@
-﻿using Core.UI;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 
-namespace Battle.UI {
+namespace UI {
 
     public class HintArea : Panel {
 

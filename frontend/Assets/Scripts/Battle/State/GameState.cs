@@ -1,13 +1,10 @@
-﻿namespace Battle.State {
+﻿namespace Battle.Experimental {
 
-    public enum GameState {
+    public abstract class NewGameState {
 
-        BeforeTurn,
-        Synchronizing,
-        Turn,
-        EndingTurn,
-        AfterTurn,
-        Remove0Hp
+        public abstract void         Init ();
+        public abstract NewGameState Next ();
+        public abstract void         Update ();
 
     }
 

@@ -1,8 +1,8 @@
 ﻿using Core;
-using Core.UI;
 using DataTransfer.Client;
 using DataTransfer.Server;
 using Net;
+using UI;
 using UnityEngine;
 using UnityEngine.UI;
 

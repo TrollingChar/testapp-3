@@ -2,10 +2,6 @@
 using Battle;
 using Battle.Camera;
 using Battle.Experimental;
-using Battle.Objects.Other.Crates;
-using Battle.State;
-using Battle.Teams;
-using Battle.UI;
 using Menu;
 using Net;
 

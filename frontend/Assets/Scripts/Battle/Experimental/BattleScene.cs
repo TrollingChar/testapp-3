@@ -2,10 +2,10 @@
 using Battle.Camera;
 using Battle.Objects;
 using Battle.Objects.Other.Crates;
-using Battle.UI;
 using Core;
 using DataTransfer.Data;
 using DataTransfer.Server;
+using UI;
 using UnityEngine;
 using UnityEngine.UI;
 using Utils.Random;

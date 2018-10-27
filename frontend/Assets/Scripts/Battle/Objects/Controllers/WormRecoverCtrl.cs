@@ -1,5 +1,4 @@
-﻿using System;
-using Battle.Objects.Timers;
+﻿using Battle.Objects.Timers;
 using Collisions;
 using Core;
 using DataTransfer.Data;

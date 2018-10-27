@@ -1,5 +1,5 @@
 ﻿using Core;
-using Core.UI;
+using UI;
 using UnityEngine;
 using UnityEngine.UI;
 

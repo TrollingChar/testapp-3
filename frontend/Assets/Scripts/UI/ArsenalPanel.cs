@@ -10,12 +10,11 @@ using Battle.Weapons.WeaponTypes.MovementUtils;
 using Battle.Weapons.WeaponTypes.OtherUtils;
 using Battle.Weapons.WeaponTypes.Spells;
 using Battle.Weapons.WeaponTypes.Thrown;
-using Core.UI;
 using UnityEngine;
 using UnityEngine.UI;
 
 
-namespace Battle.UI {
+namespace UI {
 
     public class ArsenalPanel : Panel {
 

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 
-namespace Core.UI {
+namespace UI {
 
     public class Panel : MonoBehaviour {
 

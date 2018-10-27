@@ -1,5 +1,4 @@
-﻿using System;
-using Battle.Objects.Effects;
+﻿using Battle.Objects.Effects;
 using Battle.Objects.Projectiles;
 using Core;
 using DataTransfer.Data;

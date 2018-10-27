@@ -44,21 +44,12 @@
             <e p="ObjectBoundCameraController.cs" t="Include" />
           </e>
           <e p="Experimental" t="Include">
-            <e p="AfterTurnState.cs" t="Include" />
+            <e p="BattleScene.cs" t="Include" />
             <e p="BattleSceneGame.cs" t="Include" />
             <e p="BattleSceneGeneration.cs" t="Include" />
             <e p="BattleSceneState.cs" t="Include" />
             <e p="BattleSceneWeapons.cs" t="Include" />
-            <e p="BeforeTurnState.cs" t="Include" />
-            <e p="EndingTurnState.cs" t="Include" />
-            <e p="NewBattleScene.cs" t="Include" />
-            <e p="NewGameState.cs" t="Include" />
-            <e p="NewTeamManager.cs" t="Include" />
-            <e p="NewTimer.cs" t="Include" />
-            <e p="ReadyState.cs" t="Include" />
-            <e p="RemovalState.cs" t="Include" />
-            <e p="SynchronizingState.cs" t="Include" />
-            <e p="TurnState.cs" t="Include" />
+            <e p="BattleTimer.cs" t="Include" />
           </e>
           <e p="Objects" t="Include">
             <e p="CollisionHandlers" t="Include">
@@ -162,10 +153,18 @@
           </e>
           <e p="State" t="Include">
             <e p="GameState.cs" t="Include" />
+            <e p="StateAfterTurn.cs" t="Include" />
+            <e p="StateBeforeTurn.cs" t="Include" />
+            <e p="StateEndingTurn.cs" t="Include" />
+            <e p="StateReady.cs" t="Include" />
+            <e p="StateRemoval.cs" t="Include" />
+            <e p="StateSynchronizing.cs" t="Include" />
+            <e p="StateTurn.cs" t="Include" />
           </e>
           <e p="Teams" t="Include">
             <e p="Team.cs" t="Include" />
             <e p="TeamColors.cs" t="Include" />
+            <e p="TeamManager.cs" t="Include" />
           </e>
           <e p="Terrain" t="Include">
             <e p="Generation" t="Include">
@@ -180,12 +179,6 @@
             <e p="LandTiles.cs" t="Include" />
             <e p="Tile.cs" t="Include" />
             <e p="Tiles.cs" t="Include" />
-          </e>
-          <e p="UI" t="Include">
-            <e p="ArsenalPanel.cs" t="Include" />
-            <e p="BottomHud.cs" t="Include" />
-            <e p="EndGameMenu.cs" t="Include" />
-            <e p="HintArea.cs" t="Include" />
           </e>
           <e p="Water" t="Include">
             <e p="WaterGO.cs" t="Include" />
@@ -303,14 +296,6 @@
           <e p="Settings.cs" t="Include" />
           <e p="The.cs" t="Include" />
           <e p="Time.cs" t="Include" />
-          <e p="UI" t="Include">
-            <e p="CustomPanelController.cs" t="Include" />
-            <e p="Panel.cs" t="Include" />
-            <e p="PanelController.cs" t="Include" />
-            <e p="StandardPanelController.cs" t="Include" />
-            <e p="VerticalLayout.cs" t="Include" />
-            <e p="WeaponButton.cs" t="Include" />
-          </e>
         </e>
         <e p="DataTransfer" t="Include">
           <e p="Client" t="Include">
@@ -369,6 +354,18 @@
             <e p="BigEndianBinaryReader.cs" t="Include" />
             <e p="BigEndianBinaryWriter.cs" t="Include" />
           </e>
+        </e>
+        <e p="UI" t="Include">
+          <e p="ArsenalPanel.cs" t="Include" />
+          <e p="BottomHud.cs" t="Include" />
+          <e p="CustomPanelController.cs" t="Include" />
+          <e p="EndGameMenu.cs" t="Include" />
+          <e p="HintArea.cs" t="Include" />
+          <e p="Panel.cs" t="Include" />
+          <e p="PanelController.cs" t="Include" />
+          <e p="StandardPanelController.cs" t="Include" />
+          <e p="VerticalLayout.cs" t="Include" />
+          <e p="WeaponButton.cs" t="Include" />
         </e>
         <e p="Utils" t="Include">
           <e p="ActionExtension.cs" t="Include" />

@@ -1,11 +1,10 @@
 ﻿using Core;
-using Core.UI;
 using DataTransfer.Server;
 using UnityEngine;
 using UnityEngine.UI;
 
 
-namespace Battle.UI {
+namespace UI {
 
     public class EndGameMenu : Panel {
 

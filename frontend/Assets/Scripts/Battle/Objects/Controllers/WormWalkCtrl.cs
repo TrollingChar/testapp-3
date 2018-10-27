@@ -1,5 +1,4 @@
-﻿using Battle.State;
-using Collisions;
+﻿using Collisions;
 using Core;
 using DataTransfer.Data;
 using Geometry;

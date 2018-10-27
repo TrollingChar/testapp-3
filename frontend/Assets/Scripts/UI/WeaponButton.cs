@@ -1,11 +1,11 @@
-﻿using Battle;
-using Battle.Experimental;
+﻿using Battle.Experimental;
 using Battle.Weapons;
+using Core;
 using UnityEngine;
 using UnityEngine.UI;
 
 
-namespace Core.UI {
+namespace UI {
 
     public class WeaponButton : MonoBehaviour {
 

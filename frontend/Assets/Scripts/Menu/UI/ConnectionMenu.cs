@@ -1,7 +1,7 @@
 ﻿using Core;
-using Core.UI;
 using DataTransfer.Client;
 using Net;
+using UI;
 using UnityEngine;
 using UnityEngine.UI;
 using Utils.Random;

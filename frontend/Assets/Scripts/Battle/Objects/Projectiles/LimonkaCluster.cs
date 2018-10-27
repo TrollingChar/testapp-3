@@ -1,5 +1,4 @@
-﻿using Battle.Camera;
-using Battle.Objects.CollisionHandlers;
+﻿using Battle.Objects.CollisionHandlers;
 using Battle.Objects.Controllers;
 using Battle.Objects.Explosives;
 using Battle.Objects.Timers;
