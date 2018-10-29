@@ -3,13 +3,12 @@
 
 namespace Battle.Objects.GameObjects {
 
-    public class NewWormGO : MonoBehaviour {
+    public class NewWormGONoAnimation : MonoBehaviour {
 
         [SerializeField] private Transform _headTransform;
         [SerializeField] private Transform _tailTransform;
-        private SpriteRenderer _tailSprite;
         
-        private Animator _animator;
+//        private Animator _animator;
         
         private bool _headLocked; // если true то червяк смотрит прямо перед собой
         private bool _headLockedInternal;
@@ -17,30 +16,29 @@ namespace Battle.Objects.GameObjects {
 
         // сюда надо добавлять новые триггеры!
         private void ResetAllTriggers () {
-            _animator.ResetTrigger ("HeadStill");
-            _animator.ResetTrigger ("HeadIdle");
-            _animator.ResetTrigger ("TailStill");
-            _animator.ResetTrigger ("TailWalk");
-            _animator.ResetTrigger ("BeforeJump");
-            _animator.ResetTrigger ("Jump");
-            _animator.ResetTrigger ("AfterJump");
-            _animator.ResetTrigger ("Fall");
-            _animator.ResetTrigger ("Recover");
-            _animator.ResetTrigger ("Death");
+//            _animator.ResetTrigger ("HeadStill");
+//            _animator.ResetTrigger ("HeadIdle");
+//            _animator.ResetTrigger ("TailStill");
+//            _animator.ResetTrigger ("TailWalk");
+//            _animator.ResetTrigger ("BeforeJump");
+//            _animator.ResetTrigger ("Jump");
+//            _animator.ResetTrigger ("AfterJump");
+//            _animator.ResetTrigger ("Fall");
+//            _animator.ResetTrigger ("Recover");
+//            _animator.ResetTrigger ("Death");
         }
 
 
         private void ResetTailTriggers () {
-            _animator.ResetTrigger ("TailStill");
-            _animator.ResetTrigger ("TailWalk");
-            _animator.ResetTrigger ("BeforeJump");
-            _animator.ResetTrigger ("AfterJump");
+//            _animator.ResetTrigger ("TailStill");
+//            _animator.ResetTrigger ("TailWalk");
+//            _animator.ResetTrigger ("BeforeJump");
+//            _animator.ResetTrigger ("AfterJump");
         }
 
 
         private void Awake () {
-            _animator = GetComponent <Animator> ();
-            _tailSprite = _tailTransform.GetComponentInChildren <SpriteRenderer> ();
+//            _animator = GetComponent <Animator> ();
         }
 
 
@@ -52,7 +50,7 @@ namespace Battle.Objects.GameObjects {
 
         public void SetWalking (bool value) {
             ResetTailTriggers ();
-            _animator.SetTrigger (value ? "TailWalk" : "TailStill");
+//            _animator.SetTrigger (value ? "TailWalk" : "TailStill");
         }
 
 
@@ -110,10 +108,9 @@ namespace Battle.Objects.GameObjects {
         public void Stand () {
             UnlockHeadInternal ();
             ResetAllTriggers ();
-            _animator.SetTrigger ("HeadStill");
-            _animator.SetTrigger ("TailStill");
-//            _tailTransform.gameObject.SetActive (true);
-            _tailSprite.enabled = true;
+//            _animator.SetTrigger ("HeadStill");
+//            _animator.SetTrigger ("TailStill");
+            _tailTransform.gameObject.SetActive (true);
         }
 
 
@@ -174,9 +171,8 @@ namespace Battle.Objects.GameObjects {
         public void PrepareJump () {
             LockHeadInternal ();
             ResetAllTriggers ();
-            _animator.SetTrigger ("BeforeJump");
-//            _tailTransform.gameObject.SetActive (true);
-            _tailSprite.enabled = true;
+//            _animator.SetTrigger ("BeforeJump");
+            _tailTransform.gameObject.SetActive (true);
         }
 
 
@@ -184,9 +180,8 @@ namespace Battle.Objects.GameObjects {
         public void Jump () {
             LockHeadInternal ();
             ResetAllTriggers ();
-            _animator.SetTrigger ("Jump");
-//            _tailTransform.gameObject.SetActive (false);
-            _tailSprite.enabled = false;
+//            _animator.SetTrigger ("Jump");
+            _tailTransform.gameObject.SetActive (false);
         }
 
 
@@ -194,9 +189,8 @@ namespace Battle.Objects.GameObjects {
         public void Land () {
             LockHeadInternal ();
             ResetAllTriggers ();
-            _animator.SetTrigger ("AfterJump");
-//            _tailTransform.gameObject.SetActive (true);
-            _tailSprite.enabled = true;
+//            _animator.SetTrigger ("AfterJump");
+            _tailTransform.gameObject.SetActive (true);
         }
 
 
@@ -204,9 +198,8 @@ namespace Battle.Objects.GameObjects {
         public void Fall () {
             LockHeadInternal ();
             ResetAllTriggers ();
-            _animator.SetTrigger ("Fall");
-//            _tailTransform.gameObject.SetActive (false);
-            _tailSprite.enabled = false;
+//            _animator.SetTrigger ("Fall");
+            _tailTransform.gameObject.SetActive (false);
         }
 
 
@@ -214,9 +207,8 @@ namespace Battle.Objects.GameObjects {
         public void Recover () {
             LockHeadInternal ();
             ResetAllTriggers ();
-            _animator.SetTrigger ("Recover");
-//            _tailTransform.gameObject.SetActive (false);
-            _tailSprite.enabled = false;
+//            _animator.SetTrigger ("Recover");
+            _tailTransform.gameObject.SetActive (false);
         }
 
 
@@ -232,9 +224,8 @@ namespace Battle.Objects.GameObjects {
         public void Die () {
             LockHeadInternal ();
             ResetAllTriggers ();
-            _animator.SetTrigger ("Death");
-//            _tailTransform.gameObject.SetActive (false);
-            _tailSprite.enabled = false;
+//            _animator.SetTrigger ("Death");
+            _tailTransform.gameObject.SetActive (false);
         }
 
     }

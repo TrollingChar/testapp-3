@@ -42,6 +42,7 @@ namespace Battle.Objects {
         private int    _poison;
         private string _name;
 
+//        public  NewWormGONoAnimation      NewWormGO;
         public  NewWormGO      NewWormGO;
         private SpriteRenderer _arrow;
         private Text           _nameField;

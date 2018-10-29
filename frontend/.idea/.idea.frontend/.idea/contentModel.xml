@@ -105,6 +105,7 @@
             </e>
             <e p="GameObjects" t="Include">
               <e p="NewWormGO.cs" t="Include" />
+              <e p="NewWormGONoAnimation.cs" t="Include" />
               <e p="WormGO.cs" t="Include" />
               <e p="WormsNames.cs" t="Include" />
             </e>
