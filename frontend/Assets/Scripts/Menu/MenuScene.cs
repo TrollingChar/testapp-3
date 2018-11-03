@@ -1,6 +1,6 @@
 ﻿using Core;
 using DataTransfer.Server;
-using Menu.UI;
+using UI;
 using UnityEngine;
 
 

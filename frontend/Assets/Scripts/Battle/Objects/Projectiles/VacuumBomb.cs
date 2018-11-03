@@ -14,7 +14,8 @@ namespace Battle.Objects.Projectiles {
         public override void OnSpawn () {
             UnityEngine.Object.Instantiate (The.BattleAssets.VacuumBomb, GameObject.transform, false);
             AddCollider (new CircleCollider (XY.Zero, 2f));
-            Explosive = new Implosive40 ();
+//            Explosive = new Implosive40 ();
+            Explosive = new Explosive150 ();
             Controller = new StandardCtrl {
                 SmokeSize       = 20,
                 OrientationFlag = true

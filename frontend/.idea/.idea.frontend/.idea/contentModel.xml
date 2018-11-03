@@ -97,6 +97,7 @@
               <e p="Explosive10.cs" t="Include" />
               <e p="Explosive10Wide.cs" t="Include" />
               <e p="Explosive15.cs" t="Include" />
+              <e p="Explosive150.cs" t="Include" />
               <e p="Explosive25.cs" t="Include" />
               <e p="Explosive40.cs" t="Include" />
               <e p="ExplosivePoison.cs" t="Include" />
@@ -339,14 +340,6 @@
         </e>
         <e p="Menu" t="Include">
           <e p="MenuScene.cs" t="Include" />
-          <e p="UI" t="Include">
-            <e p="ConnectionMenu.cs" t="Include" />
-            <e p="DonateMenu.cs" t="Include" />
-            <e p="GameModeMenu.cs" t="Include" />
-            <e p="HelpMenu.cs" t="Include" />
-            <e p="LobbyMenu.cs" t="Include" />
-            <e p="MainMenu.cs" t="Include" />
-          </e>
         </e>
         <e p="Net" t="Include">
           <e p="API.cs" t="Include" />
@@ -359,9 +352,15 @@
         <e p="UI" t="Include">
           <e p="ArsenalPanel.cs" t="Include" />
           <e p="BottomHud.cs" t="Include" />
+          <e p="ConnectionMenu.cs" t="Include" />
           <e p="CustomPanelController.cs" t="Include" />
+          <e p="DonateMenu.cs" t="Include" />
           <e p="EndGameMenu.cs" t="Include" />
+          <e p="GameModeMenu.cs" t="Include" />
+          <e p="HelpMenu.cs" t="Include" />
           <e p="HintArea.cs" t="Include" />
+          <e p="LobbyMenu.cs" t="Include" />
+          <e p="MainMenu.cs" t="Include" />
           <e p="Panel.cs" t="Include" />
           <e p="PanelController.cs" t="Include" />
           <e p="StandardPanelController.cs" t="Include" />

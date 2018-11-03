@@ -69,8 +69,8 @@ namespace Net {
                 _socket.Close();
                 Debug.Log("TRYING TO OPEN SECOND CONNECTION");
             }
-            _socket = new WebSocket(new Uri("wss://worms-3.herokuapp.com/websocket"));
-//            _socket = new WebSocket(new Uri("ws://192.168.0.72:7675/websocket"));
+//            _socket = new WebSocket(new Uri("wss://worms-3.herokuapp.com/websocket"));
+            _socket = new WebSocket(new Uri("ws://192.168.0.72:7675/websocket"));
 //            _socket = new WebSocket(new Uri("ws://localhost:7675/websocket"));
             yield return StartCoroutine(_socket.Connect());
 

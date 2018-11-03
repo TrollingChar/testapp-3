@@ -1,13 +1,13 @@
 ﻿using Core;
 using DataTransfer.Client;
 using DataTransfer.Server;
+using Menu;
 using Net;
-using UI;
 using UnityEngine;
 using UnityEngine.UI;
 
 
-namespace Menu.UI {
+namespace UI {
 
     public class LobbyMenu : Panel {
 

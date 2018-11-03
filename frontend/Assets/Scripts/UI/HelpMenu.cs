@@ -1,12 +1,12 @@
 ﻿using Core;
-using UI;
+using Menu;
 using UnityEngine;
 using UnityEngine.UI;
 
 
-namespace Menu.UI {
+namespace UI {
 
-    public class DonateMenu : Panel {
+    public class HelpMenu : Panel {
 
         [SerializeField] private Button _backButton;
         
