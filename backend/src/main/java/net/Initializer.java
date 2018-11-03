@@ -16,7 +16,7 @@ class Initializer extends ChannelInitializer<SocketChannel> {
         ch.pipeline().addLast(
             new HttpServerCodec(),
             new HttpObjectAggregator(65536),
-            new WebSocketServerProtocolHandler("/websocket"),
+            new WebSocketServerProtocolHandler("/"),
             new DTOCodec(),
             new CommandHandler()
         );

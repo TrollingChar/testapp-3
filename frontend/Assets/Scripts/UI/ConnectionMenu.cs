@@ -21,6 +21,7 @@ namespace UI {
             _connection = The.Connection;
             _connectButton.onClick.AddListener (Send);
             _idText.text = RNG.Int (10000).ToString ();
+            _serverText.text = "wss://worms-3.herokuapp.com/websocket";
         }
 
 
@@ -30,7 +31,8 @@ namespace UI {
 
 
         private void Send () {
-            _connection.Send (new AuthRequestCmd (int.Parse (_idText.text)));
+            _connection.Authorize (int.Parse (_idText.text), _serverText.text);
+//            _connection.Send (new AuthRequestCmd (int.Parse (_idText.text)));
         }
 
     }
