@@ -6,6 +6,11 @@
       <e p="Assembly-CSharp-firstpass.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets/Bundles" t="Include">
+        <e p="UI" t="Include">
+          <e p="Alert" t="Include">
+            <e p="TileShader.shader" t="Include" />
+          </e>
+        </e>
         <e p="War" t="Include">
           <e p="Water" t="Include">
             <e p="WaterShader.shader" t="Include" />
@@ -184,6 +189,7 @@
           </e>
           <e p="Water" t="Include">
             <e p="WaterGO.cs" t="Include" />
+            <e p="WavesGO.cs" t="Include" />
           </e>
           <e p="Weapons" t="Include">
             <e p="AbstractAirstrikeWeapon.cs" t="Include" />
@@ -350,6 +356,7 @@
           </e>
         </e>
         <e p="UI" t="Include">
+          <e p="Alert.cs" t="Include" />
           <e p="ArsenalPanel.cs" t="Include" />
           <e p="BottomHud.cs" t="Include" />
           <e p="ConnectionMenu.cs" t="Include" />

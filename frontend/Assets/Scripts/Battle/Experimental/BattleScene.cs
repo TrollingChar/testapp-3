@@ -35,15 +35,18 @@ namespace Battle.Experimental {
                 if (value != null) value.ArrowVisible = true;
             }
         }
+
+
+        public ArsenalPanel ArsenalPanel { get; private set; }
+        public Alert        Alert        { get; private set; }
         
-        public ArsenalPanel   ArsenalPanel { get; private set; }
         public CameraWrapper  Camera       { get; private set; }
         public CrateFactory   CrateFactory { get; set; }
         public NewTeamManager Teams        { get; set; }
 
-        public NewTimer       TweenTimer   { get; set; }
-        public NewTimer       TurnTimer    { get; set; }
-        public NewTimer       ControlTimer { get; set; }
+        public NewTimer TweenTimer   { get; set; }
+        public NewTimer TurnTimer    { get; set; }
+        public NewTimer ControlTimer { get; set; }
         
 
 
@@ -74,6 +77,7 @@ namespace Battle.Experimental {
             The.Camera   =
             Camera       = GetComponentInChildren <CameraWrapper> ();
             ArsenalPanel = GetComponentInChildren <ArsenalPanel> ();
+            Alert        = GetComponentInChildren <Alert> ();
             CrateFactory = new CrateFactory ();
             TurnTimer    = new NewTimer ();
             TweenTimer   = new NewTimer ();
