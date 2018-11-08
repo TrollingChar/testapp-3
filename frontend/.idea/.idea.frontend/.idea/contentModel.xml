@@ -94,6 +94,7 @@
               <e p="Effect.cs" t="Include" />
               <e p="Flash.cs" t="Include" />
               <e p="Label.cs" t="Include" />
+              <e p="NukeTarget.cs" t="Include" />
               <e p="Smoke.cs" t="Include" />
             </e>
             <e p="Explosives" t="Include">
@@ -102,9 +103,9 @@
               <e p="Explosive10.cs" t="Include" />
               <e p="Explosive10Wide.cs" t="Include" />
               <e p="Explosive15.cs" t="Include" />
-              <e p="Explosive150.cs" t="Include" />
               <e p="Explosive25.cs" t="Include" />
               <e p="Explosive40.cs" t="Include" />
+              <e p="ExplosiveNuke.cs" t="Include" />
               <e p="ExplosivePoison.cs" t="Include" />
               <e p="Implosive40.cs" t="Include" />
               <e p="MeteorExplosive.cs" t="Include" />
@@ -140,6 +141,7 @@
               <e p="LimonkaCluster.cs" t="Include" />
               <e p="Meteor.cs" t="Include" />
               <e p="MultiLauncherShell.cs" t="Include" />
+              <e p="Nuke.cs" t="Include" />
               <e p="PhantomGrenade.cs" t="Include" />
               <e p="PlasmaBall.cs" t="Include" />
               <e p="PoisonGas.cs" t="Include" />

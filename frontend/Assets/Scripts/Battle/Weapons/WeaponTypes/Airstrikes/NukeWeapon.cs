@@ -1,4 +1,5 @@
 ﻿using Attributes;
+using Battle.Objects.Effects;
 using Core;
 using UnityEngine;
 
@@ -34,6 +35,13 @@ namespace Battle.Weapons.WeaponTypes.Airstrikes {
 
         protected override void OnShoot () {
             UseAmmo ();
+            
+            The.Battle.World.Spawn (new NukeTarget (), TurnData.XY);
+            
+            // todo: сделать объект который сначала задает альфу, потом убирает
+            var alert = The.Battle.Alert;
+            alert.Text = "ОПАСНО!!";
+            alert.Alpha = 1;
         }
 
     }

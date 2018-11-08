@@ -1,4 +1,7 @@
-﻿using Core;
+﻿using System.Linq;
+using Battle.Objects.Effects;
+using Battle.Objects.Projectiles;
+using Core;
 using DataTransfer.Client;
 using Geometry;
 using Utils.Random;
@@ -9,6 +12,7 @@ namespace Battle.Experimental {
     public class BeforeTurnState : NewGameState {
 
         private readonly BattleScene _battle = The.Battle;
+        private NewGameState _state;
 
 
         public override void Init () {
@@ -17,7 +21,24 @@ namespace Battle.Experimental {
             
             for (int i = 0, count = _battle.Teams.Teams.Count; i < count; i++) {
                 _battle.Teams.NextTeam ();
-                // todo drop NUKES
+                
+                var nukeTarget = (NukeTarget) _battle.World.Objects.FirstOrDefault (
+                    o => {
+                        var target = o as NukeTarget;
+                        return target != null && !target.Despawned && target.ActivationI == _battle.Teams.I;
+                    }
+                );
+                if (nukeTarget != null) {
+                    _battle.World.Spawn (
+                        new Nuke (),
+                        nukeTarget.Position.WithY (_battle.World.Height + Balance.NukeExtraHeight),
+                        new XY (0, -20f)
+                    );
+                    nukeTarget.Despawn ();
+                    _state = new RemovalState (); // пропустить фазу где яд срабатывает
+                    return;
+                }
+                
                 if (_battle.Teams.ActiveTeam.WormsAlive > 0) {
                     var world = _battle.World;
                     

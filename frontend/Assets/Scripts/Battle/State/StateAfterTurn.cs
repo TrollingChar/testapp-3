@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using Battle.Objects;
 using Core;
+using UI;
 
 
 namespace Battle.Experimental {
@@ -11,6 +12,7 @@ namespace Battle.Experimental {
 
 
         public override void Init () {
+            _battle.Alert.Alpha = 0;
             var worms = _battle.World.Objects.OfType <Worm> ().Where (w => w.Poison > 0 && !w.Despawned).ToList ();
             if (worms.Count == 0) return;
             foreach (var worm in worms) {

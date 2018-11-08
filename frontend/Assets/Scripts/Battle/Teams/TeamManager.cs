@@ -18,9 +18,9 @@ namespace Battle.Experimental {
             var colors = TeamColors.Colors.Take (players.Count).ToList ();
             RNG.Shuffle (colors);
             for (int i = 0; i < players.Count; i++) {
-                var team = new Team (players[i], colors[i], new AlphaArsenal ());
+                var team = new Team (players [i], colors [i], new AlphaArsenal ());
                 Teams.Add (team);
-                if (players[i] == The.PlayerInfo.Id) {
+                if (players [i] == The.PlayerInfo.Id) {
                     MyTeam = team;
                 }
             }
@@ -38,8 +38,11 @@ namespace Battle.Experimental {
 
         public void NextTeam () {
             _i++;
-            ActiveTeam = Teams[_i % Teams.Count];
+            ActiveTeam = Teams [_i % Teams.Count];
         }
+
+
+        public int I { get { return _i; } }
 
     }
 

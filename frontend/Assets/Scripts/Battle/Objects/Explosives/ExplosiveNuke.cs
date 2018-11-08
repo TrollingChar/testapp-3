@@ -4,7 +4,7 @@ using Geometry;
 
 namespace Battle.Objects.Explosives {
 
-    public class Explosive150 : Explosive {
+    public class ExplosiveNuke : Explosive {
 
         protected override void OnDetonate (XY xy) {
             var world = The.World;

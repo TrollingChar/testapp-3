@@ -8,6 +8,8 @@
         
         public const float AirplaneSpeed = 20f;
         public const float AirplaneExtraHeight = 250f;
+        
+        public const float NukeExtraHeight = 1000f;
 
     }
 
