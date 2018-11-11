@@ -5,7 +5,7 @@ using Core;
 
 namespace Battle.State {
 
-    public class ReadyState : NewGameState {
+    public class StateReady : NewGameState {
 
         private readonly BattleScene _battle = The.Battle;
 
@@ -23,7 +23,7 @@ namespace Battle.State {
 
 
         public override NewGameState Next () {
-            return _battle.TweenTimer.Elapsed || _battle.InputAvailable ? new TurnState () : null;
+            return _battle.TweenTimer.Elapsed || _battle.InputAvailable ? new StateTurn () : null;
         }
 
 

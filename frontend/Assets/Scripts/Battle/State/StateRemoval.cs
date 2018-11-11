@@ -7,7 +7,7 @@ using Core;
 
 namespace Battle.State {
 
-    public class RemovalState : NewGameState {
+    public class StateRemoval : NewGameState {
 
         private NewGameState _state;
         private readonly BattleScene _battle = The.Battle;
@@ -19,7 +19,7 @@ namespace Battle.State {
             
             var worms = The.World.Objects.OfType <Worm> ().Where (w => w.HP <= 0 && !w.Despawned).ToList ();
             if (worms.Count == 0) {
-                _state = new BeforeTurnState ();
+                _state = new StateBeforeTurn ();
             }
             else {
                 foreach (var worm in worms) {

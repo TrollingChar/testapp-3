@@ -206,7 +206,7 @@ namespace Battle.Objects {
 
 
         protected override bool PassableFor (Object o) {
-            return this == o || o is Crate && this == The.Battle.ActiveWorm && The.Battle.State is TurnState;
+            return this == o || o is Crate && this == The.Battle.ActiveWorm && The.Battle.State is StateTurn;
             //The.ActiveWorm.Is (this) && The.GameState.CurrentState == GameState.Turn;
         }
 

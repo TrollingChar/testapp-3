@@ -14,7 +14,7 @@ namespace Battle.Objects.CollisionHandlers {
 
             var worm = c.Collider2.Object as Worm;
 
-            if (worm == The.Battle.ActiveWorm && The.Battle.State is TurnState) {
+            if (worm == The.Battle.ActiveWorm && The.Battle.State is StateTurn) {
                 ((Crate) Object).CollectBy (worm);
             }
         }

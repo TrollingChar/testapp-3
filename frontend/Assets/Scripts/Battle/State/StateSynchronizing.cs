@@ -4,7 +4,7 @@ using Core;
 
 namespace Battle.State {
 
-    public class SynchronizingState : NewGameState {
+    public class StateSynchronizing : NewGameState {
 
         private readonly BattleScene _battle = The.Battle;
 
@@ -13,7 +13,7 @@ namespace Battle.State {
 
 
         public override NewGameState Next () {
-            return _battle.Synchronized ? new ReadyState () : null;
+            return _battle.Synchronized ? new StateReady () : null;
         }
 
 

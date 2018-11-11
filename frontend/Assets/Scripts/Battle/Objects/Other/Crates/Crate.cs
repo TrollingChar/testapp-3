@@ -42,7 +42,7 @@ namespace Battle.Objects.Other.Crates {
             if (ray != null) o = ray.Object;
             
 //            return The.ActiveWorm.Is (o) && The.GameState.CurrentState == GameState.Turn;
-            return o == The.Battle.ActiveWorm && The.Battle.State is TurnState;
+            return o == The.Battle.ActiveWorm && The.Battle.State is StateTurn;
         }
 
 
@@ -70,7 +70,7 @@ namespace Battle.Objects.Other.Crates {
 
 
         public void CheckIfCollected () {
-            if (!(The.Battle.State is TurnState)) return;
+            if (!(The.Battle.State is StateTurn)) return;
             var worm = The.Battle.ActiveWorm;
             if (worm == null) return;
             

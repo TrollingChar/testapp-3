@@ -6,7 +6,7 @@ using Core;
 
 namespace Battle.State {
 
-    public class AfterTurnState : NewGameState {
+    public class StateAfterTurn : NewGameState {
 
         private readonly BattleScene _battle = The.Battle;
 
@@ -23,7 +23,7 @@ namespace Battle.State {
 
 
         public override NewGameState Next () {
-            return _battle.TweenTimer.Elapsed ? new RemovalState () : null;
+            return _battle.TweenTimer.Elapsed ? new StateRemoval () : null;
         }
 
 

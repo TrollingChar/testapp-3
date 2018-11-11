@@ -10,14 +10,14 @@ using Utils.Random;
 
 namespace Battle.State {
 
-    public class BeforeTurnState : NewGameState {
+    public class StateBeforeTurn : NewGameState {
 
         private readonly BattleScene _battle = The.Battle;
         private NewGameState _state;
 
 
         public override void Init () {
-            _state = new SynchronizingState();
+            _state = new StateSynchronizing();
             for (int i = 0, count = _battle.Teams.Teams.Count; i < count; i++) {
                 
                 var nukeTarget = (NukeTarget) _battle.World.Objects.FirstOrDefault (
@@ -34,7 +34,7 @@ namespace Battle.State {
                     );
                     _battle.TweenTimer.Wait ();
                     nukeTarget.Despawn ();
-                    _state = new RemovalState (); // пропустить фазу где яд срабатывает
+                    _state = new StateRemoval (); // пропустить фазу где яд срабатывает
                     return;
                 }
                 

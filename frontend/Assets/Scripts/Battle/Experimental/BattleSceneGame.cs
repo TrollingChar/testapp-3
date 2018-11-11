@@ -25,7 +25,7 @@ namespace Battle.Experimental {
             var wormsPerTeam = new[] {10, 10, 10, 8, 7, 6, 5, 4};
             World.SpawnTeams (Teams, wormsPerTeam[Teams.Teams.Count - 1]);
             World.SpawnMines (15);
-            _state = new AfterTurnState ();
+            _state = new StateAfterTurn ();
             TweenTimer.Wait ();
             ArsenalPanel.Bind (Teams.MyTeam.Arsenal);
             LockArsenal ();

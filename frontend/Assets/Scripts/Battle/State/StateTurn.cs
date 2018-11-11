@@ -4,7 +4,7 @@ using Core;
 
 namespace Battle.State {
 
-    public class TurnState : NewGameState {
+    public class StateTurn : NewGameState {
 
         private readonly BattleScene _battle = The.Battle;
 
@@ -15,7 +15,7 @@ namespace Battle.State {
 
 
         public override NewGameState Next () {
-            return _battle.TurnTimer.Elapsed ? new EndingTurnState () : null;
+            return _battle.TurnTimer.Elapsed ? new StateEndingTurn () : null;
         }
 
 
