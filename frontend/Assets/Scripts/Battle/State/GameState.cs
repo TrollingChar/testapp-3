@@ -1,4 +1,4 @@
-﻿namespace Battle.Experimental {
+﻿namespace Battle.State {
 
     public abstract class NewGameState {
 

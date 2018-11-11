@@ -1,10 +1,10 @@
 ﻿using System.Linq;
+using Battle.Experimental;
 using Battle.Objects;
 using Core;
-using UI;
 
 
-namespace Battle.Experimental {
+namespace Battle.State {
 
     public class AfterTurnState : NewGameState {
 

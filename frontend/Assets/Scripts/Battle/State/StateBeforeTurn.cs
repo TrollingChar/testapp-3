@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Battle.Experimental;
 using Battle.Objects.Effects;
 using Battle.Objects.Projectiles;
 using Core;
@@ -7,7 +8,7 @@ using Geometry;
 using Utils.Random;
 
 
-namespace Battle.Experimental {
+namespace Battle.State {
 
     public class BeforeTurnState : NewGameState {
 
@@ -16,11 +17,8 @@ namespace Battle.Experimental {
 
 
         public override void Init () {
-            _battle.Synchronized = false;
-            The.Connection.Send (new TurnEndedCmd (_battle.Teams.MyTeam.WormsAlive > 0));
-            
+            _state = new SynchronizingState();
             for (int i = 0, count = _battle.Teams.Teams.Count; i < count; i++) {
-                _battle.Teams.NextTeam ();
                 
                 var nukeTarget = (NukeTarget) _battle.World.Objects.FirstOrDefault (
                     o => {
@@ -34,11 +32,16 @@ namespace Battle.Experimental {
                         nukeTarget.Position.WithY (_battle.World.Height + Balance.NukeExtraHeight),
                         new XY (0, -20f)
                     );
+                    _battle.TweenTimer.Wait ();
                     nukeTarget.Despawn ();
                     _state = new RemovalState (); // пропустить фазу где яд срабатывает
                     return;
                 }
                 
+                _battle.Teams.NextTeam ();
+                _battle.Synchronized = false;
+                The.Connection.Send (new TurnEndedCmd (_battle.Teams.MyTeam.WormsAlive > 0));
+            
                 if (_battle.Teams.ActiveTeam.WormsAlive > 0) {
                     var world = _battle.World;
                     
@@ -59,7 +62,7 @@ namespace Battle.Experimental {
 
 
         public override NewGameState Next () {
-            return _battle.TweenTimer.Elapsed ? new SynchronizingState () : null;
+            return _battle.TweenTimer.Elapsed ? _state : null;
         }
 
 

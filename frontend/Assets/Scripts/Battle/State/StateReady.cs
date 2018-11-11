@@ -1,8 +1,9 @@
 ﻿using Battle.Camera;
+using Battle.Experimental;
 using Core;
 
 
-namespace Battle.Experimental {
+namespace Battle.State {
 
     public class ReadyState : NewGameState {
 

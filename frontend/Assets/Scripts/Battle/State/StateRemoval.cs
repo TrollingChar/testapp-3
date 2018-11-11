@@ -1,10 +1,11 @@
 ﻿using System.Linq;
+using Battle.Experimental;
 using Battle.Objects;
 using Battle.Objects.Controllers;
 using Core;
 
 
-namespace Battle.Experimental {
+namespace Battle.State {
 
     public class RemovalState : NewGameState {
 

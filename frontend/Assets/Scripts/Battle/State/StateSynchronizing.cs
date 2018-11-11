@@ -1,7 +1,8 @@
-﻿using Core;
+﻿using Battle.Experimental;
+using Core;
 
 
-namespace Battle.Experimental {
+namespace Battle.State {
 
     public class SynchronizingState : NewGameState {
 

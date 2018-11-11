@@ -15,7 +15,7 @@ namespace Battle.Objects.Projectiles {
             var transform = GameObject.transform;
             var assets    = The.BattleAssets;
 
-            UnityEngine.Object.Instantiate (assets.Grenade, transform, false);
+            UnityEngine.Object.Instantiate (assets.BazookaShell, transform, false);
 //            AddCollider (new CircleCollider (XY.Zero,         20f));
             AddCollider (new CircleCollider (new XY (0, -50), 20f));
             Explosive        = new ExplosiveNuke ();
@@ -24,7 +24,7 @@ namespace Battle.Objects.Projectiles {
                 OrientationFlag = true
             };
             Timer            = new DetonationTimer (new Time {Seconds = 20});
-            CollisionHandler = new CollisionHandler ();
+            CollisionHandler = new DetonatorCollisionHandler ();
         }
 
     }

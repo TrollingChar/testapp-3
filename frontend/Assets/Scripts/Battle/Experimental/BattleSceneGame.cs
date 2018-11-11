@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Battle.State;
 using Battle.Terrain;
 using Battle.Terrain.Generation;
 using Core;
