@@ -1,21 +1,22 @@
+using System;
 using System.IO;
 using Attributes;
-using Utils.Messenger;
+using Utils;
 
 
 namespace DataTransfer.Server {
 
-    [DTO(DTOCode.LeftLobby)]
+    [DTO (DTOCode.LeftLobby)]
     public class LeftLobbyCmd : ServerCommand {
 
-        public static readonly Messenger<LeftLobbyCmd> OnReceived = new Messenger<LeftLobbyCmd>();
+        public static event Action <LeftLobbyCmd> OnReceived;
 
 
         public override void ReadMembers (BinaryReader reader) {}
 
 
         public override void Execute () {
-            OnReceived.Send(this);
+            OnReceived._ (this);
         }
 
     }

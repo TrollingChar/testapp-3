@@ -13,47 +13,46 @@ namespace Battle.Objects.Projectiles {
 
     public class HomingMissile : Object {
 
-        private readonly XY _target;
-        private GameObject _pointer;
+        private readonly XY         _target;
+        private          GameObject _pointer;
 
 
         public HomingMissile (XY target) {
             _target = target;
         }
 
-        
+
         public override void OnSpawn () {
             var assets = The.BattleAssets;
-            UnityEngine.Object.Instantiate(assets.HomingMissile, GameObject.transform, false);
-            _pointer = UnityEngine.Object.Instantiate(
+            UnityEngine.Object.Instantiate (assets.HomingMissile, GameObject.transform, false);
+            _pointer = UnityEngine.Object.Instantiate (
                 assets.PointCrosshair,
-                new Vector3(_target.X, _target.Y, 0),
+                new Vector3 (_target.X, _target.Y, 0),
                 Quaternion.identity
             );
-            AddCollider(new CircleCollider(XY.Zero, 2f));
-            Explosive = new Explosive25();
+            AddCollider (new CircleCollider (XY.Zero, 2f));
+            Explosive = new Explosive25 ();
             Controller = new StandardCtrl {
-                MagnetCoeff = 1,
                 OrientationFlag = true,
-                WaitFlag = true
+                WaitFlag        = true
             };
-            Timer = new CallbackTimer(
-                new Time{Seconds = 0.5f},
-                () => Controller = new HomingCtrl(_target)
+            Timer = new CallbackTimer (
+                new Time {Seconds = 0.5f},
+                () => Controller = new HomingCtrl (_target)
             );
-            CollisionHandler = new DetonatorCollisionHandler();
+            CollisionHandler = new DetonatorCollisionHandler ();
         }
 
 
         public void RemovePointer () {
             if (_pointer == null) return;
-            UnityEngine.Object.Destroy(_pointer);
+            UnityEngine.Object.Destroy (_pointer);
             _pointer = null;
         }
 
 
-        public override void OnDespawn () {
-            RemovePointer();
+        protected override void OnDespawn () {
+            RemovePointer ();
         }
 
     }

@@ -2,8 +2,8 @@
 using System.Reflection;
 using Attributes;
 using Battle.Arsenals;
+using Battle.Experimental;
 using Battle.Objects;
-using Battle.State;
 using Core;
 using DataTransfer.Data;
 using UnityEngine;
@@ -17,65 +17,43 @@ namespace Battle.Weapons {
 
         private readonly int _id;
 
-        private readonly WeaponWrapper _weaponWrapper;
-        private Arsenal _arsenal;
-        protected bool Equipped;
-        protected TimerWrapper GameTimer;
+        private          Arsenal       _arsenal;
+        protected        bool          Equipped;
 
         protected GameObject GameObject;
-        public TurnData TurnData { get; private set; }
+        public    TurnData   TurnData { get; private set; }
 
 
         protected Weapon () {
-            _weaponWrapper = The.WeaponWrapper;
-            GameTimer = The.TimerWrapper;
-            _id = ((WeaponAttribute) GetType().GetCustomAttributes(true).First(a => a is WeaponAttribute)).Id;
+            _id = ((WeaponAttribute) GetType ().GetCustomAttributes (true).First (a => a is WeaponAttribute)).Id;
         }
 
 
-//        public Worm Worm { get; set; }
-
-//        private Crosshair _crossHair;
-//        protected Crosshair CrossHair {
-//            get { return _crossHair; }
-//            set {
-//                if (_crossHair != null) {
-//                    _crossHair.OnRemove();
-//                    //_crossHair.Weapon = null;
-//                }
-//                if (value != null) {
-//                    value.Weapon = this;
-//                    value.OnAdd();
-//                }
-//                _crossHair = value;
-//            }
-//        }
-
-
         public override void OnAdd () {
-            _arsenal = ((Worm) Object).Team.Arsenal;
-            GameObject = new GameObject(GetType().ToString());
-            GameObject.transform.SetParent(Object.GameObject.transform, false);
+            _arsenal   = ((Worm) Object).Team.Arsenal;
+            GameObject = new GameObject (GetType ().ToString ());
+            GameObject.transform.SetParent (Object.GameObject.transform, false);
+            
             Equipped = true;
-            OnEquip();
+            OnEquip ();
         }
 
 
         public override void OnRemove () {
-            if (Equipped) Unequip();
+            if (Equipped) Unequip ();
         }
 
 
         public void Unequip () {
             if (!Equipped) return;
             Equipped = false;
-            OnUnequip();
-            UnityEngine.Object.Destroy(GameObject);
+            OnUnequip ();
+            UnityEngine.Object.Destroy (GameObject);
             ((Worm) Object).Weapon = null;
         }
 
 
-        protected virtual void OnEquip () {}
+        protected virtual void OnEquip ()   {}
         protected virtual void OnUnequip () {}
 
 
@@ -85,50 +63,51 @@ namespace Battle.Weapons {
 
 
         protected void UseAmmo () {
-            _arsenal.UseAmmo(_id);
+            _arsenal.UseAmmo (_id);
         }
 
 
         protected int GetAmmo () {
-            return _arsenal.GetAmmo(_id);
+            return _arsenal.GetAmmo (_id);
         }
 
 
         protected void LockArsenal () {
-            _weaponWrapper.Lock();
+//            _weaponWrapper.Lock ();
+            The.Battle.LockArsenal ();
         }
 
 
         public void InitRetreat (Time t) {
-           The.BattleScene.InitRetreat(t);
+            The.Battle.InitRetreat (t);
         }
 
 
         public static Weapon ById (WeaponId id) {
-            return ById((byte) id);
+            return ById ((byte) id);
         }
 
 
         public static Weapon ById (int id) {
-            return ById((byte) id);
+            return ById ((byte) id);
         }
 
 
         public static Weapon ById (byte id) {
-            return Serialization<Weapon>.GetNewInstanceByCode(id);
+            return Serialization <Weapon>.GetNewInstanceByCode (id);
         }
 
 
         public static WeaponDescriptor DescriptorById (WeaponId id) {
-            return DescriptorById((byte) id);
+            return DescriptorById ((byte) id);
         }
 
 
         public static WeaponDescriptor DescriptorById (byte id) {
-            return (WeaponDescriptor) Serialization<Weapon>.GetTypeByCode(id).GetProperty(
+            return (WeaponDescriptor) Serialization <Weapon> .GetTypeByCode (id).GetProperty (
                 "Descriptor",
                 BindingFlags.Static | BindingFlags.Public
-            ).GetValue(null, null);
+            ).GetValue (null, null);
         }
 
     }

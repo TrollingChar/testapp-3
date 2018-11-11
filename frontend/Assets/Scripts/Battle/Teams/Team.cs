@@ -8,15 +8,15 @@ namespace Battle.Teams {
 
     public class Team {
 
-        private readonly LinkedList<Worm> _worms;
-        private Worm _activeWorm;
+        private readonly Queue <Worm> _worms;
+//        private Worm _activeWorm;
         public int WormsAlive;
 
 
         public Team (int player, Color color, Arsenal arsenal) {
             Player = player;
             Color = color;
-            _worms = new LinkedList<Worm>();
+            _worms = new Queue <Worm> ();
             Arsenal = arsenal;
         }
 
@@ -31,23 +31,25 @@ namespace Battle.Teams {
         public void AddWorm (Worm worm) {
             if (worm.HP > 0) WormsAlive++;
             worm.Team = this;
-            _worms.AddLast(worm); // if going to add them at mid-fight, refactor
+            _worms.Enqueue (worm);
             worm.OnAddToTeam(this);
         }
 
 
-//        public void RemoveWorm (Worm worm);
+        public Worm ActiveWorm {
+            get {
+                var worm = _worms.Peek ();
+                while (worm.HP <= 0) {
+                    _worms.Dequeue ();
+                    worm = _worms.Peek ();
+                }
+                return worm;
+            }
+        }
 
 
-        public Worm NextWorm () {
-            do {
-                if (_worms.Count <= 0) return null;
-                _activeWorm = _worms.First.Value;
-                _worms.RemoveFirst();
-            } while (_activeWorm.HP <= 0);
-
-            _worms.AddLast(_activeWorm);
-            return _activeWorm;
+        public void NextWorm () {
+            _worms.Enqueue (_worms.Dequeue ());
         }
 
     }

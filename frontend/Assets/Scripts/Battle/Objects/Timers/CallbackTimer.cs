@@ -9,13 +9,13 @@ namespace Battle.Objects.Timers {
         private readonly Action _callback;
 
 
-        public CallbackTimer (Time time, Action callback) : base(time) {
+        public CallbackTimer (Time time, Action callback) : base (time) {
             _callback = callback;
         }
 
 
         protected override void OnExpire () {
-            _callback();
+            _callback ();
         }
 
     }

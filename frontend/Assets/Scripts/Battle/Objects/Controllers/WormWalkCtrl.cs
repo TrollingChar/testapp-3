@@ -1,5 +1,4 @@
-﻿using Battle.State;
-using Collisions;
+﻿using Collisions;
 using Core;
 using DataTransfer.Data;
 using Geometry;
@@ -9,19 +8,16 @@ namespace Battle.Objects.Controllers {
 
     public class WormWalkCtrl : Controller {
 
-        private readonly ActiveWorm _activeWorm = The.ActiveWorm;
-
-
         public override void OnAdd () {
             Object.Velocity = XY.Zero;
-            Object.Immobile = true;
+//            Object.Immobile = true;
             ((Worm) Object).NewWormGO.Stand ();
         }
 
 
-        public override void OnRemove () {
-            Object.Immobile = false;
-        }
+//        public override void OnRemove () {
+//            Object.Immobile = false;
+//        }
 
 
         // todo: подумать где нужно заменить Precision на 0
@@ -31,8 +27,9 @@ namespace Battle.Objects.Controllers {
 //            if (td != null) worm.LookAt(td.XY);
             worm.Name = "walk";
 
-            var collision = new Ray(worm.Tail.Center, new CircleCollider(XY.Zero, Worm.HeadRadius)) {Object = Object}
-                .Cast(new XY(0f, -Worm.MaxDescend));
+            var collision =
+            new Ray (worm.Tail.Center, new CircleCollider (XY.Zero, Worm.HeadRadius)) {Object = Object}.
+            Cast (new XY (0f, -Worm.MaxDescend));
 
             // will fall?
             if (collision == null) {
@@ -41,7 +38,7 @@ namespace Battle.Objects.Controllers {
             }
 
             // can move?
-            if (td == null || !_activeWorm.Is(worm) || !_activeWorm.CanMove) {
+            if (td == null || worm != The.Battle.ActiveWorm) {
                 if (-collision.Offset.Y < World.Precision) {
                     collision.Offset.Y = 0;
                 } else {

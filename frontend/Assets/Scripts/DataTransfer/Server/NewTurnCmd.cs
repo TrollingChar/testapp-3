@@ -1,24 +1,26 @@
+using System;
 using System.IO;
 using Attributes;
-using Utils.Messenger;
+using Utils;
 
 
 namespace DataTransfer.Server {
 
-    [DTO(DTOCode.NewTurn)]
+    [DTO (DTOCode.NewTurn)]
     public class NewTurnCmd : ServerCommand {
 
-        public static readonly Messenger<NewTurnCmd> OnReceived = new Messenger<NewTurnCmd>();
+        public static event Action <NewTurnCmd> OnReceived;
+
         public int Player { get; private set; }
 
 
         public override void ReadMembers (BinaryReader reader) {
-            Player = reader.ReadInt32();
+            Player = reader.ReadInt32 ();
         }
 
 
         public override void Execute () {
-            OnReceived.Send(this);
+            OnReceived._ (this);
         }
 
     }

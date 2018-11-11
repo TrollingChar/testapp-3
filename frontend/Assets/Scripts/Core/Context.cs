@@ -9,21 +9,22 @@ namespace Core {
 
     public class Context : MonoBehaviour {
 
-        public Connection Connection { get; private set; }
-        public SceneSwitcher Switcher { get; private set; }
+        public Connection    Connection { get; private set; }
+        public SceneSwitcher Switcher   { get; private set; }
 
 
         private void Awake () {
-            DontDestroyOnLoad(this);
+            DontDestroyOnLoad (this);
             Application.targetFrameRate = 60;
+            Debug.Log (QualitySettings.names[QualitySettings.GetQualityLevel ()]);
 
-            DTO.Init();
-            Serialization<Weapon>.ScanAssembly<WeaponAttribute>();
+            DTO.Init ();
+            Serialization <Weapon>.ScanAssembly <WeaponAttribute> ();
 
-            Connection = gameObject.AddComponent<Connection>();
-            Switcher = new SceneSwitcher();
+            Connection = gameObject.AddComponent <Connection> ();
+            Switcher   = new SceneSwitcher ();
 
-            Switcher.Load(Scenes.Menu, false); // dont bypass connection menu
+            Switcher.Load (Scenes.Menu, false); // dont bypass connection menu
         }
 
     }

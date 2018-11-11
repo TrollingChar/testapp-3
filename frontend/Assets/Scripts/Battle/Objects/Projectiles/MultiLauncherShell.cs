@@ -12,16 +12,15 @@ namespace Battle.Objects.Projectiles {
     public class MultiLauncherShell : Object {
 
         public override void OnSpawn () {
-            UnityEngine.Object.Instantiate(The.BattleAssets.MultiLauncherShell, GameObject.transform, false);
-            AddCollider(new CircleCollider(XY.Zero, 2f));
-            Explosive = new Explosive15();
+            UnityEngine.Object.Instantiate (The.BattleAssets.MultiLauncherShell, GameObject.transform, false);
+            AddCollider (new CircleCollider (XY.Zero, 2f));
+            Explosive = new Explosive15 ();
             Controller = new StandardCtrl {
-                MagnetCoeff = 1,
-                SmokeSize = 10,
+                SmokeSize       = 10,
                 OrientationFlag = true
             };
-            Timer = new DetonationTimer(new Time{Seconds = 20});
-            CollisionHandler = new DetonatorCollisionHandler();
+            Timer            = new DetonationTimer (new Time {Seconds = 20});
+            CollisionHandler = new DetonatorCollisionHandler ();
         }
 
     }

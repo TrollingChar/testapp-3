@@ -1,27 +1,29 @@
+using System;
 using System.IO;
 using Attributes;
 using Core;
-using Utils.Messenger;
+using Utils;
 
 
 namespace DataTransfer.Server {
 
-    [DTO(DTOCode.AuthSuccess)]
+    [DTO (DTOCode.AuthSuccess)]
     public class AuthSuccessCmd : ServerCommand {
 
-        public static readonly Messenger<AuthSuccessCmd> OnReceived = new Messenger<AuthSuccessCmd>();
+        public static event Action <AuthSuccessCmd> OnReceived;
+
         public PlayerInfo PlayerInfo { get; private set; }
 
 
         public override void ReadMembers (BinaryReader reader) {
             // todo
-            PlayerInfo = new PlayerInfo(reader.ReadInt32());
+            PlayerInfo = new PlayerInfo (reader.ReadInt32 ());
         }
 
 
         public override void Execute () {
             The.PlayerInfo = PlayerInfo;
-            OnReceived.Send(this);
+            OnReceived._ (this);
         }
 
     }

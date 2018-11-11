@@ -6,6 +6,11 @@
       <e p="Assembly-CSharp-firstpass.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets/Bundles" t="Include">
+        <e p="UI" t="Include">
+          <e p="Alert" t="Include">
+            <e p="TileShader.shader" t="Include" />
+          </e>
+        </e>
         <e p="War" t="Include">
           <e p="Water" t="Include">
             <e p="WaterShader.shader" t="Include" />
@@ -35,13 +40,21 @@
             <e p="StandardArsenal.cs" t="Include" />
           </e>
           <e p="Balance.cs" t="Include" />
-          <e p="BattleScene.cs" t="Include" />
           <e p="Camera" t="Include">
             <e p="AutomaticCameraController.cs" t="Include" />
             <e p="CameraController.cs" t="Include" />
+            <e p="CameraPriority.cs" t="Include" />
             <e p="CameraWrapper.cs" t="Include" />
             <e p="MouseBasedCameraController.cs" t="Include" />
             <e p="ObjectBoundCameraController.cs" t="Include" />
+          </e>
+          <e p="Experimental" t="Include">
+            <e p="BattleScene.cs" t="Include" />
+            <e p="BattleSceneGame.cs" t="Include" />
+            <e p="BattleSceneGeneration.cs" t="Include" />
+            <e p="BattleSceneState.cs" t="Include" />
+            <e p="BattleSceneWeapons.cs" t="Include" />
+            <e p="BattleTimer.cs" t="Include" />
           </e>
           <e p="Objects" t="Include">
             <e p="CollisionHandlers" t="Include">
@@ -81,6 +94,7 @@
               <e p="Effect.cs" t="Include" />
               <e p="Flash.cs" t="Include" />
               <e p="Label.cs" t="Include" />
+              <e p="NukeTarget.cs" t="Include" />
               <e p="Smoke.cs" t="Include" />
             </e>
             <e p="Explosives" t="Include">
@@ -91,18 +105,21 @@
               <e p="Explosive15.cs" t="Include" />
               <e p="Explosive25.cs" t="Include" />
               <e p="Explosive40.cs" t="Include" />
+              <e p="ExplosiveNuke.cs" t="Include" />
               <e p="ExplosivePoison.cs" t="Include" />
               <e p="Implosive40.cs" t="Include" />
               <e p="MeteorExplosive.cs" t="Include" />
             </e>
             <e p="GameObjects" t="Include">
               <e p="NewWormGO.cs" t="Include" />
+              <e p="NewWormGONoAnimation.cs" t="Include" />
               <e p="WormGO.cs" t="Include" />
               <e p="WormsNames.cs" t="Include" />
             </e>
             <e p="MeleeTester.cs" t="Include" />
             <e p="NullObject.cs" t="Include" />
             <e p="Object.cs" t="Include" />
+            <e p="ObjectPhysics.cs" t="Include" />
             <e p="Other" t="Include">
               <e p="Airplane.cs" t="Include" />
               <e p="Crates" t="Include">
@@ -124,6 +141,7 @@
               <e p="LimonkaCluster.cs" t="Include" />
               <e p="Meteor.cs" t="Include" />
               <e p="MultiLauncherShell.cs" t="Include" />
+              <e p="Nuke.cs" t="Include" />
               <e p="PhantomGrenade.cs" t="Include" />
               <e p="PlasmaBall.cs" t="Include" />
               <e p="PoisonGas.cs" t="Include" />
@@ -143,11 +161,14 @@
             <e p="Worm.cs" t="Include" />
           </e>
           <e p="State" t="Include">
-            <e p="ActiveWorm.cs" t="Include" />
             <e p="GameState.cs" t="Include" />
-            <e p="GameStateController.cs" t="Include" />
-            <e p="TimerWrapper.cs" t="Include" />
-            <e p="WeaponWrapper.cs" t="Include" />
+            <e p="StateAfterTurn.cs" t="Include" />
+            <e p="StateBeforeTurn.cs" t="Include" />
+            <e p="StateEndingTurn.cs" t="Include" />
+            <e p="StateReady.cs" t="Include" />
+            <e p="StateRemoval.cs" t="Include" />
+            <e p="StateSynchronizing.cs" t="Include" />
+            <e p="StateTurn.cs" t="Include" />
           </e>
           <e p="Teams" t="Include">
             <e p="Team.cs" t="Include" />
@@ -168,14 +189,9 @@
             <e p="Tile.cs" t="Include" />
             <e p="Tiles.cs" t="Include" />
           </e>
-          <e p="UI" t="Include">
-            <e p="ArsenalPanel.cs" t="Include" />
-            <e p="BottomHud.cs" t="Include" />
-            <e p="EndGameMenu.cs" t="Include" />
-            <e p="HintArea.cs" t="Include" />
-          </e>
           <e p="Water" t="Include">
             <e p="WaterGO.cs" t="Include" />
+            <e p="WavesGO.cs" t="Include" />
           </e>
           <e p="Weapons" t="Include">
             <e p="AbstractAirstrikeWeapon.cs" t="Include" />
@@ -272,6 +288,7 @@
             </e>
           </e>
           <e p="World.cs" t="Include" />
+          <e p="WorldPhysics.cs" t="Include" />
         </e>
         <e p="Collisions" t="Include">
           <e p="AABB.cs" t="Include" />
@@ -282,7 +299,6 @@
         </e>
         <e p="Core" t="Include">
           <e p="Context.cs" t="Include" />
-          <e p="Log.cs" t="Include" />
           <e p="PlayerInfo.cs" t="Include" />
           <e p="SceneSwitcher.cs" t="Include" />
           <e p="Scenes.cs" t="Include" />
@@ -290,13 +306,6 @@
           <e p="Settings.cs" t="Include" />
           <e p="The.cs" t="Include" />
           <e p="Time.cs" t="Include" />
-          <e p="UI" t="Include">
-            <e p="CustomPanelController.cs" t="Include" />
-            <e p="Panel.cs" t="Include" />
-            <e p="PanelController.cs" t="Include" />
-            <e p="StandardPanelController.cs" t="Include" />
-            <e p="WeaponButton.cs" t="Include" />
-          </e>
         </e>
         <e p="DataTransfer" t="Include">
           <e p="Client" t="Include">
@@ -339,14 +348,6 @@
         </e>
         <e p="Menu" t="Include">
           <e p="MenuScene.cs" t="Include" />
-          <e p="UI" t="Include">
-            <e p="ConnectionMenu.cs" t="Include" />
-            <e p="DonateMenu.cs" t="Include" />
-            <e p="GameModeMenu.cs" t="Include" />
-            <e p="HelpMenu.cs" t="Include" />
-            <e p="LobbyMenu.cs" t="Include" />
-            <e p="MainMenu.cs" t="Include" />
-          </e>
         </e>
         <e p="Net" t="Include">
           <e p="API.cs" t="Include" />
@@ -356,31 +357,39 @@
             <e p="BigEndianBinaryWriter.cs" t="Include" />
           </e>
         </e>
+        <e p="UI" t="Include">
+          <e p="Alert.cs" t="Include" />
+          <e p="ArsenalPanel.cs" t="Include" />
+          <e p="BottomHud.cs" t="Include" />
+          <e p="ConnectionMenu.cs" t="Include" />
+          <e p="CustomPanelController.cs" t="Include" />
+          <e p="DonateMenu.cs" t="Include" />
+          <e p="EndGameMenu.cs" t="Include" />
+          <e p="GameModeMenu.cs" t="Include" />
+          <e p="HelpMenu.cs" t="Include" />
+          <e p="HintArea.cs" t="Include" />
+          <e p="LobbyMenu.cs" t="Include" />
+          <e p="MainMenu.cs" t="Include" />
+          <e p="Panel.cs" t="Include" />
+          <e p="PanelController.cs" t="Include" />
+          <e p="StandardPanelController.cs" t="Include" />
+          <e p="VerticalLayout.cs" t="Include" />
+          <e p="WeaponButton.cs" t="Include" />
+        </e>
         <e p="Utils" t="Include">
-          <e p="Ballistics" t="Include">
-            <e p="Ballistics.cs" t="Include" />
-          </e>
-          <e p="Danmaku" t="Include">
-            <e p="Danmaku.cs" t="Include" />
-          </e>
-          <e p="Direction" t="Include">
-            <e p="Direction.cs" t="Include" />
-          </e>
-          <e p="LootTable" t="Include">
-            <e p="LootTable.cs" t="Include" />
-          </e>
-          <e p="Messenger" t="Include">
-            <e p="Messenger.cs" t="Include" />
-          </e>
+          <e p="ActionExtension.cs" t="Include" />
+          <e p="Ballistics.cs" t="Include" />
+          <e p="CanvasCameraAutoSetter.cs" t="Include" />
+          <e p="Danmaku.cs" t="Include" />
+          <e p="Direction.cs" t="Include" />
+          <e p="LootTable.cs" t="Include" />
           <e p="MouseButtons.cs" t="Include" />
           <e p="Pool.cs" t="Include" />
           <e p="Random" t="Include">
             <e p="MT19937.cs" t="Include" />
             <e p="RNG.cs" t="Include" />
           </e>
-          <e p="Tuple" t="Include">
-            <e p="Tuple.cs" t="Include" />
-          </e>
+          <e p="Tuple.cs" t="Include" />
         </e>
       </e>
       <e p="Library" t="ExcludeRecursive" />

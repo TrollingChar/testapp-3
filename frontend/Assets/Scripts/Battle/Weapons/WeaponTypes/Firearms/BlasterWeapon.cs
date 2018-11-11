@@ -69,17 +69,17 @@ namespace Battle.Weapons.WeaponTypes.Firearms {
 
         protected override void OnShoot () {
             var direction = TurnData.XY - Object.Position;
-            var collision = The.World.CastRay(Object.Position, direction);
+            var collision = The.World.CastRay (Object.Position, direction);
             if (collision != null) {
-                new Explosive15().Detonate(Object.Position + collision.Offset);
+                new Explosive15 ().Detonate (Object.Position + collision.Offset);
             }
-            if (GetAmmo() == 0) Attacks = 0;
+            if (GetAmmo () == 0) Attacks = 0;
         }
 
 
         protected override void OnUpdate () {
-            UpdateLineCrosshair(_crosshair);
-            UpdateAimedWeapon(_sprite);
+            UpdateLineCrosshair (_crosshair);
+            UpdateAimedWeapon (_sprite);
             if (Input.anyKeyDown) SetCamera ();
             ((Worm) Object).LookAt (TurnData.XY);
         }

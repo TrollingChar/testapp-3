@@ -12,11 +12,11 @@ namespace Battle.Objects.Projectiles {
         public PoisonGas (float damage) {
             _damage = damage;
         }
-        
+
 
         public override void OnSpawn () {
-            UnityEngine.Object.Instantiate(The.BattleAssets.PoisonGas, GameObject.transform, false);
-            Controller = new PoisonGasCtrl(_damage);
+            UnityEngine.Object.Instantiate (The.BattleAssets.PoisonGas, GameObject.transform, false);
+            Controller = new PoisonGasCtrl (_damage);
         }
 
     }

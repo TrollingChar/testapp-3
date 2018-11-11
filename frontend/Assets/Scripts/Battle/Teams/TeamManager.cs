@@ -1,41 +1,48 @@
 ﻿using System.Collections.Generic;
-using Battle.Objects;
+using System.Linq;
+using Battle.Arsenals;
+using Battle.Teams;
 using Core;
+using Utils.Random;
 
 
-namespace Battle.Teams {
+namespace Battle.Experimental {
 
-    public class TeamManager {
+    public class NewTeamManager {
 
-        private readonly int _myId;
+        public readonly List <Team> Teams = new List <Team> ();
+        private         int         _i    = -1;
 
-        public Dictionary<int, Team> Teams { get; private set; }
-        private Team activeTeam;
 
-        public Team MyTeam { get; private set; }
-
-        public TeamManager (Dictionary<int, Team> teams) {
-            The.TeamManager = this;
-            _myId = The.PlayerInfo.Id;
-            Teams = teams;
-            MyTeam = teams[_myId];
+        public NewTeamManager (List <int> players) {
+            var colors = TeamColors.Colors.Take (players.Count).ToList ();
+            RNG.Shuffle (colors);
+            for (int i = 0; i < players.Count; i++) {
+                var team = new Team (players [i], colors [i], new AlphaArsenal ());
+                Teams.Add (team);
+                if (players [i] == The.PlayerInfo.Id) {
+                    MyTeam = team;
+                }
+            }
         }
 
 
-        public bool IsMyTurn {
-            get { return activeTeam.Player == _myId; }
+        public Team MyTeam     { get; private set; }
+        public Team ActiveTeam { get; private set; }
+
+
+        public bool MyTeamActive {
+            get { return MyTeam == ActiveTeam; }
         }
 
 
-
-        public Worm NextWorm () {
-            return activeTeam.NextWorm();
+        public void NextTeam () {
+            _i++;
+            ActiveTeam = Teams [_i % Teams.Count];
         }
 
 
-        public void SetActive (int playerId) {
-            activeTeam = Teams[playerId];
-        }
+        public int I { get { return _i; } }
 
     }
 

@@ -1,4 +1,5 @@
 ﻿using Attributes;
+using Battle.Camera;
 using Battle.Objects;
 using Battle.Objects.Projectiles;
 using Battle.Weapons.Crosshairs;
@@ -43,6 +44,13 @@ namespace Battle.Weapons.WeaponTypes.Launched {
             );
             
             ((Worm) Object).NewWormGO.UnlockHead ();
+            
+            SetCamera ();
+        }
+
+
+        private void SetCamera () {
+            The.Camera.Controller = new ObjectBoundCameraController (Object, 0.5f);
         }
 
 
@@ -53,7 +61,7 @@ namespace Battle.Weapons.WeaponTypes.Launched {
 
         protected override void OnShoot () {
             UseAmmo();
-            Object.Spawn(
+            The.World.Spawn(
                 new PlasmaBall(),
                 Object.Position,
                 (TurnData.XY - Object.Position).WithLength(Power01 * Balance.BaseShotSpeed)

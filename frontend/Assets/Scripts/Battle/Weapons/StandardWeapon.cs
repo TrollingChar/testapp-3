@@ -1,4 +1,5 @@
 ﻿using Battle.Weapons.Crosshairs;
+using Core;
 using DataTransfer.Data;
 using Geometry;
 using UnityEngine;
@@ -66,11 +67,11 @@ namespace Battle.Weapons {
 
             if (--_attackCooldown.Ticks > 0) goto end;
 
-            GameTimer.Frozen = false;
+            The.Battle.TurnTimer.Paused = false;
             if (td.MB) {
                 if (RequiresClick && !_ready) goto end;
                 if (!Removable) LockArsenal();
-                GameTimer.Frozen = true;
+                The.Battle.TurnTimer.Paused = true;
                 if (ConstPower || ++Power >= 1.5f * Time.TPS) BeginAttack();
             }
             else {
@@ -84,7 +85,7 @@ namespace Battle.Weapons {
 
 
         private void BeginAttack () {
-            GameTimer.Frozen = true;
+            The.Battle.TurnTimer.Paused = true;
             _ready = false;
             Attacks--;
             ShotsLeft = Shots;
@@ -108,7 +109,7 @@ namespace Battle.Weapons {
         private void EndAttack () {
             Fires = false;
             Power = 0;
-            GameTimer.Frozen = false;
+            The.Battle.TurnTimer.Paused = false;
             OnEndAttack();
             if (Attacks <= 0) {
                 OnLastAttack();

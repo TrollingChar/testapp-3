@@ -44,6 +44,16 @@ namespace Geometry {
             return d == 0 ? XY.NaN : new XY(c0 * b1 - c1 * b0, a0 * c1 - a1 * c0) / d;
         }
 
+
+        public static float Distance (Box b, XY p) {
+            return Mathf.Sqrt (SqrDistance (b, p));
+        }
+
+
+        public static float SqrDistance (Box b, XY p) {
+            return XY.SqrDistance (p, p.Clamped (b));
+        }
+
     }
 
 }

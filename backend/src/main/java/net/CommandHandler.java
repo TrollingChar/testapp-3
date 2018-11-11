@@ -17,7 +17,7 @@ public class CommandHandler extends SimpleChannelInboundHandler<DTO> {
 
     @Override
     public void handlerAdded (ChannelHandlerContext ctx) throws Exception {
-        System.out.println(this + "added");
+        System.out.println(ctx.channel ().remoteAddress ().toString () + " connected");
     }
 
 

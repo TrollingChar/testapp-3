@@ -55,23 +55,29 @@ namespace Net {
 
 
         public void Send (ClientCommand cmd) {
-            var authorizeCommand = cmd as AuthRequestCmd;
-            if (authorizeCommand != null) {
-                StartCoroutine(AuthCoroutine(authorizeCommand));
-                return;
-            }
+//            var authorizeCommand = cmd as AuthRequestCmd;
+//            if (authorizeCommand != null) {
+//                StartCoroutine(AuthCoroutine(authorizeCommand, ));
+//                return;
+//            }
             DoSend(cmd);
         }
 
 
-        private IEnumerator AuthCoroutine (AuthRequestCmd cmd) {
+        public void Authorize (int id, string url) {
+            StartCoroutine (AuthCoroutine (new Uri (url), new AuthRequestCmd (id)));
+        }
+
+
+        private IEnumerator AuthCoroutine (Uri url, AuthRequestCmd cmd) {
             if (_socket != null) {
                 _socket.Close();
                 Debug.Log("TRYING TO OPEN SECOND CONNECTION");
             }
-//            _socket = new WebSocket(new Uri("ws://localhost:7675/websocket"));
-            _socket = new WebSocket(new Uri("ws://192.168.0.72:7675/websocket"));
 //            _socket = new WebSocket(new Uri("wss://worms-3.herokuapp.com/websocket"));
+//            _socket = new WebSocket(new Uri("ws://192.168.0.72:7675/websocket"));
+//            _socket = new WebSocket(new Uri("ws://localhost:7675/websocket"));
+            _socket = new WebSocket (url);
             yield return StartCoroutine(_socket.Connect());
 
             StartCoroutine(SendPing());

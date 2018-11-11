@@ -1,5 +1,4 @@
-﻿using System;
-using Battle.Objects.Timers;
+﻿using Battle.Objects.Timers;
 using Collisions;
 using Core;
 using DataTransfer.Data;
@@ -12,7 +11,7 @@ namespace Battle.Objects.Controllers {
 
         public override void OnAdd () {
             Object.Velocity = XY.Zero;
-            Object.Immobile = true;
+//            Object.Immobile = true;
             Object.Timer = new CallbackTimer (
                 new Time {Seconds = 0.75f},
                 () => { Object.Controller = new WormAfterJumpCtrl (); }

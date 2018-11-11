@@ -1,5 +1,4 @@
-﻿using System;
-using Battle.Objects.Effects;
+﻿using Battle.Objects.Effects;
 using Battle.Objects.Projectiles;
 using Core;
 using DataTransfer.Data;
@@ -12,14 +11,14 @@ namespace Battle.Objects.Controllers {
 
     public class StandardCtrl : Controller {
 
-        [Obsolete] public float MagnetCoeff; // todo: move this to object itself
         public float GravityCoeff = 1, WindCoeff, SmokeSize;
         public bool WaitFlag, OrientationFlag, GasFlag;
 
         
         protected override void DoUpdate (TurnData td) {
-            Object.Velocity.X += The.World.Wind * WindCoeff;
-            Object.Velocity.Y += The.World.Gravity * GravityCoeff;
+            var world = The.World;
+            Object.Velocity.X += world.Wind * WindCoeff;
+            Object.Velocity.Y += world.Gravity * GravityCoeff;
             if (WaitFlag) {
                 Wait();
             }
@@ -27,7 +26,7 @@ namespace Battle.Objects.Controllers {
                 Object.GameObject.transform.localEulerAngles = new Vector3(0, 0, Object.Velocity.Angle * Mathf.Rad2Deg);
             }
             if (SmokeSize > 0) {
-                Object.Spawn(
+                world.Spawn (
                     new Smoke((RNG.Float() + 0.5f) * SmokeSize),
                     Object.Position,
                     Object.Velocity.WithLength(-10f)
@@ -36,7 +35,7 @@ namespace Battle.Objects.Controllers {
             if (GasFlag) {
                 const float radius = 60f;
                 for (int i = 0; i < 2; i++) {
-                    Object.Spawn(
+                    world.Spawn (
                         new PoisonGas(RNG.Float() * 3),
                         Object.Position,
                         Danmaku.CloudParticle(radius / PoisonGasCtrl.InvLerpCoeff)

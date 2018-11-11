@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 
 namespace Battle.Objects.GameObjects {
@@ -8,6 +7,7 @@ namespace Battle.Objects.GameObjects {
 
         [SerializeField] private Transform _headTransform;
         [SerializeField] private Transform _tailTransform;
+        private SpriteRenderer _tailSprite;
         
         private Animator _animator;
         
@@ -25,6 +25,8 @@ namespace Battle.Objects.GameObjects {
             _animator.ResetTrigger ("Jump");
             _animator.ResetTrigger ("AfterJump");
             _animator.ResetTrigger ("Fall");
+            _animator.ResetTrigger ("Recover");
+            _animator.ResetTrigger ("Death");
         }
 
 
@@ -38,6 +40,7 @@ namespace Battle.Objects.GameObjects {
 
         private void Awake () {
             _animator = GetComponent <Animator> ();
+            _tailSprite = _tailTransform.GetComponentInChildren <SpriteRenderer> ();
         }
 
 
@@ -109,7 +112,8 @@ namespace Battle.Objects.GameObjects {
             ResetAllTriggers ();
             _animator.SetTrigger ("HeadStill");
             _animator.SetTrigger ("TailStill");
-            _tailTransform.gameObject.SetActive (true);
+//            _tailTransform.gameObject.SetActive (true);
+            _tailSprite.enabled = true;
         }
 
 
@@ -171,7 +175,8 @@ namespace Battle.Objects.GameObjects {
             LockHeadInternal ();
             ResetAllTriggers ();
             _animator.SetTrigger ("BeforeJump");
-            _tailTransform.gameObject.SetActive (true);
+//            _tailTransform.gameObject.SetActive (true);
+            _tailSprite.enabled = true;
         }
 
 
@@ -180,7 +185,8 @@ namespace Battle.Objects.GameObjects {
             LockHeadInternal ();
             ResetAllTriggers ();
             _animator.SetTrigger ("Jump");
-            _tailTransform.gameObject.SetActive (false);
+//            _tailTransform.gameObject.SetActive (false);
+            _tailSprite.enabled = false;
         }
 
 
@@ -189,7 +195,8 @@ namespace Battle.Objects.GameObjects {
             LockHeadInternal ();
             ResetAllTriggers ();
             _animator.SetTrigger ("AfterJump");
-            _tailTransform.gameObject.SetActive (true);
+//            _tailTransform.gameObject.SetActive (true);
+            _tailSprite.enabled = true;
         }
 
 
@@ -198,7 +205,8 @@ namespace Battle.Objects.GameObjects {
             LockHeadInternal ();
             ResetAllTriggers ();
             _animator.SetTrigger ("Fall");
-            _tailTransform.gameObject.SetActive (false);
+//            _tailTransform.gameObject.SetActive (false);
+            _tailSprite.enabled = false;
         }
 
 
@@ -207,7 +215,8 @@ namespace Battle.Objects.GameObjects {
             LockHeadInternal ();
             ResetAllTriggers ();
             _animator.SetTrigger ("Recover");
-            _tailTransform.gameObject.SetActive (false);
+//            _tailTransform.gameObject.SetActive (false);
+            _tailSprite.enabled = false;
         }
 
 
@@ -224,7 +233,8 @@ namespace Battle.Objects.GameObjects {
             LockHeadInternal ();
             ResetAllTriggers ();
             _animator.SetTrigger ("Death");
-            _tailTransform.gameObject.SetActive (false);
+//            _tailTransform.gameObject.SetActive (false);
+            _tailSprite.enabled = false;
         }
 
     }

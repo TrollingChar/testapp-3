@@ -9,10 +9,11 @@ namespace Battle.Objects.Explosives {
     public class ClusterSpawner : Explosive {
 
         protected override void OnDetonate (XY xy) {
+            var world = The.World;
             foreach (var v in Danmaku.Shotgun(XY.Up, 0.5f, 8, 16, 6)) {
-                Object.Spawn(new LimonkaCluster(), xy, v);
+                world.Spawn(new LimonkaCluster(), xy, v);
             }
-            The.World.MakeSmoke(xy, 40f);
+            world.MakeSmoke(xy, 40f);
         }
 
     }

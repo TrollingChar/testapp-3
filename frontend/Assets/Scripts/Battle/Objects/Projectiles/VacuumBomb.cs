@@ -12,16 +12,16 @@ namespace Battle.Objects.Projectiles {
     public class VacuumBomb : Object {
 
         public override void OnSpawn () {
-            UnityEngine.Object.Instantiate(The.BattleAssets.VacuumBomb, GameObject.transform, false);
-            AddCollider(new CircleCollider(XY.Zero, 2f));
-            Explosive = new Implosive40();
+            UnityEngine.Object.Instantiate (The.BattleAssets.VacuumBomb, GameObject.transform, false);
+            AddCollider (new CircleCollider (XY.Zero, 2f));
+//            Explosive = new Implosive40 ();
+            Explosive = new ExplosiveNuke ();
             Controller = new StandardCtrl {
-                MagnetCoeff = 1,
-                SmokeSize = 20,
+                SmokeSize       = 20,
                 OrientationFlag = true
             };
-            Timer = new DetonationTimer(new Time {Seconds = 20});
-            CollisionHandler = new DetonatorCollisionHandler();
+            Timer            = new DetonationTimer (new Time {Seconds = 20});
+            CollisionHandler = new DetonatorCollisionHandler ();
         }
 
     }

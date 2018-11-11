@@ -76,18 +76,28 @@ namespace Utils.Random {
         }
 
 
-        public static List<T> PickSome<T> (List<T> list, int count) {
-            var array = list.ToArray();
-            var result = new List<T>();
-            int j = array.Length;
+        public static List <T> PickSome <T> (List <T> list, int count) {
+            var array  = list.ToArray ();
+            var result = new List <T> ();
+            int j      = array.Length;
             for (int i = 0; i < count; i++) {
-                if (j == 1) result.Add(array[--j]);
+                if (j == 1) result.Add (array[--j]);
                 if (j == 0) break;
-                int temp = Int(j);
-                result.Add(array[temp]);
+                int temp = Int (j);
+                result.Add (array[temp]);
                 array[temp] = array[--j];
             }
             return result;
+        }
+
+
+        public static void Shuffle <T> (List <T> list) {
+            for (int i = list.Count; i > 1;) {
+                int r    = Int (i);
+                var temp = list[r];
+                list[r]  = list[--i];
+                list[i]  = temp;
+            }
         }
 
     }

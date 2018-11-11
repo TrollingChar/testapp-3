@@ -1,4 +1,4 @@
-﻿using Battle.State;
+﻿using Battle.Experimental;
 using Core;
 using UnityEngine.UI;
 
@@ -7,26 +7,26 @@ namespace Battle.Objects.Timers {
 
     public class DetonationTimer : Timer {
 
-        private readonly TimerWrapper _gameTimer = The.TimerWrapper;
-        private readonly Text _text;
-        private readonly int _limit;
-        
-        
-        public DetonationTimer (Time time, Text text = null, int limit = 5) : base(time) {
-            _text = text;
+        private readonly NewTimer _timer = The.Battle.TweenTimer;
+        private readonly Text     _text;
+        private readonly int      _limit;
+
+
+        public DetonationTimer (Time time, Text text = null, int limit = 5) : base (time) {
+            _text  = text;
             _limit = limit;
         }
 
 
         protected override void OnExpire () {
-            Object.Detonate();
+            Object.Detonate ();
         }
 
 
         protected override void OnTick () {
-            _gameTimer.Wait();
+            _timer.Wait ();
             if (_text == null) return;
-            _text.text = _limit == 0 ? Time.ToString() : Time.ToString(_limit);
+            _text.text = _limit == 0 ? Time.ToString () : Time.ToString (_limit);
         }
 
     }

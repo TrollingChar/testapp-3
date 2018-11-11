@@ -1,6 +1,4 @@
-﻿using System;
-using Battle.Objects.Timers;
-using Collisions;
+﻿using Battle.Objects.Timers;
 using DataTransfer.Data;
 using Geometry;
 using UnityEngine;
@@ -13,7 +11,7 @@ namespace Battle.Objects.Controllers {
 
         public override void OnAdd () {
             Object.Velocity = XY.Zero;
-            Object.Immobile = true;
+//            Object.Immobile = true;
             Object.Timer = new DetonationTimer (new Time {Seconds = 1.5f});
             ((Worm) Object).NewWormGO.Die();
         }

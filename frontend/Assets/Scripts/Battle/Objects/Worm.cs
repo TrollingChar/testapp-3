@@ -1,14 +1,16 @@
-﻿using Battle.Objects.Controllers;
+﻿using Battle.Experimental;
+using Battle.Objects.Controllers;
 using Battle.Objects.Effects;
 using Battle.Objects.Explosives;
 using Battle.Objects.GameObjects;
 using Battle.Objects.Other.Crates;
-using Battle.State;
 using Battle.Teams;
 using Battle.Weapons;
 using Collisions;
 using Core;
+using DataTransfer.Data;
 using Geometry;
+using UI;
 using UnityEngine;
 using UnityEngine.UI;
 using Utils.Danmaku;
@@ -21,40 +23,40 @@ namespace Battle.Objects {
 
     public class Worm : Object {
 
-//        [Inject] private AssetContainer _assets;
-
         public const float HeadRadius = 8f;
         public const float BodyHeight = 8f;
 
-        public const float WalkSpeed = 0.5f;
-        public const float JumpSpeed = 6f;
+        public const float WalkSpeed     = 0.5f;
+        public const float JumpSpeed     = 6f;
         public const float HighJumpSpeed = 9f;
-        public const float JumpAngle = 0.5f;
+        public const float JumpAngle     = 0.5f;
         public const float HighJumpAngle = 0.1f;
 
-        public const float MaxClimb = 5f;
+        public const float MaxClimb   = 5f;
         public const float MaxDescend = 5f;
 
-        private bool _arrowVisible;
-        private Color _color;
-        private bool _facesRight;
-        private int _hp;
-        private int _poison;
+        private bool   _arrowVisible;
+        private Color  _color;
+        private bool   _facesRight;
+        private int    _hp;
+        private int    _poison;
         private string _name;
 
-        public NewWormGO NewWormGO;
+//        public  NewWormGONoAnimation      NewWormGO;
+        public  NewWormGO      NewWormGO;
         private SpriteRenderer _arrow;
-        private Text _nameField;
-        private Text _hpField;
+        private Text           _nameField;
+        private Text           _hpField;
 
         private GameObject _canvas;
+
         private Weapon _weapon;
 
 
-        public Worm (string name = "?", int hp = 60) : base(60, 1) {
-            Name = name;
-            HP = hp;
-            FacesRight = RNG.Bool();
+        public Worm (string name = "...", int hp = 60) : base (60, 1) {
+            Name       = name;
+            HP         = hp;
+            FacesRight = RNG.Bool ();
         }
 
 
@@ -63,7 +65,7 @@ namespace Battle.Objects {
         public CircleCollider Head { get; private set; }
         public CircleCollider Tail { get; private set; }
 
-        
+
         public bool FacesRight {
             get { return _facesRight; }
             set {
@@ -71,6 +73,7 @@ namespace Battle.Objects {
                 if (NewWormGO != null) NewWormGO.FacesRight = _facesRight;
             }
         }
+
 
         public bool FacesLeft {
             get { return !_facesRight; }
@@ -86,37 +89,37 @@ namespace Battle.Objects {
             NewWormGO.SetHeadAngle (angle);
         }
 
-        
+
         public int HP {
             get { return _hp; }
             set {
                 if (Team != null) {
-                    if (_hp <= 0) Team.WormsAlive++;
+                    if (_hp <= 0)   Team.WormsAlive++;
                     if (value <= 0) Team.WormsAlive--;
                 }
                 _hp = value < 0 ? 0 : value;
-                UpdateHpText();
+                UpdateHpText ();
             }
         }
 
-        
+
         public int Poison {
             get { return _poison; }
             set {
                 _poison = value;
-                UpdateHpText();
+                UpdateHpText ();
             }
         }
 
 
         private void UpdateHpText () {
             if (_hpField == null) return;
-            string text = HP.ToString();
+            string text = HP.ToString ();
             if (_poison > 0) text += " (-" + Poison + ")";
             _hpField.text = text;
         }
 
-        
+
         public string Name {
             get { return _name; }
             set {
@@ -125,14 +128,14 @@ namespace Battle.Objects {
             }
         }
 
-        
+
         public Color Color {
             get { return _color; }
             set {
                 _color = value;
-                if (_hpField != null) _hpField.color = value;
+                if (_hpField   != null) _hpField.color   = value;
                 if (_nameField != null) _nameField.color = value;
-                if (_arrow != null) _arrow.color = value;
+                if (_arrow     != null) _arrow.color     = value;
             }
         }
 
@@ -145,23 +148,29 @@ namespace Battle.Objects {
             }
         }
 
+
         public Weapon Weapon {
             get { return _weapon; }
-            set { SwapComponent(ref _weapon, value); }
+            set { SwapComponent (ref _weapon, value); }
         }
-        
+
+
+        public void UpdateWeapon (TurnData td) {
+            if (Weapon != null) Weapon.Update (td);
+        }
+
 
         public override void OnSpawn () {
-            InitGraphics();
+            InitGraphics ();
 
             Name = "Кек";
 
-            AddCollider(Head = new CircleCollider(new XY(0f, BodyHeight * 0.5f), HeadRadius));
-            AddCollider(Tail = new CircleCollider(new XY(0f, BodyHeight * -0.5f), HeadRadius));
-            AddCollider(new BoxCollider(-HeadRadius, HeadRadius, BodyHeight * -0.5f, BodyHeight * 0.5f));
+            AddCollider (Head = new CircleCollider (new XY (0f, BodyHeight *  0.5f), HeadRadius));
+            AddCollider (Tail = new CircleCollider (new XY (0f, BodyHeight * -0.5f), HeadRadius));
+            AddCollider (new BoxCollider (-HeadRadius, HeadRadius, BodyHeight * -0.5f, BodyHeight * 0.5f));
 
-            Controller = new WormJumpCtrl();
-            Explosive = new Explosive15();
+            Controller = new WormJumpCtrl ();
+            Explosive  = new Explosive15 ();
         }
 
 
@@ -170,12 +179,13 @@ namespace Battle.Objects {
             var transform = GameObject.transform;
 
             _canvas = UnityEngine.Object.Instantiate (assets.TopCanvas, transform, false);
-            _canvas.transform.localPosition += new Vector3 (0,    20,   0);
-            _canvas.transform.localScale    =  new Vector3 (0.7f, 0.7f, 1f);
-            _canvas.GetComponent <Canvas> ().sortingLayerName = "TextBack";
+            _canvas.transform.localPosition                   += new Vector3 (0,    30,   0);
+            _canvas.transform.localScale                      =  new Vector3 (0.7f, 0.7f, 1f);
+            _canvas.GetComponent <Canvas> ().sortingLayerName =  "TextBack";
 
             _nameField = UnityEngine.Object.Instantiate (assets.Text, _canvas.transform, false).GetComponent <Text> ();
             _hpField   = UnityEngine.Object.Instantiate (assets.Text, _canvas.transform, false).GetComponent <Text> ();
+            _canvas.GetComponent <VerticalLayout> ().ApplyLayout ();
 
             _arrow = UnityEngine.Object.Instantiate (assets.Arrow, transform, false).
             GetComponentInChildren <SpriteRenderer> ();
@@ -195,63 +205,71 @@ namespace Battle.Objects {
 
 
         protected override bool PassableFor (Object o) {
-            return this == o
-                || o is Crate && The.ActiveWorm.Is(this) && The.GameState.CurrentState == GameState.Turn;
+            return this == o || o is Crate && this == The.Battle.ActiveWorm && The.Battle.State is TurnState;
+            //The.ActiveWorm.Is (this) && The.GameState.CurrentState == GameState.Turn;
         }
 
 
-//        public void LookAt (XY target) {
-//            if (_wormGO == null) return;
-//            _wormGO.Look(Mathf.Rad2Deg * XY.DirectionAngle(Head.Center, target));
-//        }
+        public override bool PushableFor (Object o) {
+            return (
+                Controller   is WormFallCtrl ||
+                Controller   is WormJumpCtrl ||
+                o.Controller is WormFallCtrl
+            ) && base.PushableFor (o);
+        }
 
 
         public override void TakeDamage (int damage) {
             if (damage <= 0) {
-                Debug.LogWarning("damage <= 0");
+                Debug.LogWarning ("damage <= 0");
                 return;
             }
             HP -= damage;
-            if (The.ActiveWorm.Is(this)) The.BattleScene.EndTurn();
-            
+//            if (The.ActiveWorm.Is (this)) The.BattleScene.EndTurn ();
+            if (this == The.Battle.ActiveWorm) {
+                The.Battle.EndTurn ();
+            }
+
+            if (Controller is WormDeathCtrl) return;
             float effectTime = 0.75f + 0.75f * damage / (damage + 40f);
-            Spawn(
-                new Label(damage.ToString(), _color, 1.2f, new LabelFallCtrl(effectTime)),
+            The.World.Spawn (
+                new Label (damage.ToString (), _color, 1.2f, new LabelFallCtrl (effectTime)),
                 Position,
-                Danmaku.ShotgunBullet(XY.Up, 1f, 4, 8)
+                Danmaku.ShotgunBullet (XY.Up, 1f, 4, 8)
             );
         }
 
 
         public override void TakeHealing (int healing, bool showLabel = true) {
             if (healing <= 0) {
-                Debug.LogWarning("healing <= 0");
+                Debug.LogWarning ("healing <= 0");
                 return;
             }
             HP += healing;
             if (!showLabel) return;
             float effectTime = 0.75f + 0.75f * healing / (healing + 40f);
-            Spawn(
-                new Label("+" + healing, _color, 1.2f, new LabelRiseCtrl(effectTime)),
+            The.World.Spawn (
+                new Label ("+" + healing, _color, 1.2f, new LabelRiseCtrl (effectTime)),
                 Position,
-                Danmaku.ShotgunBullet(XY.Up, 0.75f, 8, 12)
+                Danmaku.ShotgunBullet (XY.Up, 0.75f, 8, 12)
             );
         }
 
 
         public override void TakeAxeDamage (float factor, int min, int max) {
-            TakeDamage(Mathf.Clamp(Mathf.CeilToInt(HP * factor), min, max));
+            TakeDamage (Mathf.Clamp (Mathf.CeilToInt (HP * factor), min, max));
         }
 
 
         public override void AddPoison (int dpr, bool additive) {
             if (dpr <= 0) {
-                Debug.LogWarning("poison <= 0");
+                Debug.LogWarning ("poison <= 0");
                 return;
             }
             if (additive) {
                 Poison += dpr;
-            } else if (Poison < dpr) {
+            }
+            else if (Poison < dpr) {
                 Poison = dpr;
             }
         }
@@ -259,12 +277,13 @@ namespace Battle.Objects {
 
         public override void CurePoison (int dpr) {
             if (dpr <= 0) {
-                Debug.LogWarning("cure poison <= 0");
+                Debug.LogWarning ("cure poison <= 0");
                 return;
             }
             if (Poison > dpr) {
                 Poison -= dpr;
-            } else {
+            }
+            else {
                 Poison = 0;
             }
         }
@@ -276,19 +295,19 @@ namespace Battle.Objects {
 
 
         public override void ReceiveBlastWave (XY impulse) {
-            Controller = new WormFallCtrl();
-            base.ReceiveBlastWave(impulse);
+            Controller = new WormFallCtrl ();
+            base.ReceiveBlastWave (impulse);
         }
 
 
-        public override void OnDespawn () {
+        protected override void OnDespawn () {
             HP = 0;
-            if (The.ActiveWorm.Is(this)) The.BattleScene.EndTurn();
+            if (this == The.Battle.ActiveWorm) The.Battle.EndTurn ();
         }
 
 
         protected override void OnColliderAdded (Collider c) {
-            c.NormalBounce = 0.1f;
+            c.NormalBounce     = 0.1f;
             c.TangentialBounce = 0.75f;
         }
 

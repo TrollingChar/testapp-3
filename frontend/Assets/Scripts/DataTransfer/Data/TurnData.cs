@@ -39,7 +39,12 @@ namespace DataTransfer.Data {
         }
 
 
-        public static TurnData FromInput () {
+        public bool Empty {
+            get { return !(W || A || S || D || MB || NumKey != 0); }
+        }
+
+
+        public static TurnData FromInput (bool preserveWeaponFlag) {
             byte numKey = 0;
             if (Input.GetKey(KeyCode.Alpha1)) numKey = 1;
             if (Input.GetKey(KeyCode.Alpha2)) numKey = 2;
@@ -51,12 +56,12 @@ namespace DataTransfer.Data {
                 A = Input.GetKey(KeyCode.A),
                 S = Input.GetKey(KeyCode.S),
                 D = Input.GetKey(KeyCode.D),
-                MB = !The.ArsenalPanel.IsOpen && Input.GetMouseButton(0), // LMB
+                MB = !The.Battle.ArsenalPanel.IsOpen && Input.GetMouseButton(0), // LMB
                 XY = The.Camera.WorldMousePosition,
                 Weapon = _prepWeapFlag ? _prepWeapon : (byte) 0,
                 NumKey = numKey
             };
-            _prepWeapFlag = false;
+            _prepWeapFlag &= preserveWeaponFlag;
             return td;
         }
 

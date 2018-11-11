@@ -5,16 +5,16 @@ using Attributes;
 
 namespace DataTransfer.Server {
 
-    [DTO(DTOCode.LeftGame)]
+    [DTO (DTOCode.LeftGame)]
     public class LeftGameCmd : ServerCommand {
 
         public override void ReadMembers (BinaryReader reader) {
-            throw new NotImplementedException();
+            throw new NotImplementedException ();
         }
 
 
         public override void Execute () {
-            throw new NotImplementedException();
+            throw new NotImplementedException ();
         }
 
     }

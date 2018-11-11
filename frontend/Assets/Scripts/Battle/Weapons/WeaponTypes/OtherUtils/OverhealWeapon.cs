@@ -21,10 +21,11 @@ namespace Battle.Weapons.WeaponTypes.OtherUtils {
         protected override void OnShoot () {
             UseAmmo();
             var objects = The.World.Objects;
-            for (var node = objects.First; node != null; node = node.Next) {
-                var obj = node.Value;
-                obj.CureAllPoison();
-                obj.TakeHealing(30);
+            for (int i = 0; i < objects.Count; i++) {
+                var o = objects[i];
+                if (o.Despawned) continue;
+                o.CureAllPoison();
+                o.TakeHealing(30);
             }
         }
 

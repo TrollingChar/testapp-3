@@ -1,4 +1,5 @@
 ﻿using Attributes;
+using Battle.Camera;
 using Battle.Objects;
 using Battle.Weapons.Crosshairs;
 using Core;
@@ -48,6 +49,13 @@ namespace Battle.Weapons.WeaponTypes.Firearms {
             _animator = _sprite.GetComponent<Animator>();
             
             ((Worm) Object).NewWormGO.UnlockHead ();
+            
+            SetCamera ();
+        }
+
+
+        private void SetCamera () {
+            The.Camera.Controller = new ObjectBoundCameraController (Object, 0.5f);
         }
 
 

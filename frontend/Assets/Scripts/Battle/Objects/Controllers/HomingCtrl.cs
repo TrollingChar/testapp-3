@@ -1,8 +1,8 @@
 ﻿using Battle.Objects.Projectiles;
 using Battle.Objects.Timers;
+using Core;
 using DataTransfer.Data;
 using Geometry;
-using Time = Core.Time;
 
 
 namespace Battle.Objects.Controllers {
@@ -16,7 +16,6 @@ namespace Battle.Objects.Controllers {
             _target = target;
             GravityCoeff = 0;
             WaitFlag = true;
-            MagnetCoeff = 1;
             SmokeSize = 20;
             OrientationFlag = true;
         }
@@ -27,7 +26,6 @@ namespace Battle.Objects.Controllers {
                 new Time{Seconds = 5},
                 () => {
                     Object.Controller = new StandardCtrl {
-                        MagnetCoeff = 1,
                         SmokeSize = 20,
                         OrientationFlag = true
                     };
