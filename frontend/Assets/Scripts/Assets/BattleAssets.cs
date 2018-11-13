@@ -17,6 +17,7 @@ namespace Assets {
         public GameObject LineCrosshair;
         public GameObject MeleeCrosshair;
         public GameObject PointCrosshair;
+        public GameObject NukeTarget;
         [Space]
         public GameObject Worm;
         public GameObject Arrow;
@@ -59,6 +60,7 @@ namespace Assets {
         public GameObject Dynamite;
         public GameObject Bomb;
         public GameObject VacuumBomb;
+        public GameObject Nuke;
         public GameObject Meteor;
         [Space]
         public GameObject Smoke;

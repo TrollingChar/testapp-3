@@ -15,10 +15,10 @@ namespace Battle.Objects.Projectiles {
             var transform = GameObject.transform;
             var assets    = The.BattleAssets;
 
-            UnityEngine.Object.Instantiate (assets.BazookaShell, transform, false);
+            UnityEngine.Object.Instantiate (assets.Nuke, transform, false);
 //            AddCollider (new CircleCollider (XY.Zero,         20f));
-            AddCollider (new CircleCollider (new XY (0, -50), 20f));
-            Explosive        = new ExplosiveNuke ();
+            AddCollider (new CircleCollider (new XY (0, -300), 20f));
+            Explosive        = new ExplosiveNuke (new XY (0, -300));
             Controller       = new StandardCtrl {
                 SmokeSize       = 40,
                 OrientationFlag = true

@@ -9,15 +9,17 @@ namespace Battle.Objects.Effects {
 
 
         public override void OnSpawn () {
-            ActivationI = The.Battle.Teams.I + The.Battle.Teams.Teams.Count - 1;
+            var battle = The.Battle;
+            ActivationI = battle.Teams.I + battle.Teams.Teams.Count - 1;
             
-            // add sprite for player that launched it
+            if (battle.MyTurn) {
+                UnityEngine.Object.Instantiate (The.BattleAssets.NukeTarget, GameObject.transform, false);
+            }
             
-            // show CAUTION CAUTION for some seconds
-            The.Battle.Alert.Text = "ОПАСНО!!";
-            The.Battle.Alert.Alpha = 1f;
+            battle.Alert.Text = "ОПАСНО!!";
+            battle.Alert.Alpha = 1f;
             
-            The.Battle.TweenTimer.Wait (new Time {Seconds = 3f});
+            battle.TweenTimer.Wait (new Time {Seconds = 3f});
         }
 
     }
