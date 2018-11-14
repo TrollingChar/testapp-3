@@ -42,9 +42,9 @@
 			}
 			
 			sampler2D _MainTex;
-			Float _XSpeed;
-			Float _Alpha;
-			Float _Coeff;
+			float _XSpeed;
+			float _Alpha;
+			float _Coeff;
 
 			fixed4 frag (v2f i) : SV_Target
 			{
